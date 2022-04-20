@@ -1,0 +1,167 @@
+\hypertarget{classtest__can_driver_interface}{}\doxysection{test\+\_\+can\+Driver\+Interface Class Reference}
+\label{classtest__can_driver_interface}\index{test\_canDriverInterface@{test\_canDriverInterface}}
+
+
+Executing class.  
+
+
+Inheritance diagram for test\+\_\+can\+Driver\+Interface\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classtest__can_driver_interface}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classtest__can_driver_interface_ac6e5cbebcd0e11ca99cb607b2e89d3c2}\label{classtest__can_driver_interface_ac6e5cbebcd0e11ca99cb607b2e89d3c2}} 
+\mbox{\hyperlink{classusing_driver}{using\+Driver}} $\ast$ {\bfseries device\+Driver}
+\item 
+\mbox{\Hypertarget{classtest__can_driver_interface_a80ecc568649e72cc47614b22045d1a76}\label{classtest__can_driver_interface_a80ecc568649e72cc47614b22045d1a76}} 
+can\+Driver\+Interface\+::can\+Data\+Frame {\bfseries txframe}
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Slots}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classtest__can_driver_interface_a13aac5e76374da1c78f7be76eb17476a}{init\+Test\+Case}} ()
+\begin{DoxyCompactList}\small\item\em Driver creation and reception filter aperture. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classtest__can_driver_interface_a65db80d17a0487a55124aaaeaf431b82}{cleanup\+Test\+Case}} ()
+\begin{DoxyCompactList}\small\item\em Driver deleting. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classtest__can_driver_interface_ac76e8320a1238b1e745299efaa5072b1}{test\+\_\+can\+Driver\+Interface\+\_\+1}} ()
+\begin{DoxyCompactList}\small\item\em The driver is set to Run Mode. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classtest__can_driver_interface_a5ace4f86177aeb786660337813cbdddb}{test\+\_\+can\+Driver\+Interface\+\_\+2}} ()
+\begin{DoxyCompactList}\small\item\em Read the Filter setting. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classtest__can_driver_interface_a2f271dbd9cd189b4d1bac2157a5e44ee}{test\+\_\+can\+Driver\+Interface\+\_\+3}} ()
+\begin{DoxyCompactList}\small\item\em Read the Filter Mask. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classtest__can_driver_interface_a0b3be9c669b7b208c24166a6a17653db}{test\+\_\+can\+Driver\+Interface\+\_\+4}} ()
+\begin{DoxyCompactList}\small\item\em Read the Extended/\+Standard mode setting. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classtest__can_driver_interface_a484903614f29cdab23ab6a47f1697888}{test\+\_\+can\+Driver\+Interface\+\_\+5}} ()
+\begin{DoxyCompactList}\small\item\em Read the Run/\+Pause mode status. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classtest__can_driver_interface_aa3ec6d48ecca6a5c9b9bb5592dde2086}{test\+\_\+can\+Driver\+Interface\+\_\+6}} ()
+\begin{DoxyCompactList}\small\item\em Read the Timeout value. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classtest__can_driver_interface_a0de6b38d467da3c488d91c73dfdf02f1}{test\+\_\+can\+Driver\+Interface\+\_\+7}} ()
+\begin{DoxyCompactList}\small\item\em Run the CAN BUS test the no-\/answer scenario. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classtest__can_driver_interface_acfbc3d8f432cce05a4962ad1154a0fc6}{test\+\_\+can\+Driver\+Interface\+\_\+8}} ()
+\begin{DoxyCompactList}\small\item\em Driver Stop mode. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Executing class. 
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group___c_a_n___d_r_i_v_e_r___i_n_t_e_r_f_a_c_e___c_l_a_s_s___m_o_d_u_l_e}{can\+Driver\+Interface class Unit Test module}} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classtest__can_driver_interface_a65db80d17a0487a55124aaaeaf431b82}\label{classtest__can_driver_interface_a65db80d17a0487a55124aaaeaf431b82}} 
+\index{test\_canDriverInterface@{test\_canDriverInterface}!cleanupTestCase@{cleanupTestCase}}
+\index{cleanupTestCase@{cleanupTestCase}!test\_canDriverInterface@{test\_canDriverInterface}}
+\doxysubsubsection{\texorpdfstring{cleanupTestCase}{cleanupTestCase}}
+{\footnotesize\ttfamily void test\+\_\+can\+Driver\+Interface\+::cleanup\+Test\+Case (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}
+
+
+
+Driver deleting. 
+
+The user class is deleted and the driver should Shutdown. The worker and the thread of the driver shall be deleted successfully. \mbox{\Hypertarget{classtest__can_driver_interface_a13aac5e76374da1c78f7be76eb17476a}\label{classtest__can_driver_interface_a13aac5e76374da1c78f7be76eb17476a}} 
+\index{test\_canDriverInterface@{test\_canDriverInterface}!initTestCase@{initTestCase}}
+\index{initTestCase@{initTestCase}!test\_canDriverInterface@{test\_canDriverInterface}}
+\doxysubsubsection{\texorpdfstring{initTestCase}{initTestCase}}
+{\footnotesize\ttfamily void test\+\_\+can\+Driver\+Interface\+::init\+Test\+Case (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}
+
+
+
+Driver creation and reception filter aperture. 
+
+This test creates the driver and open a reception filter. The test shall verify that the Test should not communicate beacuse it should not be in run mode now. \mbox{\Hypertarget{classtest__can_driver_interface_ac76e8320a1238b1e745299efaa5072b1}\label{classtest__can_driver_interface_ac76e8320a1238b1e745299efaa5072b1}} 
+\index{test\_canDriverInterface@{test\_canDriverInterface}!test\_canDriverInterface\_1@{test\_canDriverInterface\_1}}
+\index{test\_canDriverInterface\_1@{test\_canDriverInterface\_1}!test\_canDriverInterface@{test\_canDriverInterface}}
+\doxysubsubsection{\texorpdfstring{test\_canDriverInterface\_1}{test\_canDriverInterface\_1}}
+{\footnotesize\ttfamily void test\+\_\+can\+Driver\+Interface\+::test\+\_\+can\+Driver\+Interface\+\_\+1 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}
+
+
+
+The driver is set to Run Mode. 
+
+The test verify the run\+Driver() method\+: After the run\+Driver() command is used the test reads the Hardware Init flag from the implemented Driver. \mbox{\Hypertarget{classtest__can_driver_interface_a5ace4f86177aeb786660337813cbdddb}\label{classtest__can_driver_interface_a5ace4f86177aeb786660337813cbdddb}} 
+\index{test\_canDriverInterface@{test\_canDriverInterface}!test\_canDriverInterface\_2@{test\_canDriverInterface\_2}}
+\index{test\_canDriverInterface\_2@{test\_canDriverInterface\_2}!test\_canDriverInterface@{test\_canDriverInterface}}
+\doxysubsubsection{\texorpdfstring{test\_canDriverInterface\_2}{test\_canDriverInterface\_2}}
+{\footnotesize\ttfamily void test\+\_\+can\+Driver\+Interface\+::test\+\_\+can\+Driver\+Interface\+\_\+2 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}
+
+
+
+Read the Filter setting. 
+
+The Test read the current filter setting from the implemented Driver\+: the current expected filter setting should be the one provided in the Test\+Init with the open\+Port command. \mbox{\Hypertarget{classtest__can_driver_interface_a2f271dbd9cd189b4d1bac2157a5e44ee}\label{classtest__can_driver_interface_a2f271dbd9cd189b4d1bac2157a5e44ee}} 
+\index{test\_canDriverInterface@{test\_canDriverInterface}!test\_canDriverInterface\_3@{test\_canDriverInterface\_3}}
+\index{test\_canDriverInterface\_3@{test\_canDriverInterface\_3}!test\_canDriverInterface@{test\_canDriverInterface}}
+\doxysubsubsection{\texorpdfstring{test\_canDriverInterface\_3}{test\_canDriverInterface\_3}}
+{\footnotesize\ttfamily void test\+\_\+can\+Driver\+Interface\+::test\+\_\+can\+Driver\+Interface\+\_\+3 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}
+
+
+
+Read the Filter Mask. 
+
+The Test reads the current filter Mask from the implemented Driver\+: the current expected filter setting should be the one provided in the Test\+Init with the open\+Port command. \mbox{\Hypertarget{classtest__can_driver_interface_a0b3be9c669b7b208c24166a6a17653db}\label{classtest__can_driver_interface_a0b3be9c669b7b208c24166a6a17653db}} 
+\index{test\_canDriverInterface@{test\_canDriverInterface}!test\_canDriverInterface\_4@{test\_canDriverInterface\_4}}
+\index{test\_canDriverInterface\_4@{test\_canDriverInterface\_4}!test\_canDriverInterface@{test\_canDriverInterface}}
+\doxysubsubsection{\texorpdfstring{test\_canDriverInterface\_4}{test\_canDriverInterface\_4}}
+{\footnotesize\ttfamily void test\+\_\+can\+Driver\+Interface\+::test\+\_\+can\+Driver\+Interface\+\_\+4 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}
+
+
+
+Read the Extended/\+Standard mode setting. 
+
+The Test reads the current Extended/\+Standard mode from the implemented Driver\+: the current expected Extended/\+Standard mode setting should be the one provided in the Test\+Init with the open\+Port command. \mbox{\Hypertarget{classtest__can_driver_interface_a484903614f29cdab23ab6a47f1697888}\label{classtest__can_driver_interface_a484903614f29cdab23ab6a47f1697888}} 
+\index{test\_canDriverInterface@{test\_canDriverInterface}!test\_canDriverInterface\_5@{test\_canDriverInterface\_5}}
+\index{test\_canDriverInterface\_5@{test\_canDriverInterface\_5}!test\_canDriverInterface@{test\_canDriverInterface}}
+\doxysubsubsection{\texorpdfstring{test\_canDriverInterface\_5}{test\_canDriverInterface\_5}}
+{\footnotesize\ttfamily void test\+\_\+can\+Driver\+Interface\+::test\+\_\+can\+Driver\+Interface\+\_\+5 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}
+
+
+
+Read the Run/\+Pause mode status. 
+
+The Test reads the current Run/\+Pause mode from the implemented Driver\+: the expected value shall be Run Mode. \mbox{\Hypertarget{classtest__can_driver_interface_aa3ec6d48ecca6a5c9b9bb5592dde2086}\label{classtest__can_driver_interface_aa3ec6d48ecca6a5c9b9bb5592dde2086}} 
+\index{test\_canDriverInterface@{test\_canDriverInterface}!test\_canDriverInterface\_6@{test\_canDriverInterface\_6}}
+\index{test\_canDriverInterface\_6@{test\_canDriverInterface\_6}!test\_canDriverInterface@{test\_canDriverInterface}}
+\doxysubsubsection{\texorpdfstring{test\_canDriverInterface\_6}{test\_canDriverInterface\_6}}
+{\footnotesize\ttfamily void test\+\_\+can\+Driver\+Interface\+::test\+\_\+can\+Driver\+Interface\+\_\+6 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}
+
+
+
+Read the Timeout value. 
+
+The Test reads the current Timeout value from the implemented Driver\+: the expected value is the one passed with the tx\+Data() function in the test. \mbox{\Hypertarget{classtest__can_driver_interface_a0de6b38d467da3c488d91c73dfdf02f1}\label{classtest__can_driver_interface_a0de6b38d467da3c488d91c73dfdf02f1}} 
+\index{test\_canDriverInterface@{test\_canDriverInterface}!test\_canDriverInterface\_7@{test\_canDriverInterface\_7}}
+\index{test\_canDriverInterface\_7@{test\_canDriverInterface\_7}!test\_canDriverInterface@{test\_canDriverInterface}}
+\doxysubsubsection{\texorpdfstring{test\_canDriverInterface\_7}{test\_canDriverInterface\_7}}
+{\footnotesize\ttfamily void test\+\_\+can\+Driver\+Interface\+::test\+\_\+can\+Driver\+Interface\+\_\+7 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}
+
+
+
+Run the CAN BUS test the no-\/answer scenario. 
+
+No Answer test .
+
+The test verifies the case on witch there is no answer from the remote dvice. In this case the driver shall returns a frame with can\+Id == 0. \mbox{\Hypertarget{classtest__can_driver_interface_acfbc3d8f432cce05a4962ad1154a0fc6}\label{classtest__can_driver_interface_acfbc3d8f432cce05a4962ad1154a0fc6}} 
+\index{test\_canDriverInterface@{test\_canDriverInterface}!test\_canDriverInterface\_8@{test\_canDriverInterface\_8}}
+\index{test\_canDriverInterface\_8@{test\_canDriverInterface\_8}!test\_canDriverInterface@{test\_canDriverInterface}}
+\doxysubsubsection{\texorpdfstring{test\_canDriverInterface\_8}{test\_canDriverInterface\_8}}
+{\footnotesize\ttfamily void test\+\_\+can\+Driver\+Interface\+::test\+\_\+can\+Driver\+Interface\+\_\+8 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}
+
+
+
+Driver Stop mode. 
+
+The test verifies the stop\+Driver() command. This function shall keep the driver alive but in a non communicating status.
+
+The test verify that the driver doesn\textquotesingle{}t communicate after the command is used and the hardware inti status flag is still true;
+
+The test then calls the run\+Driver() method to restore the communication. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/marco/\+Documents/\+Git\+Hub/\+Gantry\+Z190/\+GANTRY/\+UNIT-\/\+TEST/\+MAIN-\/\+CPU/\+SOURCE/\+Can\+Driver\+Interface/tst\+\_\+testcandriverclass.\+cpp\end{DoxyCompactItemize}

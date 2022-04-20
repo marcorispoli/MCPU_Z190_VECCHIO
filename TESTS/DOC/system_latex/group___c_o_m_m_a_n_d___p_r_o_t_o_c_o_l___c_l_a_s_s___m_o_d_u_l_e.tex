@@ -1,0 +1,231 @@
+\hypertarget{group___c_o_m_m_a_n_d___p_r_o_t_o_c_o_l___c_l_a_s_s___m_o_d_u_l_e}{}\doxysection{command\+Protocol class Unit Test module}
+\label{group___c_o_m_m_a_n_d___p_r_o_t_o_c_o_l___c_l_a_s_s___m_o_d_u_l_e}\index{commandProtocol class Unit Test module@{commandProtocol class Unit Test module}}
+This module describes the tests on the command\+Protocol class.\hypertarget{group___c_o_m_m_a_n_d___p_r_o_t_o_c_o_l___c_l_a_s_s___m_o_d_u_l_e_autotoc_md2}{}\doxysubsection{TEST DESCRIPTION}\label{group___c_o_m_m_a_n_d___p_r_o_t_o_c_o_l___c_l_a_s_s___m_o_d_u_l_e_autotoc_md2}
+\hypertarget{group___c_o_m_m_a_n_d___p_r_o_t_o_c_o_l___c_l_a_s_s___m_o_d_u_l_e_autotoc_md3}{}\doxysubsubsection{INVALID-\/\+FRAME type identification test}\label{group___c_o_m_m_a_n_d___p_r_o_t_o_c_o_l___c_l_a_s_s___m_o_d_u_l_e_autotoc_md3}
+{\bfseries{Function}}\+: \mbox{\hyperlink{classtest__command_protocol_ac51cd7aeca6eafbb9b0047879f0d51b2}{test\+\_\+command\+Protocol\+::test\+\_\+command\+Protocol\+\_\+1()}} ~\newline
+{\bfseries{Description}}\+: the test verifies the ability to detect a non valid frame.
+
+{\bfseries{Execution}}\+:
+\begin{DoxyEnumerate}
+\item Creates an invalid frame with an invalid frame lenght field;
+\begin{DoxyItemize}
+\item Verify that the detected frame is invalid;
+\end{DoxyItemize}
+\item Creates an invalid frame missing the frame initiator character;
+\begin{DoxyItemize}
+\item Verify that the detected frame is invalid;
+\end{DoxyItemize}
+\item Creates an invalid frame with a wrong \textquotesingle{}\%\textquotesingle{} character usage;
+\begin{DoxyItemize}
+\item Verify that the detected frame is invalid;
+\end{DoxyItemize}
+\end{DoxyEnumerate}\hypertarget{group___c_o_m_m_a_n_d___p_r_o_t_o_c_o_l___c_l_a_s_s___m_o_d_u_l_e_autotoc_md4}{}\doxysubsubsection{COMMAND-\/\+FRAME type identification test}\label{group___c_o_m_m_a_n_d___p_r_o_t_o_c_o_l___c_l_a_s_s___m_o_d_u_l_e_autotoc_md4}
+{\bfseries{Function}}\+: \mbox{\hyperlink{classtest__command_protocol_a39eda69eb9d04ac4ffd0c3969d3991bb}{test\+\_\+command\+Protocol\+::test\+\_\+command\+Protocol\+\_\+2()}}. ~\newline
+{\bfseries{Description}}\+: The test verifies the ability to detect a valid COMMAND-\/\+FRAME.
+
+{\bfseries{Execution}}\+:
+\begin{DoxyEnumerate}
+\item Creates a valid Command Frame with a list of three parameters;
+\begin{DoxyItemize}
+\item Verify that the detected frame is a COMMAND frame;
+\item Verify the \char`\"{}\+Command\char`\"{} field is correct;
+\item Verify the \char`\"{}\+Parameters\char`\"{} fields are correct
+\end{DoxyItemize}
+\end{DoxyEnumerate}\hypertarget{group___c_o_m_m_a_n_d___p_r_o_t_o_c_o_l___c_l_a_s_s___m_o_d_u_l_e_autotoc_md5}{}\doxysubsubsection{COMMAND-\/\+FRAME type and parameter identification test}\label{group___c_o_m_m_a_n_d___p_r_o_t_o_c_o_l___c_l_a_s_s___m_o_d_u_l_e_autotoc_md5}
+{\bfseries{Function}}\+: \mbox{\hyperlink{classtest__command_protocol_a26dec1f7609a4a6f4e2b8c98d212c8c4}{test\+\_\+command\+Protocol\+::test\+\_\+command\+Protocol\+\_\+3()}}. ~\newline
+{\bfseries{Description}}\+: The test verifies the ability to detect a valid COMMAND-\/\+FRAME and its parameters format.
+
+{\bfseries{Execution}}\+:
+\begin{DoxyEnumerate}
+\item Creates a valid Command Frame with two parametrs\+: a "{}string"{} parameter and a normal prameter;
+\begin{DoxyItemize}
+\item Verify that the detected frame is a COMMAND frame;
+\item Verify the \char`\"{}\+Command\char`\"{} field is correct;
+\item Verify the ID field is correct;
+\item Verify the number of parameter is correct;
+\item Verify the \char`\"{}\+Parameters\char`\"{} fields are correct;
+\end{DoxyItemize}
+\end{DoxyEnumerate}\hypertarget{group___c_o_m_m_a_n_d___p_r_o_t_o_c_o_l___c_l_a_s_s___m_o_d_u_l_e_autotoc_md6}{}\doxysubsubsection{OK-\/\+FRAME type and parameter identification test}\label{group___c_o_m_m_a_n_d___p_r_o_t_o_c_o_l___c_l_a_s_s___m_o_d_u_l_e_autotoc_md6}
+{\bfseries{Function}}\+: \mbox{\hyperlink{classtest__command_protocol_ada1741b1146b16de12bce2d6ffdbc241}{test\+\_\+command\+Protocol\+::test\+\_\+command\+Protocol\+\_\+4()}}. ~\newline
+{\bfseries{Description}}\+: The test veifies the ability to detect a valid OK-\/\+FRAME and its parameters.
+
+{\bfseries{Execution}}\+:
+\begin{DoxyEnumerate}
+\item Creates a valid OK Command Frame type ;
+\begin{DoxyItemize}
+\item Verify that the detected frame is a OK frame;
+\item Verify the ID field is correct;
+\item Verify the CODE field is correct;
+\item Verify the number of parameter is correct;
+\item Verify the \char`\"{}\+Command\char`\"{} fields are correct;
+\item Verify the \char`\"{}\+Parameters\char`\"{} fields are correct;
+\end{DoxyItemize}
+\end{DoxyEnumerate}\hypertarget{group___c_o_m_m_a_n_d___p_r_o_t_o_c_o_l___c_l_a_s_s___m_o_d_u_l_e_autotoc_md7}{}\doxysubsubsection{DELAYED-\/\+FRAME type and parameter identification test}\label{group___c_o_m_m_a_n_d___p_r_o_t_o_c_o_l___c_l_a_s_s___m_o_d_u_l_e_autotoc_md7}
+{\bfseries{Function}}\+: \mbox{\hyperlink{classtest__command_protocol_a76f5fae8ba3ae4035481891292d938da}{test\+\_\+command\+Protocol\+::test\+\_\+command\+Protocol\+\_\+5()}}. ~\newline
+{\bfseries{Description}}\+: The test veifies the ability to detect a valid DELAYED-\/\+FRAME and its parameters.
+
+{\bfseries{Execution}}\+:
+\begin{DoxyEnumerate}
+\item Creates a valid DELAYED Frame type ;
+\begin{DoxyItemize}
+\item Verify that the detected frame is a DELAYED frame;
+\item Verify the ID field is correct;
+\item Verify the CODE field is correct;
+\item Verify the number of parameters is correct;
+\item Verify the \char`\"{}\+Command\char`\"{} fields are correct;
+\item Verify the \char`\"{}\+Parameters\char`\"{} fields are correct;
+\end{DoxyItemize}
+\end{DoxyEnumerate}\hypertarget{group___c_o_m_m_a_n_d___p_r_o_t_o_c_o_l___c_l_a_s_s___m_o_d_u_l_e_autotoc_md8}{}\doxysubsubsection{NOK-\/\+FRAME type and parameter identification test}\label{group___c_o_m_m_a_n_d___p_r_o_t_o_c_o_l___c_l_a_s_s___m_o_d_u_l_e_autotoc_md8}
+{\bfseries{Function}}\+: \mbox{\hyperlink{classtest__command_protocol_abf63fc56c64d7e6578e6aab15a7625fa}{test\+\_\+command\+Protocol\+::test\+\_\+command\+Protocol\+\_\+6()}}. ~\newline
+{\bfseries{Description}}\+: The test verifies the ability to detect a valid NOK-\/\+FRAME and its parameters.
+
+{\bfseries{Execution}}\+:
+\begin{DoxyEnumerate}
+\item Creates a valid NOK-\/\+FRAME Frame type ;
+\begin{DoxyItemize}
+\item Verify that the detected frame is a NOK-\/\+FRAME frame;
+\item Verify the ID field is correct;
+\item Verify the CODE field is correct;
+\item Verify the number of parameters is correct;
+\item Verify the \char`\"{}\+Command\char`\"{} fields are correct;
+\item Verify the \char`\"{}\+Parameters\char`\"{} fields are correct;
+\end{DoxyItemize}
+\end{DoxyEnumerate}\hypertarget{group___c_o_m_m_a_n_d___p_r_o_t_o_c_o_l___c_l_a_s_s___m_o_d_u_l_e_autotoc_md9}{}\doxysubsubsection{ACK-\/\+FRAME type and parameter identification test}\label{group___c_o_m_m_a_n_d___p_r_o_t_o_c_o_l___c_l_a_s_s___m_o_d_u_l_e_autotoc_md9}
+{\bfseries{Function}}\+: \mbox{\hyperlink{classtest__command_protocol_a4baf1151b74ff6baf90f06cd342f776c}{test\+\_\+command\+Protocol\+::test\+\_\+command\+Protocol\+\_\+7()}}. ~\newline
+{\bfseries{Description}}\+: The test verifies the ability to detect a valid ACK-\/\+FRAME and its parameters.
+
+{\bfseries{Execution}}\+:
+\begin{DoxyEnumerate}
+\item Creates a valid ACK-\/\+FRAME Frame type ;
+\begin{DoxyItemize}
+\item Verify that the detected frame is a ACK-\/\+FRAME frame;
+\item Verify the ID field is correct;
+\item Verify the CODE field is correct;
+\item Verify the number of parameters is correct;
+\item Verify the \char`\"{}\+Command\char`\"{} fields are correct;
+\item Verify the \char`\"{}\+Parameters\char`\"{} fields are correct;
+\end{DoxyItemize}
+\end{DoxyEnumerate}\hypertarget{group___c_o_m_m_a_n_d___p_r_o_t_o_c_o_l___c_l_a_s_s___m_o_d_u_l_e_autotoc_md10}{}\doxysubsubsection{STATUS-\/\+FRAME type and parameter identification test}\label{group___c_o_m_m_a_n_d___p_r_o_t_o_c_o_l___c_l_a_s_s___m_o_d_u_l_e_autotoc_md10}
+{\bfseries{Function}}\+: \mbox{\hyperlink{classtest__command_protocol_ab77eb87ed018e7916e24d4daf41892dd}{test\+\_\+command\+Protocol\+::test\+\_\+command\+Protocol\+\_\+8()}}. ~\newline
+{\bfseries{Description}}\+: The test verifies the ability to detect a valid STATUS-\/\+FRAME and its parameters.
+
+{\bfseries{Execution}}\+:
+\begin{DoxyEnumerate}
+\item Creates a valid STATUS-\/\+FRAME Frame type ;
+\begin{DoxyItemize}
+\item Verify that the detected frame is a STATUS-\/\+FRAME frame;
+\item Verify the ID field is correct;
+\item Verify the CODE field is correct;
+\item Verify the number of parameters is correct;
+\item Verify the \char`\"{}\+Command\char`\"{} fields are correct;
+\item Verify the \char`\"{}\+Parameters\char`\"{} fields are correct;
+\end{DoxyItemize}
+\end{DoxyEnumerate}\hypertarget{group___c_o_m_m_a_n_d___p_r_o_t_o_c_o_l___c_l_a_s_s___m_o_d_u_l_e_autotoc_md11}{}\doxysubsubsection{COMMAND-\/\+TYPE frame format creation test}\label{group___c_o_m_m_a_n_d___p_r_o_t_o_c_o_l___c_l_a_s_s___m_o_d_u_l_e_autotoc_md11}
+{\bfseries{Function}}\+: \mbox{\hyperlink{classtest__command_protocol_a35f66f7087f0f6f3a8f2291eece6aecf}{test\+\_\+command\+Protocol\+::test\+\_\+command\+Protocol\+\_\+9()}}. ~\newline
+{\bfseries{Description}}\+: The test verifies the ability to format a frame of COMMAND-\/\+TYPE.
+
+{\bfseries{Execution}}\+:
+\begin{DoxyEnumerate}
+\item Creates a Command frame with a list of parameters;
+\item Decode the frame with the command\+Protocol class constructor;
+\begin{DoxyItemize}
+\item Verify that the detected frame is a COMMAND-\/\+FRAME ;
+\item Verify the ID field is correct;
+\item Verify the number of parameters is correct;
+\item Verify the \char`\"{}\+Command\char`\"{} fields are correct;
+\item Verify the \char`\"{}\+Parameters\char`\"{} fields are correct;
+\end{DoxyItemize}
+\end{DoxyEnumerate}\hypertarget{group___c_o_m_m_a_n_d___p_r_o_t_o_c_o_l___c_l_a_s_s___m_o_d_u_l_e_autotoc_md12}{}\doxysubsubsection{DELAY-\/\+COMPLETED frame format creation test}\label{group___c_o_m_m_a_n_d___p_r_o_t_o_c_o_l___c_l_a_s_s___m_o_d_u_l_e_autotoc_md12}
+{\bfseries{Function}}\+: \mbox{\hyperlink{classtest__command_protocol_a89b4fcfb48493dd40ba40f2421b30702}{test\+\_\+command\+Protocol\+::test\+\_\+command\+Protocol\+\_\+10()}}. ~\newline
+{\bfseries{Description}}\+: The test verifies the ability to format a frame of DELAY-\/\+COMPLETED.
+
+{\bfseries{Execution}}\+:
+\begin{DoxyEnumerate}
+\item Creates a DELAY-\/\+COMPLETED frame with a list of parameters;
+\item Decode the frame with the command\+Protocol class constructor;
+\begin{DoxyItemize}
+\item Verify that the detected frame is a DELAY-\/\+COMPLETED ;
+\item Verify the ID field is correct;
+\item Verify the CODE field is correct;
+\item Verify the number of parameters is correct;
+\item Verify the \char`\"{}\+Command\char`\"{} fields are correct;
+\item Verify the \char`\"{}\+Parameters\char`\"{} fields are correct;
+\end{DoxyItemize}
+\end{DoxyEnumerate}\hypertarget{group___c_o_m_m_a_n_d___p_r_o_t_o_c_o_l___c_l_a_s_s___m_o_d_u_l_e_autotoc_md13}{}\doxysubsubsection{NA frame format creation test}\label{group___c_o_m_m_a_n_d___p_r_o_t_o_c_o_l___c_l_a_s_s___m_o_d_u_l_e_autotoc_md13}
+{\bfseries{Function}}\+: \mbox{\hyperlink{classtest__command_protocol_a76426ad7d45770854ca6abe745956ad0}{test\+\_\+command\+Protocol\+::test\+\_\+command\+Protocol\+\_\+11()}}. ~\newline
+{\bfseries{Description}}\+: The test verifies the ability to format a frame of NA.
+
+{\bfseries{Execution}}\+:
+\begin{DoxyEnumerate}
+\item Creates a NA frame ;
+\item Decode the frame with the command\+Protocol class constructor;
+\begin{DoxyItemize}
+\item Verify that the detected frame is a NA ;
+\end{DoxyItemize}
+\end{DoxyEnumerate}\hypertarget{group___c_o_m_m_a_n_d___p_r_o_t_o_c_o_l___c_l_a_s_s___m_o_d_u_l_e_autotoc_md14}{}\doxysubsubsection{NOK frame format creation test}\label{group___c_o_m_m_a_n_d___p_r_o_t_o_c_o_l___c_l_a_s_s___m_o_d_u_l_e_autotoc_md14}
+{\bfseries{Function}}\+: \mbox{\hyperlink{classtest__command_protocol_af5c57b2a60e5df1c14e28dcffb5d06e5}{test\+\_\+command\+Protocol\+::test\+\_\+command\+Protocol\+\_\+12()}}. ~\newline
+{\bfseries{Description}}\+: The test verifies the ability to format a frame of NOK.
+
+{\bfseries{Execution}}\+:
+\begin{DoxyEnumerate}
+\item Creates a Command frame with a list of parameters;
+\item Decode the frame with the command\+Protocol class constructor;
+\item Creates a NOK frame with a code from the decoded protocol;
+\item Decode the NOK frame with the command\+Protocol class constructor;
+\begin{DoxyItemize}
+\item Verify that the detected frame is a NOK ;
+\item Verify the CODE field is correct;
+\end{DoxyItemize}
+\end{DoxyEnumerate}\hypertarget{group___c_o_m_m_a_n_d___p_r_o_t_o_c_o_l___c_l_a_s_s___m_o_d_u_l_e_autotoc_md15}{}\doxysubsubsection{OK frame format creation test}\label{group___c_o_m_m_a_n_d___p_r_o_t_o_c_o_l___c_l_a_s_s___m_o_d_u_l_e_autotoc_md15}
+{\bfseries{Function}}\+: \mbox{\hyperlink{classtest__command_protocol_aa349a6f468dc98d51539294ff6679a0d}{test\+\_\+command\+Protocol\+::test\+\_\+command\+Protocol\+\_\+13()}}. ~\newline
+{\bfseries{Description}}\+: The test verifies the ability to format a frame of OK.
+
+{\bfseries{Execution}}\+:
+\begin{DoxyEnumerate}
+\item Creates a Command frame with a list of parameters;
+\item Decode the frame with the command\+Protocol class constructor;
+\item Creates a OK answer frame with a code from the decoded protocol;
+\item Decode the OK frame with the command\+Protocol class constructor;
+\begin{DoxyItemize}
+\item Verify that the detected frame is a OK ;
+\item Verify the ID field is correct;
+\item Verify the CODE field is correct;
+\item Verify the number of parameters is correct;
+\item Verify the \char`\"{}\+Command\char`\"{} fields are correct;
+\item Verify the \char`\"{}\+Parameters\char`\"{} fields are correct;
+\end{DoxyItemize}
+\end{DoxyEnumerate}\hypertarget{group___c_o_m_m_a_n_d___p_r_o_t_o_c_o_l___c_l_a_s_s___m_o_d_u_l_e_autotoc_md16}{}\doxysubsubsection{DELAYED frame format creation test}\label{group___c_o_m_m_a_n_d___p_r_o_t_o_c_o_l___c_l_a_s_s___m_o_d_u_l_e_autotoc_md16}
+{\bfseries{Function}}\+: \mbox{\hyperlink{classtest__command_protocol_a53cd434f4f54311d8a3c0b064b159bc3}{test\+\_\+command\+Protocol\+::test\+\_\+command\+Protocol\+\_\+14()}}. ~\newline
+{\bfseries{Description}}\+: The test verifies the ability to format a frame of DELAYED.
+
+{\bfseries{Execution}}\+:
+\begin{DoxyEnumerate}
+\item Creates a Command frame with a list of parameters;
+\item Decode the frame with the command\+Protocol class constructor;
+\item Creates a DELAYED ($<$\+OK code$>$) answer frame with a code from the decoded protocol;
+\item Decode the DELAYED frame with the command\+Protocol class constructor;
+\begin{DoxyItemize}
+\item Verify that the detected frame is a DELAYED ;
+\item Verify the ID field is correct;
+\item Verify the CODE field is correct;
+\item Verify the number of parameters is correct;
+\item Verify the \char`\"{}\+Command\char`\"{} fields are correct;
+\item Verify the \char`\"{}\+Parameters\char`\"{} fields are correct;
+\end{DoxyItemize}
+\end{DoxyEnumerate}\hypertarget{group___c_o_m_m_a_n_d___p_r_o_t_o_c_o_l___c_l_a_s_s___m_o_d_u_l_e_autotoc_md17}{}\doxysubsubsection{STATUS frame format creation test}\label{group___c_o_m_m_a_n_d___p_r_o_t_o_c_o_l___c_l_a_s_s___m_o_d_u_l_e_autotoc_md17}
+{\bfseries{Function}}\+: \mbox{\hyperlink{classtest__command_protocol_a0130074248b8a24c18cdafe2dfde915b}{test\+\_\+command\+Protocol\+::test\+\_\+command\+Protocol\+\_\+15()}}. ~\newline
+{\bfseries{Description}}\+: The test verifies the ability to format a frame of STATUS.
+
+{\bfseries{Execution}}\+:
+\begin{DoxyEnumerate}
+\item Creates a STATUS frame with a list of parameters;
+\item Decode the STATUS frame with the command\+Protocol class constructor;
+\begin{DoxyItemize}
+\item Verify that the detected frame is a STATUS ;
+\item Verify the ID field is correct;
+\item Verify the CODE field is correct;
+\item Verify the number of parameters is correct;
+\item Verify the \char`\"{}\+Command\char`\"{} fields are correct;
+\item Verify the \char`\"{}\+Parameters\char`\"{} fields are correct; 
+\end{DoxyItemize}
+\end{DoxyEnumerate}

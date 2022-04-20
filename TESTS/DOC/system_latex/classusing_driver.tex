@@ -1,0 +1,144 @@
+\hypertarget{classusing_driver}{}\doxysection{using\+Driver Class Reference}
+\label{classusing_driver}\index{usingDriver@{usingDriver}}
+
+
+The \mbox{\hyperlink{classusing_driver}{using\+Driver}} class.  
+
+
+Inheritance diagram for using\+Driver\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classusing_driver}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classusing_driver_a54caebebd28e7b205479d7763933dad5}{device\+Rx\+Slot}} (can\+Driver\+Interface\+::can\+Data\+Frame frame, int od\+Index)
+\begin{DoxyCompactList}\small\item\em device\+Rx\+Slot \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classusing_driver_a8da9cd2362c8fdda3b30ffc2fa5a58dd}{tx\+To\+Driver}} (can\+Driver\+Interface\+::can\+Data\+Frame frame, int od\+Index, uint tmo, QObject $\ast$device)
+\begin{DoxyCompactList}\small\item\em tx\+To\+Driver This signal functon is required in order to interact with the driver. The signal is connected with the Out of thread driver slot, handling the Tx\+Rx data activity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classusing_driver_a10e43cc92e71e28a794dfb80a83f66cc}{rx\+Done}} (void)
+\begin{DoxyCompactList}\small\item\em rx\+Done \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classusing_driver_a336c757b16e049a6317f1a3ea1e91ed5}\label{classusing_driver_a336c757b16e049a6317f1a3ea1e91ed5}} 
+{\bfseries using\+Driver} (void)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classusing_driver}{using\+Driver}} Constructor of the class\+: the constructor connects the class signals and slots necessary to interact with the handled driver. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classusing_driver_aaae6472aa546d90f38417df65a866d1c}{tx\+Data}} (can\+Driver\+Interface\+::can\+Data\+Frame frame, int od\+Index, uint tmo)
+\begin{DoxyCompactList}\small\item\em tx\+Data \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classusing_driver_ad4462ef90e8a78b3b857cf2ffbcab84c}\label{classusing_driver_ad4462ef90e8a78b3b857cf2ffbcab84c}} 
+\mbox{\hyperlink{classdriver_class}{driver\+Class}} {\bfseries driver}
+\begin{DoxyCompactList}\small\item\em instance of the \mbox{\hyperlink{classdriver_class}{driver\+Class}} to be tested \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classusing_driver_a022c9a6c9ce84e5251ac4dcea3ed3a1d}\label{classusing_driver_a022c9a6c9ce84e5251ac4dcea3ed3a1d}} 
+can\+Driver\+Interface\+::can\+Data\+Frame {\bfseries rxframe}
+\begin{DoxyCompactList}\small\item\em handles the received frame; \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classusing_driver_a2f58621fab17f835a9da997ef4680fc7}\label{classusing_driver_a2f58621fab17f835a9da997ef4680fc7}} 
+int {\bfseries rx\+Index}
+\begin{DoxyCompactList}\small\item\em handles the received register index \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \mbox{\hyperlink{classusing_driver}{using\+Driver}} class. 
+
+This class implements a test class using the driver under test.
+
+The class implements the necessary interface methods\+:
+\begin{DoxyItemize}
+\item signal \mbox{\hyperlink{classusing_driver_a8da9cd2362c8fdda3b30ffc2fa5a58dd}{tx\+To\+Driver()}}\+: this slot is connected with the Driver reception slot;
+\item public \mbox{\hyperlink{classusing_driver_aaae6472aa546d90f38417df65a866d1c}{tx\+Data()}}\+: method to be used to send data\+: internally it triggers the \mbox{\hyperlink{classusing_driver_a8da9cd2362c8fdda3b30ffc2fa5a58dd}{tx\+To\+Driver()}} signal;
+\item public slot \mbox{\hyperlink{classusing_driver_a54caebebd28e7b205479d7763933dad5}{device\+Rx\+Slot()}}\+: required to receive the reception data from the driver
+\end{DoxyItemize}
+
+In order to let the test function to wait for Queued data exchange the class implements an extra signal\+:
+\begin{DoxyItemize}
+\item signal \mbox{\hyperlink{classusing_driver_a10e43cc92e71e28a794dfb80a83f66cc}{rx\+Done()}}\+: this signal is emitted as soon as the \mbox{\hyperlink{classusing_driver_a54caebebd28e7b205479d7763933dad5}{device\+Rx\+Slot()}} is called.
+\end{DoxyItemize}
+
+In the class datata the received frame and od\+Index is stored into the rxframe and rx\+Index variables. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classusing_driver_a54caebebd28e7b205479d7763933dad5}\label{classusing_driver_a54caebebd28e7b205479d7763933dad5}} 
+\index{usingDriver@{usingDriver}!deviceRxSlot@{deviceRxSlot}}
+\index{deviceRxSlot@{deviceRxSlot}!usingDriver@{usingDriver}}
+\doxysubsubsection{\texorpdfstring{deviceRxSlot}{deviceRxSlot}}
+{\footnotesize\ttfamily void using\+Driver\+::device\+Rx\+Slot (\begin{DoxyParamCaption}\item[{can\+Driver\+Interface\+::can\+Data\+Frame}]{frame,  }\item[{int}]{od\+Index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [slot]}}
+
+
+
+device\+Rx\+Slot 
+
+This is the {\bfseries{mandatory}} function that every driver user class shall implement in order to receive the driver can data frame.
+
+
+\begin{DoxyParams}{Parameters}
+{\em frame} & This is the can received data frame.\\
+\hline
+{\em od\+Index} & This is the Object Register index the driver user\+Class linked to the data exchange.\\
+\hline
+\end{DoxyParams}
+The test implementation of this function slot stores the received data into public variables that can easily be inspected by the test function.
+
+Finally the function triggers the \mbox{\hyperlink{classusing_driver_a10e43cc92e71e28a794dfb80a83f66cc}{rx\+Done()}} signal to trigger the test that the data has been received from the driver. \mbox{\Hypertarget{classusing_driver_a10e43cc92e71e28a794dfb80a83f66cc}\label{classusing_driver_a10e43cc92e71e28a794dfb80a83f66cc}} 
+\index{usingDriver@{usingDriver}!rxDone@{rxDone}}
+\index{rxDone@{rxDone}!usingDriver@{usingDriver}}
+\doxysubsubsection{\texorpdfstring{rxDone}{rxDone}}
+{\footnotesize\ttfamily void using\+Driver\+::rx\+Done (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+rx\+Done 
+
+This is a test purpose signal used to trigger the test function when data are received from the Out of Thread driver. The test function shall use the QSignal\+Spy() looking ath this signal generation \mbox{\Hypertarget{classusing_driver_aaae6472aa546d90f38417df65a866d1c}\label{classusing_driver_aaae6472aa546d90f38417df65a866d1c}} 
+\index{usingDriver@{usingDriver}!txData@{txData}}
+\index{txData@{txData}!usingDriver@{usingDriver}}
+\doxysubsubsection{\texorpdfstring{txData()}{txData()}}
+{\footnotesize\ttfamily void using\+Driver\+::tx\+Data (\begin{DoxyParamCaption}\item[{can\+Driver\+Interface\+::can\+Data\+Frame}]{frame,  }\item[{int}]{od\+Index,  }\item[{uint}]{tmo }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+tx\+Data 
+
+This public methid is used to let the test function sending data frames to the can driver.
+
+
+\begin{DoxyParams}{Parameters}
+{\em frame} & This is the frame to be sent. \\
+\hline
+{\em od\+Index} & This is the register index that will be received back from the driver.\\
+\hline
+\end{DoxyParams}
+The function emits the \mbox{\hyperlink{classusing_driver_a8da9cd2362c8fdda3b30ffc2fa5a58dd}{tx\+To\+Driver()}} with the user\+Class target set to this, because the user Class in this case is {\bfseries{this}} class. \mbox{\Hypertarget{classusing_driver_a8da9cd2362c8fdda3b30ffc2fa5a58dd}\label{classusing_driver_a8da9cd2362c8fdda3b30ffc2fa5a58dd}} 
+\index{usingDriver@{usingDriver}!txToDriver@{txToDriver}}
+\index{txToDriver@{txToDriver}!usingDriver@{usingDriver}}
+\doxysubsubsection{\texorpdfstring{txToDriver}{txToDriver}}
+{\footnotesize\ttfamily void using\+Driver\+::tx\+To\+Driver (\begin{DoxyParamCaption}\item[{can\+Driver\+Interface\+::can\+Data\+Frame}]{frame,  }\item[{int}]{od\+Index,  }\item[{uint}]{tmo,  }\item[{QObject $\ast$}]{device }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+tx\+To\+Driver This signal functon is required in order to interact with the driver. The signal is connected with the Out of thread driver slot, handling the Tx\+Rx data activity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em frame} & This is the can frame sent to the driver \\
+\hline
+{\em od\+Index} & This is the register index target of the transaction. \\
+\hline
+{\em device} & This is the pointer to the user\+Class that finally will receive the can received data frame. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyAttention}{Attention}
+the user\+Class is the class that shall implement the slot \mbox{\hyperlink{classusing_driver_a54caebebd28e7b205479d7763933dad5}{device\+Rx\+Slot()}}! 
+\end{DoxyAttention}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/marco/\+Documents/\+Git\+Hub/\+Gantry\+Z190/\+GANTRY/\+UNIT-\/\+TEST/\+MAIN-\/\+CPU/\+SOURCE/\+Can\+Driver\+Interface/tst\+\_\+testcandriverclass.\+cpp\end{DoxyCompactItemize}

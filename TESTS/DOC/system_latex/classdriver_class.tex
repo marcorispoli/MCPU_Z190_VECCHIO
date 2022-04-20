@@ -1,0 +1,125 @@
+\hypertarget{classdriver_class}{}\doxysection{driver\+Class Class Reference}
+\label{classdriver_class}\index{driverClass@{driverClass}}
+
+
+This class implements the DUT class can\+Driver\+Interface.  
+
+
+Inheritance diagram for driver\+Class\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classdriver_class}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{Indent}\textbf{ Can Driver Api implementation section}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classdriver_class_a861d4b80e6e45e0aea90c9e7b48e694f}\label{classdriver_class_a861d4b80e6e45e0aea90c9e7b48e694f}} 
+bool {\bfseries hardware\+Init} ()
+\begin{DoxyCompactList}\small\item\em Implements the Hardware initialization operations. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classdriver_class_ae4c1b26c92bfa7ea4845480eb54013ac}\label{classdriver_class_ae4c1b26c92bfa7ea4845480eb54013ac}} 
+bool {\bfseries hardware\+Shutdown} ()
+\begin{DoxyCompactList}\small\item\em Implements the Hardware Shutdown Operations. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classdriver_class_a55b6324c7e8eba48147852839a9707aa}\label{classdriver_class_a55b6324c7e8eba48147852839a9707aa}} 
+bool {\bfseries open\+Port} (uint addr, uint msk, bool md)
+\begin{DoxyCompactList}\small\item\em Implements the reception filter aperture. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classdriver_class_ab00bbd659f50f9e4520c49402040c04d}\label{classdriver_class_ab00bbd659f50f9e4520c49402040c04d}} 
+bool {\bfseries close\+Ports} (void)
+\begin{DoxyCompactList}\small\item\em Closes all the reception filters. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classdriver_class_a9a5a76ef7b7ad56eb1444948c5297aff}\label{classdriver_class_a9a5a76ef7b7ad56eb1444948c5297aff}} 
+void {\bfseries run} (void)
+\begin{DoxyCompactList}\small\item\em Run Bus arbitration. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classdriver_class_a7314d6b7d7306424f0df947d0b690039}\label{classdriver_class_a7314d6b7d7306424f0df947d0b690039}} 
+void {\bfseries pause} (void)
+\begin{DoxyCompactList}\small\item\em Pause Bus arbitration. \end{DoxyCompactList}\item 
+can\+Data\+Frame \mbox{\hyperlink{classdriver_class_a8d9ec8f80aff87230eff2f2af1f100d7}{driver\+Tx\+Rx\+Data}} (can\+Data\+Frame frame, int tmo)
+\begin{DoxyCompactList}\small\item\em driver\+Tx\+Rx\+Data This function implements a device simulation. The simulated device gets the frame then answer with a test purpose protocol in order to test the driver functionnalities. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classdriver_class_a290e98db36e428da71804b0e95c4de7b}\label{classdriver_class_a290e98db36e428da71804b0e95c4de7b}} 
+bool {\bfseries HARDWARE\+\_\+\+INI}
+\begin{DoxyCompactList}\small\item\em The Hardware has been initialized. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classdriver_class_a354890389c85720b9fd8fe080da720c6}\label{classdriver_class_a354890389c85720b9fd8fe080da720c6}} 
+uint {\bfseries FILTER\+\_\+\+ID}
+\begin{DoxyCompactList}\small\item\em Curent filter active. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classdriver_class_a734e10d3cf374322900f6cb8612435af}\label{classdriver_class_a734e10d3cf374322900f6cb8612435af}} 
+uint {\bfseries FILTER\+\_\+\+MASK}
+\begin{DoxyCompactList}\small\item\em Current filter mask. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classdriver_class_ab5b6ec54ac7fbcd86f78addc77761afe}\label{classdriver_class_ab5b6ec54ac7fbcd86f78addc77761afe}} 
+uint {\bfseries TIMEOUT}
+\begin{DoxyCompactList}\small\item\em Timeout waiting data from the bus. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classdriver_class_af128ac34882d431190e05e214f3498f4}\label{classdriver_class_af128ac34882d431190e05e214f3498f4}} 
+bool {\bfseries EXTENDED\+\_\+\+MODE}
+\begin{DoxyCompactList}\small\item\em Extended/\+Standard mode. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classdriver_class_a73410ce792c4e6122e9df3fbc553cbed}\label{classdriver_class_a73410ce792c4e6122e9df3fbc553cbed}} 
+bool {\bfseries RUNNING}
+\begin{DoxyCompactList}\small\item\em Arbitration running. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This class implements the DUT class can\+Driver\+Interface. 
+
+This is the driver class implementation test. The class inherit the can\+Driver\+Interface that is the class under test.
+
+The class implements the hardware interface methods that a can driver should implement\+:
+\begin{DoxyItemize}
+\item \mbox{\hyperlink{classdriver_class_a861d4b80e6e45e0aea90c9e7b48e694f}{hardware\+Init()}}\+: shall be implemented in order to initi the specific hardware inetrface;
+\item \mbox{\hyperlink{classdriver_class_ae4c1b26c92bfa7ea4845480eb54013ac}{hardware\+Shutdown()}}\+: shall be implemented in order to terminates the hardware activities;
+\item \mbox{\hyperlink{classdriver_class_a55b6324c7e8eba48147852839a9707aa}{open\+Port()}}\+: this shall open a given reception filter;
+\item \mbox{\hyperlink{classdriver_class_ab00bbd659f50f9e4520c49402040c04d}{close\+Ports()}}\+: closes all the reception filters;
+\item \mbox{\hyperlink{classdriver_class_a9a5a76ef7b7ad56eb1444948c5297aff}{run()}}\+: activates the bus arbitration;
+\item \mbox{\hyperlink{classdriver_class_a7314d6b7d7306424f0df947d0b690039}{pause()}}\+: stops the bus arbitration;
+\item \mbox{\hyperlink{classdriver_class_a8d9ec8f80aff87230eff2f2af1f100d7}{driver\+Tx\+Rx\+Data()}}\+: implements the simulated tx/rx data exchange
+\end{DoxyItemize}
+
+The Tx\+Rx simulated received frame (rxframe) implementation are\+:
+
+
+\begin{DoxyItemize}
+\item txframe.\+can\+Id == 1 -\/\texorpdfstring{$>$}{>} rxframe.\+data\mbox{[}0\mbox{]} = hardware initialization status (1 or 0);
+\item txframe.\+can\+Id == 2 -\/\texorpdfstring{$>$}{>} rxframe.\+data\mbox{[}0\mbox{]}\mbox{[}1\mbox{]} = FILTER\+\_\+\+ID (LSB first);
+\item txframe.\+can\+Id == 3 -\/\texorpdfstring{$>$}{>} rxframe.\+data\mbox{[}0\mbox{]}\mbox{[}1\mbox{]} = FILTER\+\_\+\+MASK (LSB first);
+\item txframe.\+can\+Id == 4 -\/\texorpdfstring{$>$}{>} rxframe.\+data\mbox{[}0\mbox{]} = Extended mode status;
+\item txframe.\+can\+Id == 5 -\/\texorpdfstring{$>$}{>} rxframe.\+data\mbox{[}0\mbox{]} = Running mode status;
+\item txframe.\+can\+Id == 6 -\/\texorpdfstring{$>$}{>} rxframe.\+data\mbox{[}0\mbox{]}\mbox{[}1\mbox{]} = TIMEOUT (LSB first);
+\item txframe.\+can\+Id == 7 -\/\texorpdfstring{$>$}{>} Simulate no answer\+: rxframe.\+can\+Id = 0; 
+\end{DoxyItemize}
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classdriver_class_a8d9ec8f80aff87230eff2f2af1f100d7}\label{classdriver_class_a8d9ec8f80aff87230eff2f2af1f100d7}} 
+\index{driverClass@{driverClass}!driverTxRxData@{driverTxRxData}}
+\index{driverTxRxData@{driverTxRxData}!driverClass@{driverClass}}
+\doxysubsubsection{\texorpdfstring{driverTxRxData()}{driverTxRxData()}}
+{\footnotesize\ttfamily can\+Data\+Frame driver\+Class\+::driver\+Tx\+Rx\+Data (\begin{DoxyParamCaption}\item[{can\+Data\+Frame}]{frame,  }\item[{int}]{tmo }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+driver\+Tx\+Rx\+Data This function implements a device simulation. The simulated device gets the frame then answer with a test purpose protocol in order to test the driver functionnalities. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em frame} & This is the frame sent by the user\+Class. \\
+\hline
+{\em tmo} & This is the Timeout that the driver sets for the data reception. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The txframe is filled with a simulated answer.
+\begin{DoxyItemize}
+\item txframe.\+can\+Id == 1 -\/\texorpdfstring{$>$}{>} rxframe.\+data\mbox{[}0\mbox{]} = hardware initialization status (1 or 0);
+\item txframe.\+can\+Id == 2 -\/\texorpdfstring{$>$}{>} rxframe.\+data\mbox{[}0\mbox{]}\mbox{[}1\mbox{]} = FILTER\+\_\+\+ID (LSB first);
+\item txframe.\+can\+Id == 3 -\/\texorpdfstring{$>$}{>} rxframe.\+data\mbox{[}0\mbox{]}\mbox{[}1\mbox{]} = FILTER\+\_\+\+MASK (LSB first);
+\item txframe.\+can\+Id == 4 -\/\texorpdfstring{$>$}{>} rxframe.\+data\mbox{[}0\mbox{]} = Extended mode status;
+\item txframe.\+can\+Id == 5 -\/\texorpdfstring{$>$}{>} rxframe.\+data\mbox{[}0\mbox{]} = Running mode status;
+\item txframe.\+can\+Id == 6 -\/\texorpdfstring{$>$}{>} rxframe.\+data\mbox{[}0\mbox{]}\mbox{[}1\mbox{]} = TIMEOUT (LSB first);
+\item txframe.\+can\+Id == 7 -\/\texorpdfstring{$>$}{>} Simulate no answer\+: rxframe.\+can\+Id = 0; 
+\end{DoxyItemize}
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/marco/\+Documents/\+Git\+Hub/\+Gantry\+Z190/\+GANTRY/\+UNIT-\/\+TEST/\+MAIN-\/\+CPU/\+SOURCE/\+Can\+Driver\+Interface/tst\+\_\+testcandriverclass.\+cpp\end{DoxyCompactItemize}

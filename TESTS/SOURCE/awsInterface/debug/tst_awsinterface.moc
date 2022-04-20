@@ -1,0 +1,275 @@
+/****************************************************************************
+** Meta object code from reading C++ file 'tst_awsinterface.cpp'
+**
+** Created by: The Qt Meta Object Compiler version 68 (Qt 6.2.2)
+**
+** WARNING! All changes made in this file will be lost!
+*****************************************************************************/
+
+#include <memory>
+#include <QtCore/qbytearray.h>
+#include <QtCore/qmetatype.h>
+#if !defined(Q_MOC_OUTPUT_REVISION)
+#error "The header file 'tst_awsinterface.cpp' doesn't include <QObject>."
+#elif Q_MOC_OUTPUT_REVISION != 68
+#error "This file was generated using the moc from 6.2.2. It"
+#error "cannot be used with the include files from this version of Qt."
+#error "(The moc has changed too much.)"
+#endif
+
+QT_BEGIN_MOC_NAMESPACE
+QT_WARNING_PUSH
+QT_WARNING_DISABLE_DEPRECATED
+struct qt_meta_stringdata_test_awsInterface_t {
+    const uint offsetsAndSize[68];
+    char stringdata0[1166];
+};
+#define QT_MOC_LITERAL(ofs, len) \
+    uint(offsetof(qt_meta_stringdata_test_awsInterface_t, stringdata0) + ofs), len 
+static const qt_meta_stringdata_test_awsInterface_t qt_meta_stringdata_test_awsInterface = {
+    {
+QT_MOC_LITERAL(0, 17), // "test_awsInterface"
+QT_MOC_LITERAL(18, 12), // "initTestCase"
+QT_MOC_LITERAL(31, 0), // ""
+QT_MOC_LITERAL(32, 15), // "cleanupTestCase"
+QT_MOC_LITERAL(48, 39), // "test_awsInterface_EXEC_AbortP..."
+QT_MOC_LITERAL(88, 34), // "test_awsInterface_EXEC_ArmPos..."
+QT_MOC_LITERAL(123, 28), // "test_awsInterface_EXEC_Close"
+QT_MOC_LITERAL(152, 32), // "test_awsInterface_EXEC_OpenStudy"
+QT_MOC_LITERAL(185, 31), // "test_awsInterface_EXEC_PowerOff"
+QT_MOC_LITERAL(217, 33), // "test_awsInterface_EXEC_ResetE..."
+QT_MOC_LITERAL(251, 40), // "test_awsInterface_EXEC_StartX..."
+QT_MOC_LITERAL(292, 34), // "test_awsInterface_EXEC_TrxPos..."
+QT_MOC_LITERAL(327, 33), // "test_awsInterface_GET_Accesso..."
+QT_MOC_LITERAL(361, 36), // "test_awsInterface_GET_Compres..."
+QT_MOC_LITERAL(398, 44), // "test_awsInterface_GET_Exposur..."
+QT_MOC_LITERAL(443, 38), // "test_awsInterface_GET_ReadyFo..."
+QT_MOC_LITERAL(482, 36), // "test_awsInterface_GET_Rotatio..."
+QT_MOC_LITERAL(519, 32), // "test_awsInterface_GET_TomoConfig"
+QT_MOC_LITERAL(552, 36), // "test_awsInterface_GET_TomoCon..."
+QT_MOC_LITERAL(589, 37), // "test_awsInterface_GET_TubeTem..."
+QT_MOC_LITERAL(627, 36), // "test_awsInterface_GET_XrayPus..."
+QT_MOC_LITERAL(664, 40), // "test_awsInterface_SET_Compres..."
+QT_MOC_LITERAL(705, 30), // "test_awsInterface_SET_Language"
+QT_MOC_LITERAL(736, 36), // "test_awsInterface_SET_Project..."
+QT_MOC_LITERAL(773, 31), // "test_awsInterface_SET_PulseData"
+QT_MOC_LITERAL(805, 36), // "test_awsInterface_SET_XrayPus..."
+QT_MOC_LITERAL(842, 40), // "test_awsInterface_GANTRY_Abor..."
+QT_MOC_LITERAL(883, 30), // "test_awsInterface_GANTRY_ERROR"
+QT_MOC_LITERAL(914, 39), // "test_awsInterface_GANTRY_Puls..."
+QT_MOC_LITERAL(954, 41), // "test_awsInterface_GANTRY_Sele..."
+QT_MOC_LITERAL(996, 39), // "test_awsInterface_GANTRY_SetA..."
+QT_MOC_LITERAL(1036, 43), // "test_awsInterface_GANTRY_SetT..."
+QT_MOC_LITERAL(1080, 38), // "test_awsInterface_GANTRY_Xray..."
+QT_MOC_LITERAL(1119, 46) // "test_awsInterface_GANTRY_Xray..."
+
+    },
+    "test_awsInterface\0initTestCase\0\0"
+    "cleanupTestCase\0test_awsInterface_EXEC_AbortProjections\0"
+    "test_awsInterface_EXEC_ArmPosition\0"
+    "test_awsInterface_EXEC_Close\0"
+    "test_awsInterface_EXEC_OpenStudy\0"
+    "test_awsInterface_EXEC_PowerOff\0"
+    "test_awsInterface_EXEC_ResetError\0"
+    "test_awsInterface_EXEC_StartXraySequence\0"
+    "test_awsInterface_EXEC_TrxPosition\0"
+    "test_awsInterface_GET_Accessories\0"
+    "test_awsInterface_GET_CompressorData\0"
+    "test_awsInterface_GET_ExposureCompletionData\0"
+    "test_awsInterface_GET_ReadyForExposure\0"
+    "test_awsInterface_GET_RotationAngles\0"
+    "test_awsInterface_GET_TomoConfig\0"
+    "test_awsInterface_GET_TomoConfigFile\0"
+    "test_awsInterface_GET_TubeTemperature\0"
+    "test_awsInterface_GET_XrayPushStatus\0"
+    "test_awsInterface_SET_CompressionRelease\0"
+    "test_awsInterface_SET_Language\0"
+    "test_awsInterface_SET_ProjectionList\0"
+    "test_awsInterface_SET_PulseData\0"
+    "test_awsInterface_SET_XrayPushEnable\0"
+    "test_awsInterface_GANTRY_AbortProjection\0"
+    "test_awsInterface_GANTRY_ERROR\0"
+    "test_awsInterface_GANTRY_PulseCompleted\0"
+    "test_awsInterface_GANTRY_SelectProjection\0"
+    "test_awsInterface_GANTRY_SetAccessories\0"
+    "test_awsInterface_GANTRY_SetTubeTemperature\0"
+    "test_awsInterface_GANTRY_XrayPushEvent\0"
+    "test_awsInterface_GANTRY_XraySequenceCompleted"
+};
+#undef QT_MOC_LITERAL
+
+static const uint qt_meta_data_test_awsInterface[] = {
+
+ // content:
+      10,       // revision
+       0,       // classname
+       0,    0, // classinfo
+      32,   14, // methods
+       0,    0, // properties
+       0,    0, // enums/sets
+       0,    0, // constructors
+       0,       // flags
+       0,       // signalCount
+
+ // slots: name, argc, parameters, tag, flags, initial metatype offsets
+       1,    0,  206,    2, 0x08,    1 /* Private */,
+       3,    0,  207,    2, 0x08,    2 /* Private */,
+       4,    0,  208,    2, 0x08,    3 /* Private */,
+       5,    0,  209,    2, 0x08,    4 /* Private */,
+       6,    0,  210,    2, 0x08,    5 /* Private */,
+       7,    0,  211,    2, 0x08,    6 /* Private */,
+       8,    0,  212,    2, 0x08,    7 /* Private */,
+       9,    0,  213,    2, 0x08,    8 /* Private */,
+      10,    0,  214,    2, 0x08,    9 /* Private */,
+      11,    0,  215,    2, 0x08,   10 /* Private */,
+      12,    0,  216,    2, 0x08,   11 /* Private */,
+      13,    0,  217,    2, 0x08,   12 /* Private */,
+      14,    0,  218,    2, 0x08,   13 /* Private */,
+      15,    0,  219,    2, 0x08,   14 /* Private */,
+      16,    0,  220,    2, 0x08,   15 /* Private */,
+      17,    0,  221,    2, 0x08,   16 /* Private */,
+      18,    0,  222,    2, 0x08,   17 /* Private */,
+      19,    0,  223,    2, 0x08,   18 /* Private */,
+      20,    0,  224,    2, 0x08,   19 /* Private */,
+      21,    0,  225,    2, 0x08,   20 /* Private */,
+      22,    0,  226,    2, 0x08,   21 /* Private */,
+      23,    0,  227,    2, 0x08,   22 /* Private */,
+      24,    0,  228,    2, 0x08,   23 /* Private */,
+      25,    0,  229,    2, 0x08,   24 /* Private */,
+      26,    0,  230,    2, 0x08,   25 /* Private */,
+      27,    0,  231,    2, 0x08,   26 /* Private */,
+      28,    0,  232,    2, 0x08,   27 /* Private */,
+      29,    0,  233,    2, 0x08,   28 /* Private */,
+      30,    0,  234,    2, 0x08,   29 /* Private */,
+      31,    0,  235,    2, 0x08,   30 /* Private */,
+      32,    0,  236,    2, 0x08,   31 /* Private */,
+      33,    0,  237,    2, 0x08,   32 /* Private */,
+
+ // slots: parameters
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+
+       0        // eod
+};
+
+void test_awsInterface::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+{
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        auto *_t = static_cast<test_awsInterface *>(_o);
+        (void)_t;
+        switch (_id) {
+        case 0: _t->initTestCase(); break;
+        case 1: _t->cleanupTestCase(); break;
+        case 2: _t->test_awsInterface_EXEC_AbortProjections(); break;
+        case 3: _t->test_awsInterface_EXEC_ArmPosition(); break;
+        case 4: _t->test_awsInterface_EXEC_Close(); break;
+        case 5: _t->test_awsInterface_EXEC_OpenStudy(); break;
+        case 6: _t->test_awsInterface_EXEC_PowerOff(); break;
+        case 7: _t->test_awsInterface_EXEC_ResetError(); break;
+        case 8: _t->test_awsInterface_EXEC_StartXraySequence(); break;
+        case 9: _t->test_awsInterface_EXEC_TrxPosition(); break;
+        case 10: _t->test_awsInterface_GET_Accessories(); break;
+        case 11: _t->test_awsInterface_GET_CompressorData(); break;
+        case 12: _t->test_awsInterface_GET_ExposureCompletionData(); break;
+        case 13: _t->test_awsInterface_GET_ReadyForExposure(); break;
+        case 14: _t->test_awsInterface_GET_RotationAngles(); break;
+        case 15: _t->test_awsInterface_GET_TomoConfig(); break;
+        case 16: _t->test_awsInterface_GET_TomoConfigFile(); break;
+        case 17: _t->test_awsInterface_GET_TubeTemperature(); break;
+        case 18: _t->test_awsInterface_GET_XrayPushStatus(); break;
+        case 19: _t->test_awsInterface_SET_CompressionRelease(); break;
+        case 20: _t->test_awsInterface_SET_Language(); break;
+        case 21: _t->test_awsInterface_SET_ProjectionList(); break;
+        case 22: _t->test_awsInterface_SET_PulseData(); break;
+        case 23: _t->test_awsInterface_SET_XrayPushEnable(); break;
+        case 24: _t->test_awsInterface_GANTRY_AbortProjection(); break;
+        case 25: _t->test_awsInterface_GANTRY_ERROR(); break;
+        case 26: _t->test_awsInterface_GANTRY_PulseCompleted(); break;
+        case 27: _t->test_awsInterface_GANTRY_SelectProjection(); break;
+        case 28: _t->test_awsInterface_GANTRY_SetAccessories(); break;
+        case 29: _t->test_awsInterface_GANTRY_SetTubeTemperature(); break;
+        case 30: _t->test_awsInterface_GANTRY_XrayPushEvent(); break;
+        case 31: _t->test_awsInterface_GANTRY_XraySequenceCompleted(); break;
+        default: ;
+        }
+    }
+    (void)_a;
+}
+
+const QMetaObject test_awsInterface::staticMetaObject = { {
+    QMetaObject::SuperData::link<QObject::staticMetaObject>(),
+    qt_meta_stringdata_test_awsInterface.offsetsAndSize,
+    qt_meta_data_test_awsInterface,
+    qt_static_metacall,
+    nullptr,
+qt_incomplete_metaTypeArray<qt_meta_stringdata_test_awsInterface_t
+, QtPrivate::TypeAndForceComplete<test_awsInterface, std::true_type>
+, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>
+
+
+>,
+    nullptr
+} };
+
+
+const QMetaObject *test_awsInterface::metaObject() const
+{
+    return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
+}
+
+void *test_awsInterface::qt_metacast(const char *_clname)
+{
+    if (!_clname) return nullptr;
+    if (!strcmp(_clname, qt_meta_stringdata_test_awsInterface.stringdata0))
+        return static_cast<void*>(this);
+    return QObject::qt_metacast(_clname);
+}
+
+int test_awsInterface::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+{
+    _id = QObject::qt_metacall(_c, _id, _a);
+    if (_id < 0)
+        return _id;
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        if (_id < 32)
+            qt_static_metacall(this, _c, _id, _a);
+        _id -= 32;
+    } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+        if (_id < 32)
+            *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
+        _id -= 32;
+    }
+    return _id;
+}
+QT_WARNING_POP
+QT_END_MOC_NAMESPACE

@@ -8,7 +8,7 @@ CONFIG -= app_bundle
 
 TEMPLATE = app
 
-TARGET_SOURCE = $${PWD}/../../../../MAIN_CPU/SOURCE
+TARGET_SOURCE = $${PWD}/../../../APPLICATION/SOURCE
 
 SOURCES += \
 tst_awsinterface.cpp\

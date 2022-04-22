@@ -178,22 +178,19 @@ public:
      */
 
     //! Implements the Hardware initialization operations
-    bool hardwareInit(){ HARDWARE_INI = true; return true;}
+    bool hardwareInit(QString COM, QString BR){ HARDWARE_INI = true; return true;}
 
     //! Implements the Hardware Shutdown Operations
     bool hardwareShutdown(){ HARDWARE_INI = false; return true;}
 
     //! Implements the reception filter aperture
-    bool openPort(QString COM, QString BR, uint addr, uint msk, bool md){ FILTER_ID = addr; FILTER_MASK = msk; EXTENDED_MODE = md; return true;}
+    bool setStandardFilter(uint addr, uint msk){ FILTER_ID = addr; FILTER_MASK = msk; return true;}
 
     //! Closes all the reception filters
-    bool closePorts(void){FILTER_ID = 0; FILTER_MASK=0; RUNNING = false; return true;};
+    void close(void){ RUNNING = false; return ;};
 
     //! Run Bus arbitration
-    void run(void){RUNNING = true;}
-
-    //! Pause Bus arbitration
-    void pause(void){RUNNING = false;}
+    bool open(void){RUNNING = true;return true;};
 
     /**
      * @brief driverTxRxData
@@ -218,6 +215,8 @@ public:
     canDataFrame driverTxRxData(canDataFrame frame, int tmo) {
         canDataFrame txframe = frame;
         TIMEOUT = tmo;
+
+
         if(!RUNNING) {
             txframe.canId = 0;
             return txframe;
@@ -453,8 +452,9 @@ test_canDriverInterface::~test_canDriverInterface()
  */
 void test_canDriverInterface::initTestCase()
 {
+
     deviceDriver = new usingDriver();
-    deviceDriver->driver.openDriverPort("COM0", "1000", 0x580, 0x8FF, false);
+    deviceDriver->driver.openDriverPort("COM0", "1000", 0x580, 0x8FF);
     txframe.canId = 1;
     deviceDriver->txData(txframe,0,100);
     QSignalSpy spy(deviceDriver, SIGNAL(rxDone()));

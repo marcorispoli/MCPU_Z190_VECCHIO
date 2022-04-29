@@ -5,13 +5,15 @@
 #include "errorsWindow.h"
 #include "systemconfig.h"
 #include "awscommunication.h"
-
+#include "titanCanDriver.h"
 #include <QApplication>
-startupWindow* w1;
-startupWindow* w2;
-errorsWindow*  pErrorsWindow;   // Pointer to the error window page
-systemConfig*  pSysConfig;
-awsCommunication*  pAws;
+
+startupWindow*      w1;
+startupWindow*      w2;
+errorsWindow*       pErrorsWindow;   // Pointer to the error window page
+systemConfig*       pSysConfig;
+awsCommunication*   pAws;
+titanCanDriver*     canDriver;
 
 //#define HOME
 #define DESKTOP
@@ -50,7 +52,13 @@ int main(int argc, char *argv[])
     w1->openWindow();
     w2->openWindow();
 
+    // Open the Acquisition software communication channel
     pAws = new awsCommunication(pSysConfig->sysini.getParam<QString>(AWS_ADDRESS_PARAM,0), pSysConfig->sysini.getParam<int>(AWS_ADDRESS_PARAM,1));
+
+    // Open the Device Can Communication channel
+    //canDriver = new titanCanDriver();
+    //canDriver->openDriverPort(pSysConfig->sysini.getParam<QByteArray>(CAN_CH0_COM,0), pSysConfig->sysini.getParam<QByteArray>(CAN_CH0_COM,1),0x580,0x7FF,"NORMAL");
+
 
 
     return a.exec();

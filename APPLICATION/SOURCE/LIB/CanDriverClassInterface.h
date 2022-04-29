@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QThread>
+#include <QMutex>
 
 /**
  * \defgroup CAN_INTERFACE_MODULE Can Interface Module
@@ -104,14 +105,21 @@
     }
  \endverbatim
  */
+
+
 class canDriverInterface : public QObject
 {
     Q_OBJECT
 
 public:
 
-    canDriverInterface(void);
-    ~canDriverInterface(void);
+    canDriverInterface(void){
+        isOpen = false;
+    }
+
+    ~canDriverInterface(void){
+
+    }
 
     /// This is the dataframe format
     typedef struct{
@@ -119,251 +127,155 @@ public:
         unsigned char data[8]; //!< 8 bytes data load;
     } canDataFrame;
 
-    ///@name API Interface
-    /// @{
+    typedef enum{
+      _CAN_DRIVER_NA =0,
+      _CAN_DRIVER_OK,
+      _CAN_DRIVER_INVALID_COM,
+      _CAN_DRIVER_ALREADY_OPEN,
+      _CAN_DRIVER_INVALID_REVCODE,
+      _CAN_DRIVER_INVALID_SN,
+      _CAN_DRIVER_INVALID_ERRSTAT,
+      _CAN_DRIVER_INVALID_BAUDRATE,
+      _CAN_DRIVER_INVALID_FILTER,
+      _CAN_DRIVER_INVALID_CAN_OPENING,
 
-    /**
-     * @brief openDriverPort
-     * This function executes several tasks:
-     * + Initialize the workerthread at the first call;
-     * + Initialize the hardware if not initialized
-     * + Opens a receiver filter
-     *
-     * The communication however is not initiated until a runDriver()
-     * command is called
-     *
-     * @param com
-     * QString type: Virtual com used to control the device (COM1, COM2 ..)
-     * @param BR
-     * QString type: Boud rate of the communication (K units)
-     * @param address
-     * Filter code
-     * @param mask
-     * Filter mask
-     * @param extended
-     * Extended/Standard mode
-     * @return
-     * true if success
-     */
-    bool openDriverPort(QByteArray com, QByteArray BR, uint address, uint mask);
+    } _canDriverErrors;
 
-    /**
-     * @brief closeDriver
-     * This function close the communication
-     * and shutdown the driver. The Thread however remain
-     * active.
-     */
-    void closeDriver(void){
-        if(!initDriver) return;
-        initDriver = false;
-        hardwareShutdown();
-        // emit workFinished();
-    }
-
-    /**
-     * @brief runDriver
-     * The communication can start.
-     * This command is valid only if the hardware has been
-     * initialized and a filter  has been open.
-     */
-    void runDriver(void);
-
-    /**
-     * @brief stopDriver
-     * The communication is paused
-     */
-    void stopDriver(void);
-
-    /**
-     * @brief driverDistructor
-     *
-     * The application shall call this metod in order to destry the driver.
-     */
-    void driverDistructor(void){
-        emit workFinished();
-    }
-
-    /// @}
-signals:
-
-     //! Emit this signal to cause the auto delete and thread delete
-    void workFinished(void);
+    typedef enum{
+      _CAN_100K =0,
+      _CAN_250K,
+      _CAN_500K,
+      _CAN_1000K
+    } _canBaudRate;
 
 protected:
-    /// Implement the hardware initialization functions
-    virtual bool hardwareInit(QByteArray com, QByteArray br){ return true;}
-
-    /// Implements the hardware shutdown functions
-    virtual bool hardwareShutdown(){ return true;}
-
-    /**
-     * @brief openPort
-     * This function shall open a reception filter on the can board
-     * @param com
-     * This is the virtual com to be open
-     * @param BR
-     * This is the baud rate to be used
-     * @param addr
-     * This is the standard/extended identifier address code
-     * @param msk
-     * This is the standard/extended identifier mask
-     * @param md
-     * this is the standard(false) or Extended (true) activation mode flag
-     * @return
-     */
-    virtual bool setStandardFilter(uint addr, uint msk){  address = addr; mask = msk; return true;}
 
     /// Open the Bus communication
-    virtual bool open(void){return true;};
+    virtual _canDriverErrors driverOpen(QByteArray COM, _canBaudRate BR, uint address, uint mask, QByteArray mode){return _CAN_DRIVER_OK;}
 
     /// Close Bus communication
-    virtual void close(void){}
+    virtual void driverClose(void){return;}
 
-
-
-    /**
-     * @brief driverTxRxData
-     * This function implements the data Transmission/Reception on the BUS.
-     * The function shall be implemented as a blockant with timeout.
-     * In case no data should be received, the function shall return
-     * a all 0 frame.
-     * @param frame
-     * This is the frame to be transmitted;
-     * @param tmo
-     * This is the max time in ms the driver shall wait for a data reception.
-     * @return
-     * + The received frame in case of valid reception.
-     * + All 0's frame in case of no data reception.
-     */
-    virtual canDataFrame driverTxRxData(canDataFrame frame, int tmo) {timeout = tmo; return frame;}
+    /// Sends and receive data from a remote CAN Node
+    virtual canDataFrame driverTxRxData(canDataFrame frame, uint tmo) { return frame;}
 
 public slots:
-    ///@name API Interface
-    /// @{
 
-    /**
-     * @brief driverTxSlot
-     * The driver implementing class shall connect this slot in order to send
-     * a data frame through the can hardwar board.
-     *
-     * @param frame
-     * This is the frame to be sent
-     * @param odIndex
-     * This is the frame index that is rported back to the received frame by the driver.
-     * @param tmo
-     * This should be the timeout in ms the driver shall wait for a reception frame.
-     * @param device
-     * This is the pointer of the calling implementing class
-     */
-    void driverTxSlot(canDriverInterface::canDataFrame frame, int odIndex, uint tmo, QObject* device);
-    /// @}
+    void openPort(QByteArray COM, _canBaudRate BR, uint address, uint mask, QByteArray mode){
+        _canDriverErrors res = _CAN_DRIVER_OK;
 
-private:
-    bool initDriver;
-    bool initThread;
-    QThread workerThread;
-    uint address;
-    uint mask;
-    QByteArray COM;
-    QByteArray BR;
+        if(isOpen) {res = _CAN_DRIVER_ALREADY_OPEN;}
+        else {res = driverOpen(COM, BR, address, mask, mode);}
 
-    bool mode;
-    int timeout;
-};
-
-/**
- * \addtogroup CAN_PROTOCOL_INTERFACE Can Protocol Implementation
- * \ingroup CAN_INTERFACE_MODULE
- * @brief The canDriverUserClass class
- * \nosubgrouping
- *
- * This class is a recipient class to be used in order to
- * implementing a protocol based on the Can Communication.
- *
- * A can implementing class should inherit this class in order
- * to use the canDriver API
- *
- * # USAGE
- *
- * A user class subclassing the canDriverUserClass
- * shall pass a pointer to the implemented driver (canDriverInterface)
- * that will be used for the data TxRx activities.
- *
- * The class then can use the methods:
- * + canTxFrame(): send frames to CAN BUS;
- * + deviceRxSlot(): handles the received frames
- *
- * The class shall implements its own deviceRxSlot() function
- * in order to handle the received data.
- *
- *
- */
-class canDriverUserClass: public QObject
-{
-    Q_OBJECT
-public:
-
-    /**
-     * @brief canDriverUserClass
-     * This is the class constructor: the implementing calss shall
-     * pass the driver shall be used a s a pointer.
-     *
-     * @param drv
-     * Pointer to the class implementing the Can driver interface
-     */
-    canDriverUserClass(const canDriverInterface& drv);
-    ~canDriverUserClass(void);
-
-
-signals:
-    /**
-     * @brief txToDriver
-     * This is the internal signal emitted when the canTxFrame is used by the application.
-     * @param frame
-     * This is the frame to be sent
-     * @param odIndex
-     * This is a proper index of the frame (up to the implementation)
-     * @param tmo
-     * This should be the timeout in ms the driver should wait for a data reception.
-     * @param device
-     * THis is the pointer to the implementing class
-     */
-    void txToDriver(canDriverInterface::canDataFrame frame, int odIndex, uint tmo, QObject* device);
-
-public slots:
-    ///@name API Interface
-    /// @{
-    /**
-     * @brief deviceRxSlot
-     * The class shall implement this method in order to handle the can data frame received.
-     * @param frame
-     * This is the frame received
-     * @param odIndex
-     * This is the frame identifier integer code.
-     */
-    virtual void deviceRxSlot(canDriverInterface::canDataFrame frame, int odIndex)=0;
-
-    /**
-     * @brief canTxFrame
-     * This is the transmission function.
-     * @param frame
-     * This is the frame to be sent
-     * @param odIndex
-     * This is the frame index
-     * @param tmo
-     * This is the reception timeout
-     */
-    void canTxFrame(canDriverInterface::canDataFrame frame, int odIndex, uint tmo){
-        emit txToDriver(frame, odIndex, tmo, this);
+        emit driverErrorSgn((uchar) 0, res);
+        return;
     }
 
-    ///@}
-public:
+    void closePort(){        
+        if(!isOpen) driverClose();
+        isOpen = false;
+    }
 
-    const canDriverInterface* driver; //!< pointer of the driver
+
+    void driverSendData(uchar msgid, canDriverInterface::canDataFrame frame, uint tmo){
+         emit driverSendCompletedSgn(msgid, driverTxRxData(frame, tmo));
+    }
+
+signals:
+    void driverSendCompletedSgn(uchar msgid, canDriverInterface::canDataFrame frame);
+    void driverErrorSgn(uchar msgid, uint errmsg);
+
+private:
+    uint address;
+    uint mask;
+    QByteArray mode;
+    bool isOpen;
 
 };
 
 
+class canDriver: public QObject{
+    Q_OBJECT
+
+public:
+
+    canDriver(void){
+
+    }
+
+    ~canDriver(void){
+        emit quit();
+    }
+
+
+    template <class T> void driverInitialize(void){
+        worker = new T();
+        QThread* thread = new QThread();
+        worker->moveToThread(thread);
+        connect( worker, &canDriverInterface::driverErrorSgn, this, &canDriver::driverErrorSlot, Qt::QueuedConnection);
+        connect( worker, &canDriverInterface::driverSendCompletedSgn, this, &canDriver::driverSendCompletedSlot, Qt::QueuedConnection);
+
+        connect( this, &canDriver::sendSgn, worker, &canDriverInterface::driverSendData, Qt::QueuedConnection);
+        connect( this, &canDriver::openSgn, worker, &canDriverInterface::openPort, Qt::QueuedConnection);
+        connect( this, &canDriver::closeSgn, worker,&canDriverInterface::closePort, Qt::QueuedConnection);
+        connect( this, &canDriver::quit, thread, &QThread::quit);
+        connect( this, &canDriver::quit, worker, &canDriverInterface::deleteLater);
+        connect( thread, &QThread::finished, thread, &QThread::deleteLater);
+        thread->start();
+    }
+
+signals:
+    void sendSgn(uchar msgid, canDriverInterface::canDataFrame frame, uint tmo);
+    void openSgn(QByteArray COM, canDriverInterface::_canBaudRate BR, uint address, uint mask, QByteArray mode);
+    void closeSgn(void);
+    void quit(void);
+
+    void received(uchar msgid, canDriverInterface::canDataFrame frame);
+    void errors(uchar msgid, uint errmsg);
+
+public:
+    void send(uchar msgid, canDriverInterface::canDataFrame frame, uint tmo){
+        errcode = canDriverInterface::_CAN_DRIVER_NA;
+        err_msgid = 0;
+        emit sendSgn(msgid, frame, tmo);
+    }
+    void open(QByteArray COM, canDriverInterface::_canBaudRate BR, uint address, uint mask, QByteArray mode){
+        errcode = canDriverInterface::_CAN_DRIVER_NA;
+        err_msgid = 0;
+        emit openSgn(COM, BR, address, mask,  mode);
+    }
+    void close(){
+        errcode = canDriverInterface::_CAN_DRIVER_NA;
+        err_msgid = 0;
+        emit closeSgn();
+    }
+
+    _inline canDriverInterface::_canDriverErrors getError(void){return errcode;}
+    _inline canDriverInterface::canDataFrame getRxFrame(void){return rx_frame;}
+
+private slots:
+
+    void driverSendCompletedSlot(uchar msgid, canDriverInterface::canDataFrame frame){
+        rx_frame = frame;
+        rx_msgid = msgid;
+        emit received(msgid, frame);
+    }
+    void driverErrorSlot(uchar msgid, uint errmsg){
+        err_msgid = msgid;
+        errcode = (canDriverInterface::_canDriverErrors) errmsg;
+        emit errors(msgid, errmsg);
+    }
+
+private:
+    canDriverInterface* worker;
+    QThread* thread;
+
+    canDriverInterface::canDataFrame rx_frame;
+    uchar rx_msgid;
+
+    canDriverInterface::_canDriverErrors errcode;
+    uchar err_msgid;
+
+};
 
 #endif // CANDRIVERCLASSINTERFACE_H

@@ -42,26 +42,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 
-DISTFILES += \
-    $${SYSTEM_DOC}/DOCUMENTATION/SYSTEM/gantry_system_communication_interfaces.h\
-    $${SYSTEM_DOC}/DOCUMENTATION/SYSTEM/gantry_system_architecture.h\
-    $${SYSTEM_DOC}/DOCUMENTATION/SYSTEM/gantry_system_configuration.h\
-    $${SYSTEM_DOC}/DOCUMENTATION/SYSTEM/gantry_system_gui.h\
-    $${SYSTEM_DOC}/DOCUMENTATION/SYSTEM/gantry_system_main_page.h\
-    $${SYSTEM_DOC}/DOCUMENTATION/DETAILED/MAIN_CPU/maincpu_software_detailed_documentation.h\
-    $${SYSTEM_DOC}/DOCUMENTATION/DETAILED/INTERFACES/CANOPEN_DEVICE_INTERFACE/arm_rotation_protocol_interface.h\
-    $${SYSTEM_DOC}/DOCUMENTATION/DETAILED/INTERFACES/CANOPEN_DEVICE_INTERFACE/arm_tilt_protocol_interface.h\
-    $${SYSTEM_DOC}/DOCUMENTATION/DETAILED/INTERFACES/CANOPEN_DEVICE_INTERFACE/arm_updown_protocol_interface.h\
-    $${SYSTEM_DOC}/DOCUMENTATION/DETAILED/INTERFACES/CANOPEN_DEVICE_INTERFACE/collimator_interface.h\
-    $${SYSTEM_DOC}/DOCUMENTATION/DETAILED/INTERFACES/CANOPEN_DEVICE_INTERFACE/compressor_interface.h\
-    $${SYSTEM_DOC}/DOCUMENTATION/DETAILED/INTERFACES/CANOPEN_DEVICE_INTERFACE/device_canopen_protocol_interface.h\
-    $${SYSTEM_DOC}/DOCUMENTATION/DETAILED/INTERFACES/CANOPEN_DEVICE_INTERFACE/powerservice_interface.h\
-    $${SYSTEM_DOC}/DOCUMENTATION/DETAILED/INTERFACES/SERVICE_INTERFACE/gantry_service_communication_interface.h\
-    $${SYSTEM_DOC}/DOCUMENTATION/DETAILED/INTERFACES/IRS_INTERFACE/irs_communication_interface.h\
-    $${SYSTEM_DOC}/DOCUMENTATION/DETAILED/INTERFACES/AWS_INTERFACE/aws_interface_main_page.h\
-    $${SYSTEM_DOC}/DOCUMENTATION/DETAILED/INTERFACES/AWS_INTERFACE/aws_interface_general_description.h\
-    $${SYSTEM_DOC}/DOCUMENTATION/DETAILED/INTERFACES/AWS_INTERFACE/aws_interface_commands.h\
-    $${SYSTEM_DOC}/DOCUMENTATION/DETAILED/INTERFACES/AWS_INTERFACE/aws_interface_status.h\
+DISTFILES +=
 
 
 SOURCES += \
@@ -77,7 +58,6 @@ SOURCES += \
     $${TARGET_SOURCE}/LIB/tcpipclient.cpp \
     $${TARGET_SOURCE}/LIB/translator.cpp \
     $${TARGET_SOURCE}/LIB/windows.cpp \
-    $${TARGET_SOURCE}/LIB/canopeninterface.cpp \
     $${TARGET_SOURCE}/LIB/CanDriverClassInterface.cpp \
     $${TARGET_SOURCE}/COMMUNICATION/awscommunication.cpp \
     $${TARGET_SOURCE}/DRIVERS/TITAN/titanCanDriver.cpp\
@@ -98,7 +78,6 @@ HEADERS += \
     $${TARGET_SOURCE}/LIB/translator.h \
     $${TARGET_SOURCE}/LIB/windows.h \
     $${TARGET_SOURCE}/LIB/canDriverClassInterface.h \
-    $${TARGET_SOURCE}/LIB/canopeninterface.h \
     $${TARGET_SOURCE}/COMMUNICATION/awscommunication.h \
     $${TARGET_SOURCE}/DRIVERS/TITAN/titanCanDriver.h\
 

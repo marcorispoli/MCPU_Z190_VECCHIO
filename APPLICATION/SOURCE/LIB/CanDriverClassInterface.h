@@ -159,6 +159,9 @@ protected:
     /// Sends and receive data from a remote CAN Node
     virtual canDataFrame driverTxRxData(canDataFrame frame, uint tmo) { return frame;}
 
+    virtual canDataFrame driverRead(void){;}
+    virtual void driverSend(canDataFrame frame){;}
+
 public slots:
 
     void openPort(QByteArray COM, _canBaudRate BR, uint address, uint mask, QByteArray mode){
@@ -181,7 +184,23 @@ public slots:
          emit driverSendCompletedSgn(msgid, driverTxRxData(frame, tmo));
     }
 
+    void receiveThread(void){
+        canDataFrame data = driverRead();
+        ushort address = data.canId & 0xF80;
+        uchar  id = data.canId & 0x07F;
+
+        if(address == 0x400) emit driverRx400(id);
+        else if(address == 0x480) emit driverRx480(id);
+        else if(address == 0x500) emit driverRx500(id);
+        else if(address == 0x580) emit driverRx580(id);
+    }
+
 signals:
+    void driverRx400(uchar id);
+    void driverRx480(uchar id);
+    void driverRx500(uchar id);
+    void driverRx580(uchar id);
+
     void driverSendCompletedSgn(uchar msgid, canDriverInterface::canDataFrame frame);
     void driverErrorSgn(uchar msgid, uint errmsg);
 
@@ -191,6 +210,11 @@ private:
     QByteArray mode;
     bool isOpen;
 
+    canDataFrame rxFrame;
+    bool isRx;
+
+    canDataFrame txFrame;
+    bool isTx;
 };
 
 

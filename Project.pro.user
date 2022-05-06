@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 6.0.2, 2022-04-28T18:50:32. -->
+<!-- Written by QtCreator 6.0.2, 2022-05-06T17:11:05. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -99,7 +99,6 @@
     <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/TitanCanDriverInterface/tst_titandriverclass.cpp:initTestCase">Checked</value>
     <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/TitanCanDriverInterface/tst_titandriverclass.cpp:test_titanDriverInterface">Checked</value>
     <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/TitanCanDriverInterface/tst_titandriverclass.cpp:test_titanDriverInterface_1">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/TitanCanDriverInterface/tst_titandriverclass.cpp:test_titanDriverInterface_10">Checked</value>
     <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/TitanCanDriverInterface/tst_titandriverclass.cpp:test_titanDriverInterface_2">Checked</value>
     <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/TitanCanDriverInterface/tst_titandriverclass.cpp:test_titanDriverInterface_3">Checked</value>
     <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/TitanCanDriverInterface/tst_titandriverclass.cpp:test_titanDriverInterface_4">Checked</value>
@@ -107,7 +106,6 @@
     <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/TitanCanDriverInterface/tst_titandriverclass.cpp:test_titanDriverInterface_6">Checked</value>
     <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/TitanCanDriverInterface/tst_titandriverclass.cpp:test_titanDriverInterface_7">Checked</value>
     <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/TitanCanDriverInterface/tst_titandriverclass.cpp:test_titanDriverInterface_8">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/TitanCanDriverInterface/tst_titandriverclass.cpp:test_titanDriverInterface_9">Checked</value>
     <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:cleanupTestCase">Unchecked</value>
     <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:initTestCase">Unchecked</value>
     <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface">Unchecked</value>

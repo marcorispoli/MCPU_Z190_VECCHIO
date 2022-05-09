@@ -118,7 +118,7 @@ public:
     }
 
     ~canDriverInterface(void){
-
+        if(!isOpen) driverClose();
     }
 
     /// This is the dataframe format
@@ -155,12 +155,8 @@ protected:
 
     /// Close Bus communication
     virtual void driverClose(void){return;}
-
-    /// Sends and receive data from a remote CAN Node
-    virtual canDataFrame driverTxRxData(canDataFrame frame, uint tmo) { return frame;}
-
-    virtual canDataFrame driverRead(void){;}
-    virtual void driverSend(canDataFrame frame){;}
+    virtual bool driverRead(void){return false;}
+    virtual void driverWrite(canDataFrame frame){return ;}
 
 public slots:
 
@@ -170,39 +166,60 @@ public slots:
         if(isOpen) {res = _CAN_DRIVER_ALREADY_OPEN;}
         else {res = driverOpen(COM, BR, address, mask, mode);}
 
-        emit driverErrorSgn((uchar) 0, res);
+        // Sends the ack on the error handler
+        emit driverErrorSgn((uchar) 0, (uint) res);
+
+        // Auto trigger a reception event
+        connect(this, &canDriverInterface::triggerReceptionSgn, this, &canDriverInterface::receiveThread, Qt::QueuedConnection);
+        emit triggerReceptionSgn();
+
         return;
     }
 
     void closePort(){        
         if(!isOpen) driverClose();
         isOpen = false;
+
+        // Remove the reception handler
+        disconnect(this, &canDriverInterface::triggerReceptionSgn, this, &canDriverInterface::receiveThread);
+
     }
 
-
-    void driverSendData(uchar msgid, canDriverInterface::canDataFrame frame, uint tmo){
-         emit driverSendCompletedSgn(msgid, driverTxRxData(frame, tmo));
+    void driverSendData (canDriverInterface::canDataFrame frame){
+         driverWrite(frame);
     }
 
     void receiveThread(void){
-        canDataFrame data = driverRead();
-        ushort address = data.canId & 0xF80;
-        uchar  id = data.canId & 0x07F;
 
-        if(address == 0x400) emit driverRx400(id);
-        else if(address == 0x480) emit driverRx480(id);
-        else if(address == 0x500) emit driverRx500(id);
-        else if(address == 0x580) emit driverRx580(id);
+        if(driverRead()){
+            ushort address = driverRxFrame.canId & 0xF00;
+            uchar  id = driverRxFrame.canId & 0x0FF;
+            if(address == 0x000) emit driverRx000(id,driverRxFrame);
+            else if(address == 0x100) emit driverRx100(id, driverRxFrame);
+            else if(address == 0x200) emit driverRx200(id,driverRxFrame);
+            else if(address == 0x300) emit driverRx300(id,driverRxFrame);
+            else if(address == 0x400) emit driverRx400(id,driverRxFrame);
+            else if(address == 0x500) emit driverRx500(id,driverRxFrame);
+        }
+
+        emit triggerReceptionSgn();
     }
 
 signals:
-    void driverRx400(uchar id);
-    void driverRx480(uchar id);
-    void driverRx500(uchar id);
-    void driverRx580(uchar id);
-
-    void driverSendCompletedSgn(uchar msgid, canDriverInterface::canDataFrame frame);
+    void triggerReceptionSgn(void);
+    void driverRx000(uchar id, canDriverInterface::canDataFrame data);
+    void driverRx100(uchar id, canDriverInterface::canDataFrame data);
+    void driverRx200(uchar id, canDriverInterface::canDataFrame data);
+    void driverRx300(uchar id, canDriverInterface::canDataFrame data);
+    void driverRx400(uchar id, canDriverInterface::canDataFrame data);
+    void driverRx500(uchar id, canDriverInterface::canDataFrame data);
     void driverErrorSgn(uchar msgid, uint errmsg);
+
+protected:
+    canDataFrame driverRxFrame;
+
+public:
+    _inline canDataFrame getCanRxFrame(){return driverRxFrame;};
 
 private:
     uint address;
@@ -210,11 +227,6 @@ private:
     QByteArray mode;
     bool isOpen;
 
-    canDataFrame rxFrame;
-    bool isRx;
-
-    canDataFrame txFrame;
-    bool isTx;
 };
 
 
@@ -236,12 +248,19 @@ public:
         worker = new T();
         QThread* thread = new QThread();
         worker->moveToThread(thread);
+
+
         connect( worker, &canDriverInterface::driverErrorSgn, this, &canDriver::driverErrorSlot, Qt::QueuedConnection);
-        connect( worker, &canDriverInterface::driverSendCompletedSgn, this, &canDriver::driverSendCompletedSlot, Qt::QueuedConnection);
+        connect( worker, &canDriverInterface::driverRx000, this, &canDriver::receive000Slot, Qt::QueuedConnection);
+        connect( worker, &canDriverInterface::driverRx100, this, &canDriver::receive100Slot, Qt::QueuedConnection);
+        connect( worker, &canDriverInterface::driverRx200, this, &canDriver::receive200Slot, Qt::QueuedConnection);
+        connect( worker, &canDriverInterface::driverRx300, this, &canDriver::receive300Slot, Qt::QueuedConnection);
+        connect( worker, &canDriverInterface::driverRx400, this, &canDriver::receive400Slot, Qt::QueuedConnection);
+        connect( worker, &canDriverInterface::driverRx500, this, &canDriver::receive500Slot, Qt::QueuedConnection);
 
         connect( this, &canDriver::sendSgn, worker, &canDriverInterface::driverSendData, Qt::QueuedConnection);
         connect( this, &canDriver::openSgn, worker, &canDriverInterface::openPort, Qt::QueuedConnection);
-        connect( this, &canDriver::closeSgn, worker,&canDriverInterface::closePort, Qt::QueuedConnection);
+        connect( this, &canDriver::closeSgn, worker,&canDriverInterface::closePort, Qt::BlockingQueuedConnection);
         connect( this, &canDriver::quit, thread, &QThread::quit);
         connect( this, &canDriver::quit, worker, &canDriverInterface::deleteLater);
         connect( thread, &QThread::finished, thread, &QThread::deleteLater);
@@ -249,20 +268,26 @@ public:
     }
 
 signals:
-    void sendSgn(uchar msgid, canDriverInterface::canDataFrame frame, uint tmo);
+    void sendSgn(canDriverInterface::canDataFrame frame);
     void openSgn(QByteArray COM, canDriverInterface::_canBaudRate BR, uint address, uint mask, QByteArray mode);
     void closeSgn(void);
     void quit(void);
 
-    void received(uchar msgid, canDriverInterface::canDataFrame frame);
-    void errors(uchar msgid, uint errmsg);
+    void received000Sgn(uchar id, canDriverInterface::canDataFrame frame);
+    void received100Sgn(uchar id, canDriverInterface::canDataFrame frame);
+    void received200Sgn(uchar id, canDriverInterface::canDataFrame frame);
+    void received300Sgn(uchar id, canDriverInterface::canDataFrame frame);
+    void received400Sgn(uchar id, canDriverInterface::canDataFrame frame);
+    void received500Sgn(uchar id, canDriverInterface::canDataFrame frame);
+
+    void errorsSgn(uchar msgid, uint errmsg);
 
 public:
-    void send(uchar msgid, canDriverInterface::canDataFrame frame, uint tmo){
-        errcode = canDriverInterface::_CAN_DRIVER_NA;
-        err_msgid = 0;
-        emit sendSgn(msgid, frame, tmo);
+    void send(canDriverInterface::canDataFrame frame){
+        errcode = canDriverInterface::_CAN_DRIVER_NA;        
+        emit sendSgn(frame);
     }
+
     void open(QByteArray COM, canDriverInterface::_canBaudRate BR, uint address, uint mask, QByteArray mode){
         errcode = canDriverInterface::_CAN_DRIVER_NA;
         err_msgid = 0;
@@ -275,27 +300,57 @@ public:
     }
 
     _inline canDriverInterface::_canDriverErrors getError(void){return errcode;}
-    _inline canDriverInterface::canDataFrame getRxFrame(void){return rx_frame;}
+    _inline canDriverInterface::canDataFrame getRx000Frame(void){return rx000_frame;}
+    _inline canDriverInterface::canDataFrame getRx100Frame(void){return rx100_frame;}
+    _inline canDriverInterface::canDataFrame getRx200Frame(void){return rx200_frame;}
+    _inline canDriverInterface::canDataFrame getRx300Frame(void){return rx300_frame;}
+    _inline canDriverInterface::canDataFrame getRx400Frame(void){return rx400_frame;}
+    _inline canDriverInterface::canDataFrame getRx500Frame(void){return rx500_frame;}
 
 private slots:
 
-    void driverSendCompletedSlot(uchar msgid, canDriverInterface::canDataFrame frame){
-        rx_frame = frame;
-        rx_msgid = msgid;
-        emit received(msgid, frame);
+    void receive000Slot(uchar id, canDriverInterface::canDataFrame frame){
+        rx000_frame = frame;
+        emit received000Sgn(id, frame);
     }
+    void receive100Slot(uchar id, canDriverInterface::canDataFrame frame){
+        rx100_frame = frame;
+        emit received100Sgn(id, frame);
+    }
+    void receive200Slot(uchar id, canDriverInterface::canDataFrame frame){
+        rx200_frame = frame;
+        emit received200Sgn(id, frame);
+    }
+    void receive300Slot(uchar id, canDriverInterface::canDataFrame frame){
+        rx300_frame = frame;
+        emit received300Sgn(id, frame);
+    }
+    void receive400Slot(uchar id, canDriverInterface::canDataFrame frame){
+        rx400_frame = frame;
+        emit received400Sgn(id, frame);
+    }
+    void receive500Slot(uchar id, canDriverInterface::canDataFrame frame){
+        rx500_frame = frame;
+        emit received500Sgn(id, frame);
+    }
+
+
     void driverErrorSlot(uchar msgid, uint errmsg){
         err_msgid = msgid;
         errcode = (canDriverInterface::_canDriverErrors) errmsg;
-        emit errors(msgid, errmsg);
+        emit errorsSgn(msgid, errmsg);
     }
 
 private:
     canDriverInterface* worker;
     QThread* thread;
 
-    canDriverInterface::canDataFrame rx_frame;
-    uchar rx_msgid;
+    canDriverInterface::canDataFrame rx000_frame;
+    canDriverInterface::canDataFrame rx100_frame;
+    canDriverInterface::canDataFrame rx200_frame;
+    canDriverInterface::canDataFrame rx300_frame;
+    canDriverInterface::canDataFrame rx400_frame;
+    canDriverInterface::canDataFrame rx500_frame;
 
     canDriverInterface::_canDriverErrors errcode;
     uchar err_msgid;

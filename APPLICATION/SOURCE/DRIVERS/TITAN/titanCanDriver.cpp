@@ -4,11 +4,10 @@
 
 titanCanDriver::titanCanDriver(){
 
-    rx_can_nok.canId = 0;
+
     isOpen = false;
     virtualCom = nullptr;
 
-    for(int i=0; i<8; i++) rx_can_nok.data[i] = 0;
     CANID.append((uchar) 0);
     CANID.append((uchar) 0);
     CANID.append((uchar) 0);
@@ -264,11 +263,12 @@ bool titanCanDriver::open(void){
     rx_frame = virtualCom->readAll();
     if(!rx_frame.contains('\r')) return false;
 
+    rx_frame.clear();
     return  true;
 }
 
 
-
+/*
 void titanCanDriver::driverFlush(void){
     if(!isOpen) return;
 
@@ -277,10 +277,11 @@ void titanCanDriver::driverFlush(void){
     rx_frame.clear();
     rx_index = 0;
 }
+*/
 
-bool titanCanDriver::driverTx(canDriverInterface::canDataFrame frame){
-    if(!isOpen) return false;
-    driverFlush();
+void titanCanDriver::driverWrite(canDriverInterface::canDataFrame frame){
+    if(!isOpen) return;
+    //driverFlush();
 
     CANID = get11BitHexFormat(frame.canId);
     QByteArray DATA;
@@ -289,82 +290,88 @@ bool titanCanDriver::driverTx(canDriverInterface::canDataFrame frame){
     QByteArray command = "t" + CANID + "8" + DATA + "\r";
     virtualCom->write(command.data());
     virtualCom->waitForBytesWritten(1);
-    if(!virtualCom->waitForReadyRead(5)) return false;
-    rx_frame = virtualCom->readAll();
-    rx_index = 0;
+    return;
 
-    // Find 'z' as the sent character
-    while(rx_index < rx_frame.size()){
-        if(rx_frame.at(rx_index++) == 'z') return true;
-    }
-    return false;
 }
 
-bool titanCanDriver::waitForRxData(int tmo){
+void titanCanDriver::clearBuffer(uint i){
+    if(rx_frame.size() == 0) return;
+
+
+    for(;i < rx_frame.size(); i++){
+        if(rx_frame[i] == 't') break;
+    }
+    if( i >=  rx_frame.size()) {
+        rx_frame.clear();
+        return;
+    }
+
+    QByteArray buffer;
+    for(; i < rx_frame.size(); i++)   buffer.append(rx_frame[i]);
+    rx_frame = buffer;
+    return;
+
+}
+
+bool titanCanDriver::driverRead(void){
     if(!isOpen) return false;
 
-    // Coda buffer precedente ..
+    // Reads all the incoming data buffer
+    while(virtualCom->waitForReadyRead(1)) rx_frame.append(virtualCom->readAll());
+
+    // Find 't' character
     rx_index = 0;
     while(rx_index < rx_frame.size()){
-        if(rx_frame.at(rx_index++) == 't'){
-            while(virtualCom->waitForReadyRead(1)) rx_frame.append(virtualCom->readAll());
-            return true;
-        }
+        if(rx_frame[rx_index]=='t') break;
+        rx_index++;
     }
 
-    rx_index = 0;
-    for(int i = 0; i<tmo; i++){
-        if(!virtualCom->waitForReadyRead(1)) continue;
-        rx_frame = virtualCom->readAll();
-        while(rx_index < rx_frame.size()){
-            if(rx_frame.at(rx_index++) == 't'){
-                while(virtualCom->waitForReadyRead(1)) rx_frame.append(virtualCom->readAll());
-                return true;
-            }
-        }
-
+    if(rx_index == rx_frame.size()){
+        rx_frame.clear();
+        return false;
     }
-    return false;
-}
-canDriverInterface::canDataFrame titanCanDriver::driverRx(uint tmo){
 
-    if(!waitForRxData(tmo)) return rx_can_nok;
 
     // Check the minimum size
-    if(rx_frame.size() - rx_index < 4) return rx_can_nok;
+    if(rx_frame.size() - rx_index < 4) return false;
+    rx_index++;
 
     CANID[0] = rx_frame.at(rx_index++);
     CANID[1] = rx_frame.at(rx_index++);
     CANID[2] = rx_frame.at(rx_index++);
 
-    if(!checkHex(CANID[0])) return rx_can_nok;
-    if(!checkHex(CANID[1])) return rx_can_nok;
-    if(!checkHex(CANID[2])) return rx_can_nok;
+    if( (!checkHex(CANID[0])) || (!checkHex(CANID[1])) || (!checkHex(CANID[2]))){
+         clearBuffer(rx_index);
+         return false;
+    }
 
-    rx_canframe.canId = from11bitHex(CANID);
-    if(!checkHex(rx_frame.at(rx_index))) return rx_can_nok;
+    driverRxFrame.canId = from11bitHex(CANID);
+    if(!checkHex(rx_frame.at(rx_index))){
+        clearBuffer(rx_index);
+        return false;
+   }
+
+
     int len = rx_frame.at(rx_index++) - '0';
-    if(len > 8 ) return rx_can_nok;
+    if(len > 8 ){
+        clearBuffer(rx_index);
+        return false;
+    }
 
-    // Index points to the first data
 
     // Check the minimum size
-    if(rx_frame.size() - rx_index < 2 * len) return rx_can_nok;
+    if(rx_frame.size() - rx_index < 2 * len) return false;
 
     for(int j=0; j < len; j++){
         BDATA[0] = rx_frame.at(rx_index++);
         BDATA[1] = rx_frame.at(rx_index++);
-        if(!checkHex(BDATA[0])) return rx_can_nok;
-        if(!checkHex(BDATA[1])) return rx_can_nok;
-        rx_canframe.data[j] = from8bitHex(BDATA);
+        if( (!checkHex(BDATA[0])) || (!checkHex(BDATA[1])) ){
+            clearBuffer(rx_index);
+            return false;
+        }
+        driverRxFrame.data[j] = from8bitHex(BDATA);
     }
 
-    return rx_canframe;
-}
-
-canDriverInterface::canDataFrame titanCanDriver::driverTxRxData(canDataFrame frame, uint tmo) {
-
-    if(! driverTx(frame)) return rx_can_nok;
-    return driverRx(tmo);
-
+    clearBuffer(rx_index);
+    return true;
 }

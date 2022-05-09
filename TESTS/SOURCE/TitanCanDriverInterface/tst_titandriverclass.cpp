@@ -74,9 +74,10 @@ private slots:
     void test_titanDriverInterface_1();
     void test_titanDriverInterface_2();
     void test_titanDriverInterface_3();
-    void test_titanDriverInterface_4();
+    void test_titanDriverInterface_4();    
     void test_titanDriverInterface_5();
     void test_titanDriverInterface_6();
+
     void test_titanDriverInterface_7();
     void test_titanDriverInterface_8();
 
@@ -136,15 +137,15 @@ void test_titanDriverInterface::test_titanDriverInterface_3(){
     QCOMPARE(opstat, canDriverInterface::_CAN_DRIVER_OK);
 
 
-    int wrong_send = 0;
     int wrong_rx = 0;
     int wrong_format = 0;
 
     uchar ofs = 0;
     uchar cval;
+    int i;
 
     bool action;
-    for(int j=0; j<1000; j++){
+    for(int j=0; j<10; j++){
 
         tx_canframe.canId = 0x100;
 
@@ -153,34 +154,31 @@ void test_titanDriverInterface::test_titanDriverInterface_3(){
             tx_canframe.data[i] = cval;
         }
 
-        driver_ch1.driverFlush();
-        driver_ch0.driverFlush();
-        status = driver_ch0.driverTx(tx_canframe);
-
-        if(!status){
-            wrong_send++;
-            continue;
+        driver_ch0.driverWrite(tx_canframe);
+        for(i=0; i<10; i++){
+            if(driver_ch1.driverRead())  break;
+            else QTest::qSleep(1);
         }
-
-        rx_canframe = driver_ch1.driverRx(2);
-        if(rx_canframe.canId != 0x100){
+        if(i == 10){
             wrong_rx++;
             continue;
         }
 
+        if(driver_ch1.getCanRxFrame().canId != 0x100){
+            wrong_format++;
+            continue;
+        }
+
         action = true;
-        QString buf_data="D: ";
         for(int i=0; i<8; i++){
-            cval = (uchar) i+ofs;
-            buf_data += QString("%1 ").arg(cval);
-            if(rx_canframe.data[i] != cval){
+            cval = (uchar) i+ofs;            
+            if(driver_ch1.getCanRxFrame().data[i] != cval){
                 action = false;
+                break;
             }
         }
         if(!action)
         {
-            buffer = driver_ch1.getRxFrame();
-            stringa = buf_data;
             wrong_format++;
             continue;
         }
@@ -188,19 +186,11 @@ void test_titanDriverInterface::test_titanDriverInterface_3(){
         ofs++;
     }
 
+    driver_ch0.driverClose();
+    driver_ch1.driverClose();
 
-    if(wrong_format){
-        qInfo(stringa.toLatin1());
-        qInfo(buffer);
-    }
-
-    stringa = QString("SEND:%1, RX:%2, FORMAT:%3").arg(wrong_send).arg(wrong_rx).arg(wrong_format);
-    qInfo(stringa.toLatin1());
-    QCOMPARE(wrong_send, 0);
     QCOMPARE(wrong_rx, 0);
     QCOMPARE(wrong_format, 0);
-
-
 
 }
 
@@ -209,22 +199,89 @@ void test_titanDriverInterface::test_titanDriverInterface_4(){
     QString stringa;
     canDriverInterface::canDataFrame tx_canframe;
     canDriverInterface::canDataFrame rx_canframe;
-    bool action;
 
-    driver_ch0.driverClose();
-    driver_ch1.driverClose();
-    canDriverInterface::_canDriverErrors opstat = driver_ch0.driverOpen("COM8",canDriverInterface::_CAN_1000K,0x100,0x7FF,"LOOPBACK");
+    canDriverInterface::_canDriverErrors opstat = driver_ch0.driverOpen("COM8",canDriverInterface::_CAN_1000K,0x100,0x7FE,"NORMAL");
+    QCOMPARE(opstat, canDriverInterface::_CAN_DRIVER_OK);
+    opstat = driver_ch1.driverOpen("COM9",canDriverInterface::_CAN_1000K,0x100,0x7FE,"NORMAL");
     QCOMPARE(opstat, canDriverInterface::_CAN_DRIVER_OK);
 
-    int wrong_send = 0;
+
     int wrong_rx = 0;
     int wrong_format = 0;
 
     uchar ofs = 0;
     uchar cval;
+    int i;
+
+    bool action;
+    for(int j=0; j<100; j++){
+
+        tx_canframe.canId = 0x100;
+        driver_ch0.driverWrite(tx_canframe);
+        tx_canframe.canId = 0x101;
+        driver_ch0.driverWrite(tx_canframe);
+
+        for(i=0; i<10; i++){
+            if(driver_ch1.driverRead())  break;
+            else QTest::qSleep(1);
+        }
+        if(i == 10){
+            wrong_rx++;
+            continue;
+        }
+
+        if(driver_ch1.getCanRxFrame().canId != 0x100){
+            wrong_format++;
+            continue;
+        }
+
+        for(i=0; i<10; i++){
+            if(driver_ch1.driverRead())  break;
+            else QTest::qSleep(1);
+        }
+        if(i == 10){
+            wrong_rx++;
+            continue;
+        }
+
+        if(driver_ch1.getCanRxFrame().canId != 0x101){
+            wrong_format++;
+            continue;
+        }
+
+    }
+
+    driver_ch0.driverClose();
+    driver_ch1.driverClose();
+
+    QCOMPARE(wrong_rx, 0);
+    QCOMPARE(wrong_format, 0);
+
+}
 
 
-    for(int j=0; j<1000; j++){
+
+void test_titanDriverInterface::test_titanDriverInterface_5(){
+    QByteArray buffer;
+    QString stringa;
+    canDriverInterface::canDataFrame tx_canframe;
+    canDriverInterface::canDataFrame rx_canframe;
+    bool action;
+
+
+    canDriverInterface::_canDriverErrors opstat = driver_ch0.driverOpen("COM8",canDriverInterface::_CAN_1000K,0x100,0x7FF,"LOOPBACK");
+    QCOMPARE(opstat, canDriverInterface::_CAN_DRIVER_OK);
+
+
+    int wrong_rx = 0;
+    int wrong_format = 0;
+
+    uchar ofs = 0;
+    uchar cval;
+    int i;
+
+
+    for(int j=0; j<100; j++){
 
         tx_canframe.canId = 0x100;
 
@@ -234,87 +291,46 @@ void test_titanDriverInterface::test_titanDriverInterface_4(){
         }
 
 
-        status = driver_ch0.driverTx(tx_canframe);
-
-        if(!status){
-            wrong_send++;
-            continue;
+        driver_ch0.driverWrite(tx_canframe);
+        for(i=0; i<10; i++){
+            if(driver_ch0.driverRead())  break;
+            else QTest::qSleep(1);
         }
-
-        rx_canframe = driver_ch0.driverRx(2);
-        if(rx_canframe.canId != 0x100){
+        if(i == 10){
             wrong_rx++;
             continue;
         }
+        rx_canframe = driver_ch0.getCanRxFrame();
 
-        action = true;
-        QString buf_data="D: ";
-        for(int i=0; i<8; i++){
-            cval = (uchar) i+ofs;
-            buf_data += QString("%1 ").arg(cval);
-            if(rx_canframe.data[i] != cval){
-                action = false;
-            }
-        }
-        if(!action)
-        {
-            buffer = driver_ch0.getRxFrame();
-            stringa = buf_data;
+        if(driver_ch0.getCanRxFrame().canId != 0x100){
             wrong_format++;
             continue;
         }
 
+        action = true;
+
+        for(int i=0; i<8; i++){
+            cval = (uchar) i+ofs;
+            if(rx_canframe.data[i] != cval){
+                action = false;
+                break;
+            }
+        }
+        if(!action)
+        {
+            wrong_format++;
+            continue;
+        }
+
+
         ofs++;
     }
+    driver_ch0.driverClose();
 
-
-    if(wrong_format){
-        qInfo(stringa.toLatin1());
-        qInfo(buffer);
-    }
-
-    stringa = QString("SEND:%1, RX:%2, FORMAT:%3").arg(wrong_send).arg(wrong_rx).arg(wrong_format);
-    qInfo(stringa.toLatin1());
-    QCOMPARE(wrong_send, 0);
     QCOMPARE(wrong_rx, 0);
     QCOMPARE(wrong_format, 0);
 
 
-
-}
-
-void test_titanDriverInterface::test_titanDriverInterface_5(){
-    QByteArray buffer;
-    QString stringa;
-    canDriverInterface::canDataFrame tx_canframe;
-    canDriverInterface::canDataFrame rx_canframe;
-
-    driver_ch0.driverClose();
-    driver_ch1.driverClose();
-    canDriverInterface::_canDriverErrors opstat = driver_ch0.driverOpen("COM8",canDriverInterface::_CAN_1000K,0x100,0x7FF,"LOOPBACK");
-    QCOMPARE(opstat, canDriverInterface::_CAN_DRIVER_OK);
-
-
-    uchar ofs = 0;
-    uchar cval;
-
-    tx_canframe.canId = 0x100;
-    for(int i=0; i<8; i++){
-        cval = (uchar) i+ofs;
-        tx_canframe.data[i] = cval;
-    }
-
-    QBENCHMARK{
-
-        driver_ch0.driverFlush();
-        status = driver_ch0.driverTx(tx_canframe);
-        QCOMPARE(status,true);
-
-        rx_canframe = driver_ch0.driverRx(2);
-        QCOMPARE(rx_canframe.canId,0x100);
-
-
-    }
 
 }
 
@@ -323,31 +339,92 @@ void test_titanDriverInterface::test_titanDriverInterface_6(){
     QString stringa;
     canDriverInterface::canDataFrame tx_canframe;
     canDriverInterface::canDataFrame rx_canframe;
+    bool action;
 
-    driver_ch0.driverClose();
-    driver_ch1.driverClose();
+
     canDriverInterface::_canDriverErrors opstat = driver_ch0.driverOpen("COM8",canDriverInterface::_CAN_1000K,0x100,0x7FF,"LOOPBACK");
     QCOMPARE(opstat, canDriverInterface::_CAN_DRIVER_OK);
 
 
-    uchar ofs = 0;
-    uchar cval;
+    int wrong_rx = 0;
+    int wrong_format = 0;
+    int i;
 
-    tx_canframe.canId = 0x100;
-    for(int i=0; i<8; i++){
-        cval = (uchar) i+ofs;
-        tx_canframe.data[i] = cval;
+
+    for(int j=0; j<100; j++){
+
+        tx_canframe.canId = 0x100;
+        for(int i=0; i<8; i++){
+            tx_canframe.data[i] = 1;
+        }
+        driver_ch0.driverWrite(tx_canframe);
+        for(int i=0; i<8; i++){
+            tx_canframe.data[i] = 2;
+        }
+        driver_ch0.driverWrite(tx_canframe);
+
+
+        for(i=0; i<10; i++){
+            if(driver_ch0.driverRead())  break;
+            else QTest::qSleep(1);
+        }
+        if(i == 10){
+            wrong_rx++;
+            continue;
+        }
+        rx_canframe = driver_ch0.getCanRxFrame();
+        if(rx_canframe.canId != 0x100){
+            wrong_format++;
+            continue;
+        }
+        action = true;
+        for(int i=0; i<8; i++){
+            if(rx_canframe.data[i] != 1){
+                action = false;
+                break;
+            }
+        }
+        if(!action)
+        {
+            wrong_format++;
+            continue;
+        }
+
+        for(i=0; i<10; i++){
+            if(driver_ch0.driverRead())  break;
+            else QTest::qSleep(1);
+        }
+        if(i == 10){
+            wrong_rx++;
+            continue;
+        }
+        rx_canframe = driver_ch0.getCanRxFrame();
+        if(rx_canframe.canId != 0x100){
+            wrong_format++;
+            continue;
+        }
+        action = true;
+        for(int i=0; i<8; i++){
+            if(rx_canframe.data[i] != 2){
+                action = false;
+                break;
+            }
+        }
+        if(!action)
+        {
+            wrong_format++;
+            continue;
+        }
+
+
     }
-
-    QBENCHMARK{
-
-        rx_canframe = driver_ch0.driverTxRxData(tx_canframe,2);
-        QCOMPARE(rx_canframe.canId,0x100);
-
-    }
-
     driver_ch0.driverClose();
-    driver_ch1.driverClose();
+
+    QCOMPARE(wrong_rx, 0);
+    QCOMPARE(wrong_format, 0);
+
+
+
 }
 
 void test_titanDriverInterface::test_titanDriverInterface_7(){
@@ -357,25 +434,91 @@ void test_titanDriverInterface::test_titanDriverInterface_7(){
     canDriver driver ;
     driver.driverInitialize<titanCanDriver>();
 
-    spy = new QSignalSpy(&driver, &canDriver::errors);
-    driver.open("COM9",canDriverInterface::_CAN_1000K,0x100,0x7FF,"LOOPBACK");
-    while (spy->count() == 0)  QTest::qWait(200);
+    spy = new QSignalSpy(&driver, &canDriver::errorsSgn);
+    driver.open("COM9",canDriverInterface::_CAN_1000K,0,0,"LOOPBACK");
+    while (spy->count() == 0)  QTest::qWait(20);
+    QCOMPARE(driver.getError(), canDriverInterface::_CAN_DRIVER_OK);
+    delete spy;
+
+
+    tx_canframe.canId = 0x581;
+    spy = new QSignalSpy(&driver, &canDriver::received500Sgn);
+    driver.send(tx_canframe);
+    while (spy->count() == 0)  QTest::qWait(20);
+    rx_canframe = driver.getRx500Frame();
+    QCOMPARE(rx_canframe.canId, 0x581);
+    delete spy;
+
+    tx_canframe.canId = 0x481;
+    spy = new QSignalSpy(&driver, &canDriver::received400Sgn);
+    driver.send(tx_canframe);
+    while (spy->count() == 0)  QTest::qWait(20);
+    rx_canframe = driver.getRx400Frame();
+    QCOMPARE(rx_canframe.canId, 0x481);
+    delete spy;
+
+    tx_canframe.canId = 0x381;
+    spy = new QSignalSpy(&driver, &canDriver::received300Sgn);
+    driver.send(tx_canframe);
+    while (spy->count() == 0)  QTest::qWait(20);
+    rx_canframe = driver.getRx300Frame();
+    QCOMPARE(rx_canframe.canId, 0x381);
+    delete spy;
+
+    tx_canframe.canId = 0x281;
+    spy = new QSignalSpy(&driver, &canDriver::received200Sgn);
+    driver.send(tx_canframe);
+    while (spy->count() == 0)  QTest::qWait(20);
+    rx_canframe = driver.getRx200Frame();
+    QCOMPARE(rx_canframe.canId, 0x281);
+    delete spy;
+
+    tx_canframe.canId = 0x181;
+    spy = new QSignalSpy(&driver, &canDriver::received100Sgn);
+    driver.send(tx_canframe);
+    while (spy->count() == 0)  QTest::qWait(20);
+    rx_canframe = driver.getRx100Frame();
+    QCOMPARE(rx_canframe.canId, 0x181);
+    delete spy;
+
+    tx_canframe.canId = 0x81;
+    spy = new QSignalSpy(&driver, &canDriver::received000Sgn);
+    driver.send(tx_canframe);
+    while (spy->count() == 0)  QTest::qWait(20);
+    rx_canframe = driver.getRx000Frame();
+    QCOMPARE(rx_canframe.canId, 0x081);
+    delete spy;
+
+
+    driver.close();
+
+
+}
+
+void test_titanDriverInterface::test_titanDriverInterface_8(){
+    canDriverInterface::canDataFrame tx_canframe;
+    canDriverInterface::canDataFrame rx_canframe;
+
+    canDriver driver ;
+    driver.driverInitialize<titanCanDriver>();
+
+    spy = new QSignalSpy(&driver, &canDriver::errorsSgn);
+    driver.open("COM9",canDriverInterface::_CAN_1000K,0x580,0x7E0,"LOOPBACK");
+    while (spy->count() == 0)  QTest::qWait(20);
     QCOMPARE(driver.getError(), canDriverInterface::_CAN_DRIVER_OK);
     delete spy;
 
     uint no_answer = 0;
     uint no_address = 0;
     uint no_format = 0;
-
     uint attempt = 10;
 
-    for(uint i=0; i<1000; i++){
-        tx_canframe.canId = 0x100;
+    for(uint i=0; i<10; i++){
+        tx_canframe.canId = 0x580;
+        for(int j=0; j<8; j++)     tx_canframe.data[j] = (uchar) 1;
 
-        for(int j=0; j<8; j++)     tx_canframe.data[j] = (uchar) i+j;
-
-        spy = new QSignalSpy(&driver, &canDriver::received);
-        driver.send(1,tx_canframe,2);
+        spy = new QSignalSpy(&driver, &canDriver::received500Sgn);
+        driver.send(tx_canframe);
 
         attempt = 10;
         while (attempt){
@@ -385,12 +528,14 @@ void test_titanDriverInterface::test_titanDriverInterface_7(){
         }
         if(!attempt){
             no_answer++;
+            delete spy;
             continue;
         }
 
-        rx_canframe = driver.getRxFrame();
-        if(rx_canframe.canId != 0x100){
+        rx_canframe = driver.getRx500Frame();
+        if(rx_canframe.canId != 0x580){
             no_address++;
+            delete spy;
             continue;
         }
 
@@ -403,6 +548,7 @@ void test_titanDriverInterface::test_titanDriverInterface_7(){
         }
         if(action){
             no_format++;
+            delete spy;
             continue;
         }
 
@@ -416,7 +562,18 @@ void test_titanDriverInterface::test_titanDriverInterface_7(){
 
     driver.close();
 
-    /*
+
+}
+
+/*
+void test_titanDriverInterface::test_titanDriverInterface_8(){
+
+
+
+}
+
+
+
     deviceDriver = new usingDriver();
     deviceDriver->driver.openDriverPort("COM0", "1000", 0x580, 0x8FF, false);
     txframe.canId = 1;
@@ -435,16 +592,6 @@ void test_titanDriverInterface::test_titanDriverInterface_7(){
     QCOMPARE(deviceDriver->rxframe.data[0], 1); // Hardware Init
     delete spy;
     */
-
-
-
-}
-
-void test_titanDriverInterface::test_titanDriverInterface_8(){
-
-
-}
-
 
 QTEST_MAIN(test_titanDriverInterface)
 

@@ -15,7 +15,8 @@ class titanCanDriver: public canDriverInterface
 
     _canDriverErrors driverOpen(QByteArray COM, _canBaudRate BR, uint address, uint mask, QByteArray mode);
     void driverClose(void);
-    canDataFrame driverTxRxData(canDataFrame frame, uint tmo);
+    bool driverRead(void);
+    void driverWrite(canDriverInterface::canDataFrame frame);
 
     // For test purpose
     _inline QByteArray getAddr(void){return ADDR;};
@@ -25,9 +26,8 @@ class titanCanDriver: public canDriverInterface
     _inline QByteArray getStatus(void){return STATUS;};
     _inline QByteArray getRxFrame(void){return rx_frame;};
 
-    bool driverTx(canDriverInterface::canDataFrame frame);
-    canDriverInterface::canDataFrame driverRx(uint tmo);
-    void driverFlush(void);
+    //canDriverInterface::canDataFrame driverRx(uint tmo);
+    //void driverFlush(void);
 
 
 private:
@@ -52,16 +52,13 @@ private:
     QByteArray rx_frame;
     int rx_index;
 
-    bool waitForRxData(int tmo);
 
-    canDriverInterface::canDataFrame rx_can_nok;
-    canDriverInterface::canDataFrame rx_canframe;
 
 
     bool setStandardFilter(uint addr, uint msk);
     bool open(void);
     void close(void);
-
+    void clearBuffer(uint i);
     bool isOpen;
 };
 

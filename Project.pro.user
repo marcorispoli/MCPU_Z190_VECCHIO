@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 6.0.2, 2022-05-09T18:59:12. -->
+<!-- Written by QtCreator 6.0.2, 2022-05-12T18:13:25. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -70,33 +70,33 @@
    <valuemap type="QVariantMap" key="AutoTest.CheckStates">
     <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/CommandProtocol/tst_commandprotocol.cpp:cleanupTestCase">Unchecked</value>
     <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/CommandProtocol/tst_commandprotocol.cpp:initTestCase">Unchecked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/CommandProtocol/tst_commandprotocol.cpp:test_commandProtocol">Unchecked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/CommandProtocol/tst_commandprotocol.cpp:test_commandProtocol_1">Unchecked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/CommandProtocol/tst_commandprotocol.cpp:test_commandProtocol_10">Unchecked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/CommandProtocol/tst_commandprotocol.cpp:test_commandProtocol_11">Unchecked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/CommandProtocol/tst_commandprotocol.cpp:test_commandProtocol_12">Unchecked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/CommandProtocol/tst_commandprotocol.cpp:test_commandProtocol_13">Unchecked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/CommandProtocol/tst_commandprotocol.cpp:test_commandProtocol_14">Unchecked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/CommandProtocol/tst_commandprotocol.cpp:test_commandProtocol_15">Unchecked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/CommandProtocol/tst_commandprotocol.cpp:test_commandProtocol_2">Unchecked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/CommandProtocol/tst_commandprotocol.cpp:test_commandProtocol_2_1">Unchecked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/CommandProtocol/tst_commandprotocol.cpp:test_commandProtocol_3">Unchecked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/CommandProtocol/tst_commandprotocol.cpp:test_commandProtocol_4">Unchecked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/CommandProtocol/tst_commandprotocol.cpp:test_commandProtocol_5">Unchecked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/CommandProtocol/tst_commandprotocol.cpp:test_commandProtocol_6">Unchecked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/CommandProtocol/tst_commandprotocol.cpp:test_commandProtocol_7">Unchecked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/CommandProtocol/tst_commandprotocol.cpp:test_commandProtocol_8">Unchecked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/CommandProtocol/tst_commandprotocol.cpp:test_commandProtocol_9">Unchecked</value>
+    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/CommandProtocol/tst_commandprotocol.cpp:test_commandProtocol">Checked</value>
+    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/CommandProtocol/tst_commandprotocol.cpp:test_commandProtocol_1">Checked</value>
+    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/CommandProtocol/tst_commandprotocol.cpp:test_commandProtocol_10">Checked</value>
+    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/CommandProtocol/tst_commandprotocol.cpp:test_commandProtocol_11">Checked</value>
+    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/CommandProtocol/tst_commandprotocol.cpp:test_commandProtocol_12">Checked</value>
+    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/CommandProtocol/tst_commandprotocol.cpp:test_commandProtocol_13">Checked</value>
+    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/CommandProtocol/tst_commandprotocol.cpp:test_commandProtocol_14">Checked</value>
+    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/CommandProtocol/tst_commandprotocol.cpp:test_commandProtocol_15">Checked</value>
+    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/CommandProtocol/tst_commandprotocol.cpp:test_commandProtocol_2">Checked</value>
+    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/CommandProtocol/tst_commandprotocol.cpp:test_commandProtocol_2_1">Checked</value>
+    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/CommandProtocol/tst_commandprotocol.cpp:test_commandProtocol_3">Checked</value>
+    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/CommandProtocol/tst_commandprotocol.cpp:test_commandProtocol_4">Checked</value>
+    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/CommandProtocol/tst_commandprotocol.cpp:test_commandProtocol_5">Checked</value>
+    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/CommandProtocol/tst_commandprotocol.cpp:test_commandProtocol_6">Checked</value>
+    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/CommandProtocol/tst_commandprotocol.cpp:test_commandProtocol_7">Checked</value>
+    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/CommandProtocol/tst_commandprotocol.cpp:test_commandProtocol_8">Checked</value>
+    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/CommandProtocol/tst_commandprotocol.cpp:test_commandProtocol_9">Checked</value>
     <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/ErrorTable/tst_errortable.cpp:cleanupTestCase">Unchecked</value>
     <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/ErrorTable/tst_errortable.cpp:initTestCase">Unchecked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/ErrorTable/tst_errortable.cpp:test_errorTable">Unchecked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/ErrorTable/tst_errortable.cpp:test_errorTable_1">Unchecked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/ErrorTable/tst_errortable.cpp:test_errorTable_2">Unchecked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/ErrorTable/tst_errortable.cpp:test_errorTable_3">Unchecked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/ErrorTable/tst_errortable.cpp:test_errorTable_4">Unchecked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/ErrorTable/tst_errortable.cpp:test_errorTable_5">Unchecked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/TitanCanDriverInterface/tst_titandriverclass.cpp:cleanupTestCase">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/TitanCanDriverInterface/tst_titandriverclass.cpp:initTestCase">Checked</value>
+    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/ErrorTable/tst_errortable.cpp:test_errorTable">Checked</value>
+    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/ErrorTable/tst_errortable.cpp:test_errorTable_1">Checked</value>
+    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/ErrorTable/tst_errortable.cpp:test_errorTable_2">Checked</value>
+    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/ErrorTable/tst_errortable.cpp:test_errorTable_3">Checked</value>
+    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/ErrorTable/tst_errortable.cpp:test_errorTable_4">Checked</value>
+    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/ErrorTable/tst_errortable.cpp:test_errorTable_5">Checked</value>
+    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/TitanCanDriverInterface/tst_titandriverclass.cpp:cleanupTestCase">Unchecked</value>
+    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/TitanCanDriverInterface/tst_titandriverclass.cpp:initTestCase">Unchecked</value>
     <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/TitanCanDriverInterface/tst_titandriverclass.cpp:test_titanDriverInterface">Checked</value>
     <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/TitanCanDriverInterface/tst_titandriverclass.cpp:test_titanDriverInterface_1">Checked</value>
     <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/TitanCanDriverInterface/tst_titandriverclass.cpp:test_titanDriverInterface_2">Checked</value>
@@ -108,37 +108,37 @@
     <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/TitanCanDriverInterface/tst_titandriverclass.cpp:test_titanDriverInterface_8">Checked</value>
     <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:cleanupTestCase">Unchecked</value>
     <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:initTestCase">Unchecked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface">Unchecked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_EXEC_AbortProjections">Unchecked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_EXEC_ArmPosition">Unchecked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_EXEC_Close">Unchecked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_EXEC_OpenStudy">Unchecked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_EXEC_PowerOff">Unchecked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_EXEC_ResetError">Unchecked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_EXEC_StartXraySequence">Unchecked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_EXEC_TrxPosition">Unchecked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_GANTRY_AbortProjection">Unchecked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_GANTRY_ERROR">Unchecked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_GANTRY_PulseCompleted">Unchecked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_GANTRY_SelectProjection">Unchecked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_GANTRY_SetAccessories">Unchecked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_GANTRY_SetTubeTemperature">Unchecked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_GANTRY_XrayPushEvent">Unchecked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_GANTRY_XraySequenceCompleted">Unchecked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_GET_Accessories">Unchecked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_GET_CompressorData">Unchecked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_GET_ExposureCompletionData">Unchecked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_GET_ReadyForExposure">Unchecked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_GET_RotationAngles">Unchecked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_GET_TomoConfig">Unchecked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_GET_TomoConfigFile">Unchecked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_GET_TubeTemperature">Unchecked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_GET_XrayPushStatus">Unchecked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_SET_CompressionRelease">Unchecked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_SET_Language">Unchecked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_SET_ProjectionList">Unchecked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_SET_PulseData">Unchecked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_SET_XrayPushEnable">Unchecked</value>
+    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface">Checked</value>
+    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_EXEC_AbortProjections">Checked</value>
+    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_EXEC_ArmPosition">Checked</value>
+    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_EXEC_Close">Checked</value>
+    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_EXEC_OpenStudy">Checked</value>
+    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_EXEC_PowerOff">Checked</value>
+    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_EXEC_ResetError">Checked</value>
+    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_EXEC_StartXraySequence">Checked</value>
+    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_EXEC_TrxPosition">Checked</value>
+    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_GANTRY_AbortProjection">Checked</value>
+    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_GANTRY_ERROR">Checked</value>
+    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_GANTRY_PulseCompleted">Checked</value>
+    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_GANTRY_SelectProjection">Checked</value>
+    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_GANTRY_SetAccessories">Checked</value>
+    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_GANTRY_SetTubeTemperature">Checked</value>
+    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_GANTRY_XrayPushEvent">Checked</value>
+    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_GANTRY_XraySequenceCompleted">Checked</value>
+    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_GET_Accessories">Checked</value>
+    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_GET_CompressorData">Checked</value>
+    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_GET_ExposureCompletionData">Checked</value>
+    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_GET_ReadyForExposure">Checked</value>
+    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_GET_RotationAngles">Checked</value>
+    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_GET_TomoConfig">Checked</value>
+    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_GET_TomoConfigFile">Checked</value>
+    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_GET_TubeTemperature">Checked</value>
+    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_GET_XrayPushStatus">Checked</value>
+    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_SET_CompressionRelease">Checked</value>
+    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_SET_Language">Checked</value>
+    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_SET_ProjectionList">Checked</value>
+    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_SET_PulseData">Checked</value>
+    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_SET_XrayPushEnable">Checked</value>
    </valuemap>
    <value type="int" key="AutoTest.RunAfterBuild">0</value>
    <value type="bool" key="AutoTest.UseGlobal">true</value>
@@ -156,6 +156,9 @@
     <valuelist type="QVariantList" key="ClangTools.SelectedFiles"/>
     <valuelist type="QVariantList" key="ClangTools.SuppressedDiagnostics"/>
     <value type="bool" key="ClangTools.UseGlobalSettings">true</value>
+   </valuemap>
+   <valuemap type="QVariantMap" key="CppEditor.QuickFix">
+    <value type="bool" key="UseGlobalSettings">true</value>
    </valuemap>
   </valuemap>
  </data>

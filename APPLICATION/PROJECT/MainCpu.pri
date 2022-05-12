@@ -28,6 +28,7 @@ TRANSLATIONS += $${TARGET_RESOURCE}/Languages/traduzione_ita.ts \
                 $${TARGET_RESOURCE}/Languages/traduzione_fra.ts \
                 $${TARGET_RESOURCE}/Languages/traduzione_ltu.ts \
 
+
 FORMS += \
     $${TARGET_SOURCE}/WINDOWS/errorsWindow.ui \
     $${TARGET_SOURCE}/WINDOWS/startupWindow.ui \
@@ -60,6 +61,8 @@ SOURCES += \
     $${TARGET_SOURCE}/LIB/windows.cpp \
     $${TARGET_SOURCE}/LIB/CanDriverClassInterface.cpp \
     $${TARGET_SOURCE}/COMMUNICATION/awscommunication.cpp \
+    $${TARGET_SOURCE}/COMMUNICATION/deviceclass.cpp \
+    $${TARGET_SOURCE}/COMMUNICATION/gantrydevices.cpp \
     $${TARGET_SOURCE}/DRIVERS/TITAN/titanCanDriver.cpp\
 
 
@@ -78,7 +81,9 @@ HEADERS += \
     $${TARGET_SOURCE}/LIB/translator.h \
     $${TARGET_SOURCE}/LIB/windows.h \
     $${TARGET_SOURCE}/LIB/canDriverClassInterface.h \
-    $${TARGET_SOURCE}/COMMUNICATION/awscommunication.h \
+    $${TARGET_SOURCE}/COMMUNICATION/awscommunication.h \    
+    $${TARGET_SOURCE}/COMMUNICATION/deviceclass.h\
+    $${TARGET_SOURCE}/COMMUNICATION/gantrydevices.h \
     $${TARGET_SOURCE}/DRIVERS/TITAN/titanCanDriver.h\
 
 

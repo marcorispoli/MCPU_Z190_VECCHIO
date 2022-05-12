@@ -13,36 +13,31 @@ class titanCanDriver: public canDriverInterface
    ~titanCanDriver(){};
 
 
-    // Virtual function implementation
-    bool hardwareInit(QByteArray COM, QByteArray br);
-    bool hardwareShutdown();
-    bool setStandardFilter(uint addr, uint msk);
-    bool open(void);
-    void close(void);
-    canDataFrame driverTxRxData(canDataFrame frame, int tmo);
+    _canDriverErrors driverOpen(QByteArray COM, _canBaudRate BR, uint address, uint mask, QByteArray mode);
+    void driverClose(void);
+    bool driverRead(void);
+    void driverWrite(canDriverInterface::canDataFrame frame);
 
+    // For test purpose
     _inline QByteArray getAddr(void){return ADDR;};
-    _inline QByteArray getBr(void){return BR;};
     _inline QByteArray getMask(void){return MASK;};
     _inline QByteArray getVersion(void){return versionCode;};
     _inline QByteArray getSerialNumber(void){return SN;};
     _inline QByteArray getStatus(void){return STATUS;};
     _inline QByteArray getRxFrame(void){return rx_frame;};
 
-    bool driverTx(canDriverInterface::canDataFrame frame);
-    canDriverInterface::canDataFrame driverRx(void);
-    void driverFlush(void);
-    bool open_loopback(void);
+    //canDriverInterface::canDataFrame driverRx(uint tmo);
+    //void driverFlush(void);
+
 
 private:
-    QSerialPort virtualCom;
+    QSerialPort* virtualCom;
     QByteArray versionCode;
     QByteArray SN;
     QByteArray STATUS;
-    QByteArray COM;
-    QByteArray BR;
     QByteArray ADDR;
     QByteArray MASK;
+    QByteArray openMode;
 
     QByteArray CANID;
     QByteArray BDATA;
@@ -54,14 +49,17 @@ private:
     uchar from8bitHex(QByteArray data);
     bool checkHex(char data);
 
-    bool running;
     QByteArray rx_frame;
     int rx_index;
 
-    bool waitForRxData(void);
 
-    canDriverInterface::canDataFrame rx_can_nok;
-    canDriverInterface::canDataFrame rx_canframe;
+
+
+    bool setStandardFilter(uint addr, uint msk);
+    bool open(void);
+    void close(void);
+    void clearBuffer(uint i);
+    bool isOpen;
 };
 
 #endif // TITAN_CAN_DRIVER_H

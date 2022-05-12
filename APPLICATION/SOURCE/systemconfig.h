@@ -3,6 +3,12 @@
 
 #include "configfile.h"
 
+/// Defines the Device Can Address of the gantry's device
+#define _POWER_SERVICE_BOARD_ADDRESS    (0x01)
+#define _COMPRESSOR_BOARD_ADDRESS       (0x02)
+#define _COLLIMATOR_BOARD_ADDRESS       (0x03)
+#define _GRID_BOARD_ADDRESS             (0x04)
+
 class systemIni: public configFile
 {
     public:

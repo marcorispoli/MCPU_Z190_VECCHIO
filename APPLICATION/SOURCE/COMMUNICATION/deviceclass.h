@@ -33,19 +33,7 @@ class deviceClass: public QObject
 {
     Q_OBJECT
 
-    explicit deviceClass(){
-        paramList.clear();
-        statusList.clear();
-        dataList.clear();
-
-        statusList.append(deviceDataRegisterClass(false)); // RESERVED
-        statusList.append(deviceDataRegisterClass(false)); // SYSTEM
-        statusList.append(deviceDataRegisterClass(false)); // ERRORS
-
-        paramList.append(deviceDataRegisterClass(false)); // RESERVED
-        dataList.append(deviceDataRegisterClass(false)); // RESERVED
-
-    }
+    explicit deviceClass();
 
     /// Definition of the Command Frame Codes
     typedef enum{
@@ -87,78 +75,56 @@ class deviceClass: public QObject
 
 
 signals:
-    void statusChangedSgn(uchar index); //< emitted when a Status register changes
-    void sendToDevice(uchar seq, uchar id, uchar command, uchar d0, uchar d1, uchar d2, uchar d3);
+    /**
+     * @brief This signal is generated when a Status register changes its value.
+     *
+     * When a decoded can frame relates to a READ-STATUS command, the STATUS register
+     * content received from the device is compared with the current value. If the value should
+     * change, the signal can be generated.
+     *
+     * Thera are options in the decodeFrame() function to change the normal behavior of this signal:
+     * - _REG_DEV_NO_ACTION: prevent in any case to emit the signal;
+     * - _REG_DEV_FORCE: force to send the signal even when no change
+     * @param index: this is the index of the changed Status register
+     */
+    void statusChangedSgn(uchar index);
+
+
+    void sendToDevice(uchar seq, uchar id, uchar command, uchar d0, uchar d1, uchar d2, uchar d3); //< Signal to be connected to the Can Driver send
 
 public:
-    void uploadParam(uchar seq, uchar index, deviceDataRegisterClass parameter){
-        if(index >= paramList.size()) return;
+    /**
+     * @brief This function upload a Parameter register content into the target device
+     * @param seq: this is the seqeunce message number
+     * @param index; this is the index address of the register (1:255)
+     * @param parameter: this is the parameter content (deviceDataRegisterClass type)
+     */
+    void uploadParam(uchar seq, uchar index, deviceDataRegisterClass parameter);
 
-        paramList[index].status = false; // Invalid the current value until it receives the answer from the slave
-        emit sendToDevice(seq, ID, (uchar) _DEVCMD_WRITEPAR, parameter.data[0],parameter.data[1], parameter.data[2], parameter.data[3]);
-    }
+    /**
+     * @brief This function upload a Data register content into the target device
+     * @param seq: this is the sequence message number
+     * @param index; this is the index address of the register (1:255)
+     * @param parameter: this is the Data register content (deviceDataRegisterClass type)
+     */
+    void uploadData(uchar seq, uchar index, deviceDataRegisterClass data);
 
-    void uploadData(uchar seq, uchar index, deviceDataRegisterClass data){
-        if(index >= dataList.size()) return;
+    /**
+     * @brief This function retrive the content of a given Status register of the target device
+     * @param seq: this is the message seqeunce number
+     * @param index: this is the requested index Status register
+     */
+    void downloadStatus(uchar seq, uchar index);
 
-        dataList[index].status = false; // Invalid the current value until it receives the answer from the slave
-        emit sendToDevice(seq, ID, (uchar) _DEVCMD_WRITEDATA, data.data[0],data.data[1], data.data[2], data.data[3]);
-
-    }
-
-    void downloadStatus(uchar seq, uchar index){
-        if(index >= statusList.size()) return;
-
-        statusList[index].status = false; // Invalid the current value until it receives the answer from the slave
-        emit sendToDevice(seq, ID, (uchar) _DEVCMD_READSTAT, 0,0, 0, 0);
-
-    }
-
-
-    bool decodeFrame(canDriverInterface::canDataFrame* rxFrame, _RegisterSetOptions options = _REG_DEV_NOP){
-
-        if(rxFrame == nullptr) return false;
-
-        QList<deviceDataRegisterClass>* pList = nullptr;
-        uchar* pdata;
-        uchar index;
-        bool  regchg = false;
-
-        switch((_DEVICE_COMMAND_FIELD) rxFrame->data[_DEVICE_CMD_DATA_FRAME]){
-        case  _DEVCMD_WRITEPAR:
-            if(pList == nullptr) pList = &paramList;
-        case  _DEVCMD_WRITEDATA:
-            if(pList == nullptr) pList = &dataList;
-        case  _DEVCMD_READSTAT:
-            if(pList == nullptr) pList = &statusList;
-
-            pdata = &rxFrame->data[_DEVICE_DATA0_DATA_FRAME];
-            index = rxFrame->data[_DEVICE_REGINDEX_DATA_FRAME];
-            if(index == 0) return false;
-            if(index >= pList->size()) return false;
-
-            // Update registers
-            regchg = (*pList)[index].setRegister(pdata);
-            if(pList != &statusList) return true;
-
-            // Evaluete the statusChangeSgn signal emission
-            if(options & _REG_DEV_NO_ACTION) return true;
-            if(options & _REG_DEV_FORCE) emit statusChangedSgn(index);
-            else if(regchg) emit statusChangedSgn(index);
-
-            return true;
-            break;
-
-        case _DEVCMD_EXEC:
-            break;
-        case _DEVCMD_STOREPAR:
-            break;
-        }
-
-
-        return false;
-    }
-
+    /**
+     * @brief This function decodes the incoming CAN frame based on the Device Can Protocol Interface
+     * @param rxFrame: this is the incoming Can frame
+     * @param options: options related to the Status register change event (statusChangedSgn) See: _RegisterSetOptions;
+     * @return
+     * + TRUE: the frame has been correctly decoded;
+     * + FALSE: the frame didn't match with the protocol criteria.
+     */
+    bool decodeFrame(canDriverInterface::canDataFrame* rxFrame, _RegisterSetOptions options = _REG_DEV_NOP);
 
     /// Return the Address of the current device
     _inline uchar getId(){return ID;}

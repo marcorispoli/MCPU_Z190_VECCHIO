@@ -343,8 +343,19 @@ public:
      * ptional QList<QString>* pointer to a list of strings representing Variant parameter type
      * @return
      * QByteArray formatted data byte stream.
+     */    
+    _inline QByteArray  formatOkCode(int code, QList<QString>* params = nullptr){ return formatCommand(format, id, "OK " + QString("%1").arg(code), params); }
+
+
+    /**
+     * @brief This is the Immediate  OK answer method for messages returning values
+     *
+     * @param params
+     * optional QList<QString>* pointer to a list of strings representing Variant parameter type
+     * @return
+     * QByteArray formatted data byte stream.
      */
-    _inline QByteArray  formatOkAnswer(int code, QList<QString>* params = nullptr){ return formatCommand(format, id, "OK " + QString("%1").arg(code), params); }
+    _inline QByteArray  formatOk(QList<QString>* params = nullptr){ return formatCommand(format, id, "OK ", params); }
 
     /**
      * @brief This is the Immediate NOK answer method

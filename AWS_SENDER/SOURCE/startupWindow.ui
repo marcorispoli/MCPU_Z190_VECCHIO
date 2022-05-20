@@ -1,0 +1,639 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>startupWindow</class>
+ <widget class="QWidget" name="startupWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1280</width>
+    <height>800</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>startupWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">
+background-color: rgb(85, 170, 255);</string>
+  </property>
+  <widget class="QFrame" name="mainFrame">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1280</width>
+     <height>800</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>20</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-width: 1px;
+border-style: solid; 
+border-color: darkblue;
+border-color: rgb(0, 0, 127);</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QFrame" name="connectionFrame_2">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>370</y>
+      <width>821</width>
+      <height>411</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-width: 1px;
+border-style: solid; 
+border-color: darkblue;
+border-color: rgb(0, 0, 127);
+</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QPlainTextEdit" name="logEdit">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>60</y>
+       <width>801</width>
+       <height>311</height>
+      </rect>
+     </property>
+     <property name="layoutDirection">
+      <enum>Qt::RightToLeft</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 700 10pt &quot;Arial&quot;;
+color: rgb(0, 0, 0);</string>
+     </property>
+     <property name="undoRedoEnabled">
+      <bool>false</bool>
+     </property>
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+     <property name="plainText">
+      <string/>
+     </property>
+     <property name="backgroundVisible">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="openButton_2">
+     <property name="geometry">
+      <rect>
+       <x>610</x>
+       <y>10</y>
+       <width>191</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(0, 0, 127);
+color: rgb(255, 255, 255);
+border-width: 0px;
+</string>
+     </property>
+     <property name="text">
+      <string>EXPORT</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="messages">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>581</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>14</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(85, 0, 0);
+background-color: rgb(0, 0, 255);</string>
+     </property>
+     <property name="text">
+      <string>AWS Communication Protocol Simulator V:1.0</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QFrame" name="connectionFrame_3">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>140</y>
+      <width>1211</width>
+      <height>191</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-width: 1px;
+border-style: solid; 
+border-color: darkblue;
+border-color: rgb(0, 0, 127);
+</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QPushButton" name="sendButton">
+     <property name="geometry">
+      <rect>
+       <x>960</x>
+       <y>80</y>
+       <width>191</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(0, 0, 127);
+color: rgb(255, 255, 255);
+border-width: 0px;
+</string>
+     </property>
+     <property name="text">
+      <string>SEND</string>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="commandList">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>30</y>
+       <width>721</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(117, 218, 255);
+color: rgb(0, 0, 0);
+font: 700 12pt &quot;Arial&quot;;
+border-width: 1px;
+border-style: solid; 
+border-color: darkblue;</string>
+     </property>
+     <item>
+      <property name="text">
+       <string>EXEC_OpenStudy PROVA</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>EXEC_Close</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>EXEC_TrxPosition ANGLE  2800</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>EXEC_TrxPosition TOMO_HOME  WIDE</string>
+      </property>
+     </item>
+    </widget>
+    <widget class="QLineEdit" name="sendCommand">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>80</y>
+       <width>721</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(117, 218, 255);
+color: rgb(0, 0, 0);
+
+border-width: 1px;
+border-style: solid; 
+border-color: darkblue;</string>
+     </property>
+     <property name="text">
+      <string>EXEC_OpenStudy PROVA</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="pollingCommand">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>130</y>
+       <width>721</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(117, 218, 255);
+color: rgb(0, 0, 0);
+
+border-width: 1px;
+border-style: solid; 
+border-color: darkblue;</string>
+     </property>
+     <property name="text">
+      <string>EXEC_OpenStudy PROVA</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="clearButton">
+     <property name="geometry">
+      <rect>
+       <x>760</x>
+       <y>130</y>
+       <width>191</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(0, 0, 127);
+color: rgb(255, 255, 255);
+border-width: 0px;
+</string>
+     </property>
+     <property name="text">
+      <string>CLEAR</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pollingButton">
+     <property name="geometry">
+      <rect>
+       <x>760</x>
+       <y>80</y>
+       <width>191</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(0, 0, 127);
+color: rgb(255, 255, 255);
+border-width: 0px;
+</string>
+     </property>
+     <property name="text">
+      <string>POLLING</string>
+     </property>
+    </widget>
+    <widget class="QSpinBox" name="pollingTime">
+     <property name="geometry">
+      <rect>
+       <x>960</x>
+       <y>130</y>
+       <width>191</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>12</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(117, 218, 255);
+color: rgb(0, 0, 0);
+
+border-width: 1px;
+border-style: solid; 
+border-color: darkblue;</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+     <property name="minimum">
+      <number>500</number>
+     </property>
+     <property name="maximum">
+      <number>5000</number>
+     </property>
+     <property name="singleStep">
+      <number>500</number>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_8">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>161</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+       <italic>true</italic>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);
+border-width: 0px;
+</string>
+     </property>
+     <property name="text">
+      <string>COMANDI</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QLabel" name="label_6">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>340</y>
+      <width>241</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+      <italic>false</italic>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);
+border-width: 0px;
+</string>
+    </property>
+    <property name="text">
+     <string>COMMUNICATION LOG</string>
+    </property>
+   </widget>
+   <widget class="QFrame" name="connectionFrame">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>20</y>
+      <width>1211</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-width: 1px;
+border-style: solid; 
+border-color: darkblue;
+border-color: rgb(0, 0, 127);
+</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QLabel" name="label_4">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>71</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+       <italic>true</italic>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);
+border-width: 0px;
+</string>
+     </property>
+     <property name="text">
+      <string>IP Address</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="addressEdit">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>10</y>
+       <width>113</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(117, 218, 255);
+color: rgb(0, 0, 0);
+font: 700 12pt &quot;Arial&quot;;
+border-width: 1px;
+border-style: solid; 
+border-color: darkblue;</string>
+     </property>
+     <property name="text">
+      <string>127.0.0.1</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_5">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>40</y>
+       <width>41</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+       <italic>true</italic>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);
+border-width: 0px;
+</string>
+     </property>
+     <property name="text">
+      <string>Port</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="portEdit">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>40</y>
+       <width>113</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(117, 218, 255);
+color: rgb(0, 0, 0);
+font: 700 12pt &quot;Arial&quot;;
+border-width: 1px;
+border-style: solid; 
+border-color: darkblue;</string>
+     </property>
+     <property name="text">
+      <string>10001</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="connectionButton">
+     <property name="geometry">
+      <rect>
+       <x>220</x>
+       <y>10</y>
+       <width>191</width>
+       <height>81</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(0, 0, 127);
+color: rgb(255, 255, 255);
+border-width: 0px;
+</string>
+     </property>
+     <property name="text">
+      <string>CONNECT</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="connectedLabel">
+     <property name="geometry">
+      <rect>
+       <x>80</x>
+       <y>70</y>
+       <width>121</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+       <italic>false</italic>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);
+border-width: 0px;
+</string>
+     </property>
+     <property name="text">
+      <string>CONNECTED</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_10">
+     <property name="geometry">
+      <rect>
+       <x>600</x>
+       <y>10</y>
+       <width>461</width>
+       <height>71</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>24</pointsize>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);
+border-width: 0px;
+</string>
+     </property>
+     <property name="text">
+      <string>AWS Sender Simulator V1.0</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

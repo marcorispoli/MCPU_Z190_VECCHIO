@@ -77,6 +77,7 @@ public:
     QHostAddress _inline localAddress(){return localip;} //!< returns the IP Address binded
     bool _inline isConnected(void) {return connection_status;} //!< Returns the crrent connction status
 
+public slots:
     /**
      * @brief Tx Data sending method
      * @param data
@@ -86,6 +87,7 @@ public:
      * The default is TcpIpServer::_DEFAULT_TX_TIMEOUT
      */
     void txData(QByteArray data, long timeout = TcpIpServer::_DEFAULT_TX_TIMEOUT);
+
 
 protected:
     void incomingConnection(qintptr socketDescriptor) override; //!< Incoming connection slot
@@ -98,6 +100,7 @@ private slots:
     void socketRxData(); //!< Rx data received from the socket
     void disconnected(); //!< Slot to handle the disconnection signal from the socket
     void socketError(QAbstractSocket::SocketError error); //!< Slot to handle error signals from the socket
+
 
 private:
     bool connection_status;     //!< Connection status

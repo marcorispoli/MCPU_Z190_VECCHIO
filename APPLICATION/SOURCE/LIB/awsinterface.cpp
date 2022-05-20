@@ -37,6 +37,7 @@ awsInterface::awsInterface(QString address, int port, QObject *parent)
     encodingFormat = QStringConverter::Encoding::Utf16LE;
     connect(pTcpIpServer,SIGNAL(rxData(QByteArray)),this,SLOT(tcpIpServerRxData(QByteArray)),Qt::UniqueConnection);
     connect(pTcpIpServer,SIGNAL(serverConnection(bool)),this,SLOT(tcpIpServerConnection(bool)),Qt::UniqueConnection);
+
     pTcpIpServer->Start();
 
 
@@ -45,11 +46,16 @@ awsInterface::awsInterface(QString address, int port, QObject *parent)
 void awsInterface::tcpIpServerConnection(bool status){
     connectionStatus = status;
     if(status){
-        pTcpIpServer->txData(commandProtocol::formatStatusCommand(this->encodingFormat, "GANTRY_Connected"));
+        connect(this,SIGNAL(transmitFrameSgn(QByteArray)),pTcpIpServer,SLOT(txData(QByteArray)),Qt::UniqueConnection);
+        emit transmitFrameSgn(commandProtocol::formatStatusCommand(this->encodingFormat, "GANTRY_Connected"));
+    }else{
+        disconnect(this,SIGNAL(transmitFrameSgn(QByteArray)),pTcpIpServer,SLOT(txData(QByteArray)));
     }
 }
 
 void awsInterface::tcpIpServerRxData(QByteArray data){
+
+    emit receivedFrameSgn(data); // Echo data received
 
     protocol = commandProtocol(&data, encodingFormat);
     if(protocol.getDecodedType() != commandProtocol::_CMD_FRAME) return;

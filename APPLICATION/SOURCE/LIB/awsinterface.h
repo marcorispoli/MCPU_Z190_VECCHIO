@@ -22,8 +22,8 @@ public:
 
 signals:
 
-
-
+    void receivedFrameSgn(QByteArray data);
+    void transmitFrameSgn(QByteArray data);
 public:
 
     /**
@@ -35,20 +35,22 @@ public:
     * @name AWS Commands List
     * @{
     */
+    virtual void EXEC_Close(void) {pTcpIpServer->txData(protocol.formatNaAnswer("EXEC_Close"));};
+    virtual void EXEC_OpenStudy(void) {pTcpIpServer->txData(protocol.formatNaAnswer("EXEC_OpenStudy"));};
+    virtual void GET_RotationAngles(void) {pTcpIpServer->txData(protocol.formatNaAnswer("GET_RotationAngles"));};
+    virtual void GET_Accessories(void) {pTcpIpServer->txData(protocol.formatNaAnswer("GET_Accessories"));};
 
     virtual void EXEC_AbortProjections(void) {pTcpIpServer->txData(protocol.formatNaAnswer("EXEC_AbortProjections"));};
     virtual void EXEC_ArmPosition(void) {pTcpIpServer->txData(protocol.formatNaAnswer("EXEC_ArmPosition"));};
-    virtual void EXEC_Close(void) {pTcpIpServer->txData(protocol.formatNaAnswer("EXEC_Close"));};
-    virtual void EXEC_OpenStudy(void) {pTcpIpServer->txData(protocol.formatNaAnswer("EXEC_OpenStudy"));};
     virtual void EXEC_PowerOff(void) {pTcpIpServer->txData(protocol.formatNaAnswer("EXEC_PowerOff"));};
     virtual void EXEC_ResetError(void) {pTcpIpServer->txData(protocol.formatNaAnswer("EXEC_ResetError"));};
     virtual void EXEC_StartXraySequence(void) {pTcpIpServer->txData(protocol.formatNaAnswer("EXEC_StartXraySequence"));};
     virtual void EXEC_TrxPosition(void) {pTcpIpServer->txData(protocol.formatNaAnswer("EXEC_TrxPosition"));};
-    virtual void GET_Accessories(void) {pTcpIpServer->txData(protocol.formatNaAnswer("GET_Accessories"));};
+
     virtual void GET_CompressorData(void) {pTcpIpServer->txData(protocol.formatNaAnswer("GET_CompressorData"));};
     virtual void GET_ExposureCompletionData(void) {pTcpIpServer->txData(protocol.formatNaAnswer("GET_ExposureCompletionData"));};
     virtual void GET_ReadyForExposure(void) {pTcpIpServer->txData(protocol.formatNaAnswer("GET_ReadyForExposure"));};
-    virtual void GET_RotationAngles(void) {pTcpIpServer->txData(protocol.formatNaAnswer("GET_RotationAngles"));};
+
     virtual void GET_TomoConfig(void) {pTcpIpServer->txData(protocol.formatNaAnswer("GET_TomoConfig"));};
     virtual void GET_TomoConfigFile(void) {pTcpIpServer->txData(protocol.formatNaAnswer("GET_TomoConfigFile"));};
     virtual void GET_TubeTemperature(void) {pTcpIpServer->txData(protocol.formatNaAnswer("GET_TubeTemperature"));};
@@ -85,11 +87,13 @@ public:
     virtual void GANTRY_AbortProjection(void){ sendStatus("GANTRY_AbortProjection");}
     virtual void GANTRY_ERROR(QString errcode = ""){ sendStatus("GANTRY_ERROR " + errcode);}
     virtual void GANTRY_PulseCompleted(void) { sendStatus("GANTRY_PulseCompleted");}
-    virtual void GANTRY_SelectProjection(void) { sendStatus("GANTRY_SelectProjection");}
+    virtual void GANTRY_SelectProjection(QString item) { sendStatus("GANTRY_SelectProjection " + item);}
     virtual void GANTRY_SetAccessories(QString potterModel = "", QString comprPaddle ="", QString colliAccessory ="") { sendStatus("GANTRY_SetAccessories " + potterModel + " " + comprPaddle + " " + colliAccessory);}
     virtual void GANTRY_SetTubeTemperature(QString anodeTemp = "", QString housingTemp ="") { sendStatus("GANTRY_SetTubeTemperature " + anodeTemp + " " + housingTemp );}
     virtual void GANTRY_XrayPushEvent(void) { sendStatus("GANTRY_XrayPushEvent");}
     virtual void GANTRY_XraySequenceCompleted(void) { sendStatus("GANTRY_XraySequenceCompleted");}
+    virtual void GANTRY_CompressorData(QString thick, QString force) { sendStatus("GANTRY_CompressorData " + thick + " " +force);}
+
 
     ///@}
     ///@}
@@ -106,17 +110,21 @@ protected:
     QMap<QString, funcPtr> awsCommands;
 
     //void _inline send(const QByteArray& data) {if(connectionStatus) pTcpIpServer->txData(data);}
-    void _inline sendOk(QList<QString>* params = nullptr) {if(connectionStatus) pTcpIpServer->txData(protocol.formatOkAnswer(0, params));}
-    void _inline sendDelayedOk(int time, QList<QString>* params = nullptr) {if(connectionStatus) pTcpIpServer->txData(protocol.formatOkAnswer(time, params));}
-    void _inline sendNok(int code, QString error = "") {if(connectionStatus) pTcpIpServer->txData(protocol.formatNokAnswer(code,error));}
-    void _inline sendStatus(QString status, QList<QString>* params = nullptr){if(connectionStatus) pTcpIpServer->txData(commandProtocol::formatStatusCommand(this->encodingFormat,status, params));}
+    void _inline sendOk(QList<QString>* params = nullptr) {emit transmitFrameSgn(protocol.formatOk(params));}
+    void _inline sendOk(int code, QList<QString>* params = nullptr) {emit transmitFrameSgn(protocol.formatOkCode(code, params));}
+    void _inline sendNok(int code, QString error = "") {emit transmitFrameSgn(protocol.formatNokAnswer(code,error));}
+    void _inline sendStatus(QString status, QList<QString>* params = nullptr){emit transmitFrameSgn(commandProtocol::formatStatusCommand(this->encodingFormat,status, params));}
+    void _inline sendAsync(commandProtocol proto, int code, QList<QString>* params = nullptr){emit transmitFrameSgn(commandProtocol::formatDelayCompletedCommand(this->encodingFormat, proto.getId(), code, params));}
 
 
+
+    commandProtocol protocol;
     bool connectionStatus;
+
 private:
     TcpIpServer* pTcpIpServer; //!< Pointer to the streaming socket
     QStringConverter::Encoding encodingFormat; //!< Encoding format
-    commandProtocol protocol;
+
 
 
 

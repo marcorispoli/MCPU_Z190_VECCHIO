@@ -45,6 +45,7 @@ public:
 
     void addLogEvent(QString data);
     void setStudyName(QString data);
+
     int getTrx(void);
     int getArm(void);
     int getTilt(void);
@@ -57,15 +58,16 @@ public:
     QString getTubeTemp();
     QString getTubeHu();
 
-    void moveTrx(int angolo);
-    void moveArm(int angolo);
-    void setTrx(int angolo);
-    void setArm(int angolo);
+    bool rotBusy(void);
+    bool moveTrx(int angolo, uint speed, QString message = "TRX IS MOVING .." );
+    bool moveArm(int angolo, uint speed);
+
+
     bool selectProjection(QString, int , int);
     void setProjectionList(QList<QString> lista);
 
-    void selectTomoConfig(QString file, QString ID);
     bool selectTomoConfigFile(QString file);
+    void selectTomoConfig(QString file, QString ID);
     int getTomoHome(QString ID);
     int getTomoFinal(QString ID);
     int getTomoRun(QString ID);
@@ -81,10 +83,23 @@ public:
     QMap<QString, QList<tomoConfig>> tomoCfg;
 
     bool getXrayPush(void);
+    bool getXrayReady(void){return readyForExposure;}
+
+    int setXrayExposureMode(QString CODE, QString COMP, QString COLL, QString TOMO_ID);
+    int setXraySequenceData(QString kV, QString mAs, QString Filter);
+    int setXrayPulseData(QString kV, QString mAs, QString Filter, QString TomoId);
+
+    void startXray(void);
+
 
 private:
     void setTubeData(int Anode, int Housing);
+    void clearXrayButton(void);
 
+private slots:
+    void moveTrxCompleted(void);
+    void moveArmCompleted(void);
+    void bindSlot(void);
 
 // WINDOWS MODULE VIRTUAL FUNCTIONS
 protected:
@@ -94,10 +109,12 @@ protected:
 
 signals:
     void xrayPushButtonSgn(bool stat);
+    void trxCompletedSgn(void);
+    void armCompletedSgn(void);
 
 // GUI MODULE SLOTS
 public slots:
-    void onPushButton(void);
+
     void timerEvent(QTimerEvent* ev);
 
     void tomoIdChangedSlot(QString);
@@ -111,17 +128,36 @@ public slots:
     void messageOff(void);
     void emitXrayPushButtonPressed(void);
     void emitXrayPushButtonReleased(void);
-    void generateError(void);
+    void generateError(uint num);
+    void generateErrorSlot(void);
     void cancelError(void);
 
-    bool checkReadyForExposure(void);
+    int checkReadyForExposure(void);
+
+    void manual2DSequence(void);
+    void Aec2DSequence(void);
+    void manual3DSequence(void);
+    void Aec3DSequence(void);
+    void manualComboSequence(void);
+    void AecComboSequence(void);
+    void manualAESequence(void);
+    void AecAESequence(void);
+    void seqError(uint num);
+    void sequenceCompleted(void);
 
 private:
    Ui::startupWindow *ui;
-
-
     int timeEv;
+
     int angolo;
+    int targetTRX;
+    bool trxBusy;
+    bool moveTrxToHome(QString id);
+    uint moveTrxToFinal(QString id);
+
+    int  targetARM;
+    bool armBusy;
+
     float WS,HS;
     bool changeEvent;
     bool xrayPushStat;
@@ -135,6 +171,42 @@ private:
     QString errorCondition;
 
     bool readyForExposure;
+
+
+    // Xray Seqeunce data
+    QList<QString> XrayCodeList;
+    QList<QString> FilterList;
+    QList<QString> ColliList;
+
+
+    // Dati di esposizione prossimo impulso
+    QString XraySequenceCode;
+    QString Collimation;
+    QString Compression;
+    QString TomoId;
+
+    float kV;
+    uint mAs;
+    QString Filter;
+
+    bool sequenceStarted;
+    uint expSeq;
+    uint numPulse;
+    uint percPulse;
+    bool pulseDataReady;
+
+    // Exposizioni completate
+    float kVFinal[4];
+    uint mAsFinal[4];
+    QString FilterFinal[4];
+    QString exposureResult;
+    uint exposureError;
+
+    int timerTube;
+    uint tubeDeltaJouls ;
+    uint tubeJouls ;
+
+
 };
 
 

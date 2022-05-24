@@ -51,18 +51,27 @@ startupWindow::startupWindow(QWidget *parent)
     ui->commandList->addItem("EXEC_TrxPosition TOMO_FINAL WIDE  ");
     ui->commandList->addItem("EXEC_ArmPosition RCC 0 -5 5 ");
     ui->commandList->addItem(" ");
+    ui->commandList->addItem("SET_ExposureMode MAN_2D COMP_ENABLED COLLI_AUTO TomoNone ");
+    ui->commandList->addItem("SET_ExposureMode AEC_2D COMP_ENABLED COLLI_AUTO TomoNone");
+    ui->commandList->addItem("SET_ExposureMode MAN_3D COMP_ENABLED COLLI_AUTO WIDE");
+    ui->commandList->addItem("SET_ExposureMode AEC_3D COMP_ENABLED COLLI_AUTO WIDE");
+    ui->commandList->addItem("SET_ExposureMode MAN_COMBO COMP_ENABLED COLLI_AUTO WIDE");
+    ui->commandList->addItem("SET_ExposureMode AEC_COMBO COMP_ENABLED COLLI_AUTO WIDE");
+    ui->commandList->addItem("SET_ExposureMode MAN_AE COMP_ENABLED COLLI_AUTO TomoNone");
+    ui->commandList->addItem("SET_ExposureMode AEC_AE COMP_ENABLED COLLI_AUTO TomoNone");
+    ui->commandList->addItem(" ");
+    ui->commandList->addItem("EXEC_StartXraySequence 25 100 Rh ");
+    ui->commandList->addItem("EXEC_StartXraySequence 35 10 Rh ");
+    ui->commandList->addItem("EXEC_StartXraySequence 28 100 Al");
+    ui->commandList->addItem("SET_PulseData 28.0 100 Ag TomoNone ");
+    ui->commandList->addItem("SET_PulseData 28.0 100 Al INTERMEDIATE ");
+    ui->commandList->addItem(" ");
     ui->commandList->addItem("SET_CompressionRelease KEEP ");
     ui->commandList->addItem("SET_CompressionRelease RELEASE ");
     ui->commandList->addItem("SET_ProjectionList RCC LCC RMLO LMLO ");
     ui->commandList->addItem("SET_XrayPushEnable ");
 
 
-/*
-virtual void EXEC_StartXraySequence(void) {pTcpIpServer->txData(protocol.formatNaAnswer("EXEC_StartXraySequence"));};
-virtual void GET_ExposureCompletionData(void) {pTcpIpServer->txData(protocol.formatNaAnswer("GET_ExposureCompletionData"));};
-virtual void SET_Language(void) {pTcpIpServer->txData(protocol.formatNaAnswer("SET_Language"));};
-virtual void SET_PulseData(void) {pTcpIpServer->txData(protocol.formatNaAnswer("SET_PulseData"));};
- */
 }
 
 startupWindow::~startupWindow()
@@ -106,7 +115,7 @@ void startupWindow::clientConnection(bool stat){
 }
 
 void startupWindow::connectionButtonSlot(void){
-    client.Start("127.0.0.1", 10001);
+    client.Start(ui->addressEdit->text(), ui->portEdit->text().toUInt());
 }
 
 void  startupWindow::commandCurrentTextChanged(QString item){

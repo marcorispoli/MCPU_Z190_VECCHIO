@@ -3,6 +3,7 @@
     <qresource prefix="/Sym">
         <file>Sym/ImmagineTest.png</file>
         <file>Sym/alarmPix.png</file>
+        <file>Sym/xray_sym.png</file>
     </qresource>
     <qresource prefix="/Errors">
         <file>Errors/errorPix.png</file>

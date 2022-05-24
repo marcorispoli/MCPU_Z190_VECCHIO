@@ -29,6 +29,7 @@ awsInterface::awsInterface(QString address, int port, QObject *parent)
     awsCommands.insert("SET_ProjectionList" ,&awsInterface::SET_ProjectionList);
     awsCommands.insert("SET_PulseData" ,&awsInterface::SET_PulseData);
     awsCommands.insert("SET_XrayPushEnable" ,&awsInterface::SET_XrayPushEnable);
+    awsCommands.insert("SET_ExposureMode" ,&awsInterface::SET_ExposureMode);
 
 
 
@@ -37,9 +38,17 @@ awsInterface::awsInterface(QString address, int port, QObject *parent)
     encodingFormat = QStringConverter::Encoding::Utf16LE;
     connect(pTcpIpServer,SIGNAL(rxData(QByteArray)),this,SLOT(tcpIpServerRxData(QByteArray)),Qt::UniqueConnection);
     connect(pTcpIpServer,SIGNAL(serverConnection(bool)),this,SLOT(tcpIpServerConnection(bool)),Qt::UniqueConnection);
-
     pTcpIpServer->Start();
 
+
+}
+void awsInterface::restartServer(QString ip, uint port){
+    pTcpIpServer->deleteLater();
+    disconnect(pTcpIpServer);
+    pTcpIpServer = new TcpIpServer( QHostAddress(ip), port);
+    connect(pTcpIpServer,SIGNAL(rxData(QByteArray)),this,SLOT(tcpIpServerRxData(QByteArray)),Qt::UniqueConnection);
+    connect(pTcpIpServer,SIGNAL(serverConnection(bool)),this,SLOT(tcpIpServerConnection(bool)),Qt::UniqueConnection);
+    pTcpIpServer->Start();
 
 }
 

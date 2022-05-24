@@ -12,8 +12,8 @@ class awsCommunication : public awsInterface
 
 public:
     explicit awsCommunication(QString address, int port, QObject *parent = nullptr);
-
-
+    bool getConnectionStatus(void){return connectionStatus;}
+    void bind(QString ip, uint port);
 
 signals:
     void sendAsyncSgn(commandProtocol prot, int code, QList<QString>* params);
@@ -33,6 +33,7 @@ public slots:
 
 public:
 
+
     void gantryReqProjection(QString item);
     void gantryReqAbortProjection(void);
     void gantrySetAccessory(QString potter, QString paddle, QString colli);
@@ -40,6 +41,9 @@ public:
     void gantryXrayPushEvent(void);
     void gantryCompressorData(QString thick, QString force);
     void gantryError(QString error);
+    void gantryXraySequenceCompleted(QString result);
+    void gantryPulseCompleted(void);
+
 
 
 private:
@@ -52,19 +56,11 @@ private:
     QString selectedTomoId;
     QString selectedTomoConfiguration;
 
-    uint timerTrx;
-    int TRX;
-    int targetTRX;
+
     commandProtocol trxProtocol;
-
-    uint timerArm;
-    int ARM;
-    int targetARM;
-    int fromArm;
-    int toArm;
-    bool armValidated;
-
     commandProtocol armProtocol;
+
+
     bool arm_fault;
     bool arm_enabled;
 
@@ -98,16 +94,17 @@ private:
     void SET_XrayPushEnable(void);
     void GET_ReadyForExposure(void);
     void GET_XrayPushStatus(void);
-
-
+    void EXEC_StartXraySequence(void);
+    void SET_PulseData(void);
+    void SET_ExposureMode(void);
 
 
     /*
 
-    virtual void EXEC_StartXraySequence(void) {pTcpIpServer->txData(protocol.formatNaAnswer("EXEC_StartXraySequence"));};
+
     virtual void GET_ExposureCompletionData(void) {pTcpIpServer->txData(protocol.formatNaAnswer("GET_ExposureCompletionData"));};
     virtual void SET_Language(void) {pTcpIpServer->txData(protocol.formatNaAnswer("SET_Language"));};
-    virtual void SET_PulseData(void) {pTcpIpServer->txData(protocol.formatNaAnswer("SET_PulseData"));};
+    virtual void (void) {pTcpIpServer->txData(protocol.formatNaAnswer("SET_PulseData"));};
 
     ----------------------------------------------------------------------------------------------------------------------------------
     -  GANTRY_SelectProjection(void)
@@ -117,10 +114,9 @@ private:
     -  GANTRY_XrayPushEvent
     -  GANTRY_CompressorData
     -  GANTRY_ERROR
+    - GANTRY_XraySequenceCompleted(void)
+    - GANTRY_PulseCompleted(void)
 
-
-    virtual void GANTRY_PulseCompleted(void) { sendStatus("GANTRY_PulseCompleted");}
-    virtual void GANTRY_XraySequenceCompleted(void) { sendStatus("GANTRY_XraySequenceCompleted");}
     */
 };
 

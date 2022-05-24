@@ -15,17 +15,12 @@ awsCommunication::awsCommunication(QString address, int port, QObject *parent)
     connect(this,SIGNAL(receivedFrameSgn(QByteArray)),this,SLOT(rxFromAws(QByteArray)),Qt::UniqueConnection);
     connect(this,&awsCommunication::sendAsyncSgn,this,&awsCommunication::sendAsyncSlot,Qt::QueuedConnection);
 
+
     study = false;
 
-    timerTrx = 0;
-    TRX = 0;
     trx_fault = false;
-
-    timerArm = 0;
-    ARM = 0;
     arm_enabled = true;
     arm_fault = false;
-    armValidated = false;
 
     ProjectionList.append("LCC");
     ProjectionList.append("LFB");
@@ -55,6 +50,9 @@ awsCommunication::awsCommunication(QString address, int port, QObject *parent)
 
 }
 
+void awsCommunication::bind(QString ip, uint port){
+    this->restartServer(ip, port);
+}
 
 void awsCommunication::rxFromGantry(QByteArray data){
     // Decodes the data based on the Encoding format
@@ -101,6 +99,7 @@ void awsCommunication::EXEC_Close(void){
     study = false;
     PatientName = "";
     window->setStudyName(PatientName);
+
 }
 
 void awsCommunication::GET_RotationAngles(void){
@@ -127,71 +126,53 @@ void awsCommunication::GET_Accessories(void){
 }
 
 void awsCommunication::trxCompletedSlot(void){
-     TRX = targetTRX;
-     timerTrx = 0;
-     window->setTrx(TRX);
+     disconnect(window, SIGNAL(trxCompletedSgn), this, SLOT(trxCompletedSlot));
      emit sendAsyncSgn(this->trxProtocol, 0, nullptr);
 }
+
 
 void awsCommunication::EXEC_TrxPosition(void){
     int angolo;
 
     if(protocol.getParams()->count() !=2 ){ sendNok(0, "INVALID PARAMETERS"); return;}
-
     if(!study){ sendNok(1, "ONLY_IN_OPEN_STUDY"); return;}
-    if(timerTrx){ sendNok(2, "TRX_BUSY"); return;}
-    if(timerArm){ sendNok(2, "TRX_BUSY"); return;}
+    if(window->rotBusy()){ sendNok(2, "TRX_BUSY"); return;}
     if(trx_fault){ sendNok(4, "TRX_IN_FAULT"); return;}
 
+    uint speed = 400;
     if(protocol.getParams()->at(0) == "ANGLE"){
         angolo = protocol.getParams()->at(1).toInt();
         if( (angolo < -2700) || (angolo > 2700)) sendNok(6, "TARGET ANGLE NOT ALLOWED");
-        else{
-            if(TRX != angolo) {
-                targetTRX = angolo;
-                trxProtocol = protocol;
-                sendOk(255);
-                window->moveTrx(targetTRX);
-                timerTrx = abs(TRX - angolo) * 10 / 4;
-                window->setMessage("TRX IS MOVING !!!!", timerTrx);
-                QTimer::singleShot(timerTrx, this, &awsCommunication::trxCompletedSlot);
-            }else sendOk(0);
-        }
-
-        return;
-    }
-
-    uint speed = 400;
-
-    if(protocol.getParams()->at(0) == "TOMO_HOME"){
-           angolo = window->getTomoHome(protocol.getParams()->at(1));
+    }else  if(protocol.getParams()->at(0) == "TOMO_HOME"){
+        speed = abs(window->getTomoRun(protocol.getParams()->at(1)));
+        angolo = window->getTomoHome(protocol.getParams()->at(1));
     }else if(protocol.getParams()->at(0) == "TOMO_FINAL"){
+        speed = abs(window->getTomoRun(protocol.getParams()->at(1)));
         angolo = window->getTomoFinal(protocol.getParams()->at(1));
     }else{
         sendNok(0, "INVALID PARAMETERS");
         return;
     }
 
-    if((angolo > 2700) ||(angolo < -2700)) {sendNok(5, "TOMO-ID NOT FOUND"); return; }
+    trxProtocol = protocol;
+    connect(window, SIGNAL(trxCompletedSgn), this, SLOT(trxCompletedSlot), Qt::UniqueConnection);
+    if(!window->moveTrx(angolo, speed)){
+        disconnect(window, SIGNAL(trxCompletedSgn), this, SLOT(trxCompletedSlot));
+        sendOk(0);
+        return;
+    }else{
 
-    if(TRX != angolo) {
-        targetTRX = angolo;
-        trxProtocol = protocol;
-        window->moveTrx(targetTRX);
-        speed = abs(window->getTomoRun(protocol.getParams()->at(1)));
-        timerTrx = abs(TRX - angolo) * 1000 / speed;
-        window->setMessage("TRX IS MOVING !!!!", timerTrx);
-        QTimer::singleShot(timerTrx, this, &awsCommunication::trxCompletedSlot);
         sendOk(255);
-    }else sendOk(0);
+        return;
+
+    }
 
 }
 
 void awsCommunication::armCompletedSlot(void){
-     ARM = targetARM;
-     timerArm = 0;
-     window->setArm(ARM);
-     emit sendAsyncSgn(this->armProtocol, 0, nullptr);
+    disconnect(window, SIGNAL(armCompletedSgn), this, SLOT(armCompletedSlot));
+    emit sendAsyncSgn(this->armProtocol, 0, nullptr);
+
 }
 void awsCommunication::EXEC_ArmPosition(void){
     int angolo, from, to;
@@ -200,8 +181,7 @@ void awsCommunication::EXEC_ArmPosition(void){
     if(protocol.getParams()->count() !=4 ){ sendNok(0, "INVALID PARAMETERS"); return;}
 
     if(!study){ sendNok(1, "ONLY_IN_OPEN_STUDY"); return;}
-    if(timerArm){ sendNok(2, "ARM_BUSY"); return;}
-    if(timerTrx){ sendNok(2, "ARM_BUSY"); return;}
+    if(window->rotBusy()){ sendNok(2, "ARM_BUSY"); return;}
     if(!arm_enabled){ sendNok(3, "ARM_DISABLED: BREAST COMPRESSED"); return;}
     if(arm_fault){ sendNok(4, "ARM_IN_FAULT"); return;}
     projection = protocol.getParams()->at(0);
@@ -216,20 +196,19 @@ void awsCommunication::EXEC_ArmPosition(void){
     if((to > 180)|| (to < -180)) { sendNok(6, "ANGLE OUT OF RANGE"); return;}
     if(from > to) { sendNok(6, "ANGLE OUT OF RANGE"); return;}
 
-    armValidated = true;
-    fromArm = from;
-    toArm = to;
     if(!window->selectProjection(projection, from,to)) { sendNok(5, "PROJECTION NOT IN THE VALID LIST"); return;}
 
-    if(ARM != angolo) {
-        targetARM = angolo;
-        armProtocol = protocol;
+    armProtocol = protocol;
+    connect(window, SIGNAL(armCompletedSgn), this, SLOT(armCompletedSlot), Qt::UniqueConnection);
+    if(!window->moveArm(angolo, 1000)){
+        disconnect(window, SIGNAL(armCompletedSgn), this, SLOT(armCompletedSlot));
+        sendOk(0);
+        return;
+    }else{
         sendOk(255);
-        window->moveArm(targetTRX);
-        timerArm = abs(ARM - angolo) * 1000 / 10;
-        window->setMessage("C-ARM IS MOVING !!!!", timerArm);
-        QTimer::singleShot(timerArm, this, &awsCommunication::armCompletedSlot);
-    }else sendOk(0);
+        return;
+    }
+
     return;
 }
 
@@ -256,9 +235,7 @@ void awsCommunication::SET_ProjectionList(void){
 void awsCommunication::EXEC_AbortProjections(void){
     if(protocol.getParams()->count() !=0 ){ sendNok(0, "INVALID PARAMETERS"); return;}
     if(!study){ sendNok(1, "ONLY_IN_OPEN_STUDY"); return;}
-
-    window->selectProjection("---", 0,0);
-    armValidated = false;
+    window->selectProjection("---", 0,0);    
     sendOk(0);
 }
 
@@ -354,16 +331,58 @@ void awsCommunication::SET_XrayPushEnable(void){
 }
 
 void awsCommunication::GET_ReadyForExposure(void){
-    if(!study){ sendNok(1, "ONLY_IN_OPEN_STUDY"); return;}
-
-    if(window->checkReadyForExposure()) sendOk(1);
-    else sendOk(0);
+    int err = window->checkReadyForExposure();
+    if(err == 0) sendOk(0);
+    else sendNok(err);
 }
 
 void awsCommunication::GET_XrayPushStatus(void){
 
     if(!window->getXrayPush()) sendOk(0);
     else sendOk(1);
+}
+
+void awsCommunication::SET_ExposureMode(void){
+    if(!study){ sendNok(1, "ONLY_IN_OPEN_STUDY"); return;}
+    if(protocol.getParams()->count() !=4 ){ sendNok(0, "INVALID PARAMETERS"); return;}
+
+    int err = window->setXrayExposureMode(protocol.getParams()->at(0),
+                                          protocol.getParams()->at(1),
+                                          protocol.getParams()->at(2),
+                                          protocol.getParams()->at(3));
+
+    if(err) { sendNok(err, "INVALID PARAMETERS VALUE"); return;}
+    sendOk(0);
+}
+
+void awsCommunication::EXEC_StartXraySequence(void){
+    if(!study){ sendNok(1, "ONLY_IN_OPEN_STUDY"); return;}
+    if(protocol.getParams()->count() !=3 ){ sendNok(0, "INVALID PARAMETERS"); return;}
+    if(!window->getXrayReady()){ sendNok(2, "NOT READY"); return;}
+    if(!window->getXrayPush()) { sendNok(3, "X-RAY PUSH NOT PRESSED"); return;}
+
+    int err = window->setXraySequenceData(protocol.getParams()->at(0),
+                                          protocol.getParams()->at(1),
+                                          protocol.getParams()->at(2));
+
+    if(err) { sendNok(err, "INVALID PARAMETERS VALUE"); return;}
+
+    // Start sequence
+    sendOk(0);
+    window->startXray();
+}
+
+void awsCommunication::SET_PulseData(void){
+    if(!study){ sendNok(1, "ONLY_IN_OPEN_STUDY"); return;}
+    if(protocol.getParams()->count() !=4 ){ sendNok(0, "INVALID PARAMETERS"); return;}
+
+    int err = window->setXrayPulseData(protocol.getParams()->at(0),
+                                          protocol.getParams()->at(1),
+                                          protocol.getParams()->at(2),
+                                          protocol.getParams()->at(3));
+
+    if(err) { sendNok(err, "INVALID PARAMETERS VALUE"); return;}
+    sendOk(0);
 }
 
 
@@ -393,6 +412,15 @@ void awsCommunication::gantryCompressorData(QString thick, QString force){
 void awsCommunication::gantryError(QString error){
     GANTRY_ERROR(error);
 }
+void awsCommunication::gantryXraySequenceCompleted(QString result){
+    GANTRY_XraySequenceCompleted(result);
+}
+
+void awsCommunication::gantryPulseCompleted(void){
+    GANTRY_PulseCompleted();
+}
+
+
 
 
 

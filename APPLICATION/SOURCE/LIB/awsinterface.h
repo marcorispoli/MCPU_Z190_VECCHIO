@@ -20,6 +20,7 @@ class awsInterface : public QObject
 public:
     explicit awsInterface(QString address, int port, QObject *parent = nullptr);
 
+    void restartServer(QString ip, uint port);
 signals:
 
     void receivedFrameSgn(QByteArray data);
@@ -60,6 +61,7 @@ public:
     virtual void SET_ProjectionList(void) {pTcpIpServer->txData(protocol.formatNaAnswer("SET_ProjectionList"));};
     virtual void SET_PulseData(void) {pTcpIpServer->txData(protocol.formatNaAnswer("SET_PulseData"));};
     virtual void SET_XrayPushEnable(void) {pTcpIpServer->txData(protocol.formatNaAnswer("SET_XrayPushEnable"));};
+    virtual void SET_ExposureMode(void) {pTcpIpServer->txData(protocol.formatNaAnswer("SET_ExposureMode"));};
 
 
     ///@}
@@ -91,7 +93,7 @@ public:
     virtual void GANTRY_SetAccessories(QString potterModel = "", QString comprPaddle ="", QString colliAccessory ="") { sendStatus("GANTRY_SetAccessories " + potterModel + " " + comprPaddle + " " + colliAccessory);}
     virtual void GANTRY_SetTubeTemperature(QString anodeTemp = "", QString housingTemp ="") { sendStatus("GANTRY_SetTubeTemperature " + anodeTemp + " " + housingTemp );}
     virtual void GANTRY_XrayPushEvent(void) { sendStatus("GANTRY_XrayPushEvent");}
-    virtual void GANTRY_XraySequenceCompleted(void) { sendStatus("GANTRY_XraySequenceCompleted");}
+    virtual void GANTRY_XraySequenceCompleted(QString result) { sendStatus("GANTRY_XraySequenceCompleted " + result);}
     virtual void GANTRY_CompressorData(QString thick, QString force) { sendStatus("GANTRY_CompressorData " + thick + " " +force);}
 
 

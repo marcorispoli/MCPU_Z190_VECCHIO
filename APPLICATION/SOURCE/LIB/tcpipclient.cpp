@@ -19,6 +19,18 @@ TcpIpClient::~TcpIpClient()
 
 int TcpIpClient::Start(QString remip, int remport)
 {
+    if(connectionStatus){
+        connectionStatus = false;
+        emit clientConnection(false);
+
+        serverip = QHostAddress(remip);
+        serverport = remport;
+        socket->abort();
+        socket->close();
+        socket->connectToHost(serverip, serverport);
+        return 0;
+    }
+
     // Impostazione server remoto
     serverip = QHostAddress(remip);
     serverport = remport;

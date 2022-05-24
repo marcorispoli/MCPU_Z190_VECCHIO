@@ -14,6 +14,77 @@ startupWindow::startupWindow(QWidget *parent)
     ui->messages->hide();
 
     timeEv = 0;
+    trxBusy = false;
+    armBusy = false;
+    ui->trxEdit->setText("0");
+    ui->armEdit->setText("0");
+    ui->exposureTypeLabel->setText("");
+    XraySequenceCode = "";
+    sequenceStarted = false;
+    ui->pulse0Frame->hide();
+    ui->pulse1Frame->hide();
+    ui->pulse2Frame->hide();
+    ui->kV0->setText("kV:---");
+    ui->kV1->setText("kV:---");
+    ui->kV2->setText("kV:---");
+    ui->mAs0->setText("mAs:---");
+    ui->mAs1->setText("mAs:---");
+    ui->mAs2->setText("mAs:---");
+    ui->filter0->setText("Filter:---");
+    ui->filter1->setText("Filter:---");
+    ui->filter2->setText("Filter:---");
+
+
+    timerTube = 0;
+    tubeDeltaJouls =0;
+    tubeJouls =0;
+    tubeHu = 0;
+    tubeTemp = 20;
+    setTubeData(tubeHu,tubeTemp);
+
+    XrayCodeList.clear();
+    XrayCodeList.append("MAN_2D");
+    XrayCodeList.append("AEC_2D");
+    XrayCodeList.append("MAN_3D");
+    XrayCodeList.append("AEC_3D");
+    XrayCodeList.append("MAN_COMBO");
+    XrayCodeList.append("AEC_COMBO");
+    XrayCodeList.append("MAN_AE");
+    XrayCodeList.append("AEC_AE");
+
+    FilterList.clear();
+    FilterList.append("Ag");
+    FilterList.append("Al");
+    FilterList.append("Mo");
+    FilterList.append("Rh");
+    FilterList.append("Cu");
+
+    ColliList.clear();
+    ColliList.append("COLLI_AUTO");
+    ColliList.append("COLLI_24x30");
+    ColliList.append("COLLI_18x24_C");
+    ColliList.append("COLLI_18x24_L");
+    ColliList.append("COLLI_18x24_R");
+    ColliList.append("COLLI_9x21");
+    ColliList.append("COLLI_10x24");
+    ColliList.append("COLLI_PROSTHESIS");
+    ColliList.append("COLLI_D75");
+    ColliList.append("COLLI_BIOP2D");
+    ColliList.append("COLLI_BIOP3D");
+    ColliList.append("COLLI_TOMO");
+    ColliList.append("COLLI_9x9");
+    ColliList.append("COLLI_CUSTOM");
+
+    ui->paddlesCombo->setCurrentText("PAD_UNDETECTED");
+    ui->potterCombo->setCurrentText("POTTER_UNDETECTED");
+
+    ui->thickSpin->setValue(0);
+    ui->forceSpin->setValue(0);
+    ui->thickSpin->setEnabled(false);
+    ui->forceSpin->setEnabled(false);
+
+
+
     // Set the View to handle the rotation
 
 
@@ -79,16 +150,18 @@ startupWindow::startupWindow(QWidget *parent)
 
     selectTomoConfig("TOMO-CFG1", "WIDE");
 
-    tubeHu = 0;
-    tubeTemp = 23;
-    setTubeData(tubeHu,tubeTemp);
+
 
     setXrayEnable(false);
     xrayPushStat = false;
+    ui->xrayPushButton->setText("X-RAY PUSH OFF");
 
     errorCondition = "";
     ui->errorFrame->hide();
 
+
+    ui->xraySym->hide();
+    ui->exposureFrame->hide();
 
     connect(this->ui->tomoCfgId, SIGNAL(currentTextChanged(QString)), this, SLOT(tomoIdChangedSlot(QString)));
     connect(this->ui->tomoCfgList, SIGNAL(currentTextChanged(QString)), this, SLOT(tomoListChangedSlot(QString)));
@@ -101,11 +174,15 @@ startupWindow::startupWindow(QWidget *parent)
     connect(this->ui->thickSpin, SIGNAL(valueChanged(int)), this, SLOT(breastSlot(int)));
     connect(this->ui->forceSpin, SIGNAL(valueChanged(int)), this, SLOT(breastSlot(int)));
 
+    connect(ui->bindButton, SIGNAL(pressed()), this, SLOT(bindSlot()), Qt::UniqueConnection);
 
-    connect(ui->generateError, SIGNAL(pressed()), this, SLOT(generateError()), Qt::UniqueConnection);
+    connect(ui->generateError, SIGNAL(pressed()), this, SLOT(generateErrorSlot()), Qt::UniqueConnection);
     connect(ui->cancError, SIGNAL(pressed()), this, SLOT(cancelError()), Qt::UniqueConnection);
 
+
     timeEv = startTimer(500);
+    timerTube = startTimer(10000);
+
     changeEvent = true;
 }
 
@@ -116,7 +193,6 @@ startupWindow::~startupWindow()
 
 void startupWindow::initWindow(void)
 {
-    connect(ui->openButton,SIGNAL(released()),this,SLOT(onPushButton()),Qt::UniqueConnection);
 
     angolo = 0;
     timeEv = startTimer(1000);
@@ -124,13 +200,14 @@ void startupWindow::initWindow(void)
 
 void startupWindow::exitWindow(void)
 {
-    disconnect(ui->openButton);
 
     killTimer(timeEv);
     timeEv=0;
 }
 
-void startupWindow::onPushButton(void){
+void startupWindow::bindSlot(void){
+
+    pAws->bind(ui->addressEdit->text(), ui->portEdit->text().toUInt());
 }
 
 
@@ -139,11 +216,14 @@ void startupWindow::timerEvent(QTimerEvent* ev)
 {
     if(ev->timerId() == timeEv)
     {
-       bool ready = checkReadyForExposure();
+       bool ready;
+       if(checkReadyForExposure() == 0) ready = true;
+       else ready = false;;
+
        if(ready != readyForExposure){
            readyForExposure = ready;
-
        }
+
        if(ready){
            ui->frameReady->setStyleSheet("background-color: rgb(85, 170, 0);");
            ui->labelReady->show();
@@ -151,17 +231,37 @@ void startupWindow::timerEvent(QTimerEvent* ev)
            ui->frameReady->setStyleSheet("background-color: rgb(67, 67, 67);");
            ui->labelReady->hide();
        }
+
+       if(pAws->getConnectionStatus()) ui->connectionStatusLabel->setText("STATUS: CONNECTED");
+       else ui->connectionStatusLabel->setText("STATUS: DISCONNECTED");
+
+    }
+
+    // Every 10 seconds: tube temp simulator
+    if(ev->timerId() == timerTube)
+    {
+       if(tubeJouls > tubeDeltaJouls) tubeJouls-= tubeDeltaJouls;
+       else tubeJouls = 0;
+       uint tubetemp = 20 + tubeJouls * 40/ 250000;
+       uint tubehu = 100 * (tubetemp - 20) / 40;
+       tubeDeltaJouls = 80 * 10 * (tubetemp - 20)  / ( 40 * 60) ; // Dissipazione istantanea W/s
+       setTubeData(tubehu,tubetemp);
     }
 
 }
+
 
 void startupWindow::addLogEvent(QString data){
     ui->logEdit->appendPlainText(data);
 }
 
 void startupWindow::setStudyName(QString data){
-    if(data == "")  ui->studyName->setText("CLOSED");
-    else ui->studyName->setText(data);
+    ui->exposureFrame->hide();
+    XraySequenceCode = "";
+
+    if(data == ""){
+        ui->studyName->setText("CLOSED");        
+    } else ui->studyName->setText(data);
 }
 
 int startupWindow::getTrx(void){
@@ -190,21 +290,65 @@ QString startupWindow::getAccessory(){
     return ui->accessoriesCombo->currentText();
 }
 
-void startupWindow::moveTrx(int angolo){
+bool startupWindow::rotBusy(void){
+    if(trxBusy) return true;
+    if(armBusy) return true;
+}
+
+void startupWindow::moveTrxCompleted(void){
+    ui->trxEdit->setText(QString("%1").arg(targetTRX));
+    trxBusy = false;
+    emit trxCompletedSgn();
+}
+
+bool startupWindow::moveTrx(int angolo, uint speed, QString message){
+
+    int TRX = ui->trxEdit->text().toInt();
+    if(TRX == angolo) return false;  // Gia' in posizione
+    targetTRX = angolo;
     ui->trxEdit->setText("---");
+    int timerTrx = abs(TRX - angolo) * 1000 / speed;
+    setMessage(message, timerTrx);
+    trxBusy = true;
+    QTimer::singleShot(timerTrx, this, &startupWindow::moveTrxCompleted);
+    return true;
 }
-void startupWindow::moveArm(int angolo){
+
+bool startupWindow::moveTrxToHome(QString id){
+    int angolo = getTomoHome(id);
+    uint speed = abs(getTomoRun(id));
+    return moveTrx(angolo, speed, "TRX IS MOVING TO HOME ..");
+}
+
+uint startupWindow::moveTrxToFinal(QString id){
+    int angolo = getTomoFinal(id);
+    int TRX = ui->trxEdit->text().toInt();
+    uint speed = abs(getTomoRun(id));
+    int timerTrx = abs(TRX - angolo) * 1000 / speed;
+    moveTrx(angolo, speed,"TOMO SCAN RUNNING ..");
+    return  timerTrx;
+}
+
+
+void startupWindow::moveArmCompleted(void){
+    ui->armEdit->setText(QString("%1").arg(targetARM));
+    armBusy = false;
+    emit armCompletedSgn();
+}
+
+bool startupWindow::moveArm(int angolo, uint speed){
+
+    int ARM = ui->armEdit->text().toInt();
+    if(ARM == angolo) return false;  // Gia' in posizione
+    targetARM = angolo;
     ui->armEdit->setText("---");
+    int timerArm = abs(ARM - angolo) * 1000 / speed;
+    setMessage("ARM IS MOVING !!!!", timerArm);
+    armBusy = true;
+    QTimer::singleShot(timerArm, this, &startupWindow::moveArmCompleted);
+    return true;
 }
 
-void startupWindow::setTrx(int angolo){
-    ui->trxEdit->setText(QString("%1").arg(angolo/100));
-
-}
-void startupWindow::setArm(int angolo){
-    ui->armEdit->setText(QString("%1").arg(angolo));
-
-}
 
 void startupWindow::setProjectionList(QList<QString> lista){
     changeEvent = false;
@@ -380,24 +524,36 @@ bool startupWindow::getXrayPush(void){
     return xrayPushStat;
 }
 
-void startupWindow::emitXrayPushButtonPressed(void){
-    xrayPushStat = true;
-    pAws->gantryXrayPushEvent();
-    emit xrayPushButtonSgn(true);
-}
-void startupWindow::emitXrayPushButtonReleased(void){
+void startupWindow::clearXrayButton(void){
+    ui->xrayPushButton->setText("X-RAY PUSH OFF");
     xrayPushStat = false;
     emit xrayPushButtonSgn(false);
+}
+
+void startupWindow::emitXrayPushButtonPressed(void){
+    if(!xrayPushStat){
+        ui->xrayPushButton->setText("X-RAY PUSH ON");
+        xrayPushStat = true;
+        pAws->gantryXrayPushEvent();
+        emit xrayPushButtonSgn(true);
+    }else{
+
+        ui->xrayPushButton->setText("X-RAY PUSH OFF");
+        xrayPushStat = false;
+        emit xrayPushButtonSgn(false);
+    }
+}
+void startupWindow::emitXrayPushButtonReleased(void){
 }
 
 void startupWindow::setXrayEnable(bool stat){
     if(!stat){
         ui->xrayPushButton->disconnect();
-        ui->xrayPushButton->setStyleSheet("background-color: rgba(0, 0, 127,100);");
+        ui->xrayPushButton->setStyleSheet("background-color: rgba(0, 0, 127,100);color: rgb(255, 255, 255);");
     }else{
         connect(ui->xrayPushButton, SIGNAL(pressed()), this, SLOT(emitXrayPushButtonPressed()), Qt::UniqueConnection);
         connect(ui->xrayPushButton, SIGNAL(released()), this, SLOT(emitXrayPushButtonReleased()), Qt::UniqueConnection);
-        ui->xrayPushButton->setStyleSheet("background-color: rgba(0, 0, 127,255);");
+        ui->xrayPushButton->setStyleSheet("background-color: rgba(0, 0, 127,255);color: rgb(255, 255, 255);");
     }
 }
 
@@ -407,6 +563,16 @@ void startupWindow::accessoriesSlot(QString data){
     QString pot = ui->potterCombo->currentText();
     QString pad= ui->paddlesCombo->currentText();
     QString acc = ui->accessoriesCombo->currentText();
+
+    if( (ui->paddlesCombo->currentText() == "PAD_UNDETECTED") || (ui->paddlesCombo->currentText() == "PAD_UNLOCKED") || (ui->potterCombo->currentText() == "POTTER_UNDETECTED")){
+        ui->thickSpin->setValue(0);
+        ui->forceSpin->setValue(0);
+        ui->thickSpin->setEnabled(false);
+        ui->forceSpin->setEnabled(false);
+    }else{
+        ui->thickSpin->setEnabled(true);
+        ui->forceSpin->setEnabled(true);
+    }
 
     pAws->gantrySetAccessory(pot, pad, acc);
 }
@@ -424,12 +590,16 @@ void startupWindow::breastSlot(int val){
     pAws->gantryCompressorData(QString("%1").arg(ui->thickSpin->value()), QString("%1").arg(ui->forceSpin->value()));
 
 }
+void startupWindow::generateErrorSlot(void){
+    generateError(201);
+}
 
-void startupWindow::generateError(void){
-    errorCondition = "00200";
-    ui->errorLabel->setText("[M00200]");
+void startupWindow::generateError(uint num){
+
+    QString str =  QString("%1").arg(num);
+    errorCondition = QString("%1").arg(str,(int) 5,'0');
+    ui->errorLabel->setText("[M"+ errorCondition +"]");
     ui->errorFrame->show();
-
     pAws->gantryError(errorCondition);
 }
 
@@ -439,24 +609,954 @@ void startupWindow::cancelError(void){
     ui->errorFrame->hide();
 }
 
-bool startupWindow::checkReadyForExposure(void){
-    if(errorCondition != "") return false;
-    if(ui->toArmEdit->text() == "---") return false;
-    if(ui->fromArmEdit->text() == "---") return false;
-    if(ui->armEdit->text() == "---") return false;
+int startupWindow::checkReadyForExposure(void){
 
+    // Error condition
+    if(errorCondition != "") return 1;
+
+    // Valid Exposure Mode
+    if(!XrayCodeList.contains(XraySequenceCode)) return 2;
+
+    // Valid Projection selected
+    if(ui->toArmEdit->text() == "---") return 3;
+    if(ui->fromArmEdit->text() == "---") return 3;
+    if(ui->armEdit->text() == "---") return 3;
     int from = ui->fromArmEdit->text().toInt();
     int to = ui->toArmEdit->text().toInt();
     int angolo = ui->armEdit->text().toInt();
-    if(angolo > to) return false;
-    if(angolo < from) return false;
 
-    if(ui->potterCombo->currentText() == "POTTER_UNDETECTED") return false;
-    if(ui->accessoriesCombo->currentText() == "UNDETECTED") return false;
-    if(ui->paddlesCombo->currentText() == "PAD_UNDETECTED") return false;
-    if(ui->paddlesCombo->currentText() == "PAD_UNLOCKED") return false;
+    // Arm Acceptable range
+    if(angolo > to) return 4;
+    if(angolo < from) return 4;
+
+    // Potter setting
+    if(ui->potterCombo->currentText() == "POTTER_UNDETECTED") return 5;
+
+    if(XraySequenceCode == "MAN_2D"){
+
+    }else if(XraySequenceCode == "AEC_2D"){
+
+    }else if(XraySequenceCode == "MAN_3D"){
+        if(ui->potterCombo->currentText() != "POTTER_3D") return 5;
+
+    }else if(XraySequenceCode == "AEC_3D"){
+        if(ui->potterCombo->currentText() != "POTTER_3D") return 5;
+    }else if(XraySequenceCode == "MAN_COMBO"){
+        if(ui->potterCombo->currentText() != "POTTER_3D") return 5;
+    }else if(XraySequenceCode == "AEC_COMBO"){
+        if(ui->potterCombo->currentText() != "POTTER_3D") return 5;
+    }else if(XraySequenceCode == "MAN_AE"){
+
+    }else if(XraySequenceCode == "AEC_AE"){
+
+    }
+
+    // Collimator Accessories
+    if(ui->potterCombo->currentText().contains("BIOPSY")){
+        if(ui->accessoriesCombo->currentText().contains("PROTECTION")) return 6;
+    }else if(!ui->accessoriesCombo->currentText().contains("PROTECTION")) return 6;
+
+    // Paddle detection
+    if(ui->paddlesCombo->currentText() == "PAD_UNDETECTED") return 7;
+    if(ui->paddlesCombo->currentText() == "PAD_UNLOCKED") return 7;
 
 
-    return true;
+    // Compression option
+    if(Compression == "COMP_ENABLED") {
+        if(ui->thickSpin->value()==0) return 8;
+        if(ui->forceSpin->value()==0) return 8;
+    }
+
+
+    return 0;
 
 }
+
+
+int  startupWindow::setXrayExposureMode(QString CODE, QString COMP, QString COLL, QString TOMO){
+    if(!XrayCodeList.contains(CODE)) return 2;
+    XraySequenceCode = CODE;
+
+    if((COMP!="COMP_ENABLED") && (COMP!="COMP_DISABLED")) return 3;
+    Compression = COMP;
+
+    if(!ColliList.contains(COLL)) return 4;
+    Collimation = COLL;
+
+    if(TOMO == "TomoNone") TomoId = "";
+    else{
+         if(ui->tomoCfgId->findText(TOMO) < 0) return 5;
+         TomoId = TOMO;
+    }
+
+
+    ui->xraySym->hide();
+    ui->pulse0Frame->hide();
+    ui->pulse1Frame->hide();
+    ui->pulse2Frame->hide();
+    ui->kV0->setText("kV:---");
+    ui->kV1->setText("kV:---");
+    ui->kV2->setText("kV:---");
+    ui->mAs0->setText("mAs:---");
+    ui->mAs1->setText("mAs:---");
+    ui->mAs2->setText("mAs:---");
+    ui->filter0->setText("Filter:---");
+    ui->filter1->setText("Filter:---");
+    ui->filter2->setText("Filter:---");
+
+    ui->prepFrame->hide();
+    ui->exp1->hide();
+    ui->exp2->hide();
+    ui->exp3->hide();
+    ui->exp4->hide();
+    ui->exp5->hide();
+    ui->exposureFrame->show();
+    ui->colliLabel->setText("COLLIMATION: " + Collimation);
+    ui->comprLabel->setText("COMPRESSION: " + Compression);
+    ui->tomoIdLabel->setText("TOMO-ID: " + TomoId);
+
+    if(XraySequenceCode == "MAN_2D"){
+        ui->title0->setText("MAIN PULSE");
+        ui->pulse0Frame->show();
+        ui->exposureTypeLabel->setText("MANUAL 2D EXPOSURE ");
+    }else if(XraySequenceCode == "AEC_2D"){
+        ui->title0->setText("PRE PULSE");
+        ui->title1->setText("MAIN PULSE");
+        ui->pulse0Frame->show();
+        ui->pulse1Frame->show();
+        ui->exposureTypeLabel->setText("AEC 2D EXPOSURE ");
+    }else if(XraySequenceCode == "MAN_3D"){
+        ui->title0->setText("MAIN 3D PULSE");
+        ui->pulse0Frame->show();
+        ui->exposureTypeLabel->setText("MANUAL 3D EXPOSURE ");
+    }else if(XraySequenceCode == "AEC_3D"){
+        ui->title0->setText("PRE PULSE");
+        ui->title1->setText("MAIN 3D PULSE");
+        ui->pulse0Frame->show();
+        ui->pulse1Frame->show();
+        ui->exposureTypeLabel->setText("AEC 3D EXPOSURE ");
+    }else if(XraySequenceCode == "MAN_COMBO"){
+        ui->title0->setText("MAIN 2D PULSE");
+        ui->title1->setText("MAIN 3D PULSE");
+        ui->pulse0Frame->show();
+        ui->pulse1Frame->show();
+        ui->exposureTypeLabel->setText("MANUAL COMBO EXPOSURE ");
+    }else if(XraySequenceCode == "AEC_COMBO"){
+        ui->title0->setText("PRE PULSE");
+        ui->title1->setText("MAIN 2D PULSE");
+        ui->title2->setText("MAIN 3D PULSE");
+        ui->pulse0Frame->show();
+        ui->pulse1Frame->show();
+        ui->pulse2Frame->show();
+        ui->exposureTypeLabel->setText("AEC COMBO EXPOSURE ");
+    }else if(XraySequenceCode == "MAN_AE"){
+        ui->title0->setText("LOW ENERGY PULSE");
+        ui->title1->setText("HIGH ENERGY PULSE");
+        ui->pulse0Frame->show();
+        ui->pulse1Frame->show();
+        ui->exposureTypeLabel->setText("MANUAL AE EXPOSURE ");
+    }else if(XraySequenceCode == "AEC_AE"){
+        ui->title0->setText("LOW PRE PULSE");
+        ui->title1->setText("LOW ENERGY PULSE");
+        ui->title2->setText("HIGH ENERGY PULSE");
+        ui->pulse0Frame->show();
+        ui->pulse1Frame->show();
+        ui->pulse2Frame->show();
+        ui->exposureTypeLabel->setText("AEC AE EXPOSURE ");
+    }
+    return 0;
+}
+
+int  startupWindow::setXraySequenceData(QString KV, QString MAS, QString FILTER){
+
+    kV = KV.toFloat();
+    if((kV<20) || (kV>49)) return 4;
+
+    mAs = MAS.toUInt();
+    if((mAs <1) || (mAs>640)) return 5;
+
+    if(!FilterList.contains(FILTER)) return 6;
+    Filter = FILTER;
+
+    if(sequenceStarted) return 7;
+
+    return 0;
+
+}
+
+int  startupWindow::setXrayPulseData(QString KV, QString MAS, QString FILTER, QString TOMO){
+
+    kV = KV.toFloat();
+    if((kV<20) || (kV>49)) return 2;
+
+    mAs = MAS.toUInt();
+    if((mAs <1) || (mAs>640)) return 3;
+
+    if(!FilterList.contains(FILTER)) return 4;
+    Filter = FILTER;
+
+    if(TOMO == "TomoNone") TomoId = "";
+    else{
+         if(ui->tomoCfgId->findText(TOMO) < 0) return 5;
+         TomoId = TOMO;
+    }
+
+    tubeJouls += kV * mAs;
+    pulseDataReady = true;
+    return 0;
+
+}
+
+
+
+void startupWindow::startXray(void){
+
+    sequenceStarted = true;
+    ui->xraySym->show();
+    ui->exposureFrame->show();
+
+    ui->prepFrame->hide();
+    ui->exp1->hide();
+    ui->exp2->hide();
+    ui->exp3->hide();
+    ui->exp4->hide();
+    ui->exp5->hide();
+
+
+    ui->colliLabel->setText("COLLIMATION: " + Collimation);
+    ui->comprLabel->setText("COMPRESSION: " + Compression);
+    ui->tomoIdLabel->setText("TOMO-ID: " + TomoId);
+
+    numPulse = 0;
+    percPulse = 0;
+    expSeq = 0;
+    if(XraySequenceCode == "MAN_2D"){
+        QTimer::singleShot(100, this, &startupWindow::manual2DSequence);
+    }else if(XraySequenceCode == "AEC_2D"){
+        QTimer::singleShot(1, this, &startupWindow::Aec2DSequence);
+    }else if(XraySequenceCode == "MAN_3D"){
+        if(TomoId == ""){
+            seqError(901);
+            return;
+        }
+        QTimer::singleShot(1, this, &startupWindow::manual3DSequence);
+    }else if(XraySequenceCode == "AEC_3D")  QTimer::singleShot(1, this, &startupWindow::Aec3DSequence);
+    else if(XraySequenceCode == "MAN_COMBO")  QTimer::singleShot(1, this, &startupWindow::manualComboSequence);
+    else if(XraySequenceCode == "AEC_COMBO")  QTimer::singleShot(1, this, &startupWindow::AecComboSequence);
+    else if(XraySequenceCode == "MAN_AE")  QTimer::singleShot(1, this, &startupWindow::manualAESequence);
+    else if(XraySequenceCode == "AEC_AE")  QTimer::singleShot(1, this, &startupWindow::AecAESequence);
+
+    tubeJouls += kV * mAs;
+}
+
+void startupWindow::seqError(uint num){
+    exposureError = num;
+    generateError(num);
+    ui->xraySym->hide();
+    sequenceStarted = false;
+
+    if(numPulse){
+        mAsFinal[numPulse-1] = (uint) ((float) mAs * (float) percPulse / 5);
+        FilterFinal[numPulse-1] = Filter;
+        kVFinal[numPulse-1] = kV;
+        exposureResult = "PARTIAL";
+
+        if(numPulse == 3){
+            ui->kV2->setText(QString("kV:%1").arg(kVFinal[numPulse-1]));
+            ui->mAs2->setText(QString("mAs:%1").arg(mAsFinal[numPulse-1]));
+            ui->filter2->setText(QString("Filter:%1").arg(FilterFinal[numPulse-1]));
+        }else  if(numPulse == 2) {
+            ui->kV1->setText(QString("kV:%1").arg(kVFinal[numPulse-1]));
+            ui->mAs1->setText(QString("mAs:%1").arg(mAsFinal[numPulse-1]));
+            ui->filter1->setText(QString("Filter:%1").arg(FilterFinal[numPulse-1]));
+        }else{
+            ui->kV0->setText(QString("kV:%1").arg(kVFinal[numPulse-1]));
+            ui->mAs0->setText(QString("mAs:%1").arg(mAsFinal[numPulse-1]));
+            ui->filter0->setText(QString("Filter:%1").arg(FilterFinal[numPulse-1]));
+        }
+    }else  exposureResult = "NO_DOSE";
+
+    pAws->gantryXraySequenceCompleted(exposureResult);
+
+    if(ui->compMode->currentText() != "KEEP"){
+        ui->thickSpin->setValue(0);
+        ui->forceSpin->setValue(0);
+    }
+
+    setXrayEnable(false);
+    clearXrayButton();
+}
+
+void startupWindow::sequenceCompleted(void){
+     exposureError = 0;
+     ui->xraySym->hide();
+     sequenceStarted = false;
+     setXrayEnable(false);
+     clearXrayButton();
+
+     if(ui->compMode->currentText() != "KEEP"){
+         ui->thickSpin->setValue(0);
+         ui->forceSpin->setValue(0);
+     }
+
+     if(numPulse == 3){
+         ui->kV2->setText(QString("kV:%1").arg(kVFinal[numPulse-1]));
+         ui->mAs2->setText(QString("mAs:%1").arg(mAsFinal[numPulse-1]));
+         ui->filter2->setText(QString("Filter:%1").arg(FilterFinal[numPulse-1]));
+     }else  if(numPulse == 2) {
+         ui->kV1->setText(QString("kV:%1").arg(kVFinal[numPulse-1]));
+         ui->mAs1->setText(QString("mAs:%1").arg(mAsFinal[numPulse-1]));
+         ui->filter1->setText(QString("Filter:%1").arg(FilterFinal[numPulse-1]));
+     }else{
+         ui->kV0->setText(QString("kV:%1").arg(kVFinal[numPulse-1]));
+         ui->mAs0->setText(QString("mAs:%1").arg(mAsFinal[numPulse-1]));
+         ui->filter0->setText(QString("Filter:%1").arg(FilterFinal[numPulse-1]));
+     }
+
+     pAws->gantryXraySequenceCompleted("COMPLETED");
+
+}
+
+//_____________________________________________________________________________________________________________________________________________
+//___________________ MANUAL 2D _______________________________________________________________________________________________________________
+//_____________________________________________________________________________________________________________________________________________
+void startupWindow::manual2DSequence(void){ // 100 ms slot
+    if(!getXrayPush()) {
+        seqError(902);
+        return;
+    }
+
+    if(expSeq == 0) ui->prepFrame->show();
+    else if(expSeq == 20){ numPulse = 1; ui->exp1->show(); percPulse = 1;}
+    else if(expSeq == 25){ ui->exp2->show(); percPulse++;}
+    else if(expSeq == 30){ ui->exp3->show(); percPulse++;}
+    else if(expSeq == 35){ ui->exp4->show(); percPulse++;}
+    else if(expSeq == 40){ ui->exp5->show(); percPulse++;}
+    else if(expSeq == 45){
+        exposureResult = "COMPLETED";
+        mAsFinal[numPulse-1] = mAs ;
+        FilterFinal[numPulse-1] = Filter;
+        kVFinal[numPulse-1] = kV;
+        sequenceCompleted();
+        return;
+    }
+    expSeq++;
+    QTimer::singleShot(100, this, &startupWindow::manual2DSequence);
+    return;
+
+}
+
+//_____________________________________________________________________________________________________________________________________________
+//___________________ AEC 2D _______________________________________________________________________________________________________________
+//_____________________________________________________________________________________________________________________________________________
+void startupWindow::Aec2DSequence(void){
+    if(!getXrayPush()) {
+        seqError(902);
+        return;
+    }
+
+    if(expSeq == 0){        
+        ui->prepFrame->show();
+    }else if(expSeq == 20){ numPulse = 1; ui->exp1->show(); percPulse = 1;}
+    else if(expSeq == 22){ ui->exp2->show(); percPulse++;}
+    else if(expSeq == 24){ ui->exp3->show(); percPulse++;}
+    else if(expSeq == 26){ ui->exp4->show(); percPulse++;}
+    else if(expSeq == 28){ ui->exp5->show(); percPulse++;}
+    else if(expSeq == 30){
+        mAsFinal[numPulse-1] = mAs ;
+        FilterFinal[numPulse-1] = Filter;
+        kVFinal[numPulse-1] = kV;
+        pulseDataReady = false;
+        ui->kV0->setText(QString("kV:%1").arg(kV));
+        ui->mAs0->setText(QString("mAs:%1").arg(mAs));
+        ui->filter0->setText(QString("Filter:%1").arg(Filter));
+        pAws->gantryPulseCompleted();
+    }
+    else if(expSeq == 31){
+        // Wait for the AWS data
+        if(!pulseDataReady){
+            QTimer::singleShot(100, this, &startupWindow::Aec2DSequence);
+            return;
+        }else{
+            ui->exp1->hide();
+            ui->exp2->hide();
+            ui->exp3->hide();
+            ui->exp4->hide();
+            ui->exp5->hide();
+            percPulse = 0;
+            expSeq++;
+            QTimer::singleShot(100, this, &startupWindow::Aec2DSequence);
+            return;
+        }
+    }
+    else if(expSeq == 32){ numPulse = 2; ui->exp1->show(); percPulse=1;}
+    else if(expSeq == 37){ ui->exp2->show(); percPulse++;}
+    else if(expSeq == 42){ ui->exp3->show(); percPulse++;}
+    else if(expSeq == 47){ ui->exp4->show(); percPulse++;}
+    else if(expSeq == 52){ ui->exp5->show(); percPulse++;}
+    else if(expSeq == 57){
+        exposureResult = "COMPLETED";
+        mAsFinal[numPulse-1] = mAs ;
+        FilterFinal[numPulse-1] = Filter;
+        kVFinal[numPulse-1] = kV;
+        sequenceCompleted();
+        return;
+    }
+    expSeq++;
+    QTimer::singleShot(100, this, &startupWindow::Aec2DSequence);
+    return;
+}
+
+//_____________________________________________________________________________________________________________________________________________
+//___________________ MANUAL 3D _______________________________________________________________________________________________________________
+//_____________________________________________________________________________________________________________________________________________
+void startupWindow::manual3DSequence(void){
+    static uint steps;
+
+    if(!getXrayPush()) {
+        seqError(902);
+        return;
+    }
+
+    // Attesa posizionamento TRX in corso (o ARM)
+    if(expSeq == 0){
+        if(TomoId==""){seqError(901); return;}
+        ui->prepFrame->show();
+        if(!rotBusy()) expSeq++;
+        QTimer::singleShot(100, this, &startupWindow::manual3DSequence);
+        return;
+    }
+
+    // Posizionamento TRX in Home se previsto
+    if(expSeq == 1){        
+        moveTrxToHome(TomoId);
+        expSeq++;
+        QTimer::singleShot(100, this, &startupWindow::manual3DSequence);
+        return;
+    }
+
+    // Attesa TRX in HOME
+    if(expSeq == 2){
+        if(!rotBusy()) expSeq++;
+        QTimer::singleShot(100, this, &startupWindow::manual3DSequence);
+        return;
+    }
+
+    // Partenza braccio Tomo
+    if(expSeq == 3){
+        steps =  moveTrxToFinal(TomoId) / 500;
+        ui->exp1->show(); percPulse++;
+        QTimer::singleShot(100, this, &startupWindow::manual3DSequence);
+        expSeq++;
+        return;
+    }
+
+    if(expSeq == 3+steps) { numPulse = 1; ui->exp2->show(); percPulse=1;}
+    else if(expSeq == 3+steps*2) { ui->exp3->show(); percPulse++;}
+    else if(expSeq == 3+steps*3) { ui->exp4->show(); percPulse++;}
+    else if(expSeq == 3+steps*4) { ui->exp5->show(); percPulse++;}
+    else if(expSeq == 3+steps*5)
+    {
+        exposureResult = "COMPLETED";
+        mAsFinal[numPulse-1] = mAs ;
+        FilterFinal[numPulse-1] = Filter;
+        kVFinal[numPulse-1] = kV;
+        sequenceCompleted();
+        return;
+    }
+    expSeq++;
+    QTimer::singleShot(100, this, &startupWindow::manual3DSequence);
+    return;
+
+}
+
+//_____________________________________________________________________________________________________________________________________________
+//___________________ AEC 3D _______________________________________________________________________________________________________________
+//_____________________________________________________________________________________________________________________________________________
+void startupWindow::Aec3DSequence(void){
+    static uint steps;
+    if(!getXrayPush()) {
+        seqError(902);
+        return;
+    }
+
+    // Attesa posizionamento TRX in corso (o ARM)
+    if(expSeq == 0){
+        if(TomoId==""){seqError(901); return;}
+        ui->prepFrame->show();
+        if(!rotBusy()) expSeq++;
+        QTimer::singleShot(100, this, &startupWindow::Aec3DSequence);
+        return;
+    }
+
+    // Posizionamento TRX in Home
+    if(expSeq == 1){
+        moveTrxToHome(TomoId);
+        expSeq++;
+        QTimer::singleShot(100, this, &startupWindow::Aec3DSequence);
+        return;
+    }
+
+    // Attesa TRX in HOME
+    if(expSeq == 2){
+        if(!rotBusy()) expSeq++;
+        QTimer::singleShot(100, this, &startupWindow::Aec3DSequence);
+        return;
+    }
+
+    // Pre impulso
+    else if(expSeq == 3){numPulse = 1; ui->exp1->show(); percPulse=1;}
+    else if(expSeq == 5){ ui->exp2->show(); percPulse++;}
+    else if(expSeq == 7){ ui->exp3->show(); percPulse++;}
+    else if(expSeq == 9){ ui->exp4->show(); percPulse++;}
+    else if(expSeq == 11){ ui->exp5->show(); percPulse++;}
+    else if(expSeq == 13){
+        mAsFinal[numPulse-1] = mAs ;
+        FilterFinal[numPulse-1] = Filter;
+        kVFinal[numPulse-1] = kV;
+        pulseDataReady = false;
+        ui->kV0->setText(QString("kV:%1").arg(kV));
+        ui->mAs0->setText(QString("mAs:%1").arg(mAs));
+        ui->filter0->setText(QString("Filter:%1").arg(Filter));
+        pAws->gantryPulseCompleted();
+        expSeq++;
+        QTimer::singleShot(100, this, &startupWindow::Aec3DSequence);
+        return;
+    }
+
+    // Wait for the AWS data
+    if(expSeq == 14){
+        if(!pulseDataReady){
+            QTimer::singleShot(100, this, &startupWindow::Aec3DSequence);
+            return;
+        }else{
+            ui->exp1->hide();
+            ui->exp2->hide();
+            ui->exp3->hide();
+            ui->exp4->hide();
+            ui->exp5->hide();
+            expSeq++;
+            QTimer::singleShot(100, this, &startupWindow::Aec3DSequence);
+            return;
+        }
+    }
+
+    // Posizionamento TRX in Home (se diverso da TomoId iniziale
+    if(expSeq == 15){
+        moveTrxToHome(TomoId);
+        expSeq++;
+        QTimer::singleShot(100, this, &startupWindow::Aec3DSequence);
+        return;
+    }
+
+    // Attesa TRX in HOME
+    if(expSeq == 16){
+        if(!rotBusy()) expSeq++;
+        QTimer::singleShot(100, this, &startupWindow::Aec3DSequence);
+        return;
+    }
+
+    // Partenza braccio Tomo
+    if(expSeq == 17){
+        steps =  moveTrxToFinal(TomoId) / 500;
+        percPulse = 0;
+        numPulse=2;
+        ui->exp1->show(); percPulse++;
+        QTimer::singleShot(100, this, &startupWindow::Aec3DSequence);
+        expSeq++;
+        return;
+    }
+
+    if(expSeq == 18+steps) { ui->exp2->show(); percPulse++;}
+    else if(expSeq == 18+steps*2) { ui->exp3->show(); percPulse++;}
+    else if(expSeq == 18+steps*3) { ui->exp4->show(); percPulse++;}
+    else if(expSeq == 18+steps*4) { ui->exp5->show(); percPulse++;}
+    else if(expSeq == 18+steps*5)
+    {
+        exposureResult = "COMPLETED";
+        mAsFinal[numPulse-1] = mAs ;
+        FilterFinal[numPulse-1] = Filter;
+        kVFinal[numPulse-1] = kV;
+        sequenceCompleted();
+        return;
+    }
+    expSeq++;
+    QTimer::singleShot(100, this, &startupWindow::Aec3DSequence);
+    return;
+
+}
+
+
+//_____________________________________________________________________________________________________________________________________________
+//___________________ MANUAL COMBO _______________________________________________________________________________________________________________
+//_____________________________________________________________________________________________________________________________________________
+void startupWindow::manualComboSequence(void){
+    static uint steps;
+
+    if(!getXrayPush()) {
+        seqError(902);
+        return;
+    }
+
+    // Impulso 2D
+    if(expSeq == 0) ui->prepFrame->show();
+    else if(expSeq == 20){ numPulse = 1; ui->exp1->show(); percPulse = 1;}
+    else if(expSeq == 25){ ui->exp2->show(); percPulse++;}
+    else if(expSeq == 30){ ui->exp3->show(); percPulse++;}
+    else if(expSeq == 35){ ui->exp4->show(); percPulse++;}
+    else if(expSeq == 40){ ui->exp5->show(); percPulse++;}
+    else if(expSeq == 45){
+        mAsFinal[numPulse-1] = mAs ;
+        FilterFinal[numPulse-1] = Filter;
+        kVFinal[numPulse-1] = kV;
+        pulseDataReady = false;
+        ui->kV0->setText(QString("kV:%1").arg(kV));
+        ui->mAs0->setText(QString("mAs:%1").arg(mAs));
+        ui->filter0->setText(QString("Filter:%1").arg(Filter));
+        pAws->gantryPulseCompleted();
+        expSeq++;
+        QTimer::singleShot(100, this, &startupWindow::manualComboSequence);
+        return;
+    }
+
+    // Wait for the AWS data
+    if(expSeq == 46){
+        if(!pulseDataReady){
+            QTimer::singleShot(100, this, &startupWindow::manualComboSequence);
+            return;
+        }else{
+            if(TomoId==""){seqError(901); return;}
+
+            ui->exp1->hide();
+            ui->exp2->hide();
+            ui->exp3->hide();
+            ui->exp4->hide();
+            ui->exp5->hide();
+            expSeq++;
+            QTimer::singleShot(100, this, &startupWindow::manualComboSequence);
+            return;
+        }
+    }
+
+    // Posizionamento TRX in Home (se diverso da TomoId iniziale
+    if(expSeq == 47){
+        moveTrxToHome(TomoId);
+        expSeq++;
+        QTimer::singleShot(100, this, &startupWindow::manualComboSequence);
+        return;
+    }
+
+    // Attesa TRX in HOME
+    if(expSeq == 48){
+        if(!rotBusy()) expSeq++;
+        QTimer::singleShot(100, this, &startupWindow::manualComboSequence);
+        return;
+    }
+
+    // Partenza braccio Tomo
+    if(expSeq == 49){
+        steps =  moveTrxToFinal(TomoId) / 500;
+        percPulse = 0;
+        numPulse=2;
+        ui->exp1->show(); percPulse++;
+        QTimer::singleShot(100, this, &startupWindow::manualComboSequence);
+        expSeq++;
+        return;
+    }
+
+    if(expSeq == 50+steps) { ui->exp2->show(); percPulse++;}
+    else if(expSeq == 50+steps*2) { ui->exp3->show(); percPulse++;}
+    else if(expSeq == 50+steps*3) { ui->exp4->show(); percPulse++;}
+    else if(expSeq == 50+steps*4) { ui->exp5->show(); percPulse++;}
+    else if(expSeq == 50+steps*5)
+    {
+        exposureResult = "COMPLETED";
+        mAsFinal[numPulse-1] = mAs ;
+        FilterFinal[numPulse-1] = Filter;
+        kVFinal[numPulse-1] = kV;
+        sequenceCompleted();
+        return;
+    }
+
+    expSeq++;
+    QTimer::singleShot(100, this, &startupWindow::manualComboSequence);
+}
+
+//_____________________________________________________________________________________________________________________________________________
+//___________________ AEC COMBO _______________________________________________________________________________________________________________
+//_____________________________________________________________________________________________________________________________________________
+void startupWindow::AecComboSequence(void){
+    static uint steps;
+
+    if(!getXrayPush()) {
+        seqError(902);
+        return;
+    }
+
+    if(expSeq == 0){
+        ui->prepFrame->show();
+    }else if(expSeq == 20){ numPulse = 1; ui->exp1->show(); percPulse = 1;}
+    else if(expSeq == 22){ ui->exp2->show(); percPulse++;}
+    else if(expSeq == 24){ ui->exp3->show(); percPulse++;}
+    else if(expSeq == 26){ ui->exp4->show(); percPulse++;}
+    else if(expSeq == 28){ ui->exp5->show(); percPulse++;}
+    else if(expSeq == 30){
+        mAsFinal[numPulse-1] = mAs ;
+        FilterFinal[numPulse-1] = Filter;
+        kVFinal[numPulse-1] = kV;
+        pulseDataReady = false;
+        ui->kV0->setText(QString("kV:%1").arg(kV));
+        ui->mAs0->setText(QString("mAs:%1").arg(mAs));
+        ui->filter0->setText(QString("Filter:%1").arg(Filter));
+        pAws->gantryPulseCompleted();
+    }
+    else if(expSeq == 31){
+        // Wait for the AWS data
+        if(!pulseDataReady){
+            QTimer::singleShot(100, this, &startupWindow::AecComboSequence);
+            return;
+        }else{
+            ui->exp1->hide();
+            ui->exp2->hide();
+            ui->exp3->hide();
+            ui->exp4->hide();
+            ui->exp5->hide();
+            percPulse = 0;
+            expSeq++;
+            QTimer::singleShot(100, this, &startupWindow::AecComboSequence);
+            return;
+        }
+    }
+    else if(expSeq == 32){ numPulse = 2; ui->exp1->show(); percPulse=1;}
+    else if(expSeq == 37){ ui->exp2->show(); percPulse++;}
+    else if(expSeq == 42){ ui->exp3->show(); percPulse++;}
+    else if(expSeq == 47){ ui->exp4->show(); percPulse++;}
+    else if(expSeq == 52){ ui->exp5->show(); percPulse++;}
+    else if(expSeq == 57){
+        mAsFinal[numPulse-1] = mAs ;
+        FilterFinal[numPulse-1] = Filter;
+        kVFinal[numPulse-1] = kV;
+        pulseDataReady = false;
+        ui->kV1->setText(QString("kV:%1").arg(kV));
+        ui->mAs1->setText(QString("mAs:%1").arg(mAs));
+        ui->filter1->setText(QString("Filter:%1").arg(Filter));
+        pAws->gantryPulseCompleted();
+    }
+
+    // Wait for the AWS data
+    if(expSeq == 58){
+        if(!pulseDataReady){
+            QTimer::singleShot(100, this, &startupWindow::AecComboSequence);
+            return;
+        }else{
+            if(TomoId==""){seqError(901); return;}
+
+            ui->exp1->hide();
+            ui->exp2->hide();
+            ui->exp3->hide();
+            ui->exp4->hide();
+            ui->exp5->hide();
+            expSeq++;
+            QTimer::singleShot(100, this, &startupWindow::AecComboSequence);
+            return;
+        }
+    }
+
+    // Posizionamento TRX in Home (se diverso da TomoId iniziale
+    if(expSeq == 59){
+        moveTrxToHome(TomoId);
+        expSeq++;
+        QTimer::singleShot(100, this, &startupWindow::AecComboSequence);
+        return;
+    }
+
+    // Attesa TRX in HOME
+    if(expSeq == 60){
+        if(!rotBusy()) expSeq++;
+        QTimer::singleShot(100, this, &startupWindow::AecComboSequence);
+        return;
+    }
+
+    // Partenza braccio Tomo
+    if(expSeq == 61){
+        steps =  moveTrxToFinal(TomoId) / 500;
+        percPulse = 0;
+        numPulse=3;
+        ui->exp1->show(); percPulse++;
+        QTimer::singleShot(100, this, &startupWindow::AecComboSequence);
+        expSeq++;
+        return;
+    }
+
+    if(expSeq == 62+steps) { ui->exp2->show(); percPulse++;}
+    else if(expSeq == 62+steps*2) { ui->exp3->show(); percPulse++;}
+    else if(expSeq == 62+steps*3) { ui->exp4->show(); percPulse++;}
+    else if(expSeq == 62+steps*4) { ui->exp5->show(); percPulse++;}
+    else if(expSeq == 62+steps*5)
+    {
+        exposureResult = "COMPLETED";
+        mAsFinal[numPulse-1] = mAs ;
+        FilterFinal[numPulse-1] = Filter;
+        kVFinal[numPulse-1] = kV;
+        sequenceCompleted();
+        return;
+    }
+    expSeq++;
+    QTimer::singleShot(100, this, &startupWindow::AecComboSequence);
+    return;
+}
+
+//_____________________________________________________________________________________________________________________________________________
+//___________________ MANUAL AE _______________________________________________________________________________________________________________
+//_____________________________________________________________________________________________________________________________________________
+void startupWindow::manualAESequence(void){
+    if(!getXrayPush()) {
+        seqError(902);
+        return;
+    }
+
+    if(expSeq == 0){
+        ui->prepFrame->show();
+    }else if(expSeq == 20){ numPulse = 1; ui->exp1->show(); percPulse = 1;}
+    else if(expSeq == 22){ ui->exp2->show(); percPulse++;}
+    else if(expSeq == 24){ ui->exp3->show(); percPulse++;}
+    else if(expSeq == 26){ ui->exp4->show(); percPulse++;}
+    else if(expSeq == 28){ ui->exp5->show(); percPulse++;}
+    else if(expSeq == 30){
+        mAsFinal[numPulse-1] = mAs ;
+        FilterFinal[numPulse-1] = Filter;
+        kVFinal[numPulse-1] = kV;
+        pulseDataReady = false;
+        ui->kV0->setText(QString("kV:%1").arg(kV));
+        ui->mAs0->setText(QString("mAs:%1").arg(mAs));
+        ui->filter0->setText(QString("Filter:%1").arg(Filter));
+        pAws->gantryPulseCompleted();
+    }
+    else if(expSeq == 31){
+        // Wait for the AWS data
+        if(!pulseDataReady){
+            QTimer::singleShot(100, this, &startupWindow::manualAESequence);
+            return;
+        }else{
+            ui->exp1->hide();
+            ui->exp2->hide();
+            ui->exp3->hide();
+            ui->exp4->hide();
+            ui->exp5->hide();
+            percPulse = 0;
+            expSeq++;
+            QTimer::singleShot(100, this, &startupWindow::manualAESequence);
+            return;
+        }
+    }
+    else if(expSeq == 32){ numPulse = 2; ui->exp1->show(); percPulse=1;}
+    else if(expSeq == 37){ ui->exp2->show(); percPulse++;}
+    else if(expSeq == 42){ ui->exp3->show(); percPulse++;}
+    else if(expSeq == 47){ ui->exp4->show(); percPulse++;}
+    else if(expSeq == 52){ ui->exp5->show(); percPulse++;}
+    else if(expSeq == 57){
+        exposureResult = "COMPLETED";
+        mAsFinal[numPulse-1] = mAs ;
+        FilterFinal[numPulse-1] = Filter;
+        kVFinal[numPulse-1] = kV;
+        sequenceCompleted();
+        return;
+    }
+    expSeq++;
+    QTimer::singleShot(100, this, &startupWindow::manualAESequence);
+    return;
+}
+
+//_____________________________________________________________________________________________________________________________________________
+//___________________ AEC AE _______________________________________________________________________________________________________________
+//_____________________________________________________________________________________________________________________________________________
+void startupWindow::AecAESequence(void){
+    if(!getXrayPush()) {
+        seqError(902);
+        return;
+    }
+
+    if(expSeq == 0){
+        ui->prepFrame->show();
+    }else if(expSeq == 20){ numPulse = 1; ui->exp1->show(); percPulse = 1;}
+    else if(expSeq == 22){ ui->exp2->show(); percPulse++;}
+    else if(expSeq == 24){ ui->exp3->show(); percPulse++;}
+    else if(expSeq == 26){ ui->exp4->show(); percPulse++;}
+    else if(expSeq == 28){ ui->exp5->show(); percPulse++;}
+    else if(expSeq == 30){
+        mAsFinal[numPulse-1] = mAs ;
+        FilterFinal[numPulse-1] = Filter;
+        kVFinal[numPulse-1] = kV;
+        pulseDataReady = false;
+        ui->kV0->setText(QString("kV:%1").arg(kV));
+        ui->mAs0->setText(QString("mAs:%1").arg(mAs));
+        ui->filter0->setText(QString("Filter:%1").arg(Filter));
+        pAws->gantryPulseCompleted();
+    }
+    else if(expSeq == 31){
+        // Wait for the AWS data
+        if(!pulseDataReady){
+            QTimer::singleShot(100, this, &startupWindow::AecAESequence);
+            return;
+        }else{
+            ui->exp1->hide();
+            ui->exp2->hide();
+            ui->exp3->hide();
+            ui->exp4->hide();
+            ui->exp5->hide();
+            percPulse = 0;
+            expSeq++;
+            QTimer::singleShot(100, this, &startupWindow::AecAESequence);
+            return;
+        }
+    }
+    else if(expSeq == 32){ numPulse = 2; ui->exp1->show(); percPulse=1;}
+    else if(expSeq == 37){ ui->exp2->show(); percPulse++;}
+    else if(expSeq == 42){ ui->exp3->show(); percPulse++;}
+    else if(expSeq == 47){ ui->exp4->show(); percPulse++;}
+    else if(expSeq == 52){ ui->exp5->show(); percPulse++;}
+    else if(expSeq == 57){
+        mAsFinal[numPulse-1] = mAs ;
+        FilterFinal[numPulse-1] = Filter;
+        kVFinal[numPulse-1] = kV;
+        pulseDataReady = false;
+        ui->kV1->setText(QString("kV:%1").arg(kV));
+        ui->mAs1->setText(QString("mAs:%1").arg(mAs));
+        ui->filter1->setText(QString("Filter:%1").arg(Filter));
+        pAws->gantryPulseCompleted();
+    }
+    else if(expSeq == 58){
+        // Wait for the AWS data
+        if(!pulseDataReady){
+            QTimer::singleShot(100, this, &startupWindow::AecAESequence);
+            return;
+        }else{
+            ui->exp1->hide();
+            ui->exp2->hide();
+            ui->exp3->hide();
+            ui->exp4->hide();
+            ui->exp5->hide();
+            percPulse = 0;
+            expSeq++;
+            QTimer::singleShot(100, this, &startupWindow::AecAESequence);
+            return;
+        }
+    }
+    else if(expSeq == 59){ numPulse = 3; ui->exp1->show(); percPulse=1;}
+    else if(expSeq == 64){ ui->exp2->show(); percPulse++;}
+    else if(expSeq == 69){ ui->exp3->show(); percPulse++;}
+    else if(expSeq == 74){ ui->exp4->show(); percPulse++;}
+    else if(expSeq == 79){ ui->exp5->show(); percPulse++;}
+    else if(expSeq == 84){
+        exposureResult = "COMPLETED";
+        mAsFinal[numPulse-1] = mAs ;
+        FilterFinal[numPulse-1] = Filter;
+        kVFinal[numPulse-1] = kV;
+        sequenceCompleted();
+        return;
+    }
+    expSeq++;
+    QTimer::singleShot(100, this, &startupWindow::AecAESequence);
+    return;
+}
+

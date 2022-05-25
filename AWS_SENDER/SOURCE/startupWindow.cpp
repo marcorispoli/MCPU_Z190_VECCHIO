@@ -32,24 +32,11 @@ startupWindow::startupWindow(QWidget *parent)
 
     // Init command list
     ui->commandList->clear();
-    ui->commandList->addItem("GET_RotationAngles ");
-    ui->commandList->addItem("GET_Accessories ");
-    ui->commandList->addItem("GET_CompressorData ");
-    ui->commandList->addItem("GET_TomoConfig NARROW ");
-    ui->commandList->addItem("GET_TomoConfigFile TOMO-CFG1 ");
-    ui->commandList->addItem("GET_TubeTemperature ");
-    ui->commandList->addItem("GET_XrayPushStatus ");
-    ui->commandList->addItem("GET_ReadyForExposure ");
-    ui->commandList->addItem(" ");
     ui->commandList->addItem("EXEC_Close ");
     ui->commandList->addItem("EXEC_OpenStudy PROVA ");
-    ui->commandList->addItem("EXEC_AbortProjections ");
-    ui->commandList->addItem("EXEC_PowerOff ");
-    ui->commandList->addItem("EXEC_ResetError ");
-    ui->commandList->addItem("EXEC_TrxPosition ANGLE 0 ");
-    ui->commandList->addItem("EXEC_TrxPosition TOMO_HOME  WIDE  ");
-    ui->commandList->addItem("EXEC_TrxPosition TOMO_FINAL WIDE  ");
+    ui->commandList->addItem("SET_ProjectionList RCC LCC RMLO LMLO ");
     ui->commandList->addItem("EXEC_ArmPosition RCC 0 -5 5 ");
+    ui->commandList->addItem("SET_XrayPushEnable ");
     ui->commandList->addItem(" ");
     ui->commandList->addItem("SET_ExposureMode MAN_2D COMP_ENABLED COLLI_AUTO TomoNone ");
     ui->commandList->addItem("SET_ExposureMode AEC_2D COMP_ENABLED COLLI_AUTO TomoNone");
@@ -63,14 +50,33 @@ startupWindow::startupWindow(QWidget *parent)
     ui->commandList->addItem("EXEC_StartXraySequence 25 100 Rh ");
     ui->commandList->addItem("EXEC_StartXraySequence 35 10 Rh ");
     ui->commandList->addItem("EXEC_StartXraySequence 28 100 Al");
+    ui->commandList->addItem(" ");
     ui->commandList->addItem("SET_PulseData 28.0 100 Ag TomoNone ");
     ui->commandList->addItem("SET_PulseData 28.0 100 Al INTERMEDIATE ");
     ui->commandList->addItem(" ");
+    ui->commandList->addItem("GET_ExposureCompletionData SEQUENCE 0 ");
+    ui->commandList->addItem("GET_ExposureCompletionData PULSE 1 ");
+    ui->commandList->addItem("GET_ExposureCompletionData TOMO_ANGLE 0 ");
+    ui->commandList->addItem("GET_ExposureCompletionData IA_SAMPLE 1 ");
+    ui->commandList->addItem("GET_ExposureCompletionData KV_SAMPLE 1 ");
+    ui->commandList->addItem(" ");
     ui->commandList->addItem("SET_CompressionRelease KEEP ");
     ui->commandList->addItem("SET_CompressionRelease RELEASE ");
-    ui->commandList->addItem("SET_ProjectionList RCC LCC RMLO LMLO ");
-    ui->commandList->addItem("SET_XrayPushEnable ");
-
+    ui->commandList->addItem("GET_RotationAngles ");
+    ui->commandList->addItem("GET_Accessories ");
+    ui->commandList->addItem("GET_CompressorData ");
+    ui->commandList->addItem("GET_TomoConfig NARROW ");
+    ui->commandList->addItem("GET_TomoConfigFile TOMO-CFG1 ");
+    ui->commandList->addItem("GET_TubeTemperature ");
+    ui->commandList->addItem("GET_XrayPushStatus ");
+    ui->commandList->addItem("GET_ReadyForExposure ");
+    ui->commandList->addItem("EXEC_AbortProjections ");
+    ui->commandList->addItem("EXEC_PowerOff ");
+    ui->commandList->addItem("EXEC_ResetError ");
+    ui->commandList->addItem("EXEC_TrxPosition ANGLE 0 ");
+    ui->commandList->addItem("EXEC_TrxPosition TOMO_HOME  WIDE  ");
+    ui->commandList->addItem("EXEC_TrxPosition TOMO_FINAL WIDE  ");
+    ui->commandList->addItem("SET_Language ITA  ");
 
 }
 

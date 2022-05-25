@@ -385,6 +385,51 @@ void awsCommunication::SET_PulseData(void){
     sendOk(0);
 }
 
+void awsCommunication::GET_ExposureCompletionData(void){
+    if(!study){ sendNok(1, "ONLY_IN_OPEN_STUDY"); return;}
+    if(protocol.getParams()->count() !=2 ){ sendNok(0, "INVALID PARAMETERS"); return;}
+
+
+    QList<QString> paramStr;
+    paramStr.append("SEQUENCE");
+    paramStr.append("PULSE");
+    paramStr.append("TOMO_ANGLE");
+    paramStr.append("IA_SAMPLE");
+    paramStr.append("KV_SAMPLE");
+
+    QString option = protocol.getParams()->at(0);
+    uint pulse = protocol.getParams()->at(1).toUInt();
+    if(!paramStr.contains(option)) { sendNok(2, "INVALID PARAMETER VALUE"); return;}
+
+    QList<QString> params;
+    int err =  window->getExposureCompletionData(option, pulse, &params);
+    if(err) { sendNok(err, "INVALID PARAMETER VALUE"); return;}
+    sendOk(&params);
+
+}
+
+void awsCommunication::SET_Language(void){
+    if(study){ sendNok(1, "ONLY_IN_CLOSE_STUDY"); return;}
+
+    QList<QString> lista;
+    lista.append("ITA");
+    lista.append("DEU");
+    lista.append("FRA");
+    lista.append("ENG");
+    lista.append("PRT");
+    lista.append("RUS");
+    lista.append("ESP");
+    lista.append("TUR");
+    lista.append("POL");
+    lista.append("CHN");
+    lista.append("LTU");
+
+    QString option = protocol.getParams()->at(0);
+    if(!lista.contains(option)) { sendNok(2, "INVALID PARAMETER VALUE"); return;}
+    window->setLanguage(option);
+    sendOk(0);
+    return;
+}
 
 //________________________________________________________________________________//
 

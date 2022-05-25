@@ -220,7 +220,7 @@ border-width: 0px;
        <x>540</x>
        <y>10</y>
        <width>641</width>
-       <height>61</height>
+       <height>51</height>
       </rect>
      </property>
      <property name="font">
@@ -235,10 +235,38 @@ border-width: 0px;
 </string>
      </property>
      <property name="text">
-      <string>AWS Communication Protocol Simulator V:1.0</string>
+      <string>Gantry Communication Protocol Simulator V:1.0</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="languageLabel">
+     <property name="geometry">
+      <rect>
+       <x>930</x>
+       <y>70</y>
+       <width>241</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+       <italic>false</italic>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);
+border-width: 0px;
+</string>
+     </property>
+     <property name="text">
+      <string>CURRENT LANGUAGE: ENG</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
      </property>
     </widget>
    </widget>
@@ -1587,7 +1615,7 @@ border-width: 0px;
      <property name="styleSheet">
       <string notr="true">background-color: rgb(117, 218, 255);
 color: rgb(0, 0, 0);
-font: 700 12pt &quot;Arial&quot;;
+font: 700 10pt &quot;Arial&quot;;
 border-width: 1px;
 border-style: solid; 
 border-color: darkblue;</string>
@@ -1781,7 +1809,7 @@ border-width: 0px;
      <property name="styleSheet">
       <string notr="true">background-color: rgb(117, 218, 255);
 color: rgb(0, 0, 0);
-font: 700 12pt &quot;Arial&quot;;
+font: 700 10pt &quot;Arial&quot;;
 border-width: 1px;
 border-style: solid; 
 border-color: darkblue;</string>
@@ -1824,7 +1852,7 @@ border-color: darkblue;</string>
      <property name="styleSheet">
       <string notr="true">background-color: rgb(117, 218, 255);
 color: rgb(0, 0, 0);
-font: 700 12pt &quot;Arial&quot;;
+font: 700 10pt &quot;Arial&quot;;
 border-width: 1px;
 border-style: solid; 
 border-color: darkblue;</string>
@@ -1882,7 +1910,7 @@ border-color: darkblue;</string>
      <property name="styleSheet">
       <string notr="true">background-color: rgb(117, 218, 255);
 color: rgb(0, 0, 0);
-font: 700 12pt &quot;Arial&quot;;
+font: 700 10pt &quot;Arial&quot;;
 border-width: 1px;
 border-style: solid; 
 border-color: darkblue;</string>

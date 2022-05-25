@@ -97,27 +97,9 @@ private:
     void EXEC_StartXraySequence(void);
     void SET_PulseData(void);
     void SET_ExposureMode(void);
+    void GET_ExposureCompletionData(void);
+    void SET_Language(void);
 
-
-    /*
-
-
-    virtual void GET_ExposureCompletionData(void) {pTcpIpServer->txData(protocol.formatNaAnswer("GET_ExposureCompletionData"));};
-    virtual void SET_Language(void) {pTcpIpServer->txData(protocol.formatNaAnswer("SET_Language"));};
-    virtual void (void) {pTcpIpServer->txData(protocol.formatNaAnswer("SET_PulseData"));};
-
-    ----------------------------------------------------------------------------------------------------------------------------------
-    -  GANTRY_SelectProjection(void)
-    -  GANTRY_AbortProjection(void)
-    -  GANTRY_SetAccessories
-    -  GANTRY_SetTubeTemperature
-    -  GANTRY_XrayPushEvent
-    -  GANTRY_CompressorData
-    -  GANTRY_ERROR
-    - GANTRY_XraySequenceCompleted(void)
-    - GANTRY_PulseCompleted(void)
-
-    */
 };
 
 #endif // AWSCOMMUNICATION_H

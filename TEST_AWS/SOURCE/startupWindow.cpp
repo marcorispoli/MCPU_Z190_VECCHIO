@@ -11,6 +11,7 @@ startupWindow::startupWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+    ui->languageLabel->setText(" CURRENT LANGUAGE: ENG");
     ui->messages->hide();
 
     timeEv = 0;
@@ -210,6 +211,9 @@ void startupWindow::bindSlot(void){
     pAws->bind(ui->addressEdit->text(), ui->portEdit->text().toUInt());
 }
 
+void startupWindow::setLanguage(QString tag){
+    ui->languageLabel->setText("CURRENT LANGUAGE: " + tag);
+}
 
 
 void startupWindow::timerEvent(QTimerEvent* ev)
@@ -487,6 +491,17 @@ int startupWindow::getTomoRun(QString ID){
 
 }
 
+int startupWindow::getTomoSamples(QString ID){
+    QList<tomoConfig> lista;
+    lista =  tomoCfg.value( ui->tomoCfgList->currentText(),lista);
+    if(lista.count()==0) return 10000;
+
+    for(int i=0; i<lista.count(); i++){
+        if(lista.at(i).id == ID) return lista.at(i).sample.toInt();
+    }
+    return 10000;
+
+}
 
 void startupWindow::messageOff(void){
      ui->messages->hide();
@@ -807,6 +822,48 @@ int  startupWindow::setXrayPulseData(QString KV, QString MAS, QString FILTER, QS
 
 }
 
+int startupWindow::getExposureCompletionData(QString option, uint pulse, QList<QString>* params){
+    params->clear();
+
+
+    if(option == "SEQUENCE"){
+        params->append(exposureResult);
+        params->append(QString("%1").arg(exposureError));
+        params->append(QString("%1").arg(numPulse));
+        return 0;
+
+    }else if(option == "PULSE"){
+        if((pulse > numPulse) ||(pulse == 0)) return 3;
+        params->append(QString("%1").arg(kVFinal[pulse - 1]));
+        params->append(QString("%1").arg(mAsFinal[pulse - 1]));
+        params->append(QString("%1").arg(FilterFinal[pulse - 1]));
+        return 0;
+    }else if(option == "TOMO_ANGLE"){
+        if(tomoNsamplesFinal == 0){
+            params->append("0 0 ");
+            return 0;
+        }
+
+        params->append(QString("%1").arg(tomoNsamplesFinal));
+        for(uint i=0; i< tomoNsamplesFinal; i++)  params->append(QString("%1").arg(tomoTimeSample));
+        return 0;
+    }else if(option == "IA_SAMPLE"){
+        if((pulse > numPulse) ||(pulse == 0)) return 3;
+        params->append("2");
+        params->append("145");
+        params->append("145");
+        return 0;
+    }else if(option == "KV_SAMPLE"){
+        if((pulse > numPulse) ||(pulse == 0)) return 3;
+        params->append("2");
+        params->append(QString("%1").arg(kVFinal[pulse - 1] + 0.1));
+        params->append(QString("%1").arg(kVFinal[pulse - 1] - 0.1));
+        return 0;
+    }
+
+    return 0;
+}
+
 
 
 void startupWindow::startXray(void){
@@ -827,6 +884,7 @@ void startupWindow::startXray(void){
     ui->comprLabel->setText("COMPRESSION: " + Compression);
     ui->tomoIdLabel->setText("TOMO-ID: " + TomoId);
 
+    tomoNsamplesFinal = 0;
     numPulse = 0;
     percPulse = 0;
     expSeq = 0;
@@ -1044,6 +1102,8 @@ void startupWindow::manual3DSequence(void){
 
     // Partenza braccio Tomo
     if(expSeq == 3){
+        tomoNsamplesFinal = getTomoSamples(TomoId);
+        tomoTimeSample = mAs * 1000 /(190 * tomoNsamplesFinal);
         steps =  moveTrxToFinal(TomoId) / 500;
         ui->exp1->show(); percPulse++;
         QTimer::singleShot(100, this, &startupWindow::manual3DSequence);
@@ -1158,6 +1218,8 @@ void startupWindow::Aec3DSequence(void){
 
     // Partenza braccio Tomo
     if(expSeq == 17){
+        tomoNsamplesFinal = getTomoSamples(TomoId);
+        tomoTimeSample = mAs * 1000 /(190 * tomoNsamplesFinal);
         steps =  moveTrxToFinal(TomoId) / 500;
         percPulse = 0;
         numPulse=2;
@@ -1255,6 +1317,8 @@ void startupWindow::manualComboSequence(void){
 
     // Partenza braccio Tomo
     if(expSeq == 49){
+        tomoNsamplesFinal = getTomoSamples(TomoId);
+        tomoTimeSample = mAs * 1000 /(190 * tomoNsamplesFinal);
         steps =  moveTrxToFinal(TomoId) / 500;
         percPulse = 0;
         numPulse=2;
@@ -1379,6 +1443,8 @@ void startupWindow::AecComboSequence(void){
 
     // Partenza braccio Tomo
     if(expSeq == 61){
+        tomoNsamplesFinal = getTomoSamples(TomoId);
+        tomoTimeSample = mAs * 1000 /(190 * tomoNsamplesFinal);
         steps =  moveTrxToFinal(TomoId) / 500;
         percPulse = 0;
         numPulse=3;

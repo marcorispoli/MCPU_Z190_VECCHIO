@@ -45,6 +45,7 @@ public:
 
     void addLogEvent(QString data);
     void setStudyName(QString data);
+    void setLanguage(QString tag);
 
     int getTrx(void);
     int getArm(void);
@@ -71,6 +72,7 @@ public:
     int getTomoHome(QString ID);
     int getTomoFinal(QString ID);
     int getTomoRun(QString ID);
+    int getTomoSamples(QString ID);
 
     void setMessage(QString msg, uint time);
 
@@ -90,7 +92,7 @@ public:
     int setXrayPulseData(QString kV, QString mAs, QString Filter, QString TomoId);
 
     void startXray(void);
-
+    int getExposureCompletionData(QString option, uint pulse, QList<QString>* params);
 
 private:
     void setTubeData(int Anode, int Housing);
@@ -201,6 +203,9 @@ private:
     QString FilterFinal[4];
     QString exposureResult;
     uint exposureError;
+    uint tomoNsamplesFinal;
+    uint tomoTimeSample;
+
 
     int timerTube;
     uint tubeDeltaJouls ;

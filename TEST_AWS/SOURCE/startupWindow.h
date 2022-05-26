@@ -102,6 +102,10 @@ private slots:
     void moveTrxCompleted(void);
     void moveArmCompleted(void);
     void bindSlot(void);
+    void exportButtonSlot(void);
+    void clearLogButtonSlot(void);
+    void exitButtonSlot(void);
+
 
 // WINDOWS MODULE VIRTUAL FUNCTIONS
 protected:

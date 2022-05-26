@@ -2,6 +2,7 @@
 #include "ui_startupWindow.h"
 #include "commandprotocol.h"
 #include "awscommunication.h"
+#include <QFileDialog>
 
 extern startupWindow* w1;
 extern awsCommunication*   pAws;
@@ -179,6 +180,11 @@ startupWindow::startupWindow(QWidget *parent)
 
     connect(ui->generateError, SIGNAL(pressed()), this, SLOT(generateErrorSlot()), Qt::UniqueConnection);
     connect(ui->cancError, SIGNAL(pressed()), this, SLOT(cancelError()), Qt::UniqueConnection);
+    connect(ui->exportButton, SIGNAL(pressed()), this, SLOT(exportButtonSlot()), Qt::UniqueConnection);
+    connect(ui->clearLogButton, SIGNAL(pressed()), this, SLOT(clearLogButtonSlot()), Qt::UniqueConnection);
+    connect(ui->exitButton, SIGNAL(pressed()), this, SLOT(exitButtonSlot()), Qt::UniqueConnection);
+
+
 
 
     timeEv = startTimer(500);
@@ -209,6 +215,27 @@ void startupWindow::exitWindow(void)
 void startupWindow::bindSlot(void){
 
     pAws->bind(ui->addressEdit->text(), ui->portEdit->text().toUInt());
+}
+
+void startupWindow::clearLogButtonSlot(void){
+    ui->logEdit->clear();
+}
+void startupWindow::exitButtonSlot(void){
+    QApplication::quit();
+}
+
+void startupWindow::exportButtonSlot(void){
+    QString ddate = QDateTime::currentDateTime().toString("dd.MM.hh.mm");
+    QString fileName = QFileDialog::getExistingDirectory(this) + "\\GantryLog_" + ddate + ".log";
+
+
+    QString text = ui->logEdit->toPlainText();
+    QFile fd(fileName);
+
+    fd.open(QFile::ReadWrite);
+    fd.write(text.toLatin1());
+    fd.close();
+
 }
 
 void startupWindow::setLanguage(QString tag){
@@ -256,6 +283,7 @@ void startupWindow::timerEvent(QTimerEvent* ev)
 
 
 void startupWindow::addLogEvent(QString data){
+     QString ddate = QDateTime::currentDateTime().toString("dd.MM.yyyy");
     ui->logEdit->appendPlainText(data);
 }
 

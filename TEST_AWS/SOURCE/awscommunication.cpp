@@ -182,7 +182,7 @@ void awsCommunication::EXEC_ArmPosition(void){
 
     if(!study){ sendNok(1, "ONLY_IN_OPEN_STUDY"); return;}
     if(window->rotBusy()){ sendNok(2, "ARM_BUSY"); return;}
-    if(!arm_enabled){ sendNok(3, "ARM_DISABLED: BREAST COMPRESSED"); return;}
+    if(!window->isArmEnabled()){ sendNok(3, "ARM_DISABLED: BREAST COMPRESSED"); return;}
     if(arm_fault){ sendNok(4, "ARM_IN_FAULT"); return;}
     projection = protocol.getParams()->at(0);
 
@@ -200,7 +200,7 @@ void awsCommunication::EXEC_ArmPosition(void){
 
     armProtocol = protocol;
     connect(window, SIGNAL(armCompletedSgn), this, SLOT(armCompletedSlot), Qt::UniqueConnection);
-    if(!window->moveArm(angolo, 1000)){
+    if(!window->moveArm(angolo, 10)){
         disconnect(window, SIGNAL(armCompletedSgn), this, SLOT(armCompletedSlot));
         sendOk(0);
         return;

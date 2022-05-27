@@ -19,8 +19,8 @@ startupWindow::startupWindow(QWidget *parent)
     trxBusy = false;
     armBusy = false;
     ui->trxEdit->setText("0");
-    ui->armEdit->setText("0");
-    ui->exposureTypeLabel->setText("");
+
+    ui->exposureTypeLabel->setText("EXPOSURE MODE PANEL");
     XraySequenceCode = "";
     sequenceStarted = false;
     ui->pulse0Frame->hide();
@@ -84,15 +84,17 @@ startupWindow::startupWindow(QWidget *parent)
     ui->forceSpin->setValue(0);
     ui->thickSpin->setEnabled(false);
     ui->forceSpin->setEnabled(false);
-
-
+    ui->armEdit->setEnabled(true);
+    ui->fromArmEdit->setEnabled(false);
+    ui->toArmEdit->setEnabled(false);
+    ui->trxEdit->setEnabled(false);
 
     // Set the View to handle the rotation
 
 
     setStudyName("---");
     ui->trxEdit->setText("0");
-    ui->armEdit->setText("0");
+    ui->armEdit->setValue(0);
     ui->fromArmEdit->setText("---");
     ui->toArmEdit->setText("---");
     ui->armTiltEdit->setText("0");    
@@ -266,6 +268,8 @@ void startupWindow::timerEvent(QTimerEvent* ev)
        if(pAws->getConnectionStatus()) ui->connectionStatusLabel->setText("STATUS: CONNECTED");
        else ui->connectionStatusLabel->setText("STATUS: DISCONNECTED");
 
+       enableArm();
+
     }
 
     // Every 10 seconds: tube temp simulator
@@ -292,7 +296,11 @@ void startupWindow::setStudyName(QString data){
     XraySequenceCode = "";
 
     if(data == ""){
-        ui->studyName->setText("CLOSED");        
+        ui->studyName->setText("CLOSED");
+        ui->projectionsCombo->clear();
+        ui->projectionsCombo->addItem("---");
+        ui->fromArmEdit->setText("---");
+        ui->toArmEdit->setText("---");
     } else ui->studyName->setText(data);
 }
 
@@ -300,7 +308,7 @@ int startupWindow::getTrx(void){
     return ui->trxEdit->text().toInt();
 }
 int startupWindow::getArm(void){
-    return ui->armEdit->text().toInt();
+    return ui->armEdit->value();
 }
 int startupWindow::getTilt(void){
     return ui->armTiltEdit->text().toInt();
@@ -363,22 +371,35 @@ uint startupWindow::moveTrxToFinal(QString id){
 
 
 void startupWindow::moveArmCompleted(void){
-    ui->armEdit->setText(QString("%1").arg(targetARM));
+    ui->armEdit->setValue(targetARM);
     armBusy = false;
     emit armCompletedSgn();
 }
 
 bool startupWindow::moveArm(int angolo, uint speed){
 
-    int ARM = ui->armEdit->text().toInt();
+    int ARM = ui->armEdit->value();
     if(ARM == angolo) return false;  // Gia' in posizione
     targetARM = angolo;
-    ui->armEdit->setText("---");
+
+
     int timerArm = abs(ARM - angolo) * 1000 / speed;
     setMessage("ARM IS MOVING !!!!", timerArm);
     armBusy = true;
     QTimer::singleShot(timerArm, this, &startupWindow::moveArmCompleted);
     return true;
+}
+
+void startupWindow::enableArm(void){
+    if(ui->forceSpin->value()){
+        ui->armEdit->setEnabled(false);
+    }else{
+        ui->armEdit->setEnabled(true);
+    }
+}
+
+bool startupWindow::isArmEnabled(void){
+    return ui->armEdit->isEnabled();
 }
 
 
@@ -628,8 +649,7 @@ QString startupWindow::getTubeHu(){
 }
 
 void startupWindow::breastSlot(int val){
-    if(!changeEvent) return;
-
+    if(!changeEvent) return;   
     pAws->gantryCompressorData(QString("%1").arg(ui->thickSpin->value()), QString("%1").arg(ui->forceSpin->value()));
 
 }
@@ -664,6 +684,9 @@ int startupWindow::checkReadyForExposure(void){
     if(ui->toArmEdit->text() == "---") return 3;
     if(ui->fromArmEdit->text() == "---") return 3;
     if(ui->armEdit->text() == "---") return 3;
+    if(armBusy) return 3;
+    if(trxBusy) return 3;
+
     int from = ui->fromArmEdit->text().toInt();
     int to = ui->toArmEdit->text().toInt();
     int angolo = ui->armEdit->text().toInt();

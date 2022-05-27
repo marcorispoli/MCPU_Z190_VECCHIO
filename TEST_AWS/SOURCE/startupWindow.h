@@ -62,7 +62,7 @@ public:
     bool rotBusy(void);
     bool moveTrx(int angolo, uint speed, QString message = "TRX IS MOVING .." );
     bool moveArm(int angolo, uint speed);
-
+    bool isArmEnabled(void);
 
     bool selectProjection(QString, int , int);
     void setProjectionList(QList<QString> lista);
@@ -160,6 +160,7 @@ private:
     bool trxBusy;
     bool moveTrxToHome(QString id);
     uint moveTrxToFinal(QString id);
+    void enableArm(void);
 
     int  targetARM;
     bool armBusy;

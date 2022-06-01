@@ -16,6 +16,7 @@ deviceClass::deviceClass(uchar id){
     dataList.clear();
 
     statusList.append(deviceDataRegisterClass()); // RESERVED
+    statusList.append(deviceDataRegisterClass()); // REVISION
     statusList.append(deviceDataRegisterClass()); // SYSTEM
     statusList.append(deviceDataRegisterClass()); // ERRORS
     statusList.append(deviceDataRegisterClass()); // COMMAND

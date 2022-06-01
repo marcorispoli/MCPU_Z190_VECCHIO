@@ -35,9 +35,10 @@
  * The Device provides a list of basic Status registers.
  * As for the protocol specification, the first two Status registers shall be reserved for:
  * + Address 0: reserved;
- * + Address 1: SYSTEM REGISTER;
- * + Address 2: ERROR REGISTER;
- * + Address 3: COMMAND REGISTER;
+ * + Address 1: REVISION REGISTER;
+ * + Address 2: SYSTEM REGISTER;
+ * + Address 3: ERROR REGISTER;
+ * + Address 4: COMMAND REGISTER;
  *
  * The Class subclassing the base class shall use the API ***addStatusRegister()*** in order
  * to add extra registers in the list.
@@ -164,9 +165,10 @@ class deviceClass: public QObject
     // SPECIAL STATUS REGISTERS ADDRESS
     #define _DEVICE_RESERVED_REGSITER  0
 
-    #define _DEVICE_SYSTEM_STATREG      1
-    #define _DEVICE_ERRORS_STATREG      2
-    #define _DEVICE_COMMAND_STATREG     3
+    #define _DEVICE_REVISION_STATREG    1
+    #define _DEVICE_SYSTEM_STATREG      2
+    #define _DEVICE_ERRORS_STATREG      3
+    #define _DEVICE_COMMAND_STATREG     4
 
     // COMMAND REGISTER DATA DEFINITION
     #define _DEVICE_COMMAND_CODE    0

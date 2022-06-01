@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.3"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>MainCpu Software Documentation: C:/Users/marco/Documents/GitHub/GantryZ190/GANTRY/MAIN_CPU/SOURCE/LIB/canopeninterface.h Source File</title>
+<title>MainCpu Software Documentation: C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/APPLICATION/SOURCE/LIB/canopeninterface.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -63,7 +63,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_950a53138ecc02037eb54ae42183d402.html">SOURCE</a></li><li class="navelem"><a class="el" href="dir_1eb2ac93a1c50722515aa7201262b54f.html">LIB</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_08351310ddebaca638dbb30498c8cafd.html">SOURCE</a></li><li class="navelem"><a class="el" href="dir_437eb9ebaa699160a97ffba2be0dd522.html">LIB</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -272,12 +272,12 @@ $(function() {
 <div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>};</div>
 <div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span> </div>
 <div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span> </div>
-<div class="line"><a id="l00262" name="l00262"></a><span class="lineno"><a class="line" href="classcan_open_interface.html">  262</a></span><span class="keyword">class </span><a class="code hl_class" href="classcan_open_interface.html">canOpenInterface</a> : <span class="keyword">public</span> <a class="code hl_class" href="classcan_driver_user_class.html">canDriverUserClass</a></div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno"><a class="line" href="classcan_open_interface.html">  262</a></span><span class="keyword">class </span><a class="code hl_class" href="classcan_open_interface.html">canOpenInterface</a> : <span class="keyword">public</span> canDriverUserClass</div>
 <div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>{</div>
 <div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>    Q_OBJECT</div>
 <div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span><span class="keyword">public</span>:</div>
 <div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span> </div>
-<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>    <a class="code hl_class" href="classcan_open_interface.html">canOpenInterface</a>(<span class="keywordtype">int</span> node, <span class="keyword">const</span> <a class="code hl_class" href="classcan_driver_interface.html">canDriverInterface</a>&amp; <a class="code hl_variable" href="classcan_driver_user_class.html#a481de1e2fa29d03bb19273a9a349eeae">driver</a> ): <a class="code hl_function" href="classcan_driver_user_class.html#a225ca11585ca64d26af3133c31efc436">canDriverUserClass</a>(<a class="code hl_variable" href="classcan_driver_user_class.html#a481de1e2fa29d03bb19273a9a349eeae">driver</a>)</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>    <a class="code hl_class" href="classcan_open_interface.html">canOpenInterface</a>(<span class="keywordtype">int</span> node, <span class="keyword">const</span> <a class="code hl_class" href="classcan_driver_interface.html">canDriverInterface</a>&amp; driver ): canDriverUserClass(driver)</div>
 <div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>    {</div>
 <div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>        nodeId = node;</div>
 <div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>    }</div>
@@ -331,10 +331,7 @@ $(function() {
 <div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span>};</div>
 <div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span> </div>
 <div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span><span class="preprocessor">#endif </span><span class="comment">// CANOPENINTERFACE_H</span></div>
-<div class="ttc" id="aclasscan_driver_interface_html"><div class="ttname"><a href="classcan_driver_interface.html">canDriverInterface</a></div><div class="ttdef"><b>Definition:</b> canDriverClassInterface.h:108</div></div>
-<div class="ttc" id="aclasscan_driver_user_class_html"><div class="ttname"><a href="classcan_driver_user_class.html">canDriverUserClass</a></div><div class="ttdef"><b>Definition:</b> canDriverClassInterface.h:292</div></div>
-<div class="ttc" id="aclasscan_driver_user_class_html_a225ca11585ca64d26af3133c31efc436"><div class="ttname"><a href="classcan_driver_user_class.html#a225ca11585ca64d26af3133c31efc436">canDriverUserClass::canDriverUserClass</a></div><div class="ttdeci">canDriverUserClass(const canDriverInterface &amp;drv)</div><div class="ttdoc">canDriverUserClass This is the class constructor: the implementing calss shall pass the driver shall ...</div><div class="ttdef"><b>Definition:</b> CanDriverClassInterface.cpp:78</div></div>
-<div class="ttc" id="aclasscan_driver_user_class_html_a481de1e2fa29d03bb19273a9a349eeae"><div class="ttname"><a href="classcan_driver_user_class.html#a481de1e2fa29d03bb19273a9a349eeae">canDriverUserClass::driver</a></div><div class="ttdeci">const canDriverInterface * driver</div><div class="ttdoc">pointer of the driver</div><div class="ttdef"><b>Definition:</b> canDriverClassInterface.h:353</div></div>
+<div class="ttc" id="aclasscan_driver_interface_html"><div class="ttname"><a href="classcan_driver_interface.html">canDriverInterface</a></div><div class="ttdef"><b>Definition:</b> can_driver_class_interface.h:111</div></div>
 <div class="ttc" id="aclasscan_open_interface_html"><div class="ttname"><a href="classcan_open_interface.html">canOpenInterface</a></div><div class="ttdef"><b>Definition:</b> canopeninterface.h:263</div></div>
 <div class="ttc" id="aclasscan_open_interface_html_a54ddb895721d0490604eb122ec7813d0"><div class="ttname"><a href="classcan_open_interface.html#a54ddb895721d0490604eb122ec7813d0">canOpenInterface::setRegisterList</a></div><div class="ttdeci">void _inline setRegisterList(const QList&lt; odRegister &gt; &amp;reglist)</div><div class="ttdoc">Sets the list of device registers assigned to the protocol.</div><div class="ttdef"><b>Definition:</b> canopeninterface.h:297</div></div>
 <div class="ttc" id="aclasscan_open_interface_html_a5e48ab47a6db2b2f977145b4d3f2abbb"><div class="ttname"><a href="classcan_open_interface.html#a5e48ab47a6db2b2f977145b4d3f2abbb">canOpenInterface::readOdRegister</a></div><div class="ttdeci">bool readOdRegister(int odIndex, uint tmo)</div><div class="ttdoc">Execute of the Read register action.</div><div class="ttdef"><b>Definition:</b> canopeninterface.cpp:4</div></div>
@@ -386,9 +383,9 @@ $(function() {
 <div class="ttc" id="aclassod_register_html_ac6c6cc0d76dc140cc9927cb439077ff8ad28cc295a1ee048ca7b2f95fe7648147"><div class="ttname"><a href="classod_register.html#ac6c6cc0d76dc140cc9927cb439077ff8ad28cc295a1ee048ca7b2f95fe7648147">odRegister::_OD_ACTION_WRITE_COMPLETED</a></div><div class="ttdeci">@ _OD_ACTION_WRITE_COMPLETED</div><div class="ttdoc">A write action completed with success.</div><div class="ttdef"><b>Definition:</b> canopeninterface.h:60</div></div>
 <div class="ttc" id="aclassod_register_html_ad5800107801f5346349d5b77604a41ed"><div class="ttname"><a href="classod_register.html#ad5800107801f5346349d5b77604a41ed">odRegister::odRegister</a></div><div class="ttdeci">odRegister(void)</div><div class="ttdoc">Void Object Register constructor.</div><div class="ttdef"><b>Definition:</b> canopeninterface.h:66</div></div>
 <div class="ttc" id="aclassod_register_html_afa6ec4f2a6998cbeba37fd8ca5cc556e"><div class="ttname"><a href="classod_register.html#afa6ec4f2a6998cbeba37fd8ca5cc556e">odRegister::_odDataType</a></div><div class="ttdeci">_odDataType</div><div class="ttdoc">Definition of the register data type.</div><div class="ttdef"><b>Definition:</b> canopeninterface.h:28</div></div>
-<div class="ttc" id="astructcan_driver_interface_1_1can_data_frame_html"><div class="ttname"><a href="structcan_driver_interface_1_1can_data_frame.html">canDriverInterface::canDataFrame</a></div><div class="ttdoc">This is the dataframe format.</div><div class="ttdef"><b>Definition:</b> canDriverClassInterface.h:117</div></div>
-<div class="ttc" id="astructcan_driver_interface_1_1can_data_frame_html_a7094e028ec8431a171dd2533e5f7ca36"><div class="ttname"><a href="structcan_driver_interface_1_1can_data_frame.html#a7094e028ec8431a171dd2533e5f7ca36">canDriverInterface::canDataFrame::data</a></div><div class="ttdeci">unsigned char data[8]</div><div class="ttdoc">8 bytes data load;</div><div class="ttdef"><b>Definition:</b> canDriverClassInterface.h:119</div></div>
-<div class="ttc" id="astructcan_driver_interface_1_1can_data_frame_html_ab67c56b118887d138fe1ca05954d952a"><div class="ttname"><a href="structcan_driver_interface_1_1can_data_frame.html#ab67c56b118887d138fe1ca05954d952a">canDriverInterface::canDataFrame::canId</a></div><div class="ttdeci">unsigned short canId</div><div class="ttdoc">CAN-ID frame identifier.</div><div class="ttdef"><b>Definition:</b> canDriverClassInterface.h:118</div></div>
+<div class="ttc" id="astructcan_driver_interface_1_1can_data_frame_html"><div class="ttname"><a href="structcan_driver_interface_1_1can_data_frame.html">canDriverInterface::canDataFrame</a></div><div class="ttdoc">This is the dataframe format.</div><div class="ttdef"><b>Definition:</b> can_driver_class_interface.h:125</div></div>
+<div class="ttc" id="astructcan_driver_interface_1_1can_data_frame_html_a7094e028ec8431a171dd2533e5f7ca36"><div class="ttname"><a href="structcan_driver_interface_1_1can_data_frame.html#a7094e028ec8431a171dd2533e5f7ca36">canDriverInterface::canDataFrame::data</a></div><div class="ttdeci">unsigned char data[8]</div><div class="ttdoc">8 bytes data load;</div><div class="ttdef"><b>Definition:</b> can_driver_class_interface.h:127</div></div>
+<div class="ttc" id="astructcan_driver_interface_1_1can_data_frame_html_ab67c56b118887d138fe1ca05954d952a"><div class="ttname"><a href="structcan_driver_interface_1_1can_data_frame.html#ab67c56b118887d138fe1ca05954d952a">canDriverInterface::canDataFrame::canId</a></div><div class="ttdeci">unsigned short canId</div><div class="ttdoc">CAN-ID frame identifier.</div><div class="ttdef"><b>Definition:</b> can_driver_class_interface.h:126</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

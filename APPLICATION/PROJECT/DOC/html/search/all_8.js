@@ -1,13 +1,8 @@
 var searchData=
 [
-  ['incomingconnection_0',['incomingConnection',['../class_tcp_ip_server.html#afa8e6ddfeacb2c8fffc516c853e39487',1,'TcpIpServer']]],
-  ['initwindow_1',['initWindow',['../classwindows_class.html#afd07d0b970ae730f3515accc304e8576',1,'windowsClass::initWindow()'],['../classerrors_window.html#a178b3cc8d6d3336d3ee15133a2d66a8f',1,'errorsWindow::initWindow()'],['../classstartup_window.html#a0344c43528d163ca68ba0c763fe1591d',1,'startupWindow::initWindow()']]],
-  ['irs_20protocol_20interface_2',['IRS Protocol Interface',['../_p_g__t_d__i_r_s.html',1,'']]],
-  ['isaccess_3',['isAccess',['../classconfig_file.html#a61c1150ba38bce70014c8cfc22774bdc',1,'configFile']]],
-  ['isactive_4',['isActive',['../classerror_block.html#a9cde113edd2cf22638e94fab34216761',1,'errorBlock']]],
-  ['isanyerroractive_5',['isAnyErrorActive',['../classerror_table.html#a88235c3aec6995dacbb0d02f89ec97e2',1,'errorTable']]],
-  ['isautoexpire_6',['isAutoExpire',['../classerror_block.html#ae9aa8f558b51e7b523cbd35f8360a694',1,'errorBlock']]],
-  ['isconnected_7',['isConnected',['../class_tcp_ip_server.html#a10d953e914acf0eacc6432eff0505563',1,'TcpIpServer']]],
-  ['iserroractive_8',['isErrorActive',['../classerror_table.html#a60029241765646aeb88d585d5c836605',1,'errorTable']]],
-  ['isopen_9',['isOpen',['../classwindows_class.html#a5a61d062427ce151387535231b6650b0',1,'windowsClass']]]
+  ['languages_0',['LANGUAGES',['../classtranslator_class.html#a4e7f671211da9c03582bf285720c93b0',1,'translatorClass']]],
+  ['library_20modules_1',['Library modules',['../group___l_i_b___m_o_d_u_l_e_s.html',1,'']]],
+  ['loadfile_2',['loadFile',['../classconfig_file.html#a106f596196e095c631ec707cbc4b5ae6',1,'configFile']]],
+  ['localaddress_3',['localAddress',['../class_tcp_ip_server.html#a7635d61e3f5d7d0da94d96e4ad214039',1,'TcpIpServer']]],
+  ['localport_4',['localPort',['../class_tcp_ip_server.html#a3f331aed6700f16b413d38f4e268d828',1,'TcpIpServer']]]
 ];

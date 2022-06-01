@@ -159,7 +159,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>openParentWindowSgn</
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >This is the main window class implementing the system error management.</p>
-<h1><a class="anchor" id="autotoc_md30"></a>
+<h1><a class="anchor" id="autotoc_md41"></a>
 ABSTRACT</h1>
 <p >The system shall handle two main error types:</p><ul>
 <li>Static errors: errors that remain alive until a proper command clears it;</li>
@@ -171,7 +171,7 @@ ABSTRACT</h1>
  "Description string ....."</pre><p >The "Title String" shall be the first (optionally unique) line of the translaton. This string will be visualized into the Error GUI as a separate string representing the Title of the error: usually it is the Class of the error;</p>
 <p >The "Description String" shall descrives the error. It can be composed of several lines. This field can be optional if the Title should be enough descriptive.</p>
 <p >The error code can optionally be associated with a Pixmap: in this case the Pixmap shall be loaded in the assets file into the /errorPixmap directory.</p>
-<h1><a class="anchor" id="autotoc_md31"></a>
+<h1><a class="anchor" id="autotoc_md42"></a>
 ERROR WINDOW FEATURES</h1>
 <p >This class is derived from the <a class="el" href="classwindows_class.html">windowsClass</a> inheriting the window management system.</p>
 <p >This class handles the error activation and visualization, providing the following feature:</p>
@@ -188,9 +188,9 @@ ERROR WINDOW FEATURES</h1>
 <p >In case more than one error is active, a SCROLL button appear in the error GUI providing a method to scroll all the active alarm. NOTE: only one active alarm at a time is showed in the GUI.</p>
 <p >The error window can be closed early either with a GUI push button or by mean of a dedicated public method.</p>
 <p >In order to prevent interferences with other windows in the system the following rules apply: 1) The error handling commands will postpone the openWindow events; 2) The parent window callback <a class="el" href="classerrors_window.html#a178b3cc8d6d3336d3ee15133a2d66a8f" title="Overriden function for the opening activities.">initWindow()</a> and <a class="el" href="classerrors_window.html#a8b83cbb918c40b79acb673872470897e" title="Overriden function for the exiting activities.">exitWindow()</a> are not called;</p>
-<h1><a class="anchor" id="autotoc_md32"></a>
+<h1><a class="anchor" id="autotoc_md43"></a>
 USAGE</h1>
-<h2><a class="anchor" id="autotoc_md33"></a>
+<h2><a class="anchor" id="autotoc_md44"></a>
 Define the internal ID code to identify a given error</h2>
 <p >Add the error label into the typedef enum _ErrorTable in erorTable.h file: </p><pre class="fragment"> typedef enum{
       ERROR_1 = 0,
@@ -201,7 +201,7 @@ Define the internal ID code to identify a given error</h2>
       .....
       ERROR_LAST // This code shall be the last code
   } _ErrorTable;
-</pre> <h2><a class="anchor" id="autotoc_md34"></a>
+</pre> <h2><a class="anchor" id="autotoc_md45"></a>
 Setup the message content</h2>
 <p >Add the definition of the error message into the errorsWindow::setupErrors() method in the errorsWindow.cpp file: </p><pre class="fragment"> Example:
  errorList[_ErrorTable::ERROR_1] = *( new errorBlock("E00001",QApplication::translate("E00001","ERRORE 1 DESCR TAG"),"pixmap-name-err1"));
@@ -212,7 +212,7 @@ Setup the message content</h2>
  "E00001": is the string error code
  "ERRORE 1 DESCR TAG"  is the tag handled by the QtLanguage translator to translate the message
  "pixmap-name-err1" is the name of the pixmap of the error 1 in the example. Set "" if the error has no pixmap at all
-</pre> <h1><a class="anchor" id="autotoc_md35"></a>
+</pre> <h1><a class="anchor" id="autotoc_md46"></a>
 Error handling methods</h1>
 <ul>
 <li>In order to activate an error use: errorsWindow::activateError();</li>
@@ -410,8 +410,8 @@ Error handling methods</h1>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>C:/Users/marco/Documents/GitHub/GantryZ190/GANTRY/MAIN_CPU/SOURCE/WINDOWS/<a class="el" href="errors_window_8h_source.html">errorsWindow.h</a></li>
-<li>C:/Users/marco/Documents/GitHub/GantryZ190/GANTRY/MAIN_CPU/SOURCE/WINDOWS/errorsWindow.cpp</li>
+<li>C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/APPLICATION/SOURCE/WINDOWS/<a class="el" href="errors_window_8h_source.html">errorsWindow.h</a></li>
+<li>C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/APPLICATION/SOURCE/WINDOWS/errorsWindow.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

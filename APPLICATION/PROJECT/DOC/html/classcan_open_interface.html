@@ -77,11 +77,8 @@ $(function() {
 Inheritance diagram for canOpenInterface:</div>
 <div class="dyncontent">
  <div class="center">
-  <img src="classcan_open_interface.png" usemap="#canOpenInterface_map" alt=""/>
-  <map id="canOpenInterface_map" name="canOpenInterface_map">
-<area href="classcan_driver_user_class.html" alt="canDriverUserClass" shape="rect" coords="0,56,126,80"/>
-  </map>
-</div></div>
+  <img src="classcan_open_interface.png" alt=""/>
+ </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
@@ -111,15 +108,11 @@ Signals</h2></td></tr>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>registerActionCompleteSgn</b> (int index)</td></tr>
 <tr class="memdesc:a9094b4bb779812ad26b65f337a284c3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">This signal is emitted when a frame has been received and classified. <br /></td></tr>
 <tr class="separator:a9094b4bb779812ad26b65f337a284c3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header signals_classcan_driver_user_class"><td colspan="2" onclick="javascript:toggleInherit('signals_classcan_driver_user_class')"><img src="closed.png" alt="-"/>&#160;Signals inherited from <a class="el" href="classcan_driver_user_class.html">canDriverUserClass</a></td></tr>
-<tr class="memitem:af408ce92eecb890d43050866444f6712 inherit signals_classcan_driver_user_class"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcan_driver_user_class.html#af408ce92eecb890d43050866444f6712">txToDriver</a> (<a class="el" href="structcan_driver_interface_1_1can_data_frame.html">canDriverInterface::canDataFrame</a> frame, int odIndex, uint tmo, QObject *device)</td></tr>
-<tr class="memdesc:af408ce92eecb890d43050866444f6712 inherit signals_classcan_driver_user_class"><td class="mdescLeft">&#160;</td><td class="mdescRight">txToDriver This is the internal signal emitted when the canTxFrame is used by the application.  <a href="classcan_driver_user_class.html#af408ce92eecb890d43050866444f6712">More...</a><br /></td></tr>
-<tr class="separator:af408ce92eecb890d43050866444f6712 inherit signals_classcan_driver_user_class"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a5b80e912f642dc7ddb0bf59e04cf027c"><td class="memItemLeft" align="right" valign="top"><a id="a5b80e912f642dc7ddb0bf59e04cf027c" name="a5b80e912f642dc7ddb0bf59e04cf027c"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>canOpenInterface</b> (int node, const <a class="el" href="classcan_driver_interface.html">canDriverInterface</a> &amp;<a class="el" href="classcan_driver_user_class.html#a481de1e2fa29d03bb19273a9a349eeae">driver</a>)</td></tr>
+&#160;</td><td class="memItemRight" valign="bottom"><b>canOpenInterface</b> (int node, const <a class="el" href="classcan_driver_interface.html">canDriverInterface</a> &amp;driver)</td></tr>
 <tr class="separator:a5b80e912f642dc7ddb0bf59e04cf027c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a54ddb895721d0490604eb122ec7813d0"><td class="memItemLeft" align="right" valign="top"><a id="a54ddb895721d0490604eb122ec7813d0" name="a54ddb895721d0490604eb122ec7813d0"></a>
 void _inline&#160;</td><td class="memItemRight" valign="bottom"><b>setRegisterList</b> (const QList&lt; <a class="el" href="classod_register.html">odRegister</a> &gt; &amp;reglist)</td></tr>
@@ -137,10 +130,6 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>writeOdRegister</b> (
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>executeCommand</b> (int odIndex, uint tmo)</td></tr>
 <tr class="memdesc:a7d9b49e11ac6d7cbf11e0220ca757006"><td class="mdescLeft">&#160;</td><td class="mdescRight">Execute a Command. <br /></td></tr>
 <tr class="separator:a7d9b49e11ac6d7cbf11e0220ca757006"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pub_methods_classcan_driver_user_class"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classcan_driver_user_class')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classcan_driver_user_class.html">canDriverUserClass</a></td></tr>
-<tr class="memitem:a225ca11585ca64d26af3133c31efc436 inherit pub_methods_classcan_driver_user_class"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcan_driver_user_class.html#a225ca11585ca64d26af3133c31efc436">canDriverUserClass</a> (const <a class="el" href="classcan_driver_interface.html">canDriverInterface</a> &amp;drv)</td></tr>
-<tr class="memdesc:a225ca11585ca64d26af3133c31efc436 inherit pub_methods_classcan_driver_user_class"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classcan_driver_user_class.html">canDriverUserClass</a> This is the class constructor: the implementing calss shall pass the driver shall be used a s a pointer.  <a href="classcan_driver_user_class.html#a225ca11585ca64d26af3133c31efc436">More...</a><br /></td></tr>
-<tr class="separator:a225ca11585ca64d26af3133c31efc436 inherit pub_methods_classcan_driver_user_class"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-slots" name="pro-slots"></a>
 Protected Slots</h2></td></tr>
@@ -154,21 +143,6 @@ Protected Attributes</h2></td></tr>
 QList&lt; <a class="el" href="classod_register.html">odRegister</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>deviceRegisters</b></td></tr>
 <tr class="memdesc:ae0973106bc6e9af00c2b6547710e52ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of odRegisters. <br /></td></tr>
 <tr class="separator:ae0973106bc6e9af00c2b6547710e52ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
-Additional Inherited Members</h2></td></tr>
-<tr class="inherit_header pub_slots_classcan_driver_user_class"><td colspan="2" onclick="javascript:toggleInherit('pub_slots_classcan_driver_user_class')"><img src="closed.png" alt="-"/>&#160;Public Slots inherited from <a class="el" href="classcan_driver_user_class.html">canDriverUserClass</a></td></tr>
-<tr class="memitem:a9591589409937d942e10e09641f2a562 inherit pub_slots_classcan_driver_user_class"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcan_driver_user_class.html#a9591589409937d942e10e09641f2a562">deviceRxSlot</a> (<a class="el" href="structcan_driver_interface_1_1can_data_frame.html">canDriverInterface::canDataFrame</a> frame, int odIndex)=0</td></tr>
-<tr class="memdesc:a9591589409937d942e10e09641f2a562 inherit pub_slots_classcan_driver_user_class"><td class="mdescLeft">&#160;</td><td class="mdescRight">deviceRxSlot The class shall implement this method in order to handle the can data frame received.  <a href="classcan_driver_user_class.html#a9591589409937d942e10e09641f2a562">More...</a><br /></td></tr>
-<tr class="separator:a9591589409937d942e10e09641f2a562 inherit pub_slots_classcan_driver_user_class"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5635bb4045dd1d110cae0bef7a50ecab inherit pub_slots_classcan_driver_user_class"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcan_driver_user_class.html#a5635bb4045dd1d110cae0bef7a50ecab">canTxFrame</a> (<a class="el" href="structcan_driver_interface_1_1can_data_frame.html">canDriverInterface::canDataFrame</a> frame, int odIndex, uint tmo)</td></tr>
-<tr class="memdesc:a5635bb4045dd1d110cae0bef7a50ecab inherit pub_slots_classcan_driver_user_class"><td class="mdescLeft">&#160;</td><td class="mdescRight">canTxFrame This is the transmission function.  <a href="classcan_driver_user_class.html#a5635bb4045dd1d110cae0bef7a50ecab">More...</a><br /></td></tr>
-<tr class="separator:a5635bb4045dd1d110cae0bef7a50ecab inherit pub_slots_classcan_driver_user_class"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pub_attribs_classcan_driver_user_class"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_classcan_driver_user_class')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="classcan_driver_user_class.html">canDriverUserClass</a></td></tr>
-<tr class="memitem:a481de1e2fa29d03bb19273a9a349eeae inherit pub_attribs_classcan_driver_user_class"><td class="memItemLeft" align="right" valign="top"><a id="a481de1e2fa29d03bb19273a9a349eeae" name="a481de1e2fa29d03bb19273a9a349eeae"></a>
-const <a class="el" href="classcan_driver_interface.html">canDriverInterface</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>driver</b></td></tr>
-<tr class="memdesc:a481de1e2fa29d03bb19273a9a349eeae inherit pub_attribs_classcan_driver_user_class"><td class="mdescLeft">&#160;</td><td class="mdescRight">pointer of the driver <br /></td></tr>
-<tr class="separator:a481de1e2fa29d03bb19273a9a349eeae inherit pub_attribs_classcan_driver_user_class"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Enumeration Documentation</h2>
 <a id="a702c71bc73f6b0e74305215d17cfdaa5" name="a702c71bc73f6b0e74305215d17cfdaa5"></a>
@@ -286,8 +260,8 @@ In the case of a write request, the result can be a write confirm,ation or error
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>C:/Users/marco/Documents/GitHub/GantryZ190/GANTRY/MAIN_CPU/SOURCE/LIB/<a class="el" href="canopeninterface_8h_source.html">canopeninterface.h</a></li>
-<li>C:/Users/marco/Documents/GitHub/GantryZ190/GANTRY/MAIN_CPU/SOURCE/LIB/canopeninterface.cpp</li>
+<li>C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/APPLICATION/SOURCE/LIB/<a class="el" href="canopeninterface_8h_source.html">canopeninterface.h</a></li>
+<li>C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/APPLICATION/SOURCE/LIB/canopeninterface.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

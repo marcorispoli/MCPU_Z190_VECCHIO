@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.3"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>MainCpu Software Documentation: C:/Users/marco/Documents/GitHub/GantryZ190/GANTRY/MAIN_CPU/SOURCE/DRIVERS/TITAN/titanCanDriver.h Source File</title>
+<title>MainCpu Software Documentation: C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/APPLICATION/SOURCE/DRIVERS/TITAN/titanCanDriver.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -63,7 +63,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_950a53138ecc02037eb54ae42183d402.html">SOURCE</a></li><li class="navelem"><a class="el" href="dir_d68316625df9cca1db260af52ea3d791.html">DRIVERS</a></li><li class="navelem"><a class="el" href="dir_08f4580163dbd69bcf3258fe1fea5b8c.html">TITAN</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_08351310ddebaca638dbb30498c8cafd.html">SOURCE</a></li><li class="navelem"><a class="el" href="dir_a0b92f3906b4d9ca6515c9c4a9e80c65.html">DRIVERS</a></li><li class="navelem"><a class="el" href="dir_2eca64f3c594b894a0225d38c7fea643.html">TITAN</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -73,40 +73,73 @@ $(function() {
 <div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef TITAN_CAN_DRIVER_H</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define TITAN_CAN_DRIVER_H</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;canDriverClassInterface.h&quot;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno"><a class="line" href="classtitan_can_driver.html">    6</a></span><span class="keyword">class </span><a class="code hl_class" href="classtitan_can_driver.html">titanCanDriver</a>: <span class="keyword">public</span> <a class="code hl_class" href="classcan_driver_interface.html">canDriverInterface</a></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>{</div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>   Q_OBJECT</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>   <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>   <a class="code hl_class" href="classtitan_can_driver.html">titanCanDriver</a>(){};</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>   <a class="code hl_class" href="classtitan_can_driver.html">~titanCanDriver</a>(){};</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;QSerialPort&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;can_driver_class_interface.h&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno"><a class="line" href="classtitan_can_driver.html">    7</a></span><span class="keyword">class </span><a class="code hl_class" href="classtitan_can_driver.html">titanCanDriver</a>: <span class="keyword">public</span> <a class="code hl_class" href="classcan_driver_interface.html">canDriverInterface</a></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>{</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>   Q_OBJECT</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>   <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>   <a class="code hl_class" href="classtitan_can_driver.html">titanCanDriver</a>();</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>   <a class="code hl_class" href="classtitan_can_driver.html">~titanCanDriver</a>(){};</div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <span class="comment">// Virtual function implementation</span></div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="classtitan_can_driver.html#a737791e1e0ccee95e9c4b7700b510185">   16</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classtitan_can_driver.html#a737791e1e0ccee95e9c4b7700b510185">hardwareInit</a>();</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="classtitan_can_driver.html#a371e3d52b3d5434b03990bc9a44ea0b1">   17</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classtitan_can_driver.html#a371e3d52b3d5434b03990bc9a44ea0b1">hardwareShutdown</a>();</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="classtitan_can_driver.html#a4f7fe40257396a46589d2c482aa1ba08">   18</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classtitan_can_driver.html#a4f7fe40257396a46589d2c482aa1ba08">openPort</a>(uint addr, uint msk, <span class="keywordtype">bool</span> md);</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="classtitan_can_driver.html#a7ee72ea6bafcef77ccf4159f63e4ec4f">   19</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classtitan_can_driver.html#a7ee72ea6bafcef77ccf4159f63e4ec4f">closePorts</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="classtitan_can_driver.html#aca05a2443ad9c047ae026d7038d1f51f">   20</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classtitan_can_driver.html#aca05a2443ad9c047ae026d7038d1f51f">run</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="classtitan_can_driver.html#a700f3bce39ddcec3a4a657e3243539c0">   21</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classtitan_can_driver.html#a700f3bce39ddcec3a4a657e3243539c0">pause</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="classtitan_can_driver.html#a2e2454dd5f5b34f19ee43abd4c5fcfe8">   22</a></span>    <a class="code hl_struct" href="structcan_driver_interface_1_1can_data_frame.html">canDataFrame</a> <a class="code hl_function" href="classtitan_can_driver.html#a2e2454dd5f5b34f19ee43abd4c5fcfe8">driverTxRxData</a>(<a class="code hl_struct" href="structcan_driver_interface_1_1can_data_frame.html">canDataFrame</a> frame, <span class="keywordtype">int</span> tmo);</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>};</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#endif </span><span class="comment">// TITAN_CAN_DRIVER_H</span></div>
-<div class="ttc" id="aclasscan_driver_interface_html"><div class="ttname"><a href="classcan_driver_interface.html">canDriverInterface</a></div><div class="ttdef"><b>Definition:</b> canDriverClassInterface.h:108</div></div>
-<div class="ttc" id="aclasstitan_can_driver_html"><div class="ttname"><a href="classtitan_can_driver.html">titanCanDriver</a></div><div class="ttdef"><b>Definition:</b> titanCanDriver.h:7</div></div>
-<div class="ttc" id="aclasstitan_can_driver_html_a2e2454dd5f5b34f19ee43abd4c5fcfe8"><div class="ttname"><a href="classtitan_can_driver.html#a2e2454dd5f5b34f19ee43abd4c5fcfe8">titanCanDriver::driverTxRxData</a></div><div class="ttdeci">canDataFrame driverTxRxData(canDataFrame frame, int tmo)</div><div class="ttdoc">driverTxRxData This function implements the data Transmission/Reception on the BUS....</div></div>
-<div class="ttc" id="aclasstitan_can_driver_html_a371e3d52b3d5434b03990bc9a44ea0b1"><div class="ttname"><a href="classtitan_can_driver.html#a371e3d52b3d5434b03990bc9a44ea0b1">titanCanDriver::hardwareShutdown</a></div><div class="ttdeci">bool hardwareShutdown()</div><div class="ttdoc">Implements the hardware shutdown functions.</div></div>
-<div class="ttc" id="aclasstitan_can_driver_html_a4f7fe40257396a46589d2c482aa1ba08"><div class="ttname"><a href="classtitan_can_driver.html#a4f7fe40257396a46589d2c482aa1ba08">titanCanDriver::openPort</a></div><div class="ttdeci">bool openPort(uint addr, uint msk, bool md)</div><div class="ttdoc">openPort This function shall open a reception filter on the can board</div></div>
-<div class="ttc" id="aclasstitan_can_driver_html_a700f3bce39ddcec3a4a657e3243539c0"><div class="ttname"><a href="classtitan_can_driver.html#a700f3bce39ddcec3a4a657e3243539c0">titanCanDriver::pause</a></div><div class="ttdeci">void pause(void)</div><div class="ttdoc">pauses the BUS arbitration</div></div>
-<div class="ttc" id="aclasstitan_can_driver_html_a737791e1e0ccee95e9c4b7700b510185"><div class="ttname"><a href="classtitan_can_driver.html#a737791e1e0ccee95e9c4b7700b510185">titanCanDriver::hardwareInit</a></div><div class="ttdeci">bool hardwareInit()</div><div class="ttdoc">Implement the hardware initialization functions.</div></div>
-<div class="ttc" id="aclasstitan_can_driver_html_a7ee72ea6bafcef77ccf4159f63e4ec4f"><div class="ttname"><a href="classtitan_can_driver.html#a7ee72ea6bafcef77ccf4159f63e4ec4f">titanCanDriver::closePorts</a></div><div class="ttdeci">bool closePorts(void)</div><div class="ttdoc">closes all the acceptance filters on the board</div></div>
-<div class="ttc" id="aclasstitan_can_driver_html_aca05a2443ad9c047ae026d7038d1f51f"><div class="ttname"><a href="classtitan_can_driver.html#aca05a2443ad9c047ae026d7038d1f51f">titanCanDriver::run</a></div><div class="ttdeci">void run(void)</div><div class="ttdoc">activates the BUS arbitration</div></div>
-<div class="ttc" id="astructcan_driver_interface_1_1can_data_frame_html"><div class="ttname"><a href="structcan_driver_interface_1_1can_data_frame.html">canDriverInterface::canDataFrame</a></div><div class="ttdoc">This is the dataframe format.</div><div class="ttdef"><b>Definition:</b> canDriverClassInterface.h:117</div></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    _canDriverErrors <a class="code hl_function" href="classtitan_can_driver.html#a1902ac9d2dc5ca6e2b1560de5147c581">driverOpen</a>(QByteArray COM, _canBaudRate BR, uint address, uint mask, QByteArray mode);</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classtitan_can_driver.html#af7d7ef765793a0ac8c692bf067e2d35a">driverClose</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keywordtype">bool</span> driverRead(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <span class="keywordtype">void</span> driverWrite(<a class="code hl_struct" href="structcan_driver_interface_1_1can_data_frame.html">canDriverInterface::canDataFrame</a> frame);</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="comment">// For test purpose</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    _inline QByteArray getAddr(<span class="keywordtype">void</span>){<span class="keywordflow">return</span> ADDR;};</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    _inline QByteArray getMask(<span class="keywordtype">void</span>){<span class="keywordflow">return</span> MASK;};</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    _inline QByteArray getVersion(<span class="keywordtype">void</span>){<span class="keywordflow">return</span> versionCode;};</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    _inline QByteArray getSerialNumber(<span class="keywordtype">void</span>){<span class="keywordflow">return</span> SN;};</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    _inline QByteArray getStatus(<span class="keywordtype">void</span>){<span class="keywordflow">return</span> STATUS;};</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    _inline QByteArray getRxFrame(<span class="keywordtype">void</span>){<span class="keywordflow">return</span> rx_frame;};</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="comment">//canDriverInterface::canDataFrame driverRx(uint tmo);</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="comment">//void driverFlush(void);</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    QSerialPort* virtualCom;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    QByteArray versionCode;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    QByteArray SN;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    QByteArray STATUS;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    QByteArray ADDR;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    QByteArray MASK;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    QByteArray openMode;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    QByteArray CANID;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    QByteArray BDATA;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keywordtype">char</span> getHexVal(uchar val);</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    QByteArray get11BitHexFormat(uint val);</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    QByteArray get8BitHexFormat(uchar val);</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    uint from11bitHex(QByteArray data);</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    uchar from8bitHex(QByteArray data);</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keywordtype">bool</span> checkHex(<span class="keywordtype">char</span> data);</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    QByteArray rx_frame;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keywordtype">int</span> rx_index;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="keywordtype">bool</span> setStandardFilter(uint addr, uint msk);</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="keywordtype">bool</span> open(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="keywordtype">void</span> close(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keywordtype">void</span> clearBuffer(uint i);</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="keywordtype">bool</span> isOpen;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>};</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="preprocessor">#endif </span><span class="comment">// TITAN_CAN_DRIVER_H</span></div>
+<div class="ttc" id="aclasscan_driver_interface_html"><div class="ttname"><a href="classcan_driver_interface.html">canDriverInterface</a></div><div class="ttdef"><b>Definition:</b> can_driver_class_interface.h:111</div></div>
+<div class="ttc" id="aclasstitan_can_driver_html"><div class="ttname"><a href="classtitan_can_driver.html">titanCanDriver</a></div><div class="ttdef"><b>Definition:</b> titanCanDriver.h:8</div></div>
+<div class="ttc" id="aclasstitan_can_driver_html_a1902ac9d2dc5ca6e2b1560de5147c581"><div class="ttname"><a href="classtitan_can_driver.html#a1902ac9d2dc5ca6e2b1560de5147c581">titanCanDriver::driverOpen</a></div><div class="ttdeci">_canDriverErrors driverOpen(QByteArray COM, _canBaudRate BR, uint address, uint mask, QByteArray mode)</div><div class="ttdoc">Open the Bus communication.</div><div class="ttdef"><b>Definition:</b> titanCanDriver.cpp:21</div></div>
+<div class="ttc" id="aclasstitan_can_driver_html_af7d7ef765793a0ac8c692bf067e2d35a"><div class="ttname"><a href="classtitan_can_driver.html#af7d7ef765793a0ac8c692bf067e2d35a">titanCanDriver::driverClose</a></div><div class="ttdeci">void driverClose(void)</div><div class="ttdoc">Close Bus communication.</div><div class="ttdef"><b>Definition:</b> titanCanDriver.cpp:130</div></div>
+<div class="ttc" id="astructcan_driver_interface_1_1can_data_frame_html"><div class="ttname"><a href="structcan_driver_interface_1_1can_data_frame.html">canDriverInterface::canDataFrame</a></div><div class="ttdoc">This is the dataframe format.</div><div class="ttdef"><b>Definition:</b> can_driver_class_interface.h:125</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['windows_20module_0',['Windows module',['../group___w_i_n___m_o_d_u_l_e.html',1,'']]]
+  ['status_20frames_20interface_20description_2e_0',['Status frames interface description.',['../group___a_w_s-_s_t_a_t_u_s.html',1,'']]]
 ];

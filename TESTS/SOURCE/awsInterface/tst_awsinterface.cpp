@@ -58,7 +58,7 @@ public:
 
     public:
         void _inline Ok(QList<QString>* params = nullptr) {sendOk(params);}
-        void _inline DelayedOk(int time, QList<QString>* params = nullptr) {sendDelayedOk(time, params);}
+        void _inline DelayedOk(int time, QList<QString>* params = nullptr) {sendOk(time, params);}
         void _inline Nok(int code, QString error = "") {sendNok(code,error);}
         void _inline Status(QString status, QList<QString>* params = nullptr){sendStatus(status, params);}
 
@@ -687,7 +687,7 @@ void test_awsInterface::test_awsInterface_GANTRY_SelectProjection()
 {
 
     spy = new QSignalSpy(pClient, SIGNAL(rxData(QByteArray)));
-    pInterface->GANTRY_SelectProjection();
+    pInterface->GANTRY_SelectProjection("RCC");
     while (spy->count() == 0)  QTest::qWait(10);
     QCOMPARE(spy->count(), 1);
 
@@ -696,7 +696,7 @@ void test_awsInterface::test_awsInterface_GANTRY_SelectProjection()
 
     commandProtocol proto(&data, QStringConverter::Encoding::Utf16LE);
     QCOMPARE(proto.getDecodedType() , commandProtocol::_STATUS_FRAME);
-    QCOMPARE(proto.getParams()->count() , 0);
+    QCOMPARE(proto.getParams()->count() , 1);
     QCOMPARE(proto.getCmd() , "GANTRY_SelectProjection");
 
     delete spy;
@@ -706,7 +706,7 @@ void test_awsInterface::test_awsInterface_GANTRY_SetAccessories()
 {
 
     spy = new QSignalSpy(pClient, SIGNAL(rxData(QByteArray)));
-    pInterface->GANTRY_SetAccessories();
+    pInterface->GANTRY_SetAccessories("POTTER", "PADDLE", "COLLI");
     while (spy->count() == 0)  QTest::qWait(10);
     QCOMPARE(spy->count(), 1);
 
@@ -715,7 +715,7 @@ void test_awsInterface::test_awsInterface_GANTRY_SetAccessories()
 
     commandProtocol proto(&data, QStringConverter::Encoding::Utf16LE);
     QCOMPARE(proto.getDecodedType() , commandProtocol::_STATUS_FRAME);
-    QCOMPARE(proto.getParams()->count() , 0);
+    QCOMPARE(proto.getParams()->count() , 3);
     QCOMPARE(proto.getCmd() , "GANTRY_SetAccessories");
 
     delete spy;
@@ -725,7 +725,7 @@ void test_awsInterface::test_awsInterface_GANTRY_SetTubeTemperature()
 {
 
     spy = new QSignalSpy(pClient, SIGNAL(rxData(QByteArray)));
-    pInterface->GANTRY_SetTubeTemperature();
+    pInterface->GANTRY_SetTubeTemperature("ANODE","HOUSING");
     while (spy->count() == 0)  QTest::qWait(10);
     QCOMPARE(spy->count(), 1);
 
@@ -734,7 +734,7 @@ void test_awsInterface::test_awsInterface_GANTRY_SetTubeTemperature()
 
     commandProtocol proto(&data, QStringConverter::Encoding::Utf16LE);
     QCOMPARE(proto.getDecodedType() , commandProtocol::_STATUS_FRAME);
-    QCOMPARE(proto.getParams()->count() , 0);
+    QCOMPARE(proto.getParams()->count() , 2);
     QCOMPARE(proto.getCmd() , "GANTRY_SetTubeTemperature");
 
     delete spy;
@@ -763,7 +763,7 @@ void test_awsInterface::test_awsInterface_GANTRY_XraySequenceCompleted()
 {
 
     spy = new QSignalSpy(pClient, SIGNAL(rxData(QByteArray)));
-    pInterface->GANTRY_XraySequenceCompleted();
+    pInterface->GANTRY_XraySequenceCompleted("OK");
     while (spy->count() == 0)  QTest::qWait(10);
     QCOMPARE(spy->count(), 1);
 
@@ -772,7 +772,7 @@ void test_awsInterface::test_awsInterface_GANTRY_XraySequenceCompleted()
 
     commandProtocol proto(&data, QStringConverter::Encoding::Utf16LE);
     QCOMPARE(proto.getDecodedType() , commandProtocol::_STATUS_FRAME);
-    QCOMPARE(proto.getParams()->count() , 0);
+    QCOMPARE(proto.getParams()->count() , 1);
     QCOMPARE(proto.getCmd() , "GANTRY_XraySequenceCompleted");
 
     delete spy;

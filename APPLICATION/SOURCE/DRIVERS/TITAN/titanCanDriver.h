@@ -2,7 +2,7 @@
 #define TITAN_CAN_DRIVER_H
 
 #include <QSerialPort>
-#include "canDriverClassInterface.h"
+#include "can_driver_class_interface.h"
 
 class titanCanDriver: public canDriverInterface
 {

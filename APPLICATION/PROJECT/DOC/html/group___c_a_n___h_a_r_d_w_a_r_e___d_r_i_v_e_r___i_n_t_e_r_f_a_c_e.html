@@ -72,7 +72,7 @@ $(function() {
 <p >The <a class="el" href="classcan_driver_interface.html">canDriverInterface</a> class. </p>
 <p >Thos class implements the API to control a Hardware Can communication board.</p>
 <p >The class creates a working thread on witch the communication takes place. The Application shall implement a user Class living in the Main Thread in order to interact with the driver.</p>
-<h1><a class="anchor" id="autotoc_md1"></a>
+<h1><a class="anchor" id="autotoc_md13"></a>
 API Functions</h1>
 <p >The class implements the following API interface functions:</p><ul>
 <li>openDriverPort(): this function opens a reception filter on the can Interface board. As for the CAN protocol definition, a node is defined with a CANID identifier that can be at 11 bit (standard mode) or 18 bit (Extended mode).</li>
@@ -82,7 +82,7 @@ API Functions</h1>
 <li>driverDistructor(): the class driver is deleted. <dl class="section attention"><dt>Attention</dt><dd>this method shall be called by the application main thread in order to delete the class and its inherent thread.</dd></dl>
 </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2"></a>
+<h1><a class="anchor" id="autotoc_md14"></a>
 USAGE</h1>
 <p >The Driver Class implementing the API for a given interface board shall inherit this class in order to implement a correct interface for the Application.</p>
 <p >The class shall implement the following virtual methods with proper board commands:</p>
@@ -114,7 +114,7 @@ USAGE</h1>
            // Hardware shutdown ...
            return true;
        }
-       bool openPort(uint addr, uint msk, bool md){
+       bool openPort(QString com, QString BR, uint addr, uint msk, bool md){
            // Open acceptance filter here ..
            return true;
        }

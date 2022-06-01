@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.3"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>MainCpu Software Documentation: C:/Users/marco/Documents/GitHub/GantryZ190/GANTRY/MAIN_CPU/SOURCE/LIB/tcpipserver.h Source File</title>
+<title>MainCpu Software Documentation: C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/APPLICATION/SOURCE/LIB/tcpipserver.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -63,7 +63,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_950a53138ecc02037eb54ae42183d402.html">SOURCE</a></li><li class="navelem"><a class="el" href="dir_1eb2ac93a1c50722515aa7201262b54f.html">LIB</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_08351310ddebaca638dbb30498c8cafd.html">SOURCE</a></li><li class="navelem"><a class="el" href="dir_437eb9ebaa699160a97ffba2be0dd522.html">LIB</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -94,30 +94,33 @@ $(function() {
 <div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="class_tcp_ip_server.html#a7635d61e3f5d7d0da94d96e4ad214039">   77</a></span>    QHostAddress _inline <a class="code hl_function" href="class_tcp_ip_server.html#a7635d61e3f5d7d0da94d96e4ad214039">localAddress</a>(){<span class="keywordflow">return</span> localip;} </div>
 <div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="class_tcp_ip_server.html#a10d953e914acf0eacc6432eff0505563">   78</a></span>    <span class="keywordtype">bool</span> _inline <a class="code hl_function" href="class_tcp_ip_server.html#a10d953e914acf0eacc6432eff0505563">isConnected</a>(<span class="keywordtype">void</span>) {<span class="keywordflow">return</span> connection_status;} </div>
 <div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_tcp_ip_server.html#a86e43344030d6b9a20fc51d7ccba87f8">txData</a>(QByteArray data, <span class="keywordtype">long</span> timeout = <a class="code hl_variable" href="class_tcp_ip_server.html#ab7a4cd000f5102e640d1aa08739137ab">TcpIpServer::_DEFAULT_TX_TIMEOUT</a>);</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span><span class="keyword">protected</span>:</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_tcp_ip_server.html#afa8e6ddfeacb2c8fffc516c853e39487">incomingConnection</a>(qintptr socketDescriptor) <span class="keyword">override</span>; </div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>signals:</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="class_tcp_ip_server.html#a50358efd8a9f3b385b0ad6030817383c">   94</a></span>    <span class="keywordtype">void</span> <a class="code hl_signal" href="class_tcp_ip_server.html#a50358efd8a9f3b385b0ad6030817383c">serverConnection</a>(<span class="keywordtype">bool</span> status);</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno"><a class="line" href="class_tcp_ip_server.html#a353fcb7e5360e5aa72a9c6de448f819f">   95</a></span>    <span class="keywordtype">void</span> <a class="code hl_signal" href="class_tcp_ip_server.html#a353fcb7e5360e5aa72a9c6de448f819f">rxData</a>(QByteArray data); </div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span><span class="keyword">private</span> slots:</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    <span class="keywordtype">void</span> socketRxData(); </div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <span class="keywordtype">void</span> disconnected(); </div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="keywordtype">void</span> socketError(QAbstractSocket::SocketError error); </div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    <span class="keywordtype">bool</span> connection_status;     </div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    QTcpSocket*  socket;        </div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    QHostAddress localip;       </div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    quint16      localport;     </div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>};</div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span> </div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span><span class="preprocessor">#endif </span><span class="comment">// TCPIPSERVER_H</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="keyword">public</span> slots:</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <span class="keywordtype">void</span> <a class="code hl_slot" href="class_tcp_ip_server.html#a86e43344030d6b9a20fc51d7ccba87f8">txData</a>(QByteArray data, <span class="keywordtype">long</span> timeout = <a class="code hl_variable" href="class_tcp_ip_server.html#ab7a4cd000f5102e640d1aa08739137ab">TcpIpServer::_DEFAULT_TX_TIMEOUT</a>);</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_tcp_ip_server.html#afa8e6ddfeacb2c8fffc516c853e39487">incomingConnection</a>(qintptr socketDescriptor) <span class="keyword">override</span>; </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>signals:</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno"><a class="line" href="class_tcp_ip_server.html#a50358efd8a9f3b385b0ad6030817383c">   96</a></span>    <span class="keywordtype">void</span> <a class="code hl_signal" href="class_tcp_ip_server.html#a50358efd8a9f3b385b0ad6030817383c">serverConnection</a>(<span class="keywordtype">bool</span> status);</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno"><a class="line" href="class_tcp_ip_server.html#a353fcb7e5360e5aa72a9c6de448f819f">   97</a></span>    <span class="keywordtype">void</span> <a class="code hl_signal" href="class_tcp_ip_server.html#a353fcb7e5360e5aa72a9c6de448f819f">rxData</a>(QByteArray data); </div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span><span class="keyword">private</span> slots:</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="keywordtype">void</span> socketRxData(); </div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <span class="keywordtype">void</span> disconnected(); </div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    <span class="keywordtype">void</span> socketError(QAbstractSocket::SocketError error); </div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    <span class="keywordtype">bool</span> connection_status;     </div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    QTcpSocket*  socket;        </div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    QHostAddress localip;       </div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    quint16      localport;     </div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>};</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> </div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span><span class="preprocessor">#endif </span><span class="comment">// TCPIPSERVER_H</span></div>
 <div class="ttc" id="aclass_tcp_ip_server_html"><div class="ttname"><a href="class_tcp_ip_server.html">TcpIpServer</a></div><div class="ttdoc">This class handles Tcp Ip server connections.</div><div class="ttdef"><b>Definition:</b> tcpipserver.h:53</div></div>
 <div class="ttc" id="aclass_tcp_ip_server_html_a10d953e914acf0eacc6432eff0505563"><div class="ttname"><a href="class_tcp_ip_server.html#a10d953e914acf0eacc6432eff0505563">TcpIpServer::isConnected</a></div><div class="ttdeci">bool _inline isConnected(void)</div><div class="ttdoc">Returns the crrent connction status.</div><div class="ttdef"><b>Definition:</b> tcpipserver.h:78</div></div>
 <div class="ttc" id="aclass_tcp_ip_server_html_a353fcb7e5360e5aa72a9c6de448f819f"><div class="ttname"><a href="class_tcp_ip_server.html#a353fcb7e5360e5aa72a9c6de448f819f">TcpIpServer::rxData</a></div><div class="ttdeci">void rxData(QByteArray data)</div><div class="ttdoc">signals for reception data handling</div></div>
@@ -125,7 +128,7 @@ $(function() {
 <div class="ttc" id="aclass_tcp_ip_server_html_a4dbad1405e6304048b8e192c9f3d9aea"><div class="ttname"><a href="class_tcp_ip_server.html#a4dbad1405e6304048b8e192c9f3d9aea">TcpIpServer::Start</a></div><div class="ttdeci">bool Start(void)</div><div class="ttdoc">Start socket listening.</div><div class="ttdef"><b>Definition:</b> tcpipserver.cpp:22</div></div>
 <div class="ttc" id="aclass_tcp_ip_server_html_a50358efd8a9f3b385b0ad6030817383c"><div class="ttname"><a href="class_tcp_ip_server.html#a50358efd8a9f3b385b0ad6030817383c">TcpIpServer::serverConnection</a></div><div class="ttdeci">void serverConnection(bool status)</div><div class="ttdoc">signal for connection change state</div></div>
 <div class="ttc" id="aclass_tcp_ip_server_html_a7635d61e3f5d7d0da94d96e4ad214039"><div class="ttname"><a href="class_tcp_ip_server.html#a7635d61e3f5d7d0da94d96e4ad214039">TcpIpServer::localAddress</a></div><div class="ttdeci">QHostAddress _inline localAddress()</div><div class="ttdoc">returns the IP Address binded</div><div class="ttdef"><b>Definition:</b> tcpipserver.h:77</div></div>
-<div class="ttc" id="aclass_tcp_ip_server_html_a86e43344030d6b9a20fc51d7ccba87f8"><div class="ttname"><a href="class_tcp_ip_server.html#a86e43344030d6b9a20fc51d7ccba87f8">TcpIpServer::txData</a></div><div class="ttdeci">void txData(QByteArray data, long timeout=TcpIpServer::_DEFAULT_TX_TIMEOUT)</div><div class="ttdoc">Tx Data sending method.</div><div class="ttdef"><b>Definition:</b> tcpipserver.cpp:99</div></div>
+<div class="ttc" id="aclass_tcp_ip_server_html_a86e43344030d6b9a20fc51d7ccba87f8"><div class="ttname"><a href="class_tcp_ip_server.html#a86e43344030d6b9a20fc51d7ccba87f8">TcpIpServer::txData</a></div><div class="ttdeci">void txData(QByteArray data, long timeout=TcpIpServer::_DEFAULT_TX_TIMEOUT)</div><div class="ttdoc">Tx Data sending method.</div><div class="ttdef"><b>Definition:</b> tcpipserver.cpp:100</div></div>
 <div class="ttc" id="aclass_tcp_ip_server_html_aa601a1cb2081fb9d161a80459aa383fd"><div class="ttname"><a href="class_tcp_ip_server.html#aa601a1cb2081fb9d161a80459aa383fd">TcpIpServer::TcpIpServer</a></div><div class="ttdeci">TcpIpServer(QHostAddress ipaddress, int port)</div><div class="ttdoc">Class Constructor.</div><div class="ttdef"><b>Definition:</b> tcpipserver.cpp:5</div></div>
 <div class="ttc" id="aclass_tcp_ip_server_html_ab7a4cd000f5102e640d1aa08739137ab"><div class="ttname"><a href="class_tcp_ip_server.html#ab7a4cd000f5102e640d1aa08739137ab">TcpIpServer::_DEFAULT_TX_TIMEOUT</a></div><div class="ttdeci">static const long _DEFAULT_TX_TIMEOUT</div><div class="ttdoc">Default timeout in ms for tx data.</div><div class="ttdef"><b>Definition:</b> tcpipserver.h:66</div></div>
 <div class="ttc" id="aclass_tcp_ip_server_html_afa8e6ddfeacb2c8fffc516c853e39487"><div class="ttname"><a href="class_tcp_ip_server.html#afa8e6ddfeacb2c8fffc516c853e39487">TcpIpServer::incomingConnection</a></div><div class="ttdeci">void incomingConnection(qintptr socketDescriptor) override</div><div class="ttdoc">Incoming connection slot.</div><div class="ttdef"><b>Definition:</b> tcpipserver.cpp:41</div></div>

@@ -34,7 +34,7 @@ DISTFILES +=
 SOURCES += \
     $${TARGET_SOURCE}/main.cpp \
     $${TARGET_SOURCE}/startupWindow.cpp \    
-    $${MAIN_CPU}/LIB/awsinterface.cpp \
+    $${MAIN_CPU}/COMMUNICATION/AWS/awsinterface.cpp \
     $${MAIN_CPU}/LIB/commandprotocol.cpp \
     $${MAIN_CPU}/LIB/tcpipserver.cpp \
     $${MAIN_CPU}/LIB/tcpipclient.cpp \
@@ -42,7 +42,7 @@ SOURCES += \
 
 HEADERS += \
     $${TARGET_SOURCE}/startupWindow.h \
-    $${MAIN_CPU}/LIB/awsinterface.h \
+    $${MAIN_CPU}/COMMUNICATION/AWS/awsinterface.h \
     $${MAIN_CPU}/LIB/commandprotocol.h \
     $${MAIN_CPU}/LIB/tcpipserver.h \
     $${MAIN_CPU}/LIB/tcpipclient.h \
@@ -52,6 +52,7 @@ HEADERS += \
 # Aggiunge tutti i path di progetto
 INCLUDEPATH += \
     $${MAIN_CPU}/LIB \
+    $${MAIN_CPU}/COMMUNICATION/AWS \
     $${TARGET_SOURCE} \
 
 

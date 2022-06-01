@@ -572,7 +572,10 @@ void test_commandProtocol::test_commandProtocol_13()
 {
     QByteArray frame = "<010 0037 % Comando Par1 Par2 Par3 %>";
     commandProtocol rxcom(&frame, QStringConverter::Encoding::Utf8);
-    frame = rxcom.formatOkAnswer(0);
+
+    QList<QString> params;
+    params.append(QString("%1").arg((int) 0));
+    frame = rxcom.formatOk(&params);
 
     commandProtocol command(&frame, QStringConverter::Encoding::Utf8);
     QCOMPARE(command.getDecodedType(), commandProtocol::_OK_FRAME);
@@ -595,7 +598,10 @@ void test_commandProtocol::test_commandProtocol_14()
 {
     QByteArray frame = "<010 0037 % Comando Par1 Par2 Par3 %>";
     commandProtocol rxcom(&frame, QStringConverter::Encoding::Utf8);
-    frame = rxcom.formatOkAnswer(15);
+
+    QList<QString> params;
+    params.append(QString("%1").arg((int) 15));
+    frame = rxcom.formatOk(&params);
 
     commandProtocol command(&frame, QStringConverter::Encoding::Utf8);
     QCOMPARE(command.getDecodedType(), commandProtocol::_DELAYED_FRAME);

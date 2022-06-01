@@ -64,6 +64,7 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#pub-slots">Public Slots</a> &#124;
 <a href="#signals">Signals</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-attribs">Static Public Attributes</a> &#124;
@@ -84,6 +85,12 @@ Inheritance diagram for TcpIpServer:</div>
   <img src="class_tcp_ip_server.png" alt=""/>
  </div></div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-slots" name="pub-slots"></a>
+Public Slots</h2></td></tr>
+<tr class="memitem:a86e43344030d6b9a20fc51d7ccba87f8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tcp_ip_server.html#a86e43344030d6b9a20fc51d7ccba87f8">txData</a> (QByteArray data, long timeout=<a class="el" href="class_tcp_ip_server.html#ab7a4cd000f5102e640d1aa08739137ab">TcpIpServer::_DEFAULT_TX_TIMEOUT</a>)</td></tr>
+<tr class="memdesc:a86e43344030d6b9a20fc51d7ccba87f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tx Data sending method.  <a href="class_tcp_ip_server.html#a86e43344030d6b9a20fc51d7ccba87f8">More...</a><br /></td></tr>
+<tr class="separator:a86e43344030d6b9a20fc51d7ccba87f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="signals" name="signals"></a>
 Signals</h2></td></tr>
 <tr class="memitem:a50358efd8a9f3b385b0ad6030817383c"><td class="memItemLeft" align="right" valign="top"><a id="a50358efd8a9f3b385b0ad6030817383c" name="a50358efd8a9f3b385b0ad6030817383c"></a>
@@ -115,9 +122,6 @@ QHostAddress _inline&#160;</td><td class="memItemRight" valign="bottom"><b>local
 bool _inline&#160;</td><td class="memItemRight" valign="bottom"><b>isConnected</b> (void)</td></tr>
 <tr class="memdesc:a10d953e914acf0eacc6432eff0505563"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the crrent connction status. <br /></td></tr>
 <tr class="separator:a10d953e914acf0eacc6432eff0505563"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a86e43344030d6b9a20fc51d7ccba87f8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tcp_ip_server.html#a86e43344030d6b9a20fc51d7ccba87f8">txData</a> (QByteArray data, long timeout=<a class="el" href="class_tcp_ip_server.html#ab7a4cd000f5102e640d1aa08739137ab">TcpIpServer::_DEFAULT_TX_TIMEOUT</a>)</td></tr>
-<tr class="memdesc:a86e43344030d6b9a20fc51d7ccba87f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tx Data sending method.  <a href="class_tcp_ip_server.html#a86e43344030d6b9a20fc51d7ccba87f8">More...</a><br /></td></tr>
-<tr class="separator:a86e43344030d6b9a20fc51d7ccba87f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
@@ -138,7 +142,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>incomingConnection</b
 <p >This class allow to open a port on the ethernet networks.</p>
 <p >The class allows to heither open a local host port or a port of a network with a given IP address.</p>
 <p >The socket accepts only one connection at a time: however an incoming connection replaces a current connected connection.</p>
-<h1><a class="anchor" id="autotoc_md22"></a>
+<h1><a class="anchor" id="autotoc_md33"></a>
 INTERFACE METHODS</h1>
 <p >The class implements the following methods to operate:</p><ul>
 <li><a class="el" href="class_tcp_ip_server.html#a86e43344030d6b9a20fc51d7ccba87f8" title="Tx Data sending method.">TcpIpServer::txData()</a>: sends data to the client;</li>
@@ -147,7 +151,7 @@ INTERFACE METHODS</h1>
 <li><a class="el" href="class_tcp_ip_server.html#a7635d61e3f5d7d0da94d96e4ad214039" title="returns the IP Address binded">TcpIpServer::localAddress()</a> : returns the IP address of the used network;</li>
 <li><a class="el" href="class_tcp_ip_server.html#a10d953e914acf0eacc6432eff0505563" title="Returns the crrent connction status.">TcpIpServer::isConnected()</a> : returns the current connection status;</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md23"></a>
+<h1><a class="anchor" id="autotoc_md34"></a>
 USAGE</h1>
 <ul>
 <li>Instance the class providing the IP address or Local Host address and the port: <pre class="fragment">   Case with a given IP address:
@@ -237,10 +241,13 @@ USAGE</h1>
 </div>
 </div>
 <a id="a86e43344030d6b9a20fc51d7ccba87f8" name="a86e43344030d6b9a20fc51d7ccba87f8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a86e43344030d6b9a20fc51d7ccba87f8">&#9670;&nbsp;</a></span>txData()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a86e43344030d6b9a20fc51d7ccba87f8">&#9670;&nbsp;</a></span>txData</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void TcpIpServer::txData </td>
@@ -260,6 +267,11 @@ USAGE</h1>
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Tx Data sending method. </p>
@@ -274,8 +286,8 @@ USAGE</h1>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>C:/Users/marco/Documents/GitHub/GantryZ190/GANTRY/MAIN_CPU/SOURCE/LIB/<a class="el" href="tcpipserver_8h_source.html">tcpipserver.h</a></li>
-<li>C:/Users/marco/Documents/GitHub/GantryZ190/GANTRY/MAIN_CPU/SOURCE/LIB/tcpipserver.cpp</li>
+<li>C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/APPLICATION/SOURCE/LIB/<a class="el" href="tcpipserver_8h_source.html">tcpipserver.h</a></li>
+<li>C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/APPLICATION/SOURCE/LIB/tcpipserver.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

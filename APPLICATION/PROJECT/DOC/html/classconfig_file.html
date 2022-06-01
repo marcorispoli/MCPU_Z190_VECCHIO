@@ -143,7 +143,7 @@ _inline bool&#160;</td><td class="memItemRight" valign="bottom"><b>isAccess</b> 
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >This class handles the configuration file management. </p>
-<h1><a class="anchor" id="autotoc_md19"></a>
+<h1><a class="anchor" id="autotoc_md30"></a>
 ABSTRACT</h1>
 <p >The configuration file is a special file with a proper format: a string based file with TAGS and a variable set of parameters.</p>
 <p >The basic characteristics are:</p>
@@ -154,7 +154,7 @@ ABSTRACT</h1>
 <li>Etherogeneous data content: all data are in string format convertible to any kind of data types.</li>
 <li>File revision management.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md20"></a>
+<h1><a class="anchor" id="autotoc_md31"></a>
 FILE DATA FORMAT</h1>
 <p >The file is composed of several string lines, each one handling a given parameter with a list of values.</p>
 <p >Each parameter is defined by a static string as a TAG identifier. The following string show the data format: </p><pre class="fragment">  # Comment line ......
@@ -165,7 +165,7 @@ FILE DATA FORMAT</h1>
   - TAG: is a unique string identifier. This string shall be used in the code in order to point to a parameter.
   - PARAM1, .., PARAM-N: are strings separated by commas, representing the parameter content,
     splitted in a list of etherogeneus values in string format.</pre><p >A special TAG = "REVISION" is reserved to store the file revision code in the file. This tag is used to determines if the configuration file is at the correct revision when the application accesses the file. A virtual <a class="el" href="classconfig_file.html#a67f231da90f7f7990bcb089f509b5b80" title="revisionChangeCallback This callback is called whenever a file config results of different revision t...">configFile::revisionChangeCallback()</a> function is called in case a wrong revision should be detected.</p>
-<h1><a class="anchor" id="autotoc_md21"></a>
+<h1><a class="anchor" id="autotoc_md32"></a>
 USAGE</h1>
 <p >The application shall subclass this class in order to create a specific configuration file.</p>
 <p >In the constructor of the subclass the application shall pass a static structure defining the <a class="el" href="structconfig_file_1_1file_descriptor_t.html" title="Configuration file descriptor.">configFile::fileDescriptorT</a> of the configuration file. The fileDescriptor content defines:</p><ul>
@@ -516,8 +516,8 @@ template&lt;typename T &gt; </div>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>C:/Users/marco/Documents/GitHub/GantryZ190/GANTRY/MAIN_CPU/SOURCE/LIB/<a class="el" href="configfile_8h_source.html">configfile.h</a></li>
-<li>C:/Users/marco/Documents/GitHub/GantryZ190/GANTRY/MAIN_CPU/SOURCE/LIB/configfile.cpp</li>
+<li>C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/APPLICATION/SOURCE/LIB/<a class="el" href="configfile_8h_source.html">configfile.h</a></li>
+<li>C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/APPLICATION/SOURCE/LIB/configfile.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

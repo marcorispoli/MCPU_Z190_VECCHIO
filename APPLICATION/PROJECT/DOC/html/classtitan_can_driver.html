@@ -81,83 +81,122 @@ Inheritance diagram for titanCanDriver:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a737791e1e0ccee95e9c4b7700b510185"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtitan_can_driver.html#a737791e1e0ccee95e9c4b7700b510185">hardwareInit</a> ()</td></tr>
-<tr class="memdesc:a737791e1e0ccee95e9c4b7700b510185"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implement the hardware initialization functions.  <a href="classtitan_can_driver.html#a737791e1e0ccee95e9c4b7700b510185">More...</a><br /></td></tr>
-<tr class="separator:a737791e1e0ccee95e9c4b7700b510185"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a371e3d52b3d5434b03990bc9a44ea0b1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtitan_can_driver.html#a371e3d52b3d5434b03990bc9a44ea0b1">hardwareShutdown</a> ()</td></tr>
-<tr class="memdesc:a371e3d52b3d5434b03990bc9a44ea0b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implements the hardware shutdown functions.  <a href="classtitan_can_driver.html#a371e3d52b3d5434b03990bc9a44ea0b1">More...</a><br /></td></tr>
-<tr class="separator:a371e3d52b3d5434b03990bc9a44ea0b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4f7fe40257396a46589d2c482aa1ba08"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtitan_can_driver.html#a4f7fe40257396a46589d2c482aa1ba08">openPort</a> (uint addr, uint msk, bool md)</td></tr>
-<tr class="memdesc:a4f7fe40257396a46589d2c482aa1ba08"><td class="mdescLeft">&#160;</td><td class="mdescRight">openPort This function shall open a reception filter on the can board  <a href="classtitan_can_driver.html#a4f7fe40257396a46589d2c482aa1ba08">More...</a><br /></td></tr>
-<tr class="separator:a4f7fe40257396a46589d2c482aa1ba08"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7ee72ea6bafcef77ccf4159f63e4ec4f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtitan_can_driver.html#a7ee72ea6bafcef77ccf4159f63e4ec4f">closePorts</a> (void)</td></tr>
-<tr class="memdesc:a7ee72ea6bafcef77ccf4159f63e4ec4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">closes all the acceptance filters on the board  <a href="classtitan_can_driver.html#a7ee72ea6bafcef77ccf4159f63e4ec4f">More...</a><br /></td></tr>
-<tr class="separator:a7ee72ea6bafcef77ccf4159f63e4ec4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aca05a2443ad9c047ae026d7038d1f51f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtitan_can_driver.html#aca05a2443ad9c047ae026d7038d1f51f">run</a> (void)</td></tr>
-<tr class="memdesc:aca05a2443ad9c047ae026d7038d1f51f"><td class="mdescLeft">&#160;</td><td class="mdescRight">activates the BUS arbitration  <a href="classtitan_can_driver.html#aca05a2443ad9c047ae026d7038d1f51f">More...</a><br /></td></tr>
-<tr class="separator:aca05a2443ad9c047ae026d7038d1f51f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a700f3bce39ddcec3a4a657e3243539c0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtitan_can_driver.html#a700f3bce39ddcec3a4a657e3243539c0">pause</a> (void)</td></tr>
-<tr class="memdesc:a700f3bce39ddcec3a4a657e3243539c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">pauses the BUS arbitration  <a href="classtitan_can_driver.html#a700f3bce39ddcec3a4a657e3243539c0">More...</a><br /></td></tr>
-<tr class="separator:a700f3bce39ddcec3a4a657e3243539c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2e2454dd5f5b34f19ee43abd4c5fcfe8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structcan_driver_interface_1_1can_data_frame.html">canDataFrame</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtitan_can_driver.html#a2e2454dd5f5b34f19ee43abd4c5fcfe8">driverTxRxData</a> (<a class="el" href="structcan_driver_interface_1_1can_data_frame.html">canDataFrame</a> frame, int tmo)</td></tr>
-<tr class="memdesc:a2e2454dd5f5b34f19ee43abd4c5fcfe8"><td class="mdescLeft">&#160;</td><td class="mdescRight">driverTxRxData This function implements the data Transmission/Reception on the BUS. The function shall be implemented as a blockant with timeout. In case no data should be received, the function shall return a all 0 frame.  <a href="classtitan_can_driver.html#a2e2454dd5f5b34f19ee43abd4c5fcfe8">More...</a><br /></td></tr>
-<tr class="separator:a2e2454dd5f5b34f19ee43abd4c5fcfe8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1902ac9d2dc5ca6e2b1560de5147c581"><td class="memItemLeft" align="right" valign="top">_canDriverErrors&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtitan_can_driver.html#a1902ac9d2dc5ca6e2b1560de5147c581">driverOpen</a> (QByteArray COM, _canBaudRate BR, uint address, uint mask, QByteArray mode)</td></tr>
+<tr class="memdesc:a1902ac9d2dc5ca6e2b1560de5147c581"><td class="mdescLeft">&#160;</td><td class="mdescRight">Open the Bus communication.  <a href="classtitan_can_driver.html#a1902ac9d2dc5ca6e2b1560de5147c581">More...</a><br /></td></tr>
+<tr class="separator:a1902ac9d2dc5ca6e2b1560de5147c581"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7d7ef765793a0ac8c692bf067e2d35a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtitan_can_driver.html#af7d7ef765793a0ac8c692bf067e2d35a">driverClose</a> (void)</td></tr>
+<tr class="memdesc:af7d7ef765793a0ac8c692bf067e2d35a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Close Bus communication.  <a href="classtitan_can_driver.html#af7d7ef765793a0ac8c692bf067e2d35a">More...</a><br /></td></tr>
+<tr class="separator:af7d7ef765793a0ac8c692bf067e2d35a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a841751fa4c2851a5f0e213ab7fa9e867"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtitan_can_driver.html#a841751fa4c2851a5f0e213ab7fa9e867">driverRead</a> (void)</td></tr>
+<tr class="separator:a841751fa4c2851a5f0e213ab7fa9e867"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b75b3e1c898f909561e26d4fd54ea8a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtitan_can_driver.html#a1b75b3e1c898f909561e26d4fd54ea8a">driverWrite</a> (<a class="el" href="structcan_driver_interface_1_1can_data_frame.html">canDriverInterface::canDataFrame</a> frame)</td></tr>
+<tr class="separator:a1b75b3e1c898f909561e26d4fd54ea8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ab501098261a9ac8184d39ab02b5a46"><td class="memItemLeft" align="right" valign="top"><a id="a3ab501098261a9ac8184d39ab02b5a46" name="a3ab501098261a9ac8184d39ab02b5a46"></a>
+_inline QByteArray&#160;</td><td class="memItemRight" valign="bottom"><b>getAddr</b> (void)</td></tr>
+<tr class="separator:a3ab501098261a9ac8184d39ab02b5a46"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6224a28baf422688e230dd8001b8c93"><td class="memItemLeft" align="right" valign="top"><a id="af6224a28baf422688e230dd8001b8c93" name="af6224a28baf422688e230dd8001b8c93"></a>
+_inline QByteArray&#160;</td><td class="memItemRight" valign="bottom"><b>getMask</b> (void)</td></tr>
+<tr class="separator:af6224a28baf422688e230dd8001b8c93"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa903e75f9fb4cee1b602fb40ade2331e"><td class="memItemLeft" align="right" valign="top"><a id="aa903e75f9fb4cee1b602fb40ade2331e" name="aa903e75f9fb4cee1b602fb40ade2331e"></a>
+_inline QByteArray&#160;</td><td class="memItemRight" valign="bottom"><b>getVersion</b> (void)</td></tr>
+<tr class="separator:aa903e75f9fb4cee1b602fb40ade2331e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27ef178c734ff6bb9619806b79e46f5f"><td class="memItemLeft" align="right" valign="top"><a id="a27ef178c734ff6bb9619806b79e46f5f" name="a27ef178c734ff6bb9619806b79e46f5f"></a>
+_inline QByteArray&#160;</td><td class="memItemRight" valign="bottom"><b>getSerialNumber</b> (void)</td></tr>
+<tr class="separator:a27ef178c734ff6bb9619806b79e46f5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9568f975686c8473af7c50814973cd87"><td class="memItemLeft" align="right" valign="top"><a id="a9568f975686c8473af7c50814973cd87" name="a9568f975686c8473af7c50814973cd87"></a>
+_inline QByteArray&#160;</td><td class="memItemRight" valign="bottom"><b>getStatus</b> (void)</td></tr>
+<tr class="separator:a9568f975686c8473af7c50814973cd87"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30e750174011bd5df78407f2fa1ae862"><td class="memItemLeft" align="right" valign="top"><a id="a30e750174011bd5df78407f2fa1ae862" name="a30e750174011bd5df78407f2fa1ae862"></a>
+_inline QByteArray&#160;</td><td class="memItemRight" valign="bottom"><b>getRxFrame</b> (void)</td></tr>
+<tr class="separator:a30e750174011bd5df78407f2fa1ae862"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classcan_driver_interface"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classcan_driver_interface')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classcan_driver_interface.html">canDriverInterface</a></td></tr>
-<tr class="memitem:a3a27675aed2d3f4aed2153e3eae161d6 inherit pub_methods_classcan_driver_interface"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcan_driver_interface.html#a3a27675aed2d3f4aed2153e3eae161d6">openDriverPort</a> (uint address, uint mask, bool extended)</td></tr>
-<tr class="memdesc:a3a27675aed2d3f4aed2153e3eae161d6 inherit pub_methods_classcan_driver_interface"><td class="mdescLeft">&#160;</td><td class="mdescRight">openDriverPort This function executes several tasks:  <a href="classcan_driver_interface.html#a3a27675aed2d3f4aed2153e3eae161d6">More...</a><br /></td></tr>
-<tr class="separator:a3a27675aed2d3f4aed2153e3eae161d6 inherit pub_methods_classcan_driver_interface"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a20897d6946adaa0e8663c6dc831e5340 inherit pub_methods_classcan_driver_interface"><td class="memItemLeft" align="right" valign="top"><a id="a20897d6946adaa0e8663c6dc831e5340" name="a20897d6946adaa0e8663c6dc831e5340"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>closeDriver</b> (void)</td></tr>
-<tr class="memdesc:a20897d6946adaa0e8663c6dc831e5340 inherit pub_methods_classcan_driver_interface"><td class="mdescLeft">&#160;</td><td class="mdescRight">closeDriver This function close the communication and shutdown the driver. The Thread however remain active. <br /></td></tr>
-<tr class="separator:a20897d6946adaa0e8663c6dc831e5340 inherit pub_methods_classcan_driver_interface"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab8700bec833ba4eab409ee8a7dd03089 inherit pub_methods_classcan_driver_interface"><td class="memItemLeft" align="right" valign="top"><a id="ab8700bec833ba4eab409ee8a7dd03089" name="ab8700bec833ba4eab409ee8a7dd03089"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>runDriver</b> (void)</td></tr>
-<tr class="memdesc:ab8700bec833ba4eab409ee8a7dd03089 inherit pub_methods_classcan_driver_interface"><td class="mdescLeft">&#160;</td><td class="mdescRight">runDriver The communication can start. This command is valid only if the hardware has been initialized and a filter has been open. <br /></td></tr>
-<tr class="separator:ab8700bec833ba4eab409ee8a7dd03089 inherit pub_methods_classcan_driver_interface"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a422039c1006187704020e8583bd40b3a inherit pub_methods_classcan_driver_interface"><td class="memItemLeft" align="right" valign="top"><a id="a422039c1006187704020e8583bd40b3a" name="a422039c1006187704020e8583bd40b3a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>stopDriver</b> (void)</td></tr>
-<tr class="memdesc:a422039c1006187704020e8583bd40b3a inherit pub_methods_classcan_driver_interface"><td class="mdescLeft">&#160;</td><td class="mdescRight">stopDriver The communication is paused <br /></td></tr>
-<tr class="separator:a422039c1006187704020e8583bd40b3a inherit pub_methods_classcan_driver_interface"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa8cf8c219d473dcb8283739de99d9c48 inherit pub_methods_classcan_driver_interface"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcan_driver_interface.html#aa8cf8c219d473dcb8283739de99d9c48">driverDistructor</a> (void)</td></tr>
-<tr class="memdesc:aa8cf8c219d473dcb8283739de99d9c48 inherit pub_methods_classcan_driver_interface"><td class="mdescLeft">&#160;</td><td class="mdescRight">driverDistructor  <a href="classcan_driver_interface.html#aa8cf8c219d473dcb8283739de99d9c48">More...</a><br /></td></tr>
-<tr class="separator:aa8cf8c219d473dcb8283739de99d9c48 inherit pub_methods_classcan_driver_interface"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afff41853551e7a637cdad0c65b9b7e52 inherit pub_methods_classcan_driver_interface"><td class="memItemLeft" align="right" valign="top"><a id="afff41853551e7a637cdad0c65b9b7e52" name="afff41853551e7a637cdad0c65b9b7e52"></a>
+_inline <a class="el" href="structcan_driver_interface_1_1can_data_frame.html">canDataFrame</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getCanRxFrame</b> ()</td></tr>
+<tr class="separator:afff41853551e7a637cdad0c65b9b7e52 inherit pub_methods_classcan_driver_interface"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pub_types_classcan_driver_interface"><td colspan="2" onclick="javascript:toggleInherit('pub_types_classcan_driver_interface')"><img src="closed.png" alt="-"/>&#160;Public Types inherited from <a class="el" href="classcan_driver_interface.html">canDriverInterface</a></td></tr>
+<tr class="memitem:ac771418ae18d9c89003217db9f18fc4c inherit pub_types_classcan_driver_interface"><td class="memItemLeft" align="right" valign="top"><a id="ac771418ae18d9c89003217db9f18fc4c" name="ac771418ae18d9c89003217db9f18fc4c"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>_canDriverErrors</b> { <br />
+&#160;&#160;<b>_CAN_DRIVER_NA</b> =0
+, <b>_CAN_DRIVER_OK</b>
+, <b>_CAN_DRIVER_INVALID_COM</b>
+, <b>_CAN_DRIVER_ALREADY_OPEN</b>
+, <br />
+&#160;&#160;<b>_CAN_DRIVER_INVALID_REVCODE</b>
+, <b>_CAN_DRIVER_INVALID_SN</b>
+, <b>_CAN_DRIVER_INVALID_ERRSTAT</b>
+, <b>_CAN_DRIVER_INVALID_BAUDRATE</b>
+, <br />
+&#160;&#160;<b>_CAN_DRIVER_INVALID_FILTER</b>
+, <b>_CAN_DRIVER_INVALID_CAN_OPENING</b>
+<br />
+ }</td></tr>
+<tr class="separator:ac771418ae18d9c89003217db9f18fc4c inherit pub_types_classcan_driver_interface"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56240ca054f8b8af967d5210a095c153 inherit pub_types_classcan_driver_interface"><td class="memItemLeft" align="right" valign="top"><a id="a56240ca054f8b8af967d5210a095c153" name="a56240ca054f8b8af967d5210a095c153"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>_canBaudRate</b> { <b>_CAN_100K</b> =0
+, <b>_CAN_250K</b>
+, <b>_CAN_500K</b>
+, <b>_CAN_1000K</b>
+ }</td></tr>
+<tr class="separator:a56240ca054f8b8af967d5210a095c153 inherit pub_types_classcan_driver_interface"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_slots_classcan_driver_interface"><td colspan="2" onclick="javascript:toggleInherit('pub_slots_classcan_driver_interface')"><img src="closed.png" alt="-"/>&#160;Public Slots inherited from <a class="el" href="classcan_driver_interface.html">canDriverInterface</a></td></tr>
-<tr class="memitem:a05f6c5b58f25ed1f734cd281f75947b4 inherit pub_slots_classcan_driver_interface"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcan_driver_interface.html#a05f6c5b58f25ed1f734cd281f75947b4">driverTxSlot</a> (<a class="el" href="structcan_driver_interface_1_1can_data_frame.html">canDriverInterface::canDataFrame</a> frame, int odIndex, uint tmo, QObject *device)</td></tr>
-<tr class="memdesc:a05f6c5b58f25ed1f734cd281f75947b4 inherit pub_slots_classcan_driver_interface"><td class="mdescLeft">&#160;</td><td class="mdescRight">driverTxSlot The driver implementing class shall connect this slot in order to send a data frame through the can hardwar board.  <a href="classcan_driver_interface.html#a05f6c5b58f25ed1f734cd281f75947b4">More...</a><br /></td></tr>
-<tr class="separator:a05f6c5b58f25ed1f734cd281f75947b4 inherit pub_slots_classcan_driver_interface"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac36d7ea4d4933956a05ca1e776722dd9 inherit pub_slots_classcan_driver_interface"><td class="memItemLeft" align="right" valign="top"><a id="ac36d7ea4d4933956a05ca1e776722dd9" name="ac36d7ea4d4933956a05ca1e776722dd9"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>openPort</b> (QByteArray COM, _canBaudRate BR, uint address, uint mask, QByteArray mode)</td></tr>
+<tr class="separator:ac36d7ea4d4933956a05ca1e776722dd9 inherit pub_slots_classcan_driver_interface"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2fcf049b60e8ed88f964024579a0a075 inherit pub_slots_classcan_driver_interface"><td class="memItemLeft" align="right" valign="top"><a id="a2fcf049b60e8ed88f964024579a0a075" name="a2fcf049b60e8ed88f964024579a0a075"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>closePort</b> ()</td></tr>
+<tr class="separator:a2fcf049b60e8ed88f964024579a0a075 inherit pub_slots_classcan_driver_interface"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a02c71618379c7125d79a9dc580cc3530 inherit pub_slots_classcan_driver_interface"><td class="memItemLeft" align="right" valign="top"><a id="a02c71618379c7125d79a9dc580cc3530" name="a02c71618379c7125d79a9dc580cc3530"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>driverSendData</b> (<a class="el" href="structcan_driver_interface_1_1can_data_frame.html">canDriverInterface::canDataFrame</a> frame)</td></tr>
+<tr class="separator:a02c71618379c7125d79a9dc580cc3530 inherit pub_slots_classcan_driver_interface"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af88cf8dc7a0bf2a54a9af6ac6b3c98bb inherit pub_slots_classcan_driver_interface"><td class="memItemLeft" align="right" valign="top"><a id="af88cf8dc7a0bf2a54a9af6ac6b3c98bb" name="af88cf8dc7a0bf2a54a9af6ac6b3c98bb"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>receiveThread</b> (void)</td></tr>
+<tr class="separator:af88cf8dc7a0bf2a54a9af6ac6b3c98bb inherit pub_slots_classcan_driver_interface"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header signals_classcan_driver_interface"><td colspan="2" onclick="javascript:toggleInherit('signals_classcan_driver_interface')"><img src="closed.png" alt="-"/>&#160;Signals inherited from <a class="el" href="classcan_driver_interface.html">canDriverInterface</a></td></tr>
-<tr class="memitem:a412327d1d5724cf8b0f4627224ebc432 inherit signals_classcan_driver_interface"><td class="memItemLeft" align="right" valign="top"><a id="a412327d1d5724cf8b0f4627224ebc432" name="a412327d1d5724cf8b0f4627224ebc432"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>workFinished</b> (void)</td></tr>
-<tr class="memdesc:a412327d1d5724cf8b0f4627224ebc432 inherit signals_classcan_driver_interface"><td class="mdescLeft">&#160;</td><td class="mdescRight">Emit this signal to cause the auto delete and thread delete. <br /></td></tr>
-<tr class="separator:a412327d1d5724cf8b0f4627224ebc432 inherit signals_classcan_driver_interface"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6dc5fa38c0b7d18a2758a3dd2894e090"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcan_driver_interface.html#a6dc5fa38c0b7d18a2758a3dd2894e090">hardwareInit</a> ()</td></tr>
-<tr class="memdesc:a6dc5fa38c0b7d18a2758a3dd2894e090"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implement the hardware initialization functions.  <a href="classcan_driver_interface.html#a6dc5fa38c0b7d18a2758a3dd2894e090">More...</a><br /></td></tr>
-<tr class="separator:a6dc5fa38c0b7d18a2758a3dd2894e090"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6220979c7ec1e8f61c5741287e250e8e"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcan_driver_interface.html#a6220979c7ec1e8f61c5741287e250e8e">hardwareShutdown</a> ()</td></tr>
-<tr class="memdesc:a6220979c7ec1e8f61c5741287e250e8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implements the hardware shutdown functions.  <a href="classcan_driver_interface.html#a6220979c7ec1e8f61c5741287e250e8e">More...</a><br /></td></tr>
-<tr class="separator:a6220979c7ec1e8f61c5741287e250e8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4b6a8153db4c965baa90ea4f26637540"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcan_driver_interface.html#a4b6a8153db4c965baa90ea4f26637540">openPort</a> (uint addr, uint msk, bool md)</td></tr>
-<tr class="memdesc:a4b6a8153db4c965baa90ea4f26637540"><td class="mdescLeft">&#160;</td><td class="mdescRight">openPort This function shall open a reception filter on the can board  <a href="classcan_driver_interface.html#a4b6a8153db4c965baa90ea4f26637540">More...</a><br /></td></tr>
-<tr class="separator:a4b6a8153db4c965baa90ea4f26637540"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad26e1df2620a719d8541d95f56a1e43d"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcan_driver_interface.html#ad26e1df2620a719d8541d95f56a1e43d">closePorts</a> (void)</td></tr>
-<tr class="memdesc:ad26e1df2620a719d8541d95f56a1e43d"><td class="mdescLeft">&#160;</td><td class="mdescRight">closes all the acceptance filters on the board  <a href="classcan_driver_interface.html#ad26e1df2620a719d8541d95f56a1e43d">More...</a><br /></td></tr>
-<tr class="separator:ad26e1df2620a719d8541d95f56a1e43d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1f059e4cb1b48407aef4b8a849761a3f"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcan_driver_interface.html#a1f059e4cb1b48407aef4b8a849761a3f">run</a> (void)</td></tr>
-<tr class="memdesc:a1f059e4cb1b48407aef4b8a849761a3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">activates the BUS arbitration  <a href="classcan_driver_interface.html#a1f059e4cb1b48407aef4b8a849761a3f">More...</a><br /></td></tr>
-<tr class="separator:a1f059e4cb1b48407aef4b8a849761a3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae36ce5ebe9952259f2334d1cde2cc37a"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcan_driver_interface.html#ae36ce5ebe9952259f2334d1cde2cc37a">pause</a> (void)</td></tr>
-<tr class="memdesc:ae36ce5ebe9952259f2334d1cde2cc37a"><td class="mdescLeft">&#160;</td><td class="mdescRight">pauses the BUS arbitration  <a href="classcan_driver_interface.html#ae36ce5ebe9952259f2334d1cde2cc37a">More...</a><br /></td></tr>
-<tr class="separator:ae36ce5ebe9952259f2334d1cde2cc37a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a195f7cb441dd2489c7e5db22e18177f1"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structcan_driver_interface_1_1can_data_frame.html">canDataFrame</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcan_driver_interface.html#a195f7cb441dd2489c7e5db22e18177f1">driverTxRxData</a> (<a class="el" href="structcan_driver_interface_1_1can_data_frame.html">canDataFrame</a> frame, int tmo)</td></tr>
-<tr class="memdesc:a195f7cb441dd2489c7e5db22e18177f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">driverTxRxData This function implements the data Transmission/Reception on the BUS. The function shall be implemented as a blockant with timeout. In case no data should be received, the function shall return a all 0 frame.  <a href="classcan_driver_interface.html#a195f7cb441dd2489c7e5db22e18177f1">More...</a><br /></td></tr>
-<tr class="separator:a195f7cb441dd2489c7e5db22e18177f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88019aaf92178e7baeebde63da547c50 inherit signals_classcan_driver_interface"><td class="memItemLeft" align="right" valign="top"><a id="a88019aaf92178e7baeebde63da547c50" name="a88019aaf92178e7baeebde63da547c50"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>triggerReceptionSgn</b> (void)</td></tr>
+<tr class="separator:a88019aaf92178e7baeebde63da547c50 inherit signals_classcan_driver_interface"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0cbdfd38c7473c985a4c59a07440a61 inherit signals_classcan_driver_interface"><td class="memItemLeft" align="right" valign="top"><a id="ac0cbdfd38c7473c985a4c59a07440a61" name="ac0cbdfd38c7473c985a4c59a07440a61"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>driverRx000</b> (uchar id, <a class="el" href="structcan_driver_interface_1_1can_data_frame.html">canDriverInterface::canDataFrame</a> data)</td></tr>
+<tr class="separator:ac0cbdfd38c7473c985a4c59a07440a61 inherit signals_classcan_driver_interface"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf4d2da7fd4e12d44e134de160c4e2bf inherit signals_classcan_driver_interface"><td class="memItemLeft" align="right" valign="top"><a id="aaf4d2da7fd4e12d44e134de160c4e2bf" name="aaf4d2da7fd4e12d44e134de160c4e2bf"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>driverRx100</b> (uchar id, <a class="el" href="structcan_driver_interface_1_1can_data_frame.html">canDriverInterface::canDataFrame</a> data)</td></tr>
+<tr class="separator:aaf4d2da7fd4e12d44e134de160c4e2bf inherit signals_classcan_driver_interface"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac27493cd37ca0304794807676b691387 inherit signals_classcan_driver_interface"><td class="memItemLeft" align="right" valign="top"><a id="ac27493cd37ca0304794807676b691387" name="ac27493cd37ca0304794807676b691387"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>driverRx200</b> (uchar id, <a class="el" href="structcan_driver_interface_1_1can_data_frame.html">canDriverInterface::canDataFrame</a> data)</td></tr>
+<tr class="separator:ac27493cd37ca0304794807676b691387 inherit signals_classcan_driver_interface"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50a3993a7bf00f5a44e2a35aec850222 inherit signals_classcan_driver_interface"><td class="memItemLeft" align="right" valign="top"><a id="a50a3993a7bf00f5a44e2a35aec850222" name="a50a3993a7bf00f5a44e2a35aec850222"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>driverRx300</b> (uchar id, <a class="el" href="structcan_driver_interface_1_1can_data_frame.html">canDriverInterface::canDataFrame</a> data)</td></tr>
+<tr class="separator:a50a3993a7bf00f5a44e2a35aec850222 inherit signals_classcan_driver_interface"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa77f22c355b63753b87a33981ac43832 inherit signals_classcan_driver_interface"><td class="memItemLeft" align="right" valign="top"><a id="aa77f22c355b63753b87a33981ac43832" name="aa77f22c355b63753b87a33981ac43832"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>driverRx400</b> (uchar id, <a class="el" href="structcan_driver_interface_1_1can_data_frame.html">canDriverInterface::canDataFrame</a> data)</td></tr>
+<tr class="separator:aa77f22c355b63753b87a33981ac43832 inherit signals_classcan_driver_interface"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d0bbe29501492768ec247ea9e13997d inherit signals_classcan_driver_interface"><td class="memItemLeft" align="right" valign="top"><a id="a8d0bbe29501492768ec247ea9e13997d" name="a8d0bbe29501492768ec247ea9e13997d"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>driverRx500</b> (uchar id, <a class="el" href="structcan_driver_interface_1_1can_data_frame.html">canDriverInterface::canDataFrame</a> data)</td></tr>
+<tr class="separator:a8d0bbe29501492768ec247ea9e13997d inherit signals_classcan_driver_interface"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d9d093f9a571e5478ced8115059dd51 inherit signals_classcan_driver_interface"><td class="memItemLeft" align="right" valign="top"><a id="a4d9d093f9a571e5478ced8115059dd51" name="a4d9d093f9a571e5478ced8115059dd51"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>driverErrorSgn</b> (uchar msgid, uint errmsg)</td></tr>
+<tr class="separator:a4d9d093f9a571e5478ced8115059dd51 inherit signals_classcan_driver_interface"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d502543e1412b9969395d0a005c7540"><td class="memItemLeft" align="right" valign="top">virtual _canDriverErrors&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcan_driver_interface.html#a3d502543e1412b9969395d0a005c7540">driverOpen</a> (QByteArray COM, _canBaudRate BR, uint address, uint mask, QByteArray mode)</td></tr>
+<tr class="memdesc:a3d502543e1412b9969395d0a005c7540"><td class="mdescLeft">&#160;</td><td class="mdescRight">Open the Bus communication.  <a href="classcan_driver_interface.html#a3d502543e1412b9969395d0a005c7540">More...</a><br /></td></tr>
+<tr class="separator:a3d502543e1412b9969395d0a005c7540"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac74db9bbecd80294d762652dce5d965"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcan_driver_interface.html#aac74db9bbecd80294d762652dce5d965">driverClose</a> (void)</td></tr>
+<tr class="memdesc:aac74db9bbecd80294d762652dce5d965"><td class="mdescLeft">&#160;</td><td class="mdescRight">Close Bus communication.  <a href="classcan_driver_interface.html#aac74db9bbecd80294d762652dce5d965">More...</a><br /></td></tr>
+<tr class="separator:aac74db9bbecd80294d762652dce5d965"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5878cd6d6107a42e7bb7051a0fd173c"><td class="memItemLeft" align="right" valign="top"><a id="ac5878cd6d6107a42e7bb7051a0fd173c" name="ac5878cd6d6107a42e7bb7051a0fd173c"></a>
+virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>driverRead</b> (void)</td></tr>
+<tr class="separator:ac5878cd6d6107a42e7bb7051a0fd173c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff3c878d7d5eb36f5b99745fb70cfbad"><td class="memItemLeft" align="right" valign="top"><a id="aff3c878d7d5eb36f5b99745fb70cfbad" name="aff3c878d7d5eb36f5b99745fb70cfbad"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>driverWrite</b> (<a class="el" href="structcan_driver_interface_1_1can_data_frame.html">canDataFrame</a> frame)</td></tr>
+<tr class="separator:aff3c878d7d5eb36f5b99745fb70cfbad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_attribs_classcan_driver_interface"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classcan_driver_interface')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classcan_driver_interface.html">canDriverInterface</a></td></tr>
+<tr class="memitem:ae45c4ba4ea58daa07e767faaee227aeb inherit pro_attribs_classcan_driver_interface"><td class="memItemLeft" align="right" valign="top"><a id="ae45c4ba4ea58daa07e767faaee227aeb" name="ae45c4ba4ea58daa07e767faaee227aeb"></a>
+<a class="el" href="structcan_driver_interface_1_1can_data_frame.html">canDataFrame</a>&#160;</td><td class="memItemRight" valign="bottom"><b>driverRxFrame</b></td></tr>
+<tr class="separator:ae45c4ba4ea58daa07e767faaee227aeb inherit pro_attribs_classcan_driver_interface"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a7ee72ea6bafcef77ccf4159f63e4ec4f" name="a7ee72ea6bafcef77ccf4159f63e4ec4f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7ee72ea6bafcef77ccf4159f63e4ec4f">&#9670;&nbsp;</a></span>closePorts()</h2>
+<a id="af7d7ef765793a0ac8c692bf067e2d35a" name="af7d7ef765793a0ac8c692bf067e2d35a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7d7ef765793a0ac8c692bf067e2d35a">&#9670;&nbsp;</a></span>driverClose()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -166,7 +205,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>workFinished</b> (voi
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool titanCanDriver::closePorts </td>
+          <td class="memname">void titanCanDriver::driverClose </td>
           <td>(</td>
           <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
@@ -180,14 +219,14 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>workFinished</b> (voi
 </table>
 </div><div class="memdoc">
 
-<p>closes all the acceptance filters on the board </p>
+<p>Close Bus communication. </p>
 
-<p>Reimplemented from <a class="el" href="classcan_driver_interface.html#ad26e1df2620a719d8541d95f56a1e43d">canDriverInterface</a>.</p>
+<p>Reimplemented from <a class="el" href="classcan_driver_interface.html#aac74db9bbecd80294d762652dce5d965">canDriverInterface</a>.</p>
 
 </div>
 </div>
-<a id="a2e2454dd5f5b34f19ee43abd4c5fcfe8" name="a2e2454dd5f5b34f19ee43abd4c5fcfe8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2e2454dd5f5b34f19ee43abd4c5fcfe8">&#9670;&nbsp;</a></span>driverTxRxData()</h2>
+<a id="a1902ac9d2dc5ca6e2b1560de5147c581" name="a1902ac9d2dc5ca6e2b1560de5147c581"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1902ac9d2dc5ca6e2b1560de5147c581">&#9670;&nbsp;</a></span>driverOpen()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -196,16 +235,34 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>workFinished</b> (voi
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structcan_driver_interface_1_1can_data_frame.html">canDataFrame</a> titanCanDriver::driverTxRxData </td>
+          <td class="memname">canDriverInterface::_canDriverErrors titanCanDriver::driverOpen </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structcan_driver_interface_1_1can_data_frame.html">canDataFrame</a>&#160;</td>
-          <td class="paramname"><em>frame</em>, </td>
+          <td class="paramtype">QByteArray&#160;</td>
+          <td class="paramname"><em>COM</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>tmo</em>&#160;</td>
+          <td class="paramtype">_canBaudRate&#160;</td>
+          <td class="paramname"><em>BR</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint&#160;</td>
+          <td class="paramname"><em>address</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint&#160;</td>
+          <td class="paramname"><em>mask</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QByteArray&#160;</td>
+          <td class="paramname"><em>mode</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -220,26 +277,14 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>workFinished</b> (voi
 </table>
 </div><div class="memdoc">
 
-<p>driverTxRxData This function implements the data Transmission/Reception on the BUS. The function shall be implemented as a blockant with timeout. In case no data should be received, the function shall return a all 0 frame. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">frame</td><td>This is the frame to be transmitted; </td></tr>
-    <tr><td class="paramname">tmo</td><td>This is the max time in ms the driver shall wait for a data reception. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd><ul>
-<li>The received frame in case of valid reception.</li>
-<li>All 0's frame in case of no data reception. </li>
-</ul>
-</dd></dl>
+<p>Open the Bus communication. </p>
 
-<p>Reimplemented from <a class="el" href="classcan_driver_interface.html#a195f7cb441dd2489c7e5db22e18177f1">canDriverInterface</a>.</p>
+<p>Reimplemented from <a class="el" href="classcan_driver_interface.html#a3d502543e1412b9969395d0a005c7540">canDriverInterface</a>.</p>
 
 </div>
 </div>
-<a id="a737791e1e0ccee95e9c4b7700b510185" name="a737791e1e0ccee95e9c4b7700b510185"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a737791e1e0ccee95e9c4b7700b510185">&#9670;&nbsp;</a></span>hardwareInit()</h2>
+<a id="a841751fa4c2851a5f0e213ab7fa9e867" name="a841751fa4c2851a5f0e213ab7fa9e867"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a841751fa4c2851a5f0e213ab7fa9e867">&#9670;&nbsp;</a></span>driverRead()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -248,120 +293,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>workFinished</b> (voi
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool titanCanDriver::hardwareInit </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Implement the hardware initialization functions. </p>
-
-<p>Reimplemented from <a class="el" href="classcan_driver_interface.html#a6dc5fa38c0b7d18a2758a3dd2894e090">canDriverInterface</a>.</p>
-
-</div>
-</div>
-<a id="a371e3d52b3d5434b03990bc9a44ea0b1" name="a371e3d52b3d5434b03990bc9a44ea0b1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a371e3d52b3d5434b03990bc9a44ea0b1">&#9670;&nbsp;</a></span>hardwareShutdown()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool titanCanDriver::hardwareShutdown </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Implements the hardware shutdown functions. </p>
-
-<p>Reimplemented from <a class="el" href="classcan_driver_interface.html#a6220979c7ec1e8f61c5741287e250e8e">canDriverInterface</a>.</p>
-
-</div>
-</div>
-<a id="a4f7fe40257396a46589d2c482aa1ba08" name="a4f7fe40257396a46589d2c482aa1ba08"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4f7fe40257396a46589d2c482aa1ba08">&#9670;&nbsp;</a></span>openPort()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool titanCanDriver::openPort </td>
-          <td>(</td>
-          <td class="paramtype">uint&#160;</td>
-          <td class="paramname"><em>addr</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint&#160;</td>
-          <td class="paramname"><em>msk</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>md</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>openPort This function shall open a reception filter on the can board </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">addr</td><td>This is the standard/extended identifier address code </td></tr>
-    <tr><td class="paramname">msk</td><td>This is the standard/extended identifier mask </td></tr>
-    <tr><td class="paramname">md</td><td>this is the standard(false) or Extended (true) activation mode flag </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
-
-<p>Reimplemented from <a class="el" href="classcan_driver_interface.html#a4b6a8153db4c965baa90ea4f26637540">canDriverInterface</a>.</p>
-
-</div>
-</div>
-<a id="a700f3bce39ddcec3a4a657e3243539c0" name="a700f3bce39ddcec3a4a657e3243539c0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a700f3bce39ddcec3a4a657e3243539c0">&#9670;&nbsp;</a></span>pause()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void titanCanDriver::pause </td>
+          <td class="memname">bool titanCanDriver::driverRead </td>
           <td>(</td>
           <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
@@ -375,14 +307,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>workFinished</b> (voi
 </table>
 </div><div class="memdoc">
 
-<p>pauses the BUS arbitration </p>
-
-<p>Reimplemented from <a class="el" href="classcan_driver_interface.html#ae36ce5ebe9952259f2334d1cde2cc37a">canDriverInterface</a>.</p>
+<p>Reimplemented from <a class="el" href="classcan_driver_interface.html">canDriverInterface</a>.</p>
 
 </div>
 </div>
-<a id="aca05a2443ad9c047ae026d7038d1f51f" name="aca05a2443ad9c047ae026d7038d1f51f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aca05a2443ad9c047ae026d7038d1f51f">&#9670;&nbsp;</a></span>run()</h2>
+<a id="a1b75b3e1c898f909561e26d4fd54ea8a" name="a1b75b3e1c898f909561e26d4fd54ea8a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b75b3e1c898f909561e26d4fd54ea8a">&#9670;&nbsp;</a></span>driverWrite()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -391,10 +321,10 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>workFinished</b> (voi
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void titanCanDriver::run </td>
+          <td class="memname">void titanCanDriver::driverWrite </td>
           <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype"><a class="el" href="structcan_driver_interface_1_1can_data_frame.html">canDriverInterface::canDataFrame</a>&#160;</td>
+          <td class="paramname"><em>frame</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -405,14 +335,13 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>workFinished</b> (voi
 </table>
 </div><div class="memdoc">
 
-<p>activates the BUS arbitration </p>
-
-<p>Reimplemented from <a class="el" href="classcan_driver_interface.html#a1f059e4cb1b48407aef4b8a849761a3f">canDriverInterface</a>.</p>
+<p>Reimplemented from <a class="el" href="classcan_driver_interface.html">canDriverInterface</a>.</p>
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following file:<ul>
-<li>C:/Users/marco/Documents/GitHub/GantryZ190/GANTRY/MAIN_CPU/SOURCE/DRIVERS/TITAN/<a class="el" href="titan_can_driver_8h_source.html">titanCanDriver.h</a></li>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/APPLICATION/SOURCE/DRIVERS/TITAN/<a class="el" href="titan_can_driver_8h_source.html">titanCanDriver.h</a></li>
+<li>C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/APPLICATION/SOURCE/DRIVERS/TITAN/titanCanDriver.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

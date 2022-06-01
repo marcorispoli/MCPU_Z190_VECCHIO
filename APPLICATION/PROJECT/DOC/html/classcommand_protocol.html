@@ -99,9 +99,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a1726f771d04defcdd53df3a44eae9725"><td class="memItemLeft" align="right" valign="top"><a id="a1726f771d04defcdd53df3a44eae9725" name="a1726f771d04defcdd53df3a44eae9725"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>commandProtocol</b> (QByteArray *dt, QStringConverter::Encoding format)</td></tr>
 <tr class="separator:a1726f771d04defcdd53df3a44eae9725"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a324329dabdf3a5a2a1160826002f17dd"><td class="memItemLeft" align="right" valign="top">_inline QByteArray&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcommand_protocol.html#a324329dabdf3a5a2a1160826002f17dd">formatOkAnswer</a> (int code, QList&lt; QString &gt; *params=nullptr)</td></tr>
-<tr class="memdesc:a324329dabdf3a5a2a1160826002f17dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the Immediate or Delayed OK answer method.  <a href="classcommand_protocol.html#a324329dabdf3a5a2a1160826002f17dd">More...</a><br /></td></tr>
-<tr class="separator:a324329dabdf3a5a2a1160826002f17dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acdb0b7b524d6e0237c4dd1372442de00"><td class="memItemLeft" align="right" valign="top">_inline QByteArray&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcommand_protocol.html#acdb0b7b524d6e0237c4dd1372442de00">formatOkCode</a> (int code, QList&lt; QString &gt; *params=nullptr)</td></tr>
+<tr class="memdesc:acdb0b7b524d6e0237c4dd1372442de00"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the Immediate or Delayed OK answer method.  <a href="classcommand_protocol.html#acdb0b7b524d6e0237c4dd1372442de00">More...</a><br /></td></tr>
+<tr class="separator:acdb0b7b524d6e0237c4dd1372442de00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaed0818c5f3578196b53adb9b847b291"><td class="memItemLeft" align="right" valign="top">_inline QByteArray&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcommand_protocol.html#aaed0818c5f3578196b53adb9b847b291">formatOk</a> (QList&lt; QString &gt; *params=nullptr)</td></tr>
+<tr class="memdesc:aaed0818c5f3578196b53adb9b847b291"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the Immediate OK answer method for messages returning values.  <a href="classcommand_protocol.html#aaed0818c5f3578196b53adb9b847b291">More...</a><br /></td></tr>
+<tr class="separator:aaed0818c5f3578196b53adb9b847b291"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7b64587a3a7f07cd220bedd42a67f22d"><td class="memItemLeft" align="right" valign="top">_inline QByteArray&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcommand_protocol.html#a7b64587a3a7f07cd220bedd42a67f22d">formatNokAnswer</a> (int code, QString error)</td></tr>
 <tr class="memdesc:a7b64587a3a7f07cd220bedd42a67f22d"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the Immediate NOK answer method.  <a href="classcommand_protocol.html#a7b64587a3a7f07cd220bedd42a67f22d">More...</a><br /></td></tr>
 <tr class="separator:a7b64587a3a7f07cd220bedd42a67f22d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -147,7 +150,7 @@ Static Public Member Functions</h2></td></tr>
 <p >This class implements the features of the Command protocol interface. See PG_TD_AWS_PROTO</p>
 <p >The protocol is character based, supporting several encoding standards: Latin1, Utf8, Utf16<br  />
  See the Qt QStringConverter::Encoding data type for more details.</p>
-<h1><a class="anchor" id="autotoc_md5"></a>
+<h1><a class="anchor" id="autotoc_md16"></a>
 PROTOCOL DESCRIPTION</h1>
 <p >The protocol disciplines two kind of data exchange transactions:</p>
 <p >[1] Command and answer transaction:</p><ul>
@@ -175,15 +178,15 @@ PROTOCOL DESCRIPTION</h1>
 </li>
 <li>Command not implemented (or NA) frame: the requested command is not supported or not implemented;</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md6"></a>
+<h1><a class="anchor" id="autotoc_md17"></a>
 DATA FRAME FORMAT</h1>
-<h2><a class="anchor" id="autotoc_md7"></a>
+<h2><a class="anchor" id="autotoc_md18"></a>
 DATA TYPE AND ENCODING FORMAT</h2>
 <p >The frames are composed by characters formatted with a given character encoding standard;<br  />
  All the parameter fields shall be converted from its string representation<br  />
  to the target type, based on the specific command implementation.<br  />
  </p>
-<h2><a class="anchor" id="autotoc_md8"></a>
+<h2><a class="anchor" id="autotoc_md19"></a>
 STRUCTURE OF DATA FRAME</h2>
 <p >The data frame formats are of four possible forms: </p><pre class="fragment">   [1]  &lt;ID FRAME_LEN % CMD PAR1 .. PAR-N %&gt;            Client command frame;
    [2]  &lt;ID FRAME_LEN % "OK/NOK" CODE OPT1 .. OPT-N %&gt;  Server answer frame;
@@ -198,12 +201,12 @@ STRUCTURE OF DATA FRAME</h2>
     'S'         : key character identifying the Gantry &lt;Status&gt; command frame format;
     FRAME_LEN   : integer number in string format, equals to the total number of characters composing the frame;
     PAR1 - PAR-N: list of command parameters, in string format, separated by spaces;
-    OPT1 - OPT-N: list of optionnal parameters, in string format, separated by spaces;</pre><h2><a class="anchor" id="autotoc_md9"></a>
+    OPT1 - OPT-N: list of optionnal parameters, in string format, separated by spaces;</pre><h2><a class="anchor" id="autotoc_md20"></a>
 &lt;COMMAND&gt; DATA FRAME FORMAT [1]</h2>
 <p >The Command data frame frame format is based on the form [1] as following described: </p><pre class="fragment">    &lt;ID FRAME_LEN % COMMAND PARAM-1 PARAM-2 .... PARAM-N %&gt;
     Where:
     COMMAND: is a String defining a command code;
-    PARAM-1, .. , PARAM-N: are a list of parameters, in string format, of variant type. The actual type depends by the command implementation.</pre><h2><a class="anchor" id="autotoc_md10"></a>
+    PARAM-1, .. , PARAM-N: are a list of parameters, in string format, of variant type. The actual type depends by the command implementation.</pre><h2><a class="anchor" id="autotoc_md21"></a>
 &lt;IMMEDIATE OK&gt; DATA FRAME FORMAT [2]</h2>
 <p >The &lt;immediate ok&gt; data frame format is based on the form [2];<br  />
  It shall be sent back by the Server if the requested command has been successfully processed.</p>
@@ -211,7 +214,7 @@ STRUCTURE OF DATA FRAME</h2>
     Where:
     ID: is the ID of the processed Command Frame
     OPT1 .. OPT-N: are optionals data sent back to the Sender
-    The " OK 0 " part of the frame identifies the frame type.</pre><h2><a class="anchor" id="autotoc_md11"></a>
+    The " OK 0 " part of the frame identifies the frame type.</pre><h2><a class="anchor" id="autotoc_md22"></a>
 &lt;DELAYED OK&gt; DATA FRAME FORMAT [2]</h2>
 <p >The &lt;delayed ok&gt; data frame format is based on the form [2];<br  />
  It shall be sent back by the Server if the command takes time to completes.</p>
@@ -227,7 +230,7 @@ STRUCTURE OF DATA FRAME</h2>
     REASULT:
         - 0: if the command is successfully terminated;
         - CODE: error code;
-    OPT1 .. OPT-N: are optional data sent back in string format.</pre><h2><a class="anchor" id="autotoc_md12"></a>
+    OPT1 .. OPT-N: are optional data sent back in string format.</pre><h2><a class="anchor" id="autotoc_md23"></a>
 &lt;IMMEDIATE NOK&gt; DATA FRAME FORMAT [2]</h2>
 <p >The &lt;immediate NOK&gt; data frame format is based on the form [2];<br  />
  It shall be sent back by the Server in the case the command fails or<br  />
@@ -237,12 +240,12 @@ STRUCTURE OF DATA FRAME</h2>
     Where:
     ID: is the ID of the processed Command Frame;
     ERRCODE: is the failure code;
-    OPT1 .. OPT-N: are optional data sent back in string format.</pre><h2><a class="anchor" id="autotoc_md13"></a>
+    OPT1 .. OPT-N: are optional data sent back in string format.</pre><h2><a class="anchor" id="autotoc_md24"></a>
 &lt;NA&gt; DATA FRAME FORMAT [2]</h2>
 <p >The &lt;NA&gt; data frame format is based on the form [2];<br  />
  It shall be sent back by the Server in the case <br  />
  the requested command should not be implemented or not supported:</p>
-<pre class="fragment">    &lt;ID FRAME_LEN % NA %&gt;</pre><h2><a class="anchor" id="autotoc_md14"></a>
+<pre class="fragment">    &lt;ID FRAME_LEN % NA %&gt;</pre><h2><a class="anchor" id="autotoc_md25"></a>
 &lt;STATUS&gt; DATA FRAME FORMAT [4]</h2>
 <p >The &lt;STATUS&gt; data frame format is based on the form [4];<br  />
  It shall be sent by the Server in order to notify the Client of a change of internal status.</p>
@@ -252,7 +255,7 @@ STRUCTURE OF DATA FRAME</h2>
     'S': is the status frame identifier character;
     CMD: is the notify command;
     OPT1 .. OPT-N: is a list of optional variable status.</pre><dl class="section attention"><dt>Attention</dt><dd>The Client shall never acknowledge a status frame.</dd></dl>
-<h1><a class="anchor" id="autotoc_md15"></a>
+<h1><a class="anchor" id="autotoc_md26"></a>
 PARAMETER FORMAT SPECIAL CONSIDERATIONS</h1>
 <p >The protocol exchanges Commands and data in string format; this mean that an Integer, float, String data can be exchanged converting it in a string.</p>
 <p >The data frame can be formatted with one of possible data encoding: UTF8, UTF16, ...</p>
@@ -271,9 +274,9 @@ PARAMETER FORMAT SPECIAL CONSIDERATIONS</h1>
         command = OpenStudy;
         param-1 = "Pico";
         param-2 = "della";
-        param-3 = "Mirandola"</pre><h1><a class="anchor" id="autotoc_md16"></a>
+        param-3 = "Mirandola"</pre><h1><a class="anchor" id="autotoc_md27"></a>
 USAGE</h1>
-<h2><a class="anchor" id="autotoc_md17"></a>
+<h2><a class="anchor" id="autotoc_md28"></a>
 CLIENT IMPLEMENTATION</h2>
 <ul>
 <li>Client composes a command frame using the static method:<ul>
@@ -310,7 +313,7 @@ CLIENT IMPLEMENTATION</h2>
         case commandProtocol::_INVALID_FRAME:
             The received frame is of wrong format
         break;
-    }</pre><h2><a class="anchor" id="autotoc_md18"></a>
+    }</pre><h2><a class="anchor" id="autotoc_md29"></a>
 SERVER IMPLEMENTATION</h2>
 <ul>
 <li>Server shall handle a reception stream of QByteArray: <pre class="fragment">   QByteArray rxframe = is the received command frame;
@@ -324,8 +327,8 @@ SERVER IMPLEMENTATION</h2>
         break;
    }</pre></li>
 <li>Based on the command implementation the Server answer:<ul>
-<li>proto.formatOkAnswer(0, ..): for an immediate OK. See <a class="el" href="classcommand_protocol.html#a324329dabdf3a5a2a1160826002f17dd" title="This is the Immediate or Delayed OK answer method.">commandProtocol::formatOkAnswer()</a>.</li>
-<li>proto.formatOkAnswer(Time, ..): for a delay command execution. See <a class="el" href="classcommand_protocol.html#a324329dabdf3a5a2a1160826002f17dd" title="This is the Immediate or Delayed OK answer method.">commandProtocol::formatOkAnswer()</a>.<ul>
+<li>proto.formatOkAnswer(0, ..): for an immediate OK. See commandProtocol::formatOkAnswer().</li>
+<li>proto.formatOkAnswer(Time, ..): for a delay command execution. See commandProtocol::formatOkAnswer().<ul>
 <li>When the command completes: <a class="el" href="classcommand_protocol.html#a4e21e32f80020551293a9112cb5c1e91" title="This static method shall be used to format an Acknowledge command completion answer frame.">commandProtocol::formatDelayCompletedCommand()</a>;</li>
 </ul>
 </li>
@@ -536,8 +539,8 @@ SERVER IMPLEMENTATION</h2>
 
 </div>
 </div>
-<a id="a324329dabdf3a5a2a1160826002f17dd" name="a324329dabdf3a5a2a1160826002f17dd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a324329dabdf3a5a2a1160826002f17dd">&#9670;&nbsp;</a></span>formatOkAnswer()</h2>
+<a id="aaed0818c5f3578196b53adb9b847b291" name="aaed0818c5f3578196b53adb9b847b291"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaed0818c5f3578196b53adb9b847b291">&#9670;&nbsp;</a></span>formatOk()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -546,7 +549,42 @@ SERVER IMPLEMENTATION</h2>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">_inline QByteArray commandProtocol::formatOkAnswer </td>
+          <td class="memname">_inline QByteArray commandProtocol::formatOk </td>
+          <td>(</td>
+          <td class="paramtype">QList&lt; QString &gt; *&#160;</td>
+          <td class="paramname"><em>params</em> = <code>nullptr</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This is the Immediate OK answer method for messages returning values. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">params</td><td>optional QList&lt;QString&gt;* pointer to a list of strings representing Variant parameter type </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>QByteArray formatted data byte stream. </dd></dl>
+
+</div>
+</div>
+<a id="acdb0b7b524d6e0237c4dd1372442de00" name="acdb0b7b524d6e0237c4dd1372442de00"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acdb0b7b524d6e0237c4dd1372442de00">&#9670;&nbsp;</a></span>formatOkCode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">_inline QByteArray commandProtocol::formatOkCode </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>code</em>, </td>
@@ -640,8 +678,8 @@ SERVER IMPLEMENTATION</h2>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>C:/Users/marco/Documents/GitHub/GantryZ190/GANTRY/MAIN_CPU/SOURCE/LIB/<a class="el" href="commandprotocol_8h_source.html">commandprotocol.h</a></li>
-<li>C:/Users/marco/Documents/GitHub/GantryZ190/GANTRY/MAIN_CPU/SOURCE/LIB/commandprotocol.cpp</li>
+<li>C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/APPLICATION/SOURCE/LIB/<a class="el" href="commandprotocol_8h_source.html">commandprotocol.h</a></li>
+<li>C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/APPLICATION/SOURCE/LIB/commandprotocol.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

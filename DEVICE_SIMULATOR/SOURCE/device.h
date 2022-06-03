@@ -3,6 +3,12 @@
 
 #include <QObject>
 
+#define FIRST_STATUS_REGISTER_INDEX 4
+#define FIRST_DATA_REGISTER_INDEX 1
+#define FIRST_PARAM_REGISTER_INDEX 1
+
+
+
 class dataregT
 {
 public:
@@ -70,20 +76,20 @@ public:
     }
 
     virtual bool readStatus(uchar index, dataregT* data){
-        index = index - 3; // Remove the reserved register address space
+        index = index - FIRST_STATUS_REGISTER_INDEX; // Remove the reserved register address space
         if(index >= statusRegisterList.size()) return false;
         *data = statusRegisterList.at(index);
         return true;
     }
 
     virtual bool writeParam(uchar index, dataregT data){
-        index = index - 1;
+        index = index - FIRST_PARAM_REGISTER_INDEX;
         if(index >= paramRegisterList.size()) return false;
         paramRegisterList[index] = data;
         return true;
     }
     virtual bool writeData(uchar index, dataregT data){
-        index = index - 1;
+        index = index - FIRST_DATA_REGISTER_INDEX;
         if(index >= dataRegisterList.size()) return false;
         dataRegisterList[index] = data;
         return true;

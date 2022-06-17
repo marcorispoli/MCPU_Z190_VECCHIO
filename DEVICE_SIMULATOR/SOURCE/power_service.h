@@ -1,7 +1,9 @@
 #ifndef POWER_SERVICE_H
 #define POWER_SERVICE_H
 
-#include <QObject>
+#include <QWidget>
+#include <QTimerEvent>
+
 #include "device.h"
 
 // Board IO definition
@@ -52,7 +54,7 @@
 
 
 // Protocol Status register definition
-#define STATUS_PWS_IO 0
+
 
 class powerService: public deviceClass
 {
@@ -62,6 +64,8 @@ public:
     explicit powerService(uint id, uchar revMaj, uchar revMin, uchar revSub, QObject *parent = nullptr);
 
 
+public slots:
+    void timerEvent(QTimerEvent* ev);
 
 public:
 
@@ -70,12 +74,28 @@ public:
     bool readStatus(uchar index, dataregT* data);
 
 private:
-    void updateStatusIO(void); //< Updates the IO status regster
+    bool executing;
+    int  deviceLoop;
+    void start(void);
+
+    void updateSystemStatusRegister(void); //< Updates the System Status register
+    void updatePWSInputs(void); //< Updates the microcontroller inputs
+    void updatePWSOutputs(void); //< Updates the microcontroller outputs
 
 
-    uchar    inputs[I_PWS_NUM];
-    uchar    outputs[O_PWS_NUM];
-    uchar    analog[ANL_PSW_NUM];
+    bool    inputs[I_PWS_NUM];
+
+    uchar   analog[ANL_PSW_NUM];
+
+    bool softPowerOffReq;
+    bool batt1Low;
+    bool batt2Low;
+    bool safetyMotorStatus;
+    bool burninJumperCheck;
+    bool motorDcOk;
+
+public:
+     bool    outputs[O_PWS_NUM];
 
 };
 

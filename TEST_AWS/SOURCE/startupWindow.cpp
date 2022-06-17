@@ -162,6 +162,9 @@ startupWindow::startupWindow(QWidget *parent)
 
     errorCondition = "";
     ui->errorFrame->hide();
+    ui->errorIndexSpin->setValue(100);
+    ui->errorClassSpin->setValue(0);
+
 
 
     ui->xraySym->hide();
@@ -333,10 +336,11 @@ QString startupWindow::getAccessory(){
 bool startupWindow::rotBusy(void){
     if(trxBusy) return true;
     if(armBusy) return true;
+    return false;
 }
 
 void startupWindow::moveTrxCompleted(void){
-    ui->trxEdit->setText(QString("%1").arg(targetTRX));
+    ui->trxEdit->setText(QString("%1").arg((float) targetTRX / 100.0));
     trxBusy = false;
     emit trxCompletedSgn();
 }
@@ -654,7 +658,8 @@ void startupWindow::breastSlot(int val){
 
 }
 void startupWindow::generateErrorSlot(void){
-    generateError(201);
+    uint error = ui->errorIndexSpin->value() + ui->errorClassSpin->value();
+    generateError(error);
 }
 
 void startupWindow::generateError(uint num){

@@ -126,7 +126,7 @@ void awsCommunication::GET_Accessories(void){
 }
 
 void awsCommunication::trxCompletedSlot(void){
-     disconnect(window, SIGNAL(trxCompletedSgn), this, SLOT(trxCompletedSlot));
+     disconnect(window, SIGNAL(trxCompletedSgn()), this, SLOT(trxCompletedSlot()));
      emit sendAsyncSgn(this->trxProtocol, 0, nullptr);
 }
 
@@ -155,9 +155,9 @@ void awsCommunication::EXEC_TrxPosition(void){
     }
 
     trxProtocol = protocol;
-    connect(window, SIGNAL(trxCompletedSgn), this, SLOT(trxCompletedSlot), Qt::UniqueConnection);
+    connect(window, SIGNAL(trxCompletedSgn()), this, SLOT(trxCompletedSlot()), Qt::UniqueConnection);
     if(!window->moveTrx(angolo, speed)){
-        disconnect(window, SIGNAL(trxCompletedSgn), this, SLOT(trxCompletedSlot));
+        disconnect(window, SIGNAL(trxCompletedSgn()), this, SLOT(trxCompletedSlot()));
         sendOk(0);
         return;
     }else{
@@ -170,7 +170,7 @@ void awsCommunication::EXEC_TrxPosition(void){
 }
 
 void awsCommunication::armCompletedSlot(void){
-    disconnect(window, SIGNAL(armCompletedSgn), this, SLOT(armCompletedSlot));
+    disconnect(window, SIGNAL(armCompletedSgn()), this, SLOT(armCompletedSlot()));
     emit sendAsyncSgn(this->armProtocol, 0, nullptr);
 
 }
@@ -199,9 +199,10 @@ void awsCommunication::EXEC_ArmPosition(void){
     if(!window->selectProjection(projection, from,to)) { sendNok(5, "PROJECTION NOT IN THE VALID LIST"); return;}
 
     armProtocol = protocol;
-    connect(window, SIGNAL(armCompletedSgn), this, SLOT(armCompletedSlot), Qt::UniqueConnection);
+
+    connect(window, SIGNAL(armCompletedSgn()), this, SLOT(armCompletedSlot()), Qt::UniqueConnection);
     if(!window->moveArm(angolo, 10)){
-        disconnect(window, SIGNAL(armCompletedSgn), this, SLOT(armCompletedSlot));
+        disconnect(window, SIGNAL(armCompletedSgn()), this, SLOT(armCompletedSlot()));
         sendOk(0);
         return;
     }else{

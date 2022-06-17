@@ -2014,7 +2014,7 @@ border-width: 0px;
       <rect>
        <x>10</x>
        <y>190</y>
-       <width>291</width>
+       <width>141</width>
        <height>41</height>
       </rect>
      </property>
@@ -2029,13 +2029,123 @@ border-width: 0px;
 </string>
      </property>
      <property name="text">
-      <string>CLICK TO GENERATE AN ERROR</string>
+      <string>GENERATE ERROR</string>
      </property>
      <property name="checkable">
       <bool>false</bool>
      </property>
      <property name="flat">
       <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QSpinBox" name="errorClassSpin">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>190</y>
+       <width>71</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(117, 218, 255);
+color: rgb(0, 0, 0);
+font: 700 16pt &quot;Arial&quot;;
+border-width: 1px;
+border-style: solid; 
+border-color: darkblue;</string>
+     </property>
+     <property name="minimum">
+      <number>0</number>
+     </property>
+     <property name="maximum">
+      <number>1500</number>
+     </property>
+     <property name="singleStep">
+      <number>100</number>
+     </property>
+    </widget>
+    <widget class="QSpinBox" name="errorIndexSpin">
+     <property name="geometry">
+      <rect>
+       <x>240</x>
+       <y>190</y>
+       <width>61</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(117, 218, 255);
+color: rgb(0, 0, 0);
+font: 700 16pt &quot;Arial&quot;;
+border-width: 1px;
+border-style: solid; 
+border-color: darkblue;</string>
+     </property>
+     <property name="minimum">
+      <number>1</number>
+     </property>
+     <property name="maximum">
+      <number>10</number>
+     </property>
+     <property name="singleStep">
+      <number>1</number>
+     </property>
+    </widget>
+    <widget class="QLabel" name="tomoIdLabel_2">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>170</y>
+       <width>61</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>8</pointsize>
+       <italic>false</italic>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);
+border-width: 0px;
+</string>
+     </property>
+     <property name="text">
+      <string>Error Class</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="tomoIdLabel_3">
+     <property name="geometry">
+      <rect>
+       <x>240</x>
+       <y>170</y>
+       <width>61</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>8</pointsize>
+       <italic>false</italic>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);
+border-width: 0px;
+</string>
+     </property>
+     <property name="text">
+      <string>Error Index</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
      </property>
     </widget>
    </widget>
@@ -2262,7 +2372,6 @@ color: rgb(255, 255, 255);
       </property>
       <property name="font">
        <font>
-        <family>Arial</family>
         <pointsize>8</pointsize>
         <italic>false</italic>
         <bold>true</bold>
@@ -2572,7 +2681,6 @@ border-width: 0px;
       </property>
       <property name="font">
        <font>
-        <family>Arial</family>
         <pointsize>8</pointsize>
         <italic>false</italic>
         <bold>true</bold>
@@ -2601,7 +2709,6 @@ border-width: 0px;
       </property>
       <property name="font">
        <font>
-        <family>Arial</family>
         <pointsize>8</pointsize>
         <italic>false</italic>
         <bold>true</bold>
@@ -2928,7 +3035,6 @@ background-color: rgba(255, 255, 255,0);
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
          <pointsize>8</pointsize>
          <italic>false</italic>
          <bold>false</bold>

@@ -31,6 +31,31 @@ private:
    int timeEv;
 
 
+public:
+   bool getEmergencyStat(void);
+   bool getPowerdownStat(void);
+   bool getMotorSafetySwitchStat(void);
+   bool getBatteryEnableStat(void);
+   bool getCArmUpStat(void);
+   bool getCArmDwnStat(void);
+   bool getTiltUpStat(void);
+   bool getTiltDwnStat(void);
+   bool getRotCwStat(void);
+   bool getRotCCwStat(void);
+   bool getBodyCwStat(void);
+   bool getBodyCCwStat(void);
+
+   bool getCompressorOnStat(void);
+   bool getXRayReqStat(void);
+   bool getBurninStat(void);
+   bool getCloseDoorStat(void);
+   bool getPedalCarmUpStat(void);
+   bool getPedalCarmDwnStat(void);
+   bool getPedalCmpUpStat(void);
+   bool getPedalCmpDwnStat(void);
+
+
+
 };
 
 

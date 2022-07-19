@@ -61,22 +61,50 @@ class powerService: public deviceClass
     Q_OBJECT
 
 public:
-    explicit powerService(uint id, uchar revMaj, uchar revMin, uchar revSub, QObject *parent = nullptr);
+    explicit powerService(ushort CanId, uchar revMaj, uchar revMin, uchar revSub, QObject *parent = nullptr);
+
+    typedef enum{
+       _S_BATTERY = canProtocol::_S_LAST,
+       _S_LAST
+    }_StatusRegisters;
+
+    typedef enum{
+       _P_RESERVED = canProtocol::_P_LAST,
+       _P_DISABLE_POWER_ON_TIMER ,
+       _P_HARDWARE_POWER_OFF_TIMER,
+       _P_KEEP_ALIVE_TIMER,
+       _P_SOFT_POWER_OFF_TIMER,
+       _P_LOW_BATT_LEVEL,
+       _P_BODY_ROTATION_LOCK_TIMER,
+       _P_PEDALBOARD_LOCK_TIMER,
+       _P_MANUAL_BUTTON_LOCK_TIMER,
+       _P_XRAY_BUTTON_LOCK_TIMER,
+       _P_LAST
+    }_ParamRegisters;
+
+    typedef enum{
+       _D_RESERVED = canProtocol::_D_LAST,
+       _D_OUTPUT = 1,
+       _D_LAST
+    }_DataRegisters;
+
+    typedef enum{
+       _C_MAIN_CPU_SOFT_POWER_OFF = 1,
+       _C_MAIN_CPU_SOFT_POWER_OFF_ABORT,
+
+    }_CommandRegisters;
 
 
 public slots:
     void timerEvent(QTimerEvent* ev);
 
-public:
-
-
-    bool execCommand(uchar cmd, dataregT* data);
-    bool readStatus(uchar index, dataregT* data);
+    void canReady(bool );
+    void start(void);
 
 private:
     bool executing;
     int  deviceLoop;
-    void start(void);
+
 
     void updateSystemStatusRegister(void); //< Updates the System Status register
     void updatePWSInputs(void); //< Updates the microcontroller inputs

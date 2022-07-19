@@ -20,11 +20,13 @@ public:
 
     void initWindow(void); //!< Override function for the opening activities
     void exitWindow(void); //!< Override function for the exiting activities
-
+    void setConnection(bool);
 
 public slots:
 
     void timerEvent(QTimerEvent* ev);
+
+
 
 private:
    Ui::startupWindow *ui;
@@ -55,7 +57,8 @@ public:
    bool getPedalCmpDwnStat(void);
 
 
-
+private slots:
+    void onStartButtonPressed(void);
 };
 
 

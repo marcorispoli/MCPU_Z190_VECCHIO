@@ -36,17 +36,15 @@ SOURCES += \
     $${TARGET_SOURCE}/startupWindow.cpp \
     $${TARGET_SOURCE}/device.cpp \
     $${TARGET_SOURCE}/power_service.cpp \
-    $${MAIN_CPU}/LIB/tcpipserver.cpp \
-    $${MAIN_CPU}/LIB/tcpipclient.cpp \
-
+    $${TARGET_SOURCE}/can_client.cpp \
+    $${TARGET_SOURCE}/can_protocol.cpp \
 
 HEADERS += \
     $${TARGET_SOURCE}/startupWindow.h \
     $${TARGET_SOURCE}/device.h \
     $${TARGET_SOURCE}/power_service.h \
-    $${MAIN_CPU}/LIB/tcpipserver.h \
-    $${MAIN_CPU}/LIB/tcpipclient.h \
-    
+    $${TARGET_SOURCE}/can_client.h \
+    $${TARGET_SOURCE}/can_protocol.h \
 
 
 # Aggiunge tutti i path di progetto

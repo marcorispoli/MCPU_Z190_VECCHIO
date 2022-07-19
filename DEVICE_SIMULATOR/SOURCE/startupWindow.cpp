@@ -21,8 +21,10 @@ startupWindow::~startupWindow()
 
 void startupWindow::initWindow(void)
 {
+    uchar maj,min,sub,spare;
+    pService->protocol->statusRegisters[canProtocol::_S_REVISION].get(&maj,&min,&sub, &spare);
 
-    QString revision = QString("FW REVISION: %1").arg(pService->revisionreg.data[0]) + "." + QString("%1").arg(pService->revisionreg.data[1]) + "." + QString("%2").arg(pService->revisionreg.data[2]);
+    QString revision = QString("FW REVISION: %1").arg(maj) + "." + QString("%1").arg(min) + "." + QString("%2").arg(sub);
     ui->revisionLabel->setText(revision);
 
     // Power Panel
@@ -65,6 +67,9 @@ void startupWindow::initWindow(void)
     ui->HW_HV_ON->setChecked(false);
 
 
+
+
+    connect(ui->startButton, SIGNAL(pressed()), this, SLOT(onStartButtonPressed()), Qt::UniqueConnection);
 
 }
 
@@ -142,24 +147,13 @@ bool startupWindow::getPedalCmpDwnStat(void){
     return (ui->CMP_DWN->isChecked());
 }
 
-bool startupWindow::getSymOutputStat(uchar index){
 
-   switch(index){
-   case 0:  return (ui->OUT_0->isChecked());
-   case 1:  return (ui->OUT_1->isChecked());
-   case 2:  return (ui->OUT_2->isChecked());
-   case 3:  return (ui->OUT_3->isChecked());
-   case 4:  return (ui->OUT_4->isChecked());
-   case 5:  return (ui->OUT_5->isChecked());
-   case 6:  return (ui->OUT_6->isChecked());
-   case 7:  return (ui->OUT_7->isChecked());
-   case 8:  return (ui->OUT_8->isChecked());
-   case 9:  return (ui->OUT_9->isChecked());
-   case 10:  return (ui->OUT_10->isChecked());
-   }
+void startupWindow::setConnection(bool stat)
+{
+    if(stat) ui->connectionStatus->setText("STATUS: CAN CONNECTED");
+    else ui->connectionStatus->setText("STATUS: DISCONNECTED");
 
 }
-
 
 void startupWindow::exitWindow(void)
 {
@@ -175,5 +169,11 @@ void startupWindow::timerEvent(QTimerEvent* ev)
     {
     }
 
+}
+
+
+void startupWindow::onStartButtonPressed()
+{
+    pService->start();
 }
 

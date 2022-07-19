@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 6.0.2, 2022-06-17T16:51:46. -->
+<!-- Written by QtCreator 6.0.2, 2022-07-19T13:27:52. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -67,79 +67,7 @@
     <value type="bool" key="AutoTest.Framework.QtQuickTest">false</value>
     <value type="bool" key="AutoTest.Framework.QtTest">true</value>
    </valuemap>
-   <valuemap type="QVariantMap" key="AutoTest.CheckStates">
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/CommandProtocol/tst_commandprotocol.cpp:cleanupTestCase">Unchecked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/CommandProtocol/tst_commandprotocol.cpp:initTestCase">Unchecked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/CommandProtocol/tst_commandprotocol.cpp:test_commandProtocol">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/CommandProtocol/tst_commandprotocol.cpp:test_commandProtocol_1">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/CommandProtocol/tst_commandprotocol.cpp:test_commandProtocol_10">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/CommandProtocol/tst_commandprotocol.cpp:test_commandProtocol_11">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/CommandProtocol/tst_commandprotocol.cpp:test_commandProtocol_12">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/CommandProtocol/tst_commandprotocol.cpp:test_commandProtocol_13">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/CommandProtocol/tst_commandprotocol.cpp:test_commandProtocol_14">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/CommandProtocol/tst_commandprotocol.cpp:test_commandProtocol_15">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/CommandProtocol/tst_commandprotocol.cpp:test_commandProtocol_2">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/CommandProtocol/tst_commandprotocol.cpp:test_commandProtocol_2_1">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/CommandProtocol/tst_commandprotocol.cpp:test_commandProtocol_3">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/CommandProtocol/tst_commandprotocol.cpp:test_commandProtocol_4">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/CommandProtocol/tst_commandprotocol.cpp:test_commandProtocol_5">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/CommandProtocol/tst_commandprotocol.cpp:test_commandProtocol_6">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/CommandProtocol/tst_commandprotocol.cpp:test_commandProtocol_7">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/CommandProtocol/tst_commandprotocol.cpp:test_commandProtocol_8">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/CommandProtocol/tst_commandprotocol.cpp:test_commandProtocol_9">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/ErrorTable/tst_errortable.cpp:cleanupTestCase">Unchecked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/ErrorTable/tst_errortable.cpp:initTestCase">Unchecked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/ErrorTable/tst_errortable.cpp:test_errorTable">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/ErrorTable/tst_errortable.cpp:test_errorTable_1">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/ErrorTable/tst_errortable.cpp:test_errorTable_2">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/ErrorTable/tst_errortable.cpp:test_errorTable_3">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/ErrorTable/tst_errortable.cpp:test_errorTable_4">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/ErrorTable/tst_errortable.cpp:test_errorTable_5">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/TitanCanDriverInterface/tst_titandriverclass.cpp:cleanupTestCase">Unchecked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/TitanCanDriverInterface/tst_titandriverclass.cpp:initTestCase">Unchecked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/TitanCanDriverInterface/tst_titandriverclass.cpp:test_titanDriverInterface">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/TitanCanDriverInterface/tst_titandriverclass.cpp:test_titanDriverInterface_1">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/TitanCanDriverInterface/tst_titandriverclass.cpp:test_titanDriverInterface_2">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/TitanCanDriverInterface/tst_titandriverclass.cpp:test_titanDriverInterface_3">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/TitanCanDriverInterface/tst_titandriverclass.cpp:test_titanDriverInterface_4">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/TitanCanDriverInterface/tst_titandriverclass.cpp:test_titanDriverInterface_5">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/TitanCanDriverInterface/tst_titandriverclass.cpp:test_titanDriverInterface_6">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/TitanCanDriverInterface/tst_titandriverclass.cpp:test_titanDriverInterface_7">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/TitanCanDriverInterface/tst_titandriverclass.cpp:test_titanDriverInterface_8">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:cleanupTestCase">Unchecked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:initTestCase">Unchecked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_EXEC_AbortProjections">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_EXEC_ArmPosition">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_EXEC_Close">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_EXEC_OpenStudy">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_EXEC_PowerOff">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_EXEC_ResetError">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_EXEC_StartXraySequence">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_EXEC_TrxPosition">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_GANTRY_AbortProjection">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_GANTRY_ERROR">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_GANTRY_PulseCompleted">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_GANTRY_SelectProjection">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_GANTRY_SetAccessories">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_GANTRY_SetTubeTemperature">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_GANTRY_XrayPushEvent">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_GANTRY_XraySequenceCompleted">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_GET_Accessories">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_GET_CompressorData">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_GET_ExposureCompletionData">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_GET_ReadyForExposure">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_GET_RotationAngles">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_GET_TomoConfig">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_GET_TomoConfigFile">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_GET_TubeTemperature">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_GET_XrayPushStatus">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_SET_CompressionRelease">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_SET_Language">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_SET_ProjectionList">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_SET_PulseData">Checked</value>
-    <value type="Qt::CheckState" key="1@C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/tst_awsinterface.cpp:test_awsInterface_SET_XrayPushEnable">Checked</value>
-   </valuemap>
+   <valuemap type="QVariantMap" key="AutoTest.CheckStates"/>
    <value type="int" key="AutoTest.RunAfterBuild">0</value>
    <value type="bool" key="AutoTest.UseGlobal">true</value>
    <valuelist type="QVariantList" key="ClangCodeModel.CustomCommandLineKey">
@@ -169,9 +97,9 @@
    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Desktop Qt 6.2.2 MinGW 64-bit</value>
    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Desktop Qt 6.2.2 MinGW 64-bit</value>
    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">qt.qt6.622.win64_mingw_kit</value>
-   <value type="qlonglong" key="ProjectExplorer.Target.ActiveBuildConfiguration">1</value>
+   <value type="qlonglong" key="ProjectExplorer.Target.ActiveBuildConfiguration">0</value>
    <value type="qlonglong" key="ProjectExplorer.Target.ActiveDeployConfiguration">0</value>
-   <value type="qlonglong" key="ProjectExplorer.Target.ActiveRunConfiguration">7</value>
+   <value type="qlonglong" key="ProjectExplorer.Target.ActiveRunConfiguration">1</value>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.0">
     <value type="int" key="EnableQmlDebugging">0</value>
     <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">C:\Users\marco\Documents\Data\Progetti-GIT\SW\PROGETTO_MAIN_CPU_Z190\build-Project-Desktop_Qt_6_2_2_MinGW_64_bit-Debug</value>
@@ -315,14 +243,14 @@
     <valuelist type="QVariantList" key="CustomOutputParsers"/>
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/APPLICATION/PROJECT/MainCpu/MainCpu.pro</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/APPLICATION/PROJECT/MainCpu/MainCpu.pro</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/CAN_DRIVER/TITAN/PROJECT/TitanCanDriver/TitanCanDriver.pro</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/CAN_DRIVER/TITAN/PROJECT/TitanCanDriver/TitanCanDriver.pro</value>
     <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
     <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/build-Project-Desktop_Qt_6_2_2_MinGW_64_bit-Release/APPLICATION/PROJECT/MainCpu</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/build-Project-Desktop_Qt_6_2_2_MinGW_64_bit-Debug/CAN_DRIVER/TITAN/PROJECT/TitanCanDriver</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.1">
     <value type="bool" key="Analyzer.Perf.Settings.UseGlobalSettings">true</value>
@@ -331,96 +259,16 @@
     <valuelist type="QVariantList" key="CustomOutputParsers"/>
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/awsInterface.pro</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/awsInterface/awsInterface.pro</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/POWER_SERVICE/PROJECT/PowerService/PowerService.pro</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/POWER_SERVICE/PROJECT/PowerService/PowerService.pro</value>
     <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
     <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/build-Project-Desktop_Qt_6_2_2_MinGW_64_bit-Release/TESTS/SOURCE/awsInterface</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/build-Project-Desktop_Qt_6_2_2_MinGW_64_bit-Debug/POWER_SERVICE/PROJECT/PowerService</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.2">
-    <value type="bool" key="Analyzer.Perf.Settings.UseGlobalSettings">true</value>
-    <value type="bool" key="Analyzer.QmlProfiler.Settings.UseGlobalSettings">true</value>
-    <value type="bool" key="Analyzer.Valgrind.Settings.UseGlobalSettings">true</value>
-    <valuelist type="QVariantList" key="CustomOutputParsers"/>
-    <value type="int" key="PE.EnvironmentAspect.Base">2</value>
-    <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/CommandProtocol/CommandProtocol.pro</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/CommandProtocol/CommandProtocol.pro</value>
-    <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
-    <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
-    <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>
-    <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
-    <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/build-Project-Desktop_Qt_6_2_2_MinGW_64_bit-Release/TESTS/SOURCE/CommandProtocol</value>
-   </valuemap>
-   <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.3">
-    <value type="bool" key="Analyzer.Perf.Settings.UseGlobalSettings">true</value>
-    <value type="bool" key="Analyzer.QmlProfiler.Settings.UseGlobalSettings">true</value>
-    <value type="bool" key="Analyzer.Valgrind.Settings.UseGlobalSettings">true</value>
-    <valuelist type="QVariantList" key="CustomOutputParsers"/>
-    <value type="int" key="PE.EnvironmentAspect.Base">2</value>
-    <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/ErrorTable/ErrorTable.pro</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/ErrorTable/ErrorTable.pro</value>
-    <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
-    <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
-    <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>
-    <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
-    <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/build-Project-Desktop_Qt_6_2_2_MinGW_64_bit-Release/TESTS/SOURCE/ErrorTable</value>
-   </valuemap>
-   <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.4">
-    <value type="bool" key="Analyzer.Perf.Settings.UseGlobalSettings">true</value>
-    <value type="bool" key="Analyzer.QmlProfiler.Settings.UseGlobalSettings">true</value>
-    <value type="bool" key="Analyzer.Valgrind.Settings.UseGlobalSettings">true</value>
-    <valuelist type="QVariantList" key="CustomOutputParsers"/>
-    <value type="int" key="PE.EnvironmentAspect.Base">2</value>
-    <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/TitanCanDriverInterface/TitanCanDriverInterface.pro</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TESTS/SOURCE/TitanCanDriverInterface/TitanCanDriverInterface.pro</value>
-    <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
-    <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
-    <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>
-    <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
-    <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/build-Project-Desktop_Qt_6_2_2_MinGW_64_bit-Release/TESTS/SOURCE/TitanCanDriverInterface</value>
-   </valuemap>
-   <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.5">
-    <value type="bool" key="Analyzer.Perf.Settings.UseGlobalSettings">true</value>
-    <value type="bool" key="Analyzer.QmlProfiler.Settings.UseGlobalSettings">true</value>
-    <value type="bool" key="Analyzer.Valgrind.Settings.UseGlobalSettings">true</value>
-    <valuelist type="QVariantList" key="CustomOutputParsers"/>
-    <value type="int" key="PE.EnvironmentAspect.Base">2</value>
-    <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TEST_AWS/PROJECT/TestAws/TestAws.pro</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/TEST_AWS/PROJECT/TestAws/TestAws.pro</value>
-    <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
-    <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
-    <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>
-    <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
-    <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/build-Project-Desktop_Qt_6_2_2_MinGW_64_bit-Release/TEST_AWS/PROJECT/TestAws</value>
-   </valuemap>
-   <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.6">
-    <value type="bool" key="Analyzer.Perf.Settings.UseGlobalSettings">true</value>
-    <value type="bool" key="Analyzer.QmlProfiler.Settings.UseGlobalSettings">true</value>
-    <value type="bool" key="Analyzer.Valgrind.Settings.UseGlobalSettings">true</value>
-    <valuelist type="QVariantList" key="CustomOutputParsers"/>
-    <value type="int" key="PE.EnvironmentAspect.Base">2</value>
-    <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/AWS_SENDER/PROJECT/AwsSender/AwsSender.pro</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/MAIN_CPU/AWS_SENDER/PROJECT/AwsSender/AwsSender.pro</value>
-    <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
-    <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
-    <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>
-    <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
-    <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/build-Project-Desktop_Qt_6_2_2_MinGW_64_bit-Release/AWS_SENDER/PROJECT/AwsSender</value>
-   </valuemap>
-   <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.7">
     <value type="bool" key="Analyzer.Perf.Settings.UseGlobalSettings">true</value>
     <value type="bool" key="Analyzer.QmlProfiler.Settings.UseGlobalSettings">true</value>
     <value type="bool" key="Analyzer.Valgrind.Settings.UseGlobalSettings">true</value>
@@ -434,9 +282,9 @@
     <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/build-Project-Desktop_Qt_6_2_2_MinGW_64_bit-Release/DEVICE_SIMULATOR/PROJECT/DeviceSimulator</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">C:/Users/marco/Documents/Data/Progetti-GIT/SW/PROGETTO_MAIN_CPU_Z190/build-Project-Desktop_Qt_6_2_2_MinGW_64_bit-Debug/DEVICE_SIMULATOR/PROJECT/DeviceSimulator</value>
    </valuemap>
-   <value type="qlonglong" key="ProjectExplorer.Target.RunConfigurationCount">8</value>
+   <value type="qlonglong" key="ProjectExplorer.Target.RunConfigurationCount">3</value>
   </valuemap>
  </data>
  <data>

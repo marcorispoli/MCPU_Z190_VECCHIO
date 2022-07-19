@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1280</width>
-    <height>800</height>
+    <height>572</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -23,7 +23,7 @@ background-color: rgb(85, 170, 255);</string>
      <x>0</x>
      <y>0</y>
      <width>1280</width>
-     <height>800</height>
+     <height>561</height>
     </rect>
    </property>
    <property name="font">
@@ -44,914 +44,13 @@ border-color: rgb(0, 0, 127);</string>
    <property name="frameShadow">
     <enum>QFrame::Raised</enum>
    </property>
-   <widget class="QFrame" name="PowerServiceFrame">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>30</y>
-      <width>281</width>
-      <height>751</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">border-width: 1px;
-border-style: solid; 
-border-color: darkblue;
-border-color: rgb(0, 0, 127);
-</string>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::StyledPanel</enum>
-    </property>
-    <property name="frameShadow">
-     <enum>QFrame::Raised</enum>
-    </property>
-    <widget class="QPushButton" name="resetButton">
-     <property name="geometry">
-      <rect>
-       <x>80</x>
-       <y>700</y>
-       <width>121</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>12</pointsize>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: rgb(0, 0, 127);
-color: rgb(255, 255, 255);
-</string>
-     </property>
-     <property name="text">
-      <string>RESET</string>
-     </property>
-     <property name="checkable">
-      <bool>false</bool>
-     </property>
-     <property name="flat">
-      <bool>false</bool>
-     </property>
-    </widget>
-    <widget class="QLabel" name="revisionLabel">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>30</y>
-       <width>251</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>10</pointsize>
-       <italic>true</italic>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="cursor">
-      <cursorShape>CrossCursor</cursorShape>
-     </property>
-     <property name="layoutDirection">
-      <enum>Qt::LeftToRight</enum>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);
-border-width: 0px;
-</string>
-     </property>
-     <property name="text">
-      <string>REVISION: 1.0</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-     </property>
-    </widget>
-    <widget class="QFrame" name="powerFrame">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>80</y>
-       <width>261</width>
-       <height>111</height>
-      </rect>
-     </property>
-     <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
-     </property>
-     <widget class="QRadioButton" name="PowerAcDc">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>7</y>
-        <width>101</width>
-        <height>22</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(85, 0, 0);
-font: 700 8pt &quot;Arial&quot;;</string>
-      </property>
-      <property name="text">
-       <string>MAIN-PRESENT</string>
-      </property>
-      <property name="autoExclusive">
-       <bool>false</bool>
-      </property>
-     </widget>
-     <widget class="QRadioButton" name="PowerOnButton">
-      <property name="geometry">
-       <rect>
-        <x>124</x>
-        <y>7</y>
-        <width>131</width>
-        <height>22</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(85, 0, 0);
-font: 700 8pt &quot;Arial&quot;;</string>
-      </property>
-      <property name="text">
-       <string>POWER ON BUTTON</string>
-      </property>
-      <property name="autoExclusive">
-       <bool>false</bool>
-      </property>
-     </widget>
-     <widget class="QRadioButton" name="BattEna">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>40</y>
-        <width>101</width>
-        <height>22</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(85, 0, 0);
-font: 700 8pt &quot;Arial&quot;;</string>
-      </property>
-      <property name="text">
-       <string>BATTERY ENA</string>
-      </property>
-      <property name="autoExclusive">
-       <bool>false</bool>
-      </property>
-     </widget>
-     <widget class="QSpinBox" name="batt1Value">
-      <property name="geometry">
-       <rect>
-        <x>127</x>
-        <y>40</y>
-        <width>61</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(117, 218, 255);
-color: rgb(0, 0, 0);
-font: 700 12pt &quot;Arial&quot;;
-border-width: 1px;
-border-style: solid; 
-border-color: darkblue;</string>
-      </property>
-      <property name="minimum">
-       <number>10</number>
-      </property>
-      <property name="maximum">
-       <number>14</number>
-      </property>
-      <property name="singleStep">
-       <number>1</number>
-      </property>
-      <property name="value">
-       <number>12</number>
-      </property>
-     </widget>
-     <widget class="QSpinBox" name="batt2Value">
-      <property name="geometry">
-       <rect>
-        <x>194</x>
-        <y>40</y>
-        <width>61</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(117, 218, 255);
-color: rgb(0, 0, 0);
-font: 700 12pt &quot;Arial&quot;;
-border-width: 1px;
-border-style: solid; 
-border-color: darkblue;</string>
-      </property>
-      <property name="minimum">
-       <number>10</number>
-      </property>
-      <property name="maximum">
-       <number>14</number>
-      </property>
-      <property name="singleStep">
-       <number>1</number>
-      </property>
-      <property name="value">
-       <number>12</number>
-      </property>
-     </widget>
-     <widget class="QCheckBox" name="MotorEnabled">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>70</y>
-        <width>101</width>
-        <height>22</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(255, 255, 0);
-font: 8pt &quot;Arial&quot;;</string>
-      </property>
-      <property name="text">
-       <string>+48VDC ENA</string>
-      </property>
-      <property name="checkable">
-       <bool>false</bool>
-      </property>
-     </widget>
-     <widget class="QCheckBox" name="MOTOR_DC_OK">
-      <property name="geometry">
-       <rect>
-        <x>130</x>
-        <y>70</y>
-        <width>101</width>
-        <height>22</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(255, 255, 0);
-font: 8pt &quot;Arial&quot;;</string>
-      </property>
-      <property name="text">
-       <string>+48VDC OK</string>
-      </property>
-      <property name="checkable">
-       <bool>false</bool>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QFrame" name="CarmFrame">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>200</y>
-       <width>261</width>
-       <height>91</height>
-      </rect>
-     </property>
-     <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
-     </property>
-     <widget class="QLabel" name="label_33">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>1</y>
-        <width>91</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>8</pointsize>
-        <italic>false</italic>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="cursor">
-       <cursorShape>CrossCursor</cursorShape>
-      </property>
-      <property name="layoutDirection">
-       <enum>Qt::LeftToRight</enum>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(255, 255, 255);
-border-width: 0px;
-</string>
-      </property>
-      <property name="text">
-       <string>PEDALBOARD</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-      </property>
-     </widget>
-     <widget class="QRadioButton" name="CARM_DWN">
-      <property name="geometry">
-       <rect>
-        <x>130</x>
-        <y>20</y>
-        <width>111</width>
-        <height>22</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(85, 0, 0);
-font: 700 8pt &quot;Arial&quot;;</string>
-      </property>
-      <property name="text">
-       <string>C-ARM DWN</string>
-      </property>
-      <property name="autoExclusive">
-       <bool>false</bool>
-      </property>
-     </widget>
-     <widget class="QRadioButton" name="CARM_UP">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>20</y>
-        <width>111</width>
-        <height>22</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(85, 0, 0);
-font: 700 8pt &quot;Arial&quot;;</string>
-      </property>
-      <property name="text">
-       <string>C-ARM UP</string>
-      </property>
-      <property name="autoExclusive">
-       <bool>false</bool>
-      </property>
-     </widget>
-     <widget class="QRadioButton" name="CMP_UP">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>50</y>
-        <width>111</width>
-        <height>22</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(85, 0, 0);
-font: 700 8pt &quot;Arial&quot;;</string>
-      </property>
-      <property name="text">
-       <string>CMP-UP</string>
-      </property>
-      <property name="autoExclusive">
-       <bool>false</bool>
-      </property>
-     </widget>
-     <widget class="QRadioButton" name="CMP_DWN">
-      <property name="geometry">
-       <rect>
-        <x>130</x>
-        <y>50</y>
-        <width>111</width>
-        <height>22</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(85, 0, 0);
-font: 700 8pt &quot;Arial&quot;;</string>
-      </property>
-      <property name="text">
-       <string>CMP-DWN</string>
-      </property>
-      <property name="autoExclusive">
-       <bool>false</bool>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QFrame" name="xrayFrame">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>370</y>
-       <width>261</width>
-       <height>91</height>
-      </rect>
-     </property>
-     <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
-     </property>
-     <widget class="QLabel" name="label_35">
-      <property name="geometry">
-       <rect>
-        <x>6</x>
-        <y>1</y>
-        <width>61</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>8</pointsize>
-        <italic>false</italic>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="cursor">
-       <cursorShape>CrossCursor</cursorShape>
-      </property>
-      <property name="layoutDirection">
-       <enum>Qt::LeftToRight</enum>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(255, 255, 255);
-border-width: 0px;
-</string>
-      </property>
-      <property name="text">
-       <string>X-RAY</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-      </property>
-     </widget>
-     <widget class="QFrame" name="xrayLed">
-      <property name="geometry">
-       <rect>
-        <x>120</x>
-        <y>26</y>
-        <width>31</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">border-image: url(:/Sym/Sym/xray_sym.png);</string>
-      </property>
-      <property name="frameShape">
-       <enum>QFrame::StyledPanel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
-      </property>
-     </widget>
-     <widget class="QFrame" name="xrayLmp1">
-      <property name="geometry">
-       <rect>
-        <x>160</x>
-        <y>26</y>
-        <width>31</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">border-image: url(:/Sym/Sym/xray_sym.png);</string>
-      </property>
-      <property name="frameShape">
-       <enum>QFrame::StyledPanel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
-      </property>
-     </widget>
-     <widget class="QFrame" name="xrayLmp2">
-      <property name="geometry">
-       <rect>
-        <x>200</x>
-        <y>26</y>
-        <width>31</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">border-image: url(:/Sym/Sym/xray_sym.png);</string>
-      </property>
-      <property name="frameShape">
-       <enum>QFrame::StyledPanel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_36">
-      <property name="geometry">
-       <rect>
-        <x>125</x>
-        <y>3</y>
-        <width>21</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>8</pointsize>
-        <italic>false</italic>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="cursor">
-       <cursorShape>CrossCursor</cursorShape>
-      </property>
-      <property name="layoutDirection">
-       <enum>Qt::LeftToRight</enum>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(255, 255, 255);
-border-width: 0px;
-</string>
-      </property>
-      <property name="text">
-       <string>LED</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_37">
-      <property name="geometry">
-       <rect>
-        <x>160</x>
-        <y>3</y>
-        <width>31</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>8</pointsize>
-        <italic>false</italic>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="cursor">
-       <cursorShape>CrossCursor</cursorShape>
-      </property>
-      <property name="layoutDirection">
-       <enum>Qt::LeftToRight</enum>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(255, 255, 255);
-border-width: 0px;
-</string>
-      </property>
-      <property name="text">
-       <string>LMP1</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_39">
-      <property name="geometry">
-       <rect>
-        <x>200</x>
-        <y>3</y>
-        <width>31</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>8</pointsize>
-        <italic>false</italic>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="cursor">
-       <cursorShape>CrossCursor</cursorShape>
-      </property>
-      <property name="layoutDirection">
-       <enum>Qt::LeftToRight</enum>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(255, 255, 255);
-border-width: 0px;
-</string>
-      </property>
-      <property name="text">
-       <string>LMP2</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-      </property>
-     </widget>
-     <widget class="QRadioButton" name="XrayButton">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>30</y>
-        <width>101</width>
-        <height>22</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(85, 0, 0);
-font: 700 8pt &quot;Arial&quot;;</string>
-      </property>
-      <property name="text">
-       <string>XRAY BUTTON</string>
-      </property>
-      <property name="autoExclusive">
-       <bool>false</bool>
-      </property>
-     </widget>
-     <widget class="QRadioButton" name="BurninJumper">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>56</y>
-        <width>101</width>
-        <height>22</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(85, 0, 0);
-font: 700 8pt &quot;Arial&quot;;</string>
-      </property>
-      <property name="text">
-       <string>BURNIN JMP</string>
-      </property>
-      <property name="autoExclusive">
-       <bool>false</bool>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QLabel" name="label_21">
-     <property name="geometry">
-      <rect>
-       <x>5</x>
-       <y>1</y>
-       <width>241</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>12</pointsize>
-       <italic>false</italic>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);
-border-width: 0px;
-</string>
-     </property>
-     <property name="text">
-      <string>POWER SERVICE BOARD</string>
-     </property>
-    </widget>
-    <widget class="QFrame" name="safetyFrame">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>470</y>
-       <width>261</width>
-       <height>101</height>
-      </rect>
-     </property>
-     <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
-     </property>
-     <widget class="QLabel" name="label_40">
-      <property name="geometry">
-       <rect>
-        <x>6</x>
-        <y>1</y>
-        <width>61</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>8</pointsize>
-        <italic>false</italic>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="cursor">
-       <cursorShape>CrossCursor</cursorShape>
-      </property>
-      <property name="layoutDirection">
-       <enum>Qt::LeftToRight</enum>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(255, 255, 255);
-border-width: 0px;
-</string>
-      </property>
-      <property name="text">
-       <string>SAFETY</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-      </property>
-     </widget>
-     <widget class="QRadioButton" name="Emergency">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>30</y>
-        <width>111</width>
-        <height>22</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(85, 0, 0);
-font: 700 8pt &quot;Arial&quot;;</string>
-      </property>
-      <property name="text">
-       <string>EMERGENCY</string>
-      </property>
-      <property name="autoExclusive">
-       <bool>false</bool>
-      </property>
-     </widget>
-     <widget class="QRadioButton" name="MotorSafety">
-      <property name="geometry">
-       <rect>
-        <x>130</x>
-        <y>30</y>
-        <width>111</width>
-        <height>22</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(85, 0, 0);
-font: 700 8pt &quot;Arial&quot;;</string>
-      </property>
-      <property name="text">
-       <string>MOTOR  SAFETY</string>
-      </property>
-      <property name="autoExclusive">
-       <bool>false</bool>
-      </property>
-     </widget>
-     <widget class="QRadioButton" name="ClosedDoor">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>60</y>
-        <width>111</width>
-        <height>22</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(85, 0, 0);
-font: 700 8pt &quot;Arial&quot;;</string>
-      </property>
-      <property name="text">
-       <string>CLOSED-DOOR</string>
-      </property>
-      <property name="autoExclusive">
-       <bool>false</bool>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QLabel" name="label_32">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>60</y>
-       <width>61</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>8</pointsize>
-       <italic>false</italic>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="cursor">
-      <cursorShape>CrossCursor</cursorShape>
-     </property>
-     <property name="layoutDirection">
-      <enum>Qt::LeftToRight</enum>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);
-border-width: 0px;
-</string>
-     </property>
-     <property name="text">
-      <string>POWER</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-     </property>
-    </widget>
-    <widget class="QFrame" name="CarmFrame_2">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>300</y>
-       <width>261</width>
-       <height>61</height>
-      </rect>
-     </property>
-     <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
-     </property>
-     <widget class="QLabel" name="label_34">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>1</y>
-        <width>91</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>8</pointsize>
-        <italic>false</italic>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="cursor">
-       <cursorShape>CrossCursor</cursorShape>
-      </property>
-      <property name="layoutDirection">
-       <enum>Qt::LeftToRight</enum>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(255, 255, 255);
-border-width: 0px;
-</string>
-      </property>
-      <property name="text">
-       <string>BODY</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-      </property>
-     </widget>
-     <widget class="QRadioButton" name="BODY_CCW">
-      <property name="geometry">
-       <rect>
-        <x>130</x>
-        <y>20</y>
-        <width>111</width>
-        <height>22</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(85, 0, 0);
-font: 700 8pt &quot;Arial&quot;;</string>
-      </property>
-      <property name="text">
-       <string>BODY CCW</string>
-      </property>
-      <property name="autoExclusive">
-       <bool>false</bool>
-      </property>
-     </widget>
-     <widget class="QRadioButton" name="BODY_CW">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>20</y>
-        <width>111</width>
-        <height>22</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(85, 0, 0);
-font: 700 8pt &quot;Arial&quot;;</string>
-      </property>
-      <property name="text">
-       <string>BODY CW</string>
-      </property>
-      <property name="autoExclusive">
-       <bool>false</bool>
-      </property>
-     </widget>
-    </widget>
-   </widget>
    <widget class="QFrame" name="HWFrame">
     <property name="geometry">
      <rect>
       <x>840</x>
-      <y>630</y>
-      <width>381</width>
-      <height>151</height>
+      <y>30</y>
+      <width>151</width>
+      <height>351</height>
      </rect>
     </property>
     <property name="frameShape">
@@ -963,9 +62,9 @@ font: 700 8pt &quot;Arial&quot;;</string>
     <widget class="QLabel" name="label_41">
      <property name="geometry">
       <rect>
-       <x>5</x>
-       <y>1</y>
-       <width>141</width>
+       <x>30</x>
+       <y>2</y>
+       <width>91</width>
        <height>20</height>
       </rect>
      </property>
@@ -997,7 +96,7 @@ border-width: 0px;
     <widget class="QCheckBox" name="HW_CARM_DWN">
      <property name="geometry">
       <rect>
-       <x>10</x>
+       <x>20</x>
        <y>30</y>
        <width>111</width>
        <height>22</height>
@@ -1014,7 +113,7 @@ font: 8pt &quot;Arial&quot;;</string>
     <widget class="QCheckBox" name="HW_CARM_UP">
      <property name="geometry">
       <rect>
-       <x>10</x>
+       <x>20</x>
        <y>50</y>
        <width>111</width>
        <height>22</height>
@@ -1031,7 +130,7 @@ font: 8pt &quot;Arial&quot;;</string>
     <widget class="QCheckBox" name="HW_COMP_ENA">
      <property name="geometry">
       <rect>
-       <x>10</x>
+       <x>20</x>
        <y>70</y>
        <width>111</width>
        <height>22</height>
@@ -1048,8 +147,8 @@ font: 8pt &quot;Arial&quot;;</string>
     <widget class="QCheckBox" name="HW_ROT_CCW">
      <property name="geometry">
       <rect>
-       <x>120</x>
-       <y>30</y>
+       <x>20</x>
+       <y>130</y>
        <width>111</width>
        <height>22</height>
       </rect>
@@ -1065,8 +164,8 @@ font: 8pt &quot;Arial&quot;;</string>
     <widget class="QCheckBox" name="HW_ROT_CW">
      <property name="geometry">
       <rect>
-       <x>120</x>
-       <y>50</y>
+       <x>20</x>
+       <y>150</y>
        <width>111</width>
        <height>22</height>
       </rect>
@@ -1082,8 +181,8 @@ font: 8pt &quot;Arial&quot;;</string>
     <widget class="QCheckBox" name="HW_COMP_ON">
      <property name="geometry">
       <rect>
-       <x>120</x>
-       <y>70</y>
+       <x>20</x>
+       <y>170</y>
        <width>111</width>
        <height>22</height>
       </rect>
@@ -1099,7 +198,7 @@ font: 8pt &quot;Arial&quot;;</string>
     <widget class="QCheckBox" name="HW_CMP_UP">
      <property name="geometry">
       <rect>
-       <x>10</x>
+       <x>20</x>
        <y>90</y>
        <width>111</width>
        <height>22</height>
@@ -1116,8 +215,8 @@ font: 8pt &quot;Arial&quot;;</string>
     <widget class="QCheckBox" name="HW_CMP_DWN">
      <property name="geometry">
       <rect>
-       <x>120</x>
-       <y>90</y>
+       <x>20</x>
+       <y>190</y>
        <width>111</width>
        <height>22</height>
       </rect>
@@ -1133,7 +232,7 @@ font: 8pt &quot;Arial&quot;;</string>
     <widget class="QCheckBox" name="HW_TILT_UP">
      <property name="geometry">
       <rect>
-       <x>10</x>
+       <x>20</x>
        <y>110</y>
        <width>111</width>
        <height>22</height>
@@ -1150,8 +249,8 @@ font: 8pt &quot;Arial&quot;;</string>
     <widget class="QCheckBox" name="HW_TILT_DWN">
      <property name="geometry">
       <rect>
-       <x>120</x>
-       <y>110</y>
+       <x>20</x>
+       <y>210</y>
        <width>111</width>
        <height>22</height>
       </rect>
@@ -1167,8 +266,8 @@ font: 8pt &quot;Arial&quot;;</string>
     <widget class="QCheckBox" name="HW_DET_PREP">
      <property name="geometry">
       <rect>
-       <x>230</x>
-       <y>30</y>
+       <x>20</x>
+       <y>230</y>
        <width>111</width>
        <height>22</height>
       </rect>
@@ -1184,8 +283,8 @@ font: 8pt &quot;Arial&quot;;</string>
     <widget class="QCheckBox" name="HW_DET_EW">
      <property name="geometry">
       <rect>
-       <x>230</x>
-       <y>50</y>
+       <x>20</x>
+       <y>250</y>
        <width>111</width>
        <height>22</height>
       </rect>
@@ -1201,8 +300,8 @@ font: 8pt &quot;Arial&quot;;</string>
     <widget class="QCheckBox" name="HW_HV_ON">
      <property name="geometry">
       <rect>
-       <x>230</x>
-       <y>70</y>
+       <x>20</x>
+       <y>270</y>
        <width>111</width>
        <height>22</height>
       </rect>
@@ -1218,8 +317,8 @@ font: 8pt &quot;Arial&quot;;</string>
     <widget class="QCheckBox" name="HW_START_GRID">
      <property name="geometry">
       <rect>
-       <x>230</x>
-       <y>90</y>
+       <x>20</x>
+       <y>290</y>
        <width>111</width>
        <height>22</height>
       </rect>
@@ -1235,8 +334,8 @@ font: 8pt &quot;Arial&quot;;</string>
     <widget class="QCheckBox" name="HW_GRID_ENA">
      <property name="geometry">
       <rect>
-       <x>230</x>
-       <y>110</y>
+       <x>20</x>
+       <y>310</y>
        <width>111</width>
        <height>22</height>
       </rect>
@@ -1253,10 +352,10 @@ font: 8pt &quot;Arial&quot;;</string>
    <widget class="QFrame" name="PowerServiceFrame_2">
     <property name="geometry">
      <rect>
-      <x>300</x>
+      <x>30</x>
       <y>30</y>
-      <width>151</width>
-      <height>751</height>
+      <width>521</width>
+      <height>231</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -1435,8 +534,8 @@ font: 8pt &quot;Arial&quot;;</string>
     <widget class="QCheckBox" name="SYS_8">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>210</y>
+       <x>140</x>
+       <y>30</y>
        <width>101</width>
        <height>22</height>
       </rect>
@@ -1455,8 +554,8 @@ font: 8pt &quot;Arial&quot;;</string>
     <widget class="QCheckBox" name="SYS_9">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>230</y>
+       <x>140</x>
+       <y>50</y>
        <width>101</width>
        <height>22</height>
       </rect>
@@ -1475,8 +574,8 @@ font: 8pt &quot;Arial&quot;;</string>
     <widget class="QCheckBox" name="SYS_10">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>250</y>
+       <x>140</x>
+       <y>70</y>
        <width>101</width>
        <height>22</height>
       </rect>
@@ -1495,8 +594,8 @@ font: 8pt &quot;Arial&quot;;</string>
     <widget class="QCheckBox" name="SYS_11">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>270</y>
+       <x>140</x>
+       <y>90</y>
        <width>101</width>
        <height>22</height>
       </rect>
@@ -1515,8 +614,8 @@ font: 8pt &quot;Arial&quot;;</string>
     <widget class="QCheckBox" name="SYS_12">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>290</y>
+       <x>140</x>
+       <y>110</y>
        <width>101</width>
        <height>22</height>
       </rect>
@@ -1535,8 +634,8 @@ font: 8pt &quot;Arial&quot;;</string>
     <widget class="QCheckBox" name="SYS_13">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>310</y>
+       <x>140</x>
+       <y>130</y>
        <width>101</width>
        <height>22</height>
       </rect>
@@ -1555,8 +654,8 @@ font: 8pt &quot;Arial&quot;;</string>
     <widget class="QCheckBox" name="SYS_14">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>330</y>
+       <x>140</x>
+       <y>150</y>
        <width>101</width>
        <height>22</height>
       </rect>
@@ -1575,8 +674,8 @@ font: 8pt &quot;Arial&quot;;</string>
     <widget class="QCheckBox" name="SYS_15">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>350</y>
+       <x>140</x>
+       <y>170</y>
        <width>101</width>
        <height>22</height>
       </rect>
@@ -1595,8 +694,8 @@ font: 8pt &quot;Arial&quot;;</string>
     <widget class="QCheckBox" name="SYS_16">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>390</y>
+       <x>260</x>
+       <y>30</y>
        <width>101</width>
        <height>22</height>
       </rect>
@@ -1615,8 +714,8 @@ font: 8pt &quot;Arial&quot;;</string>
     <widget class="QCheckBox" name="SYS_17">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>410</y>
+       <x>260</x>
+       <y>50</y>
        <width>101</width>
        <height>22</height>
       </rect>
@@ -1635,8 +734,8 @@ font: 8pt &quot;Arial&quot;;</string>
     <widget class="QCheckBox" name="SYS_18">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>430</y>
+       <x>260</x>
+       <y>70</y>
        <width>101</width>
        <height>22</height>
       </rect>
@@ -1655,8 +754,8 @@ font: 8pt &quot;Arial&quot;;</string>
     <widget class="QCheckBox" name="SYS_19">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>450</y>
+       <x>260</x>
+       <y>90</y>
        <width>101</width>
        <height>22</height>
       </rect>
@@ -1675,8 +774,8 @@ font: 8pt &quot;Arial&quot;;</string>
     <widget class="QCheckBox" name="SYS_20">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>470</y>
+       <x>260</x>
+       <y>110</y>
        <width>101</width>
        <height>22</height>
       </rect>
@@ -1695,8 +794,8 @@ font: 8pt &quot;Arial&quot;;</string>
     <widget class="QCheckBox" name="SYS_21">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>490</y>
+       <x>260</x>
+       <y>130</y>
        <width>101</width>
        <height>22</height>
       </rect>
@@ -1715,8 +814,8 @@ font: 8pt &quot;Arial&quot;;</string>
     <widget class="QCheckBox" name="SYS_22">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>510</y>
+       <x>260</x>
+       <y>150</y>
        <width>101</width>
        <height>22</height>
       </rect>
@@ -1735,8 +834,8 @@ font: 8pt &quot;Arial&quot;;</string>
     <widget class="QCheckBox" name="SYS_23">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>530</y>
+       <x>260</x>
+       <y>170</y>
        <width>101</width>
        <height>22</height>
       </rect>
@@ -1755,8 +854,8 @@ font: 8pt &quot;Arial&quot;;</string>
     <widget class="QCheckBox" name="SYS_24">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>570</y>
+       <x>380</x>
+       <y>30</y>
        <width>101</width>
        <height>22</height>
       </rect>
@@ -1775,8 +874,8 @@ font: 8pt &quot;Arial&quot;;</string>
     <widget class="QCheckBox" name="SYS_25">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>590</y>
+       <x>380</x>
+       <y>50</y>
        <width>101</width>
        <height>22</height>
       </rect>
@@ -1795,8 +894,8 @@ font: 8pt &quot;Arial&quot;;</string>
     <widget class="QCheckBox" name="SYS_26">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>610</y>
+       <x>380</x>
+       <y>70</y>
        <width>101</width>
        <height>22</height>
       </rect>
@@ -1815,8 +914,8 @@ font: 8pt &quot;Arial&quot;;</string>
     <widget class="QCheckBox" name="SYS_27">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>630</y>
+       <x>380</x>
+       <y>90</y>
        <width>101</width>
        <height>22</height>
       </rect>
@@ -1835,8 +934,8 @@ font: 8pt &quot;Arial&quot;;</string>
     <widget class="QCheckBox" name="SYS_28">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>650</y>
+       <x>380</x>
+       <y>110</y>
        <width>101</width>
        <height>22</height>
       </rect>
@@ -1855,8 +954,8 @@ font: 8pt &quot;Arial&quot;;</string>
     <widget class="QCheckBox" name="SYS_29">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>670</y>
+       <x>380</x>
+       <y>130</y>
        <width>101</width>
        <height>22</height>
       </rect>
@@ -1875,8 +974,8 @@ font: 8pt &quot;Arial&quot;;</string>
     <widget class="QCheckBox" name="SYS_30">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>690</y>
+       <x>380</x>
+       <y>150</y>
        <width>101</width>
        <height>22</height>
       </rect>
@@ -1895,8 +994,8 @@ font: 8pt &quot;Arial&quot;;</string>
     <widget class="QCheckBox" name="SYS_31">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>710</y>
+       <x>380</x>
+       <y>170</y>
        <width>101</width>
        <height>22</height>
       </rect>
@@ -1915,10 +1014,10 @@ font: 8pt &quot;Arial&quot;;</string>
     <widget class="QLabel" name="label_38">
      <property name="geometry">
       <rect>
-       <x>30</x>
+       <x>220</x>
        <y>10</y>
        <width>81</width>
-       <height>20</height>
+       <height>16</height>
       </rect>
      </property>
      <property name="font">
@@ -1950,10 +1049,10 @@ border-width: 0px;
    <widget class="QFrame" name="PowerServiceFrame_3">
     <property name="geometry">
      <rect>
-      <x>450</x>
-      <y>30</y>
-      <width>151</width>
-      <height>751</height>
+      <x>30</x>
+      <y>270</y>
+      <width>271</width>
+      <height>221</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -2142,8 +1241,8 @@ font: 8pt &quot;Arial&quot;;</string>
     <widget class="QCheckBox" name="OUT_8">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>210</y>
+       <x>140</x>
+       <y>30</y>
        <width>111</width>
        <height>22</height>
       </rect>
@@ -2159,8 +1258,8 @@ font: 8pt &quot;Arial&quot;;</string>
     <widget class="QCheckBox" name="OUT_9">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>230</y>
+       <x>140</x>
+       <y>50</y>
        <width>111</width>
        <height>22</height>
       </rect>
@@ -2176,8 +1275,8 @@ font: 8pt &quot;Arial&quot;;</string>
     <widget class="QCheckBox" name="OUT_10">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>250</y>
+       <x>140</x>
+       <y>70</y>
        <width>111</width>
        <height>22</height>
       </rect>
@@ -2190,6 +1289,918 @@ font: 8pt &quot;Arial&quot;;</string>
       <string>BuzzerAuto</string>
      </property>
     </widget>
+   </widget>
+   <widget class="QLabel" name="label_21">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>280</y>
+      <width>191</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+      <italic>false</italic>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);
+border-width: 0px;
+</string>
+    </property>
+    <property name="text">
+     <string>POWER SERVICE BOARD</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="revisionLabel">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>300</y>
+      <width>141</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+      <italic>true</italic>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>CrossCursor</cursorShape>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LeftToRight</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);
+border-width: 0px;
+</string>
+    </property>
+    <property name="text">
+     <string>REVISION: 1.0</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="startButton">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>350</y>
+      <width>181</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 0, 127);
+color: rgb(255, 255, 255);
+</string>
+    </property>
+    <property name="text">
+     <string>START</string>
+    </property>
+    <property name="checkable">
+     <bool>false</bool>
+    </property>
+    <property name="flat">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QFrame" name="powerFrame">
+    <property name="geometry">
+     <rect>
+      <x>560</x>
+      <y>30</y>
+      <width>261</width>
+      <height>131</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QRadioButton" name="PowerAcDc">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>30</y>
+       <width>101</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(85, 0, 0);
+font: 700 8pt &quot;Arial&quot;;</string>
+     </property>
+     <property name="text">
+      <string>MAIN-PRESENT</string>
+     </property>
+     <property name="autoExclusive">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="PowerOnButton">
+     <property name="geometry">
+      <rect>
+       <x>124</x>
+       <y>30</y>
+       <width>131</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(85, 0, 0);
+font: 700 8pt &quot;Arial&quot;;</string>
+     </property>
+     <property name="text">
+      <string>POWER ON BUTTON</string>
+     </property>
+     <property name="autoExclusive">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="BattEna">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>63</y>
+       <width>101</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(85, 0, 0);
+font: 700 8pt &quot;Arial&quot;;</string>
+     </property>
+     <property name="text">
+      <string>BATTERY ENA</string>
+     </property>
+     <property name="autoExclusive">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QSpinBox" name="batt1Value">
+     <property name="geometry">
+      <rect>
+       <x>127</x>
+       <y>63</y>
+       <width>61</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(117, 218, 255);
+color: rgb(0, 0, 0);
+font: 700 12pt &quot;Arial&quot;;
+border-width: 1px;
+border-style: solid; 
+border-color: darkblue;</string>
+     </property>
+     <property name="minimum">
+      <number>10</number>
+     </property>
+     <property name="maximum">
+      <number>14</number>
+     </property>
+     <property name="singleStep">
+      <number>1</number>
+     </property>
+     <property name="value">
+      <number>12</number>
+     </property>
+    </widget>
+    <widget class="QSpinBox" name="batt2Value">
+     <property name="geometry">
+      <rect>
+       <x>194</x>
+       <y>63</y>
+       <width>61</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(117, 218, 255);
+color: rgb(0, 0, 0);
+font: 700 12pt &quot;Arial&quot;;
+border-width: 1px;
+border-style: solid; 
+border-color: darkblue;</string>
+     </property>
+     <property name="minimum">
+      <number>10</number>
+     </property>
+     <property name="maximum">
+      <number>14</number>
+     </property>
+     <property name="singleStep">
+      <number>1</number>
+     </property>
+     <property name="value">
+      <number>12</number>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="MotorEnabled">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>93</y>
+       <width>101</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 0);
+font: 8pt &quot;Arial&quot;;</string>
+     </property>
+     <property name="text">
+      <string>+48VDC ENA</string>
+     </property>
+     <property name="checkable">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="MOTOR_DC_OK">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>93</y>
+       <width>101</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 0);
+font: 8pt &quot;Arial&quot;;</string>
+     </property>
+     <property name="text">
+      <string>+48VDC OK</string>
+     </property>
+     <property name="checkable">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_32">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>5</y>
+       <width>61</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>8</pointsize>
+       <italic>false</italic>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>CrossCursor</cursorShape>
+     </property>
+     <property name="layoutDirection">
+      <enum>Qt::LeftToRight</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);
+border-width: 0px;
+</string>
+     </property>
+     <property name="text">
+      <string>POWER</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QFrame" name="CarmFrame">
+    <property name="geometry">
+     <rect>
+      <x>560</x>
+      <y>220</y>
+      <width>261</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QLabel" name="label_33">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>1</y>
+       <width>91</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>8</pointsize>
+       <italic>false</italic>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>CrossCursor</cursorShape>
+     </property>
+     <property name="layoutDirection">
+      <enum>Qt::LeftToRight</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);
+border-width: 0px;
+</string>
+     </property>
+     <property name="text">
+      <string>PEDALBOARD</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="CARM_DWN">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>20</y>
+       <width>111</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(85, 0, 0);
+font: 700 8pt &quot;Arial&quot;;</string>
+     </property>
+     <property name="text">
+      <string>C-ARM DWN</string>
+     </property>
+     <property name="autoExclusive">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="CARM_UP">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>111</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(85, 0, 0);
+font: 700 8pt &quot;Arial&quot;;</string>
+     </property>
+     <property name="text">
+      <string>C-ARM UP</string>
+     </property>
+     <property name="autoExclusive">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="CMP_UP">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>50</y>
+       <width>111</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(85, 0, 0);
+font: 700 8pt &quot;Arial&quot;;</string>
+     </property>
+     <property name="text">
+      <string>CMP-UP</string>
+     </property>
+     <property name="autoExclusive">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="CMP_DWN">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>50</y>
+       <width>111</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(85, 0, 0);
+font: 700 8pt &quot;Arial&quot;;</string>
+     </property>
+     <property name="text">
+      <string>CMP-DWN</string>
+     </property>
+     <property name="autoExclusive">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QFrame" name="CarmFrame_2">
+    <property name="geometry">
+     <rect>
+      <x>560</x>
+      <y>160</y>
+      <width>261</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QLabel" name="label_34">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>1</y>
+       <width>91</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>8</pointsize>
+       <italic>false</italic>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>CrossCursor</cursorShape>
+     </property>
+     <property name="layoutDirection">
+      <enum>Qt::LeftToRight</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);
+border-width: 0px;
+</string>
+     </property>
+     <property name="text">
+      <string>BODY</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="BODY_CCW">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>20</y>
+       <width>111</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(85, 0, 0);
+font: 700 8pt &quot;Arial&quot;;</string>
+     </property>
+     <property name="text">
+      <string>BODY CCW</string>
+     </property>
+     <property name="autoExclusive">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="BODY_CW">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>111</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(85, 0, 0);
+font: 700 8pt &quot;Arial&quot;;</string>
+     </property>
+     <property name="text">
+      <string>BODY CW</string>
+     </property>
+     <property name="autoExclusive">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QFrame" name="xrayFrame">
+    <property name="geometry">
+     <rect>
+      <x>560</x>
+      <y>410</y>
+      <width>261</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QLabel" name="label_35">
+     <property name="geometry">
+      <rect>
+       <x>6</x>
+       <y>1</y>
+       <width>61</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>8</pointsize>
+       <italic>false</italic>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>CrossCursor</cursorShape>
+     </property>
+     <property name="layoutDirection">
+      <enum>Qt::LeftToRight</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);
+border-width: 0px;
+</string>
+     </property>
+     <property name="text">
+      <string>X-RAY</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QFrame" name="xrayLed">
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>26</y>
+       <width>31</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border-image: url(:/Sym/Sym/xray_sym.png);</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+    </widget>
+    <widget class="QFrame" name="xrayLmp1">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>26</y>
+       <width>31</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border-image: url(:/Sym/Sym/xray_sym.png);</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+    </widget>
+    <widget class="QFrame" name="xrayLmp2">
+     <property name="geometry">
+      <rect>
+       <x>200</x>
+       <y>26</y>
+       <width>31</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border-image: url(:/Sym/Sym/xray_sym.png);</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_36">
+     <property name="geometry">
+      <rect>
+       <x>125</x>
+       <y>3</y>
+       <width>21</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>8</pointsize>
+       <italic>false</italic>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>CrossCursor</cursorShape>
+     </property>
+     <property name="layoutDirection">
+      <enum>Qt::LeftToRight</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);
+border-width: 0px;
+</string>
+     </property>
+     <property name="text">
+      <string>LED</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_37">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>3</y>
+       <width>31</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>8</pointsize>
+       <italic>false</italic>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>CrossCursor</cursorShape>
+     </property>
+     <property name="layoutDirection">
+      <enum>Qt::LeftToRight</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);
+border-width: 0px;
+</string>
+     </property>
+     <property name="text">
+      <string>LMP1</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_39">
+     <property name="geometry">
+      <rect>
+       <x>200</x>
+       <y>3</y>
+       <width>31</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>8</pointsize>
+       <italic>false</italic>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>CrossCursor</cursorShape>
+     </property>
+     <property name="layoutDirection">
+      <enum>Qt::LeftToRight</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);
+border-width: 0px;
+</string>
+     </property>
+     <property name="text">
+      <string>LMP2</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="XrayButton">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>30</y>
+       <width>101</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(85, 0, 0);
+font: 700 8pt &quot;Arial&quot;;</string>
+     </property>
+     <property name="text">
+      <string>XRAY BUTTON</string>
+     </property>
+     <property name="autoExclusive">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="BurninJumper">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>56</y>
+       <width>101</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(85, 0, 0);
+font: 700 8pt &quot;Arial&quot;;</string>
+     </property>
+     <property name="text">
+      <string>BURNIN JMP</string>
+     </property>
+     <property name="autoExclusive">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QFrame" name="safetyFrame">
+    <property name="geometry">
+     <rect>
+      <x>560</x>
+      <y>310</y>
+      <width>261</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QLabel" name="label_40">
+     <property name="geometry">
+      <rect>
+       <x>6</x>
+       <y>1</y>
+       <width>61</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>8</pointsize>
+       <italic>false</italic>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>CrossCursor</cursorShape>
+     </property>
+     <property name="layoutDirection">
+      <enum>Qt::LeftToRight</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);
+border-width: 0px;
+</string>
+     </property>
+     <property name="text">
+      <string>SAFETY</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="Emergency">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>30</y>
+       <width>111</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(85, 0, 0);
+font: 700 8pt &quot;Arial&quot;;</string>
+     </property>
+     <property name="text">
+      <string>EMERGENCY</string>
+     </property>
+     <property name="autoExclusive">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="MotorSafety">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>30</y>
+       <width>111</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(85, 0, 0);
+font: 700 8pt &quot;Arial&quot;;</string>
+     </property>
+     <property name="text">
+      <string>MOTOR  SAFETY</string>
+     </property>
+     <property name="autoExclusive">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="ClosedDoor">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>60</y>
+       <width>111</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(85, 0, 0);
+font: 700 8pt &quot;Arial&quot;;</string>
+     </property>
+     <property name="text">
+      <string>CLOSED-DOOR</string>
+     </property>
+     <property name="autoExclusive">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QLabel" name="connectionStatus">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>320</y>
+      <width>161</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+      <italic>true</italic>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>CrossCursor</cursorShape>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LeftToRight</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);
+border-width: 0px;
+</string>
+    </property>
+    <property name="text">
+     <string>STATUS: DISCONNECTED</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+    </property>
    </widget>
   </widget>
  </widget>

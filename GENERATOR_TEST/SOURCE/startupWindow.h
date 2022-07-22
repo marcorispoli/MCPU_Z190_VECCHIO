@@ -3,7 +3,7 @@
 
 #include <QWidget>
 #include "windows.h"
-#include "communication.h"
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class startupWindow; }

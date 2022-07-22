@@ -4,30 +4,28 @@
 
 extern startupWindow*      window;
 
-powerService::powerService(ushort canId, uchar revMaj, uchar revMin, uchar revSub, QObject *parent ):deviceClass(canId, parent)
+powerService::powerService( uchar revMaj, uchar revMin, uchar revSub,ushort CanId, QString IP, uint port):deviceSimulator(CanId, IP, port)
 {
-    protocol->statusRegisters[canProtocol::_S_REVISION].set(revMaj,revMin,revSub,0);    // Assing the revision
+    statusRegisters[deviceSimulator::_S_REVISION].set(revMaj,revMin,revSub,0);    // Assing the revision
 
     // Create the Register of the Power Service Device
 
     // Status register instance
-    protocol->statusRegisters.append(canRegister(_S_BATTERY));
+    statusRegisters.append(canRegister(_S_BATTERY));
 
     // Parameter registers instance
-    protocol->paramRegisters.append(canRegister(_P_DISABLE_POWER_ON_TIMER));
-    protocol->paramRegisters.append(canRegister(_P_HARDWARE_POWER_OFF_TIMER));
-    protocol->paramRegisters.append(canRegister(_P_KEEP_ALIVE_TIMER));
-    protocol->paramRegisters.append(canRegister(_P_SOFT_POWER_OFF_TIMER));
-    protocol->paramRegisters.append(canRegister(_P_LOW_BATT_LEVEL));
-    protocol->paramRegisters.append(canRegister(_P_BODY_ROTATION_LOCK_TIMER));
-    protocol->paramRegisters.append(canRegister(_P_PEDALBOARD_LOCK_TIMER));
-    protocol->paramRegisters.append(canRegister(_P_MANUAL_BUTTON_LOCK_TIMER));
-    protocol->paramRegisters.append(canRegister(_P_XRAY_BUTTON_LOCK_TIMER));
+    paramRegisters.append(canRegister(_P_DISABLE_POWER_ON_TIMER));
+    paramRegisters.append(canRegister(_P_HARDWARE_POWER_OFF_TIMER));
+    paramRegisters.append(canRegister(_P_KEEP_ALIVE_TIMER));
+    paramRegisters.append(canRegister(_P_SOFT_POWER_OFF_TIMER));
+    paramRegisters.append(canRegister(_P_LOW_BATT_LEVEL));
+    paramRegisters.append(canRegister(_P_BODY_ROTATION_LOCK_TIMER));
+    paramRegisters.append(canRegister(_P_PEDALBOARD_LOCK_TIMER));
+    paramRegisters.append(canRegister(_P_MANUAL_BUTTON_LOCK_TIMER));
+    paramRegisters.append(canRegister(_P_XRAY_BUTTON_LOCK_TIMER));
 
     // Data registers instance
-    protocol->dataRegisters.append(canRegister(_D_OUTPUT));
-
-
+    dataRegisters.append(canRegister(_D_OUTPUT));
     executing = false;
 
 
@@ -51,10 +49,10 @@ powerService::powerService(ushort canId, uchar revMaj, uchar revMin, uchar revSu
 
 }
 
-void powerService::start(void){
+void powerService::deviceStart(void){
     if(executing) return;
     executing = true;
-    StartClient();
+    Start();
     deviceLoop = startTimer(50);
 
 }
@@ -95,7 +93,7 @@ void powerService::updateSystemStatusRegister(void){
     if(inputs[I_PWS_PED_CMP_UP])    data[3]   |= 0x04;   // Pedal Compression UP
     if(inputs[I_PWS_PED_CMP_DWN])   data[3]   |= 0x08;   // Pedal Compression DWN
 
-    protocol->statusRegisters[canProtocol::_S_SYSTEM].set(data[0],data[1],data[2],data[3]);
+    statusRegisters[deviceSimulator::_S_SYSTEM].set(data[0],data[1],data[2],data[3]);
 
 }
 
@@ -143,6 +141,6 @@ void powerService::timerEvent(QTimerEvent* ev){
     }
 }
 
-void powerService::canReady(bool stat){
+void powerService::canDriverReady(bool stat){
     window->setConnection(stat);
 }

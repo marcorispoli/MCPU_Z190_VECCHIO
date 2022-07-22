@@ -137,7 +137,7 @@ bool titanCanDriver::driverOpen(QByteArray COM, uchar BR, uint address, uint mas
         return false;
     }
 
-    canRxTimer = startTimer(2);
+    // canRxTimer = startTimer(2);
     return true;
 
 }
@@ -295,6 +295,17 @@ void titanCanDriver::sendOnCanSlot(ushort canId, QByteArray data){
     QByteArray command = "t" + CANID + "8" + DATA + "\r";
     virtualCom->write(command.data());
     virtualCom->waitForBytesWritten(1);
+
+    // Wait to receive the answer to prevent a burst of transmission
+    for(int i = 0; i <10; i++){
+        if(driverRead()){
+            emit receivedCanFrame(rxCanId, rxCanData);
+            return;
+        }
+    }
+
+    rxCanData.clear();
+    emit receivedCanFrame(rxCanId, rxCanData);
     return;
 }
 

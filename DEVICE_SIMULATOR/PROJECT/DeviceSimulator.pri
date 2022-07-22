@@ -34,23 +34,20 @@ DISTFILES +=
 SOURCES += \
     $${TARGET_SOURCE}/main.cpp \
     $${TARGET_SOURCE}/startupWindow.cpp \
-    $${TARGET_SOURCE}/device.cpp \
     $${TARGET_SOURCE}/power_service.cpp \
-    $${TARGET_SOURCE}/can_client.cpp \
-    $${TARGET_SOURCE}/can_protocol.cpp \
+    $${PROJLIB}/device_simulator.cpp \
 
 HEADERS += \
     $${TARGET_SOURCE}/startupWindow.h \
-    $${TARGET_SOURCE}/device.h \
     $${TARGET_SOURCE}/power_service.h \
-    $${TARGET_SOURCE}/can_client.h \
-    $${TARGET_SOURCE}/can_protocol.h \
+    $${PROJLIB}/device_simulator.h \
 
 
 # Aggiunge tutti i path di progetto
 INCLUDEPATH += \
     $${MAIN_CPU}/LIB \
     $${TARGET_SOURCE} \
+    $${PROJLIB} \
 
 
 

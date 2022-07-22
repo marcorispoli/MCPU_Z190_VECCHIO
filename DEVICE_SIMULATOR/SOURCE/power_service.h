@@ -4,7 +4,7 @@
 #include <QWidget>
 #include <QTimerEvent>
 
-#include "device.h"
+#include "device_simulator.h"
 
 // Board IO definition
 
@@ -56,20 +56,20 @@
 // Protocol Status register definition
 
 
-class powerService: public deviceClass
+class powerService: public deviceSimulator
 {
     Q_OBJECT
 
 public:
-    explicit powerService(ushort CanId, uchar revMaj, uchar revMin, uchar revSub, QObject *parent = nullptr);
+    explicit powerService( uchar revMaj, uchar revMin, uchar revSub,ushort CanId, QString IP, uint port);
 
     typedef enum{
-       _S_BATTERY = canProtocol::_S_LAST,
+       _S_BATTERY = deviceSimulator::_S_LAST,
        _S_LAST
     }_StatusRegisters;
 
     typedef enum{
-       _P_RESERVED = canProtocol::_P_LAST,
+       _P_RESERVED = deviceSimulator::_P_LAST,
        _P_DISABLE_POWER_ON_TIMER ,
        _P_HARDWARE_POWER_OFF_TIMER,
        _P_KEEP_ALIVE_TIMER,
@@ -83,7 +83,7 @@ public:
     }_ParamRegisters;
 
     typedef enum{
-       _D_RESERVED = canProtocol::_D_LAST,
+       _D_RESERVED = deviceSimulator::_D_LAST,
        _D_OUTPUT = 1,
        _D_LAST
     }_DataRegisters;
@@ -98,8 +98,8 @@ public:
 public slots:
     void timerEvent(QTimerEvent* ev);
 
-    void canReady(bool );
-    void start(void);
+    void canDriverReady(bool );
+    void deviceStart(void);
 
 private:
     bool executing;

@@ -24,25 +24,25 @@ DISTFILES +=
 
 SOURCES += \
     $${TARGET_SOURCE}/main.cpp \
-    $${TARGET_SOURCE}/server.cpp \
-    $${TARGET_SOURCE}/interface.cpp \
-    $${TARGET_SOURCE}/device.cpp \
-    $${TARGET_SOURCE}/can_protocol.cpp \
-    $${TARGET_SOURCE}/can_client.cpp \
+    $${TARGET_SOURCE}/power_service.cpp \
+    $${TARGET_SOURCE}/command_interface.cpp \
+    $${PROJLIB}/device.cpp \
+    $${PROJLIB}/device_command_interface.cpp \
 
 
 HEADERS += \
-    $${TARGET_SOURCE}/server.h \
-    $${TARGET_SOURCE}/device.h \
-    $${TARGET_SOURCE}/can_protocol.h \
-    $${TARGET_SOURCE}/can_client.h \
-    
+    $${TARGET_SOURCE}/power_service.h \
+    $${TARGET_SOURCE}/command_interface.h \
+    $${PROJLIB}/device.h \
+    $${PROJLIB}/device_command_interface.h \
+
 
 
 # Aggiunge tutti i path di progetto
 INCLUDEPATH += \
     $${MAIN_CPU}/LIB \
     $${TARGET_SOURCE} \
+    $${PROJLIB} \
 
 
 

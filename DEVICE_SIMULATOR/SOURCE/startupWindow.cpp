@@ -22,7 +22,7 @@ startupWindow::~startupWindow()
 void startupWindow::initWindow(void)
 {
     uchar maj,min,sub,spare;
-    pService->protocol->statusRegisters[canProtocol::_S_REVISION].get(&maj,&min,&sub, &spare);
+    pService->getStatusRegister((uchar) deviceSimulator::_S_REVISION).get(&maj,&min,&sub, &spare);
 
     QString revision = QString("FW REVISION: %1").arg(maj) + "." + QString("%1").arg(min) + "." + QString("%2").arg(sub);
     ui->revisionLabel->setText(revision);
@@ -174,6 +174,6 @@ void startupWindow::timerEvent(QTimerEvent* ev)
 
 void startupWindow::onStartButtonPressed()
 {
-    pService->start();
+    pService->deviceStart();
 }
 

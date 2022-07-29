@@ -399,12 +399,12 @@ bool CR2CP_Eth::ProcessBlock(CaDataDic * pDataDic, byte index, byte subindex, by
 //
 bool CR2CP_Eth::ProtFunction( eEthPriorities prio ,byte node_dest ,byte node_iss , byte index, byte subindex, tEthFunction fnc, word dataLength, byte *pdata)
 {
-	
+    /*
 	if( mCbSendMsgEth == nullptr )
 	{
 		return true;
 	} 
-	
+    */
 	if( dataLength > MAX_LENGTH_BUFFER_ETH )
 	{
 #ifdef _DEBUG

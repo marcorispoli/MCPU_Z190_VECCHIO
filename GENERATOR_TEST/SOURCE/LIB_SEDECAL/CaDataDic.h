@@ -3,7 +3,7 @@
 #define _CADATADIC_H
 
 #include "../Typedef.h"
-#include <os_mutex.h>
+//#include <os_mutex.h>
 
 /*!
  * \brief Defines the broadcast node for the r2cp protocol
@@ -332,7 +332,7 @@ class CaDataDic
 		/*!
 		 * \brief Mutex pointer
 		 */
-		OS::mutex_handle_t datadic_mutex;
+        //OS::mutex_handle_t datadic_mutex;
 		/*!
 		 * \brief Stores entries of the dictionary.
 		*/				  

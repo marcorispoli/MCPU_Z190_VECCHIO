@@ -1,10 +1,11 @@
 #include "startupWindow.h"
+#include "communication.h"
 #include "ui_startupWindow.h"
 #include "QStringConverter"
 #include "QDateTime"
 
 extern startupWindow* w1;
-
+extern Communication*  pComm;
 
 startupWindow::startupWindow(QWidget *parent)
     : ui(new Ui::startupWindow)
@@ -69,6 +70,7 @@ void startupWindow::connectionStat(bool stat){
 }
 
 void startupWindow::connectionButtonSlot(void){
+    pComm->start();
 
 }
 void startupWindow::onEventConnectionButtonSlot(void){

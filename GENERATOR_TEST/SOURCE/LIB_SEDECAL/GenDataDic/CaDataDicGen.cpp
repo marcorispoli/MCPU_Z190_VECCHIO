@@ -244,14 +244,14 @@ namespace R2CP
 	{
 			
 		if (m_p_instance_ == nullptr) 
-			m_p_instance_ = new CaDataDicGen(GENERATOR_NODE_ID);
+            m_p_instance_ = new CaDataDicGen(APPLICATION_NODE_ID);
 		return m_p_instance_;
 	}
 	
 	CaDataDicGen::CaDataDicGen(byte Node) : CaDataDic( Node )
 	{
 		/* Initialize mutex attributes */
-		datadic_mutex = OS::Mutex::Create();
+        // datadic_mutex = OS::Mutex::Create();
 		m_Current_Node_Dest_	= 0;
 		m_IsGetRequest_Pending_ = false;
 		
@@ -330,12 +330,12 @@ namespace R2CP
 	
 	void CaDataDicGen::Lock_DataDicGenMutex(void)
 	{
-		OS::Mutex::Lock(datadic_mutex);
+        //OS::Mutex::Lock(datadic_mutex);
 	}
 	
 	void CaDataDicGen::UnLock_DataDicGenMutex(void)
 	{
-		OS::Mutex::UnLock(datadic_mutex);
+        //OS::Mutex::UnLock(datadic_mutex);
 	}
 
 	

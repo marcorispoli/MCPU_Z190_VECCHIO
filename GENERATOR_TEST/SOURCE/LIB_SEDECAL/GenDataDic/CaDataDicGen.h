@@ -12,8 +12,8 @@
  * \ingroup   R2CPModule
 */
 
-#include "../../R2CP/R2CP_Eth.h"
-#include "../../R2CP/CaDataDic.h"
+#include "R2CP_Eth.h"
+#include "CaDataDic.h"
 #include "R2CP_Index.h"
 #include "Interfaces/aDataDicRadInterface.h"
 #include "Interfaces/aDataDicNetworkInterface.h"
@@ -24,7 +24,8 @@
 #include "Interfaces/aDataDicRFInterface.h"
 #include "Interfaces/aDataDicServiceInterface.h"
 
-#define GENERATOR_NODE_ID 	6
+#define APPLICATION_NODE_ID 	3
+
 #define PROTOCOL_VERSION_6	6
 #define PROTOCOL_VERSION_5	5
 

@@ -1,24 +1,53 @@
+#define _HTONS_IMPLEMENTATION
 #include "communication.h"
 #include <QStringConverter>
 #include "startupWindow.h"
+#include "Typedef.h"
+#include <QtEndian>
 
 
-extern startupWindow*      window;
+unsigned short htons(unsigned short val){
+    unsigned short us;
+    qToBigEndian<unsigned short>(val, &us);
+    return us;
+}
+unsigned int htonl(unsigned int val){
+    unsigned short ui;
+    qToBigEndian<unsigned int>(val, &ui);
+    return ui;
+}
+
+extern startupWindow* window;
+extern Communication* pComm;
+
+static int16_t sendCR2CPData(byte *pMessage , word datalength){
+    return pComm->sendData(pMessage, datalength);
+}
 
 Communication::Communication( QObject *parent)
 {
-
+    pComm = this;
     connect(&client, SIGNAL(clientConnection(bool)), this, SLOT(clientConnection(bool)), Qt::UniqueConnection);
     connect(&client, SIGNAL(rxData(QByteArray)), this, SLOT(clientRxData(QByteArray)), Qt::UniqueConnection);
     connection_status = false;
 
-    sequence = 0;
+    R2CP_Eth = new CR2CP_Eth(sendCR2CPData, 0, (CaDataDic*) R2CP::CaDataDicGen::GetInstance(), 0,0);
+    R2CP::CaDataDicGen::GetInstance()->Initialitation();
+    R2CP::CaDataDicGen::GetInstance()->SetCommunicationForm(R2CP_Eth);
 }
 
 void Communication::clientConnection(bool stat){
     connection_status = stat;
+    byte sh_id = 1;
+    byte loc_id = 3;
 
     window->connectionStat(stat);
+
+
+    if(stat ==true){
+        qDebug() << "Socket Connected";
+        R2CP::CaDataDicGen::GetInstance()->Network_ConnectionRequest_Event(sh_id, loc_id);
+    }else qDebug() << "Socket Disonnected";
 
 }
 
@@ -26,59 +55,18 @@ void Communication::start(void){
     client.Start(IP_ADDRESS, HUB_PORT);
 }
 
-void Communication::eventConnection(void){
-
+int16_t Communication::sendData(byte *pMessage , word datalength){
     QByteArray data;
-    data.append((uchar) GANTRY_ID );
-    client.txData(buildFrame(1, sequence, SMART_HUB_ID, NETWORK_IDX, 0x4, _EVENT_FRAME, 1, data));
+    for(int i=0; i<datalength; i++) data.append((char) pMessage[i]);
 
+    pComm->client.txData(data);
+    return datalength;
 }
-
 
 void Communication::clientRxData(QByteArray data){
 
-    uchar dest = data.at(1);
-    uchar idx = data.at(3);
-    if((dest != GANTRY_ID) && (dest != BROADCAST_ID)){
-        //window->addLogEvent(data);
-        return;
-    }
-
-
-    if(idx == 0xA0) handleNetworkFrame(&data);
-    else if(idx == 0x20) handleGeneratorFrame(&data);
-
-    //window->addLogEvent(data);
+    byte* dataPtr = (byte*) data.data();
+    if( R2CP_Eth )   R2CP_Eth->ProcessMessage(dataPtr);
     return;
 }
 
-void Communication::handleNetworkFrame(QByteArray* data){
-
-    uchar val = data->at(0);
-    uchar prio = val >> 6;
-    uchar seq = val & 0x3F;    
-    uchar srs = data->at(2);    
-    uchar sub = data->at(4);
-    uchar func = data->at(5);
-    ushort len = data->at(6)*256 + data->at(7);
-
-
-    QByteArray answer;
-    if(sub == 0x3){ // HEARTBIT
-        uchar node_id =  data->at(8);
-//        uchar sequence = data->at(9);
-        if(node_id != GANTRY_ID) return;
-
-        answer.append((uchar) GANTRY_ID);
-        answer.append((uchar) sequence++);
-
-        client.txData(buildFrame(prio, seq, srs, NETWORK_IDX, 0x3, _EVENT_FRAME, 2, answer));
-    }
-
-    return;
-}
-void Communication::handleGeneratorFrame(QByteArray* data){
-
-
-    return;
-}

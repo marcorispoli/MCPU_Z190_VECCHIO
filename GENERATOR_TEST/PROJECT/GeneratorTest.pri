@@ -35,28 +35,34 @@ SOURCES += \
     $${TARGET_SOURCE}/main.cpp \
     $${TARGET_SOURCE}/startupWindow.cpp \
     $${TARGET_SOURCE}/LIB_SEDECAL/R2CP_Eth.cpp    \
-    #$${TARGET_SOURCE}/LIB_SEDECAL/api_log.cpp    \
-    #$${TARGET_SOURCE}/LIB_SEDECAL/api_socket.cpp \
-    #$${TARGET_SOURCE}/communication.cpp \
+    $${TARGET_SOURCE}/LIB_SEDECAL/CaDataDic.cpp    \
+    $${TARGET_SOURCE}/LIB_SEDECAL/GenDataDic/CaDataDicGen.cpp    \
+    $${TARGET_SOURCE}/LIB_SEDECAL/GenDataDic/CaDataDicGen_GenIndex.cpp    \
+    $${TARGET_SOURCE}/LIB_SEDECAL/GenDataDic/CaDataDicGen_PatientIndex.cpp    \
+    $${TARGET_SOURCE}/LIB_SEDECAL/GenDataDic/CaDataDicGen_Network.cpp    \
+    $${TARGET_SOURCE}/LIB_SEDECAL/GenDataDic/CaDataDicGen_Service.cpp    \
+    $${TARGET_SOURCE}/LIB_SEDECAL/GenDataDic/CaDataDicGen_SystemIndex.cpp    \
+    #$${TARGET_SOURCE}/LIB_SEDECAL/GenDataDic/CaDataDicGen_TestIndex.cpp    \
+    $${TARGET_SOURCE}/communication.cpp \
     #$${MAIN_CPU}/LIB/tcpipserver.cpp \
-    #$${MAIN_CPU}/LIB/tcpipclient.cpp \
+    $${MAIN_CPU}/LIB/tcpipclient.cpp \
 
 
 HEADERS += \
     $${TARGET_SOURCE}/startupWindow.h \
     $${TARGET_SOURCE}/Typedef.h \
     $${TARGET_SOURCE}/LIB_SEDECAL/R2CP_Eth.h    \
-    #$${TARGET_SOURCE}/LIB_SEDECAL/api_log.h    \
-    #$${TARGET_SOURCE}/LIB_SEDECAL/api_socket.h \
-    #$${TARGET_SOURCE}/communication.h \
-    #$${MAIN_CPU}/LIB/tcpipserver.h \
-    #$${MAIN_CPU}/LIB/tcpipclient.h \
+    $${TARGET_SOURCE}/LIB_SEDECAL/CaDataDic.h    \
+    $${TARGET_SOURCE}/LIB_SEDECAL/GenDataDic/CaDataDicGen.h    \
+    $${TARGET_SOURCE}/LIB_SEDECAL/GenDataDic/R2CP_Index.h    \
+    $${TARGET_SOURCE}/communication.h \
+    $${MAIN_CPU}/LIB/tcpipclient.h \
     
 
 
 # Aggiunge tutti i path di progetto
 INCLUDEPATH += \
-    #$${MAIN_CPU}/LIB \
+    $${MAIN_CPU}/LIB \
     $${TARGET_SOURCE} \
     $${TARGET_SOURCE}/LIB_SEDECAL \
     $${TARGET_SOURCE}/LIB_SEDECAL/GenDataDic \

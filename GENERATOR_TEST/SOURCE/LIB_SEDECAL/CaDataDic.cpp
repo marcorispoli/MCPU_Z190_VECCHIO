@@ -7,7 +7,7 @@
 #define NOT_AVAILABLE	202
 
 
-CaDataDic::CaDataDic( byte Node ):datadic_mutex( nullptr ) , mNodeId( Node )
+CaDataDic::CaDataDic( byte Node ):/*datadic_mutex( nullptr ) ,*/ mNodeId( Node )
 {
 					
 	pDataDictionary = nullptr;
@@ -54,10 +54,11 @@ byte CaDataDic::DataDicCheckAndCall(byte Index,  byte SubIndex, byte Node, tData
 {
 	//_io_printf("\n+MT_%d",Node);
 
+    /*
 	if(datadic_mutex)
 	{
 		OS::Mutex::Lock(datadic_mutex);
-	}
+    }*/
 
 	byte rowPosition = 0;
 	int16_t entryPosition = SUBINDEX_NOT_FOUND;
@@ -147,10 +148,11 @@ byte CaDataDic::DataDicCheckAndCall(byte Index,  byte SubIndex, byte Node, tData
 	    }
     }
 
+    /*
     if(datadic_mutex)
     {
     	(void)OS::Mutex::UnLock(datadic_mutex);
-    }
+    }*/
     
     //_io_printf("\n-MT_%d",Node);
     	

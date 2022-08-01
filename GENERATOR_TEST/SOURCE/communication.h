@@ -36,6 +36,7 @@ public:
 
     int16_t sendData(byte *pMessage , word datalength);
 
+    void generatorStatusGet(void);
 
 private:
     TcpIpClient client;

@@ -32,16 +32,11 @@ signals:
 
 // GUI MODULE SLOTS
 public slots:
-    void connectionButtonSlot(void);
-    void onEventConnectionButtonSlot(void);
+    void onConnectionButton(void);
+    void onGetStatusButton(void);
 
     void timerEvent(QTimerEvent* ev);
-    void commandCurrentTextChanged(QString);
 
-    void  onPollingButton(void);
-    void  onClearButton(void);
-    void  onSendButton(void);    
-    void addLogEvent(QByteArray data);
 
 private:
    Ui::startupWindow *ui;

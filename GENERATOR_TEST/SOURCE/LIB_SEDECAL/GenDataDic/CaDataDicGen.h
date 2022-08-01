@@ -16,6 +16,7 @@
 #include "CaDataDic.h"
 #include "R2CP_Index.h"
 #include "Interfaces/aDataDicRadInterface.h"
+#include "metDataDicRadInterface.h"
 #include "Interfaces/aDataDicNetworkInterface.h"
 #include "Interfaces/aDataDicHdlInterface.h"
 #include "Interfaces/aDataDicPatientInterface.h"
@@ -339,6 +340,8 @@ namespace R2CP
 		 */
 		static void (*m_fcb_log_) ( byte LogLevel , const char *string, ... );
 		
+        void generatorGetStatus(void);
+
 	private:
 		
 		/*!
@@ -385,10 +388,12 @@ namespace R2CP
 		static CaDataDicNetworkInterface    *m_p_NetworkInteface_;
 		static CaDataDicR2CPInterface 	  	*m_p_R2CPInterface_;
 		static CaDataDicHdlInterface	  	*m_p_HdlInterface_;
-		static CaDataDicRadInterface	  	*m_p_RadInterface_;
+        static CaDataDicRadInterface	  	*m_p_RadInterface_;
 		static CaDataDicSystemInterface  	*m_p_SystemInterface_;
 		static CaDataDicPatientInterface 	*m_p_PatientInterface_;
 		static CaDataDicRfInterface			*m_p_RFInterface_;
 		static CaDataDicServiceInterface	*m_p_ServiceInterface_;
+
+        CaDataDicRadInterface metRadInterface;
 	};
 };//namespace R2CP

@@ -17,4 +17,5 @@
         extern unsigned int htonl(unsigned int val);
     #endif
 
+    #define _GENERATOR_NODE 6
 #endif

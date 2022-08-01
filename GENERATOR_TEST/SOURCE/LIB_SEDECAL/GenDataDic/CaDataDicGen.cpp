@@ -31,7 +31,7 @@ namespace R2CP
 	CaDataDicNetworkInterface   *CaDataDicGen::m_p_NetworkInteface_		= nullptr;
 	CaDataDicR2CPInterface 	  	*CaDataDicGen::m_p_R2CPInterface_		= nullptr;
 	CaDataDicHdlInterface	  	*CaDataDicGen::m_p_HdlInterface_		= nullptr;
-	CaDataDicRadInterface	  	*CaDataDicGen::m_p_RadInterface_		= nullptr;
+    CaDataDicRadInterface	  	*CaDataDicGen::m_p_RadInterface_		= nullptr;
 	CaDataDicRfInterface		*CaDataDicGen::m_p_RFInterface_			= nullptr;
 	CaDataDicSystemInterface  	*CaDataDicGen::m_p_SystemInterface_		= nullptr;
 	CaDataDicPatientInterface 	*CaDataDicGen::m_p_PatientInterface_	= nullptr;
@@ -126,7 +126,7 @@ namespace R2CP
 		{GENERATOR_OTHER_FUNCTIONS_FILAMENTS_ENABLED,					CaDataDicGen::Generator_OtherFunctions_Filmanents_Enable,			DATADIC_ACCESS_SET_GET,	0,		1,		0,		0},
 		{GENERATOR_OTHER_FUNCTIONS_TUBEPOWERLIMIT,						CaDataDicGen::Generator_OtherFunctions_TubePowerLimit,				DATADIC_ACCESS_SET_GET,	0,		3,		0,		0},
 
-		{GENERATOR_EXPOSURE_MANAGEMENT_GENERATOR_STATUS_V5,				CaDataDicGen::Generator_ExposureManagement_GeneratorStatus,			DATADIC_ACCESS_GET,		0,		0,		0,		0},
+        {GENERATOR_EXPOSURE_MANAGEMENT_GENERATOR_STATUS_V5,				CaDataDicGen::Generator_ExposureManagement_GeneratorStatus,			DATADIC_ACCESS_ANSWER_EVENT,		0,		0,		14,		14},
 		{GENERATOR_EXPOSURE_MANAGEMENT_START_STOP_EXPOSURE,				CaDataDicGen::Generator_ExposureManagement_StartStopExposure,		DATADIC_ACCESS_SET,		 0,		1,		0,		0},
 		{GENERATOR_EXPOSURE_MANAGEMENT_COMMUNICATIONS_INHIBIT_TIMEOUT,	CaDataDicGen::Generator_CommunicationsInhibitTimeout,				DATADIC_ACCESS_SET_GET,  0,		2,		0,		0},
 		{GENERATOR_EXPOSURE_MANAGEMENT_RAD_POST_EXPOSURE,				CaDataDicGen::Generator_ExposureManagement_RadPostExposure,			DATADIC_ACCESS_SET, 	 0,		0,		0,		0},
@@ -262,6 +262,7 @@ namespace R2CP
 		mProtocolVersion.Revision	= R2CP_VERSION_REVISION;
 		
 		m_fcb_log_					= nullptr;
+        m_p_RadInterface_ = & metRadInterface;
 	}
 	
 	CaDataDicGen::~CaDataDicGen()

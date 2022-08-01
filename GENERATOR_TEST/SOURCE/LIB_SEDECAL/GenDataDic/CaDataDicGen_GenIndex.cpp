@@ -13,6 +13,7 @@
 */
 #include "CaDataDicGen.h"
 
+
 /******************************************************************************************************************/
 //												GENERATOR
 /******************************************************************************************************************/
@@ -2567,18 +2568,18 @@ namespace R2CP
 			return;
 		}
 		
-		if(m_p_RadInterface_) 
-		{
-			switch( Access )
-			{
-				case DATADIC_ACCESS_GET:
-				{
-					m_p_instance_->SetNodeEvent(MessageInfo->Node_dest , true);
-					pDataCp[1] = m_p_RadInterface_->II_Generator_SS_Status();
-				}
-				break;
-			}
-		}
+
+        switch( Access )
+        {
+            case DATADIC_ACCESS_ANSWER_EVENT:
+            {
+
+                pDataCp[1] = ((metDataDicRadInterface *) m_p_RadInterface_)->generatoreUpdateStatus((tGeneratorStatus *) pData);
+
+            }
+            break;
+        }
+
 				
 		(void)m_Type_->Processed(	ETH_LOWEST_PRIORITY ,
 									m_p_instance_->GetNodeEvent(true), 
@@ -2587,6 +2588,8 @@ namespace R2CP
 									MessageInfo->SubIndex, 
 									sizeof(pDataCp), 
 									(pDataCp));
+
+        return;
 	}
 	
 	void CaDataDicGen::Generator_Miscellaneous_RadRanges( tDataDicAccess Access, byte *pData, word nData,  tInfoMessage *MessageInfo )
@@ -4380,4 +4383,15 @@ namespace R2CP
 		
 		(void)m_p_instance_->m_p_RFInterface_->II_ImageSystem_CurrentLsb( static_cast<word>( pData[ 0 ] << 8 | pData[ 1 ] ) , static_cast<word>( pData[ 2 ] << 8 | pData[ 3 ] ));
 	}	
+
+    void CaDataDicGen::generatorGetStatus(void){
+        (void)m_Type_-> Get(    ETH_LOWEST_PRIORITY,
+                                                        _GENERATOR_NODE,
+                                                        mNodeId,
+                                                        GENERATOR_COMMANDS_ENTRY,
+                                                        GENERATOR_EXPOSURE_MANAGEMENT_GENERATOR_STATUS_V5,
+                                                        0,
+                                                        nullptr);
+    }
+
 }//namespace R2CP

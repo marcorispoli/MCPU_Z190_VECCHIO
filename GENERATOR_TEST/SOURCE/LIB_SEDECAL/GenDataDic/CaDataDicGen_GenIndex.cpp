@@ -12,11 +12,59 @@
  * \ingroup   R2CPModule
 */
 #include "CaDataDicGen.h"
+#include "communication.h"
 
+extern Communication* pComm;
 
 /******************************************************************************************************************/
 //												GENERATOR
 /******************************************************************************************************************/
+
+namespace R2CP
+{
+    void CaDataDicGen::Generator_ExposureManagement_GeneratorStatus( tDataDicAccess Access, byte *pData, word nData,  tInfoMessage *MessageInfo )
+    {
+        if(MessageInfo == nullptr)  return;
+
+        if( MessageInfo->SubIndex == GENERATOR_EXPOSURE_MANAGEMENT_GENERATOR_STATUS_V5 	&& m_p_instance_->mProtocolVersion.Version != PROTOCOL_VERSION_5 ||
+            MessageInfo->SubIndex == GENERATOR_EXPOSURE_MANAGEMENT_GENERATOR_STATUS_V6  && m_p_instance_->mProtocolVersion.Version != PROTOCOL_VERSION_6 )
+        {
+            return;
+        }
+
+        if(!m_p_RadInterface_) return;
+
+        switch( Access )
+        {
+            case DATADIC_ACCESS_ANSWER_EVENT:
+            {
+                m_p_RadInterface_->II_Generator_SS_Status(pData);
+                pComm->emit_generatorStatusSgn();
+            }
+            break;
+        }
+
+    }
+
+
+
+    // Get Functions
+    void CaDataDicGen::Generator_Get_Status(void){
+        (void)m_Type_-> Get(    ETH_LOWEST_PRIORITY,
+                                GENERATOR_NODE_ID,
+                                mNodeId,
+                                GENERATOR_COMMANDS_ENTRY,
+                                GENERATOR_EXPOSURE_MANAGEMENT_GENERATOR_STATUS_V5,
+                                0,
+                                nullptr);
+    }
+
+}//namespace R2CP
+
+
+
+
+/*
 namespace R2CP
 {
 	void CaDataDicGen::Generator_DataBank_AssignExposure( tDataDicAccess Access, byte *pData, word nData,  tInfoMessage *MessageInfo)
@@ -155,13 +203,7 @@ namespace R2CP
 					
 					m_p_instance_->SetNodeEvent(MessageInfo->Node_dest);
 					
-#if 0					
-					if(RadDatabank.TechMode.Fields.TechniqueSel > 0x05)
-					{
-						pDataCp[1] = CaDataDicRadInterface::Cp_II_GEN_SS_RDBL_TechniqueModeCodeOutOfRange;
-						break;
-					}
-#endif					
+
 					if(RadDatabank.kV10.value < MIN_KVP10_ALLOWED || RadDatabank.kV10.value > MAX_KVP10_ALLOWED)
 					{
 						pDataCp[1] = CaDataDicRadInterface::Cp_II_GEN_SS_RDBL_KVpValueOutOfRange;
@@ -1250,1168 +1292,6 @@ namespace R2CP
 									( pDataCp ));
 	}
 
-	/************************************* Fluoro *****************************************************/	
-	void CaDataDicGen::Generator_FluoroDataBank_Load( tDataDicAccess Access, byte *pData, word nData,  tInfoMessage *MessageInfo )
-	{
-		if(MessageInfo == nullptr)
-			return;
-	
-		byte pDataCp[] = { MessageInfo->Sequence , Cp_MessageNotAvailable };
-		
-		if( MessageInfo->SubIndex == GENERATOR_FL_DATA_BANK_LOAD_V5  && m_p_instance_->mProtocolVersion.Version != PROTOCOL_VERSION_5 || 
-			MessageInfo->SubIndex == GENERATOR_FL_DATA_BANK_LOAD_V6  && m_p_instance_->mProtocolVersion.Version != PROTOCOL_VERSION_6 )
-		{
-			(void)m_Type_->Processed(	ETH_LOWEST_PRIORITY ,
-										m_p_instance_->GetNodeEvent( true ), 
-										m_p_instance_->mNodeId, 
-										GENERATOR_COMMANDS_ENTRY, 
-										MessageInfo->SubIndex, 
-										sizeof( pDataCp ), 
-										( pDataCp ));
-			
-			return;
-		}
-	
-		if(m_p_RFInterface_) 
-		{
-				switch( Access )
-				{
-				case DATADIC_ACCESS_SET:
-				{
-					
-					tFlDb FlDb = { 0 };
-					if( MessageInfo->SubIndex == GENERATOR_FL_DATA_BANK_LOAD_V5 )
-					{
-						
-						FlDb.DatabankId							= pData[0];
-						FlDb.ImagingSystemProtocol  			= pData[1];
-						FlDb.kV10.value							= pData[2] << 8 | pData[3];
-						FlDb.mA100.value						= pData[4] << 8 | pData[5];
-						FlDb.ms100.value						= pData[6] << 16 | pData[7] << 8 | pData[8];
-						FlDb.MaxIntegrationTime.value			= pData[9] << 8 | pData[10];
-						FlDb.PPS10.value						= pData[11] << 8 | pData[12];
-						FlDb.DoseCtrl.Fields.ABCEnabled			= pData[13] & 0x01;
-						FlDb.DoseCtrl.Fields.HighDoseEnabled	= pData[14] & 0x01;
-						FlDb.QbyPSS								= pData[16];
-						FlDb.FilterId							= pData[17];
-						FlDb.CurveId							= pData[18];
-					}
-					else
-					{
-						FlDb.DatabankId					= pData[0];
-						FlDb.ImagingSystemProtocol  	= pData[1];
-						FlDb.kV10.value					= pData[2] << 8 | pData[3];
-						FlDb.mA100.value				= pData[4] << 16 | pData[5] << 8 | pData[6];
-						FlDb.ms100.value				= pData[7] << 16 | pData[8] << 8 | pData[9];
-						FlDb.MaxIntegrationTime.value	= pData[10] << 8 | pData[11];
-						FlDb.FocalSpot					= pData[12];
-						FlDb.PPS10.value				= pData[13] << 8 | pData[14];
-						FlDb.DoseCtrl.value				= pData[15];
-						FlDb.TargeteLsb.value			= pData[16] << 8 | pData[17];
-						FlDb.CurveId					= pData[18];
-						FlDb.AbcUpdateTime.value		= pData[19] << 8 | pData[20];
-					}
-					
-					m_p_instance_->SetNodeEvent(MessageInfo->Node_dest);
-					
-										
-					if(FlDb.kV10.value < MIN_FLKVP10_ALLOWED || FlDb.kV10.value > MAX_FLKVP10_ALLOWED)
-					{
-						pDataCp[1] = CaDataDicRfInterface::Cp_II_GEN_SS_FDBkVpValueoutOfRange;
-						break;		
-					}
-					
-					if(FlDb.ms100.value < MIN_FLMS100_ALLOWED || FlDb.ms100.value > MAX_FLMS100_ALLOWED)
-					{
-						pDataCp[1] = CaDataDicRfInterface::Cp_II_GEN_SS_FDBmsValueoutofRange;
-						break;		
-					}
-					
-					if(FlDb.mA100.value < MIN_FLMA100_ALLOWED || FlDb.mA100.value > MAX_FLMA100_ALLOWED)
-					{
-						pDataCp[1] = CaDataDicRfInterface::Cp_II_GEN_SS_FDBmAValueoutofRange;
-						break;	
-					}
-					
-					if(FlDb.MaxIntegrationTime.value < MIN_FLMAT_ALLOWED || FlDb.MaxIntegrationTime.value > MAX_FLMAT_ALLOWED)
-					{
-						pDataCp[1] = CaDataDicRfInterface::Cp_II_GEN_SS_FDBMaxIntTime;
-						break;	
-					}
-			
-					if(FlDb.PPS10.value < MIN_PPS10_ALLOWED || FlDb.MaxIntegrationTime.value > MAX_PPS10_ALLOWED)
-					{
-						pDataCp[1] = CaDataDicRfInterface::Cp_II_GEN_SS_FDBPPSValueoutOfRange;
-						break;	
-					}
-					
-					if( FlDb.FocalSpot > 1 )
-					{
-						pDataCp[1] = CaDataDicRfInterface::Cp_II_GEN_SS_FDFocalSpotCodeOutofRange;
-						break;
-					}
-					
-					pDataCp[1] = m_p_RFInterface_->II_Generator_SS_RFDLoad( &FlDb );
-				}
-				break;
-				case DATADIC_ACCESS_GET:
-				{
-					m_p_instance_->SetNodeEvent(MessageInfo->Node_dest , true);
-					
-					pDataCp[1] = m_p_RFInterface_->II_Generator_SS_RFDLoad( pData[0] );
-				}
-				break;
-			}
-		}
-	
-		(void)m_Type_->Processed(	ETH_LOWEST_PRIORITY ,
-									m_p_instance_->GetNodeEvent(true), 
-									m_p_instance_->mNodeId, 
-									GENERATOR_COMMANDS_ENTRY, 
-									MessageInfo->SubIndex, 
-									sizeof(pDataCp), 
-									(pDataCp));
-	}
-	
-	void CaDataDicGen::Generator_FluoroDataBank_Acceptance(tDataDicAccess Access, byte *pData, word nData,  tInfoMessage *MessageInfo)
-	{
-		if(MessageInfo == nullptr)
-			return;
-	
-		byte pDataCp[] = { MessageInfo->Sequence , Cp_MessageNotAvailable };
-	
-		if(m_p_RFInterface_) 
-		{
-			switch( Access )
-			{
-				case DATADIC_ACCESS_GET:
-				{
-					m_p_instance_->SetNodeEvent(MessageInfo->Node_dest , true);
-					pDataCp[1] = m_p_RFInterface_->II_Generator_SS_RFDAcceptance(pData[0]);
-				}
-				break;
-			}
-		}
-	
-		(void)m_Type_->Processed(	ETH_LOWEST_PRIORITY ,
-									m_p_instance_->GetNodeEvent(true), 
-									m_p_instance_->mNodeId, 
-									GENERATOR_COMMANDS_ENTRY, 
-									GENERATOR_FL_DATA_BANK_ACCEPTANCE, 
-									sizeof(pDataCp), 
-									(pDataCp));
-
-	}
-	
-	
-	void CaDataDicGen::Generator_FluoroExposureParams_KVP(tDataDicAccess Access, byte *pData, word nData,  tInfoMessage *MessageInfo)
-	{
-		if(MessageInfo == nullptr)
-			return;
-	
-		byte pDataCp[] = { MessageInfo->Sequence , Cp_MessageNotAvailable };
-	
-		if(m_p_RFInterface_) 
-		{
-			switch( Access )
-			{
-				case DATADIC_ACCESS_SET:
-				{
-					m_p_instance_->SetNodeEvent(MessageInfo->Node_dest);
-					
-					if(pData[3] > 1)
-					{
-						pDataCp[1] = CaDataDicRfInterface::Cp_II_GEN_SS_IncorrectCommandType;
-						break;
-					}
-					
-					int16_t kVp10orStep = pData[1] << 8 | pData[2];					
-					if( static_cast<byte>(pData[3]) == 0x00 )//Set Value
-					{
-						if( static_cast<dword>( kVp10orStep ) < MIN_FLKVP10_ALLOWED || static_cast<dword>( kVp10orStep ) > MAX_FLKVP10_ALLOWED )
-						{
-							pDataCp[1] = CaDataDicRfInterface::Cp_II_GEN_SS_FDBKVPkVpValueoutofRange;
-							break;
-						}
-					}
-					
-					if(m_EnableLogInfo && m_fcb_log_)
-					{
-						m_p_instance_->m_fcb_log_( 1 ,"[ R2CP DATADIC ] kVp Set Db [ %d ] Val [ %d ] Cm [ %d ]", pData[0] , kVp10orStep ,  pData[3]  );
-					}
-				
-					pDataCp[1] = m_p_RFInterface_->II_GEN_SS_FDBKVP(pData[0] , kVp10orStep , pData[3]);
-				}
-				break;
-				case DATADIC_ACCESS_GET:
-				{
-					if(m_EnableLogInfo && m_fcb_log_)
-					{
-						m_p_instance_->m_fcb_log_( 1 ,"[ R2CP DATADIC ] kVp Get Db [ %d ] ", pData[0] );
-					}
-					
-					m_p_instance_->SetNodeEvent(MessageInfo->Node_dest , true);
-					pDataCp[1] = m_p_RFInterface_->II_GEN_SS_FDBKVP(pData[0]);
-				}
-				break;
-			}
-		}
-	
-		(void)m_Type_->Processed(	ETH_LOWEST_PRIORITY ,
-									m_p_instance_->GetNodeEvent(true), 
-									m_p_instance_->mNodeId, 
-									GENERATOR_COMMANDS_ENTRY, 
-									GENERATOR_FL_EXPOSURE_PARAMETER_KVP, 
-									sizeof(pDataCp), 
-									(pDataCp));
-
-	}
-	
-	void CaDataDicGen::Generator_FluoroExposureParams_MA_V5 (tDataDicAccess Access, byte *pData, word nData,  tInfoMessage *MessageInfo )
-	{
-		if(MessageInfo == nullptr)
-			return;
-	
-		byte pDataCp[] = { MessageInfo->Sequence , Cp_MessageNotAvailable };
-		
-		
-		if( m_p_instance_->mProtocolVersion.Version != PROTOCOL_VERSION_5 )
-		{
-			m_p_instance_->m_fcb_log_( 1 ,"[ R2CP DATADIC ] MA REJECTED BY PROTOCOL 5");
-			
-			(void)m_Type_->Processed(	ETH_LOWEST_PRIORITY ,
-										m_p_instance_->GetNodeEvent(true), 
-										m_p_instance_->mNodeId, 
-										GENERATOR_COMMANDS_ENTRY, 
-										MessageInfo->SubIndex, 
-										sizeof(pDataCp), 
-										(pDataCp));
-			return;
-		}
-	
-		if(m_p_RFInterface_) 
-		{
-			switch( Access )
-			{
-				case DATADIC_ACCESS_SET:
-				{
-					m_p_instance_->SetNodeEvent(MessageInfo->Node_dest);
-					
-					if(pData[3] > 1)
-					{
-						pDataCp[1] = CaDataDicRfInterface::Cp_II_GEN_SS_IncorrectCommandType;
-						break;
-					}
-					
-					long int mA100orStep = pData[1]<<8 | pData[2];
-					
-					if( static_cast<byte>(pData[3]) == 0x00 )//Set Value
-					{
-						if( static_cast<dword>( mA100orStep ) < MIN_FLMA100_ALLOWED || static_cast<dword>( mA100orStep ) > MAX_FLMA100_ALLOWED )
-						{
-							pDataCp[1] = CaDataDicRfInterface::Cp_II_GEN_SS_FDBMAmAValueOutofRange;
-							break;
-						}
-					}
-					else //Step
-					{
-						if( mA100orStep == 0xFFFF )// -1
-						{
-							mA100orStep = -1;
-						}
-					}
-					
-					if(m_EnableLogInfo && m_fcb_log_)
-					{
-						m_p_instance_->m_fcb_log_( 1 ,"[ R2CP DATADIC ] MA Set Db [ %d ] Val [ %d ] Cm [ %d ]", pData[0] ,  mA100orStep  ,  pData[3]  );
-					}
-					
-					pDataCp[1] = m_p_RFInterface_->II_GEN_SS_FDBMA( pData[ 0 ] , mA100orStep , pData[ 3 ]);
-				}
-				break;
-				case DATADIC_ACCESS_GET:
-				{
-					if(m_EnableLogInfo && m_fcb_log_)
-					{
-						m_p_instance_->m_fcb_log_( 1 ,"[ R2CP DATADIC ] MA Get Db [ %d ] ", pData[ 0 ] );
-					}
-					
-					m_p_instance_->SetNodeEvent(MessageInfo->Node_dest , true);
-					pDataCp[1] = m_p_RFInterface_->II_GEN_SS_FDBMA(pData[ 0 ]);
-				}
-				break;
-			}
-		}
-	
-		(void)m_Type_->Processed(	ETH_LOWEST_PRIORITY ,
-									m_p_instance_->GetNodeEvent(true), 
-									m_p_instance_->mNodeId, 
-									GENERATOR_COMMANDS_ENTRY, 
-									GENERATOR_FL_EXPOSURE_PARAMETER_MA_V5, 
-									sizeof(pDataCp), 
-									(pDataCp));
-	}
-	
-	void CaDataDicGen::Generator_FluoroExposureParams_MA (tDataDicAccess Access, byte *pData, word nData,  tInfoMessage *MessageInfo)
-	{
-		if(MessageInfo == nullptr)
-			return;
-	
-		byte pDataCp[] = { MessageInfo->Sequence , Cp_MessageNotAvailable };
-		
-		if( m_p_instance_->mProtocolVersion.Version != PROTOCOL_VERSION_6 )
-		{
-			m_p_instance_->m_fcb_log_( 1 ,"[ R2CP DATADIC ] MA REJECTED BY PROTOCOL 6");
-			
-			(void)m_Type_->Processed(	ETH_LOWEST_PRIORITY ,
-										m_p_instance_->GetNodeEvent(true), 
-										m_p_instance_->mNodeId, 
-										GENERATOR_COMMANDS_ENTRY, 
-										MessageInfo->SubIndex, 
-										sizeof(pDataCp), 
-										(pDataCp));
-			return;
-		}
-	
-		if(m_p_RFInterface_) 
-		{
-			switch( Access )
-			{
-				case DATADIC_ACCESS_SET:
-				{
-					m_p_instance_->SetNodeEvent(MessageInfo->Node_dest);
-					
-					if(pData[4] > 1)
-					{
-						pDataCp[1] = CaDataDicRfInterface::Cp_II_GEN_SS_IncorrectCommandType;
-						break;
-					}
-					
-					dword mA100orStep = pData[1] << 16 | pData[2] << 8 | pData[3] ;
-					
-					m_p_instance_->m_fcb_log_( 1 ,"Fl mA100 [ %02X - %02X - %02X - %02X ]", pData[1] ,  pData[2] , pData[3] , pData[4] );
-					
-					if( static_cast<byte>(pData[4]) == 0x00 )//Set Value
-					{
-						if( static_cast<dword>( mA100orStep ) < MIN_FLMA100_ALLOWED || static_cast<dword>( mA100orStep ) > MAX_FLMA100_ALLOWED )
-						{
-							pDataCp[1] = CaDataDicRfInterface::Cp_II_GEN_SS_FDBMAmAValueOutofRange;
-							break;
-						}
-					}
-					else //Step
-					{
-						if( mA100orStep > 0xFFFFFF / 2 )
-						{
-							mA100orStep = 0xFF << 24 | pData[1] << 16 | pData[2] << 8 | pData[3] ;
-						}
-					}
-					
-					if(m_EnableLogInfo && m_fcb_log_)
-					{
-						m_p_instance_->m_fcb_log_( 1 ,"[ R2CP DATADIC ] MA Set Db [ %d ] Val [ %d ] Cm [ %d ]", pData[0] ,  mA100orStep  ,  pData[3]  );
-					}
-					
-					pDataCp[1] = m_p_RFInterface_->II_GEN_SS_FDBMA( pData[ 0 ] , mA100orStep , pData[ 4 ] );
-				}
-				break;
-				case DATADIC_ACCESS_GET:
-				{
-					m_p_instance_->SetNodeEvent(MessageInfo->Node_dest , true);
-					pDataCp[1] = m_p_RFInterface_->II_GEN_SS_FDBMA( pData[ 0 ] );
-				}
-				break;
-			}
-		}
-	
-		(void)m_Type_->Processed(	ETH_LOWEST_PRIORITY ,
-									m_p_instance_->GetNodeEvent(true), 
-									m_p_instance_->mNodeId, 
-									GENERATOR_COMMANDS_ENTRY, 
-									GENERATOR_FL_EXPOSURE_PARAMETER_MA, 
-									sizeof(pDataCp), 
-									(pDataCp));
-	}
-	void CaDataDicGen::Generator_FluoroExposureParams_MS (tDataDicAccess Access, byte *pData, word nData,  tInfoMessage *MessageInfo)
-	{
-		if(MessageInfo == nullptr)
-			return;
-	
-		byte pDataCp[] = { MessageInfo->Sequence , Cp_MessageNotAvailable };
-	
-		if(m_p_RFInterface_) 
-		{
-			switch( Access )
-			{
-				case DATADIC_ACCESS_SET:
-				{
-					m_p_instance_->SetNodeEvent(MessageInfo->Node_dest);
-					
-					if(pData[4] > 1)
-					{
-						pDataCp[1] = CaDataDicRfInterface::Cp_II_GEN_SS_IncorrectCommandType;
-						break;
-					}
-					
-					long int ms100orStep = pData[1] << 16 | pData[2] << 8 | pData[3];
-					
-					if( static_cast<byte>(pData[3]) == 0x00 )//Set Value
-					{
-						if( static_cast<dword>( ms100orStep ) < MIN_FLMS100_ALLOWED || static_cast<dword>( ms100orStep ) > MAX_FLMS100_ALLOWED )
-						{
-							pDataCp[1] = CaDataDicRfInterface::Cp_II_GEN_SS_FDBMAmAValueOutofRange;
-							break;
-						}
-					}
-					else //Step
-					{
-						if( ms100orStep == 0xFFFFFF )// -1
-						{
-							ms100orStep = -1;
-						}
-					}
-					
-					if(m_EnableLogInfo && m_fcb_log_)
-					{
-						m_p_instance_->m_fcb_log_( 1 ,"[ R2CP DATADIC ] MS Set Db [ %d ] Val [ %d ] Cm [ %d ]", pData[0] ,  ms100orStep ,  pData[4]  );
-					}
-					
-					pDataCp[1] = m_p_RFInterface_->II_GEN_SS_FDBMS(pData[0] , ms100orStep , pData[4]);
-				}
-				break;
-				case DATADIC_ACCESS_GET:
-				{
-					if(m_EnableLogInfo && m_fcb_log_)
-					{
-						m_p_instance_->m_fcb_log_( 1 ,"[ R2CP DATADIC ] MS Get Db [ %d ] ", pData[0] );
-					}
-
-					
-					m_p_instance_->SetNodeEvent(MessageInfo->Node_dest , true);
-					pDataCp[1] = m_p_RFInterface_->II_GEN_SS_FDBMS(pData[0]);
-				}
-				break;
-			}
-		}
-	
-		(void)m_Type_->Processed(	ETH_LOWEST_PRIORITY ,
-									m_p_instance_->GetNodeEvent(true), 
-									m_p_instance_->mNodeId, 
-									GENERATOR_COMMANDS_ENTRY, 
-									GENERATOR_FL_EXPOSURE_PARAMETER_MS, 
-									sizeof(pDataCp), 
-									(pDataCp));
-	}
-	void CaDataDicGen::Generator_FluoroExposureParams_MaxIntegrationTime (tDataDicAccess Access, byte *pData, word nData,  tInfoMessage *MessageInfo)
-	{
-		if(MessageInfo == nullptr)
-			return;
-	
-		byte pDataCp[] = { MessageInfo->Sequence , Cp_MessageNotAvailable };
-	
-		if(m_p_RFInterface_) 
-		{
-			switch( Access )
-			{
-				case DATADIC_ACCESS_SET:
-				{
-					m_p_instance_->SetNodeEvent(MessageInfo->Node_dest);
-					
-					if(pData[3] != 0)
-					{
-						pDataCp[1] = CaDataDicRadInterface::Cp_II_GEN_SS_IncorrectCommandType;
-						break;
-					}
-
-					if(static_cast<word>(pData[1] << 8 | pData[2]) < MIN_FLMAT_ALLOWED || static_cast<word>(pData[1] << 8 | pData[2] ) > MAX_FLMAT_ALLOWED)
-					{
-						pDataCp[1] = CaDataDicRfInterface::Cp_II_GEN_SS_FDBMaxIntTimeValue;
-						break;
-					}
-					
-					pDataCp[1] = m_p_RFInterface_->II_Generator_SS_FDBMaxIntTime( pData[0] , static_cast<int32_t>(pData[1] << 8 | pData[2] ) );
-				}
-				break;
-				case DATADIC_ACCESS_GET:
-				{
-					m_p_instance_->SetNodeEvent(MessageInfo->Node_dest , true);
-					pDataCp[1] = m_p_RFInterface_->II_Generator_SS_FDBMaxIntTime( pData[0] );
-				}
-				break;
-			}
-		}
-	
-		(void)m_Type_->Processed(	ETH_LOWEST_PRIORITY ,
-									m_p_instance_->GetNodeEvent(true), 
-									m_p_instance_->mNodeId, 
-									GENERATOR_COMMANDS_ENTRY, 
-									GENERATOR_FL_EXPOSURE_PARAMETER_MAX_INTEGRATION_TIME, 
-									sizeof(pDataCp), 
-									(pDataCp));
-	}
-	void CaDataDicGen::Generator_FluoroExposureParams_PPS (tDataDicAccess Access, byte *pData, word nData,  tInfoMessage *MessageInfo)
-	{
-		if(MessageInfo == nullptr)
-			return;
-	
-		byte pDataCp[] = { MessageInfo->Sequence , Cp_MessageNotAvailable };
-	
-		if(m_p_RFInterface_) 
-		{
-			switch( Access )
-			{
-				case DATADIC_ACCESS_SET:
-				{
-					m_p_instance_->SetNodeEvent(MessageInfo->Node_dest);
-					
-					if(pData[3] != 0)
-					{
-						pDataCp[1] = CaDataDicRadInterface::Cp_II_GEN_SS_IncorrectCommandType;
-						break;
-					}
-
-					if(static_cast<word>(pData[1] << 8 | pData[2]) < MIN_PPS10_ALLOWED || static_cast<word>(pData[1] << 8 | pData[2] ) > MAX_PPS10_ALLOWED)
-					{
-						pDataCp[1] = CaDataDicRfInterface::Cp_II_GEN_SS_FDB_PPSValueOutofRange;
-						break;
-					}
-					
-					pDataCp[1] = m_p_RFInterface_->II_Generator_SS_FDBPPS( pData[0] , static_cast<int32_t>(pData[1] << 8 | pData[2] ) );
-				}
-				break;
-				case DATADIC_ACCESS_GET:
-				{
-					m_p_instance_->SetNodeEvent(MessageInfo->Node_dest , true);
-					pDataCp[1] = m_p_RFInterface_->II_Generator_SS_FDBPPS( pData[0] );
-				}
-				break;
-			}
-		}
-	
-		(void)m_Type_->Processed(	ETH_LOWEST_PRIORITY ,
-									m_p_instance_->GetNodeEvent(true), 
-									m_p_instance_->mNodeId, 
-									GENERATOR_COMMANDS_ENTRY, 
-									GENERATOR_FL_EXPOSURE_PARAMETER_PPS, 
-									sizeof(pDataCp), 
-									(pDataCp));
-	}
-
-	void CaDataDicGen::Generator_FluoroExposureParams_ABC_V5 (tDataDicAccess Access, byte *pData, word nData,  tInfoMessage *MessageInfo)
-	{
-		if(MessageInfo == nullptr)
-			return;
-	
-		byte pDataCp[] = { MessageInfo->Sequence , Cp_MessageNotAvailable };
-	
-		if(m_p_RFInterface_) 
-		{
-			switch( Access )
-			{
-				case DATADIC_ACCESS_SET:
-				{
-					m_p_instance_->SetNodeEvent(MessageInfo->Node_dest);
-					
-					if( pData[2] != 0 )
-					{
-						pDataCp[1] = CaDataDicRadInterface::Cp_II_GEN_SS_IncorrectCommandType;
-						break;
-					}
-					
-					pDataCp[1] = m_p_RFInterface_->II_Generator_SS_FDAbcHighDoseLockIn( pData[0] , static_cast<bool>( pData[1] ) , false , false );
-				}
-				break;
-				case DATADIC_ACCESS_GET:
-				{
-					m_p_instance_->SetNodeEvent(MessageInfo->Node_dest , true);
-					pDataCp[1] = m_p_RFInterface_->II_Generator_SS_FDAbcHighDoseLockIn(pData[0]);
-				}
-				break;
-			}
-		}
-	
-		(void)m_Type_->Processed(	ETH_LOWEST_PRIORITY ,
-									m_p_instance_->GetNodeEvent(true), 
-									m_p_instance_->mNodeId, 
-									GENERATOR_COMMANDS_ENTRY, 
-									GENERATOR_FL_EXPOSURE_PARAMETER_ABC_V5, 
-									sizeof(pDataCp), 
-									(pDataCp));
-
-		
-	}
-	void CaDataDicGen::Generator_FluoroExposureParams_HighDose_V5( tDataDicAccess Access, byte *pData, word nData,  tInfoMessage *MessageInfo)
-	{
-		if(MessageInfo == nullptr)
-			return;
-	
-		byte pDataCp[] = { MessageInfo->Sequence , Cp_MessageNotAvailable };
-	
-		if(m_p_RFInterface_) 
-		{
-			switch( Access )
-			{
-				case DATADIC_ACCESS_SET:
-				{
-					m_p_instance_->SetNodeEvent(MessageInfo->Node_dest);
-					
-					if(pData[2] != 0)
-					{
-						pDataCp[1] = CaDataDicRadInterface::Cp_II_GEN_SS_IncorrectCommandType;
-						break;
-					}
-					
-					pDataCp[1] = m_p_RFInterface_->II_Generator_SS_FDAbcHighDoseLockIn( pData[0] , true , false , pData[1] );
-				}
-				break;
-				case DATADIC_ACCESS_GET:
-				{
-					m_p_instance_->SetNodeEvent(MessageInfo->Node_dest , true);
-					pDataCp[1] = m_p_RFInterface_->II_Generator_SS_FDAbcHighDoseLockIn(pData[0]);
-				}
-				break;
-			}
-		}
-	
-		(void)m_Type_->Processed(	ETH_LOWEST_PRIORITY ,
-									m_p_instance_->GetNodeEvent(true), 
-									m_p_instance_->mNodeId, 
-									GENERATOR_COMMANDS_ENTRY, 
-									GENERATOR_FL_EXPOSURE_PARAMETER_HIGHDOSE_V5, 
-									sizeof(pDataCp), 
-									(pDataCp));
-		
-	}
-	
-	void CaDataDicGen::Generator_FluoroExposureParams_QbyPPS( tDataDicAccess Access, byte *pData, word nData,  tInfoMessage *MessageInfo )
-	{
-		if(MessageInfo == nullptr)
-			return;
-	
-		byte pDataCp[] = { MessageInfo->Sequence , Cp_MessageNotAvailable };
-	
-		if(m_p_RFInterface_) 
-		{
-			switch( Access )
-			{
-				case DATADIC_ACCESS_SET:
-				{
-					m_p_instance_->SetNodeEvent(MessageInfo->Node_dest);
-					
-					if(pData[2] != 0)
-					{
-						pDataCp[1] = CaDataDicRadInterface::Cp_II_GEN_SS_IncorrectCommandType;
-						break;
-					}
-					
-					pDataCp[1] = m_p_RFInterface_->II_Generator_SS_FDQbyPPS( pData[0] , pData[1] );
-				}
-				break;
-				case DATADIC_ACCESS_GET:
-				{
-					m_p_instance_->SetNodeEvent(MessageInfo->Node_dest , true);
-					pDataCp[1] = m_p_RFInterface_->II_Generator_SS_FDQbyPPS( pData[0] );
-				}
-				break;
-			}
-		}
-	
-		(void)m_Type_->Processed(	ETH_LOWEST_PRIORITY ,
-									m_p_instance_->GetNodeEvent(true), 
-									m_p_instance_->mNodeId, 
-									GENERATOR_COMMANDS_ENTRY, 
-									GENERATOR_FL_EXPOSURE_PARAMETER_QbyPPS, 
-									sizeof(pDataCp), 
-									(pDataCp));
-	}
-#if 0
-	void CaDataDicGen::Generator_FluoroExposureParams_KVscan (tDataDicAccess Access, byte *pData, word nData,  tInfoMessage *MessageInfo)
-	{
-		if(MessageInfo == nullptr)
-			return;
-	
-		byte pDataCp[] = { MessageInfo->Sequence , Cp_MessageNotAvailable };
-	
-		if(m_p_RFInterface_) 
-		{
-			switch( Access )
-			{
-				case DATADIC_ACCESS_SET:
-				{
-					m_p_instance_->SetNodeEvent(MessageInfo->Node_dest);
-					
-					if(pData[3] != 0)
-					{
-						pDataCp[1] = CaDataDicRadInterface::Cp_II_GEN_SS_IncorrectCommandType;
-						break;
-					}
-					
-					pDataCp[1] = m_p_RFInterface_->II_Generator_SS_FDBKVscan(pData[0] , static_cast<bool>(pData[1]) , pData[2]);
-				}
-				break;
-				case DATADIC_ACCESS_GET:
-				{
-					m_p_instance_->SetNodeEvent(MessageInfo->Node_dest , true);
-					pDataCp[1] = m_p_RFInterface_->II_Generator_SS_FDBKVscan(pData[0]);
-				}
-				break;
-			}
-		}
-	
-		(void)m_Type_->Processed(	ETH_LOWEST_PRIORITY ,
-									m_p_instance_->GetNodeEvent(true), 
-									m_p_instance_->mNodeId, 
-									GENERATOR_COMMANDS_ENTRY, 
-									GENERATOR_FL_EXPOSURE_PARAMETER_KV_SCAN, 
-									sizeof(pDataCp), 
-									(pDataCp));
-		
-	}
-	void CaDataDicGen::Generator_FluoroExposureParams_QbyPPS (tDataDicAccess Access, byte *pData, word nData,  tInfoMessage *MessageInfo)
-	{
-		if(MessageInfo == nullptr)
-			return;
-	
-		byte pDataCp[] = { MessageInfo->Sequence , Cp_MessageNotAvailable };
-	
-		if(m_p_RFInterface_) 
-		{
-			switch( Access )
-			{
-				case DATADIC_ACCESS_SET:
-				{
-					m_p_instance_->SetNodeEvent(MessageInfo->Node_dest);
-					
-					if(pData[3] != 0)
-					{
-						pDataCp[1] = CaDataDicRadInterface::Cp_II_GEN_SS_IncorrectCommandType;
-						break;
-					}
-					
-					pDataCp[1] = m_p_RFInterface_->II_Generator_SS_FDBQbyPPS(pData[0] , static_cast<bool>(pData[1]) , pData[2]);
-				}
-				break;
-				case DATADIC_ACCESS_GET:
-				{
-					m_p_instance_->SetNodeEvent(MessageInfo->Node_dest , true);
-					pDataCp[1] = m_p_RFInterface_->II_Generator_SS_FDBQbyPPS(pData[0]);
-				}
-				break;
-			}
-		}
-	
-		(void)m_Type_->Processed(	ETH_LOWEST_PRIORITY ,
-									m_p_instance_->GetNodeEvent(true), 
-									m_p_instance_->mNodeId, 
-									GENERATOR_COMMANDS_ENTRY, 
-									GENERATOR_FL_EXPOSURE_PARAMETER_QbyPPS, 
-									sizeof(pDataCp), 
-									(pDataCp));
-	}
-#endif
-	void CaDataDicGen::Generator_FluoroExposureParams_DoseLevelID (tDataDicAccess Access, byte *pData, word nData,  tInfoMessage *MessageInfo)
-	{
-		if(MessageInfo == nullptr)
-			return;
-	
-		byte pDataCp[] = { MessageInfo->Sequence , Cp_MessageNotAvailable };
-	
-		if(m_p_RFInterface_) 
-		{
-			switch( Access )
-			{
-				case DATADIC_ACCESS_SET:
-				{
-					m_p_instance_->SetNodeEvent(MessageInfo->Node_dest);
-					
-					if(pData[3] != 0)
-					{
-						pDataCp[1] = CaDataDicRadInterface::Cp_II_GEN_SS_IncorrectCommandType;
-						break;
-					}
-					
-					pDataCp[1] = m_p_RFInterface_->II_Generator_SS_FDBDoseLevelID( pData[0] , pData[1] << 8 | pData[ 2 ] );
-				}
-				break;
-				case DATADIC_ACCESS_GET:
-				{
-					m_p_instance_->SetNodeEvent(MessageInfo->Node_dest , true);
-					pDataCp[1] = m_p_RFInterface_->II_Generator_SS_FDBDoseLevelID( pData[0] );
-				}
-				break;
-			}
-		}
-	
-		(void)m_Type_->Processed(	ETH_LOWEST_PRIORITY ,
-									m_p_instance_->GetNodeEvent(true), 
-									m_p_instance_->mNodeId, 
-									GENERATOR_COMMANDS_ENTRY, 
-									GENERATOR_FL_EXPOSURE_PARAMETER_DOSELEVELID, 
-									sizeof(pDataCp), 
-									(pDataCp));
-	}
-	
-	void CaDataDicGen::Generator_FluoroExposureParams_CurveId (tDataDicAccess Access, byte *pData, word nData,  tInfoMessage *MessageInfo)
-	{
-		if(MessageInfo == nullptr)
-			return;
-	
-		byte pDataCp[] = { MessageInfo->Sequence , Cp_MessageNotAvailable };
-	
-		if(m_p_RFInterface_) 
-		{
-			switch( Access )
-			{
-				case DATADIC_ACCESS_SET:
-				{
-					m_p_instance_->SetNodeEvent(MessageInfo->Node_dest);
-					
-					if( pData[2] != 0 )
-					{
-						pDataCp[1] = CaDataDicRadInterface::Cp_II_GEN_SS_IncorrectCommandType;
-						break;
-					}
-					
-					pDataCp[1] = m_p_RFInterface_->II_Generator_SS_FDBCurveId( pData[0] , pData[1] );
-				}
-				break;
-				case DATADIC_ACCESS_GET:
-				{
-					m_p_instance_->SetNodeEvent(MessageInfo->Node_dest , true);
-					pDataCp[1] = m_p_RFInterface_->II_Generator_SS_FDBCurveId( pData[0] );
-				}
-				break;
-			}
-		}
-	
-		(void)m_Type_->Processed(	ETH_LOWEST_PRIORITY ,
-									m_p_instance_->GetNodeEvent(true), 
-									m_p_instance_->mNodeId, 
-									GENERATOR_COMMANDS_ENTRY, 
-									GENERATOR_FL_EXPOSURE_PARAMETER_CURVEID, 
-									sizeof(pDataCp), 
-									(pDataCp));
-		
-	}
-		
-	void CaDataDicGen::Generator_FluoroExposureParams_Abc_HighDose_Locking( tDataDicAccess Access, byte *pData, word nData,  tInfoMessage *MessageInfo )
-	{
-		if(MessageInfo == nullptr)
-			return;
-	
-		byte pDataCp[] = { MessageInfo->Sequence , Cp_MessageNotAvailable };
-	
-		if(m_p_RFInterface_) 
-		{
-			switch( Access )
-			{
-				case DATADIC_ACCESS_SET:
-				{
-					m_p_instance_->SetNodeEvent(MessageInfo->Node_dest);
-					
-					if(pData[2] != 0)
-					{
-						pDataCp[1] = CaDataDicRadInterface::Cp_II_GEN_SS_IncorrectCommandType;
-						break;
-					}
-					
-					pDataCp[1] = m_p_RFInterface_->II_Generator_SS_FDAbcHighDoseLockIn( pData[0] , 
-																						static_cast<bool>( pData[1] & 0x01 ),
-																						static_cast<bool>(( pData[1] & 0x02 ) >> 0x01), 
-																						static_cast<bool>(( pData[1] & 0x03 ) >> 0x02 ));
-				}
-				break;
-				case DATADIC_ACCESS_GET:
-				{
-					m_p_instance_->SetNodeEvent(MessageInfo->Node_dest , true);
-					pDataCp[1] = m_p_RFInterface_->II_Generator_SS_FDAbcHighDoseLockIn( pData[0] );
-				}
-				break;
-			}
-		}
-	
-		(void)m_Type_->Processed(	ETH_LOWEST_PRIORITY ,
-									m_p_instance_->GetNodeEvent(true), 
-									m_p_instance_->mNodeId, 
-									GENERATOR_COMMANDS_ENTRY, 
-									GENERATOR_FL_EXPOSURE_PARAMETER_ABC_HIGHDOSE_LOCKING, 
-									sizeof(pDataCp), 
-									(pDataCp));
-	}
-	
-	void CaDataDicGen::Generator_FluoroExposureParams_TargetLsb( tDataDicAccess Access, byte *pData, word nData,  tInfoMessage *MessageInfo )
-	{
-		if(MessageInfo == nullptr)
-			return;
-	
-		byte pDataCp[] = { MessageInfo->Sequence , Cp_MessageNotAvailable };
-	
-		if(m_p_RFInterface_) 
-		{
-			switch( Access )
-			{
-				case DATADIC_ACCESS_SET:
-				{
-					m_p_instance_->SetNodeEvent(MessageInfo->Node_dest);
-					
-					if(pData[3] != 0)
-					{
-						pDataCp[1] = CaDataDicRadInterface::Cp_II_GEN_SS_IncorrectCommandType;
-						break;
-					}
-					
-					pDataCp[1] = m_p_RFInterface_->II_Generator_SS_FDTargetLsb( pData[0] , static_cast<word>( pData[ 1 ] << 8 | pData[ 2 ] ) );
-					
-				}
-				break;
-				case DATADIC_ACCESS_GET:
-				{
-					m_p_instance_->SetNodeEvent(MessageInfo->Node_dest , true);
-					pDataCp[1] = m_p_RFInterface_->II_Generator_SS_FDTargetLsb( pData[0] );
-				}
-				break;
-			}
-		}
-	
-		(void)m_Type_->Processed(	ETH_LOWEST_PRIORITY ,
-									m_p_instance_->GetNodeEvent(true), 
-									m_p_instance_->mNodeId, 
-									GENERATOR_COMMANDS_ENTRY, 
-									GENERATOR_FL_EXPOSURE_PARAMETER_TARGET_LSB, 
-									sizeof(pDataCp), 
-									(pDataCp));
-	}
-
-	void CaDataDicGen::Generator_FluoroExposureParams_FocalSpot( tDataDicAccess Access, byte *pData, word nData,  tInfoMessage *MessageInfo )
-	{
-		if(MessageInfo == nullptr)
-			return;
-	
-		byte pDataCp[] = { MessageInfo->Sequence , Cp_MessageNotAvailable };
-	
-		if(m_p_RFInterface_) 
-		{
-			switch( Access )
-			{
-				case DATADIC_ACCESS_SET:
-				{
-					m_p_instance_->SetNodeEvent(MessageInfo->Node_dest);
-					
-					if( pData[2] != 0 )
-					{
-						pDataCp[1] = CaDataDicRadInterface::Cp_II_GEN_SS_IncorrectCommandType;
-						break;
-					}
-										
-					pDataCp[1] = m_p_RFInterface_->II_Generator_SS_FDFocalSpot( pData[0] , pData[ 1 ] );
-					
-				}
-				break;
-				case DATADIC_ACCESS_GET:
-				{
-					m_p_instance_->SetNodeEvent(MessageInfo->Node_dest , true);
-					pDataCp[1] = m_p_RFInterface_->II_Generator_SS_FDFocalSpot( pData[0] );
-				}
-				break;
-			}
-		}
-	
-		(void)m_Type_->Processed(	ETH_LOWEST_PRIORITY ,
-									m_p_instance_->GetNodeEvent(true), 
-									m_p_instance_->mNodeId, 
-									GENERATOR_COMMANDS_ENTRY, 
-									GENERATOR_FL_EXPOSURE_PARAMETER_TARGET_LSB, 
-									sizeof(pDataCp), 
-									(pDataCp));
-	}
-	
-	void CaDataDicGen::Generator_FluoroExposureParams_Abc_Update_Time (tDataDicAccess Access, byte *pData, word nData,  tInfoMessage *MessageInfo)
-	{
-		if(MessageInfo == nullptr)
-			return;
-	
-		byte pDataCp[] = { MessageInfo->Sequence , Cp_MessageNotAvailable };
-	
-		if(m_p_RFInterface_) 
-		{
-			switch( Access )
-			{
-				case DATADIC_ACCESS_SET:
-				{
-					m_p_instance_->SetNodeEvent( MessageInfo->Node_dest , true );
-					
-					if( pData[ 3 ] != 0 )
-					{
-						pDataCp[1] = CaDataDicRadInterface::Cp_II_GEN_SS_IncorrectCommandType;
-						break;
-					}
-					
-					pDataCp[1] = m_p_RFInterface_->II_Generator_SS_FDAbcUpdateTime( pData[0] , pData[ 1 ] << 8 | pData[ 2 ] );
-					break;
-				}
-				case DATADIC_ACCESS_GET:
-				{
-					m_p_instance_->SetNodeEvent( MessageInfo->Node_dest , true );
-					
-					pDataCp[1] = m_p_RFInterface_->II_Generator_SS_FDAbcUpdateTime( pData[0]  );
-					
-					break;
-				}
-			}
-		}
-	
-		(void)m_Type_->Processed(	ETH_LOWEST_PRIORITY ,
-									m_p_instance_->GetNodeEvent(true), 
-									m_p_instance_->mNodeId, 
-									GENERATOR_COMMANDS_ENTRY, 
-									GENERATOR_FL_EXPOSURE_PARAMETER_ABC_UPDATE_TIME, 
-									sizeof( pDataCp ), 
-									( pDataCp ));
-	}
-	
-	void CaDataDicGen::Generator_FluoroExposureParams_FilterId(tDataDicAccess Access, byte *pData, word nData,  tInfoMessage *MessageInfo )
-	{
-		if(MessageInfo == nullptr)
-			return;
-	
-		byte pDataCp[] = { MessageInfo->Sequence , Cp_MessageNotAvailable };
-	
-		if(m_p_RFInterface_) 
-		{
-			switch( Access )
-			{
-				case DATADIC_ACCESS_SET:
-				{
-					m_p_instance_->SetNodeEvent( MessageInfo->Node_dest , true );
-					
-					if( pData[ 2 ] != 0 )
-					{
-						pDataCp[1] = CaDataDicRadInterface::Cp_II_GEN_SS_IncorrectCommandType;
-						break;
-					}
-					
-					pDataCp[1] = m_p_RFInterface_->II_Generator_SS_FDBFilterId( pData[0] , pData[ 1 ] );
-					break;
-				}
-				case DATADIC_ACCESS_GET:
-				{
-					m_p_instance_->SetNodeEvent( MessageInfo->Node_dest , true );
-					
-					pDataCp[1] = m_p_RFInterface_->II_Generator_SS_FDBFilterId( pData[0]  );
-					
-					break;
-				}
-			}
-		}
-	
-		(void)m_Type_->Processed(	ETH_LOWEST_PRIORITY ,
-									m_p_instance_->GetNodeEvent(true), 
-									m_p_instance_->mNodeId, 
-									GENERATOR_COMMANDS_ENTRY, 
-									GENERATOR_FL_EXPOSURE_PARAMETER_FILTER_ID, 
-									sizeof( pDataCp ), 
-									( pDataCp ));
-	}
-	
-	void CaDataDicGen::Generator_CurrentFluoroDataBank_FLparams (tDataDicAccess Access, byte *pData, word nData,  tInfoMessage *MessageInfo )
-	{
-		if(MessageInfo == nullptr)
-			return;
-	
-		byte pDataCp[] = { MessageInfo->Sequence , Cp_MessageNotAvailable };
-		
-		if( MessageInfo->SubIndex == GENERATOR_CURRENT_FL_DATA_BANK_FL_PARAMS_V5  && m_p_instance_->mProtocolVersion.Version != PROTOCOL_VERSION_5 || 
-			MessageInfo->SubIndex == GENERATOR_CURRENT_FL_DATA_BANK_FL_PARAMS_V6  && m_p_instance_->mProtocolVersion.Version != PROTOCOL_VERSION_6 )
-		{
-			(void)m_Type_->Processed(	ETH_LOWEST_PRIORITY ,
-										m_p_instance_->GetNodeEvent(true), 
-										m_p_instance_->mNodeId, 
-										GENERATOR_COMMANDS_ENTRY, 
-										MessageInfo->SubIndex, 
-										sizeof(pDataCp), 
-										(pDataCp));
-			return;
-		}
-	
-		if(m_p_RFInterface_) 
-		{
-			switch( Access )
-			{
-				case DATADIC_ACCESS_GET:
-				{
-					m_p_instance_->SetNodeEvent( MessageInfo->Node_dest , true );
-					pDataCp[1] = m_p_RFInterface_->II_Generator_SS_FDBCurrentFlDataBank();
-				}
-				break;
-			}
-		}
-	
-		(void)m_Type_->Processed(	ETH_LOWEST_PRIORITY ,
-									m_p_instance_->GetNodeEvent(true), 
-									m_p_instance_->mNodeId, 
-									GENERATOR_COMMANDS_ENTRY, 
-									MessageInfo->SubIndex, 
-									sizeof( pDataCp ), 
-									( pDataCp ));
-	}
-	
-
-	void CaDataDicGen::Generator_OtherFunctions_FluoroTimeReset (tDataDicAccess Access, byte *pData, word nData,  tInfoMessage *MessageInfo)
-	{
-		if(MessageInfo == nullptr)
-			return;
-	
-		byte pDataCp[] = { MessageInfo->Sequence , Cp_MessageNotAvailable };
-	
-		if(m_p_RFInterface_) 
-		{
-			switch( Access )
-			{
-				case DATADIC_ACCESS_SET:
-				{
-					m_p_instance_->SetNodeEvent(MessageInfo->Node_dest);
-					pDataCp[1] = m_p_RFInterface_->II_Generator_SS_FDBFluoroTimeReset();
-				}
-				break;
-			}
-		}
-	
-		(void)m_Type_->Processed(	ETH_LOWEST_PRIORITY ,
-									m_p_instance_->GetNodeEvent(true), 
-									m_p_instance_->mNodeId, 
-									GENERATOR_COMMANDS_ENTRY, 
-									GENERATOR_OTHER_FUNCTIONS_FL_TIME_RESET, 
-									sizeof(pDataCp), 
-									(pDataCp));
-	}
-	void CaDataDicGen::Generator_OtherFunctions_FluoroFiveMinAlarmaReset (tDataDicAccess Access, byte *pData, word nData,  tInfoMessage *MessageInfo)
-	{
-		if(MessageInfo == nullptr)
-			return;
-	
-		byte pDataCp[] = { MessageInfo->Sequence , Cp_MessageNotAvailable };
-	
-		if(m_p_RFInterface_) 
-		{
-			switch( Access )
-			{
-				case DATADIC_ACCESS_SET:
-				{
-					m_p_instance_->SetNodeEvent(MessageInfo->Node_dest);
-					pDataCp[1] = m_p_RFInterface_->II_Generator_SS_FDBFiveMinuteFluoroAlarmReset();
-				}
-				break;
-			}
-		}
-	
-		(void)m_Type_->Processed(	ETH_LOWEST_PRIORITY ,
-									m_p_instance_->GetNodeEvent(true), 
-									m_p_instance_->mNodeId, 
-									GENERATOR_COMMANDS_ENTRY, 
-									GENERATOR_OTHER_FUNCTIONS_FL_5MIN_ALARM_RESET, 
-									sizeof(pDataCp), 
-									(pDataCp));
-	}
 
 	
 	void CaDataDicGen::Generator_OtherFunctions_GenPowerLimit(tDataDicAccess Access, byte *pData, word nData,  tInfoMessage *MessageInfo)
@@ -2547,50 +1427,7 @@ namespace R2CP
 									(pDataCp));
 	}
 		
-	void CaDataDicGen::Generator_ExposureManagement_GeneratorStatus( tDataDicAccess Access, byte *pData, word nData,  tInfoMessage *MessageInfo )
-	{
-		if(MessageInfo == nullptr)
-			return;
-	
-		byte pDataCp[] = { MessageInfo->Sequence , Cp_MessageNotAvailable };
-	
-		
-		if( MessageInfo->SubIndex == GENERATOR_EXPOSURE_MANAGEMENT_GENERATOR_STATUS_V5 	&& m_p_instance_->mProtocolVersion.Version != PROTOCOL_VERSION_5 || 
-			MessageInfo->SubIndex == GENERATOR_EXPOSURE_MANAGEMENT_GENERATOR_STATUS_V6  && m_p_instance_->mProtocolVersion.Version != PROTOCOL_VERSION_6 )
-		{
-			(void)m_Type_->Processed(	ETH_LOWEST_PRIORITY ,
-										m_p_instance_->GetNodeEvent(true), 
-										m_p_instance_->mNodeId, 
-										GENERATOR_COMMANDS_ENTRY, 
-										MessageInfo->SubIndex, 
-										sizeof(pDataCp), 
-										(pDataCp));
-			return;
-		}
-		
 
-        switch( Access )
-        {
-            case DATADIC_ACCESS_ANSWER_EVENT:
-            {
-
-                pDataCp[1] = ((metDataDicRadInterface *) m_p_RadInterface_)->generatoreUpdateStatus((tGeneratorStatus *) pData);
-
-            }
-            break;
-        }
-
-				
-		(void)m_Type_->Processed(	ETH_LOWEST_PRIORITY ,
-									m_p_instance_->GetNodeEvent(true), 
-									m_p_instance_->mNodeId, 
-									GENERATOR_COMMANDS_ENTRY, 
-									MessageInfo->SubIndex, 
-									sizeof(pDataCp), 
-									(pDataCp));
-
-        return;
-	}
 	
 	void CaDataDicGen::Generator_Miscellaneous_RadRanges( tDataDicAccess Access, byte *pData, word nData,  tInfoMessage *MessageInfo )
 	{
@@ -2621,34 +1458,7 @@ namespace R2CP
 									(pDataCp));
 	}
 	
-	void CaDataDicGen::Generator_Miscellaneous_FlRanges( tDataDicAccess Access, byte *pData, word nData,  tInfoMessage *MessageInfo )
-	{
-		if(MessageInfo == nullptr)
-			return;
-	
-		byte pDataCp[] = { MessageInfo->Sequence , Cp_MessageNotAvailable };
-	
-		if(m_p_RFInterface_) 
-		{
-			switch( Access )
-			{
-				case DATADIC_ACCESS_GET:
-				{
-					m_p_instance_->SetNodeEvent(MessageInfo->Node_dest , true);
-					pDataCp[1] = m_p_RFInterface_->II_Generator_SS_FlExpParamRanges();
-				}
-				break;
-			}
-		}
-	
-		(void)m_Type_->Processed(	ETH_LOWEST_PRIORITY ,
-									m_p_instance_->GetNodeEvent(true), 
-									m_p_instance_->mNodeId, 
-									GENERATOR_COMMANDS_ENTRY, 
-									GENERATOR_MISCELLANEOUS_FLUORO_EXPOSURE_PARAMETER_RANGES, 
-									sizeof(pDataCp), 
-									(pDataCp));
-	}
+
 	
 	void CaDataDicGen::Generator_Miscellaneous_DigitalInputsOutputs( tDataDicAccess Access, byte *pData, word nData,  tInfoMessage *MessageInfo )
 	{
@@ -2693,13 +1503,13 @@ namespace R2CP
 				case DATADIC_ACCESS_SET:
 				{
 					m_p_instance_->SetNodeEvent( MessageInfo->Node_dest , false );
-					pDataCp[1] = m_p_RadInterface_->II_Generator_SS_LockInDatabank( pData[ 0 ]/*LockInDb*/ , static_cast<bool>( pData[ 1 ]/*AutoLockInEnbled*/ ) , pData[ 2 ]/*AutoLockInTime_10Sec*/ );
+                    pDataCp[1] = m_p_RadInterface_->II_Generator_SS_LockInDatabank( pData[ 0 ] , static_cast<bool>( pData[ 1 ] ) , pData[ 2 ] );
 				}
 				break;
 				case DATADIC_ACCESS_GET:
 				{
 					m_p_instance_->SetNodeEvent( MessageInfo->Node_dest , true );
-					pDataCp[1] = m_p_RadInterface_->II_Generator_SS_LockInDatabank( pData[ 0 ]/*LockInDb*/ );
+                    pDataCp[1] = m_p_RadInterface_->II_Generator_SS_LockInDatabank( pData[ 0 ] );
 				}
 				break;
 			}
@@ -2729,13 +1539,13 @@ namespace R2CP
 				case DATADIC_ACCESS_SET:
 				{
 					m_p_instance_->SetNodeEvent(MessageInfo->Node_dest , false );
-					pDataCp[1] = m_p_RadInterface_->II_Generator_SS_LockInAssignToProcedure( pData[ 0 ] /*ProcedureId*/, pData[ 1 ]/*LockInDb*/);
+                    pDataCp[1] = m_p_RadInterface_->II_Generator_SS_LockInAssignToProcedure( pData[ 0 ] , pData[ 1 ]);
 				}
 				break;
 				case DATADIC_ACCESS_GET:
 				{
 					m_p_instance_->SetNodeEvent(MessageInfo->Node_dest , true );
-					pDataCp[1] = m_p_RadInterface_->II_Generator_SS_LockInAssignToProcedure( pData[ 0 ] /*ProcedureId*/);
+                    pDataCp[1] = m_p_RadInterface_->II_Generator_SS_LockInAssignToProcedure( pData[ 0 ] );
 				}
 				break;
 			}
@@ -2764,7 +1574,7 @@ namespace R2CP
 				case DATADIC_ACCESS_GET:
 				{
 					m_p_instance_->SetNodeEvent(MessageInfo->Node_dest , true);
-					pDataCp[1] = m_p_RadInterface_->II_Generator_SS_LockInFrameReached( pData[ 0 ] /*LockInDb*/ );
+                    pDataCp[1] = m_p_RadInterface_->II_Generator_SS_LockInFrameReached( pData[ 0 ]  );
 				}
 				break;
 			}
@@ -2793,7 +1603,7 @@ namespace R2CP
 				case DATADIC_ACCESS_SET:
 				{
 					m_p_instance_->SetNodeEvent(MessageInfo->Node_dest , false);
-					pDataCp[1] = m_p_RadInterface_->II_Generator_SS_Injector( static_cast<tInjectorAcction>( pData[ 0 ] ) /*Injector State*/ );
+                    pDataCp[1] = m_p_RadInterface_->II_Generator_SS_Injector( static_cast<tInjectorAcction>( pData[ 0 ] )  );
 				}
 				break;
 				case DATADIC_ACCESS_GET:
@@ -2995,36 +1805,7 @@ namespace R2CP
 									(pDataCp));	
 	}
 	
-	void CaDataDicGen::Generator_ExposureManagement_FlPostExposure(tDataDicAccess Access, byte *pData, word nData, tInfoMessage *MessageInfo)
-	{
-		if(MessageInfo == nullptr)
-			return;
-	
-		byte pDataCp[] = { MessageInfo->Sequence , Cp_MessageNotAvailable };
-	
-		if(m_p_RFInterface_) 
-		{
-			switch( Access )
-			{
-				case DATADIC_ACCESS_GET:
-				{
-					m_p_instance_->SetNodeEvent(MessageInfo->Node_dest , true);
-					pDataCp[1] = m_p_RFInterface_->II_Generator_SS_FlPostExposure();
-				}
-				break;
-			}
-		}
-	
-		(void)m_Type_->Processed(	ETH_LOWEST_PRIORITY ,
-									m_p_instance_->GetNodeEvent(true), 
-									m_p_instance_->mNodeId, 
-									GENERATOR_COMMANDS_ENTRY, 
-									GENERATOR_EXPOSURE_MANAGEMENT_FL_POST_EXPOSURE, 
-									sizeof(pDataCp), 
-									(pDataCp));
-	
-	}
-	
+
 	void CaDataDicGen::Generator_ExposureManagement_StartStopExposure(tDataDicAccess Access, byte *pData, word nData, tInfoMessage *MessageInfo)
 	{
 		if(MessageInfo == nullptr)
@@ -3278,12 +2059,12 @@ namespace R2CP
 					}
 
 					
-					if( pData[ 0 ] > 2/*TubeID*/ ||  pData[ 0 ] == 0 )
+                    if( pData[ 0 ] > 2 ||  pData[ 0 ] == 0 )
 						pDataCp[ 1 ] = CaDataDicRadInterface::Cp_Generator_SS_ExposureCounters_TubeOutOfRange; 
-					else if( pData[ 1 ] > 5 /*CommandId*/ )
+                    else if( pData[ 1 ] > 5  )
 						pDataCp[ 1 ] = CaDataDicRadInterface::Cp_Generator_SS_ExposureCounters_CommandOutOfRange;
 					else
-						pDataCp[1] = m_p_RadInterface_->II_Generator_SS_CountersData( pData[ 0 ]/*TubeID*/ , pData [ 1 ] /*Command*/);
+                        pDataCp[1] = m_p_RadInterface_->II_Generator_SS_CountersData( pData[ 0 ] , pData [ 1 ] );
 					
 				}
 				break;
@@ -3733,204 +2514,9 @@ namespace R2CP
 		
 	}
 	
-	void CaDataDicGen::Generator_FlDataBankLoad_Deprecated_Event( tFlDb *FlDatabank )
-	{
-		if(FlDatabank == nullptr)
-			return;
-		
 
-	}
 
-	void CaDataDicGen::Generator_FlDataBankLoad_Event( tFlDb *FlDatabank )
-	{
-		if(FlDatabank == nullptr)
-			return;
-		
-		if( mProtocolVersion.Version == PROTOCOL_VERSION_5 )
-		{
-			byte Data[] = { FlDatabank->DatabankId,					//1
-							FlDatabank->ImagingSystemProtocol,		//2
-							FlDatabank->kV10.Fields.data_8_15,		//3
-							FlDatabank->kV10.Fields.data_0_7,		//4
-							FlDatabank->mA100.Fields.data_8_15,		//5
-							FlDatabank->mA100.Fields.data_0_7,		//6
-							FlDatabank->ms100.Fields.data_16_23,	//7
-							FlDatabank->ms100.Fields.data_8_15,		//8
-							FlDatabank->ms100.Fields.data_0_7,		//9
-							FlDatabank->MaxIntegrationTime.Fields.data_8_15,	//10
-							FlDatabank->MaxIntegrationTime.Fields.data_0_7,		//11
-							FlDatabank->PPS10.Fields.data_8_15,					//12
-							FlDatabank->PPS10.Fields.data_0_7,					//13
-							FlDatabank->DoseCtrl.Fields.ABCEnabled,				//14
-							FlDatabank->DoseCtrl.Fields.HighDoseEnabled,		//15
-							0,													//16
-							FlDatabank->QbyPSS,									//17
-							FlDatabank->FilterId,								//18
-							FlDatabank->CurveId									//19
-			};
-		
-			(void)m_Type_->Event_Answer(	ETH_LOWEST_PRIORITY,  
-											GetNodeEvent() ,  
-											mNodeId, 
-											GENERATOR_COMMANDS_ENTRY, 
-											GENERATOR_FL_DATA_BANK_LOAD_V5, 
-											sizeof(Data), 
-											Data);
-		}
-		else
-		{
-			byte Data[] = { FlDatabank->DatabankId,
-							FlDatabank->ImagingSystemProtocol,
-							FlDatabank->kV10.Fields.data_8_15,
-							FlDatabank->kV10.Fields.data_0_7,
-							FlDatabank->mA100.Fields.data_16_23,
-							FlDatabank->mA100.Fields.data_8_15,
-							FlDatabank->mA100.Fields.data_0_7,
-							FlDatabank->ms100.Fields.data_16_23,
-							FlDatabank->ms100.Fields.data_8_15,
-							FlDatabank->ms100.Fields.data_0_7,
-							FlDatabank->MaxIntegrationTime.Fields.data_8_15,
-							FlDatabank->MaxIntegrationTime.Fields.data_0_7,
-							FlDatabank->FocalSpot,
-							FlDatabank->PPS10.Fields.data_8_15,
-							FlDatabank->PPS10.Fields.data_0_7,
-							FlDatabank->DoseCtrl.value,
-							FlDatabank->TargeteLsb.Fields.data_8_15,
-							FlDatabank->TargeteLsb.Fields.data_0_7,
-							FlDatabank->CurveId,
-							FlDatabank->AbcUpdateTime.Fields.data_8_15,
-							FlDatabank->AbcUpdateTime.Fields.data_0_7
-			};
-		
-			(void)m_Type_->Event_Answer(	ETH_LOWEST_PRIORITY,  
-											GetNodeEvent() ,  
-											mNodeId, 
-											GENERATOR_COMMANDS_ENTRY, 
-											GENERATOR_FL_DATA_BANK_LOAD_V6, 
-											sizeof(Data), 
-											Data);
-		}
-	}
-	
-	void CaDataDicGen::Generator_FlDataBank_ProcedureAcceptance_Event( byte ProcedureID, bool Allowed )
-	{		
-		byte Data[] = { ProcedureID,
-						Allowed,
-						};
-	
-		(void)m_Type_->Event_Answer(	ETH_LOWEST_PRIORITY,  
-										GetNodeEvent() ,  
-										mNodeId, 
-										GENERATOR_COMMANDS_ENTRY, 
-										GENERATOR_FL_DATA_BANK_ACCEPTANCE, 
-										sizeof(Data), 
-										Data);
-	}
-	
-	void CaDataDicGen::Generator_CurrentFlDataBank_Deprecated_Event( tFlDb *FlDatabank )
-	{
-		if(FlDatabank == nullptr)
-			return;
-				
-		byte Data[] = { 
-						FlDatabank->ImagingSystemProtocol,					//1
-						FlDatabank->kV10.Fields.data_8_15,					//2
-						FlDatabank->kV10.Fields.data_0_7,					//3
-						FlDatabank->mA100.Fields.data_8_15,					//4
-						FlDatabank->mA100.Fields.data_0_7,					//5
-						FlDatabank->ms100.Fields.data_16_23,				//6
-						FlDatabank->ms100.Fields.data_8_15,					//7
-						FlDatabank->ms100.Fields.data_0_7,					//8
-						FlDatabank->MaxIntegrationTime.Fields.data_8_15,	//9
-						FlDatabank->MaxIntegrationTime.Fields.data_0_7,		//10
-						FlDatabank->PPS10.Fields.data_8_15,					//11
-						FlDatabank->PPS10.Fields.data_0_7,					//12
-						FlDatabank->DoseCtrl.Fields.ABCEnabled,				//13
-						FlDatabank->DoseCtrl.Fields.HighDoseEnabled,		//14
-						0,													//15
-						FlDatabank->QbyPSS,									//16
-						FlDatabank->FilterId,								//17
-						FlDatabank->CurveId									//18
-		};
-	
-		(void)m_Type_->Event_Answer(	ETH_LOWEST_PRIORITY,  
-										GetNodeEvent() ,  
-										mNodeId, 
-										GENERATOR_COMMANDS_ENTRY, 
-										GENERATOR_CURRENT_FL_DATA_BANK_FL_PARAMS_V5, 
-										sizeof(Data), 
-										Data);
-	}
-	
-	void CaDataDicGen::Generator_CurrentFlDataBank_Event( tFlDb *FlDatabank )
-	{
-		if(FlDatabank == nullptr)
-			return;
-		
-		if( mProtocolVersion.Version == 5 )
-		{
-			byte Data[] = { 
-							FlDatabank->ImagingSystemProtocol,					//1
-							FlDatabank->kV10.Fields.data_8_15,					//2
-							FlDatabank->kV10.Fields.data_0_7,					//3
-							FlDatabank->mA100.Fields.data_8_15,					//4
-							FlDatabank->mA100.Fields.data_0_7,					//5
-							FlDatabank->ms100.Fields.data_16_23,				//6
-							FlDatabank->ms100.Fields.data_8_15,					//7
-							FlDatabank->ms100.Fields.data_0_7,					//8
-							FlDatabank->MaxIntegrationTime.Fields.data_8_15,	//9
-							FlDatabank->MaxIntegrationTime.Fields.data_0_7,		//10
-							FlDatabank->PPS10.Fields.data_8_15,					//11
-							FlDatabank->PPS10.Fields.data_0_7,					//12
-							FlDatabank->DoseCtrl.Fields.ABCEnabled,				//13
-							FlDatabank->DoseCtrl.Fields.HighDoseEnabled,		//14
-							0,													//15
-							FlDatabank->QbyPSS,									//16
-							FlDatabank->FilterId,								//17
-							FlDatabank->CurveId,								//18
-							FlDatabank->AbcUpdateTime.Fields.data_8_15,			//19
-							FlDatabank->AbcUpdateTime.Fields.data_0_7			//20
-			};
-		
-			(void)m_Type_->Event_Answer(	ETH_LOWEST_PRIORITY,  
-											GetNodeEvent() ,  
-											mNodeId, 
-											GENERATOR_COMMANDS_ENTRY, 
-											GENERATOR_CURRENT_FL_DATA_BANK_FL_PARAMS_V5, 
-											sizeof(Data), 
-											Data);
-		}
-		else
-		{
-			byte Data[] = { FlDatabank->ImagingSystemProtocol,
-							FlDatabank->kV10.Fields.data_8_15,
-							FlDatabank->kV10.Fields.data_0_7,
-							FlDatabank->mA100.Fields.data_16_23,
-							FlDatabank->mA100.Fields.data_8_15,
-							FlDatabank->mA100.Fields.data_0_7,
-							FlDatabank->ms100.Fields.data_16_23,
-							FlDatabank->ms100.Fields.data_8_15,
-							FlDatabank->ms100.Fields.data_0_7,
-							FlDatabank->MaxIntegrationTime.Fields.data_8_15,
-							FlDatabank->MaxIntegrationTime.Fields.data_0_7,
-							FlDatabank->FocalSpot,
-							FlDatabank->PPS10.Fields.data_8_15,
-							FlDatabank->PPS10.Fields.data_0_7,
-							FlDatabank->DoseCtrl.value,
-							FlDatabank->TargeteLsb.Fields.data_8_15,
-							FlDatabank->TargeteLsb.Fields.data_0_7,
-							FlDatabank->CurveId,
-						};
-		
-			(void)m_Type_->Event_Answer(	ETH_LOWEST_PRIORITY,  
-											GetNodeEvent() ,  
-											mNodeId, 
-											GENERATOR_COMMANDS_ENTRY, 
-											GENERATOR_CURRENT_FL_DATA_BANK_FL_PARAMS_V6, 
-											sizeof(Data), 
-											Data);
-		}
-	}
+
 	
 	void CaDataDicGen::Generator_DoseLevel_Event( byte DatabankId , uword DoseLevelId )
 	{
@@ -4030,26 +2616,7 @@ namespace R2CP
 										(Data));
 	}
 	
-	void CaDataDicGen::Generator_Miscellaneous_FlRanges_Event( tFlExpParamRange *pFlRanges )
-	{
-		byte Data[]={ pFlRanges->MinkV10.Fields.data_8_15,
-					  pFlRanges->MinkV10.Fields.data_0_7,
-					  pFlRanges->MaxKv10.Fields.data_8_15,
-					  pFlRanges->MaxKv10.Fields.data_0_7,
-					  pFlRanges->MinmA100.Fields.data_8_15,
-					  pFlRanges->MinmA100.Fields.data_0_7,
-					  pFlRanges->MaxmA100.Fields.data_8_15,
-					  pFlRanges->MaxmA100.Fields.data_0_7,
-					};
-	
-		(void)m_Type_->Event_Answer(	ETH_LOWEST_PRIORITY,
-										GetNodeEvent() , 
-										mNodeId, 
-										GENERATOR_COMMANDS_ENTRY,
-										GENERATOR_MISCELLANEOUS_FLUORO_EXPOSURE_PARAMETER_RANGES, 
-										sizeof(Data), 
-										(Data));
-	}
+
 	
 	void CaDataDicGen::Generator_Miscellaneous_MaxProcedure_Event(byte MaxNumProcedureAllowed)
 	{
@@ -4144,33 +2711,7 @@ namespace R2CP
 
 	}
 
-	void CaDataDicGen::Generator_ExposureManagement_FlPostExposure_Event( tFlPostExpPostCondition *pPostExpPostCondition )
-	{
-	
-		byte Data[] = {	 pPostExpPostCondition->ExposureNumber.Fields.data_8_15,
-						 pPostExpPostCondition->ExposureNumber.Fields.data_0_7,
-						 pPostExpPostCondition->ProcedureId,
-						 pPostExpPostCondition->ExpDbSeqNumber,
-						 pPostExpPostCondition->kV10.Fields.data_8_15,
-						 pPostExpPostCondition->kV10.Fields.data_0_7,
-						 pPostExpPostCondition->mA100.Fields.data_16_23,
-						 pPostExpPostCondition->mA100.Fields.data_8_15,
-						 pPostExpPostCondition->mA100.Fields.data_0_7,
-						 pPostExpPostCondition->ms100.Fields.data_16_23,
-						 pPostExpPostCondition->ms100.Fields.data_8_15,
-						 pPostExpPostCondition->ms100.Fields.data_0_7,
-						 pPostExpPostCondition->FocalSpot,
-						 pPostExpPostCondition->FlEndOfExposure
-		};
-	
-			(void)m_Type_->Event_Answer(	ETH_LOWEST_PRIORITY, 
-											GetNodeEvent() , 
-											mNodeId , 
-											GENERATOR_COMMANDS_ENTRY, 
-											GENERATOR_EXPOSURE_MANAGEMENT_FL_POST_EXPOSURE, 
-											sizeof(Data), 
-											(Data));
-	}
+
 	
 	void CaDataDicGen::Generator_ClearAllProcedure_Event(void)
 	{
@@ -4346,52 +2887,8 @@ namespace R2CP
 	}
 	
 	
-	/******************************************************************************************************************/
-	void CaDataDicGen::Positioner_IonChamberRotation( tDataDicAccess Access, byte *pData, word nData,  tInfoMessage *MessageInfo )
-	{
-			
-		if( m_p_instance_->m_p_RadInterface_ == nullptr ) 
-			return;
 
-		switch( Access )
-		{
-			case DATADIC_ACCESS_ANSWER_EVENT:
-			{
-				if( m_EnableLogInfo && m_fcb_log_ )
-				{
-					m_p_instance_->m_fcb_log_( 1 ,"[ R2CP DATADIC ]  ION CHAMBER ROTATION [ %d ] ", nData , pData[ 2 ] );
-				}
-				
-				m_p_instance_->m_p_RadInterface_->II_Positioner_SS_IonChamberRotation( static_cast< tAecRotation >( pData[ 2 ] ) );
-
-			}
-			break;
-			default:
-				break;
-		}
-	}
 	
-	void CaDataDicGen::ImageSystem_CurrentLsb( tDataDicAccess Access, byte *pData, word nData,  tInfoMessage *MessageInfo )
-	{
-		if( m_p_instance_->m_p_RFInterface_  == nullptr ) 
-			return;
-		
-		if( m_EnableLogInfo && m_fcb_log_ )
-		{
-			m_p_instance_->m_fcb_log_( 1 ,"[ R2CP DATADIC ]  IMAGE SYSTEM LSB [ %d ] - [ %d ]",  pData[ 0 ] << 8 | pData[ 1 ] , pData[ 2 ] << 8 | pData[ 3 ] );
-		}
-		
-		(void)m_p_instance_->m_p_RFInterface_->II_ImageSystem_CurrentLsb( static_cast<word>( pData[ 0 ] << 8 | pData[ 1 ] ) , static_cast<word>( pData[ 2 ] << 8 | pData[ 3 ] ));
-	}	
-
-    void CaDataDicGen::generatorGetStatus(void){
-        (void)m_Type_-> Get(    ETH_LOWEST_PRIORITY,
-                                                        _GENERATOR_NODE,
-                                                        mNodeId,
-                                                        GENERATOR_COMMANDS_ENTRY,
-                                                        GENERATOR_EXPOSURE_MANAGEMENT_GENERATOR_STATUS_V5,
-                                                        0,
-                                                        nullptr);
-    }
 
 }//namespace R2CP
+*/

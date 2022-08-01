@@ -231,6 +231,36 @@ namespace R2CP
 		byte IonChamberOrientation;
 	}tRadPostExpPostCondition;
 
+    typedef enum{
+       Stat_Initialization = 1,
+       Stat_Standby,
+       Stat_Preparation,
+       Stat_Ready,
+       Stat_ExpReq,
+       Stat_ExpInProgress,
+       Stat_WaitFootRelease,
+       Stat_GoigToShutdown,
+       Stat_Error,
+       Stat_Service
+    } tGenStatus_Stat;
+
+    typedef enum{
+        Stat_SystemMessageActive_NotActive = 0,
+        Stat_SystemMessageActive_Active,
+    }tGenStatus_SystemMessageActive;
+
+    typedef enum{
+        Stat_SystemMessageInhibit_NotActive = 0,
+        Stat_SystemMessageInhibit_Active,
+    }tGenStatus_SystemMessageInhibit;
+
+    typedef enum{
+        Stat_ProcedureStat_NotActive = 0,
+        Stat_ProcedureStat_Active,
+        Stat_ProcedureStat_Paused,
+        Stat_ProcedureStat_Finished
+    }tGenStatus_ProcedureStat;
+
 	typedef struct 
 	{
 		byte GeneratorStatus;
@@ -239,7 +269,7 @@ namespace R2CP
 			struct
 			{
 				byte Active		:4;
-				byte RxDisabled	:4;				
+                byte Inhibit	:4;
 			}Fields;
 			byte value;
 		}SystemMessage;
@@ -933,13 +963,6 @@ namespace R2CP
 		 */
 		virtual byte II_Generator_SS_TubePowerLimit( void ) { return Cp_MessageNotAvailable; };
 
-		/******************************* STATUS AND EXPOSURE MANAGEMENT *********************************************/
-		/*!
-		 * \brief   Generator provides information about its current internal status and if a transition to a different status is in progress.
-		 *			If Status=2, Status transition from=2 and Status transition to=3, 
-		 *			it means that generator is preparing to make an exposure after prep signal has been pressed.
-		 */
-		virtual byte II_Generator_SS_Status(void) { return Cp_MessageNotAvailable; }
 
 		enum{
 			Cp_II_Generator_SS_PENoexposureMade = 1,
@@ -1158,6 +1181,13 @@ namespace R2CP
 		 * \brief Positioner Ion Chamber Rotation Event
 		 */
 		virtual void II_Positioner_SS_IonChamberRotation( tAecRotation AecRotation ){}
+
+
+        void II_Generator_SS_Status(byte* data) { generatorStatus =  *(tGeneratorStatus*) data; }
+
+        public:
+         tGeneratorStatus generatorStatus;
+
 	};//class
 };//namesapce
 #endif

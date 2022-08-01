@@ -32,8 +32,9 @@ signals:
 
 // GUI MODULE SLOTS
 public slots:
-    void onConnectionButton(void);
-    void onGetStatusButton(void);
+    void connectionButtonSlot(void);
+    void onGenGetStatusButtonSlot(void);
+    void onRecetionGenStatusSlot(void);
 
     void timerEvent(QTimerEvent* ev);
 

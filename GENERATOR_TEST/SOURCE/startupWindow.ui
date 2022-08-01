@@ -50,7 +50,7 @@ border-color: rgb(0, 0, 127);</string>
       <x>30</x>
       <y>20</y>
       <width>1211</width>
-      <height>321</height>
+      <height>91</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -94,7 +94,7 @@ border-width: 0px;
     <widget class="QLabel" name="connectedLabel">
      <property name="geometry">
       <rect>
-       <x>150</x>
+       <x>140</x>
        <y>20</y>
        <width>121</width>
        <height>20</height>
@@ -147,11 +147,34 @@ border-width: 0px;
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
      </property>
     </widget>
-    <widget class="QPushButton" name="getStatusButton">
+   </widget>
+   <widget class="QFrame" name="connectionFrame_2">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>120</y>
+      <width>231</width>
+      <height>191</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-width: 1px;
+border-style: solid; 
+border-color: darkblue;
+border-color: rgb(0, 0, 127);
+</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QPushButton" name="genGetStatus">
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>70</y>
+       <y>10</y>
        <width>201</width>
        <height>51</height>
       </rect>
@@ -169,7 +192,147 @@ border-width: 0px;
 </string>
      </property>
      <property name="text">
-      <string>GET STATUS</string>
+      <string>GENERATOR GET STATUS</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="statusStat">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>70</y>
+       <width>201</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+       <italic>false</italic>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);
+border-width: 0px;
+</string>
+     </property>
+     <property name="text">
+      <string>STATUS:</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="statusSysMsg">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>90</y>
+       <width>211</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+       <italic>false</italic>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);
+border-width: 0px;
+</string>
+     </property>
+     <property name="text">
+      <string>SYSMSG:</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="statusSysMsgInhibit">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>110</y>
+       <width>201</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+       <italic>false</italic>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);
+border-width: 0px;
+</string>
+     </property>
+     <property name="text">
+      <string>SYSINHIBIT:</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="statusProcId">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>130</y>
+       <width>201</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+       <italic>false</italic>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);
+border-width: 0px;
+</string>
+     </property>
+     <property name="text">
+      <string>PROC-ID:</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="statusProcStat">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>150</y>
+       <width>201</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+       <italic>false</italic>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);
+border-width: 0px;
+</string>
+     </property>
+     <property name="text">
+      <string>PROC-STAT:</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
      </property>
     </widget>
    </widget>

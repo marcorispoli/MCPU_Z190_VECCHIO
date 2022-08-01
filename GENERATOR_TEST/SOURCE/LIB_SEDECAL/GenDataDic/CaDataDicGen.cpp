@@ -28,11 +28,9 @@ namespace R2CP
 	
 	/*Interface Pointers*/
 	CaDataDicInterface		  	*CaDataDicGen::m_p_DataDicInterface_	= nullptr;
-	CaDataDicNetworkInterface   *CaDataDicGen::m_p_NetworkInteface_		= nullptr;
-	CaDataDicR2CPInterface 	  	*CaDataDicGen::m_p_R2CPInterface_		= nullptr;
-	CaDataDicHdlInterface	  	*CaDataDicGen::m_p_HdlInterface_		= nullptr;
+    CaDataDicNetworkInterface   *CaDataDicGen::m_p_NetworkInteface_		= nullptr;
     CaDataDicRadInterface	  	*CaDataDicGen::m_p_RadInterface_		= nullptr;
-	CaDataDicRfInterface		*CaDataDicGen::m_p_RFInterface_			= nullptr;
+	CaDataDicR2CPInterface 	  	*CaDataDicGen::m_p_R2CPInterface_		= nullptr;
 	CaDataDicSystemInterface  	*CaDataDicGen::m_p_SystemInterface_		= nullptr;
 	CaDataDicPatientInterface 	*CaDataDicGen::m_p_PatientInterface_	= nullptr;
 	CaDataDicServiceInterface	*CaDataDicGen::m_p_ServiceInterface_	= nullptr;
@@ -58,20 +56,12 @@ namespace R2CP
 		{R2CP_SYSTEM_VERSION,		CaDataDicGen::R2CP_SystemVersion,		(tDataDicAccess)DATADIC_ACCESS_GET,		0,			0,			0,		0}
 	};
 	
-	const tEntry Row_10HEX[] = { // HDL Commands
-	//	SubIndex,									Func,											tDataDicAccess,												
-		{HDLDEVICE_FPGAVERSION,						CaDataDicGen::HdlDevice_FpgaVersion,			(tDataDicAccess)(DATADIC_ACCESS_GET),						0,		0,						0,		0},
-		{HDLDEVICE_FPGARESET,						CaDataDicGen::HdlDevice_FpgaReset,				(tDataDicAccess)(DATADIC_ACCESS_SET),						0,		0,						0,		0},
-		{HDLDEVICE_FPGADNA,							CaDataDicGen::HdlDevice_FpgaDna,				(tDataDicAccess)(DATADIC_ACCESS_GET),						0,		0,						0,		0},
-		{HDLDEVICE_FPGACONNECTIONS,					CaDataDicGen::HdlDevice_FpgaConnections,		(tDataDicAccess)(DATADIC_ACCESS_GET|DATADIC_ACCESS_SET),	4,		2,						0,		0},
-		{HDLDEVICE_UPDATE_STATUS,					CaDataDicGen::HdlDevice_FpgaUpdateStatus,		(tDataDicAccess)(DATADIC_ACCESS_GET|DATADIC_ACCESS_SET),	0,		1,						0,		0},
-		{HDLDEVICE_UPDATE_LENGHT,					CaDataDicGen::HdlDevice_FpgaUpdateLenght,		(tDataDicAccess)(DATADIC_ACCESS_SET),						0,		4,						0,		0},
-		{HDLDEVICE_UPDATE_ERASE_SECTOR,				CaDataDicGen::HdlDevice_FpgaUpdateEraseSector,	(tDataDicAccess)(DATADIC_ACCESS_GET|DATADIC_ACCESS_SET),	0,		0,						0,		0},
-		{HDLDEVICE_UPDATE_PROGRAMM_PAGE,			CaDataDicGen::HdlDevice_FpgaUpdateProgPage,		(tDataDicAccess)(DATADIC_ACCESS_GET|DATADIC_ACCESS_SET),	0,		UNDEFINED_LENGHT,		0,		0},
-		{HDLDEVICE_UPDATE_CHECKSUM,					CaDataDicGen::HdlDevice_FpgaUpdateChecksum,		(tDataDicAccess)(DATADIC_ACCESS_SET),						0,		1,						0,		0}
-	};
+
 	
 	const tEntry Row_20HEX[] = { // GENERATOR
+        {GENERATOR_EXPOSURE_MANAGEMENT_GENERATOR_STATUS_V5,				CaDataDicGen::Generator_ExposureManagement_GeneratorStatus,			DATADIC_ACCESS_ANSWER_EVENT,		0,		0,		14,		14},
+        {GENERATOR_EXPOSURE_MANAGEMENT_GENERATOR_STATUS_V6,				CaDataDicGen::Generator_ExposureManagement_GeneratorStatus,			DATADIC_ACCESS_ANSWER_EVENT,		0,		0,		14,		14},
+/*
 		{GENERATOR_DATA_BANK_ASSIGN_EXPOSURE,							CaDataDicGen::Generator_DataBank_AssignExposure,					DATADIC_ACCESS_SET_GET,	2,		3,		0,		0},
 		{GENERATOR_DATA_BANK_EXPOSURE_ACCEPTANCE,						CaDataDicGen::Generator_DataBank_ExposureAcceptance,				DATADIC_ACCESS_GET,		2,		0,		0,		0},
 		{GENERATOR_RAD_DATA_BANK_LOAD_V5,								CaDataDicGen::Generator_RadDataBank_Load,							DATADIC_ACCESS_SET_GET,	1,		27,		0,		0},
@@ -96,48 +86,21 @@ namespace R2CP
 		{GENERATOR_RAD_EXPOSURE_PARAMETER_AEC_CHAMBERS_V6,				CaDataDicGen::Generator_RadExposureParameter_AECchambers,			DATADIC_ACCESS_SET_GET,	1,		3,		0,		0},
 
 		
-		{GENERATOR_FL_DATA_BANK_LOAD_V5,								CaDataDicGen::Generator_FluoroDataBank_Load,						DATADIC_ACCESS_SET_GET,	1,		19,		0,		0},
-		{GENERATOR_FL_DATA_BANK_ACCEPTANCE,								CaDataDicGen::Generator_FluoroDataBank_Acceptance,					DATADIC_ACCESS_GET,		1,		0,		0,		0},
-		{GENERATOR_FL_DATA_BANK_LOAD_V6,								CaDataDicGen::Generator_FluoroDataBank_Load,						DATADIC_ACCESS_SET_GET,	1,		21,		0,		0},
-		{GENERATOR_FL_EXPOSURE_PARAMETER_KVP,							CaDataDicGen::Generator_FluoroExposureParams_KVP,					DATADIC_ACCESS_SET_GET,	1,		4,		0,		0},
-		{GENERATOR_FL_EXPOSURE_PARAMETER_MA_V5,							CaDataDicGen::Generator_FluoroExposureParams_MA_V5,					DATADIC_ACCESS_SET_GET,	1,		4,		0,		0},
-		{GENERATOR_FL_EXPOSURE_PARAMETER_MS,							CaDataDicGen::Generator_FluoroExposureParams_MS,					DATADIC_ACCESS_SET_GET,	1,		5,		0,		0},
-		{GENERATOR_FL_EXPOSURE_PARAMETER_MAX_INTEGRATION_TIME,			CaDataDicGen::Generator_FluoroExposureParams_MaxIntegrationTime,	DATADIC_ACCESS_SET_GET,	1,		4,		0,		0},
-		{GENERATOR_FL_EXPOSURE_PARAMETER_PPS,							CaDataDicGen::Generator_FluoroExposureParams_PPS,					DATADIC_ACCESS_SET_GET,	1,		4,		0,		0},
-		{GENERATOR_FL_EXPOSURE_PARAMETER_ABC_V5,						CaDataDicGen::Generator_FluoroExposureParams_ABC_V5,				DATADIC_ACCESS_SET_GET,	1,		3,		0,		0},
-		{GENERATOR_FL_EXPOSURE_PARAMETER_HIGHDOSE_V5,					CaDataDicGen::Generator_FluoroExposureParams_HighDose_V5,			DATADIC_ACCESS_SET_GET,	1,		3,		0,		0},
-		{GENERATOR_FL_EXPOSURE_PARAMETER_QbyPPS,						CaDataDicGen::Generator_FluoroExposureParams_QbyPPS,				DATADIC_ACCESS_SET_GET,	1,		3,		0,		0},
-		{GENERATOR_FL_EXPOSURE_PARAMETER_DOSELEVELID,					CaDataDicGen::Generator_FluoroExposureParams_DoseLevelID,			DATADIC_ACCESS_SET_GET,	1,		4,		0,		0},
-		{GENERATOR_FL_EXPOSURE_PARAMETER_CURVEID,						CaDataDicGen::Generator_FluoroExposureParams_CurveId,				DATADIC_ACCESS_SET_GET,	1,		3,		0,		0},
-		{GENERATOR_FL_EXPOSURE_PARAMETER_MA,							CaDataDicGen::Generator_FluoroExposureParams_MA,					DATADIC_ACCESS_SET_GET,	1,		5,		0,		0},
-		{GENERATOR_FL_EXPOSURE_PARAMETER_ABC_HIGHDOSE_LOCKING,			CaDataDicGen::Generator_FluoroExposureParams_Abc_HighDose_Locking,	DATADIC_ACCESS_SET_GET,	1,		3,		0,		0},
-		{GENERATOR_FL_EXPOSURE_PARAMETER_TARGET_LSB,					CaDataDicGen::Generator_FluoroExposureParams_TargetLsb,				DATADIC_ACCESS_SET_GET,	1,		4,		0,		0},
-		{GENERATOR_FL_EXPOSURE_PARAMETER_FOCAL_SPOT,					CaDataDicGen::Generator_FluoroExposureParams_FocalSpot,				DATADIC_ACCESS_SET_GET,	1,		3,		0,		0},
-		{GENERATOR_FL_EXPOSURE_PARAMETER_ABC_UPDATE_TIME,				CaDataDicGen::Generator_FluoroExposureParams_Abc_Update_Time,		DATADIC_ACCESS_SET_GET, 1,		4,		0,		0},
-		{GENERATOR_FL_EXPOSURE_PARAMETER_FILTER_ID,						CaDataDicGen::Generator_FluoroExposureParams_FilterId,				DATADIC_ACCESS_SET_GET, 1,		3,		0,		0},
-	
+
 		{GENERATOR_CURRENT_RAD_DATA_BANK_RAD_PARAMS_V5,					CaDataDicGen::Generator_CurrentRadDataBank_RADparams,				DATADIC_ACCESS_GET,		0,		0,		0,		0},
 		{GENERATOR_CURRENT_RAD_DATA_BANK_RAD_PARAMS_V6,					CaDataDicGen::Generator_CurrentRadDataBank_RADparams,				DATADIC_ACCESS_GET,		0,		0,		0,		0},
-		{GENERATOR_CURRENT_FL_DATA_BANK_FL_PARAMS_V5,					CaDataDicGen::Generator_CurrentFluoroDataBank_FLparams,				DATADIC_ACCESS_GET,		0,		0,		0,		0},
-		{GENERATOR_CURRENT_FL_DATA_BANK_FL_PARAMS_V6,					CaDataDicGen::Generator_CurrentFluoroDataBank_FLparams,				DATADIC_ACCESS_GET,		0,		0,		0,		0},
-		{GENERATOR_OTHER_FUNCTIONS_FL_TIME_RESET,						CaDataDicGen::Generator_OtherFunctions_FluoroTimeReset,				DATADIC_ACCESS_SET,		0,		0,		0,		0},
-		{GENERATOR_OTHER_FUNCTIONS_FL_5MIN_ALARM_RESET,					CaDataDicGen::Generator_OtherFunctions_FluoroFiveMinAlarmaReset,	DATADIC_ACCESS_SET,		0,		0,		0,		0},
 		{GENERATOR_OTHER_FUNCTIONS_GENPOWERLIMIT,						CaDataDicGen::Generator_OtherFunctions_GenPowerLimit,				DATADIC_ACCESS_SET_GET,	0,		2,		0,		0},
 		{GENERATOR_OTHER_FUNCTIONS_FILAMENTS_ENABLED,					CaDataDicGen::Generator_OtherFunctions_Filmanents_Enable,			DATADIC_ACCESS_SET_GET,	0,		1,		0,		0},
 		{GENERATOR_OTHER_FUNCTIONS_TUBEPOWERLIMIT,						CaDataDicGen::Generator_OtherFunctions_TubePowerLimit,				DATADIC_ACCESS_SET_GET,	0,		3,		0,		0},
 
-        {GENERATOR_EXPOSURE_MANAGEMENT_GENERATOR_STATUS_V5,				CaDataDicGen::Generator_ExposureManagement_GeneratorStatus,			DATADIC_ACCESS_ANSWER_EVENT,		0,		0,		14,		14},
 		{GENERATOR_EXPOSURE_MANAGEMENT_START_STOP_EXPOSURE,				CaDataDicGen::Generator_ExposureManagement_StartStopExposure,		DATADIC_ACCESS_SET,		 0,		1,		0,		0},
 		{GENERATOR_EXPOSURE_MANAGEMENT_COMMUNICATIONS_INHIBIT_TIMEOUT,	CaDataDicGen::Generator_CommunicationsInhibitTimeout,				DATADIC_ACCESS_SET_GET,  0,		2,		0,		0},
 		{GENERATOR_EXPOSURE_MANAGEMENT_RAD_POST_EXPOSURE,				CaDataDicGen::Generator_ExposureManagement_RadPostExposure,			DATADIC_ACCESS_SET, 	 0,		0,		0,		0},
-		{GENERATOR_EXPOSURE_MANAGEMENT_FL_POST_EXPOSURE,				CaDataDicGen::Generator_ExposureManagement_FlPostExposure,			DATADIC_ACCESS_GET, 	 0,		0,		0,		0},
 		{GENERATOR_EXPOSURE_MANAGEMENT_RESET_EXPOSURE_COUNTER,			CaDataDicGen::Generator_ExposureManagement_ResetExposureCounter,	DATADIC_ACCESS_GET, 	 0,		0,		0,		0},		
-		{GENERATOR_EXPOSURE_MANAGEMENT_GENERATOR_STATUS_V6,				CaDataDicGen::Generator_ExposureManagement_GeneratorStatus,			DATADIC_ACCESS_GET,		0,		0,		0,		0},
 		{GENERATOR_EXPOSURE_SWITCHES_ACTIVATION_DEVICE,				    CaDataDicGen::Generator_ExposureSwitchesActivationDevice,			DATADIC_ACCESS_GET, 	 0,		0,		0,		0},
 		{GENERATOR_MISCELLANEOUS_MAXPROCEDURE,							CaDataDicGen::Generator_Miscellaneous_MaxProcedure,					DATADIC_ACCESS_GET,		 0,		0,		0,		0},
 		{GENERATOR_MISCELLANEOUS_MAXDATABANK,							CaDataDicGen::Generator_Miscellaneous_MaxDatabank,					DATADIC_ACCESS_GET,		 0,		0,		0,		0},
 		{GENERATOR_MISCELLANEOUS_RAD_EXPOSURE_PARAMETER_RANGES,			CaDataDicGen::Generator_Miscellaneous_RadRanges,					DATADIC_ACCESS_GET,		 0,		0,		0,		0},
-		{GENERATOR_MISCELLANEOUS_FLUORO_EXPOSURE_PARAMETER_RANGES,		CaDataDicGen::Generator_Miscellaneous_FlRanges,						DATADIC_ACCESS_GET,		 0,		0,		0,		0},
 		{GENERATOR_MISCELLANEOUS_AEC_EXTERNAL_REFERENCE,				CaDataDicGen::Generator_Miscellaneous_AecReferenceMode,				DATADIC_ACCESS_SET_GET,  0,     1,      0,      0},  
 		{GENERATOR_MISCELLANEOUS_COUNTERS_DATA,							CaDataDicGen::Generator_Miscellaneous_CountersData,					DATADIC_ACCESS_GET, 	 2,     0,      0,      0},  
 		{GENERATOR_MISCELLANEOUS_DIGITAL_INPUTS_OUTPUTS,				CaDataDicGen::Generator_Miscellaneous_DigitalInputsOutputs,			DATADIC_ACCESS_GET,		 2,		0,		0,		0},
@@ -152,6 +115,7 @@ namespace R2CP
 		{GENERATOR_MISCELLANEOUS_RAD_PROCEDURE_PARAMETER_RANGES_ASSIGN,	CaDataDicGen::Generator_Miscellaneous_AssignRadProcedureParameterRanges,	DATADIC_ACCESS_SET_GET,	 1,		2,		0,		0},
 		{GENERATOR_MISCELLANEOUS_RAD_PARAMETER_SCALES,					CaDataDicGen::Generator_Miscellaneous_RadParameterScales,					DATADIC_ACCESS_GET,	 	 0,		0,		0,		0},
 		{GENERATOR_MISCELLANEOUS_CALIBRATION_STATUS,					CaDataDicGen::Generator_Miscellaneous_CalibrationStatus,					DATADIC_ACCESS_GET,	 	 0,		0,		0,		0},
+*/
 	};
 	
 	
@@ -209,26 +173,13 @@ namespace R2CP
 		{SERVICE_STANDARD_LICENSE,										CaDataDicGen::Service_StandardLicense,						DATADIC_ACCESS_GET,			0,			0,		0,		0},
 		{SERVICE_EXTENDED_LICENSE,										CaDataDicGen::Service_ExtendedLicense,						DATADIC_ACCESS_GET,			0,			0,		0,		0},
 	};
-	
-	const tEntry Row_40HEX[] = {	//POSITIONER
-	//	SubIndex,														Func,														tAccess,									GetSize,	SetSize
-		{POSITIONER_CURRENT_DETECTOR_GRID_LINES_ION_CHAMBER_ROTATION,	CaDataDicGen::Positioner_IonChamberRotation,				(tDataDicAccess)(DATADIC_ACCESS_ANSWER_EVENT),	0,		  	0,		UNDEFINED_LENGHT,	UNDEFINED_LENGHT },
-	};
-	
-	const tEntry Row_30HEX[] = {	//IMAGE SYSTEM
-	//	SubIndex,														Func,														tAccess,												GetSize,	SetSize
-		{IMAGING_SOFTWARE_UNIVERSAL_CURRENT_LSB,						CaDataDicGen::ImageSystem_CurrentLsb,						(tDataDicAccess)(DATADIC_ACCESS_ANSWER_EVENT),			0,		  	0,		4,		4},
-	};
-		
+
 	
 	const tRow GenDictionary[] = {
 		{NETWORK_COMMANDS_ENTRY,			(sizeof(Row_A0HEX) / sizeof(tEntry)),	Row_A0HEX },	// NETWORK
 		{R2CP_COMMANDS_ENTRY,       		(sizeof(Row_00HEX)/sizeof(tEntry)),		Row_00HEX },	// R2CP
-		{HDLDEVICE_COMMANDS_ENTRY,  		(sizeof(Row_10HEX)/sizeof(tEntry)), 	Row_10HEX },	// HDL
 		{GENERATOR_COMMANDS_ENTRY,			(sizeof(Row_20HEX)/sizeof(tEntry)),		Row_20HEX },	// GENERATOR
-		{IMAGING_SOFTWARE_UNIVERSAL_ENTRY,	(sizeof(Row_30HEX)/sizeof(tEntry)),		Row_30HEX },	// IMAGE SYSTEM
-		{POSITIONER_COMMANDS_ENTRY, 		(sizeof(Row_40HEX)/sizeof(tEntry)),		Row_40HEX },	// POSITIONER
-		{SYSTEM_COMMANDS_ENTRY,				(sizeof(Row_80HEX)/sizeof(tEntry)),		Row_80HEX },	// SYSTEM MESSAGE
+        {SYSTEM_COMMANDS_ENTRY,				(sizeof(Row_80HEX)/sizeof(tEntry)),		Row_80HEX },	// SYSTEM MESSAGE
 		{PATIENT_COMMANDS_ENTRY,			(sizeof(Row_E0HEX)/sizeof(tEntry)),		Row_E0HEX },	// PATIENT WORKFLOW
 		{SERVICE_COMMANDS_ENTRY,			(sizeof(Row_C0HEX)/sizeof(tEntry)),		Row_C0HEX }		// SERVICE
 	};
@@ -262,7 +213,6 @@ namespace R2CP
 		mProtocolVersion.Revision	= R2CP_VERSION_REVISION;
 		
 		m_fcb_log_					= nullptr;
-        m_p_RadInterface_ = & metRadInterface;
 	}
 	
 	CaDataDicGen::~CaDataDicGen()
@@ -270,26 +220,7 @@ namespace R2CP
 		
 	}
 	
-	void CaDataDicGen::InjectInterface( CaDataDicInterface			*pDataDicInterface,
-										CaDataDicNetworkInterface 	*pNetworkInteface,
-										CaDataDicR2CPInterface		*pR2CPInterface,
-										CaDataDicHdlInterface		*pHdlInterface,
-										CaDataDicRadInterface		*pRadInterface,
-										CaDataDicRfInterface		*pRFInterface,
-										CaDataDicSystemInterface	*pSystemInterface,
-										CaDataDicPatientInterface   *pPatientInterface,
-										CaDataDicServiceInterface	*pServiceInterface)
-	{
-		m_p_DataDicInterface_= pDataDicInterface;
-		m_p_NetworkInteface_ = pNetworkInteface;
-		m_p_R2CPInterface_	 = pR2CPInterface;
-		m_p_HdlInterface_	 = pHdlInterface;
-		m_p_RadInterface_	 = pRadInterface;
-		m_p_RFInterface_	 = pRFInterface;
-		m_p_SystemInterface_ = pSystemInterface;
-		m_p_PatientInterface_= pPatientInterface;
-		m_p_ServiceInterface_= pServiceInterface;
-	}
+
 	
 	void CaDataDicGen::Initialitation(void)
 	{
@@ -297,8 +228,8 @@ namespace R2CP
 			m_p_DataDicInterface_->Initialitation();
 		if(m_p_R2CPInterface_)
 			m_p_R2CPInterface_->Initialitation();
-		if(m_p_HdlInterface_)
-			m_p_HdlInterface_->Initialitation();
+
+        m_p_RadInterface_ = &radInterface;
 	}
 	
 	void CaDataDicGen::SetCommunicationForm( CR2CP_Eth *Type)
@@ -801,327 +732,5 @@ namespace R2CP
 			m_p_R2CPInterface_->ReservedGot( Priority , Node , Index , SubIndex , pData , Size );
 	}
 	
-	void CaDataDicGen::HdlDevice_FpgaVersion(tDataDicAccess Access, byte *pData, word nData, tInfoMessage *MessageInfo)
-	{
-		if(	MessageInfo == nullptr )
-				return;		
-	
-		byte pDataCp[] = { MessageInfo->Sequence , Cp_MessageNotAvailable };
-	
-		if(m_p_HdlInterface_)
-		{
-			m_p_instance_->SetNodeEvent(MessageInfo->Node_dest , true);
-			pDataCp[1] = m_p_HdlInterface_->II_HDL_SS_FPGAVersion();
-		}
-	
-		(void)m_Type_->Processed( (eEthPriorities)MessageInfo->Priority,
-									m_p_instance_->GetNodeEvent(true),
-									m_p_instance_->mNodeId,
-									HDLDEVICE_COMMANDS_ENTRY,
-									HDLDEVICE_FPGAVERSION,
-									sizeof(pDataCp),
-									(pDataCp));
-	}
-	
-	void CaDataDicGen::HdlDevice_FpgaVersion_Event(word HdlFirmwareVersion)
-	{
-	
-		word data = htons(HdlFirmwareVersion);
-				
-		(void)m_Type_->Event_Answer(	ETH_HIGH_PRIORITY, 
-										GetNodeEvent(), 
-										mNodeId, 
-										HDLDEVICE_COMMANDS_ENTRY, 
-										HDLDEVICE_FPGAVERSION, 
-										sizeof(word), 
-										(byte *)&data);
-	}
-	
-	void CaDataDicGen::HdlDevice_FpgaReset(tDataDicAccess Access, byte *pData, word nData, tInfoMessage *MessageInfo)
-	{
-		if(	MessageInfo == nullptr )
-			return;	
-	
-		byte pDataCp[] = { MessageInfo->Sequence , Cp_MessageNotAvailable };
-	
-		if(m_p_HdlInterface_)
-			pDataCp[1] = m_p_HdlInterface_->II_HDL_SS_FPGAReset();
-	
-		(void)m_Type_->Processed( (eEthPriorities)MessageInfo->Priority,
-									MessageInfo->Node_dest,
-									m_p_instance_->mNodeId,
-									HDLDEVICE_COMMANDS_ENTRY,
-									HDLDEVICE_FPGARESET,
-									sizeof(pDataCp),
-									(pDataCp));
-	}
-	
-	void CaDataDicGen::HdlDevice_FpgaDna(tDataDicAccess Access, byte *pData, word nData, tInfoMessage *MessageInfo)
-	{
-		if(	MessageInfo == nullptr )
-			return;	
-	
-		byte pDataCp[] = { MessageInfo->Sequence , Cp_MessageNotAvailable };
-	
-		if(m_p_HdlInterface_)
-		{
-			m_p_instance_->SetNodeEvent(MessageInfo->Node_dest , true);
-			pDataCp[1] = m_p_HdlInterface_->II_HDL_SS_FPGADna();
-		}
-	
-		(void)m_Type_->Processed( (eEthPriorities)MessageInfo->Priority,
-									m_p_instance_->GetNodeEvent(true),
-									m_p_instance_->mNodeId,
-									HDLDEVICE_COMMANDS_ENTRY,
-									HDLDEVICE_FPGADNA,
-									sizeof(pDataCp),
-									(pDataCp));
-	
-	}
-	
-	void CaDataDicGen::HdlDevice_FpgaDna_Event(byte *pDNA , byte nData )
-	{
-			(void)m_Type_->Event_Answer(	ETH_HIGH_PRIORITY, 
-											GetNodeEvent(), 
-											mNodeId, 
-											HDLDEVICE_COMMANDS_ENTRY, 
-											HDLDEVICE_FPGADNA, 
-											nData, 
-											pDNA);
-	}
-	
-	void CaDataDicGen::HdlDevice_FpgaConnections(tDataDicAccess Access, byte *pData, word nData, tInfoMessage *MessageInfo)
-	{
-		//Esto no lo entiendo pq
-		(void)m_Type_->WrongAccess(	ETH_HIGH_PRIORITY, 
-										MessageInfo->Node_dest, 
-										m_p_instance_->mNodeId, 
-										HDLDEVICE_COMMANDS_ENTRY, 
-										HDLDEVICE_FPGACONNECTIONS, 
-										0, 
-										nullptr);
-	}
-	
-	void CaDataDicGen::HdlDevice_FpgaUpdateStatus(tDataDicAccess Access, byte *pData, word nData, tInfoMessage *MessageInfo)
-	{
-		if(	MessageInfo == nullptr )
-			return;	
-	
-		byte pDataCp[] = { MessageInfo->Sequence , Cp_MessageNotAvailable };
-	
-		if(m_p_HdlInterface_)
-		{
-			switch (Access)
-			{
-				case DATADIC_ACCESS_SET:
-					m_p_instance_->SetNodeEvent(MessageInfo->Node_dest);
-					pDataCp[1] = m_p_HdlInterface_->II_HDL_SS_FPGAUpdateStatus(pData[0]);
-					break;
-				case DATADIC_ACCESS_GET:
-					m_p_instance_->SetNodeEvent(MessageInfo->Node_dest , true);
-					pDataCp[1] = m_p_HdlInterface_->II_HDL_SS_FPGAUpdateStatus();
-				default:
-					break;
-			}
-		}
-			
-		(void)m_Type_->Processed( (eEthPriorities)MessageInfo->Priority,
-									m_p_instance_->GetNodeEvent(true),
-									m_p_instance_->mNodeId,
-									HDLDEVICE_COMMANDS_ENTRY,
-									HDLDEVICE_UPDATE_STATUS,
-									sizeof(pDataCp),
-									(pDataCp));
-	}
-	
-	void CaDataDicGen::HdlDevice_FpgaUpdateStatus_Event(byte status)
-	{
-		byte dummy = status;
-		
-		(void)m_Type_->Event_Answer(	ETH_HIGH_PRIORITY, 
-										GetNodeEvent(), 
-										mNodeId, 
-										HDLDEVICE_COMMANDS_ENTRY, 
-										HDLDEVICE_UPDATE_STATUS, 
-										sizeof(byte), 
-										&dummy);
-	}
-	
-	void CaDataDicGen::HdlDevice_FpgaUpdateLenght(tDataDicAccess Access, byte *pData, word nData, tInfoMessage *MessageInfo)
-	{
-		if(	MessageInfo == nullptr )
-			return;	
-	
-		byte pDataCp[] = { MessageInfo->Sequence , Cp_MessageNotAvailable };
-	
-		if(m_p_HdlInterface_)
-		{
-			m_p_instance_->SetNodeEvent(MessageInfo->Node_dest , true);
-			pDataCp[1] = m_p_HdlInterface_->II_HDL_SS_FpgaUpdateLenght(pData[0] << 24 | pData[1] << 16 | pData[2] << 8 | pData[3]);
-		}
-	
-		(void)m_Type_->Processed	(ETH_HIGH_PRIORITY, 
-									m_p_instance_->GetNodeEvent(true), 
-									m_p_instance_->mNodeId, 
-									HDLDEVICE_COMMANDS_ENTRY, 
-									HDLDEVICE_UPDATE_LENGHT, 
-									sizeof(pDataCp), 
-									pDataCp);
-	}
-	
-	void CaDataDicGen::HdlDevice_FpgaUpdateLenght_Event(dword lenght)
-	{
 
-		dword dummy = htonl(lenght);
-		
-		(void)m_Type_->Event_Answer(	ETH_HIGH_PRIORITY, 
-										GetNodeEvent(), 
-										mNodeId, 
-										HDLDEVICE_COMMANDS_ENTRY, 
-										HDLDEVICE_UPDATE_LENGHT, 
-										sizeof(dword), 
-										(byte *)&dummy);
-	}
-	
-	#define BOOTLOADER_NODE_ID 4
-	void CaDataDicGen::HdlDevice_FpgaUpdateLengthNotAvailable_Cp(void)
-	{
-		byte pDataCp[] = { 0 , R2CP::CaDataDicHdlInterface::Cp_II_HDL_SS_FPGA_Nok };
-	
-		(void)m_Type_->Processed	(ETH_HIGH_PRIORITY, 
-									BOOTLOADER_NODE_ID, 
-									mNodeId, 
-									HDLDEVICE_COMMANDS_ENTRY, 
-									HDLDEVICE_UPDATE_LENGHT, 
-									sizeof(pDataCp), 
-									pDataCp);
-	}
-	
-	void CaDataDicGen::HdlDevice_FpgaUpdateEraseSector(tDataDicAccess Access, byte *pData, word nData, tInfoMessage *MessageInfo)
-	{
-		if(	MessageInfo == nullptr )
-			return;	
-	
-		byte pDataCp[] = { MessageInfo->Sequence , Cp_MessageNotAvailable };
-	
-		if(m_p_HdlInterface_)
-		{
-			switch (Access)
-			{
-				case DATADIC_ACCESS_SET:
-					m_p_instance_->SetNodeEvent(MessageInfo->Node_dest);
-					pDataCp[1] = m_p_HdlInterface_->II_HDL_SS_FpgaUpdateEraseSector_Received();
-					break;
-				case DATADIC_ACCESS_GET:
-					m_p_instance_->SetNodeEvent(MessageInfo->Node_dest , true);
-					pDataCp[1] = m_p_HdlInterface_->II_HDL_SS_FpgaUpdateEraseSector_MaxSector();
-					break;
-				default:
-					break;
-			}
-		}
-		
-		(void)m_Type_->Processed	(ETH_HIGH_PRIORITY, 
-									 m_p_instance_->GetNodeEvent(true), 
-									 m_p_instance_->mNodeId, 
-									 HDLDEVICE_COMMANDS_ENTRY, 
-									 HDLDEVICE_UPDATE_ERASE_SECTOR, 
-									 sizeof(pDataCp), 
-									 pDataCp);
-	}
-	
-	void CaDataDicGen::HdlDevice_FpgaUpdateEraseSector_Event( byte sector)
-	{
-		(void)m_Type_->Event_Answer(	ETH_HIGH_PRIORITY, 
-										GetNodeEvent(), 
-										mNodeId, 
-										HDLDEVICE_COMMANDS_ENTRY, 
-										HDLDEVICE_UPDATE_ERASE_SECTOR, 
-										sizeof(byte), 
-										&sector);
-	}
-	
-	void CaDataDicGen::HdlDevice_FpgaUpdateProgPage(tDataDicAccess Access, byte *pData, word nData, tInfoMessage *MessageInfo)
-	{
-		if(	MessageInfo == nullptr )
-			return;	
-	
-		byte pDataCp[] = { MessageInfo->Sequence , Cp_MessageNotAvailable };
-	
-		if(m_p_HdlInterface_)
-		{
-			switch (Access)
-			{
-				case DATADIC_ACCESS_SET:
-					m_p_instance_->SetNodeEvent(MessageInfo->Node_dest);
-					pDataCp[1] = m_p_HdlInterface_->II_HDL_SS_FpgaUpdateProgPage(pData[0] << 8 | pData[1] , &pData[2] , nData - 2);
-					break;
-				case DATADIC_ACCESS_GET:
-					m_p_instance_->SetNodeEvent(MessageInfo->Node_dest , true);
-					pDataCp[1] = m_p_HdlInterface_->II_HDL_SS_FpgaUpdateProgPage();
-					break;
-				default:
-					break;
-			}
-		}
-	
-		(void)m_Type_->Processed  (ETH_HIGH_PRIORITY, 
-									m_p_instance_->GetNodeEvent(true), 
-									m_p_instance_->mNodeId, 
-									HDLDEVICE_COMMANDS_ENTRY, 
-									HDLDEVICE_UPDATE_PROGRAMM_PAGE, 
-									sizeof(pDataCp), 
-									pDataCp);
-	}
-	
-	void CaDataDicGen::HdlDevice_FpgaUpdateProgPage_Event(word page)
-	{
-		word  dummy = htons(page);
-	
-		(void)m_Type_->Event_Answer(	ETH_HIGH_PRIORITY, 
-										GetNodeEvent(), 
-										mNodeId, 
-										HDLDEVICE_COMMANDS_ENTRY, 
-										HDLDEVICE_UPDATE_PROGRAMM_PAGE, 
-										sizeof(word), 
-										(byte *)&dummy);
-	}
-	
-	void CaDataDicGen::HdlDevice_FpgaUpdateChecksum(tDataDicAccess Access, byte *pData, word nData, tInfoMessage *MessageInfo)
-	{
-		if(	MessageInfo == nullptr )
-			return;	
-	
-		byte pDataCp[] = { MessageInfo->Sequence , Cp_MessageNotAvailable };
-	
-		if(m_p_HdlInterface_)
-		{
-			switch (Access)
-			{
-				case DATADIC_ACCESS_SET:
-					m_p_instance_->SetNodeEvent(MessageInfo->Node_dest);
-					pDataCp[1] = m_p_HdlInterface_->II_HDL_SS_FpgaUpdateChecksum(pData[0]);
-				break;
-			}
-		}
-	
-		(void)m_Type_->Processed  (ETH_HIGH_PRIORITY, 
-									m_p_instance_->GetNodeEvent(true), 
-									m_p_instance_->mNodeId, 
-									HDLDEVICE_COMMANDS_ENTRY, 
-									HDLDEVICE_UPDATE_PROGRAMM_PAGE, 
-									sizeof(pDataCp), 
-									pDataCp);
-	}
-	
-	void CaDataDicGen::HdlDevice_FpgaUpdateChecksum_Event(bool status)
-	{
-		(void)m_Type_->Event_Answer(	ETH_HIGH_PRIORITY, 
-										GetNodeEvent(), 
-										mNodeId, 
-										HDLDEVICE_COMMANDS_ENTRY, 
-										HDLDEVICE_UPDATE_CHECKSUM, 
-										sizeof(byte), 
-										(byte *)&status);
-	}
 }//namespace R2CP

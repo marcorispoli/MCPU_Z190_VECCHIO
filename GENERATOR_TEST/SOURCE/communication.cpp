@@ -70,6 +70,3 @@ void Communication::clientRxData(QByteArray data){
     return;
 }
 
-void Communication::generatorStatusGet(void){
-  R2CP::CaDataDicGen::GetInstance()->generatorGetStatus();
-}

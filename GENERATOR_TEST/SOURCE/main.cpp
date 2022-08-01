@@ -12,9 +12,8 @@ int main(int argc, char *argv[])
 
 
     window = new startupWindow();
-
     pComm = new Communication();
-
+    QObject::connect(pComm, SIGNAL(generatorStatusSgn()), window, SLOT(onRecetionGenStatusSlot()), Qt::QueuedConnection);
 
     window->show();
     return a.exec();

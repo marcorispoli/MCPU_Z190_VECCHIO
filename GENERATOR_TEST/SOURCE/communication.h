@@ -25,7 +25,7 @@ public:
     void eventConnection(void);
 
 signals:
-
+    void generatorStatusSgn(void);
 
 public slots:
 
@@ -36,7 +36,8 @@ public:
 
     int16_t sendData(byte *pMessage , word datalength);
 
-    void generatorStatusGet(void);
+    // External signal emission
+    void emit_generatorStatusSgn() {emit generatorStatusSgn();}
 
 private:
     TcpIpClient client;

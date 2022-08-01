@@ -55,8 +55,6 @@ HEADERS += \
     $${TARGET_SOURCE}/LIB_SEDECAL/CaDataDic.h    \
     $${TARGET_SOURCE}/LIB_SEDECAL/GenDataDic/CaDataDicGen.h    \
     $${TARGET_SOURCE}/LIB_SEDECAL/GenDataDic/R2CP_Index.h    \
-    $${TARGET_SOURCE}/LIB_SEDECAL/GenDataDic/Interfaces/aDataDicRadInterface.h    \
-    $${TARGET_SOURCE}/LIB_SEDECAL/GenDataDic/metInterfaces/metDataDicRadInterface.h    \
     $${TARGET_SOURCE}/communication.h \
     $${MAIN_CPU}/LIB/tcpipclient.h \
     
@@ -68,8 +66,6 @@ INCLUDEPATH += \
     $${TARGET_SOURCE} \
     $${TARGET_SOURCE}/LIB_SEDECAL \
     $${TARGET_SOURCE}/LIB_SEDECAL/GenDataDic \
-    $${TARGET_SOURCE}/LIB_SEDECAL/GenDataDic/Interfaces/ \
-    $${TARGET_SOURCE}/LIB_SEDECAL/GenDataDic/metInterfaces/ \
 
 
 

@@ -12,20 +12,20 @@
  * \ingroup   R2CPModule
 */
 
+#ifndef __CADATADICGEN__
+    #define __CADATADICGEN__
+
 #include "R2CP_Eth.h"
 #include "CaDataDic.h"
 #include "R2CP_Index.h"
 #include "Interfaces/aDataDicRadInterface.h"
-#include "metDataDicRadInterface.h"
 #include "Interfaces/aDataDicNetworkInterface.h"
-#include "Interfaces/aDataDicHdlInterface.h"
 #include "Interfaces/aDataDicPatientInterface.h"
 #include "Interfaces/aDataDicSystemInterface.h"
 #include "Interfaces/aDataDicR2CPInterface.h"
-#include "Interfaces/aDataDicRFInterface.h"
 #include "Interfaces/aDataDicServiceInterface.h"
 
-#define APPLICATION_NODE_ID 	3
+
 
 #define PROTOCOL_VERSION_6	6
 #define PROTOCOL_VERSION_5	5
@@ -38,8 +38,9 @@ const tDataDicProtocolVersion ProtocolVersionSupported[] =
 
 namespace R2CP
 {
-	class CaDataDicGen : public CaDataDic
-	{
+    class CaDataDicGen : public CaDataDic
+    {
+
 	public:
 		/*!
 		 * Generator Datadic SingleTone
@@ -60,15 +61,6 @@ namespace R2CP
 		 * \brief Inject Interfaces
 		 */
 	
-		void InjectInterface( CaDataDicInterface		  	*pDataDicInterface,
-							  CaDataDicNetworkInterface   	*pNetworkInteface,
-							  CaDataDicR2CPInterface 	  	*pR2CPInterface,
-							  CaDataDicHdlInterface	  		*pHdlInterface,
-							  CaDataDicRadInterface	  		*pRadInterface,
-							  CaDataDicRfInterface			*pRFInterface,
-							  CaDataDicSystemInterface  	*pSystemInterface,
-							  CaDataDicPatientInterface 	*pPatientInterface,
-							  CaDataDicServiceInterface		*pServiceInterface);
 		
 		/*!
 		 * \brief Checks messages versus geneator status
@@ -107,26 +99,7 @@ namespace R2CP
 		void R2CP_SystemVersion_Event( tSystemVersion *pSystemVersion );
 		
 		
-		///////////////////////////////////		HDL	DATADIC		////////////////////////////////////////
-		static void HdlDevice_FpgaVersion			(tDataDicAccess Access, byte *pData, word nData, tInfoMessage *MessageInfo = nullptr);
-		static void HdlDevice_FpgaReset				(tDataDicAccess Access, byte *pData, word nData, tInfoMessage *MessageInfo = nullptr);
-		static void HdlDevice_FpgaDna				(tDataDicAccess Access, byte *pData, word nData, tInfoMessage *MessageInfo = nullptr);
-		static void HdlDevice_FpgaConnections		(tDataDicAccess Access, byte *pData, word nData, tInfoMessage *MessageInfo = nullptr);
-		static void HdlDevice_FpgaUpdateStatus		(tDataDicAccess Access, byte *pData, word nData, tInfoMessage *MessageInfo = nullptr);
-		static void HdlDevice_FpgaUpdateLenght		(tDataDicAccess Access, byte *pData, word nData, tInfoMessage *MessageInfo = nullptr);
-		static void HdlDevice_FpgaUpdateEraseSector	(tDataDicAccess Access, byte *pData, word nData, tInfoMessage *MessageInfo = nullptr);
-		static void HdlDevice_FpgaUpdateProgPage	(tDataDicAccess Access, byte *pData, word nData, tInfoMessage *MessageInfo = nullptr);
-		static void HdlDevice_FpgaUpdateChecksum	(tDataDicAccess Access, byte *pData, word nData, tInfoMessage *MessageInfo = nullptr);
-	
-		//Events
-		void HdlDevice_FpgaVersion_Event(word HdlFirmwareVersion);
-		void HdlDevice_FpgaDna_Event(byte *pDNA , byte nData );
-		void HdlDevice_FpgaUpdateStatus_Event(byte status);
-		void HdlDevice_FpgaUpdateLenght_Event(dword lenght);
-		void HdlDevice_FpgaUpdateLengthNotAvailable_Cp(void);
-		void HdlDevice_FpgaUpdateEraseSector_Event(byte sector);
-		void HdlDevice_FpgaUpdateProgPage_Event(word page);
-		void HdlDevice_FpgaUpdateChecksum_Event(bool status);
+
 		
 		////////////////////////////////////GENERATOR INDEX////////////////////////////////////////////////////////////
 		static void Generator_DataBank_AssignExposure					( tDataDicAccess Access, byte *pData, word nData,  tInfoMessage *MessageInfo = nullptr);
@@ -183,29 +156,7 @@ namespace R2CP
 		static void Generator_Miscellaneous_CalibrationStatus				 ( tDataDicAccess Access, byte *pData, word nData, tInfoMessage *MessageInfo = nullptr );
 		
 		
-		static void Generator_FluoroDataBank_Load						(tDataDicAccess Access, byte *pData, word nData, tInfoMessage *MessageInfo = nullptr); 
-		static void Generator_FluoroDataBank_Acceptance					(tDataDicAccess Access, byte *pData, word nData, tInfoMessage *MessageInfo = nullptr);
-		static void Generator_FluoroExposureParams_KVP					(tDataDicAccess Access, byte *pData, word nData, tInfoMessage *MessageInfo = nullptr);
-		static void Generator_FluoroExposureParams_MA_V5				(tDataDicAccess Access, byte *pData, word nData, tInfoMessage *MessageInfo = nullptr);
-		static void Generator_FluoroExposureParams_MA 					(tDataDicAccess Access, byte *pData, word nData, tInfoMessage *MessageInfo = nullptr);
-		static void Generator_FluoroExposureParams_MS 					(tDataDicAccess Access, byte *pData, word nData, tInfoMessage *MessageInfo = nullptr);
-		static void Generator_FluoroExposureParams_MaxIntegrationTime 	(tDataDicAccess Access, byte *pData, word nData, tInfoMessage *MessageInfo = nullptr);
-		static void Generator_FluoroExposureParams_PPS 					(tDataDicAccess Access, byte *pData, word nData, tInfoMessage *MessageInfo = nullptr);
-		static void Generator_FluoroExposureParams_ABC_V5				(tDataDicAccess Access, byte *pData, word nData, tInfoMessage *MessageInfo = nullptr);
-		static void Generator_FluoroExposureParams_HighDose_V5 			(tDataDicAccess Access, byte *pData, word nData, tInfoMessage *MessageInfo = nullptr);
-		//static void Generator_FluoroExposureParams_KVscan 	0			(tDataDicAccess Access, byte *pData, word nData, tInfoMessage *MessageInfo = nullptr);
-		static void Generator_FluoroExposureParams_QbyPPS 					(tDataDicAccess Access, byte *pData, word nData, tInfoMessage *MessageInfo = nullptr);
-		static void Generator_FluoroExposureParams_DoseLevelID				(tDataDicAccess Access, byte *pData, word nData, tInfoMessage *MessageInfo = nullptr);
-		static void Generator_FluoroExposureParams_CurveId 					(tDataDicAccess Access, byte *pData, word nData, tInfoMessage *MessageInfo = nullptr);
-		static void Generator_FluoroExposureParams_Abc_HighDose_Locking		(tDataDicAccess Access, byte *pData, word nData, tInfoMessage *MessageInfo = nullptr);
-		static void Generator_FluoroExposureParams_TargetLsb  				(tDataDicAccess Access, byte *pData, word nData, tInfoMessage *MessageInfo = nullptr);
-		static void Generator_FluoroExposureParams_FocalSpot				(tDataDicAccess Access, byte *pData, word nData, tInfoMessage *MessageInfo = nullptr);
-		static void Generator_FluoroExposureParams_Abc_Update_Time			(tDataDicAccess Access, byte *pData, word nData, tInfoMessage *MessageInfo = nullptr);
-		static void Generator_FluoroExposureParams_FilterId					(tDataDicAccess Access, byte *pData, word nData, tInfoMessage *MessageInfo = nullptr);
-		static void Generator_CurrentFluoroDataBank_FLparams 				(tDataDicAccess Access, byte *pData, word nData, tInfoMessage *MessageInfo = nullptr);
-		static void Generator_OtherFunctions_FluoroTimeReset 				(tDataDicAccess Access, byte *pData, word nData, tInfoMessage *MessageInfo = nullptr);
-		static void Generator_OtherFunctions_FluoroFiveMinAlarmaReset   	(tDataDicAccess Access, byte *pData, word nData, tInfoMessage *MessageInfo = nullptr);
-	
+
 		//Common Gen Events    
 		void Generator_DataBank_DefineProcedure_Event( tProcedure *pProcedure );
 		void Generator_DataBank_Define_NExposures_Procedure_Event( tProcedure *pProcedure );
@@ -223,23 +174,16 @@ namespace R2CP
 		void Generator_Miscellaneous_RadProcedureParameterRanges_Event( R2CP::tRadParameterRanges  *pRadParameterRanges );
 		void Generator_Miscellaneous_AssignRadProcedureParameterRanges_Event( byte ProcedureId , byte DatabankId , bool Allowed );
 		
-		//Fl Events
-		void Generator_FlDataBankLoad_Deprecated_Event( tFlDb *FlDatabank );
-		void Generator_FlDataBankLoad_Event( tFlDb *FlDatabank );
-		void Generator_FlDataBank_ProcedureAcceptance_Event( byte ProcedureID, bool Allowed );
-		void Generator_CurrentFlDataBank_Deprecated_Event( tFlDb *FlDatabank );
-		void Generator_CurrentFlDataBank_Event( tFlDb *FlDatabank );
+
 		void Generator_DoseLevel_Event( byte DatabankId , uword DoseLevelId );
 		
 		void Generator_OtherFunctions_GenPowerLimit_Event( bool Allowed , byte GenPowerLimit );
 		void Generator_OtherFunctions_FilmanentsEnable_Event(bool Status);
 		
 		void Generator_Miscellaneous_RadRanges_Event(tRadExpParamRange *pRadRanges);
-		void Generator_Miscellaneous_FlRanges_Event(tFlExpParamRange *pFlRanges);
 		
 		void Generator_CommunicationsInhibitTimeout_Event( byte CommInhibit_sec , bool status , byte SourceNode);
 		void Generator_ExposureManagement_RadPostExposure_Event( tRadPostExpPostCondition *pPostExpPostCondition );
-		void Generator_ExposureManagement_FlPostExposure_Event( tFlPostExpPostCondition *pPostExpPostCondition );
 		void Generator_ExposureManagement_GeneratorStatus_Event(tGeneratorStatus *LastGeneratorStatus);
 		
 		
@@ -257,9 +201,7 @@ namespace R2CP
 		void Generator_LockInFrameReached_Event( byte LockInDb , byte LockInFrameReached );
 		void Generator_Injector_Event( tInjectorStatus InjectorStatus );
 		
-		   ///////////////////////////////////POSITIONER//////////////////////////////////////////////////////////////////
-		static void Positioner_IonChamberRotation		( tDataDicAccess Access, byte *pData, word nData,  tInfoMessage *MessageInfo = nullptr);
-	
+
 		///////////////////////////////////PATIENT INDEX////////////////////////////////////////////////////////////////
 		static void Patient_Procedure_Definition				( tDataDicAccess Access, byte *pData, word nData,  tInfoMessage *MessageInfo = nullptr);
 		static void Patient_Procedure_NExposures_Definition		( tDataDicAccess Access, byte *pData, word nData,  tInfoMessage *MessageInfo = nullptr);
@@ -340,7 +282,10 @@ namespace R2CP
 		 */
 		static void (*m_fcb_log_) ( byte LogLevel , const char *string, ... );
 		
-        void generatorGetStatus(void);
+
+        // Get Functions
+        void Generator_Get_Status(void);
+
 
 	private:
 		
@@ -386,14 +331,16 @@ namespace R2CP
 		/*Interface Pointers*/
 		static CaDataDicInterface		  	*m_p_DataDicInterface_;
 		static CaDataDicNetworkInterface    *m_p_NetworkInteface_;
-		static CaDataDicR2CPInterface 	  	*m_p_R2CPInterface_;
-		static CaDataDicHdlInterface	  	*m_p_HdlInterface_;
+		static CaDataDicR2CPInterface 	  	*m_p_R2CPInterface_;		
         static CaDataDicRadInterface	  	*m_p_RadInterface_;
-		static CaDataDicSystemInterface  	*m_p_SystemInterface_;
-		static CaDataDicPatientInterface 	*m_p_PatientInterface_;
-		static CaDataDicRfInterface			*m_p_RFInterface_;
+        static CaDataDicSystemInterface  	*m_p_SystemInterface_;
+		static CaDataDicPatientInterface 	*m_p_PatientInterface_;		
 		static CaDataDicServiceInterface	*m_p_ServiceInterface_;
 
-        CaDataDicRadInterface metRadInterface;
+    public:
+        CaDataDicRadInterface radInterface;
+
 	};
 };//namespace R2CP
+
+#endif

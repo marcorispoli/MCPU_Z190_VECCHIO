@@ -7,7 +7,8 @@
  * \ingroup   R2CPModule
 */
 #include <stdio.h>
-
+#include "Typedef.h"
+#include "application.h"
 #include "CaDataDicGen.h"
 
 namespace R2CP
@@ -37,11 +38,23 @@ namespace R2CP
 	
 	void CaDataDicGen::Network_ConnectionChanged(tDataDicAccess Access, byte *pData, word nData, tInfoMessage *MessageInfo)
 	{
-		if(MessageInfo == nullptr)
-			return;
-	
-		if(m_p_NetworkInteface_)
-			m_p_NetworkInteface_->II_Network_SS_ConnectionChanged(pData[0] , pData[1]);
+        if(MessageInfo == nullptr) return;
+        if(!COMMUNICATION) return;
+
+        if(nData !=2) return;
+        if(pData[0] == APPLICATION_NODE_ID){
+            if(pData[1] == 1) COMMUNICATION->smartHubConnectionEvent();
+            return;
+        }
+
+        if(pData[0] == GENERATOR_NODE_ID){
+            if(pData[1] == 1) COMMUNICATION->generatorConnectionEvent(true);
+            else COMMUNICATION->generatorConnectionEvent(false);
+            return;
+        }
+
+
+
 	}
 	
 	void CaDataDicGen::Network_NodeStatus(tDataDicAccess Access, byte *pData, word nData, tInfoMessage *MessageInfo)

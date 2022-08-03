@@ -2,6 +2,7 @@
  #define __ADATADICSYSTEMMESSAGEINTERFACE__H_
 
 #include "aDataDicInterface.h"
+#include <QList>
 
 namespace R2CP
 {
@@ -16,6 +17,7 @@ namespace R2CP
 	
 	typedef struct{
 		dword 				Id;
+        bool                Active;
 		tSystemMessageInfo  Message_Info;
 	}tSystemMessage;
 
@@ -28,31 +30,38 @@ namespace R2CP
 		 */
 		virtual ~CaDataDicSystemInterface() { }
 	
-		/********************************************* System Message ***********************************/
-		/*!
-		 *	\brief	Message to indicate when a System Message is active or cleared. It can also request to reset it.
-		 *	 		System message additional information can be used to specify the root cause when it is relevant for the user to know. For instance, 
-		 *			if we have defined Procedure 1 with two RAD DB’s and DB 2 / Sequence Number 2 settings result in an AEC selection error, 
-		 *			it will send the following System Message:
-		 */
-		virtual byte II_System_SS_SystemMessage(tSystemMessage *pSystemMessage , bool status) { return Cp_MessageNotAvailable; }
+        bool handleMessage(tSystemMessage* pItem){
+            if(pItem->Active){
+                for(int i=0; i< messageList.size(); i++){
+                    if(messageList[i].Id == pItem->Id) return false; // Already active
+                }
+                messageList.append(*pItem);
+                return true;
+            }else{
+                if(messageList.size() == 0) return false;
+                for(int i=0; i< messageList.size(); i++){
+                    if(messageList[i].Id == pItem->Id){
+                        messageList.remove(i);
+                        return true;
+                    }
+                }
+                return false;
+            }
+            return false;
+        }
 
-		/*!
-		 * \brief  Gets System Message Status
-		 */
-		virtual byte II_System_SS_SystemMessage(dword SystemMessageId) { return Cp_MessageNotAvailable; }
+        tSystemMessage* getMessage(uint ID){
+            for(int i=0; i< messageList.size(); i++){
+                if(messageList[i].Id == ID) return &messageList[i]; // Already active
+            }
+            return nullptr;
+        }
 
-		/*!
-		 * \brief Requests All System Message
-		 */
-		virtual byte II_System_SS_RequestAllSystemMessages(void) { return Cp_MessageNotAvailable; }
-
-		/******************************************* Virtual Desktop *******************************/
-		/*!
-		 * \brief Selection of Virtual Desktop
-		 */
-		virtual byte II_System_SS_VirtualDesktopEntry( word VirtualType , byte *pData , word nData ) { return Cp_MessageNotAvailable; };
+        QList<tSystemMessage> messageList;
 
 	};
+
+
+
 };
 #endif

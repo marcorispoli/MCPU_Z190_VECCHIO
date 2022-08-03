@@ -39,7 +39,7 @@ namespace R2CP
             case DATADIC_ACCESS_ANSWER_EVENT:
             {
                 m_p_RadInterface_->II_Generator_SS_Status(pData);
-                pComm->emit_generatorStatusSgn();
+                COMMUNICATION->generatorReceivedStatusEvent();
             }
             break;
         }

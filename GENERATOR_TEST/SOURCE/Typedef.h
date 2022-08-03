@@ -17,7 +17,12 @@
         extern unsigned int htonl(unsigned int val);
     #endif
 
+    #define SH_NODE_ID              1
     #define APPLICATION_NODE_ID 	3
     #define GENERATOR_NODE_ID       6
+    #define IP_ADDRESS  "127.0.0.1"
+    #define HUB_PORT    10000
 
+
+    #define COMMUNICATION pComm
 #endif

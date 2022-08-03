@@ -1,8 +1,8 @@
 #ifndef STARTUPWINDOW_H
 #define STARTUPWINDOW_H
 
+
 #include <QWidget>
-#include "windows.h"
 
 
 QT_BEGIN_NAMESPACE
@@ -32,20 +32,35 @@ signals:
 
 // GUI MODULE SLOTS
 public slots:
+    void onLogUpdateButton(void);
+    void onLogClearButton(void);
+    void onLogRxSlot(QByteArray);
+
+
     void connectionButtonSlot(void);
     void onGenGetStatusButtonSlot(void);
+    void onGetSystemMessagesButtonSlot(void);
+    void onClearSystemMessagesButtonSlot(void);
+
     void onRecetionGenStatusSlot(void);
 
-    void timerEvent(QTimerEvent* ev);
 
+
+    void timerEvent(QTimerEvent* ev);
+    void setStatus(QString stringa);
+    void updateSystemMessages(void);
+
+private slots:
+    void on_logEnableCheck_stateChanged(int arg1);
 
 private:
    Ui::startupWindow *ui;
 
    QByteArray pollingFrame;
    int pollingTimer;
+   int polling;
 
-    int timeEv;
+
 
 };
 

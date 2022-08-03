@@ -657,4 +657,88 @@ namespace R2CP
 										reinterpret_cast<byte *>(&Type));
 		
 	}
+
+    void CaDataDicGen::Patient_SetupProcedure(byte num){
+
+        if((num < 1) || (num > 4)) return;
+
+        byte pData[14];
+
+        if(num == 1){ // Standard 2D
+            pData[0] = num; // Proc Id
+            pData[1] = 1;   // Proc Type = standard Rad
+            pData[2] = 0;   // Positioner = not defined
+            pData[3] = 1;   // Handswitch ID = not defined
+            pData[4] = 1;   // Activation Mode: 1 = Push, 0 = Software
+            pData[5] = 1;   // Workstation: 1 = Detector, 5 = Direct
+            pData[6] = 1;   // Num Databank
+            pData[7] = 1;   // Positioning Databank
+            pData[8] = 1;   // Collimator Databank
+            pData[9] = 1;   // Filter Databank
+            pData[10] = 2;  // Gen Databank sequencing: 0-NA, 1-Activate Next, 2-Software
+            pData[11] = 0;  // Posi. Seq
+            pData[12] = 0;  // Colli. Seq
+            pData[13] = 0;  // Filter. Seq
+
+        }else if(num == 2){ // AEC 2D
+            pData[0] = num; // Proc Id
+            pData[1] = 1;   // Proc Type = standard Rad
+            pData[2] = 0;   // Positioner = not defined
+            pData[3] = 1;   // Handswitch ID = not defined
+            pData[4] = 1;   // Activation Mode: 1 = Push, 0 = Software
+            pData[5] = 1;   // Workstation: 1 = Detector, 5 = Direct
+            pData[6] = 2;   // Num Databank
+            pData[7] = 1;   // Positioning Databank
+            pData[8] = 1;   // Collimator Databank
+            pData[9] = 1;   // Filter Databank
+            pData[10] = 2;  // Gen Databank sequencing: 0-NA, 1-Activate Next, 2-Software
+            pData[11] = 0;  // Posi. Seq
+            pData[12] = 0;  // Colli. Seq
+            pData[13] = 0;  // Filter. Seq
+
+        }else if(num == 3){ // Tomo
+            pData[0] = num; // Proc Id
+            pData[1] = 3;   // Proc Type = Tomo
+            pData[2] = 0;   // Positioner = not defined
+            pData[3] = 1;   // Handswitch ID = not defined
+            pData[4] = 1;   // Activation Mode: 1 = Push, 0 = Software
+            pData[5] = 1;   // Workstation: 1 = Detector, 5 = Direct
+            pData[6] = 1;   // Num Databank
+            pData[7] = 1;   // Positioning Databank
+            pData[8] = 1;   // Collimator Databank
+            pData[9] = 1;   // Filter Databank
+            pData[10] = 2;  // Gen Databank sequencing: 0-NA, 1-Activate Next, 2-Software
+            pData[11] = 0;  // Posi. Seq
+            pData[12] = 0;  // Colli. Seq
+            pData[13] = 0;  // Filter. Seq
+
+        }else if(num == 4){ // Tomo AEC
+            pData[0] = num; // Proc Id
+            pData[1] = 3;   // Proc Type = Tomo
+            pData[2] = 0;   // Positioner = not defined
+            pData[3] = 1;   // Handswitch ID = not defined
+            pData[4] = 1;   // Activation Mode: 1 = Push, 0 = Software
+            pData[5] = 1;   // Workstation: 1 = Detector, 5 = Direct
+            pData[6] = 2;   // Num Databank
+            pData[7] = 1;   // Positioning Databank
+            pData[8] = 1;   // Collimator Databank
+            pData[9] = 1;   // Filter Databank
+            pData[10] = 2;  // Gen Databank sequencing: 0-NA, 1-Activate Next, 2-Software
+            pData[11] = 0;  // Posi. Seq
+            pData[12] = 0;  // Colli. Seq
+            pData[13] = 0;  // Filter. Seq
+        }
+
+        (void)m_Type_-> Set(    ETH_LOWEST_PRIORITY,
+                                GENERATOR_NODE_ID,
+                                mNodeId,
+                                PATIENT_COMMANDS_ENTRY,
+                                PATIENT_PROCEDURE_DEFINITION,
+                                14,
+                                pData);
+
+    }
+
+
+
 }//namesapce R2Cp	

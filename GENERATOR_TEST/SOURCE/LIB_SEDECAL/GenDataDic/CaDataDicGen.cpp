@@ -121,8 +121,8 @@ namespace R2CP
 	
 	const tEntry Row_80HEX[] = { // SYSTEM MESSAGE
 	//	SubIndex,														Func,												tDataDicAccess,			GetSize,	SetSize
-		{SYSTEM_SYSTEM_MESSAGE,											CaDataDicGen::System_SystemMessage,			DATADIC_ACCESS_SET_GET,				4,		10,		0,		0},
-		{SYSTEM_ALL_SYSTEM_MESSAGES,									CaDataDicGen::System_AllSystemMessages,		DATADIC_ACCESS_SET_GET,				0,		0,		0,		0},
+        {SYSTEM_SYSTEM_MESSAGE,											CaDataDicGen::System_SystemMessage,			DATADIC_ACCESS_ANSWER_EVENT,		0,		0,		UNDEFINED_LENGHT,UNDEFINED_LENGHT},
+        //{SYSTEM_ALL_SYSTEM_MESSAGES,									CaDataDicGen::System_AllSystemMessages,		DATADIC_ACCESS_ANSWER_EVENT,		0,		0,		0,		0},
 		{SYSTEM_VD_LOAD_DESKTOP,										CaDataDicGen::System_LoadDesktop,			DATADIC_ACCESS_ANSWER_EVENT,		0,		0,	UNDEFINED_LENGHT , UNDEFINED_LENGHT },
 		{SYSTEM_VD_DESKTOP_DISPLAY,										CaDataDicGen::System_DesktopDisplay,		DATADIC_ACCESS_ANSWER_EVENT,		0,		0,	UNDEFINED_LENGHT , UNDEFINED_LENGHT },
 		{SYSTEM_VD_NUMERIC_PROPERTY_SETUP,								CaDataDicGen::System_NumericPropertySetup, 	DATADIC_ACCESS_GET,					9,		0, 	UNDEFINED_LENGHT , UNDEFINED_LENGHT },
@@ -230,6 +230,7 @@ namespace R2CP
 			m_p_R2CPInterface_->Initialitation();
 
         m_p_RadInterface_ = &radInterface;
+        m_p_SystemInterface_ = &systemInterface;
 	}
 	
 	void CaDataDicGen::SetCommunicationForm( CR2CP_Eth *Type)

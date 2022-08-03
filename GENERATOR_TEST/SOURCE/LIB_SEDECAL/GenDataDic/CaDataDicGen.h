@@ -285,7 +285,12 @@ namespace R2CP
 
         // Get Functions
         void Generator_Get_Status(void);
+        void SystemMessages_Get_AllMessages(void);
 
+        bool SystemMessages_Clear_Message(uint ID);
+        void SystemMessages_Clear_AllMessages(void);
+
+        void Patient_SetupProcedure(byte num);
 
 	private:
 		
@@ -339,7 +344,7 @@ namespace R2CP
 
     public:
         CaDataDicRadInterface radInterface;
-
+        CaDataDicSystemInterface systemInterface;
 	};
 };//namespace R2CP
 

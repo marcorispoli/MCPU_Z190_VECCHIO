@@ -1,8 +1,9 @@
 #ifndef COMMUNICATION_H
 #define COMMUNICATION_H
 
-#include <QObject>
 #include "tcpipclient.h"
+#include "Typedef.h"
+#include <QtEndian>
 #include "R2CP_Eth.h"
 #include "CaDataDicGen.h"
 
@@ -15,20 +16,13 @@ class Communication : public QObject
 public:
     explicit Communication(QObject *parent = nullptr);
 
-
-    #define IP_ADDRESS  "127.0.0.1"
-    #define HUB_PORT    10000
-
-
-
     void start(void);
     void eventConnection(void);
 
 signals:
-    void generatorStatusSgn(void);
+    void rxDataEventSgn(QByteArray);
 
-public slots:
-
+public slots:    
     void clientConnection(bool status);
     void clientRxData(QByteArray data);
 
@@ -36,15 +30,36 @@ public:
 
     int16_t sendData(byte *pMessage , word datalength);
 
-    // External signal emission
-    void emit_generatorStatusSgn() {emit generatorStatusSgn();}
+
+    void clearRxList(){rxList.clear();}
+    QList<QByteArray> getList(){return rxList;}
+
+    // _______________________________________________________________________________________
+    void smartHubConnectionEvent(void);
+    void generatorConnectionEvent(bool);
+
+    void generatorReceivedStatusEvent(void);
+
+
+
+    _inline bool isSHConnected(void) {return smartHubConnected;}
+    _inline bool isGenConnected(void) {return generatorConnected;}
+    _inline void getGeneratorStatus() {R2CP::CaDataDicGen::GetInstance()->Generator_Get_Status();}
+    _inline void setSHConnection() {R2CP::CaDataDicGen::GetInstance()->Network_ConnectionRequest_Event(SH_NODE_ID, APPLICATION_NODE_ID);}
+    _inline void clearSystemMessages(void){R2CP::CaDataDicGen::GetInstance()->SystemMessages_Clear_AllMessages();}
+    _inline void getAllSystemMessages(void){R2CP::CaDataDicGen::GetInstance()->SystemMessages_Get_AllMessages();}
+
+    _inline void setupProcedure(uchar num){R2CP::CaDataDicGen::GetInstance()->Patient_SetupProcedure(num);}
 
 private:
     TcpIpClient client;
     bool connection_status;
-
     CR2CP_Eth* R2CP_Eth;
 
+    bool smartHubConnected;
+    bool generatorConnected;
+
+    QList<QByteArray> rxList;
 
 };
 

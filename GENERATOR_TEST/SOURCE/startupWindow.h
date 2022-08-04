@@ -38,9 +38,13 @@ public slots:
 
 
     void connectionButtonSlot(void);
-    void onGenGetStatusButtonSlot(void);
     void onGetSystemMessagesButtonSlot(void);
     void onClearSystemMessagesButtonSlot(void);
+
+    void onGetProtocolButtonSlot(void);
+    void onSetProtocolVersion6ButtonSlot(void);
+    void onSetProtocolVersion5ButtonSlot(void);
+
 
     void onRecetionGenStatusSlot(void);
 
@@ -49,6 +53,7 @@ public slots:
     void timerEvent(QTimerEvent* ev);
     void setStatus(QString stringa);
     void updateSystemMessages(void);
+
 
 private slots:
     void on_logEnableCheck_stateChanged(int arg1);

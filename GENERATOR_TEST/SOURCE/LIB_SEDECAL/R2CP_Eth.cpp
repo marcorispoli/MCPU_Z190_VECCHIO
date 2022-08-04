@@ -14,6 +14,8 @@
 
 #include "R2CP_Eth.h"
 #include "string.h"
+#include "application.h"
+
 //#include <stdio.h>
 
 //using namespace Util;
@@ -124,6 +126,11 @@ void CR2CP_Eth::ProcessMessage(void *pMessage)
 		return;
 	}
 		break;
+    case ETH_MSG_PROCESSED_FNC:
+        if(pEthMsg->header.len != 2) return;
+           if(COMMUNICATION) COMMUNICATION->handleCommandProcess(pEthMsg->data[0], pEthMsg->data[1]);
+           return;
+        break;
 	default:
 		break;
 	}

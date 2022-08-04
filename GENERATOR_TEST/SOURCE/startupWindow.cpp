@@ -16,7 +16,13 @@ startupWindow::startupWindow(QWidget *parent)
     connect(ui->logEnableCheck, SIGNAL(stateChanged(int)), this, SLOT(on_logEnableCheck_stateChanged(int)));
 
 
-    connect(ui->genGetStatus, SIGNAL(pressed()), this, SLOT(onGenGetStatusButtonSlot()), Qt::UniqueConnection);
+    connect(ui->getProtocolButton, SIGNAL(pressed()), this, SLOT(onGetProtocolButtonSlot()), Qt::UniqueConnection);
+    connect(ui->setVersion5Button, SIGNAL(pressed()), this, SLOT(onSetProtocolVersion5ButtonSlot()), Qt::UniqueConnection);
+    connect(ui->setVersion6Button, SIGNAL(pressed()), this, SLOT(onSetProtocolVersion6ButtonSlot()), Qt::UniqueConnection);
+
+
+
+
     connect(ui->getSystemMessagesButton, SIGNAL(pressed()), this, SLOT(onGetSystemMessagesButtonSlot()), Qt::UniqueConnection);
     connect(ui->clearSystemMessagesButton, SIGNAL(pressed()), this, SLOT(onClearSystemMessagesButtonSlot()), Qt::UniqueConnection);
 
@@ -85,13 +91,9 @@ void  startupWindow::setStatus(QString stringa){
     ui->statusLabel->setText(stringa);
 }
 
-
 void startupWindow::connectionButtonSlot(void){
     pComm->start();
 
-}
-void startupWindow::onGenGetStatusButtonSlot(void){
-    R2CP::CaDataDicGen::GetInstance()->Generator_Get_Status();
 }
 
 void startupWindow::onGetSystemMessagesButtonSlot(void){
@@ -103,11 +105,24 @@ void startupWindow::onClearSystemMessagesButtonSlot(void){
 }
 
 
+void startupWindow::onGetProtocolButtonSlot(void){
+    COMMUNICATION->getProtocolVersion();
+}
+
+void startupWindow::onSetProtocolVersion5ButtonSlot(void){
+    COMMUNICATION->setProtocolVersion5();
+}
+void startupWindow::onSetProtocolVersion6ButtonSlot(void){
+    COMMUNICATION->setProtocolVersion6();
+}
+
+
+
 
 void startupWindow::onRecetionGenStatusSlot(void){
 
    QString stringa = "STATUS: ";
-   switch(R2CP::CaDataDicGen::GetInstance()->radInterface.generatorStatus.GeneratorStatus){
+   switch(R2CP::CaDataDicGen::GetInstance()->radInterface.generatorStatusV6.GeneratorStatus){
         case R2CP::Stat_Initialization: stringa += "INIT";break;
         case R2CP::Stat_Standby: stringa += "STANDBY";break;
         case R2CP::Stat_Preparation: stringa += "PREPARATION";break;
@@ -122,28 +137,31 @@ void startupWindow::onRecetionGenStatusSlot(void){
 
     ui->statusStat->setText(stringa);
 
-    stringa = "PROC-ID: " + QString("%1").arg(R2CP::CaDataDicGen::GetInstance()->radInterface.generatorStatus.ProcedureId);
+    stringa = "PROC-ID: " + QString("%1").arg(R2CP::CaDataDicGen::GetInstance()->radInterface.generatorStatusV6.ProcedureId);
     ui->statusProcId->setText(stringa);
 
 
-    stringa = "PROC-STAT: ";
-    switch(R2CP::CaDataDicGen::GetInstance()->radInterface.generatorStatus.ProcedureStatus){
-         case R2CP::Stat_ProcedureStat_NotActive: stringa += "NOT ACTIVE";break;
-         case R2CP::Stat_ProcedureStat_Active: stringa += "ACTIVE";break;
-         case R2CP::Stat_ProcedureStat_Paused: stringa += "PAUSED";break;
-         case R2CP::Stat_ProcedureStat_Finished: stringa += "FINISHED";break;
+    stringa = "EXP-TYPE: ";
+    switch(R2CP::CaDataDicGen::GetInstance()->radInterface.generatorStatusV6.ExposureType){
+         case R2CP::tGenStatus_ExposureType_None: stringa += "NONE";break;
+         case R2CP::tGenStatus_ExposureType_SingleShot: stringa += "SINGLE SHOT";break;
+         case R2CP::tGenStatus_ExposureType_SerialRad: stringa += "SERIAL RAD";break;
+         case R2CP::tGenStatus_ExposureType_ContFl: stringa += "CONT FL";break;
+         case R2CP::tGenStatus_ExposureType_ContFl_HLC: stringa += "CONT FL + HLC";break;
+         case R2CP::tGenStatus_ExposureType_PulsedFl: stringa += "PULSED FL";break;
+         case R2CP::tGenStatus_ExposureType_PulsedFl_HLC: stringa += "PULSED FL+HLC";break;
     }
     ui->statusProcStat->setText(stringa);
 
     stringa = "SYSMSG: ";
-    switch(R2CP::CaDataDicGen::GetInstance()->radInterface.generatorStatus.SystemMessage.Fields.Active){
+    switch(R2CP::CaDataDicGen::GetInstance()->radInterface.generatorStatusV6.SystemMessage.Fields.Active){
          case R2CP::Stat_SystemMessageActive_NotActive: stringa += "NOT ACTIVE";break;
          case R2CP::Stat_SystemMessageActive_Active: stringa += "ACTIVE";break;
     }
     ui->statusSysMsg->setText(stringa);
 
     stringa = "INHIBIT: ";
-    switch(R2CP::CaDataDicGen::GetInstance()->radInterface.generatorStatus.SystemMessage.Fields.Inhibit){
+    switch(R2CP::CaDataDicGen::GetInstance()->radInterface.generatorStatusV6.SystemMessage.Fields.Inhibit){
          case R2CP::Stat_SystemMessageInhibit_NotActive: stringa += "NOT ACTIVE";break;
          case R2CP::Stat_SystemMessageInhibit_Active: stringa += "ACTIVE";break;
     }
@@ -165,10 +183,14 @@ void startupWindow::updateSystemMessages(void){
 
 void startupWindow::on_logEnableCheck_stateChanged(int arg1)
 {
+    static bool connected = false;
     if(arg1){
-        connect(pComm, SIGNAL(rxDataEventSgn(QByteArray)), this, SLOT(onLogRxSlot(QByteArray)), Qt::QueuedConnection);
+        if(!connected) connect(pComm, SIGNAL(rxDataEventSgn(QByteArray)), this, SLOT(onLogRxSlot(QByteArray)), Qt::QueuedConnection);
+        connected = true;
     }else{
         disconnect(pComm, SIGNAL(rxDataEventSgn(QByteArray)), this, SLOT(onLogRxSlot(QByteArray)));
+        connected = false;
+
     }
 }
 

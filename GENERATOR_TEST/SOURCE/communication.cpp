@@ -54,6 +54,12 @@ void Communication::generatorReceivedStatusEvent(void){
 
 }
 
+void Communication::generatorReceivedProcedureDefinitionEvent(byte id)
+{
+   qDebug() << "Ricevuto conferma Procedure " << id;
+}
+
+
 
 void Communication::clientConnection(bool stat){
     connection_status = stat;

@@ -12,7 +12,8 @@
  * \ingroup   R2CPModule
 */
 #include "CaDataDicGen.h"
-#include "communication.h"
+
+#include "application.h"
 
 extern Communication* pComm;
 
@@ -22,34 +23,39 @@ extern Communication* pComm;
 
 namespace R2CP
 {
+
+
+    void CaDataDicGen::Generator_DataBank_DefineProcedure( tDataDicAccess Access, byte *pData, word nData,  tInfoMessage *MessageInfo )
+    {
+        if(MessageInfo == nullptr)  return;
+        if(!m_p_RadInterface_) return;
+        if(Access != DATADIC_ACCESS_ANSWER_EVENT) return;
+        byte id = 0;
+        qDebug() << "passato";
+        if( MessageInfo->SubIndex == GENERATOR_DATA_BANK_DEFINE_PROCEDURE_V5){
+            id = m_p_RadInterface_->MET_Generator_Update_ProcedureV5(pData);
+        }else id = m_p_RadInterface_->MET_Generator_Update_ProcedureV6(pData);
+
+        if(id && COMMUNICATION) COMMUNICATION->generatorReceivedProcedureDefinitionEvent(id);
+
+    }
+
+
     void CaDataDicGen::Generator_ExposureManagement_GeneratorStatus( tDataDicAccess Access, byte *pData, word nData,  tInfoMessage *MessageInfo )
     {
         if(MessageInfo == nullptr)  return;
-
-        if( MessageInfo->SubIndex == GENERATOR_EXPOSURE_MANAGEMENT_GENERATOR_STATUS_V5 	&& m_p_instance_->mProtocolVersion.Version != PROTOCOL_VERSION_5 ||
-            MessageInfo->SubIndex == GENERATOR_EXPOSURE_MANAGEMENT_GENERATOR_STATUS_V6  && m_p_instance_->mProtocolVersion.Version != PROTOCOL_VERSION_6 )
-        {
-            return;
-        }
-
         if(!m_p_RadInterface_) return;
-
-        switch( Access )
-        {
-            case DATADIC_ACCESS_ANSWER_EVENT:
-            {
-                m_p_RadInterface_->II_Generator_SS_Status(pData);
-                COMMUNICATION->generatorReceivedStatusEvent();
-            }
-            break;
-        }
-
+        if(Access != DATADIC_ACCESS_ANSWER_EVENT) return;
+        if( MessageInfo->SubIndex == GENERATOR_EXPOSURE_MANAGEMENT_GENERATOR_STATUS_V5){
+            m_p_RadInterface_->MET_Generator_Set_StatusV5(pData);
+        }else m_p_RadInterface_->MET_Generator_Set_StatusV6(pData);
+        if(COMMUNICATION) COMMUNICATION->generatorReceivedStatusEvent();
     }
 
 
 
     // Get Functions
-    void CaDataDicGen::Generator_Get_Status(void){
+    void CaDataDicGen::Generator_Get_StatusV5(void){
         (void)m_Type_-> Get(    ETH_LOWEST_PRIORITY,
                                 GENERATOR_NODE_ID,
                                 mNodeId,
@@ -57,6 +63,18 @@ namespace R2CP
                                 GENERATOR_EXPOSURE_MANAGEMENT_GENERATOR_STATUS_V5,
                                 0,
                                 nullptr);
+
+    }
+
+    void CaDataDicGen::Generator_Get_StatusV6(void){
+        (void)m_Type_-> Get(    ETH_LOWEST_PRIORITY,
+                                GENERATOR_NODE_ID,
+                                mNodeId,
+                                GENERATOR_COMMANDS_ENTRY,
+                                GENERATOR_EXPOSURE_MANAGEMENT_GENERATOR_STATUS_V6,
+                                0,
+                                nullptr);
+
     }
 
 }//namespace R2CP
@@ -2080,32 +2098,7 @@ namespace R2CP
 									(pDataCp));
 	}
 	
-	//////////////////////////////////////////EVENTS//////////////////////////////////////////
-	void CaDataDicGen::Generator_DataBank_DefineProcedure_Event(tProcedure *pProcedure)
-	{
-		if( pProcedure->SubIndex == PATIENT_PROCEDURE_DEFINITION )
-		{
-			byte Data[] = {  pProcedure->ProcedureId,
-							 pProcedure->GeneratorProcedureType,
-							 pProcedure->HorFSwitchId,
-							 pProcedure->ActiveWhenHorFSwichIsPressed,
-							 pProcedure->WorkstationId,
-							 pProcedure->TotalNumOfExpDBinProcedure,
-							 pProcedure->GenDataBankSequencing };
-		
-			(void)m_Type_->Event_Answer(	ETH_LOWEST_PRIORITY,
-											GetNodeEvent(),
-											mNodeId, 
-											GENERATOR_COMMANDS_ENTRY, 
-											GENERATOR_DATA_BANK_DEFINE_PROCEDURE, 
-											sizeof(Data), 
-											(Data));
-		}
-		else
-		{
-			Generator_DataBank_Define_NExposures_Procedure_Event( pProcedure );
-		}
-	}
+
 	
 	void CaDataDicGen::Generator_DataBank_Define_NExposures_Procedure_Event(tProcedure *pProcedure)
 	{

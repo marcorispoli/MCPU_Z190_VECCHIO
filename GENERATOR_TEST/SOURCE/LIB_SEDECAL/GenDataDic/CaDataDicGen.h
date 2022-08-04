@@ -124,14 +124,14 @@ namespace R2CP
 		static void Generator_RadExposureParameter_AECchambers			( tDataDicAccess Access, byte *pData, word nData,  tInfoMessage *MessageInfo = nullptr);
 		static void Generator_RadExposureParameter_FPS					( tDataDicAccess Access, byte *pData, word nData,  tInfoMessage *MessageInfo = nullptr);
 		static void Generator_RadExposureParameter_TrackingId			( tDataDicAccess Access, byte *pData, word nData,  tInfoMessage *MessageInfo = nullptr);
-		static void Generator_RadExposureParameter_PatientSize			( tDataDicAccess Access, byte *pData, word nData,  tInfoMessage *MessageInfo = nullptr);
-		
+		static void Generator_RadExposureParameter_PatientSize			( tDataDicAccess Access, byte *pData, word nData,  tInfoMessage *MessageInfo = nullptr);		
 		static void Generator_OtherFunctions_GenPowerLimit				( tDataDicAccess Access, byte *pData, word nData,  tInfoMessage *MessageInfo = nullptr);
 		static void Generator_OtherFunctions_Filmanents_Enable			( tDataDicAccess Access, byte *pData, word nData,  tInfoMessage *MessageInfo = nullptr);
 		static void Generator_OtherFunctions_TubePowerLimit				( tDataDicAccess Access, byte *pData, word nData,  tInfoMessage *MessageInfo = nullptr);
 		static void Generator_CurrentRadDataBank_RADparams				( tDataDicAccess Access, byte *pData, word nData,  tInfoMessage *MessageInfo = nullptr);
 		static void Generator_ExposureManagement_GeneratorStatus		( tDataDicAccess Access, byte *pData, word nData,  tInfoMessage *MessageInfo = nullptr);
-		static void Generator_Miscellaneous_RadRanges					( tDataDicAccess Access, byte *pData, word nData,  tInfoMessage *MessageInfo = nullptr);
+        static void Generator_DataBank_DefineProcedure                  ( tDataDicAccess Access, byte *pData, word nData,  tInfoMessage *MessageInfo = nullptr);
+        static void Generator_Miscellaneous_RadRanges					( tDataDicAccess Access, byte *pData, word nData,  tInfoMessage *MessageInfo = nullptr);
 		static void Generator_Miscellaneous_FlRanges					( tDataDicAccess Access, byte *pData, word nData,  tInfoMessage *MessageInfo = nullptr);
 		static void Generator_ExposureManagement_RadPostExposure		( tDataDicAccess Access, byte *pData, word nData,  tInfoMessage *MessageInfo = nullptr);
 		static void Generator_ExposureManagement_FlPostExposure			( tDataDicAccess Access, byte *pData, word nData,  tInfoMessage *MessageInfo = nullptr);
@@ -184,7 +184,7 @@ namespace R2CP
 		
 		void Generator_CommunicationsInhibitTimeout_Event( byte CommInhibit_sec , bool status , byte SourceNode);
 		void Generator_ExposureManagement_RadPostExposure_Event( tRadPostExpPostCondition *pPostExpPostCondition );
-		void Generator_ExposureManagement_GeneratorStatus_Event(tGeneratorStatus *LastGeneratorStatus);
+//		void Generator_ExposureManagement_GeneratorStatus_Event(tGeneratorStatus *LastGeneratorStatus);
 		
 		
 		void Generator_DataBank_ProcedureDatabankDefault_Event(byte ProcedureDefaultId , byte ExpSeqId );
@@ -203,7 +203,6 @@ namespace R2CP
 		
 
 		///////////////////////////////////PATIENT INDEX////////////////////////////////////////////////////////////////
-		static void Patient_Procedure_Definition				( tDataDicAccess Access, byte *pData, word nData,  tInfoMessage *MessageInfo = nullptr);
 		static void Patient_Procedure_NExposures_Definition		( tDataDicAccess Access, byte *pData, word nData,  tInfoMessage *MessageInfo = nullptr);
 		static void Patient_Procedure_Activate 					( tDataDicAccess Access, byte *pData, word nData,  tInfoMessage *MessageInfo = nullptr);
 		static void Patient_Procedure_Default					( tDataDicAccess Access, byte *pData, word nData,  tInfoMessage *MessageInfo = nullptr);
@@ -284,13 +283,20 @@ namespace R2CP
 		
 
         // Get Functions
-        void Generator_Get_Status(void);
+        void Protocol_Get_Version(void);
+        void Protocol_Set_Version6(void);
+        void Protocol_Set_Version5(void);
+
+
+        void Generator_Get_StatusV5(void);
+        void Generator_Get_StatusV6(void);
         void SystemMessages_Get_AllMessages(void);
 
         bool SystemMessages_Clear_Message(uint ID);
         void SystemMessages_Clear_AllMessages(void);
 
-        void Patient_SetupProcedure(byte num);
+        void Patient_SetupProcedureV5(byte num);
+        void Patient_SetupProcedureV6(byte num);
 
 	private:
 		
@@ -342,9 +348,14 @@ namespace R2CP
 		static CaDataDicPatientInterface 	*m_p_PatientInterface_;		
 		static CaDataDicServiceInterface	*m_p_ServiceInterface_;
 
+
     public:
-        CaDataDicRadInterface radInterface;
-        CaDataDicSystemInterface systemInterface;
+        CaDataDicRadInterface       radInterface;
+        CaDataDicSystemInterface    systemInterface;
+        tDataDicProtocolVersion     protocolVersion;
+        bool isProtoV6(void){return (protocolVersion.Version == 6) ? true: false;}
+        bool isProtoV5(void){return (protocolVersion.Version == 5) ? true: false;}
+
 	};
 };//namespace R2CP
 

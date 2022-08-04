@@ -17,6 +17,9 @@
         extern unsigned int htonl(unsigned int val);
     #endif
 
+    #define MAX_NUM_PROCEDURE       4
+
+
     #define SH_NODE_ID              1
     #define APPLICATION_NODE_ID 	3
     #define GENERATOR_NODE_ID       6
@@ -24,5 +27,4 @@
     #define HUB_PORT    10000
 
 
-    #define COMMUNICATION pComm
 #endif

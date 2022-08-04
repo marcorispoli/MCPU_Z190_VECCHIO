@@ -42,6 +42,7 @@ private:
     _statusManagerState internalState;
     uchar subStatus;
 
+    void handle_GENERATOR_CONNECTION(void);
     void handle_SMS_MESSAGE_NOTIFY(void);
     void handle_SMS_IDLE(void);
 };

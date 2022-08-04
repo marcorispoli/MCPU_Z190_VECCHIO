@@ -52,15 +52,6 @@ CaDataDic::~CaDataDic()
 
 byte CaDataDic::DataDicCheckAndCall(byte Index,  byte SubIndex, byte Node, tDataDicAccess Access, byte *pData, word Size,tInfoMessage *infomessage)
 {
-    static int counter = 0;
-
-	//_io_printf("\n+MT_%d",Node);
-
-    /*
-	if(datadic_mutex)
-	{
-		OS::Mutex::Lock(datadic_mutex);
-    }*/
 
 	byte rowPosition = 0;
 	int16_t entryPosition = SUBINDEX_NOT_FOUND;
@@ -72,13 +63,7 @@ byte CaDataDic::DataDicCheckAndCall(byte Index,  byte SubIndex, byte Node, tData
 	    for( rowPosition = 0; rowPosition < pDataDictionary->nIndexes; rowPosition++)
 	    {
 	        if( pDataDictionary->pRows[rowPosition].Index == Index )
-	        {
-                if(Index = 0x80){
-                    counter++;
-                }
-                if(counter == 3){
-                    counter = 0;
-                }
+            {
 
 	        	///
 	        	///The binary searching works if the DATADIC is sorted

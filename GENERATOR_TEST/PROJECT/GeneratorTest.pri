@@ -58,7 +58,8 @@ HEADERS += \
     $${TARGET_SOURCE}/LIB_SEDECAL/CaDataDic.h    \
     $${TARGET_SOURCE}/LIB_SEDECAL/GenDataDic/CaDataDicGen.h    \
     $${TARGET_SOURCE}/LIB_SEDECAL/GenDataDic/R2CP_Index.h    \
-    
+    $${TARGET_SOURCE}/LIB_SEDECAL/GenDataDic/Interfaces/aDataDicRadInterface.h    \
+
 
 
 # Aggiunge tutti i path di progetto

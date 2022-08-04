@@ -19,120 +19,7 @@ namespace R2CP
 	/******************************************************************************************************************/
 	//												PATIENT
 	/******************************************************************************************************************/
-	void CaDataDicGen::Patient_Procedure_Definition(tDataDicAccess Access, byte *pData, word nData,  tInfoMessage *MessageInfo )
-	{
-		if(MessageInfo == nullptr)
-			return;
-	
-		byte pDataCp[] = { MessageInfo->Sequence , Cp_MessageNotAvailable };
-	
-		if(m_p_instance_->m_p_PatientInterface_) 
-		{
-			switch( Access )
-			{
-				case DATADIC_ACCESS_SET:
-				{
-					if(m_EnableLogInfo && m_fcb_log_)
-					{
-						m_p_instance_->m_fcb_log_( 1 ,"[ R2CP DATADIC ] SET PROCEDURE DEFINITION [ %d ] --> PROCEDURE_ID [ %d ] TYPE [ %d ] WS [ %d ]", nData , pData[0] , pData[1] , pData[5] );
-					}
 
-					tProcedure Procedure[] = { pData[0], //Procedure ID
-											   pData[1], //Generator Procedure Type
-											   pData[3], //Handswitch / Footswitch Id
-											   pData[4], //Activate When Handswitch/Footswitch is pressed
-											   pData[5], //Workstation Id
-											   pData[6], //Total Number of Exposure Data Banks in Procedure
-											   pData[10], //Generator Data Bank Sequencing
-											   0,
-											   0,
-											   PATIENT_PROCEDURE_DEFINITION
-											  };
-	
-					m_p_instance_->SetNodeEvent(MessageInfo->Node_dest);
-					pDataCp[1] = m_p_PatientInterface_->II_Patient_SS_ProcedureDefinition(  reinterpret_cast<tProcedure *>(&Procedure)  );
-				}
-				break;
-				case DATADIC_ACCESS_GET:
-				{
-					if(m_EnableLogInfo && m_fcb_log_)
-					{
-						m_p_instance_->m_fcb_log_( 1 ,"[ R2CP DATADIC ] GET PROCEDURE DEFINITION [ %d ] --> PROCEDURE_ID [ %d ]", nData , pData[0] );
-					}
-
-					m_p_instance_->SetNodeEvent(MessageInfo->Node_dest , true);
-					pDataCp[1] = m_p_PatientInterface_->II_Patient_SS_ProcedureDefinition( static_cast<byte>(pData[0]) );
-				}
-				break;
-			}
-		}
-	
-		(void)m_Type_->Processed(	ETH_LOWEST_PRIORITY ,
-									m_p_instance_->GetNodeEvent(true), 
-									m_p_instance_->mNodeId, 
-									PATIENT_COMMANDS_ENTRY, 
-									PATIENT_PROCEDURE_DEFINITION, 
-									sizeof(pDataCp), 
-									(pDataCp));
-	
-	}
-	void CaDataDicGen::Patient_Procedure_NExposures_Definition( tDataDicAccess Access, byte *pData, word nData,  tInfoMessage *MessageInfo )
-	{
-		if(MessageInfo == nullptr)
-			return;
-	
-		byte pDataCp[] = { MessageInfo->Sequence , Cp_MessageNotAvailable };
-	
-		if(m_p_instance_->m_p_PatientInterface_) 
-		{
-			switch( Access )
-			{
-				case DATADIC_ACCESS_SET:
-				{
-					if(m_EnableLogInfo && m_fcb_log_)
-					{
-						m_p_instance_->m_fcb_log_( 1 ,"[ R2CP DATADIC ] SET PROCEDURE NEXPOSURES DEFINITION [ %d ] --> PROCEDURE_ID [ %d ] TYPE [ %d ] WS [ %d ]", nData , pData[0] , pData[1] , pData[5] );
-					}
-
-					tProcedure Procedure[] = { pData[0], //Procedure ID
-											   pData[1], //Generator Procedure Type
-											   pData[3], //Handswitch / Footswitch Id
-											   pData[4], //Activate When Handswitch/Footswitch is pressed
-											   pData[5], //Workstation Id
-											   pData[6], //Total Number of Exposure Data Banks in Procedure
-											   pData[10], //Generator Data Bank Sequencing
-											   pData[15],
-											   pData[14],
-											   PATIENT_PROCEDURE_NEXPOSURES_DEFINITION
-											  };
-	
-					m_p_instance_->SetNodeEvent(MessageInfo->Node_dest);
-					pDataCp[1] = m_p_PatientInterface_->II_Patient_SS_ProcedureDefinition(  reinterpret_cast<tProcedure *>(&Procedure)  );
-				}
-				break;
-				case DATADIC_ACCESS_GET:
-				{
-					if(m_EnableLogInfo && m_fcb_log_)
-					{
-						m_p_instance_->m_fcb_log_( 1 ,"[ R2CP DATADIC ] GET PROCEDURE DEFINITION NEXPOSURES [ %d ] --> PROCEDURE_ID [ %d ]", nData , pData[0] );
-					}
-
-					m_p_instance_->SetNodeEvent(MessageInfo->Node_dest , true);
-					pDataCp[1] = m_p_PatientInterface_->II_Patient_SS_ProcedureDefinition( static_cast<byte>(pData[0]) );
-				}
-				break;
-			}
-		}
-	
-		(void)m_Type_->Processed(	ETH_LOWEST_PRIORITY ,
-									m_p_instance_->GetNodeEvent(true), 
-									m_p_instance_->mNodeId, 
-									PATIENT_COMMANDS_ENTRY, 
-									PATIENT_PROCEDURE_NEXPOSURES_DEFINITION, 
-									sizeof(pDataCp), 
-									(pDataCp));
-	}
-	
 	void CaDataDicGen::Patient_Procedure_Activate( tDataDicAccess Access, byte *pData, word nData,  tInfoMessage *MessageInfo)
 	{		
 		if(MessageInfo == nullptr)
@@ -658,16 +545,17 @@ namespace R2CP
 		
 	}
 
-    void CaDataDicGen::Patient_SetupProcedure(byte num){
+    void CaDataDicGen::Patient_SetupProcedureV6(byte num){
 
         if((num < 1) || (num > 4)) return;
 
-        byte pData[14];
+        byte pData[16];
+
 
         if(num == 1){ // Standard 2D
             pData[0] = num; // Proc Id
-            pData[1] = 1;   // Proc Type = standard Rad
-            pData[2] = 0;   // Positioner = not defined
+            pData[1] = Proc_Standard_Mammography_2D;   // Generator Proc Type = standard Rad
+            pData[2] = 0;   // Positioner Proc Type = not defined
             pData[3] = 1;   // Handswitch ID = not defined
             pData[4] = 1;   // Activation Mode: 1 = Push, 0 = Software
             pData[5] = 1;   // Workstation: 1 = Detector, 5 = Direct
@@ -675,14 +563,17 @@ namespace R2CP
             pData[7] = 1;   // Positioning Databank
             pData[8] = 1;   // Collimator Databank
             pData[9] = 1;   // Filter Databank
-            pData[10] = 2;  // Gen Databank sequencing: 0-NA, 1-Activate Next, 2-Software
+            pData[10] = Proc_DatabankSeq_Software;  // Gen Databank sequencing: 0-NA, 1-Activate Next, 2-Software
             pData[11] = 0;  // Posi. Seq
             pData[12] = 0;  // Colli. Seq
             pData[13] = 0;  // Filter. Seq
+            pData[14] = 0;  // H Num Exposures
+            pData[15] = 0;  // L Num Exposures
+
 
         }else if(num == 2){ // AEC 2D
             pData[0] = num; // Proc Id
-            pData[1] = 1;   // Proc Type = standard Rad
+            pData[1] = Proc_Aec_Mammography_2D;   // Proc Type = standard Rad
             pData[2] = 0;   // Positioner = not defined
             pData[3] = 1;   // Handswitch ID = not defined
             pData[4] = 1;   // Activation Mode: 1 = Push, 0 = Software
@@ -691,14 +582,16 @@ namespace R2CP
             pData[7] = 1;   // Positioning Databank
             pData[8] = 1;   // Collimator Databank
             pData[9] = 1;   // Filter Databank
-            pData[10] = 2;  // Gen Databank sequencing: 0-NA, 1-Activate Next, 2-Software
+            pData[10] = Proc_DatabankSeq_Software;  // Gen Databank sequencing: 0-NA, 1-Activate Next, 2-Software
             pData[11] = 0;  // Posi. Seq
             pData[12] = 0;  // Colli. Seq
             pData[13] = 0;  // Filter. Seq
+            pData[14] = 0;  // H Num Exposures
+            pData[15] = 0;  // L Num Exposures
 
         }else if(num == 3){ // Tomo
             pData[0] = num; // Proc Id
-            pData[1] = 3;   // Proc Type = Tomo
+            pData[1] = Proc_Standard_Mammography_3D;   // Proc Type = Tomo
             pData[2] = 0;   // Positioner = not defined
             pData[3] = 1;   // Handswitch ID = not defined
             pData[4] = 1;   // Activation Mode: 1 = Push, 0 = Software
@@ -707,14 +600,16 @@ namespace R2CP
             pData[7] = 1;   // Positioning Databank
             pData[8] = 1;   // Collimator Databank
             pData[9] = 1;   // Filter Databank
-            pData[10] = 2;  // Gen Databank sequencing: 0-NA, 1-Activate Next, 2-Software
+            pData[10] = Proc_DatabankSeq_Software;  // Gen Databank sequencing: 0-NA, 1-Activate Next, 2-Software
             pData[11] = 0;  // Posi. Seq
             pData[12] = 0;  // Colli. Seq
             pData[13] = 0;  // Filter. Seq
+            pData[14] = 0;  // H Num Exposures
+            pData[15] = 0;  // L Num Exposures
 
         }else if(num == 4){ // Tomo AEC
             pData[0] = num; // Proc Id
-            pData[1] = 3;   // Proc Type = Tomo
+            pData[1] = Proc_Aec_Mammography_3D;   // Proc Type = Tomo
             pData[2] = 0;   // Positioner = not defined
             pData[3] = 1;   // Handswitch ID = not defined
             pData[4] = 1;   // Activation Mode: 1 = Push, 0 = Software
@@ -723,17 +618,104 @@ namespace R2CP
             pData[7] = 1;   // Positioning Databank
             pData[8] = 1;   // Collimator Databank
             pData[9] = 1;   // Filter Databank
-            pData[10] = 2;  // Gen Databank sequencing: 0-NA, 1-Activate Next, 2-Software
+            pData[10] = Proc_DatabankSeq_Software;  // Gen Databank sequencing: 0-NA, 1-Activate Next, 2-Software
             pData[11] = 0;  // Posi. Seq
             pData[12] = 0;  // Colli. Seq
             pData[13] = 0;  // Filter. Seq
+            pData[14] = 0;  // H Num Exposures
+            pData[15] = 0;  // L Num Exposures
         }
 
         (void)m_Type_-> Set(    ETH_LOWEST_PRIORITY,
                                 GENERATOR_NODE_ID,
                                 mNodeId,
                                 PATIENT_COMMANDS_ENTRY,
-                                PATIENT_PROCEDURE_DEFINITION,
+                                PATIENT_PROCEDURE_DEFINITION_V6,
+                                16,
+                                pData);
+
+    }
+
+    void CaDataDicGen::Patient_SetupProcedureV5(byte num){
+
+        if((num < 1) || (num > 4)) return;
+
+        byte pData[14];
+
+
+        if(num == 1){ // Standard 2D
+            pData[0] = num; // Proc Id
+            pData[1] = Proc_Standard_Mammography_2D;   // Generator Proc Type = standard Rad
+            pData[2] = 0;   // Positioner Proc Type = not defined
+            pData[3] = 1;   // Handswitch ID = not defined
+            pData[4] = 1;   // Activation Mode: 1 = Push, 0 = Software
+            pData[5] = 1;   // Workstation: 1 = Detector, 5 = Direct
+            pData[6] = 1;   // Num Databank
+            pData[7] = 1;   // Positioning Databank
+            pData[8] = 1;   // Collimator Databank
+            pData[9] = 1;   // Filter Databank
+            pData[10] = Proc_DatabankSeq_Software;  // Gen Databank sequencing: 0-NA, 1-Activate Next, 2-Software
+            pData[11] = 0;  // Posi. Seq
+            pData[12] = 0;  // Colli. Seq
+            pData[13] = 0;  // Filter. Seq
+
+
+        }else if(num == 2){ // AEC 2D
+            pData[0] = num; // Proc Id
+            pData[1] = Proc_Aec_Mammography_2D;   // Proc Type = standard Rad
+            pData[2] = 0;   // Positioner = not defined
+            pData[3] = 1;   // Handswitch ID = not defined
+            pData[4] = 1;   // Activation Mode: 1 = Push, 0 = Software
+            pData[5] = 1;   // Workstation: 1 = Detector, 5 = Direct
+            pData[6] = 2;   // Num Databank
+            pData[7] = 1;   // Positioning Databank
+            pData[8] = 1;   // Collimator Databank
+            pData[9] = 1;   // Filter Databank
+            pData[10] = Proc_DatabankSeq_Software;  // Gen Databank sequencing: 0-NA, 1-Activate Next, 2-Software
+            pData[11] = 0;  // Posi. Seq
+            pData[12] = 0;  // Colli. Seq
+            pData[13] = 0;  // Filter. Seq
+
+        }else if(num == 3){ // Tomo
+            pData[0] = num; // Proc Id
+            pData[1] = Proc_Standard_Mammography_3D;   // Proc Type = Tomo
+            pData[2] = 0;   // Positioner = not defined
+            pData[3] = 1;   // Handswitch ID = not defined
+            pData[4] = 1;   // Activation Mode: 1 = Push, 0 = Software
+            pData[5] = 1;   // Workstation: 1 = Detector, 5 = Direct
+            pData[6] = 1;   // Num Databank
+            pData[7] = 1;   // Positioning Databank
+            pData[8] = 1;   // Collimator Databank
+            pData[9] = 1;   // Filter Databank
+            pData[10] = Proc_DatabankSeq_Software;  // Gen Databank sequencing: 0-NA, 1-Activate Next, 2-Software
+            pData[11] = 0;  // Posi. Seq
+            pData[12] = 0;  // Colli. Seq
+            pData[13] = 0;  // Filter. Seq
+
+
+        }else if(num == 4){ // Tomo AEC
+            pData[0] = num; // Proc Id
+            pData[1] = Proc_Aec_Mammography_3D;   // Proc Type = Tomo
+            pData[2] = 0;   // Positioner = not defined
+            pData[3] = 1;   // Handswitch ID = not defined
+            pData[4] = 1;   // Activation Mode: 1 = Push, 0 = Software
+            pData[5] = 1;   // Workstation: 1 = Detector, 5 = Direct
+            pData[6] = 2;   // Num Databank
+            pData[7] = 1;   // Positioning Databank
+            pData[8] = 1;   // Collimator Databank
+            pData[9] = 1;   // Filter Databank
+            pData[10] = Proc_DatabankSeq_Software;  // Gen Databank sequencing: 0-NA, 1-Activate Next, 2-Software
+            pData[11] = 0;  // Posi. Seq
+            pData[12] = 0;  // Colli. Seq
+            pData[13] = 0;  // Filter. Seq
+
+        }
+
+        (void)m_Type_-> Set(    ETH_LOWEST_PRIORITY,
+                                GENERATOR_NODE_ID,
+                                mNodeId,
+                                PATIENT_COMMANDS_ENTRY,
+                                PATIENT_PROCEDURE_DEFINITION_V5,
                                 14,
                                 pData);
 

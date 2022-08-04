@@ -21,8 +21,19 @@ statusManager::statusManager( QObject *parent)
 
 void statusManager::handleCurrentStatus(void){
     // General cases
-    if(!COMMUNICATION->isSHConnected()) internalState = SMS_SMART_HUB_CONNECTION;
-    else if(!COMMUNICATION->isGenConnected()) internalState = SMS_WAIT_GENERATOR_CONNECTION;
+    if(!COMMUNICATION->isSHConnected()){
+        if(internalState !=SMS_SMART_HUB_CONNECTION ){
+            internalState = SMS_SMART_HUB_CONNECTION;
+            subStatus = 0;
+        }
+
+    } else if(!COMMUNICATION->isGenConnected()){
+        if(internalState !=SMS_WAIT_GENERATOR_CONNECTION ){
+            internalState = SMS_WAIT_GENERATOR_CONNECTION;
+            subStatus = 0;
+        }
+
+    }
     //else if(R2CP::CaDataDicGen::GetInstance()->radInterface.generatorStatus.SystemMessage.Fields.Active == R2CP::Stat_SystemMessageActive_Active) internalState = SMS_MESSAGE_NOTIFY;
 
     switch(internalState){
@@ -42,9 +53,18 @@ void statusManager::handleCurrentStatus(void){
         }
         break;
 
-    case SMS_WAIT_GENERATOR_CONNECTION:
-        WINDOWS->setStatus("GENERATOR CONNECTING ..");
+    case SMS_WAIT_GENERATOR_CONNECTION: handle_GENERATOR_CONNECTION(); break;
+    case SMS_MESSAGE_NOTIFY: handle_SMS_MESSAGE_NOTIFY(); break;
+    case SMS_IDLE: handle_SMS_IDLE(); break;
 
+    }
+
+}
+
+/*
+
+
+        switch()
         if(COMMUNICATION->isGenConnected()){
             COMMUNICATION->getGeneratorStatus();
             internalState = SMS_IDLE;
@@ -57,13 +77,93 @@ void statusManager::handleCurrentStatus(void){
             return;
         }
         break;
+  */
+void statusManager::handle_GENERATOR_CONNECTION(void){
+    switch(subStatus){
+     case 0:
+        WINDOWS->setStatus("GENERATOR CONNECTING ..");
+        subStatus++;
+        QTimer::singleShot(0, this, SLOT(handleCurrentStatus()));
+        break;
+    case 1:
+        COMMUNICATION->setProtocolVersion6();subStatus++;
+        QTimer::singleShot(100, this, SLOT(handleCurrentStatus()));
+        break;
+     case 2:
+        if(!COMMUNICATION->isProtocolV6()){
+            subStatus--;
+            QTimer::singleShot(0, this, SLOT(handleCurrentStatus()));
+            break;
+        }
+        COMMUNICATION->getGeneratorStatusV6();subStatus++;
+        QTimer::singleShot(100, this, SLOT(handleCurrentStatus()));
+        break;
 
-    case SMS_MESSAGE_NOTIFY: handle_SMS_MESSAGE_NOTIFY(); break;
-    case SMS_IDLE: handle_SMS_IDLE(); break;
+        break;
+     case 3:
+        if(!COMMUNICATION->isGenConnected()){
+            subStatus--;
+            QTimer::singleShot(0, this, SLOT(handleCurrentStatus()));
+            break;
+        }
 
+        COMMUNICATION->setupProcedureV6(1);subStatus++;
+        QTimer::singleShot(100, this, SLOT(handleCurrentStatus()));
+        break;
+
+    case 4:
+       if(!COMMUNICATION->isProcedureInitialized(1)){
+           subStatus--;
+           QTimer::singleShot(0, this, SLOT(handleCurrentStatus()));
+           break;
+       }
+
+       COMMUNICATION->setupProcedureV6(2);subStatus++;
+       QTimer::singleShot(100, this, SLOT(handleCurrentStatus()));
+       break;
+
+    case 5:
+       if(!COMMUNICATION->isProcedureInitialized(2)){
+           subStatus--;
+           QTimer::singleShot(0, this, SLOT(handleCurrentStatus()));
+           break;
+       }
+
+       COMMUNICATION->setupProcedureV6(3);subStatus++;
+       QTimer::singleShot(100, this, SLOT(handleCurrentStatus()));
+       break;
+
+    case 6:
+       if(!COMMUNICATION->isProcedureInitialized(3)){
+           subStatus--;
+           QTimer::singleShot(0, this, SLOT(handleCurrentStatus()));
+           break;
+       }
+
+       COMMUNICATION->setupProcedureV6(4);subStatus++;
+       QTimer::singleShot(100, this, SLOT(handleCurrentStatus()));
+       break;
+
+    case 7:
+       if(!COMMUNICATION->isProcedureInitialized(4)){
+           subStatus--;
+           QTimer::singleShot(0, this, SLOT(handleCurrentStatus()));
+           break;
+       }
+
+
+        internalState = SMS_IDLE;
+        subStatus = 0;
+        QTimer::singleShot(10, this, SLOT(handleCurrentStatus()));
+        return;
+     default:
+            subStatus = 0;
+            QTimer::singleShot(0, this, SLOT(handleCurrentStatus()));
+        break;
     }
 
 }
+
 
 void statusManager::handle_SMS_MESSAGE_NOTIFY(void){
     switch(subStatus){
@@ -81,11 +181,11 @@ void statusManager::handle_SMS_MESSAGE_NOTIFY(void){
         QTimer::singleShot(500, this, SLOT(handleCurrentStatus()));
         break;
      case 3:
-        COMMUNICATION->getGeneratorStatus();subStatus++;
+        COMMUNICATION->getGeneratorStatusV6();subStatus++;
         QTimer::singleShot(100, this, SLOT(handleCurrentStatus()));
         break;
      case 4:
-        if(R2CP::CaDataDicGen::GetInstance()->radInterface.generatorStatus.SystemMessage.Fields.Active == R2CP::Stat_SystemMessageActive_NotActive){
+        if(R2CP::CaDataDicGen::GetInstance()->radInterface.generatorStatusV6.SystemMessage.Fields.Active == R2CP::Stat_SystemMessageActive_NotActive){
             internalState = SMS_IDLE;
             subStatus = 0;
         }else{
@@ -106,7 +206,7 @@ void statusManager::handle_SMS_MESSAGE_NOTIFY(void){
 
 void statusManager::handle_SMS_IDLE(void){
 
-    if(R2CP::CaDataDicGen::GetInstance()->radInterface.generatorStatus.SystemMessage.Fields.Active == R2CP::Stat_SystemMessageActive_Active){
+    if(R2CP::CaDataDicGen::GetInstance()->radInterface.generatorStatusV6.SystemMessage.Fields.Active == R2CP::Stat_SystemMessageActive_Active){
         internalState = SMS_MESSAGE_NOTIFY;
         QTimer::singleShot(10, this, SLOT(handleCurrentStatus()));
         subStatus = 0;
@@ -118,7 +218,7 @@ void statusManager::handle_SMS_IDLE(void){
     switch(subStatus){
     case 0:WINDOWS->setStatus("STANDBY STATUS");    break;
     case 10:
-        COMMUNICATION->getGeneratorStatus();
+        COMMUNICATION->getGeneratorStatusV6();
         subStatus = 0;
         QTimer::singleShot(100, this, SLOT(handleCurrentStatus()));
         return;

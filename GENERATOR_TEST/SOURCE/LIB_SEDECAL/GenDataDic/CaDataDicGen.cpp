@@ -12,6 +12,7 @@
  * \ingroup   R2CPModule
 */
 #include <string.h>
+#include <QDebug>
 
 #include "CaDataDicGen.h"
 
@@ -48,7 +49,7 @@ namespace R2CP
 		{R2CP_RESET,				CaDataDicGen::R2CP_Reset,				(tDataDicAccess)DATADIC_ACCESS_SET,		0,			0,			0,		0},
 		{R2CP_ERROR_CODE,			CaDataDicGen::R2CP_Error,				(tDataDicAccess)DATADIC_ACCESS_SET_GET,	0,			0,			0,		0},
 		{R2CP_MASTER_LIFE_TIME_OUT,	CaDataDicGen::R2CP_MasterLifeTime,		(tDataDicAccess)DATADIC_ACCESS_SET_GET,	0,			2,			0,		0},
-		{R2CP_PROTOCOL_VERSION,		CaDataDicGen::R2CP_ProtocolVersion,		(tDataDicAccess)DATADIC_ACCESS_SET_GET, 0,			3,			0,		0},
+        {R2CP_PROTOCOL_VERSION,		CaDataDicGen::R2CP_ProtocolVersion,		(tDataDicAccess)DATADIC_ACCESS_ANSWER_EVENT, 0,			3,			3,		3},
 		{R2CP_BOOT_VERSION,			CaDataDicGen::R2CP_BootVersion,			(tDataDicAccess)DATADIC_ACCESS_GET,     0,			0,			0,		0},
 		{R2CP_PACKAGE_VERSION,		CaDataDicGen::R2CP_PackageVersion,		(tDataDicAccess)DATADIC_ACCESS_GET,     0,			0,			0,		0},
 		{R2CP_SERIAL_NUMBER,		CaDataDicGen::R2CP_SerialNumber,		(tDataDicAccess)DATADIC_ACCESS_SET_GET, 0,			UNDEFINED_LENGHT,			0,		0},
@@ -59,8 +60,12 @@ namespace R2CP
 
 	
 	const tEntry Row_20HEX[] = { // GENERATOR
+        {GENERATOR_DATA_BANK_DEFINE_PROCEDURE_V5,                       CaDataDicGen::Generator_DataBank_DefineProcedure,                   DATADIC_ACCESS_ANSWER_EVENT,		0,		0,      7,      7},
+        {GENERATOR_DATA_BANK_DEFINE_PROCEDURE_V6,                       CaDataDicGen::Generator_DataBank_DefineProcedure,                   DATADIC_ACCESS_ANSWER_EVENT,		0,		0,      9,      9},
         {GENERATOR_EXPOSURE_MANAGEMENT_GENERATOR_STATUS_V5,				CaDataDicGen::Generator_ExposureManagement_GeneratorStatus,			DATADIC_ACCESS_ANSWER_EVENT,		0,		0,		14,		14},
         {GENERATOR_EXPOSURE_MANAGEMENT_GENERATOR_STATUS_V6,				CaDataDicGen::Generator_ExposureManagement_GeneratorStatus,			DATADIC_ACCESS_ANSWER_EVENT,		0,		0,		14,		14},
+
+
 /*
 		{GENERATOR_DATA_BANK_ASSIGN_EXPOSURE,							CaDataDicGen::Generator_DataBank_AssignExposure,					DATADIC_ACCESS_SET_GET,	2,		3,		0,		0},
 		{GENERATOR_DATA_BANK_EXPOSURE_ACCEPTANCE,						CaDataDicGen::Generator_DataBank_ExposureAcceptance,				DATADIC_ACCESS_GET,		2,		0,		0,		0},
@@ -152,11 +157,9 @@ namespace R2CP
 	
 	const tEntry Row_E0HEX[] = { // PATIENT WORKFLOW
 	//	SubIndex,														Func,															tAccess,				GetSize,	  SetSize
-		{PATIENT_PROCEDURE_DEFINITION,									CaDataDicGen::Patient_Procedure_Definition,				DATADIC_ACCESS_SET_GET,					1,		 	14,		0,		0},
 		{PATIENT_PROCEDURE_ACTIVATE,									CaDataDicGen::Patient_Procedure_Activate,				DATADIC_ACCESS_SET_GET,					1,		  	6,		0,		0},
 		{PATIENT_PROCEDURE_DEFAULT,										CaDataDicGen::Patient_Procedure_Default,				DATADIC_ACCESS_SET_GET,					0,		  	6,		0,		0},
 		{PATIENT_PROCEDURE_CLEAR_ALL,									CaDataDicGen::Patient_Procedure_ClearAll,				DATADIC_ACCESS_SET,						0,			0,		0,		0},
-		{PATIENT_PROCEDURE_NEXPOSURES_DEFINITION,						CaDataDicGen::Patient_Procedure_NExposures_Definition,	DATADIC_ACCESS_SET_GET,					1,			16,		0,		0},
 		{PATIENT_REDEFINE_HANDFOOTSWITCH_ACTIVATION,					CaDataDicGen::Patient_Redefine_HandFootswitchActivation,DATADIC_ACCESS_SET,						0,			2,		0,		0},
 		{PATIENT_REDEFINE_WORKSTATION,									CaDataDicGen::Patient_Redefine_Workstation,				DATADIC_ACCESS_SET,						0,			2, 		0,		0},
 		{PATIENT_MISCELLANEOUS_SYNC_UP,									CaDataDicGen::Patient_Miscellaneous_Sync_Up,			DATADIC_ACCESS_GET,						0,			0, 		0,		0},
@@ -231,6 +234,9 @@ namespace R2CP
 
         m_p_RadInterface_ = &radInterface;
         m_p_SystemInterface_ = &systemInterface;
+        protocolVersion.Version = 0;
+        protocolVersion.SubVersion = 0;
+
 	}
 	
 	void CaDataDicGen::SetCommunicationForm( CR2CP_Eth *Type)
@@ -456,62 +462,9 @@ namespace R2CP
 	
 	void CaDataDicGen::R2CP_ProtocolVersion( tDataDicAccess Access , byte *pData , word nData , tInfoMessage *MessageInfo ) 
 	{
-		if(	MessageInfo == nullptr )
-			return;
-	
-		byte data[sizeof(tDataDicProtocolVersion)];
-		byte pDataCp[] = { MessageInfo->Sequence , Cp_Ok };
-		byte NodeDest  = MessageInfo->Node_dest;
-	
-		switch( Access )
-		{
-		case DATADIC_ACCESS_SET:
-		{
-			pDataCp[ 1 ]  = Cp_MessageNotAvailable;
-			NodeDest = BROADCAST_NODE_ID;
-			
-			//Controlamos solo la version y revision.
-			for( byte i = 0 ; i < sizeof( ProtocolVersionSupported ) / sizeof( tDataDicProtocolVersion ) ; i++ )
-			{
-				if( reinterpret_cast< tDataDicProtocolVersion *>( pData )->Version != ProtocolVersionSupported[ i ].Version )
-					continue;
-				if( reinterpret_cast< tDataDicProtocolVersion *>( pData )->Revision > ProtocolVersionSupported[ i ].Revision  )
-					continue;
-				
-				m_p_instance_->mProtocolVersion = *(reinterpret_cast< tDataDicProtocolVersion *>( pData ));
-				pDataCp[ 1 ] = Cp_Ok;
-			}
-		}
-			break;
-		case DATADIC_ACCESS_GET:
-		default:
-			break;
-		}
-		
-		data[0] = m_p_instance_->mProtocolVersion.Version;
-		data[1] = m_p_instance_->mProtocolVersion.SubVersion;
-		data[2] = m_p_instance_->mProtocolVersion.Revision;
-		
-		m_fcb_log_( 1,"PROTOCOL VERSION [ V%02dR%02d.%c ]", m_p_instance_->mProtocolVersion.Version , 
-														    m_p_instance_->mProtocolVersion.SubVersion , 
-														    m_p_instance_->mProtocolVersion.Revision );
-		
-		
-		(void)m_Type_->Event_Answer(	(eEthPriorities)MessageInfo->Priority,
-										NodeDest,
-										MessageInfo->Node_own,
-										R2CP_COMMANDS_ENTRY,
-										R2CP_PROTOCOL_VERSION,
-										sizeof(data),
-										(data));
-	
-		(void)m_Type_->Processed(	(eEthPriorities)MessageInfo->Priority,
-									MessageInfo->Node_dest,
-									MessageInfo->Node_own,
-									R2CP_COMMANDS_ENTRY,
-									R2CP_PROTOCOL_VERSION,
-									sizeof(pDataCp),
-									(pDataCp));
+        if(	MessageInfo == nullptr ) return;
+        m_p_instance_->protocolVersion = *(tDataDicProtocolVersion*) pData;
+        qDebug() << "PROTOCOL:"  << m_p_instance_->protocolVersion.Version <<  "." << m_p_instance_->protocolVersion.SubVersion << "." << m_p_instance_->protocolVersion.Revision ;
 	}
 	
 	void CaDataDicGen::R2CP_BootVersion(tDataDicAccess Access, byte *pData, word nData, tInfoMessage *MessageInfo)
@@ -733,5 +686,47 @@ namespace R2CP
 			m_p_R2CPInterface_->ReservedGot( Priority , Node , Index , SubIndex , pData , Size );
 	}
 	
+
+    void CaDataDicGen::Protocol_Get_Version(void){
+        (void)m_Type_-> Get(    ETH_LOWEST_PRIORITY,
+                                GENERATOR_NODE_ID,
+                                mNodeId,
+                                R2CP_COMMANDS_ENTRY,
+                                R2CP_PROTOCOL_VERSION,
+                                0,
+                                nullptr);
+    }
+
+    void CaDataDicGen::Protocol_Set_Version6(void){
+
+        byte pData[3];
+        pData[0] =  6;
+        pData[1] =  0;
+        pData[2] =  0;
+        (void)m_Type_-> Set(    ETH_LOWEST_PRIORITY,
+                                GENERATOR_NODE_ID,
+                                mNodeId,
+                                R2CP_COMMANDS_ENTRY,
+                                R2CP_PROTOCOL_VERSION,
+                                3,
+                                pData);
+    }
+
+    void CaDataDicGen::Protocol_Set_Version5(void){
+
+        byte pData[3];
+        pData[0] =  5;
+        pData[1] =  5;
+        pData[2] =  0;
+        (void)m_Type_-> Set(    ETH_LOWEST_PRIORITY,
+                                GENERATOR_NODE_ID,
+                                mNodeId,
+                                R2CP_COMMANDS_ENTRY,
+                                R2CP_PROTOCOL_VERSION,
+                                3,
+                                pData);
+    }
+
+
 
 }//namespace R2CP

@@ -77,6 +77,129 @@ namespace R2CP
 
     }
 
+    void CaDataDicGen::Generator_Set_Databank(byte num){
+        if((num < 1) || (num >= DB_LastId)) return;
+
+        byte pData[27];
+
+        pData[0] = num; // Databank Id
+        pData[1] = DB_LastId; // Image Identifier
+        pData[2] = DB_Tech_2 | DB_Tech_AutoMode_NotModify | DB_Tech_AAdjustParam_NotModify;
+
+        // kV * 10
+        ushort kV = 20;
+        pData[3] = (byte) (((kV * 10) >> 8) & 0xFF);
+        pData[4] = (byte) (((kV * 10) >> 0) & 0xFF);
+
+        // mAs * 1000
+        uint mAs = 10;
+        pData[5] = (byte) (((mAs*1000) >> 16) & 0xFF);
+        pData[6] = (byte) (((mAs*1000) >> 8) & 0xFF);
+        pData[7] = (byte) (((mAs*1000) >> 0) & 0xFF);
+
+        // mA * 100
+        uint mA = 100;
+        pData[8] = (byte) (((mA*100) >> 16) & 0xFF);
+        pData[9] = (byte) (((mA*100) >> 8) & 0xFF);
+        pData[10] = (byte) (((mA*100) >> 0) & 0xFF);
+
+        // mS * 100
+        uint mS = 100;
+        pData[11] = (byte) (((mS*100) >> 16) & 0xFF);
+        pData[12] = (byte) (((mS*100) >> 8) & 0xFF);
+        pData[13] = (byte) (((mS*100) >> 0) & 0xFF);
+
+        // MinIntg. Time
+        ushort  mInt= 1;
+        pData[14] = (byte) (((mInt * 1) >> 8) & 0xFF);
+        pData[15] = (byte) (((mInt * 1) >> 0) & 0xFF);
+
+        // MaxIntg. Time
+        ushort  MInt= 5000;
+        pData[16] = (byte) (((MInt * 1) >> 8) & 0xFF);
+        pData[17] = (byte) (((MInt * 1) >> 0) & 0xFF);
+
+        // Focal spot
+        pData[18] = 1; // 1 = Focal spot large
+
+        pData[19] = 0; // NA
+        pData[20] = 0; // NA
+        pData[21] = 0; // NA
+        pData[22] = 0; // NA
+
+        // FPS * 10
+        ushort  FPS = 0;
+        pData[23] = (byte) (((FPS * 10) >> 8) & 0xFF);
+        pData[24] = (byte) (((FPS * 10) >> 0) & 0xFF);
+        pData[25] = 0; // NA
+        pData[26] = 0; // NA
+
+        switch((tProcedureDbId) num){
+        case DB_AecSmall:
+            pData[18] = 0; // Focal spot small
+            break;
+        case DB_PulseSmall:
+            pData[18] = 0; // Focal spot small
+            break;
+        case DB_AecLarge:
+            break;
+        case DB_PulseLarge:
+            break;
+        case DB_AecTomo:
+            break;
+        case DB_PulseTomo:
+            FPS = 1;
+            pData[23] = (byte) (((FPS * 10) >> 8) & 0xFF);
+            pData[24] = (byte) (((FPS * 10) >> 0) & 0xFF);
+            break;
+        case DB_TomoSync:
+            break;
+        case DB_LastId:
+            break;
+
+        }
+
+        (void)m_Type_-> Set(    ETH_LOWEST_PRIORITY,
+                                GENERATOR_NODE_ID,
+                                mNodeId,
+                                GENERATOR_COMMANDS_ENTRY,
+                                GENERATOR_RAD_DATA_BANK_LOAD_V6,
+                                27,
+                                pData);
+
+
+    }
+
+    void CaDataDicGen::Generator_RadDataBank_Load(tDataDicAccess Access, byte *pData, word nData,  tInfoMessage *MessageInfo)
+    {
+        if(MessageInfo == nullptr) 	return;
+        if( Access != DATADIC_ACCESS_ANSWER_EVENT) return;
+        if( MessageInfo->SubIndex != GENERATOR_RAD_DATA_BANK_LOAD_V6) return;
+        if((pData[0] < 1) || (pData[0] >= DB_LastId)) return;
+        if(pData[1] != DB_LastId) return;
+
+        m_p_RadInterface_->DbDefinitions[pData[0]].DatabankId = pData[0];
+        m_p_RadInterface_->DbDefinitions[pData[0]].ImagingSystemProtocolId = pData[1];
+        m_p_RadInterface_->DbDefinitions[pData[0]].TechMode.value = pData[2];
+        m_p_RadInterface_->DbDefinitions[pData[0]].kV10.value = pData[3] << 8 | pData[4];
+        m_p_RadInterface_->DbDefinitions[pData[0]].mAs1000.value = (dword)(pData[5] <<16 | (dword)pData[6] <<8 | pData[7]);
+        m_p_RadInterface_->DbDefinitions[pData[0]].mA100.value = (dword)(pData[8] <<16 | (dword)pData[9] <<8 | pData[10]);
+        m_p_RadInterface_->DbDefinitions[pData[0]].ms100.value = (dword)(pData[11]<<16 | (dword)pData[12]<<8 | pData[13]);
+        m_p_RadInterface_->DbDefinitions[pData[0]].MinIntegrationTime.value	= (word)(pData[14]<<8 | pData[15]);
+        m_p_RadInterface_->DbDefinitions[pData[0]].MaxIntegrationTime.value	= (word)(pData[16]<<8 | pData[17]);
+        m_p_RadInterface_->DbDefinitions[pData[0]].FocalSpot = pData[18];
+        m_p_RadInterface_->DbDefinitions[pData[0]].TargetDose.Fields.AECSensitivity_DoseTarget 	= pData[19];
+        m_p_RadInterface_->DbDefinitions[pData[0]].TargetDose.Fields.AECDensity					= pData[20];
+        m_p_RadInterface_->DbDefinitions[pData[0]].IonChamber.value								= pData[21];
+        m_p_RadInterface_->DbDefinitions[pData[0]].Spare_1										= pData[22];
+        m_p_RadInterface_->DbDefinitions[pData[0]].FPS10.value									= (word)( pData[ 23 ] << 8 | pData[ 24 ]);
+        m_p_RadInterface_->DbDefinitions[pData[0]].TrakingId									= pData[25];
+        m_p_RadInterface_->DbDefinitions[pData[0]].Spare_2										= pData[26];
+
+        qDebug() << "Conferma DB " << pData[0];
+
+    }
+
 }//namespace R2CP
 
 

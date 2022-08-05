@@ -19,6 +19,8 @@ public:
     void start(void);
     void eventConnection(void);
 
+
+
 signals:
     void rxDataEventSgn(QByteArray);
 
@@ -60,12 +62,20 @@ public:
 
     _inline void getGeneratorStatusV5() {R2CP::CaDataDicGen::GetInstance()->Generator_Get_StatusV5();}
     _inline void getGeneratorStatusV6() {R2CP::CaDataDicGen::GetInstance()->Generator_Get_StatusV6();}
+    _inline void setDbInitialize(uchar i) {R2CP::CaDataDicGen::GetInstance()->Generator_Set_Databank(i);}
+    _inline bool isDbInitialized(uchar i){return R2CP::CaDataDicGen::GetInstance()->radInterface.isDbInitialized(i);}
+
 
     _inline void setSHConnection() {R2CP::CaDataDicGen::GetInstance()->Network_ConnectionRequest_Event(SH_NODE_ID, APPLICATION_NODE_ID);}
     _inline void clearSystemMessages(void){R2CP::CaDataDicGen::GetInstance()->SystemMessages_Clear_AllMessages();}
     _inline void getAllSystemMessages(void){R2CP::CaDataDicGen::GetInstance()->SystemMessages_Get_AllMessages();}
     _inline void setupProcedureV5(uchar num){R2CP::CaDataDicGen::GetInstance()->Patient_SetupProcedureV5(num);}
     _inline void setupProcedureV6(uchar num){R2CP::CaDataDicGen::GetInstance()->Patient_SetupProcedureV6(num);}
+
+    _inline void setProcedureManual(void){}
+    _inline void setProcedureAec(void){}
+    _inline void setProcedureTomo(void){}
+    _inline void setProcedureTomoAec(void){}
 
 private:
     TcpIpClient client;

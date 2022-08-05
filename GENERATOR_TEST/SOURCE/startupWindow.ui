@@ -49,8 +49,8 @@ border-color: rgb(0, 0, 127);</string>
      <rect>
       <x>30</x>
       <y>20</y>
-      <width>1211</width>
-      <height>91</height>
+      <width>371</width>
+      <height>631</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -69,8 +69,8 @@ border-color: rgb(0, 0, 127);
     <widget class="QLabel" name="statusLabel">
      <property name="geometry">
       <rect>
-       <x>160</x>
-       <y>20</y>
+       <x>20</x>
+       <y>10</y>
        <width>291</width>
        <height>20</height>
       </rect>
@@ -94,12 +94,87 @@ border-width: 0px;
       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
      </property>
     </widget>
-    <widget class="QLabel" name="connectedLabel_2">
+    <widget class="QPushButton" name="setVersion5Button">
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>50</y>
+       <width>101</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(0, 0, 127);
+color: rgb(255, 255, 255);
+border-width: 0px;
+</string>
+     </property>
+     <property name="text">
+      <string>SET V5</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="getProtocolButton">
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>20</y>
-       <width>141</width>
+       <y>50</y>
+       <width>101</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(0, 0, 127);
+color: rgb(255, 255, 255);
+border-width: 0px;
+</string>
+     </property>
+     <property name="text">
+      <string>GET PROT</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="setVersion6Button">
+     <property name="geometry">
+      <rect>
+       <x>230</x>
+       <y>50</y>
+       <width>101</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(0, 0, 127);
+color: rgb(255, 255, 255);
+border-width: 0px;
+</string>
+     </property>
+     <property name="text">
+      <string>SET V6</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="statusStat_2">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>120</y>
+       <width>191</width>
        <height>20</height>
       </rect>
      </property>
@@ -116,116 +191,18 @@ border-width: 0px;
 </string>
      </property>
      <property name="text">
-      <string>SYSTEM STATUS:</string>
+      <string>GENERATOR STATUS V6</string>
      </property>
      <property name="alignment">
-      <set>Qt::AlignCenter</set>
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
      </property>
     </widget>
-    <widget class="QPushButton" name="getProtocolButton">
-     <property name="geometry">
-      <rect>
-       <x>740</x>
-       <y>20</y>
-       <width>131</width>
-       <height>51</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>12</pointsize>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: rgb(0, 0, 127);
-color: rgb(255, 255, 255);
-border-width: 0px;
-</string>
-     </property>
-     <property name="text">
-      <string>GET PROTOCOL</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="setVersion5Button">
-     <property name="geometry">
-      <rect>
-       <x>900</x>
-       <y>20</y>
-       <width>131</width>
-       <height>51</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>12</pointsize>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: rgb(0, 0, 127);
-color: rgb(255, 255, 255);
-border-width: 0px;
-</string>
-     </property>
-     <property name="text">
-      <string>SET VERSION 5</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="setVersion6Button">
-     <property name="geometry">
-      <rect>
-       <x>1050</x>
-       <y>20</y>
-       <width>131</width>
-       <height>51</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>12</pointsize>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: rgb(0, 0, 127);
-color: rgb(255, 255, 255);
-border-width: 0px;
-</string>
-     </property>
-     <property name="text">
-      <string>SET VERSION 6</string>
-     </property>
-    </widget>
-   </widget>
-   <widget class="QFrame" name="connectionFrame_2">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>120</y>
-      <width>431</width>
-      <height>191</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">border-width: 1px;
-border-style: solid; 
-border-color: darkblue;
-border-color: rgb(0, 0, 127);
-</string>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::StyledPanel</enum>
-    </property>
-    <property name="frameShadow">
-     <enum>QFrame::Raised</enum>
-    </property>
     <widget class="QLabel" name="statusStat">
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>70</y>
-       <width>411</width>
+       <y>140</y>
+       <width>351</width>
        <height>20</height>
       </rect>
      </property>
@@ -252,8 +229,8 @@ border-width: 0px;
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>90</y>
-       <width>411</width>
+       <y>160</y>
+       <width>351</width>
        <height>20</height>
       </rect>
      </property>
@@ -280,8 +257,8 @@ border-width: 0px;
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>110</y>
-       <width>411</width>
+       <y>180</y>
+       <width>351</width>
        <height>20</height>
       </rect>
      </property>
@@ -308,8 +285,8 @@ border-width: 0px;
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>130</y>
-       <width>411</width>
+       <y>200</y>
+       <width>351</width>
        <height>20</height>
       </rect>
      </property>
@@ -336,8 +313,8 @@ border-width: 0px;
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>150</y>
-       <width>411</width>
+       <y>220</y>
+       <width>351</width>
        <height>20</height>
       </rect>
      </property>
@@ -360,63 +337,12 @@ border-width: 0px;
       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
      </property>
     </widget>
-    <widget class="QLabel" name="statusStat_2">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>10</y>
-       <width>191</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>12</pointsize>
-       <italic>false</italic>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);
-border-width: 0px;
-</string>
-     </property>
-     <property name="text">
-      <string>GENERATOR STATUS V6</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-     </property>
-    </widget>
-   </widget>
-   <widget class="QFrame" name="connectionFrame_3">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>320</y>
-      <width>231</width>
-      <height>331</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">border-width: 1px;
-border-style: solid; 
-border-color: darkblue;
-border-color: rgb(0, 0, 127);
-</string>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::StyledPanel</enum>
-    </property>
-    <property name="frameShadow">
-     <enum>QFrame::Raised</enum>
-    </property>
     <widget class="QPushButton" name="getSystemMessagesButton">
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>10</y>
-       <width>211</width>
+       <y>490</y>
+       <width>341</width>
        <height>51</height>
       </rect>
      </property>
@@ -436,12 +362,32 @@ border-width: 0px;
       <string>GET MESSAGES</string>
      </property>
     </widget>
+    <widget class="QPlainTextEdit" name="messageList">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>310</y>
+       <width>341</width>
+       <height>171</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(0, 0, 0);
+</string>
+     </property>
+     <property name="plainText">
+      <string>----
+
+</string>
+     </property>
+    </widget>
     <widget class="QPushButton" name="clearSystemMessagesButton">
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>70</y>
-       <width>211</width>
+       <y>550</y>
+       <width>341</width>
        <height>51</height>
       </rect>
      </property>
@@ -461,24 +407,155 @@ border-width: 0px;
       <string>CLEAR MESSAGES</string>
      </property>
     </widget>
-    <widget class="QPlainTextEdit" name="messageList">
+   </widget>
+   <widget class="QFrame" name="connectionFrame_3">
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>20</y>
+      <width>181</width>
+      <height>331</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-width: 1px;
+border-style: solid; 
+border-color: darkblue;
+border-color: rgb(0, 0, 127);
+</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QPushButton" name="selectManualButton">
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>140</y>
-       <width>211</width>
-       <height>171</height>
+       <y>50</y>
+       <width>151</width>
+       <height>51</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(255, 255, 255);
-color: rgb(0, 0, 0);
+      <string notr="true">background-color: rgb(0, 0, 127);
+color: rgb(255, 255, 255);
+border-width: 0px;
 </string>
      </property>
-     <property name="plainText">
-      <string>----
-
+     <property name="text">
+      <string>MANUAL PROC</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="selectAecButton">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>110</y>
+       <width>151</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(0, 0, 127);
+color: rgb(255, 255, 255);
+border-width: 0px;
 </string>
+     </property>
+     <property name="text">
+      <string>AEC PROC</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="selectTomoButton">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>170</y>
+       <width>151</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(0, 0, 127);
+color: rgb(255, 255, 255);
+border-width: 0px;
+</string>
+     </property>
+     <property name="text">
+      <string>TOMO</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="selectAecTomoButton">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>230</y>
+       <width>151</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(0, 0, 127);
+color: rgb(255, 255, 255);
+border-width: 0px;
+</string>
+     </property>
+     <property name="text">
+      <string>TOMO AEC</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="statusProcStat_2">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>161</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+       <italic>false</italic>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);
+border-width: 0px;
+</string>
+     </property>
+     <property name="text">
+      <string>SELECT PROCEDURE</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
      </property>
     </widget>
    </widget>

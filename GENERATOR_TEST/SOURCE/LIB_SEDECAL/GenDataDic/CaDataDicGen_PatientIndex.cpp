@@ -547,14 +547,14 @@ namespace R2CP
 
     void CaDataDicGen::Patient_SetupProcedureV6(byte num){
 
-        if((num < 1) || (num > 4)) return;
-
+        if((num < 1) || (num >= ProcId_Last)) return;
         byte pData[16];
 
 
-        if(num == 1){ // Standard 2D
+
+        if(num == ProcId_Standard_Mammography_2D){ // Standard 2D
             pData[0] = num; // Proc Id
-            pData[1] = Proc_Standard_Mammography_2D;   // Generator Proc Type = standard Rad
+            pData[1] = ProcType_Standard_Mammography_2D;   // Generator Proc Type = standard Rad
             pData[2] = 0;   // Positioner Proc Type = not defined
             pData[3] = 1;   // Handswitch ID = not defined
             pData[4] = 1;   // Activation Mode: 1 = Push, 0 = Software
@@ -571,9 +571,9 @@ namespace R2CP
             pData[15] = 0;  // L Num Exposures
 
 
-        }else if(num == 2){ // AEC 2D
+        }else if(num == ProcId_Aec_Mammography_2D){ // AEC 2D
             pData[0] = num; // Proc Id
-            pData[1] = Proc_Aec_Mammography_2D;   // Proc Type = standard Rad
+            pData[1] = ProcType_Aec_Mammography_2D;   // Proc Type = standard Rad
             pData[2] = 0;   // Positioner = not defined
             pData[3] = 1;   // Handswitch ID = not defined
             pData[4] = 1;   // Activation Mode: 1 = Push, 0 = Software
@@ -589,9 +589,9 @@ namespace R2CP
             pData[14] = 0;  // H Num Exposures
             pData[15] = 0;  // L Num Exposures
 
-        }else if(num == 3){ // Tomo
+        }else if(num == ProcId_Standard_Mammography_3D){ // Tomo
             pData[0] = num; // Proc Id
-            pData[1] = Proc_Standard_Mammography_3D;   // Proc Type = Tomo
+            pData[1] = ProcType_Standard_Mammography_3D;   // Proc Type = Tomo
             pData[2] = 0;   // Positioner = not defined
             pData[3] = 1;   // Handswitch ID = not defined
             pData[4] = 1;   // Activation Mode: 1 = Push, 0 = Software
@@ -607,9 +607,9 @@ namespace R2CP
             pData[14] = 0;  // H Num Exposures
             pData[15] = 0;  // L Num Exposures
 
-        }else if(num == 4){ // Tomo AEC
+        }else if(num == ProcId_Aec_Mammography_3D){ // Tomo AEC
             pData[0] = num; // Proc Id
-            pData[1] = Proc_Aec_Mammography_3D;   // Proc Type = Tomo
+            pData[1] = ProcType_Aec_Mammography_3D;   // Proc Type = Tomo
             pData[2] = 0;   // Positioner = not defined
             pData[3] = 1;   // Handswitch ID = not defined
             pData[4] = 1;   // Activation Mode: 1 = Push, 0 = Software
@@ -638,14 +638,14 @@ namespace R2CP
 
     void CaDataDicGen::Patient_SetupProcedureV5(byte num){
 
-        if((num < 1) || (num > 4)) return;
+        if((num < 1) || (num >= ProcId_Last)) return;
 
         byte pData[14];
 
 
-        if(num == 1){ // Standard 2D
+        if(num == ProcId_Standard_Mammography_2D){ // Standard 2D
             pData[0] = num; // Proc Id
-            pData[1] = Proc_Standard_Mammography_2D;   // Generator Proc Type = standard Rad
+            pData[1] = ProcType_Standard_Mammography_2D;   // Generator Proc Type = standard Rad
             pData[2] = 0;   // Positioner Proc Type = not defined
             pData[3] = 1;   // Handswitch ID = not defined
             pData[4] = 1;   // Activation Mode: 1 = Push, 0 = Software
@@ -660,9 +660,9 @@ namespace R2CP
             pData[13] = 0;  // Filter. Seq
 
 
-        }else if(num == 2){ // AEC 2D
+        }else if(num == ProcId_Aec_Mammography_2D){ // AEC 2D
             pData[0] = num; // Proc Id
-            pData[1] = Proc_Aec_Mammography_2D;   // Proc Type = standard Rad
+            pData[1] = ProcType_Aec_Mammography_2D;   // Proc Type = standard Rad
             pData[2] = 0;   // Positioner = not defined
             pData[3] = 1;   // Handswitch ID = not defined
             pData[4] = 1;   // Activation Mode: 1 = Push, 0 = Software
@@ -676,9 +676,9 @@ namespace R2CP
             pData[12] = 0;  // Colli. Seq
             pData[13] = 0;  // Filter. Seq
 
-        }else if(num == 3){ // Tomo
+        }else if(num == ProcId_Standard_Mammography_3D){ // Tomo
             pData[0] = num; // Proc Id
-            pData[1] = Proc_Standard_Mammography_3D;   // Proc Type = Tomo
+            pData[1] = ProcType_Standard_Mammography_3D;   // Proc Type = Tomo
             pData[2] = 0;   // Positioner = not defined
             pData[3] = 1;   // Handswitch ID = not defined
             pData[4] = 1;   // Activation Mode: 1 = Push, 0 = Software
@@ -693,9 +693,9 @@ namespace R2CP
             pData[13] = 0;  // Filter. Seq
 
 
-        }else if(num == 4){ // Tomo AEC
+        }else if(num == ProcId_Aec_Mammography_3D){ // Tomo AEC
             pData[0] = num; // Proc Id
-            pData[1] = Proc_Aec_Mammography_3D;   // Proc Type = Tomo
+            pData[1] = ProcType_Aec_Mammography_3D;   // Proc Type = Tomo
             pData[2] = 0;   // Positioner = not defined
             pData[3] = 1;   // Handswitch ID = not defined
             pData[4] = 1;   // Activation Mode: 1 = Push, 0 = Software

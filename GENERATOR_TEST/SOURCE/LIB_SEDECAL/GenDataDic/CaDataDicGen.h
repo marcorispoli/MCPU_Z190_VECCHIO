@@ -297,6 +297,7 @@ namespace R2CP
 
         void Patient_SetupProcedureV5(byte num);
         void Patient_SetupProcedureV6(byte num);
+        void Generator_Set_Databank(byte num);
 
 	private:
 		

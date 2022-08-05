@@ -107,50 +107,122 @@ void statusManager::handle_GENERATOR_CONNECTION(void){
             break;
         }
 
-        COMMUNICATION->setupProcedureV6(1);subStatus++;
+        COMMUNICATION->setupProcedureV6(R2CP::ProcId_Standard_Mammography_2D);subStatus++;
         QTimer::singleShot(100, this, SLOT(handleCurrentStatus()));
         break;
 
     case 4:
-       if(!COMMUNICATION->isProcedureInitialized(1)){
+       if(!COMMUNICATION->isProcedureInitialized(R2CP::ProcId_Standard_Mammography_2D)){
            subStatus--;
            QTimer::singleShot(0, this, SLOT(handleCurrentStatus()));
            break;
        }
 
-       COMMUNICATION->setupProcedureV6(2);subStatus++;
+       COMMUNICATION->setupProcedureV6(R2CP::ProcId_Aec_Mammography_2D);subStatus++;
        QTimer::singleShot(100, this, SLOT(handleCurrentStatus()));
        break;
 
     case 5:
-       if(!COMMUNICATION->isProcedureInitialized(2)){
+       if(!COMMUNICATION->isProcedureInitialized(R2CP::ProcId_Aec_Mammography_2D)){
            subStatus--;
            QTimer::singleShot(0, this, SLOT(handleCurrentStatus()));
            break;
        }
 
-       COMMUNICATION->setupProcedureV6(3);subStatus++;
+       COMMUNICATION->setupProcedureV6(R2CP::ProcId_Standard_Mammography_3D);subStatus++;
        QTimer::singleShot(100, this, SLOT(handleCurrentStatus()));
        break;
 
     case 6:
-       if(!COMMUNICATION->isProcedureInitialized(3)){
+       if(!COMMUNICATION->isProcedureInitialized(R2CP::ProcId_Standard_Mammography_3D)){
            subStatus--;
            QTimer::singleShot(0, this, SLOT(handleCurrentStatus()));
            break;
        }
 
-       COMMUNICATION->setupProcedureV6(4);subStatus++;
+       COMMUNICATION->setupProcedureV6(R2CP::ProcId_Aec_Mammography_3D);subStatus++;
        QTimer::singleShot(100, this, SLOT(handleCurrentStatus()));
        break;
 
     case 7:
-       if(!COMMUNICATION->isProcedureInitialized(4)){
+       if(!COMMUNICATION->isProcedureInitialized(R2CP::ProcId_Aec_Mammography_3D)){
            subStatus--;
            QTimer::singleShot(0, this, SLOT(handleCurrentStatus()));
            break;
        }
 
+
+       COMMUNICATION->setDbInitialize(R2CP::DB_AecSmall);subStatus++;
+       QTimer::singleShot(100, this, SLOT(handleCurrentStatus()));
+       break;
+
+    case 8:
+       if(!COMMUNICATION->isDbInitialized(R2CP::DB_AecSmall)){
+           subStatus--;
+           QTimer::singleShot(0, this, SLOT(handleCurrentStatus()));
+           break;
+       }
+
+
+       COMMUNICATION->setDbInitialize(R2CP::DB_PulseSmall);subStatus++;
+       QTimer::singleShot(100, this, SLOT(handleCurrentStatus()));
+       break;
+
+    case 9:
+       if(!COMMUNICATION->isDbInitialized(R2CP::DB_PulseSmall)){
+           subStatus--;
+           QTimer::singleShot(0, this, SLOT(handleCurrentStatus()));
+           break;
+       }
+
+
+       COMMUNICATION->setDbInitialize(R2CP::DB_AecLarge);subStatus++;
+       QTimer::singleShot(100, this, SLOT(handleCurrentStatus()));
+       break;
+
+    case 10:
+       if(!COMMUNICATION->isDbInitialized(R2CP::DB_AecLarge)){
+           subStatus--;
+           QTimer::singleShot(0, this, SLOT(handleCurrentStatus()));
+           break;
+       }
+
+
+       COMMUNICATION->setDbInitialize(R2CP::DB_PulseLarge);subStatus++;
+       QTimer::singleShot(100, this, SLOT(handleCurrentStatus()));
+       break;
+
+    case 11:
+       if(!COMMUNICATION->isDbInitialized(R2CP::DB_PulseLarge)){
+           subStatus--;
+           QTimer::singleShot(0, this, SLOT(handleCurrentStatus()));
+           break;
+       }
+
+
+       COMMUNICATION->setDbInitialize(R2CP::DB_AecTomo);subStatus++;
+       QTimer::singleShot(100, this, SLOT(handleCurrentStatus()));
+       break;
+
+    case 12:
+       if(!COMMUNICATION->isDbInitialized(R2CP::DB_AecTomo)){
+           subStatus--;
+           QTimer::singleShot(0, this, SLOT(handleCurrentStatus()));
+           break;
+       }
+
+
+       COMMUNICATION->setDbInitialize(R2CP::DB_PulseTomo);subStatus++;
+       QTimer::singleShot(100, this, SLOT(handleCurrentStatus()));
+       break;
+
+
+    case 13:
+       if(!COMMUNICATION->isDbInitialized(R2CP::DB_PulseTomo)){
+           subStatus--;
+           QTimer::singleShot(0, this, SLOT(handleCurrentStatus()));
+           break;
+       }
 
         internalState = SMS_IDLE;
         subStatus = 0;

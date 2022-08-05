@@ -62,8 +62,10 @@ namespace R2CP
 	const tEntry Row_20HEX[] = { // GENERATOR
         {GENERATOR_DATA_BANK_DEFINE_PROCEDURE_V5,                       CaDataDicGen::Generator_DataBank_DefineProcedure,                   DATADIC_ACCESS_ANSWER_EVENT,		0,		0,      7,      7},
         {GENERATOR_DATA_BANK_DEFINE_PROCEDURE_V6,                       CaDataDicGen::Generator_DataBank_DefineProcedure,                   DATADIC_ACCESS_ANSWER_EVENT,		0,		0,      9,      9},
+        {GENERATOR_RAD_DATA_BANK_LOAD_V6,								CaDataDicGen::Generator_RadDataBank_Load,							DATADIC_ACCESS_ANSWER_EVENT,	    0,		0,		27,		27},
         {GENERATOR_EXPOSURE_MANAGEMENT_GENERATOR_STATUS_V5,				CaDataDicGen::Generator_ExposureManagement_GeneratorStatus,			DATADIC_ACCESS_ANSWER_EVENT,		0,		0,		14,		14},
         {GENERATOR_EXPOSURE_MANAGEMENT_GENERATOR_STATUS_V6,				CaDataDicGen::Generator_ExposureManagement_GeneratorStatus,			DATADIC_ACCESS_ANSWER_EVENT,		0,		0,		14,		14},
+
 
 
 /*
@@ -71,7 +73,6 @@ namespace R2CP
 		{GENERATOR_DATA_BANK_EXPOSURE_ACCEPTANCE,						CaDataDicGen::Generator_DataBank_ExposureAcceptance,				DATADIC_ACCESS_GET,		2,		0,		0,		0},
 		{GENERATOR_RAD_DATA_BANK_LOAD_V5,								CaDataDicGen::Generator_RadDataBank_Load,							DATADIC_ACCESS_SET_GET,	1,		27,		0,		0},
 		{GENERATOR_RAD_DATA_BANK_ACCEPTANCE,							CaDataDicGen::Generator_RadDataBank_ProcedureAcceptance,			DATADIC_ACCESS_GET,		2,		0,		0,		0},
-		{GENERATOR_RAD_DATA_BANK_LOAD_V6,								CaDataDicGen::Generator_RadDataBank_Load,							DATADIC_ACCESS_SET_GET,	1,		27,		0,		0},
 		{GENERATOR_RAD_EXPOSURE_PARAMETER_TECHNIQUE_MODE,				CaDataDicGen::Generator_RadExposureParameter_TechniqueMode,			DATADIC_ACCESS_SET_GET,	1,		3,		0,		0},
 		{GENERATOR_RAD_EXPOSURE_PARAMETER_KVP,							CaDataDicGen::Generator_RadExposureParameter_KVP,					DATADIC_ACCESS_SET_GET,	1,		4,		0,		0},
 		{GENERATOR_RAD_EXPOSURE_PARAMETER_MAS,							CaDataDicGen::Generator_RadExposureParameter_MAS,					DATADIC_ACCESS_SET_GET,	1,		5,		0,		0},

@@ -45,6 +45,11 @@ public slots:
     void onSetProtocolVersion6ButtonSlot(void);
     void onSetProtocolVersion5ButtonSlot(void);
 
+    void onSelectManualButtonSlot(void);
+    void onSelectAecButtonSlot(void);
+    void onSelectTomoButtonSlot(void);
+    void onSelectAecTomoButtonSlot(void);
+
 
     void onRecetionGenStatusSlot(void);
 

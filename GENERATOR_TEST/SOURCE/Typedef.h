@@ -17,7 +17,6 @@
         extern unsigned int htonl(unsigned int val);
     #endif
 
-    #define MAX_NUM_PROCEDURE       4
 
 
     #define SH_NODE_ID              1

@@ -589,10 +589,18 @@ namespace R2CP
     // __________________________________________ / GENERATOR STATUS
     //___________________________________________ PROCEDURE DEFINITION
     typedef enum{
-        Proc_Standard_Mammography_2D=50,
-        Proc_Aec_Mammography_2D=51,
-        Proc_Standard_Mammography_3D=10,
-        Proc_Aec_Mammography_3D=52,
+        ProcId_Standard_Mammography_2D=1,
+        ProcId_Aec_Mammography_2D,
+        ProcId_Standard_Mammography_3D,
+        ProcId_Aec_Mammography_3D,
+        ProcId_Last
+    }tProcedureId;
+
+    typedef enum{
+        ProcType_Standard_Mammography_2D=50,
+        ProcType_Aec_Mammography_2D=51,
+        ProcType_Standard_Mammography_3D=10,
+        ProcType_Aec_Mammography_3D=52,
     }tProcedureType;
 
 
@@ -621,6 +629,41 @@ namespace R2CP
     }tProcedureDefinition;
     // __________________________________________ / PROCEDURE DEFINITION
 
+    // __________________________________________ DATABANK DEFINITION
+    typedef enum{
+        DB_AecSmall = 1,
+        DB_PulseSmall,
+        DB_AecLarge,
+        DB_PulseLarge,
+        DB_AecTomo,
+        DB_PulseTomo,
+        DB_TomoSync,
+        DB_LastId
+    }tProcedureDbId;
+
+    typedef enum{
+        DB_Tech_0= 0,
+        DB_Tech_1,
+        DB_Tech_2,
+        DB_Tech_3,
+        DB_Tech_2_FallingLoad,
+        DB_Tech_FullAuto,
+        DB_Tech_2_max_ms,
+    }tDbTech;
+
+    typedef enum{
+        DB_Tech_AutoMode_NotModify= 0,
+        DB_Tech_AutoMode_Modify = 0x40,
+    }tDbTechAutoMode;
+
+    typedef enum{
+        DB_Tech_AAdjustParam_NotModify= 0,
+        DB_Tech_AdjustParam_Modify = 0x80,
+    }tDbAdjustParam;
+
+
+
+    // __________________________________________ / DATABANL DEFINITION
 	class CaDataDicRadInterface
 	{
 	public:
@@ -633,9 +676,14 @@ namespace R2CP
          *	\brief Once the CaDataDicGen is instanced this method is called
          */
         void Initialitation(void) {
-            for(int i=0; i<MAX_NUM_PROCEDURE; i++){
-                procedureDefinitions[i].initialized = 0;
+            for(int i=1; i< ProcId_Last; i++){
+                procedureDefinitions[i-1].initialized = 0;
             }
+
+            for(int i=1; i< DB_LastId; i++){
+                DbDefinitions[i-1].ImagingSystemProtocolId = 0;
+            }
+
         };
 
 
@@ -646,7 +694,7 @@ namespace R2CP
             if(data ==nullptr) return 0;
 
             byte id = data[0];
-            if( id > MAX_NUM_PROCEDURE) return 0;
+            if( id >= ProcId_Last) return 0;
             if( id < 1) return 0;
             tProcedureDefinition* tProc = &procedureDefinitions[id-1];
 
@@ -666,7 +714,7 @@ namespace R2CP
             if(data ==nullptr) return 0;
 
             byte id = data[0];
-            if( id > MAX_NUM_PROCEDURE) return 0;
+            if( id >= ProcId_Last) return 0;
             if( id < 1) return 0;
             tProcedureDefinition* tProc = &procedureDefinitions[id-1];
 
@@ -685,8 +733,11 @@ namespace R2CP
         public:
          tGeneratorStatusV5 generatorStatusV5;
          tGeneratorStatusV6 generatorStatusV6;
-         tProcedureDefinition procedureDefinitions[MAX_NUM_PROCEDURE];
-         bool isProcInitialized(byte i){return ( i > MAX_NUM_PROCEDURE) ? false : procedureDefinitions[i-1].initialized;}
+         tProcedureDefinition procedureDefinitions[ProcId_Last];
+         bool isProcInitialized(byte i){return ( i >= ProcId_Last) ? false : procedureDefinitions[i-1].initialized;}
+
+         tRadDb DbDefinitions[DB_LastId];
+         bool isDbInitialized(byte i){return ( i >= DB_LastId) ? false : ( (DbDefinitions[i].ImagingSystemProtocolId == DB_LastId) ? true : false );}
 
 	};//class
 };//namesapce

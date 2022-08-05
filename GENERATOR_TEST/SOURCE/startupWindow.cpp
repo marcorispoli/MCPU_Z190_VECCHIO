@@ -20,6 +20,10 @@ startupWindow::startupWindow(QWidget *parent)
     connect(ui->setVersion5Button, SIGNAL(pressed()), this, SLOT(onSetProtocolVersion5ButtonSlot()), Qt::UniqueConnection);
     connect(ui->setVersion6Button, SIGNAL(pressed()), this, SLOT(onSetProtocolVersion6ButtonSlot()), Qt::UniqueConnection);
 
+    connect(ui->selectManualButton, SIGNAL(pressed()), this, SLOT(onSelectManualButtonSlot()), Qt::UniqueConnection);
+    connect(ui->selectAecButton, SIGNAL(pressed()), this, SLOT(onSelectAecButtonSlot()), Qt::UniqueConnection);
+    connect(ui->selectTomoButton, SIGNAL(pressed()), this, SLOT(onSelectTomoButtonSlot()), Qt::UniqueConnection);
+    connect(ui->selectAecTomoButton, SIGNAL(pressed()), this, SLOT(onSelectAecTomoButtonSlot()), Qt::UniqueConnection);
 
 
 
@@ -117,7 +121,15 @@ void startupWindow::onSetProtocolVersion6ButtonSlot(void){
 }
 
 
-
+void startupWindow::onSelectManualButtonSlot(void){
+    COMMUNICATION->setProcedureManual();
+}void startupWindow::onSelectAecButtonSlot(void){
+    COMMUNICATION->setProcedureAec();
+}void startupWindow::onSelectTomoButtonSlot(void){
+    COMMUNICATION->setProcedureTomo();
+}void startupWindow::onSelectAecTomoButtonSlot(void){
+    COMMUNICATION->setProcedureTomoAec();
+}
 
 void startupWindow::onRecetionGenStatusSlot(void){
 

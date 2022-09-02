@@ -52,11 +52,13 @@ void Communication::generatorReceivedStatusEvent(void){
     if(!generatorConnected)   qDebug() << "Generator Connected";
     generatorConnected = true;
 
+    STATUS->setGeneratorStatusChanged();
+
 }
 
 void Communication::generatorReceivedProcedureDefinitionEvent(byte id)
 {
-   qDebug() << "Ricevuto conferma Procedure " << id;
+
 }
 
 

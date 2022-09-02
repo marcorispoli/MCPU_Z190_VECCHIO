@@ -36,6 +36,8 @@ $${MAIN_CPU}/LIB/tcpipclient.cpp \
     $${TARGET_SOURCE}/main.cpp \
     $${TARGET_SOURCE}/startupWindow.cpp \
     $${TARGET_SOURCE}/status_manager.cpp \
+    $${TARGET_SOURCE}/status_2D_manual_exposure.cpp \
+    $${TARGET_SOURCE}/status_2D_AEC_exposure.cpp \
     $${TARGET_SOURCE}/communication.cpp \
     $${TARGET_SOURCE}/LIB_SEDECAL/R2CP_Eth.cpp    \
     $${TARGET_SOURCE}/LIB_SEDECAL/CaDataDic.cpp    \

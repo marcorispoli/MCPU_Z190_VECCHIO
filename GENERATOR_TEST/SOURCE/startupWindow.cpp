@@ -30,6 +30,7 @@ startupWindow::startupWindow(QWidget *parent)
     connect(ui->getSystemMessagesButton, SIGNAL(pressed()), this, SLOT(onGetSystemMessagesButtonSlot()), Qt::UniqueConnection);
     connect(ui->clearSystemMessagesButton, SIGNAL(pressed()), this, SLOT(onClearSystemMessagesButtonSlot()), Qt::UniqueConnection);
 
+    connect(ui->AECButton, SIGNAL(pressed()), this, SLOT(onAECButtonSlot()), Qt::UniqueConnection);
 
 
     pollingTimer  = 0;
@@ -101,11 +102,12 @@ void startupWindow::connectionButtonSlot(void){
 }
 
 void startupWindow::onGetSystemMessagesButtonSlot(void){
-    R2CP::CaDataDicGen::GetInstance()->SystemMessages_Get_AllMessages();
+   //R2CP::CaDataDicGen::GetInstance()->SystemMessages_Get_AllMessages();
 }
 
 void startupWindow::onClearSystemMessagesButtonSlot(void){
-    R2CP::CaDataDicGen::GetInstance()->SystemMessages_Clear_AllMessages();
+    STATUS->clearErrorsRequest();
+    //R2CP::CaDataDicGen::GetInstance()->SystemMessages_Clear_AllMessages();
 }
 
 
@@ -120,16 +122,26 @@ void startupWindow::onSetProtocolVersion6ButtonSlot(void){
     COMMUNICATION->setProtocolVersion6();
 }
 
-
 void startupWindow::onSelectManualButtonSlot(void){
-    COMMUNICATION->setProcedureManual();
-}void startupWindow::onSelectAecButtonSlot(void){
-    COMMUNICATION->setProcedureAec();
-}void startupWindow::onSelectTomoButtonSlot(void){
-    COMMUNICATION->setProcedureTomo();
-}void startupWindow::onSelectAecTomoButtonSlot(void){
-    COMMUNICATION->setProcedureTomoAec();
+    STATUS->start2DExposurePulse(1,ui->kVPulse->text().toFloat(), ui->mAsPulse->text().toUInt());
 }
+
+void startupWindow::onSelectAecButtonSlot(void){
+    STATUS->start2DAecExposure(1,ui->kVPre->text().toFloat(), ui->mAsPre->text().toUInt());
+}
+void startupWindow::onSelectTomoButtonSlot(void){
+
+}
+void startupWindow::onSelectAecTomoButtonSlot(void){
+
+}
+
+
+void startupWindow::onAECButtonSlot(void){
+    qDebug() << "passato";
+    STATUS->aecPulsData(1,ui->kVPulse->text().toFloat(), ui->mAsPulse->text().toUInt());
+}
+
 
 void startupWindow::onRecetionGenStatusSlot(void){
 
@@ -181,12 +193,8 @@ void startupWindow::onRecetionGenStatusSlot(void){
 
 }
 
-void startupWindow::updateSystemMessages(void){
+void startupWindow::updateSystemMessages(QString stringa){
     ui->messageList->clear();
-    QString stringa = "";
-    for (int i=0; i< R2CP::CaDataDicGen::GetInstance()->systemInterface.messageList.size(); i++){
-        stringa += QString("%1 \n\r").arg(R2CP::CaDataDicGen::GetInstance()->systemInterface.messageList[i].Id);
-    }
     ui->messageList->setPlainText(stringa);
 
 }

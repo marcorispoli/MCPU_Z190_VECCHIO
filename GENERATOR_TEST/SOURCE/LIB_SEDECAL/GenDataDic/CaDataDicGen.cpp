@@ -43,85 +43,19 @@ namespace R2CP
 	
 	const tEntry Row_00HEX[] = { // R2CP
 	//	SubIndex,					Func,					tDataDicAccess,								GS,			SS,		    AS		ES
-		{R2CP_HW_VERSION,			CaDataDicGen::R2CP_HwVersion,			(tDataDicAccess)DATADIC_ACCESS_GET,		0,			0,			0,		0},
-		{R2CP_SW_VERSION,			CaDataDicGen::R2CP_SwVersion,			(tDataDicAccess)DATADIC_ACCESS_GET,		0,			0,			0,		0},
-		{R2CP_STATUS,				CaDataDicGen::R2CP_Status,				(tDataDicAccess)DATADIC_ACCESS_GET,		0,			0,			0,		0},
-		{R2CP_RESET,				CaDataDicGen::R2CP_Reset,				(tDataDicAccess)DATADIC_ACCESS_SET,		0,			0,			0,		0},
-		{R2CP_ERROR_CODE,			CaDataDicGen::R2CP_Error,				(tDataDicAccess)DATADIC_ACCESS_SET_GET,	0,			0,			0,		0},
-		{R2CP_MASTER_LIFE_TIME_OUT,	CaDataDicGen::R2CP_MasterLifeTime,		(tDataDicAccess)DATADIC_ACCESS_SET_GET,	0,			2,			0,		0},
         {R2CP_PROTOCOL_VERSION,		CaDataDicGen::R2CP_ProtocolVersion,		(tDataDicAccess)DATADIC_ACCESS_ANSWER_EVENT, 0,			3,			3,		3},
-		{R2CP_BOOT_VERSION,			CaDataDicGen::R2CP_BootVersion,			(tDataDicAccess)DATADIC_ACCESS_GET,     0,			0,			0,		0},
-		{R2CP_PACKAGE_VERSION,		CaDataDicGen::R2CP_PackageVersion,		(tDataDicAccess)DATADIC_ACCESS_GET,     0,			0,			0,		0},
-		{R2CP_SERIAL_NUMBER,		CaDataDicGen::R2CP_SerialNumber,		(tDataDicAccess)DATADIC_ACCESS_SET_GET, 0,			UNDEFINED_LENGHT,			0,		0},
-		{R2CP_DESCRIPTION,			CaDataDicGen::R2CP_Description,			(tDataDicAccess)DATADIC_ACCESS_GET,     0,			0,			0,		0},
-		{R2CP_SYSTEM_VERSION,		CaDataDicGen::R2CP_SystemVersion,		(tDataDicAccess)DATADIC_ACCESS_GET,		0,			0,			0,		0}
 	};
 	
 
 	
 	const tEntry Row_20HEX[] = { // GENERATOR
         {GENERATOR_DATA_BANK_DEFINE_PROCEDURE_V5,                       CaDataDicGen::Generator_DataBank_DefineProcedure,                   DATADIC_ACCESS_ANSWER_EVENT,		0,		0,      7,      7},
+        {GENERATOR_DATA_BANK_EXPOSURE_ACCEPTANCE,                       CaDataDicGen::Generator_DataBank_ExposureAcceptance,                DATADIC_ACCESS_ANSWER_EVENT,		0,		0,		3,		3},
         {GENERATOR_DATA_BANK_DEFINE_PROCEDURE_V6,                       CaDataDicGen::Generator_DataBank_DefineProcedure,                   DATADIC_ACCESS_ANSWER_EVENT,		0,		0,      9,      9},
         {GENERATOR_RAD_DATA_BANK_LOAD_V6,								CaDataDicGen::Generator_RadDataBank_Load,							DATADIC_ACCESS_ANSWER_EVENT,	    0,		0,		27,		27},
         {GENERATOR_EXPOSURE_MANAGEMENT_GENERATOR_STATUS_V5,				CaDataDicGen::Generator_ExposureManagement_GeneratorStatus,			DATADIC_ACCESS_ANSWER_EVENT,		0,		0,		14,		14},
+        {GENERATOR_EXPOSURE_MANAGEMENT_RAD_POST_EXPOSURE,				CaDataDicGen::Generator_ExposureManagement_RadPostExposure,			DATADIC_ACCESS_ANSWER_EVENT,        0,		0,		21,		21},
         {GENERATOR_EXPOSURE_MANAGEMENT_GENERATOR_STATUS_V6,				CaDataDicGen::Generator_ExposureManagement_GeneratorStatus,			DATADIC_ACCESS_ANSWER_EVENT,		0,		0,		14,		14},
-
-
-
-/*
-		{GENERATOR_DATA_BANK_ASSIGN_EXPOSURE,							CaDataDicGen::Generator_DataBank_AssignExposure,					DATADIC_ACCESS_SET_GET,	2,		3,		0,		0},
-		{GENERATOR_DATA_BANK_EXPOSURE_ACCEPTANCE,						CaDataDicGen::Generator_DataBank_ExposureAcceptance,				DATADIC_ACCESS_GET,		2,		0,		0,		0},
-		{GENERATOR_RAD_DATA_BANK_LOAD_V5,								CaDataDicGen::Generator_RadDataBank_Load,							DATADIC_ACCESS_SET_GET,	1,		27,		0,		0},
-		{GENERATOR_RAD_DATA_BANK_ACCEPTANCE,							CaDataDicGen::Generator_RadDataBank_ProcedureAcceptance,			DATADIC_ACCESS_GET,		2,		0,		0,		0},
-		{GENERATOR_RAD_EXPOSURE_PARAMETER_TECHNIQUE_MODE,				CaDataDicGen::Generator_RadExposureParameter_TechniqueMode,			DATADIC_ACCESS_SET_GET,	1,		3,		0,		0},
-		{GENERATOR_RAD_EXPOSURE_PARAMETER_KVP,							CaDataDicGen::Generator_RadExposureParameter_KVP,					DATADIC_ACCESS_SET_GET,	1,		4,		0,		0},
-		{GENERATOR_RAD_EXPOSURE_PARAMETER_MAS,							CaDataDicGen::Generator_RadExposureParameter_MAS,					DATADIC_ACCESS_SET_GET,	1,		5,		0,		0},
-		{GENERATOR_RAD_EXPOSURE_PARAMETER_MA,							CaDataDicGen::Generator_RadExposureParameter_MA,					DATADIC_ACCESS_SET_GET,	1,		5,		0,		0},
-		{GENERATOR_RAD_EXPOSURE_PARAMETER_MS,							CaDataDicGen::Generator_RadExposureParameter_MS,					DATADIC_ACCESS_SET_GET,	1,		5,		0,		0},
-		{GENERATOR_RAD_EXPOSURE_PARAMETER_MIN_INTEGRATION_TIME,			CaDataDicGen::Generator_RadExposureParameter_MinIntegrationTime,	DATADIC_ACCESS_SET_GET, 1 ,		4,		0,		0},
-		{GENERATOR_RAD_EXPOSURE_PARAMETER_MAX_INTEGRATION_TIME,			CaDataDicGen::Generator_RadExposureParameter_MaxIntegrationTime,	DATADIC_ACCESS_SET_GET,	1,		4,		0,		0},
-		{GENERATOR_RAD_EXPOSURE_PARAMETER_FOCAL_SPOT,					CaDataDicGen::Generator_RadExposureParameter_FocalSpot,				DATADIC_ACCESS_SET_GET,	1,		3,		0,		0},
-		{GENERATOR_RAD_EXPOSURE_PARAMETER_AEC_SENSITIVITY,				CaDataDicGen::Generator_RadExposureParameter_AECsensitivity,		DATADIC_ACCESS_SET_GET,	1,		3,		0,		0},
-		{GENERATOR_RAD_EXPOSURE_PARAMETER_AEC_DENSITY,					CaDataDicGen::Generator_RadExposureParameter_AECdensity,			DATADIC_ACCESS_SET_GET,	1,		3,		0,		0},
-		{GENERATOR_RAD_EXPOSURE_PARAMETER_AEC_CHAMBERS_V5,				CaDataDicGen::Generator_RadExposureParameter_AECchambers_V5,		DATADIC_ACCESS_SET_GET,	1,		3,		0,		0},
-		{GENERATOR_RAD_EXPOSURE_PARAMETER_TUBEPOWERLIMIT,				CaDataDicGen::Generator_RadExposureParameter_TubePowerLimit,		DATADIC_ACCESS_SET_GET,	1,		3,		0,		0},
-		{GENERATOR_RAD_EXPOSURE_PARAMETER_FPS,							CaDataDicGen::Generator_RadExposureParameter_FPS,					DATADIC_ACCESS_SET_GET,	1,		4,		0,		0}, 
-		{GENERATOR_RAD_EXPOSURE_PARAMETER_TRACKINGID,					CaDataDicGen::Generator_RadExposureParameter_TrackingId,			DATADIC_ACCESS_SET_GET,	1,		3,		0,		0},
-		{GENERATOR_RAD_EXPOSURE_PARAMETER_PATIENT_SIZE,					CaDataDicGen::Generator_RadExposureParameter_PatientSize,			DATADIC_ACCESS_SET_GET, 1,		4,		0,		0},
-		{GENERATOR_RAD_EXPOSURE_AEC_REFERENCE,							CaDataDicGen::Generator_RadExposureParameter_AECReference,			DATADIC_ACCESS_SET_GET,	1,		3,		0,		0},
-		{GENERATOR_RAD_EXPOSURE_PARAMETER_AEC_CHAMBERS_V6,				CaDataDicGen::Generator_RadExposureParameter_AECchambers,			DATADIC_ACCESS_SET_GET,	1,		3,		0,		0},
-
-		
-
-		{GENERATOR_CURRENT_RAD_DATA_BANK_RAD_PARAMS_V5,					CaDataDicGen::Generator_CurrentRadDataBank_RADparams,				DATADIC_ACCESS_GET,		0,		0,		0,		0},
-		{GENERATOR_CURRENT_RAD_DATA_BANK_RAD_PARAMS_V6,					CaDataDicGen::Generator_CurrentRadDataBank_RADparams,				DATADIC_ACCESS_GET,		0,		0,		0,		0},
-		{GENERATOR_OTHER_FUNCTIONS_GENPOWERLIMIT,						CaDataDicGen::Generator_OtherFunctions_GenPowerLimit,				DATADIC_ACCESS_SET_GET,	0,		2,		0,		0},
-		{GENERATOR_OTHER_FUNCTIONS_FILAMENTS_ENABLED,					CaDataDicGen::Generator_OtherFunctions_Filmanents_Enable,			DATADIC_ACCESS_SET_GET,	0,		1,		0,		0},
-		{GENERATOR_OTHER_FUNCTIONS_TUBEPOWERLIMIT,						CaDataDicGen::Generator_OtherFunctions_TubePowerLimit,				DATADIC_ACCESS_SET_GET,	0,		3,		0,		0},
-
-		{GENERATOR_EXPOSURE_MANAGEMENT_START_STOP_EXPOSURE,				CaDataDicGen::Generator_ExposureManagement_StartStopExposure,		DATADIC_ACCESS_SET,		 0,		1,		0,		0},
-		{GENERATOR_EXPOSURE_MANAGEMENT_COMMUNICATIONS_INHIBIT_TIMEOUT,	CaDataDicGen::Generator_CommunicationsInhibitTimeout,				DATADIC_ACCESS_SET_GET,  0,		2,		0,		0},
-		{GENERATOR_EXPOSURE_MANAGEMENT_RAD_POST_EXPOSURE,				CaDataDicGen::Generator_ExposureManagement_RadPostExposure,			DATADIC_ACCESS_SET, 	 0,		0,		0,		0},
-		{GENERATOR_EXPOSURE_MANAGEMENT_RESET_EXPOSURE_COUNTER,			CaDataDicGen::Generator_ExposureManagement_ResetExposureCounter,	DATADIC_ACCESS_GET, 	 0,		0,		0,		0},		
-		{GENERATOR_EXPOSURE_SWITCHES_ACTIVATION_DEVICE,				    CaDataDicGen::Generator_ExposureSwitchesActivationDevice,			DATADIC_ACCESS_GET, 	 0,		0,		0,		0},
-		{GENERATOR_MISCELLANEOUS_MAXPROCEDURE,							CaDataDicGen::Generator_Miscellaneous_MaxProcedure,					DATADIC_ACCESS_GET,		 0,		0,		0,		0},
-		{GENERATOR_MISCELLANEOUS_MAXDATABANK,							CaDataDicGen::Generator_Miscellaneous_MaxDatabank,					DATADIC_ACCESS_GET,		 0,		0,		0,		0},
-		{GENERATOR_MISCELLANEOUS_RAD_EXPOSURE_PARAMETER_RANGES,			CaDataDicGen::Generator_Miscellaneous_RadRanges,					DATADIC_ACCESS_GET,		 0,		0,		0,		0},
-		{GENERATOR_MISCELLANEOUS_AEC_EXTERNAL_REFERENCE,				CaDataDicGen::Generator_Miscellaneous_AecReferenceMode,				DATADIC_ACCESS_SET_GET,  0,     1,      0,      0},  
-		{GENERATOR_MISCELLANEOUS_COUNTERS_DATA,							CaDataDicGen::Generator_Miscellaneous_CountersData,					DATADIC_ACCESS_GET, 	 2,     0,      0,      0},  
-		{GENERATOR_MISCELLANEOUS_DIGITAL_INPUTS_OUTPUTS,				CaDataDicGen::Generator_Miscellaneous_DigitalInputsOutputs,			DATADIC_ACCESS_GET,		 2,		0,		0,		0},
-		
-		{GENERATOR_LOCKIN_DATABANK,										CaDataDicGen::Generator_LockIn_Datatbank,							DATADIC_ACCESS_SET_GET,	 1,		3,		0,		0},
-		{GENERATOR_ASSIGN_LOCKINDB_TO_PROCEDURE,						CaDataDicGen::Generator_LockIn_AssignToProcedure,					DATADIC_ACCESS_SET_GET,	 1,		2,		0,		0},
-		{GENERATOR_LOCKIN_FRAME_REACHED,								CaDataDicGen::Generator_LockIn_FrameReached,						DATADIC_ACCESS_GET,		 1,		0,		0,		0},
-		{GENERATOR_INJECTOR,											CaDataDicGen::Generator_Injector,									DATADIC_ACCESS_SET_GET,	 0,		1,		0,		0},
-
-		
-		{GENERATOR_MISCELLANEOUS_RAD_PROCEDURE_PARAMETER_RANGES,		CaDataDicGen::Generator_Miscellaneous_RadProcedureParameterRanges,			DATADIC_ACCESS_SET_GET,	 1,		28,		0,		0},
-		{GENERATOR_MISCELLANEOUS_RAD_PROCEDURE_PARAMETER_RANGES_ASSIGN,	CaDataDicGen::Generator_Miscellaneous_AssignRadProcedureParameterRanges,	DATADIC_ACCESS_SET_GET,	 1,		2,		0,		0},
-		{GENERATOR_MISCELLANEOUS_RAD_PARAMETER_SCALES,					CaDataDicGen::Generator_Miscellaneous_RadParameterScales,					DATADIC_ACCESS_GET,	 	 0,		0,		0,		0},
-		{GENERATOR_MISCELLANEOUS_CALIBRATION_STATUS,					CaDataDicGen::Generator_Miscellaneous_CalibrationStatus,					DATADIC_ACCESS_GET,	 	 0,		0,		0,		0},
-*/
 	};
 	
 	
@@ -158,7 +92,8 @@ namespace R2CP
 	
 	const tEntry Row_E0HEX[] = { // PATIENT WORKFLOW
 	//	SubIndex,														Func,															tAccess,				GetSize,	  SetSize
-		{PATIENT_PROCEDURE_ACTIVATE,									CaDataDicGen::Patient_Procedure_Activate,				DATADIC_ACCESS_SET_GET,					1,		  	6,		0,		0},
+        /*
+        {PATIENT_PROCEDURE_ACTIVATE,									CaDataDicGen::Patient_Procedure_Activate,				DATADIC_ACCESS_SET_GET,					1,		  	6,		0,		0},
 		{PATIENT_PROCEDURE_DEFAULT,										CaDataDicGen::Patient_Procedure_Default,				DATADIC_ACCESS_SET_GET,					0,		  	6,		0,		0},
 		{PATIENT_PROCEDURE_CLEAR_ALL,									CaDataDicGen::Patient_Procedure_ClearAll,				DATADIC_ACCESS_SET,						0,			0,		0,		0},
 		{PATIENT_REDEFINE_HANDFOOTSWITCH_ACTIVATION,					CaDataDicGen::Patient_Redefine_HandFootswitchActivation,DATADIC_ACCESS_SET,						0,			2,		0,		0},
@@ -169,7 +104,7 @@ namespace R2CP
 		{PATIENT_MISCELLANEOUS_POWEROFF_CONFIRM,						CaDataDicGen::Patient_Miscellaneous_PowerOffConfirm,	DATADIC_ACCESS_SET,						0,			1,		0,		0},
 		{PATIENT_MISCELLANEOUS_WORKINGMODE,								CaDataDicGen::Patient_Miscellaneous_WorkingMode,		DATADIC_ACCESS_SET_GET,					0,			2,		0,		0},
 		{PATIENT_MISCELLANEOUS_POSITIONER_CALIBRATION_NUMBER,			CaDataDicGen::Patient_Miscellaneous_Pos_Cal_Number,		DATADIC_ACCESS_SET_GET,					0,			1,		0,		0},
-		
+        */
 	};
 	
 	const tEntry Row_C0HEX[] = {
@@ -280,187 +215,6 @@ namespace R2CP
 
 	
 	///////////////////////////////////  R2CP   ///////////////////////////////////
-	void CaDataDicGen::R2CP_HwVersion(tDataDicAccess Access, byte *pData, word nData, tInfoMessage *MessageInfo) 
-	{
-	
-		if(MessageInfo == nullptr)
-			return;
-	
-		byte data[sizeof(tHwVersion)];
-		byte pDataCp[] = {  MessageInfo->Sequence , Cp_Ok };
-			
-		data[0] = m_p_instance_->mHwVersion.Model >> 8 & 0xFF;
-		data[1] = m_p_instance_->mHwVersion.Model & 0xFF;
-		data[2] = m_p_instance_->mHwVersion.Version;
-		data[3] = m_p_instance_->mHwVersion.Revision;
-		
-		(void)m_Type_->Event_Answer(	(eEthPriorities)MessageInfo->Priority,
-										MessageInfo->Node_dest,
-										m_p_instance_->mNodeId,
-										R2CP_COMMANDS_ENTRY,
-										R2CP_HW_VERSION,
-										sizeof(data),
-										data);
-	
-		(void)m_Type_->Processed(	(eEthPriorities)MessageInfo->Priority,
-									MessageInfo->Node_dest,
-									m_p_instance_->mNodeId,
-									R2CP_COMMANDS_ENTRY,
-									R2CP_HW_VERSION,
-									sizeof(pDataCp),
-									pDataCp);
-	}
-	
-	void CaDataDicGen::R2CP_SwVersion(tDataDicAccess Access, byte *pData, word nData, tInfoMessage *MessageInfo) 
-	{
-	
-		if(MessageInfo == nullptr)
-			return;
-	
-		byte data[sizeof(tSwVersion)];
-		byte pDataCp[] = { MessageInfo->Sequence , Cp_Ok };
-	
-		data[0] = m_p_instance_->mSwVersion.Version;
-		data[1] = m_p_instance_->mSwVersion.Revision;
-		data[2] = m_p_instance_->mSwVersion.Subrevision;
-	
-		(void)m_Type_->Event_Answer(	(eEthPriorities)MessageInfo->Priority,
-										MessageInfo->Node_dest,
-										m_p_instance_->mNodeId,
-										R2CP_COMMANDS_ENTRY,
-										R2CP_SW_VERSION,
-										sizeof(data),
-										data);
-	
-		(void)m_Type_->Processed(	(eEthPriorities)MessageInfo->Priority,
-									MessageInfo->Node_dest,
-									m_p_instance_->mNodeId,
-									R2CP_COMMANDS_ENTRY,
-									R2CP_SW_VERSION,
-									sizeof(pDataCp),
-									pDataCp);
-	}
-	
-	
-	void CaDataDicGen::R2CP_Error(tDataDicAccess Access, byte *pData, word nData, tInfoMessage *MessageInfo) {
-	
-		if(MessageInfo == nullptr)
-			return;
-	
-		byte pDataCp[] = { MessageInfo->Sequence , Cp_MessageNotAvailable };
-	
-		switch (Access)
-		{
-		case DATADIC_ACCESS_SET:
-			if(m_p_R2CPInterface_)
-			{
-				m_p_instance_->SetNodeEvent(MessageInfo->Node_dest);
-				pDataCp[1] = m_p_R2CPInterface_->II_R2CP_SS_Clean_Error();
-			}
-			break;
-	
-		case DATADIC_ACCESS_GET:
-			if(m_p_R2CPInterface_)
-			{
-				m_p_instance_->SetNodeEvent(MessageInfo->Node_dest , true);
-				pDataCp[1] = m_p_R2CPInterface_->II_R2CP_SS_Get_Error();
-			}
-			break;
-		default:
-			break;
-		}
-	
-		(void)m_Type_->Processed((eEthPriorities)	MessageInfo->Priority,
-													m_p_instance_->GetNodeEvent(true),
-													m_p_instance_->mNodeId,
-													R2CP_COMMANDS_ENTRY,
-													R2CP_ERROR_CODE,
-													sizeof(pDataCp),
-													pDataCp);
-	}
-	
-	void CaDataDicGen::R2CP_Error_Event(byte Error)
-	{
-		(void)m_Type_->Event_Answer(	ETH_LOWEST_PRIORITY,
-										GetNodeEvent(),
-										mNodeId,
-										R2CP_COMMANDS_ENTRY,
-										R2CP_ERROR_CODE,
-										sizeof(byte),
-										&Error);
-	
-	}
-	
-	
-	void CaDataDicGen::R2CP_Status(tDataDicAccess Access, byte *pData, word nData, tInfoMessage *MessageInfo) 
-	{
-	
-		if(MessageInfo == nullptr)
-			return;
-	
-		byte pDataCp[] = { MessageInfo->Sequence , Cp_Ok };
-		
-		m_p_instance_->SetNodeEvent(MessageInfo->Node_dest , true);
-		m_p_instance_->R2CP_Status_Event();
-			
-		(void)m_Type_->Processed(	(eEthPriorities)MessageInfo->Priority,
-									m_p_instance_->GetNodeEvent(true),
-									m_p_instance_->mNodeId,
-									R2CP_COMMANDS_ENTRY,
-									R2CP_STATUS,
-									sizeof(pDataCp),
-									pDataCp);
-	}
-	
-	void CaDataDicGen::R2CP_Status_Event(void)
-	{
-		(void)m_Type_->Event_Answer(	ETH_LOWEST_PRIORITY,
-										GetNodeEvent(),
-										mNodeId,
-										R2CP_COMMANDS_ENTRY,
-										R2CP_STATUS,
-										sizeof(tDataDicStatusRegister),
-										(byte *)&m_p_instance_->mStatusRegister);
-	}
-	
-	void CaDataDicGen::R2CP_Reset(tDataDicAccess Access, byte *pData, word nData, tInfoMessage *MessageInfo)
-	{
-		if(	MessageInfo == nullptr )
-			return;
-	
-		byte pDataCp[] = { MessageInfo->Sequence , Cp_MessageNotAvailable };
-	
-		if( m_p_R2CPInterface_ )
-			pDataCp[1] = m_p_R2CPInterface_->II_R2CP_SS_Reset();
-	
-		(void)m_Type_->Processed(	(eEthPriorities)MessageInfo->Priority,
-									MessageInfo->Node_dest,
-									BROADCAST_NODE_ID,
-									R2CP_COMMANDS_ENTRY,
-									R2CP_RESET,
-									sizeof(pDataCp),
-									pDataCp);
-	}
-	
-	void CaDataDicGen::R2CP_MasterLifeTime(tDataDicAccess Access, byte *pData, word nData, tInfoMessage *MessageInfo)
-	{
-		if(	MessageInfo == nullptr )
-			return;
-	
-		byte pDataCp[] = { MessageInfo->Sequence , Cp_MessageNotAvailable };
-	
-		if(	m_p_R2CPInterface_ )
-			pDataCp[1] = m_p_R2CPInterface_->II_R2CP_SS_MasterLiveTime(pData[1] << 8 | pData[0]);
-	
-		(void)m_Type_->Processed(	(eEthPriorities)MessageInfo->Priority,
-									MessageInfo->Node_dest,
-									BROADCAST_NODE_ID,
-									R2CP_COMMANDS_ENTRY,
-									R2CP_MASTER_LIFE_TIME_OUT,
-									sizeof(pDataCp),
-									pDataCp);
-	}
-	
 	void CaDataDicGen::R2CP_ProtocolVersion( tDataDicAccess Access , byte *pData , word nData , tInfoMessage *MessageInfo ) 
 	{
         if(	MessageInfo == nullptr ) return;
@@ -468,210 +222,7 @@ namespace R2CP
         qDebug() << "PROTOCOL:"  << m_p_instance_->protocolVersion.Version <<  "." << m_p_instance_->protocolVersion.SubVersion << "." << m_p_instance_->protocolVersion.Revision ;
 	}
 	
-	void CaDataDicGen::R2CP_BootVersion(tDataDicAccess Access, byte *pData, word nData, tInfoMessage *MessageInfo)
-	{
-		if(	MessageInfo == nullptr )
-			return;
 	
-		byte data[sizeof(tDataDicSwVersion)];
-	
-		byte pDataCp[] = { MessageInfo->Sequence , Cp_Ok };
-	
-		data[0] = m_p_instance_->mBootVersion.Version;
-		data[1] = m_p_instance_->mBootVersion.Revision;
-		data[2] = m_p_instance_->mBootVersion.Subrevision;
-	
-		(void)m_Type_->Event_Answer(	(eEthPriorities)MessageInfo->Priority,
-										MessageInfo->Node_dest,
-										MessageInfo->Node_own,
-										R2CP_COMMANDS_ENTRY,
-										R2CP_BOOT_VERSION,
-										sizeof(data),
-										reinterpret_cast<byte *>(data));
-					
-		(void)m_Type_->Processed(	(eEthPriorities)MessageInfo->Priority,
-									MessageInfo->Node_dest,
-									MessageInfo->Node_own,
-									R2CP_COMMANDS_ENTRY,
-									R2CP_BOOT_VERSION,
-									sizeof(pDataCp),
-									pDataCp);
-	}
-		
-		
-	
-	void CaDataDicGen::R2CP_PackageVersion(tDataDicAccess Access, byte *pData, word nData, tInfoMessage *MessageInfo)
-	{
-		if(	MessageInfo == nullptr )
-			return;		
-	
-		byte pDataCp[] = { MessageInfo->Sequence , Cp_MessageNotAvailable };
-				
-#if 1
-		const word MAX_STRING_SERIALNUMBER = 1000;
-		m_p_instance_->m_pPackageVersion = reinterpret_cast<char *>( /*BOARD_A3687_H_RAM_ALLOCATOR_MEMORY*/0x14000000 );
-		memset( m_p_instance_->m_pPackageVersion , 0 , MAX_STRING_SERIALNUMBER );
-#else
-		const word MAX_STRING_SERIALNUMBER = 1000;
-		if(m_p_instance_->m_pPackageVersion)
-		{
-			delete []  m_p_instance_->m_pPackageVersion ;
-			m_p_instance_->m_pPackageVersion = nullptr;
-		}
-			
-		m_p_instance_->m_pPackageVersion = new char[ MAX_STRING_SERIALNUMBER ];
-		memset( m_p_instance_->m_pPackageVersion , 0 , MAX_STRING_SERIALNUMBER );
-#endif
-		
-		if(	m_p_R2CPInterface_ )
-		{
-			m_p_instance_->SetNodeEvent(MessageInfo->Node_dest , true);
-			pDataCp[1] = m_p_R2CPInterface_->II_R2CP_SS_PackageVersion(&m_p_instance_->m_pPackageVersion[HEADER_SIZEOF]);
-		}
-#if 0
-		delete [] m_p_instance_->m_pPackageVersion;
-		m_p_instance_->m_pPackageVersion = nullptr;
-#endif
-		
-					
-		(void)m_Type_->Processed(	ETH_LOWEST_PRIORITY,
-									m_p_instance_->GetNodeEvent(true),
-									m_p_instance_->mNodeId,
-									R2CP_COMMANDS_ENTRY,
-									R2CP_PACKAGE_VERSION,
-									sizeof(pDataCp),
-									(byte *)pDataCp);
-	}
-	
-	void CaDataDicGen::R2CP_PackageVersion_Event(char *pStringPackageVersion)
-	{
-		m_Type_->SendRawData(	ETH_LOWEST_PRIORITY, 
-								GetNodeEvent(), 
-								mNodeId , 
-								R2CP_COMMANDS_ENTRY , 
-								R2CP_PACKAGE_VERSION,
-								ETH_EVENT_ANSWER_FNC,
-								strlen(pStringPackageVersion),
-								(byte *)(pStringPackageVersion - HEADER_SIZEOF));
-					
-	}
-	
-	void CaDataDicGen::R2CP_SerialNumber(tDataDicAccess Access, byte *pData, word nData, tInfoMessage *MessageInfo)
-	{
-		if(	MessageInfo == nullptr )
-			return;		
-	
-		byte pDataCp[] = { MessageInfo->Sequence , Cp_Ok };
-		
-		byte Node = MessageInfo->Node_dest;
-		
-		switch (Access)
-		{
-		case DATADIC_ACCESS_SET:
-			if(m_p_R2CPInterface_)
-			{
-				Node = 0;
-				pDataCp[1] = m_p_R2CPInterface_->II_R2CP_SS_SerialNumber(pData,nData);
-			}
-			break;
-		}
-
-			
-		(void)m_Type_->Event_Answer(	(eEthPriorities)MessageInfo->Priority,
-										Node,
-										m_p_instance_->mNodeId,
-										R2CP_COMMANDS_ENTRY,
-										R2CP_SERIAL_NUMBER,
-										strlen(m_p_instance_->m_pSerialNumber) + 1,
-										(byte *)m_p_instance_->m_pSerialNumber);
-					
-		(void)m_Type_->Processed(	(eEthPriorities)MessageInfo->Priority,
-									MessageInfo->Node_dest,
-									m_p_instance_->mNodeId,
-									R2CP_COMMANDS_ENTRY,
-									R2CP_SERIAL_NUMBER,
-									sizeof(pDataCp),
-									(pDataCp));
-	}
-	
-	void CaDataDicGen::R2CP_Description( tDataDicAccess Access, byte *pData, word nData, tInfoMessage *MessageInfo )
-	{
-		if(	MessageInfo == nullptr )
-			return;		
-	
-		byte pDataCp[] = { MessageInfo->Sequence , Cp_Ok };
-	
-	
-		(void)m_Type_->Event_Answer(	(eEthPriorities)MessageInfo->Priority,
-										MessageInfo->Node_dest,
-										m_p_instance_->mNodeId,
-										R2CP_COMMANDS_ENTRY,
-										R2CP_DESCRIPTION,
-										strlen(m_p_instance_->m_pDescription),
-										(byte *)m_p_instance_->m_pDescription);
-				
-		(void)m_Type_->Processed( (eEthPriorities)MessageInfo->Priority,
-									MessageInfo->Node_dest,
-									m_p_instance_->mNodeId,
-									R2CP_COMMANDS_ENTRY,
-									R2CP_DESCRIPTION,
-									sizeof(pDataCp),
-									(pDataCp));
-	}
-	
-	void CaDataDicGen::R2CP_SystemVersion( tDataDicAccess Access, byte *pData, word nData, tInfoMessage *MessageInfo )
-	{
-		if(	MessageInfo == nullptr )
-			return;		
-	
-		byte pDataCp[] = { MessageInfo->Sequence , Cp_MessageNotAvailable };
-	
-		if(	m_p_R2CPInterface_ )
-		{
-			m_p_instance_->SetNodeEvent( MessageInfo->Node_dest , true );
-			pDataCp[1] = m_p_R2CPInterface_->II_R2CP_SS_SystemVersion( );
-		}
-					
-		(void)m_Type_->Processed(	ETH_LOWEST_PRIORITY,
-									m_p_instance_->GetNodeEvent(true),
-									m_p_instance_->mNodeId,
-									R2CP_COMMANDS_ENTRY,
-									R2CP_SYSTEM_VERSION,
-									sizeof(pDataCp),
-									(byte *)pDataCp);
-	}
-	
-	void CaDataDicGen::R2CP_SystemVersion_Event( tSystemVersion *pSystemVersion )
-	{
-		byte Data[] = {
-				pSystemVersion->Index,
-				(pSystemVersion->Hardware_Model & 0xFF00) >> 8,
-				(pSystemVersion->Hardware_Model & 0x00FF),
-				pSystemVersion->Hardware_Version,
-				pSystemVersion->Hardware_Revision,
-				pSystemVersion->SwVersion,
-				pSystemVersion->SwRevision,
-				pSystemVersion->SwSubrevision,
-				pSystemVersion->BootVersion,
-				pSystemVersion->BootRevision,
-				pSystemVersion->BootSubrevision,
-				pSystemVersion->HdlVersion,
-				pSystemVersion->HdlRevision,
-				pSystemVersion->HdlSubrevision,
-				pSystemVersion->GoldenVersion,
-				pSystemVersion->GoldenRevision,
-				pSystemVersion->GoldenSubrevision,
-				pSystemVersion->FieldToApply.value
-		};
-		
-		(void)m_Type_->Event_Answer(	ETH_LOWEST_PRIORITY,
-										GetNodeEvent(),
-										mNodeId,
-										R2CP_COMMANDS_ENTRY,
-										R2CP_SYSTEM_VERSION,
-										sizeof(Data),
-										(byte *)Data);
-	}
 	
 	bool CaDataDicGen::Check_NotAvailable_Message_vs_Status( word index, word subindex, tInfoMessage *MessageInfo )
 	{

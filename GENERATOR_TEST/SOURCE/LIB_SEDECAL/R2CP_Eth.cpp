@@ -127,9 +127,15 @@ void CR2CP_Eth::ProcessMessage(void *pMessage)
 	}
 		break;
     case ETH_MSG_PROCESSED_FNC:
-        if(pEthMsg->header.len != 2) return;
-           if(COMMUNICATION) COMMUNICATION->handleCommandProcess(pEthMsg->data[0], pEthMsg->data[1]);
-           return;
+
+            if(htons( pEthMsg->header.len ) != 2) return;
+            if(pEthMsg->data[0] != assignedSequence) return;
+
+            commandProcessed = true;
+            commandProcessedResult = pEthMsg->data[1];
+            if(commandProcessedResult) evalCommadProcessedResult();
+
+            return;
         break;
 	default:
 		break;
@@ -422,7 +428,7 @@ bool CR2CP_Eth::ProtFunction( eEthPriorities prio ,byte node_dest ,byte node_iss
 	
 	tSocket_Msg Eth_Msg = { 0 };
 	
-	Eth_Msg.header.sequence 	= Get_Sequence();
+    Eth_Msg.header.sequence 	= Get_Sequence();
 	Eth_Msg.header.priority 	= prio;
 	Eth_Msg.header.dest_node 	= node_dest;
 	Eth_Msg.header.iss_node		= node_iss;
@@ -430,7 +436,18 @@ bool CR2CP_Eth::ProtFunction( eEthPriorities prio ,byte node_dest ,byte node_iss
 	Eth_Msg.header.subindex		= subindex;
 	Eth_Msg.header.function		= fnc;
 	Eth_Msg.header.len			= htons( dataLength );
- 	
+
+    if((fnc == ETH_SET_FNC) || (fnc == ETH_GET_FNC)){
+        assignedSequence = Eth_Msg.header.sequence;
+        commandProcessed = false;
+        commandProcessedResult = 0;
+        commandProcessedIndex = index;
+        commandProcessedSubIndex = subindex;
+
+        if(fnc == ETH_GET_FNC) isCpGet = true;
+        else isCpGet = false;
+    }
+
  	if( pdata )
  	{
  		memcpy( Eth_Msg.data , pdata , dataLength );
@@ -652,4 +669,231 @@ void CR2CP_Eth::Callback_token_expired(byte node){
 	m_token_granted = R2CP_ETH_BROADCAST_NODE_ID;
 }
 
+void CR2CP_Eth::evalCommadProcessedResult(void){
 
+    if(isCpGet){
+        switch(commandProcessedIndex){
+            case GENERATOR_COMMANDS_ENTRY: evalGetGeneratorProcessedResult();
+                break;
+            case PATIENT_COMMANDS_ENTRY: evalGetPatientProcessedResult();
+                break;
+            case SYSTEM_COMMANDS_ENTRY: evalGetSystemProcessedResult();
+                break;
+        }
+
+    }else{
+        switch(commandProcessedIndex){
+            case GENERATOR_COMMANDS_ENTRY: evalSetGeneratorProcessedResult();
+                break;
+            case PATIENT_COMMANDS_ENTRY: evalSetPatientProcessedResult();
+                break;
+            case SYSTEM_COMMANDS_ENTRY: evalSetSystemProcessedResult();
+                break;
+        }
+
+    }
+}
+
+
+
+
+void CR2CP_Eth::evalSetGeneratorProcessedResult(void){
+
+    QString stringa = "GENERATOR COMMAND PROCESS ERROR :";
+    switch(commandProcessedSubIndex){
+
+    case GENERATOR_DATA_BANK_ASSIGN_EXPOSURE:
+        stringa += "(GENERATOR_DATA_BANK_ASSIGN_EXPOSURE) ";
+        switch(commandProcessedResult){
+            case 1: stringa += "Procedure ID not defined";break;
+            case 2: stringa += "Procedure ID out of range";break;
+            case 3: stringa += "Procedure ID already active, assign not possible";break;
+            case 4: stringa += "Exposure Sequence Number out of range";break;
+            case 5: stringa += "Exposure Data Bank ID not defined";break;
+            case 6: stringa += "Exposure Data Bank ID out of range";break;
+            case 7: stringa += "Exposure DB incompatible with Procedure Type";break;
+            case 8: stringa += "Exposure Sequence Number already assigned";break;
+            default:
+                stringa +=" ?? " + QString("%1").arg(commandProcessedResult);
+        }
+
+        break;
+
+    case GENERATOR_DATA_BANK_EXPOSURE_ACCEPTANCE:
+        stringa += "(GENERATOR_DATA_BANK_EXPOSURE_ACCEPTANCE) ";
+        switch(commandProcessedResult){
+            case 1: stringa += "Procedure ID not defined";break;
+            case 2: stringa += "Procedure ID out of range";break;
+            case 3: stringa += "Exposure Sequence Number out of range";break;
+            case 4: stringa += "No Exposure DB assigned";break;
+            default:
+                stringa +=" ?? " + QString("%1").arg(commandProcessedResult);
+
+        }
+
+        break;
+
+    case GENERATOR_RAD_DATA_BANK_ACCEPTANCE:
+        stringa += "(GENERATOR_RAD_DATA_BANK_ACCEPTANCE) ";
+        switch(commandProcessedResult){
+            case 1: stringa += "Procedure ID out of range";break;
+            case 2: stringa += "Procedure ID not defined";break;
+            case 3: stringa += "Procedure not RAD";break;
+            default:
+                stringa +=" ?? " + QString("%1").arg(commandProcessedResult);
+
+        }
+
+        break;
+
+    case GENERATOR_RAD_DATA_BANK_LOAD_V6:
+        stringa += "(GENERATOR_RAD_DATA_BANK_LOAD_V6) ";
+        switch(commandProcessedResult){
+            case 1: stringa += "Procedure ID out of range";break;
+            case 2: stringa += "Procedure ID not defined";break;
+            case 4: stringa += "Pediatric code out of range";break;
+            case 5: stringa += "Technique mode code out of range";break;
+            case 6: stringa += "Technique mode not supported";break;
+            case 7: stringa += "kVp value out of range";break;
+            case 8: stringa += "mAs value out of range";break;
+            case 9: stringa += "mA value out of range";break;
+            case 10: stringa += "ms value out of range";break;
+            case 11: stringa += "Maximum integration time value out of range";break;
+            case 12: stringa += "Focal spot code out of range";break;
+            case 13: stringa += "Focal spot not supported";break;
+            case 14: stringa += "AEC sensitivity/Dose Target code out of range";break;
+            case 15: stringa += "AEC density code out of range";break;
+            case 16: stringa += "NA";break;
+            case 17: stringa += "Tube power limit out of range";break;
+            case 18: stringa += "FPS value out of range";break;
+            case 19: stringa += "Minimum integration time value out of range";break;
+            case 20: stringa += "NA";break;
+            case 21: stringa += "Tracking not supported";break;
+            case 22: stringa += "NA";break;
+            case 23: stringa += "NA";break;
+            case 24: stringa += "DataBank type doesn?t match";break;
+            case 25: stringa += "NA";break;
+            case 202: stringa += "Message not available";break;
+
+        default:
+            stringa +=" ?? " + QString("%1").arg(commandProcessedResult);
+        }
+
+        break;
+
+    case GENERATOR_EXPOSURE_MANAGEMENT_START_STOP_EXPOSURE:
+        stringa += "(GENERATOR_EXPOSURE_MANAGEMENT_START_STOP_EXPOSURE) ";
+        switch(commandProcessedResult){
+            case 1: stringa += "Feature not supported by the detector interface";break;
+            case 2: stringa += "Request Value out of range";break;
+
+            default:
+                stringa +=" ?? " + QString("%1").arg(commandProcessedResult);
+
+        }
+
+        break;
+
+    default:
+        stringa +=" ?? " + QString("SUBIDX:%1 CPCODE:%2").arg(commandProcessedSubIndex).arg(commandProcessedResult);
+    }
+
+    qDebug() << "CPERR:" + stringa;
+    commandProcessedString = stringa;
+}
+
+
+
+
+
+
+void CR2CP_Eth::evalSetPatientProcessedResult(void){
+
+    QString stringa = "PATIENT COMMAND PROCESS ERROR :";
+    switch(commandProcessedSubIndex){
+
+    case PATIENT_PROCEDURE_CLEAR_ALL:
+        stringa += "(PATIENT_PROCEDURE_DEFINITION_V6) ";
+        switch(commandProcessedResult){
+            default:
+                stringa +=" ?? " + QString("%1").arg(commandProcessedResult);
+        }
+
+        break;
+
+    case PATIENT_PROCEDURE_DEFINITION_V6:
+        stringa += "(PATIENT_PROCEDURE_DEFINITION_V6) ";
+        switch(commandProcessedResult){
+            case 1: stringa += "Procedure ID out of range";break;
+            case 2: stringa += "Procedure Type not supported";break;
+            case 10: stringa += "Handswitch/footswitch index out of range";break;
+            case 12: stringa += "Non existent workstation";break;
+            case 13: stringa += "Incorrect number of exposure DBs";break;
+            case 14: stringa += "Exposure DB sequencing not possible (exposure DB=1)";break;
+            case 15: stringa += "Exposure DB sequencing not supported";break;
+            case 16: stringa += "Workstation out of range";break;
+            case 17: stringa += "Handswitch/footswitch Index not defined";break;
+            case 18: stringa += "Procedure Already Created";break;
+            default:
+                stringa +=" ?? " + QString("%1").arg(commandProcessedResult);
+        }
+
+        break;
+
+    case PATIENT_PROCEDURE_ACTIVATE:
+        stringa += "(PATIENT_PROCEDURE_ACTIVATE) ";
+        switch(commandProcessedResult){
+            case 1: stringa += "Procedure ID not defined";break;
+            case 2: stringa += "Procedure ID out of range";break;
+            case 3: stringa += "Exposure Sequence Number out of range";break;
+            case 4: stringa += "Exposure DB not assigned";break;
+            case 5: stringa += "Procedure invalid activation";break;
+            case 6: stringa += "Procedure invalid deactivation";break;
+            case 7: stringa += "Exposure Sequence Number invalid";break;
+
+            default:
+                stringa +=" ?? " + QString("%1").arg(commandProcessedResult);
+        }
+
+        break;
+    default:
+        stringa +=" ?? " + QString("SUBIDX:%1 CPCODE:%2").arg(commandProcessedSubIndex).arg(commandProcessedResult);
+    }
+
+    qDebug() << "CPERR:" + stringa;
+    commandProcessedString = stringa;
+}
+
+void CR2CP_Eth::evalSetSystemProcessedResult(void){
+
+    qDebug() << "SYSTEM COMMAND PROCESS ERROR, SUBINDEX:" << commandProcessedSubIndex << " CODE:" << commandProcessedResult;
+
+}
+
+
+
+void CR2CP_Eth::evalGetGeneratorProcessedResult(void){}
+
+void CR2CP_Eth::evalGetPatientProcessedResult(void){}
+
+
+void CR2CP_Eth::evalGetSystemProcessedResult(void){
+    QString stringa = "SYSTEM COMMAND PROCESS ERROR :";
+    switch(commandProcessedSubIndex){
+
+    case SYSTEM_ALL_SYSTEM_MESSAGES:
+        stringa += "(SYSTEM_ALL_SYSTEM_MESSAGES) ";
+        switch(commandProcessedResult){
+            default:
+                stringa +=" ?? " + QString("%1").arg(commandProcessedResult);
+        }
+
+        break;
+
+    default:
+        stringa +=" ?? " + QString("SUBIDX:%1 CPCODE:%2").arg(commandProcessedSubIndex).arg(commandProcessedResult);
+    }
+
+    qDebug() << "CPERR:" + stringa;
+    commandProcessedString = stringa;
+}

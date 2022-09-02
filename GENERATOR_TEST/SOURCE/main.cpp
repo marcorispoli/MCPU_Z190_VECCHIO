@@ -10,6 +10,6 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
 
 
-    MANAGER = new statusManager();
+    STATUS = new statusManager();
     return a.exec();
 }

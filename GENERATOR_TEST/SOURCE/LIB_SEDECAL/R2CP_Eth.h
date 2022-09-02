@@ -24,6 +24,7 @@
 #define R2CP_ETH_H_
 
 #include "CaDataDic.h"
+#include <QString>
 
 ///
 ///NETWORK SUBINDEX
@@ -245,7 +246,18 @@ class CR2CP_Eth
     
 
     static void Callback_token_expired(byte Node);
-	
+
+    bool isCommandProcessed(){return commandProcessed;};
+    uint8_t getAssignedSequence(){return assignedSequence;};
+    uint8_t getCommandProcessedResult(){return commandProcessedResult;};
+    QString getCommandProcessedString(void) {return commandProcessedString;};
+    void    evalCommadProcessedResult(void);
+    void    evalSetGeneratorProcessedResult(void);
+    void    evalSetPatientProcessedResult(void);
+    void    evalSetSystemProcessedResult(void);
+    void    evalGetGeneratorProcessedResult(void);
+    void    evalGetPatientProcessedResult(void);
+    void    evalGetSystemProcessedResult(void);
 
   private:
     /*!
@@ -323,6 +335,19 @@ class CR2CP_Eth
 	 * 
 	 */
 	uint8_t m_sequence;
+
+    /*!
+     *
+     */
+    uint8_t assignedSequence;
+    bool    commandProcessed;
+    bool    isCpGet;
+    uint8_t commandProcessedResult;
+    uint8_t commandProcessedIndex;
+    uint8_t commandProcessedSubIndex;
+    QString commandProcessedString;
+
+
 	/*!
 	 * 
 	 */

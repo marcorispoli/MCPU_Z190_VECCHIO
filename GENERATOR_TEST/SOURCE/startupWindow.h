@@ -50,6 +50,8 @@ public slots:
     void onSelectTomoButtonSlot(void);
     void onSelectAecTomoButtonSlot(void);
 
+    void onAECButtonSlot(void);
+
 
     void onRecetionGenStatusSlot(void);
 
@@ -57,7 +59,7 @@ public slots:
 
     void timerEvent(QTimerEvent* ev);
     void setStatus(QString stringa);
-    void updateSystemMessages(void);
+    void updateSystemMessages(QString stringa);
 
 
 private slots:

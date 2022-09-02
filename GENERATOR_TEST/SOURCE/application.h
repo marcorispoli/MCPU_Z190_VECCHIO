@@ -9,7 +9,7 @@
 
 #define COMMUNICATION   pComm
 #define WINDOWS         window
-#define MANAGER         pStatus
+#define STATUS         pStatus
 
 // Global definitions
 #ifdef MAIN_CPP

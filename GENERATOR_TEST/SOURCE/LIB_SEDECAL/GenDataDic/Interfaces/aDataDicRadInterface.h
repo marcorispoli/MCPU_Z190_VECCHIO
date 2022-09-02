@@ -631,15 +631,15 @@ namespace R2CP
 
     // __________________________________________ DATABANK DEFINITION
     typedef enum{
-        DB_AecSmall = 1,
-        DB_PulseSmall,
-        DB_AecLarge,
-        DB_PulseLarge,
-        DB_AecTomo,
-        DB_PulseTomo,
-        DB_TomoSync,
+        DB_Pre = 1,
+        DB_Pulse,
         DB_LastId
     }tProcedureDbId;
+
+    typedef enum{
+        DB_Focus_Small = 0,
+        DB_Focus_Large = 1,
+    }tProcedureDbFocus;
 
     typedef enum{
         DB_Tech_0= 0,
@@ -664,6 +664,9 @@ namespace R2CP
 
 
     // __________________________________________ / DATABANL DEFINITION
+
+
+
 	class CaDataDicRadInterface
 	{
 	public:

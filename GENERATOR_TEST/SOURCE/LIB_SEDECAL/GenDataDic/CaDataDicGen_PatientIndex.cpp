@@ -51,7 +51,7 @@ namespace R2CP
             pData[12] = 0;  // Colli. Seq
             pData[13] = 0;  // Filter. Seq
             pData[14] = 0;  // H Num Exposures
-            pData[15] = 1;  // L Num Exposures
+            pData[15] = 0;  // L Num Exposures
 
 
         }else if(num == ProcId_Aec_Mammography_2D){ // AEC 2D
@@ -70,7 +70,7 @@ namespace R2CP
             pData[12] = 0;  // Colli. Seq
             pData[13] = 0;  // Filter. Seq
             pData[14] = 0;  // H Num Exposures
-            pData[15] = 2;  // L Num Exposures
+            pData[15] = 0;  // L Num Exposures
 
         }else if(num == ProcId_Standard_Mammography_3D){ // Tomo
             pData[0] = num; // Proc Id

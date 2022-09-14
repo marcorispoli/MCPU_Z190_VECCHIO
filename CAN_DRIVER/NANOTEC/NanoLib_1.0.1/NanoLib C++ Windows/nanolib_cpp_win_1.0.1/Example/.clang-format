@@ -1,0 +1,23 @@
+---
+BasedOnStyle: LLVM
+TabWidth: 4
+IndentWidth: 4
+UseTab: Always
+---
+Language: Cpp
+AccessModifierOffset: -4
+AllowShortFunctionsOnASingleLine: None
+AllowShortIfStatementsOnASingleLine: false
+AlwaysBreakAfterReturnType: None
+BreakBeforeBinaryOperators: All
+ColumnLimit: 100
+DerivePointerAlignment: false
+FixNamespaceComments: true
+IncludeBlocks: Regroup
+IndentCaseLabels: false
+NamespaceIndentation: None
+PointerAlignment: Right
+SortIncludes: true
+SortUsingDeclarations: true
+Standard: Cpp11
+TabWidth: 4

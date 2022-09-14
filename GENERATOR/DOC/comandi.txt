@@ -1,0 +1,6 @@
+<E 0 StartExposure 2D>
+<E 0 AbortExposure>
+<E 0 GetPostExposure>
+
+<E 0 SetExposurePulse 25 600 LARGE>
+<E 0 SetExposurePre 25 100 LARGE>

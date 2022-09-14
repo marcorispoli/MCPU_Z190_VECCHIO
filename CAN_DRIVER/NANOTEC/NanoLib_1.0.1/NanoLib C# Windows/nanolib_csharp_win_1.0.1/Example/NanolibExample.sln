@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29201.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NanolibExample", "NanolibExample\NanolibExample.csproj", "{653DB2C6-3CC5-4820-84FE-80825A14DCB2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{653DB2C6-3CC5-4820-84FE-80825A14DCB2}.Debug|x64.ActiveCfg = Debug|x64
+		{653DB2C6-3CC5-4820-84FE-80825A14DCB2}.Debug|x64.Build.0 = Debug|x64
+		{653DB2C6-3CC5-4820-84FE-80825A14DCB2}.Release|x64.ActiveCfg = Release|Any CPU
+		{653DB2C6-3CC5-4820-84FE-80825A14DCB2}.Release|x64.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F9CA429C-791F-47E8-8EA8-2EAFB9279EB7}
+	EndGlobalSection
+EndGlobal

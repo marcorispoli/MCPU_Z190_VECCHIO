@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SystemVersions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Configuration_Management>
+		<Last_modification>2021/05/20 11:54:21</Last_modification>
+	</Configuration_Management>
+	<SystemVersion>	
+		<Package>
+			<Customer>CANON</Customer>
+			<Version>V3.R1.0</Version>
+			<ReleaseNotes></ReleaseNotes>
+			<ReleaseDate></ReleaseDate>
+			<Description></Description>
+		</Package>
+		<Node id="6" name="GENERATOR">
+			<ComponentVersion name="Generator">
+				<Id>1</Id>
+				<Type></Type>
+				<Hardware>A40028-02-E</Hardware>
+				<Software>V1R3.0</Software>
+				<Boot>V1R1.0</Boot>
+				<HDLS>
+					<HDL>V1R1.0</HDL>
+				</HDLS>
+				<Golden>V255R255.4</Golden>
+			</ComponentVersion>
+			<ComponentVersion name="Power Control">
+				<Id>2</Id>
+				<Type></Type>
+				<Hardware>A40028-02-E</Hardware>
+				<Software>V2R9.3</Software>
+				<Boot>V3R2.0</Boot>
+				<HDLS></HDLS>
+				<Golden></Golden>
+			</ComponentVersion>
+			<ComponentVersion name="UARC">
+				<Id>3</Id>
+				<Type></Type>
+				<Hardware></Hardware>
+				<Software>V6R1.4</Software>
+				<Boot>V2R1.0</Boot>
+				<HDLS></HDLS>
+				<Golden></Golden>
+			</ComponentVersion>
+		</Node>
+		<Node id="5" name="CONSOLE">			
+			<ComponentVersion name="Console">
+				<Id>1</Id>
+				<Type></Type>
+				<Hardware></Hardware>
+				<Software>V3R2.0</Software>
+				<Boot></Boot>
+				<HDLS></HDLS>
+				<Golden></Golden>
+			</ComponentVersion>
+		</Node>
+		<Node id="9" name="SERVICE_TOOL">				
+			<ComponentVersion name="ServiceTool">
+				<Id>1</Id>
+				<Type></Type>
+				<Hardware></Hardware>
+				<Software>V3R7.0</Software>
+				<Boot></Boot>
+				<HDLS></HDLS>
+				<Golden></Golden>
+			</ComponentVersion>
+		</Node>
+		<Node id="10" name="LOGSERVICE">			
+			<ComponentVersion name="LogService">
+				<Id>1</Id>
+				<Type></Type>
+				<Hardware></Hardware>
+				<Software>V1R9.0</Software>
+				<Boot></Boot>
+				<HDLS></HDLS>
+				<Golden></Golden>
+			</ComponentVersion>
+		</Node>
+		<Node id="1" name="SMARTHUB">			
+			<ComponentVersion name="SmartHub">
+				<Id>1</Id>
+				<Type></Type>
+				<Hardware></Hardware>
+				<Software>V1R10.0</Software>
+				<Boot></Boot>
+				<HDLS></HDLS>
+				<Golden></Golden>
+			</ComponentVersion>
+			<ComponentVersion name="FileManager">
+				<Id>2</Id>
+				<Type></Type>
+				<Hardware></Hardware>
+				<Software>V1R8.0</Software>
+				<Boot></Boot>
+				<HDLS></HDLS>
+				<Golden></Golden>
+			</ComponentVersion>
+				<ComponentVersion name="SettingSetup">
+				<Id>3</Id>
+				<Type></Type>
+				<Hardware></Hardware>
+				<Software>V1R4.0</Software>
+				<Boot></Boot>
+				<HDLS></HDLS>
+				<Golden></Golden>
+			</ComponentVersion>
+		</Node>
+		<Node id="11" name="CXDIINTEGRATION">
+			<ComponentVersion name="CXDIINTEGRATION">
+				<Id>1</Id>
+				<Type></Type>
+				<Hardware></Hardware>
+				<Software>V1R4.0</Software>
+				<Boot></Boot>
+				<HDLS></HDLS>
+				<Golden></Golden>
+			</ComponentVersion>
+		</Node>
+	</SystemVersion>
+</SystemVersions>

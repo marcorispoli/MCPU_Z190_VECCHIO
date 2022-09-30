@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Maps xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<Configuration_Management>
+		<Revision>2.1</Revision>
+		<Revision_Date>2018/09/28 09:00:00</Revision_Date>
+		<Last_modification>2021/12/08 11:24:58</Last_modification>
+	</Configuration_Management>
+	<Map Name="Gen">
+		<Id>0</Id>
+		<Settings>
+			<Setting type="string" display="0">
+				<Id>1</Id>
+				<Name>Model</Name>
+				<Value>SHFR_V2</Value>
+			</Setting>
+		</Settings>
+	</Map>
+	<Map Name="Tube 1">
+		<Id>1</Id>
+		<Settings>
+			<Setting maxValue="150" minValue="40" type="int" display="1" step="5">
+				<Id>1</Id>
+				<Name>Max Kvp</Name>
+				<Value>49</Value>
+			</Setting>
+			<Setting maxValue="1000000" minValue="10000" type="intLog" display="1" step="64">
+				<Id>2</Id>
+				<Name>Small Focus Max mA</Name>
+				<Value>250000</Value>
+			</Setting>
+			<Setting maxValue="1000000" minValue="10000" type="intLog" display="1" step="64">
+				<Id>3</Id>
+				<Name>Large Focus Min mA</Name>
+				<Value>10000</Value>
+			</Setting>
+			<Setting maxValue="1000" minValue="1" type="int" display="1" step="50">
+				<Id>4</Id>
+				<Name>Small Focus Boosting Time (ms)</Name>
+				<Value>400</Value>
+			</Setting>
+			<Setting maxValue="1000" minValue="1" type="int" display="1" step="50">
+				<Id>5</Id>
+				<Name>Large Focus Boosting Time (ms)</Name>
+				<Value>400</Value>
+			</Setting>
+			<Setting maxValue="2000" minValue="1" type="int" display="0" step="100">
+				<Id>6</Id>
+				<Name>Boosting Recovering Time (s)</Name>
+				<Value>1000</Value>
+			</Setting>
+			<Setting maxValue="5000" minValue="0" type="int" display="1" step="100">
+				<Id>7</Id>
+				<Name>Small Focus Fil Setting Time (ms)</Name>
+				<Value>3000</Value>
+			</Setting>
+			<Setting maxValue="5000" minValue="0" type="int" display="1" step="100">
+				<Id>8</Id>
+				<Name>Large Focus Fil Setting Time (ms)</Name>
+				<Value>3000</Value>
+			</Setting>
+			<Setting type="PreheatType" display="1">
+				<Id>9</Id>
+				<Name>Preheat</Name>
+				<Value>3</Value>
+			</Setting>
+			<Setting maxValue="20" minValue="1" type="int" display="1">
+				<Id>10</Id>
+				<Name>Rise time (ms)</Name>
+				<Value>1</Value>
+			</Setting>
+			<Setting type="bool" display="1">
+				<Id>11</Id>
+				<Name>Low Speed</Name>
+				<Value>0</Value>
+			</Setting>
+		</Settings>
+	</Map>
+	<Map Name="Tube 2">
+		<Id>222</Id>
+		<Settings>
+			<Setting maxValue="150" minValue="40" type="int" display="1" step="5">
+				<Id>1</Id>
+				<Name>Max Kvp</Name>
+				<Value>150</Value>
+			</Setting>
+			<Setting maxValue="1000000" minValue="10000" type="intLog" display="1" step="64">
+				<Id>2</Id>
+				<Name>Small Focus Max mA</Name>
+				<Value>160000</Value>
+			</Setting>
+			<Setting maxValue="1000000" minValue="10000" type="intLog" display="1" step="64">
+				<Id>3</Id>
+				<Name>Large Focus Min mA</Name>
+				<Value>10000</Value>
+			</Setting>
+			<Setting maxValue="1000" minValue="1" type="int" display="0" step="50">
+				<Id>4</Id>
+				<Name>Small Focus Boosting Time (ms)</Name>
+				<Value>400</Value>
+			</Setting>
+			<Setting maxValue="1000" minValue="1" type="int" display="0" step="50">
+				<Id>5</Id>
+				<Name>Large Focus Boosting Time (ms)</Name>
+				<Value>400</Value>
+			</Setting>
+			<Setting maxValue="2000" minValue="1" type="int" display="0" step="100">
+				<Id>6</Id>
+				<Name>Boosting Recovering Time (s)</Name>
+				<Value>2000</Value>
+			</Setting>
+			<Setting maxValue="5000" minValue="0" type="int" display="1" step="100">
+				<Id>7</Id>
+				<Name>Small Focus Fil Setting Time (ms)</Name>
+				<Value>800</Value>
+			</Setting>
+			<Setting maxValue="5000" minValue="0" type="int" display="1" step="100">
+				<Id>8</Id>
+				<Name>Large Focus Fil Setting Time (ms)</Name>
+				<Value>800</Value>
+			</Setting>
+			<Setting type="PreheatType" display="1">
+				<Id>9</Id>
+				<Name>Preheat</Name>
+				<Value>3</Value>
+			</Setting>
+			<Setting maxValue="10" minValue="1" type="int" display="1">
+				<Id>10</Id>
+				<Name>Rise time (ms)</Name>
+				<Value>2</Value>
+			</Setting>
+			<Setting type="bool" display="1">
+				<Id>11</Id>
+				<Name>Low Speed</Name>
+				<Value>0</Value>
+			</Setting>
+		</Settings>
+	</Map>
+	<Map Name="Generator Rating">
+		<Id>3</Id>
+		<Settings>
+			<Setting maxValue="100" minValue="0" type="int" display="1" step="5">
+				<Id>1</Id>
+				<Name>Max Power (kW)</Name>
+				<Value>9</Value>
+			</Setting>
+			<Setting maxValue="100" minValue="50" type="int" display="0" step="5">
+				<Id>2</Id>
+				<Name>Rating Percentage</Name>
+				<Value>100</Value>
+			</Setting>
+			<Setting maxValue="80" minValue="40" type="int" display="1" step="5">
+				<Id>3</Id>
+				<Name>Min kV</Name>
+				<Value>20</Value>
+			</Setting>
+			<Setting maxValue="1000000" minValue="10000" type="intLog" display="1" step="64">
+				<Id>4</Id>
+				<Name>Max mA</Name>
+				<Value>250000</Value>
+			</Setting>
+			<Setting maxValue="100000" minValue="1000" type="intLog" display="1" step="64">
+				<Id>5</Id>
+				<Name>Min mA</Name>
+				<Value>10000</Value>
+			</Setting>
+			<Setting maxValue="10000" minValue="1000" type="intLog" display="0" step="64">
+				<Id>6</Id>
+				<Name>Min Time Exposure (ms)</Name>
+				<Value>100</Value>
+			</Setting>
+			<Setting maxValue="10000000" minValue="1000000" type="intLog" display="0" step="64">
+				<Id>7</Id>
+				<Name>Max Time Exposure (ms)</Name>
+				<Value>10000000</Value>
+			</Setting>
+			<Setting type="bool" display="0">
+				<Id>9</Id>
+				<Name>Peak Power Limitation</Name>
+				<Value>1</Value>
+			</Setting>
+			<Setting type="bool" display="1">
+				<Id>10</Id>
+				<Name>Boosting State</Name>
+				<Value>0</Value>
+			</Setting>
+		</Settings>
+	</Map>
+	<Map Name="Generator Behavior">
+		<Id>4</Id>
+		<Settings>
+			<Setting maxValue="60" minValue="1" type="int" display="1" step="5">
+				<Id>1</Id>
+				<Name>Max Preparation Time (s)</Name>
+				<Value>0</Value>
+			</Setting>
+			<Setting type="SynchType" display="1">
+				<Id>2</Id>
+				<Name>Synchronism Source</Name>
+				<Value>0</Value>
+			</Setting>
+			<Setting type="LogarithmicScaleType" display="1">
+				<Id>3</Id>
+				<Name>Logarithmic Scale</Name>
+				<Value>1</Value>
+			</Setting>
+			<Setting type="kVScaleType" display="0">
+				<Id>4</Id>
+				<Name>kV Scale</Name>
+				<Value>0</Value>
+			</Setting>
+			<Setting maxValue="100" minValue="50" type="int" display="0" step="5">
+				<Id>5</Id>
+				<Name>Tube HU Limit</Name>
+				<Value>100</Value>
+			</Setting>
+			<Setting type="bool" display="1">
+				<Id>6</Id>
+				<Name>Rapid Termination</Name>
+				<Value>1</Value>
+			</Setting>
+			<Setting maxValue="200" minValue="0" type="int" display="1" step="5">
+				<Id>7</Id>
+				<Name>SynchDelay( Div. 100 )</Name>
+				<Value>5</Value>
+			</Setting>
+			<Setting type="AECOptions" display="0">
+				<Id>8</Id>
+				<Name>Aec Options</Name>
+				<Value>0</Value>
+			</Setting>
+			<Setting type="bool" display="0">
+				<Id>9</Id>
+				<Name>R20 Scale</Name>
+				<Value>0</Value>
+			</Setting>
+			<Setting type="bool" display="0">
+				<Id>10</Id>
+				<Name>Disable ExpRqst Between Exposure</Name>
+				<Value>1</Value>
+			</Setting>			
+		</Settings>
+	</Map>
+	<Map Name="Power Control">
+		<Id>5</Id>
+		<Settings>
+			<Setting type="bool" display="0">
+				<Id>1</Id>
+				<Name>First DSI Exp: E50 disabled</Name>
+				<Value>1</Value>
+			</Setting>
+			<Setting type="bool" display="0">
+				<Id>2</Id>
+				<Name>IGBT Faults: E09</Name>
+				<Value>20</Value>
+			</Setting>
+			<Setting maxValue="20" minValue="2" type="int" display="0">
+				<Id>3</Id>
+				<Name>Consecutive IGBT Faults: E09</Name>
+				<Value>10</Value>
+			</Setting>
+			<Setting type="bool" display="0">
+				<Id>4</Id>
+				<Name>Rest after IGBT Fault</Name>
+				<Value>10</Value>
+			</Setting>
+		</Settings>
+	</Map>
+	<Map Name="Fluoro Settings">
+		<Id>6</Id>
+		<Settings>
+			<Setting maxValue="125" minValue="80" type="int" display="1">
+				<Id>1</Id>
+				<Name>Fluoro Max kV</Name>
+				<Value>125</Value>
+			</Setting>
+			<Setting maxValue="400000" minValue="40000" type="intLog" display="1" step="64">
+				<Id>2</Id>
+				<Name>Max mA</Name>
+				<Value>200000</Value>
+			</Setting>
+			<Setting maxValue="10000" minValue="1000" type="intLog" display="1" step="64">
+				<Id>3</Id>
+				<Name>Min mA</Name>
+				<Value>10000</Value>
+			</Setting>
+			<Setting maxValue="1000" minValue="100" type="int" display="1">
+				<Id>4</Id>
+				<Name>Step(*100)</Name>
+				<Value>100</Value>
+			</Setting>
+			<Setting maxValue="2700000" minValue="500000" type="intLog" display="1" step="64">
+				<Id>5</Id>
+				<Name>Fluoro Fil Setting Time: ms</Name>
+				<Value>500000</Value>
+			</Setting>
+			<Setting type="FocusSize" display="1">
+				<Id>6</Id>
+				<Name>Fluoro Focus</Name>
+				<Value>1</Value>
+			</Setting>
+			<Setting type="int" display="0">
+				<Id>7</Id>
+				<Name>Abc Config</Name>
+				<Value>2</Value>
+			</Setting>
+			<Setting maxValue="3" minValue="0" type="int" display="1">
+				<Id>8</Id>
+				<Name>Fluoro Normal Max Dose ( 0: No Limit - 1: 44mGr/min - 2: 88mGr/min - 3: 176mGr/min )</Name>
+				<Value>2</Value>
+			</Setting>
+			<Setting maxValue="3" minValue="0" type="int" display="1">
+				<Id>9</Id>
+				<Name>Fluoro Abc Max Dose ( 0: No Limit - 1: 44mGr/min - 2: 88mGr/min - 3: 176mGr/min )</Name>
+				<Value>2</Value>
+			</Setting>
+			<Setting maxValue="3" minValue="0" type="int" display="1">
+				<Id>10</Id>
+				<Name>Fluoro HCF Max Dose ( 0: No Limit - 1: 44mGr/min - 2: 88mGr/min - 3: 176mGr/min )</Name>
+				<Value>3</Value>
+			</Setting>
+			<Setting maxValue="15" minValue="5" type="int" display="0">
+				<Id>11</Id>
+				<Name>Fluoro Default ms</Name>
+				<Value>8</Value>
+			</Setting>
+			<Setting maxValue="20" minValue="0" type="int" display="0">
+					<Id>12</Id>
+					<Name>Fluoro Dose Decrease %</Name>
+					<Value>5</Value>
+			</Setting>
+		</Settings>
+	</Map>
+	<Map Name="Interlocks">
+		<Id>7</Id>
+		<Settings>
+			<Setting type="bool" display="1">
+				<Id>1</Id>
+				<Name>Door Open</Name>
+				<Value>0</Value>
+			</Setting>
+			<Setting type="bool" display="1">
+				<Id>2</Id>
+				<Name>Can Abort Door Open</Name>
+				<Value>0</Value>
+			</Setting>
+			<Setting type="bool" display="1">
+				<Id>3</Id>
+				<Name>Presostat</Name>
+				<Value>0</Value>
+			</Setting>
+			<Setting type="bool" display="1">
+				<Id>4</Id>
+				<Name>Interlock 1</Name>
+				<Value>0</Value>
+			</Setting>
+			<Setting type="bool" display="0">
+				<Id>5</Id>
+				<Name>Interlock 1 Can Abort Exposure</Name>
+				<Value>0</Value>
+			</Setting>
+			<Setting type="bool" display="0">
+				<Id>6</Id>
+				<Name>Interlock 2</Name>
+				<Value>0</Value>
+			</Setting>
+			<Setting type="bool" display="0">
+				<Id>7</Id>
+				<Name>Interlock 2 Can Abort Exposure</Name>
+				<Value>0</Value>
+			</Setting>
+			<Setting type="bool" display="0">
+				<Id>8</Id>
+				<Name>Interlock 3</Name>
+				<Value>0</Value>
+			</Setting>
+			<Setting type="bool" display="0">
+				<Id>9</Id>
+				<Name>Interlock 3 Can Abort Exposure</Name>
+				<Value>0</Value>
+			</Setting>
+			<Setting type="bool" display="0">
+				<Id>10</Id>
+				<Name>Interlock 4</Name>
+				<Value>0</Value>
+			</Setting>
+			<Setting type="bool" display="0">
+				<Id>11</Id>
+				<Name>Interlock 4 Can Abort Exposure</Name>
+				<Value>0</Value>
+			</Setting>
+		</Settings>
+	</Map>
+	<Map Name="Log">
+		<Id>8</Id>
+		<Settings>
+			<Setting type="LogLevel" display="0">
+				<Id>1</Id>
+				<Name>Log Level</Name>
+				<Value>1</Value>
+			</Setting>
+			<Setting type="LogOutput" display="0">
+				<Id>2</Id>
+				<Name>Log Output</Name>
+				<Value>4</Value>
+			</Setting>
+			<Setting type="bool" display="0">
+				<Id>3</Id>
+				<Name>Generator FSM Logs</Name>
+				<Value>0</Value>
+			</Setting>
+			<Setting type="bool" display="0">
+				<Id>4</Id>
+				<Name>Generator Data Dic. Logs</Name>
+				<Value>0</Value>
+			</Setting>
+			<Setting type="bool" display="0">
+				<Id>5</Id>
+				<Name>Power Control Logs</Name>
+				<Value>0</Value>
+			</Setting>
+			<Setting type="bool" display="0">
+				<Id>6</Id>
+				<Name>UARC Logs</Name>
+				<Value>0</Value>
+			</Setting>
+		</Settings>
+	</Map>
+</Maps>

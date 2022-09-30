@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Maps xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Configuration_Management>
+		<Revision>1.0</Revision>
+		<Revision_Date>2019/03/40 09:00:00</Revision_Date>
+		<Last_modification>2021/03/31 09:36:50</Last_modification>
+	</Configuration_Management>
+	<Map Name="Quick fluoro ready">
+		<Id>1</Id>
+		<Settings>
+			<Setting type="bool" display="1">
+				<Id>1</Id>
+				<Name>Tube 1</Name>
+				<Value>1</Value>
+			</Setting>
+			<Setting type="bool" display="1">
+				<Id>2</Id>
+				<Name>Tube 2</Name>
+				<Value>0</Value>
+			</Setting>
+		</Settings>
+	</Map>
+	<Map Name="Fluoro time (Disabled 0)">
+		<Id>2</Id>
+		<Settings>
+			<Setting type="int" display="1">
+				<Id>1</Id>
+				<Name>Tube 1</Name>
+				<Value>20</Value>
+			</Setting>
+			<Setting type="int" display="1">
+				<Id>2</Id>
+				<Name>Tube 2</Name>
+				<Value>60</Value>
+			</Setting>
+		</Settings>
+	</Map>
+	<Map Name="Tube1 SingleShot/MultiEnergy Exposures">
+		<Id>3</Id>
+		<Settings>
+			<Setting type="int" display="0">
+				<Id>0</Id>
+				<Name>DS</Name>
+				<Value>1</Value>
+			</Setting>
+			<Setting maxValue="5" minValue="0" type="int" display="1">
+				<Id>1</Id>
+				<Name>Number of accelerations within 1 minute</Name>
+				<Value>1</Value>
+			</Setting>
+			<Setting maxValue="3600" minValue="0" type="int" display="1">
+				<Id>2</Id>
+				<Name>Low speed time (sec)</Name>
+				<Value>90</Value>
+			</Setting>
+			<Setting maxValue="3600" minValue="0" type="int" display="1">
+				<Id>3</Id>
+				<Name>High speed time (sec)</Name>
+				<Value>90</Value>
+			</Setting>
+			<Setting type="bool" display="1">
+				<Id>4</Id>
+				<Name>Always high speed</Name>
+				<Value>0</Value>
+			</Setting>
+			<Setting type="bool" display="0">
+				<Id>5</Id>
+				<Name>Coasting down</Name>
+				<Value>1</Value>
+			</Setting>
+		</Settings>
+	</Map>
+	<Map Name="Tube1 Stitching Exposures">
+		<Id>4</Id>
+		<Settings>
+			<Setting type="int" display="0">
+				<Id>0</Id>
+				<Name>DS</Name>
+				<Value>2</Value>
+			</Setting>
+			<Setting maxValue="5" minValue="0" type="int" display="1">
+				<Id>1</Id>
+				<Name>Number of accelerations within 1 minute</Name>
+				<Value>1</Value>
+			</Setting>
+			<Setting maxValue="3600" minValue="0" type="int" display="1">
+				<Id>2</Id>
+				<Name>Low speed time (sec)</Name>
+				<Value>90</Value>
+			</Setting>
+			<Setting maxValue="3600" minValue="0" type="int" display="1">
+				<Id>3</Id>
+				<Name>High speed time (sec)</Name>
+				<Value>90</Value>
+			</Setting>
+			<Setting type="bool" display="1">
+				<Id>4</Id>
+				<Name>Always high speed</Name>
+				<Value>1</Value>
+			</Setting>
+			<Setting type="bool" display="0">
+				<Id>5</Id>
+				<Name>Coasting down</Name>
+				<Value>1</Value>
+			</Setting>
+		</Settings>
+	</Map>
+	<Map Name="Tube1 Tomography Exposures">
+		<Id>5</Id>
+		<Settings>
+			<Setting type="int" display="0">
+				<Id>0</Id>
+				<Name>DS</Name>
+				<Value>3</Value>
+			</Setting>
+			<Setting maxValue="5" minValue="0" type="int" display="1">
+				<Id>1</Id>
+				<Name>Number of accelerations within 1 minute</Name>
+				<Value>1</Value>
+			</Setting>
+			<Setting maxValue="3600" minValue="0" type="int" display="1">
+				<Id>2</Id>
+				<Name>Low speed time (sec)</Name>
+				<Value>90</Value>
+			</Setting>
+			<Setting maxValue="3600" minValue="0" type="int" display="1">
+				<Id>3</Id>
+				<Name>High speed time (sec)</Name>
+				<Value>90</Value>
+			</Setting>
+			<Setting type="bool" display="1">
+				<Id>4</Id>
+				<Name>Always high speed</Name>
+				<Value>0</Value>
+			</Setting>
+			<Setting type="bool" display="0">
+				<Id>5</Id>
+				<Name>Coasting down</Name>
+				<Value>1</Value>
+			</Setting>
+		</Settings>
+	</Map>
+	<Map Name="Tube1 DSA/DSI/CINE Exposures">
+		<Id>6</Id>
+		<Settings>
+			<Setting type="int" display="0">
+				<Id>0</Id>
+				<Name>DS</Name>
+				<Value>4</Value>
+			</Setting>
+			<Setting maxValue="5" minValue="0" type="int" display="1">
+				<Id>1</Id>
+				<Name>Number of accelerations within 1 minute</Name>
+				<Value>1</Value>
+			</Setting>
+			<Setting maxValue="3600" minValue="0" type="int" display="1">
+				<Id>2</Id>
+				<Name>Low speed time (sec)</Name>
+				<Value>90</Value>
+			</Setting>
+			<Setting maxValue="3600" minValue="0" type="int" display="1">
+				<Id>3</Id>
+				<Name>High speed time (sec)</Name>
+				<Value>90</Value>
+			</Setting>
+			<Setting type="bool" display="1">
+				<Id>4</Id>
+				<Name>Always high speed</Name>
+				<Value>1</Value>
+			</Setting>
+			<Setting type="bool" display="0">
+				<Id>5</Id>
+				<Name>Coasting down</Name>
+				<Value>1</Value>
+			</Setting>
+		</Settings>
+	</Map>
+</Maps>

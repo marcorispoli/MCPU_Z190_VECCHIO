@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<atomium xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<communication>
+		<hub>
+			<id>1</id>
+			<name>HUB</name>
+			<ip>192.6.1.201</ip>
+			<port>10000</port>
+			<keepAliveInterval>10</keepAliveInterval>
+			<nodes>
+				<node type="Generator" number="1">
+					<id>6</id>
+					<name>GENERATOR</name>
+					<subcriptions>
+						<subcription index="0xA0" source="0" subindex="*" />
+						<subcription index="0x40" source="0" subindex="0x52" />
+						<subcription index="0x40" source="0" subindex="0x57" />
+						<subcription index="0x80" source="0" subindex="0x6F" />
+						<subcription index="0x80" source="0" subindex="0x79" />
+						<subcription index="0x80" source="0" subindex="0x96" />
+						<subcription index="*" source="4" subindex="*" />
+					</subcriptions>
+				</node>
+				<node type="Console" number="1">
+					<id>5</id>
+					<name>CONSOLE</name>
+					<subcriptions>
+						<subcription index="0x00" source="0" subindex="*" />
+						<subcription index="0x20" source="6" subindex="*" />
+						<subcription index="0x40" source="2" subindex="*" />
+						<subcription index="0x80" source="0" subindex="*" />
+						<subcription index="0xA0" source="0" subindex="*" />
+						<subcription index="0xE0" source="0" subindex="*" />
+						<subcription index="0xF0" source="0" subindex="*" />
+						<subcription index="0xC0" source="0" subindex="0x01" />
+						<subcription index="0xC0" source="0" subindex="0x03" />
+						<subcription index="0x50" source="0" subindex="*" />
+						<subcription index="0x60" source="0" subindex="*" />
+						<subcription index="0x30" source="0" subindex="*" />
+					</subcriptions>
+				</node>
+				<node type="Console" number="1">
+					<id>15</id>
+					<name>SECONDCONSOLE</name>
+					<subcriptions>
+						<subcription index="0x00" source="0" subindex="*" />
+						<subcription index="0x20" source="6" subindex="*" />
+						<subcription index="0x40" source="2" subindex="*" />
+						<subcription index="0x80" source="0" subindex="*" />
+						<subcription index="0xA0" source="0" subindex="*" />
+						<subcription index="0xE0" source="0" subindex="*" />
+						<subcription index="0xF0" source="0" subindex="*" />
+						<subcription index="0xC0" source="0" subindex="0x01" />
+						<subcription index="0xC0" source="0" subindex="0x03" />
+						<subcription index="0x50" source="0" subindex="*" />
+						<subcription index="0x60" source="0" subindex="*" />
+						<subcription index="0x30" source="0" subindex="*" />
+					</subcriptions>
+				</node>
+				<node type="Console" number="1">
+					<id>4</id>
+					<name>DOWNLOADER</name>
+					<subcriptions>
+						<subcription index="*" source="6" subindex="*" />
+						<subcription index="0x0A" source="0" subindex="*" />
+						<subcription index="0xA0" source="0" subindex="*" />
+						<subcription index="0xC0" source="0" subindex="0x01" />
+						<subcription index="0xC0" source="0" subindex="0x03" />
+					</subcriptions>
+				</node>
+				<node type="Console" number="1">
+					<id>9</id>
+					<name>SERVICE_TOOL</name>
+					<subcriptions>
+						<subcription index="0x00" source="0" subindex="*" />
+						<subcription index="0x20" source="6" subindex="*" />
+						<subcription index="0x40" source="2" subindex="*" />
+						<subcription index="0x60" source="0" subindex="*" />
+						<subcription index="0x80" source="0" subindex="*" />
+						<subcription index="0xA0" source="0" subindex="*" />
+						<subcription index="0xE0" source="0" subindex="*" />
+						<subcription index="0xF0" source="0" subindex="*" />
+						<subcription index="0xC0" source="0" subindex="0x01" />
+						<subcription index="0xC0" source="0" subindex="0x03" />
+						<subcription index="0x50" source="0" subindex="*" />
+						<subcription index="0x30" source="0" subindex="*" />
+					</subcriptions>
+				</node>
+				<node type="Console" number="1">
+					<id>10</id>
+					<name>LOGSERVICE</name>
+					<subcriptions>
+						<subcription index="0x00" source="0" subindex="*" />
+						<subcription index="0x20" source="6" subindex="*" />
+						<subcription index="0x40" source="2" subindex="0x55" />
+						<subcription index="0x60" source="0" subindex="*" />
+						<subcription index="0x80" source="0" subindex="0x01" />
+						<subcription index="0xA0" source="0" subindex="*" />
+						<subcription index="0xC0" source="0" subindex="0x02" />
+						<subcription index="0xE0" source="0" subindex="0X1F" />
+					</subcriptions>
+				</node>
+				<node type="ImageSystem" number="1">
+					<id>11</id>
+					<name>CXDIINTEGRATION</name>
+					<subcriptions>
+						<subcription index="0x00" source="0" subindex="*" />
+						<subcription index="0x20" source="6" subindex="*" />
+						<subcription index="0x40" source="2" subindex="*" />
+						<subcription index="0x50" source="0" subindex="*" />
+						<subcription index="0x60" source="0" subindex="*" />
+						<subcription index="0x80" source="0" subindex="*" />
+						<subcription index="0xA0" source="0" subindex="*" />
+						<subcription index="0xE0" source="0" subindex="*" />
+						<subcription index="0xF0" source="0" subindex="*" />
+						<subcription index="0xC0" source="0" subindex="0x01" />
+						<subcription index="0xC0" source="0" subindex="0x03" />
+						<subcription index="0x30" source="0" subindex="*" />
+					</subcriptions>
+				</node>
+				<node type="ImageSystem" number="1">
+					<id>17</id>
+					<name>IS</name>
+					<subcriptions>
+						<subcription index="0x00" source="0" subindex="*" />
+						<subcription index="0x20" source="6" subindex="*" />
+						<subcription index="0x40" source="2" subindex="*" />
+						<subcription index="0x60" source="2" subindex="*" />
+						<subcription index="0xA0" source="0" subindex="*" />
+						<subcription index="0x80" source="0" subindex="*" />
+						<subcription index="0xE0" source="0" subindex="*" />
+						<subcription index="0xF0" source="0" subindex="*" />
+						<subcription index="0xC0" source="0" subindex="0x01" />
+						<subcription index="0xC0" source="0" subindex="0x03" />
+						<subcription index="0x30" source="0" subindex="*" />
+					</subcriptions>
+				</node>
+			</nodes>
+		</hub>
+	</communication>
+</atomium>

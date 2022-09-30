@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Positioner xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Configuration_Management>
+		<Revision>1.0</Revision>
+		<Revision_Date>2020/10/27 12:02:04</Revision_Date>
+		<Last_modification>2020/10/27 12:10:32</Last_modification>
+	</Configuration_Management>
+	<OTC>
+		<Manufacturer>Stephanix</Manufacturer>
+		<Model>Dynamia</Model>
+		<AntiCollision>1</AntiCollision>
+		<FSD>1</FSD>
+		<Audio>0</Audio>
+		<RemoteControl>1</RemoteControl>
+		<ProtocolType>None</ProtocolType>
+		<Fluoro>true</Fluoro>
+		<HwInterface>1</HwInterface>
+	</OTC>
+	<Table>
+		<Manufacturer>Stephanix</Manufacturer>
+		<Model>D2RS Table Dynamia</Model>
+		<AnalogSystem>0</AnalogSystem>
+		<AEC>
+			<Manufacturer>Claymount</Manufacturer>
+			<Model>SSMC 508</Model>
+			<Chambers>5</Chambers>
+		</AEC>
+	</Table>
+	<TableDocking>
+		<Manufacturer>Stephanix</Manufacturer>
+		<Model>D2RS Docking Dynamia Canon</Model>
+	</TableDocking>
+	<TableTop>
+		<Manufacturer>Stephanix</Manufacturer>
+		<Model>D2RS Tabletop Dynamia</Model>
+	</TableTop>
+	<Tube>
+		<Manufacturer>Varian</Manufacturer>
+		<Model>A292 (0.6/1.2) B147</Model>
+		<Starter>UARC</Starter>
+	</Tube>
+	<Collimator>
+		<Filters>
+			<Filter Id="1">2mm-Al</Filter>
+			<Filter Id="3">1mm-Al 0.1mm-Cu</Filter>
+			<Filter Id="2">1mm-Al 0.2mm-Cu</Filter>
+			<Filter Id="0">None</Filter>
+		</Filters>
+		<Manufacturer>Ralco</Manufacturer>
+		<Model>R225-ACS-DHHS-170Q</Model>
+		<Type>Automatic</Type>
+	</Collimator>
+	<Dosimeter>
+		<Manufacturer>IBA</Manufacturer>
+		<Model>120-131 CAN TINO</Model>
+	</Dosimeter>
+	<eDosimeter>
+		<eDAP>0</eDAP>
+		<eDOSE>0</eDOSE>
+	</eDosimeter>
+</Positioner>

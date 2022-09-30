@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Tube xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Configuration_Management>
+    <Revision>2.0</Revision>
+    <Revision_Date>10/06/2021 13:45:00</Revision_Date>
+  </Configuration_Management>
+  <StructTubeDef>
+    <Id>539</Id>
+    <Manufacturer>IAE</Manufacturer>
+    <Model>XK1016T 01/03</Model>
+    <Description>XK1016T 01/03 2022-06-17 UARC 1PH230</Description>
+    <Version>V1R0P0</Version>
+  </StructTubeDef>
+  <SpecialDerating>
+    <Add Derating="1000,1000,1000,1000" HU="0" />
+    <Add Derating="1000,1000,1000,1000" HU="5" />
+    <Add Derating="1000,1000,1000,1000" HU="10" />
+    <Add Derating="1000,1000,1000,1000" HU="15" />
+    <Add Derating="1000,1000,1000,1000" HU="20" />
+    <Add Derating="1000,1000,1000,1000" HU="25" />
+    <Add Derating="1000,1000,1000,1000" HU="30" />
+    <Add Derating="1000,1000,1000,1000" HU="35" />
+    <Add Derating="1000,1000,1000,1000" HU="40" />
+    <Add Derating="1000,1000,1000,1000" HU="45" />
+    <Add Derating="1000,1000,1000,1000" HU="50" />
+    <Add Derating="1000,1000,1000,1000" HU="55" />
+    <Add Derating="1000,1000,1000,1000" HU="60" />
+    <Add Derating="1000,1000,1000,1000" HU="65" />
+    <Add Derating="1000,1000,1000,1000" HU="70" />
+    <Add Derating="1000,1000,1000,1000" HU="75" />
+    <Add Derating="1000,1000,1000,1000" HU="80" />
+    <Add Derating="1000,1000,1000,1000" HU="85" />
+    <Add Derating="1000,1000,1000,1000" HU="90" />
+    <Add Derating="1000,1000,1000,1000" HU="95" />
+    <Add Derating="1000,1000,1000,1000" HU="100" />
+  </SpecialDerating>
+  <TubeProtData>
+    <SpaceCharge>
+      <SmallFocus>
+        <Add MinkV="5" ScanMA100="800" />
+        <Add MinkV="6" ScanMA100="1000" />
+        <Add MinkV="7" ScanMA100="1250" />
+        <Add MinkV="9" ScanMA100="1600" />
+        <Add MinkV="11" ScanMA100="2000" />
+        <Add MinkV="14" ScanMA100="2500" />
+        <Add MinkV="18" ScanMA100="3200" />
+        <Add MinkV="22" ScanMA100="4000" />
+        <Add MinkV="28" ScanMA100="5000" />
+        <Add MinkV="34" ScanMA100="6400" />
+        <Add MinkV="42" ScanMA100="8000" />
+        <Add MinkV="52" ScanMA100="10000" />
+        <Add MinkV="64" ScanMA100="12500" />
+        <Add MinkV="81" ScanMA100="16000" />
+        <Add MinkV="99" ScanMA100="20000" />
+        <Add MinkV="99" ScanMA100="25000" />
+        <Add MinkV="99" ScanMA100="32000" />
+        <Add MinkV="99" ScanMA100="40000" />
+        <Add MinkV="99" ScanMA100="50000" />
+        <Add MinkV="99" ScanMA100="64000" />
+        <Add MinkV="99" ScanMA100="80000" />
+        <Add MinkV="99" ScanMA100="100000" />
+      </SmallFocus>
+      <LargeFocus>
+        <Add MinkV="2" ScanMA100="800" />
+        <Add MinkV="2" ScanMA100="1000" />
+        <Add MinkV="3" ScanMA100="1250" />
+        <Add MinkV="3" ScanMA100="1600" />
+        <Add MinkV="4" ScanMA100="2000" />
+        <Add MinkV="5" ScanMA100="2500" />
+        <Add MinkV="6" ScanMA100="3200" />
+        <Add MinkV="8" ScanMA100="4000" />
+        <Add MinkV="10" ScanMA100="5000" />
+        <Add MinkV="12" ScanMA100="6400" />
+        <Add MinkV="15" ScanMA100="8000" />
+        <Add MinkV="21" ScanMA100="10000" />
+        <Add MinkV="25" ScanMA100="12500" />
+        <Add MinkV="30" ScanMA100="16000" />
+        <Add MinkV="34" ScanMA100="20000" />
+        <Add MinkV="57" ScanMA100="25000" />
+        <Add MinkV="99" ScanMA100="32000" />
+        <Add MinkV="99" ScanMA100="40000" />
+        <Add MinkV="99" ScanMA100="50000" />
+        <Add MinkV="99" ScanMA100="64000" />
+        <Add MinkV="99" ScanMA100="80000" />
+        <Add MinkV="99" ScanMA100="100000" />
+      </LargeFocus>
+    </SpaceCharge>
+    <Speed>3</Speed>
+    <MaxFilMA LargeFocus="4200" SmallFocus="4000" />
+    <MaxkVp>49</MaxkVp>
+    <ThermalData>
+      <KHUCapacity>300</KHUCapacity>
+      <CoolingSHFStyle>0</CoolingSHFStyle>
+      <CoolRate SeqValue="6,9,13,20,31,63,90,129,175,236,304,398,487,578,733,883,1114,1370,1702,1887" />
+    </ThermalData>
+    <Ratings>
+      <Add MaxKW="1400,5600,2500,10300" ScanTime100="500" />
+      <Add MaxKW="1400,5600,2500,10300" ScanTime100="600" />
+      <Add MaxKW="1400,5600,2500,10300" ScanTime100="800" />
+      <Add MaxKW="1400,5600,2500,10300" ScanTime100="1000" />
+      <Add MaxKW="1400,5600,2500,10300" ScanTime100="1200" />
+      <Add MaxKW="1400,5600,2500,10200" ScanTime100="1600" />
+      <Add MaxKW="1400,5500,2500,10100" ScanTime100="2000" />
+      <Add MaxKW="1400,5500,2500,10000" ScanTime100="2500" />
+      <Add MaxKW="1400,5500,2500,10000" ScanTime100="3200" />
+      <Add MaxKW="1400,5500,2500,9900" ScanTime100="4000" />
+      <Add MaxKW="1400,5500,2500,9800" ScanTime100="5000" />
+      <Add MaxKW="1400,5400,2500,9700" ScanTime100="6400" />
+      <Add MaxKW="1400,5400,2500,9700" ScanTime100="8000" />
+      <Add MaxKW="1400,5400,2500,9600" ScanTime100="10000" />
+      <Add MaxKW="1400,5400,2500,9500" ScanTime100="12500" />
+      <Add MaxKW="1400,5400,2500,9400" ScanTime100="16000" />
+      <Add MaxKW="1400,5300,2500,9400" ScanTime100="20000" />
+      <Add MaxKW="1400,5300,2500,9300" ScanTime100="25000" />
+      <Add MaxKW="1400,5300,2500,9200" ScanTime100="32000" />
+      <Add MaxKW="1400,5300,2500,9100" ScanTime100="40000" />
+      <Add MaxKW="1400,5200,2500,9000" ScanTime100="50000" />
+      <Add MaxKW="1400,5200,2500,8900" ScanTime100="64000" />
+      <Add MaxKW="1400,5200,2400,8900" ScanTime100="80000" />
+      <Add MaxKW="1400,5200,2400,8800" ScanTime100="100000" />
+      <Add MaxKW="1400,5100,2400,8700" ScanTime100="125000" />
+      <Add MaxKW="1400,5100,2400,8500" ScanTime100="160000" />
+      <Add MaxKW="1400,5100,2400,8400" ScanTime100="200000" />
+      <Add MaxKW="1400,5000,2400,8200" ScanTime100="250000" />
+      <Add MaxKW="1300,4900,2400,8000" ScanTime100="320000" />
+      <Add MaxKW="1300,4900,2400,7800" ScanTime100="400000" />
+      <Add MaxKW="1300,4900,2300,7600" ScanTime100="500000" />
+      <Add MaxKW="1300,4700,2300,7300" ScanTime100="640000" />
+      <Add MaxKW="1300,4600,2300,7000" ScanTime100="800000" />
+      <Add MaxKW="1300,4500,2300,6700" ScanTime100="1000000" />
+    </Ratings>
+  </TubeProtData>
+  <UARC>
+    <Booster EN="true" VA="4883" VR="2609" />
+    <SpinupType>29</SpinupType>
+    <ConstructiveTube_1F RA="400" LA="0" RM="200" LM="0" />
+    <ConstructiveTube_3F RR="0" LL="0" />
+    <FullStart LS="300" HS="3200" LH="2600" />
+    <MainData VAC="240,220" IAC="19950,13746" VRR="240,230" IRR="2736,1824" VDCB="70" IDCB="10260" />
+    <AuxData VAC="230,380" IAC="9690,8861" VRR="230,240" IRR="1903,1368" VDCB="70" IDCB="6743" />
+    <TPData VAC="0,0" IAC="0,0" VRR="0,0" IRR="0,0" VDCB="0" IDCB="0" />
+    <DCBracking>2000</DCBracking>
+    <CoastingTimeout>30000</CoastingTimeout>
+    <QFRT>300</QFRT>
+    <Tolerances VV="10" II="90" />
+    <MaxAcc>1</MaxAcc>
+  </UARC>
+</Tube>

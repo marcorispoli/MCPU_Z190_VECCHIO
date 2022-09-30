@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Workstations xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Configuration_Management>
+		<Last_modification>2021/05/05 13:30:46</Last_modification>
+	</Configuration_Management>
+	<Workstation>
+		<Id>1</Id>
+		<Description>710C</Description>
+		<Tube>1</Tube>
+		<Generator>1</Generator>
+		<Positioner>1</Positioner>
+		<ImageReceptor>
+			<Id>1</Id>
+			<Location>Free</Location>
+		</ImageReceptor>
+		<AECInput>0</AECInput>
+		<IonChamberConnectedTo>0</IonChamberConnectedTo>
+	</Workstation>
+	<Workstation>
+		<Id>2</Id>
+		<Description>B1</Description>
+		<Tube>1</Tube>
+		<Generator>1</Generator>
+		<Positioner>1</Positioner>
+		<ImageReceptor>
+			<Id>4</Id>
+			<Location>Table</Location>
+		</ImageReceptor>
+		<AECInput>4</AECInput>
+		<IonChamberConnectedTo>1</IonChamberConnectedTo>
+	</Workstation>
+	<Workstation>
+		<Id>3</Id>
+		<Description>B1 WIFI</Description>
+		<Tube>1</Tube>
+		<Generator>1</Generator>
+		<Positioner>1</Positioner>
+		<ImageReceptor>
+			<Id>4</Id>
+			<Location>Table</Location>
+		</ImageReceptor>
+		<AECInput>0</AECInput>
+		<IonChamberConnectedTo>0</IonChamberConnectedTo>
+	</Workstation>
+	<Workstation>
+		<Id>4</Id>
+		<Description>B1 Suspension</Description>
+		<Tube>2</Tube>
+		<Generator>1</Generator>
+		<Positioner>2</Positioner>
+		<ImageReceptor>
+			<Id>4</Id>
+			<Location>Free</Location>
+		</ImageReceptor>
+		<AECInput>0</AECInput>
+		<IonChamberConnectedTo>0</IonChamberConnectedTo>
+	</Workstation>
+	<Workstation>
+		<Id>5</Id>
+		<Description>710C Suspension</Description>
+		<Tube>1</Tube>
+		<Generator>1</Generator>
+		<Positioner>1</Positioner>
+		<ImageReceptor>
+			<Id>2</Id>
+			<Location>Free</Location>
+		</ImageReceptor>
+		<AECInput>0</AECInput>
+		<IonChamberConnectedTo>0</IonChamberConnectedTo>
+	</Workstation>
+</Workstations>

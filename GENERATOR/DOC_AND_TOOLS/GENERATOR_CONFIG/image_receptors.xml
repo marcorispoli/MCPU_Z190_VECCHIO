@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ImageReceptors xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Configuration_Management>
+		<Last_modification>2021/03/10 12:28:08</Last_modification>
+	</Configuration_Management>
+	<ImageReceptor>
+		<Id>1</Id>
+		<Model>Direct</Model>
+		<Description>Direct</Description>
+		<Width>430</Width>
+		<Height>430</Height>
+		<Thickness>15</Thickness>
+		<ReadyToExposeTimeout>2500</ReadyToExposeTimeout>
+		<SyncInterface>
+			<HWInterface xsi:nil="true" />
+			<Type>Direct</Type>
+			<WiredTo xsi:nil="true" />
+		</SyncInterface>
+	</ImageReceptor>
+	<ImageReceptor>
+		<Id>2</Id>
+		<Model>CXDI-710C Wireless</Model>
+		<Description>CXDI-710C Wireless</Description>
+		<Width>350</Width>
+		<Height>430</Height>
+		<Thickness>15</Thickness>
+		<ReadyToExposeTimeout>5000</ReadyToExposeTimeout>
+		<SyncInterface>
+			<HWInterface>1</HWInterface>
+			<Type>DynamicHardwired</Type>
+			<WiredTo xsi:nil="true" />
+		</SyncInterface>
+	</ImageReceptor>
+	<ImageReceptor>
+		<Id>4</Id>
+		<Model>B1</Model>
+		<Description>B1 RF4343</Description>
+		<Width>420</Width>
+		<Height>430</Height>
+		<Thickness>15</Thickness>
+		<ReadyToExposeTimeout>5000</ReadyToExposeTimeout>
+		<SyncInterface>
+			<HWInterface>1</HWInterface>
+			<Type>DynamicHardwired</Type>
+			<WiredTo>Table</WiredTo>
+		</SyncInterface>
+	</ImageReceptor>
+</ImageReceptors>

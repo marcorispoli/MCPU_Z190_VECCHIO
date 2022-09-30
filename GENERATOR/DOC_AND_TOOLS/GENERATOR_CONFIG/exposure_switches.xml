@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pedals version="1.0">
+  <Pedal>
+    <Id>1</Id>
+    <PrepRadStatus>True</PrepRadStatus>
+    <ExpRadStatus>True</ExpRadStatus>
+    <FlStatus>False</FlStatus>
+    <DM1Status>False</DM1Status>
+    <DM2Status>False</DM2Status>
+  </Pedal>
+  <Pedal>
+    <Id>2</Id>
+    <PrepRadStatus>False</PrepRadStatus>
+    <ExpRadStatus>False</ExpRadStatus>
+    <FlStatus>True</FlStatus>
+    <DM1Status>False</DM1Status>
+    <DM2Status>False</DM2Status>
+  </Pedal>
+  <Pedal>
+    <Id>3</Id>
+    <PrepRadStatus>False</PrepRadStatus>
+    <ExpRadStatus>False</ExpRadStatus>
+    <FlStatus>True</FlStatus>
+    <DM1Status>True</DM1Status>
+    <DM2Status>False</DM2Status>
+  </Pedal>
+</Pedals>

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Maps xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Configuration_Management>
+    <Revision>1.0.0</Revision>
+    <Revision_Date>2018/12/13 09:00:00</Revision_Date>
+    <Last_modification>2018/12/13 09:00:00</Last_modification>
+  </Configuration_Management>
+  <Map Name="Sound source">
+    <Id>1</Id>
+    <Settings>
+      <Setting type="bool" display="0">
+        <Id>1</Id>
+        <Name>Generator</Name>
+        <Value>1</Value>
+      </Setting>
+      <Setting type="bool" display="0">
+        <Id>2</Id>
+        <Name>Console</Name>
+        <Value>0</Value>
+      </Setting>
+      <Setting type="bool" display="1">
+        <Id>3</Id>
+        <Name>Positioner</Name>
+        <Value>1</Value>
+      </Setting>
+      <Setting type="bool" display="0">
+        <Id>4</Id>
+        <Name>Image System</Name>
+        <Value>0</Value>
+      </Setting>
+      <Setting type="bool" display="1">
+        <Id>5</Id>
+        <Name>Remote Control Console</Name>
+        <Value>1</Value>
+      </Setting>
+    </Settings>
+  </Map>
+  <Map Name="Sound settings">
+    <Id>2</Id>
+    <Settings>
+      <Setting maxValue="100" minValue="0" type="int" display="0">
+        <Id>1</Id>
+        <Name>Volume (percent)</Name>
+        <Value>0</Value>
+      </Setting>
+      <Setting type="bool" display="1">
+        <Id>2</Id>
+        <Name>System Moving</Name>
+        <Value>1</Value>
+      </Setting>
+      <Setting type="bool" display="1">
+        <Id>3</Id>
+        <Name>System Moving within Safety Area</Name>
+        <Value>1</Value>
+      </Setting>
+      <Setting type="bool" display="1">
+        <Id>4</Id>
+        <Name>Target Reached</Name>
+        <Value>1</Value>
+      </Setting>
+      <Setting type="bool" display="1">
+        <Id>5</Id>
+        <Name>RFID Accepted</Name>
+        <Value>1</Value>
+      </Setting>
+      <Setting type="bool" display="1">
+        <Id>6</Id>
+        <Name>Error in System</Name>
+        <Value>1</Value>
+      </Setting>
+      <Setting type="bool" display="0">
+        <Id>7</Id>
+        <Name>Exposure</Name>
+        <Value>1</Value>
+      </Setting>
+      <Setting type="bool" display="0">
+        <Id>8</Id>
+        <Name>Stitching Finished</Name>
+        <Value>1</Value>
+      </Setting>
+      <Setting maxValue="500" minValue="100" type="int" display="1">
+        <Id>9</Id>
+        <Name>Minimum Exposure Time</Name>
+        <Value>100</Value>
+      </Setting>
+    </Settings>
+  </Map>
+  <Map Name="Collimator settings">
+    <Id>4</Id>
+    <Settings>
+      <Setting maxValue="60" minValue="0" type="int" display="1">
+        <Id>1</Id>
+        <Name>Lamp On Time: seconds</Name>
+        <Value>30</Value>
+      </Setting>
+      <Setting type="bool" display="1">
+        <Id>2</Id>
+        <Name>Lamp On Automatically</Name>
+        <Value>0</Value>
+      </Setting>
+      <Setting maxValue="500" minValue="0" type="tuple" display="0" step="10">
+        <Id>3</Id>
+        <Name>Aperture 1 (mm)</Name>
+        <Value>430,430</Value>
+      </Setting>
+      <Setting maxValue="500" minValue="0" type="tuple" display="0" step="10">
+        <Id>4</Id>
+        <Name>Aperture 2 (mm)</Name>
+        <Value>350,430</Value>
+      </Setting>
+      <Setting maxValue="500" minValue="0" type="tuple" display="0" step="10">
+        <Id>5</Id>
+        <Name>Aperture 3 (mm)</Name>
+        <Value>430,350</Value>
+      </Setting>
+      <Setting maxValue="500" minValue="0" type="tuple" display="0" step="10">
+        <Id>6</Id>
+        <Name>Aperture 4 (mm)</Name>
+        <Value>350,350</Value>
+      </Setting>
+      <Setting maxValue="500" minValue="0" type="tuple" display="0" step="10">
+        <Id>7</Id>
+        <Name>Aperture 5 (mm)</Name>
+        <Value>240,300</Value>
+      </Setting>
+      <Setting maxValue="500" minValue="0" type="tuple" display="0" step="10">
+        <Id>8</Id>
+        <Name>Aperture 6 (mm)</Name>
+        <Value>300,240</Value>
+      </Setting>
+      <Setting maxValue="500" minValue="0" type="tuple" display="0" step="10">
+        <Id>9</Id>
+        <Name>Aperture 7 (mm)</Name>
+        <Value>200,200</Value>
+      </Setting>
+    </Settings>
+  </Map>
+</Maps>

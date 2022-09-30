@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Maps xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<Configuration_Management>
+		<Revision>1.0</Revision>
+		<Revision_Date>2019/03/40 09:00:00</Revision_Date>
+		<Last_modification>2020/03/02 16:35:36</Last_modification>
+	</Configuration_Management>
+	<Map Name="Fluoro HLC">
+		<Id>0</Id>
+		<Settings>
+			<Setting maxValue="1000" minValue="0" type="int" step="25" display="1">
+				<Id>0</Id>
+				<Name>Time On: ms</Name>
+				<Value>1000</Value>
+			</Setting>
+			<Setting maxValue="1000" minValue="0" type="int" step="25" display="1">
+				<Id>1</Id>
+				<Name>Time Off: ms</Name>
+				<Value>0</Value>
+			</Setting>
+			<Setting maxValue="10" minValue="0" type="int" display="1">
+				<Id>2</Id>
+				<Name>Number of Beeps ( 0 Infinite )</Name>
+				<Value>0</Value>
+			</Setting>
+			<Setting maxValue="10" minValue="0" type="int" step="25" display="0">
+				<Id>3</Id>
+				<Name>Minimum Time</Name>
+				<Value>0</Value>
+			</Setting>
+		</Settings>
+	</Map>
+	<Map Name="5-minute fl Alarm">
+		<Id>1</Id>
+		<Settings>
+			<Setting maxValue="1000" minValue="0" type="int" step="25" display="1">
+				<Id>0</Id>
+				<Name>Time On: ms</Name>
+				<Value>100</Value>
+			</Setting>
+			<Setting maxValue="1000" minValue="0" type="int" step="25" display="1">
+				<Id>1</Id>
+				<Name>Time Off: ms</Name>
+				<Value>400</Value>
+			</Setting>
+			<Setting maxValue="10" minValue="0" type="int" display="1">
+				<Id>2</Id>
+				<Name>Number of Beeps ( 0 Infinite )</Name>
+				<Value>0</Value>
+			</Setting>
+			<Setting maxValue="1000" minValue="0" type="int step="25" display="0">
+				<Id>3</Id>
+				<Name>Minimum Time</Name>
+				<Value>0</Value>
+			</Setting>
+		</Settings>
+	</Map>
+	<Map Name="10-minute fl Alarm">
+		<Id>2</Id>
+		<Settings>
+			<Setting maxValue="1000" minValue="0" type="int" step="25" display="1">
+				<Id>0</Id>
+				<Name>Time On: ms</Name>
+				<Value>200</Value>
+			</Setting>
+			<Setting maxValue="1000" minValue="0" type="int" step="25" display="1">
+				<Id>1</Id>
+				<Name>Time Off: ms</Name>
+				<Value>400</Value>
+			</Setting>
+			<Setting maxValue="10" minValue="0" type="int" display="1">
+				<Id>2</Id>
+				<Name>Number of Beeps ( 0 Infinite )</Name>
+				<Value>0</Value>
+			</Setting>
+			<Setting maxValue="1000" minValue="0" type="int" step="25" display="0">
+				<Id>3</Id>
+				<Name>Minimum Time</Name>
+				<Value>0</Value>
+			</Setting>
+		</Settings>
+	</Map>
+		<Map Name="Moving">
+		<Id>3</Id>
+		<Settings>
+			<Setting maxValue="1000" minValue="0" type="int" step="25" display="1">
+				<Id>0</Id>
+				<Name>Time On: ms</Name>
+				<Value>200</Value>
+			</Setting>
+			<Setting maxValue="1000" minValue="0" type="int" step="25" display="1">
+				<Id>1</Id>
+				<Name>Time Off: ms</Name>
+				<Value>200</Value>
+			</Setting>
+			<Setting maxValue="10" minValue="0" type="int" display="1">
+				<Id>2</Id>
+				<Name>Number of Beeps ( 0 Infinite )</Name>
+				<Value>0</Value>
+			</Setting>
+			<Setting maxValue="1000" minValue="0" type="int" step="25" display="0">
+				<Id>3</Id>
+				<Name>Minimum Time</Name>
+				<Value>0</Value>
+			</Setting>
+		</Settings>
+	</Map>
+	<Map Name="Target Reached">
+		<Id>4</Id>
+		<Settings>
+			<Setting maxValue="1000" minValue="0" type="int" step="25" display="1">
+				<Id>0</Id>
+				<Name>Time On: ms</Name>
+				<Value>200</Value>
+			</Setting>
+			<Setting maxValue="1000" minValue="0" type="int" step="25" display="1">
+				<Id>1</Id>
+				<Name>Time Off: ms</Name>
+				<Value>200</Value>
+			</Setting>
+			<Setting maxValue="10" minValue="0" type="int" display="1">
+				<Id>2</Id>
+				<Name>Number of Beeps ( 0 Infinite )</Name>
+				<Value>0</Value>
+			</Setting>
+			<Setting maxValue="1000" minValue="0" type="int" step="25" display="0">
+				<Id>3</Id>
+				<Name>Minimum Time</Name>
+				<Value>0</Value>
+			</Setting>
+		</Settings>
+	</Map>
+	<Map Name="Single Shot PC Type">
+		<Id>5</Id>
+		<Settings>
+			<Setting maxValue="1000" minValue="0" type="int" step="25" display="1">
+				<Id>0</Id>
+				<Name>Time On: ms</Name>
+				<Value>1000</Value>
+			</Setting>
+			<Setting maxValue="1000" minValue="0" type="int" step="25" display="1">
+				<Id>1</Id>
+				<Name>Time Off: ms</Name>
+				<Value>0</Value>
+			</Setting>
+			<Setting maxValue="10" minValue="0" type="int" display="1">
+				<Id>2</Id>
+				<Name>Number of Beeps ( 0 Infinite )</Name>
+				<Value>1</Value>
+			</Setting>
+			<Setting maxValue="1000" minValue="0" type="int" step="25" display="1">
+				<Id>3</Id>
+				<Name>Minimum Time</Name>
+				<Value>500</Value>
+			</Setting>
+		</Settings>
+	</Map>
+	<Map Name="Single Shot RCC Type">
+		<Id>6</Id>
+		<Settings>
+			<Setting maxValue="1000" minValue="0" type="int" step="25" display="1">
+				<Id>0</Id>
+				<Name>Time On: ms</Name>
+				<Value>1000</Value>
+			</Setting>
+			<Setting maxValue="1000" minValue="0" type="int" step="25" display="1">
+				<Id>1</Id>
+				<Name>Time Off: ms</Name>
+				<Value>0</Value>
+			</Setting>
+			<Setting maxValue="10" minValue="0" type="int" display="1">
+				<Id>2</Id>
+				<Name>Number of Beeps ( 0 Infinite )</Name>
+				<Value>1</Value>
+			</Setting>
+			<Setting maxValue="1000" minValue="0" type="int" step="25" display="1">
+				<Id>3</Id>
+				<Name>Minimum Time</Name>
+				<Value>100</Value>
+			</Setting>
+		</Settings>
+	</Map>
+	<Map Name="Serial Rad PC Type">
+		<Id>7</Id>
+		<Settings>
+			<Setting maxValue="1000" minValue="0" type="int" step="25" display="1">
+				<Id>0</Id>
+				<Name>Time On: ms</Name>
+				<Value>125</Value>
+			</Setting>
+			<Setting maxValue="1000" minValue="0" type="int" step="25" display="1">
+				<Id>1</Id>
+				<Name>Time Off: ms</Name>
+				<Value>125</Value>
+			</Setting>
+			<Setting maxValue="10" minValue="0" type="int" display="1">
+				<Id>2</Id>
+				<Name>Number of Beeps ( 0 Infinite )</Name>
+				<Value>1</Value>
+			</Setting>
+			<Setting maxValue="1000" minValue="0" type="int" step="25" display="1">
+				<Id>3</Id>
+				<Name>Minimum Time</Name>
+				<Value>100</Value>
+			</Setting>
+		</Settings>
+	</Map>
+	<Map Name="Serial Rad RCC Type">
+		<Id>8</Id>
+		<Settings>
+			<Setting maxValue="1000" minValue="0" type="int" step="25" display="1">
+				<Id>0</Id>
+				<Name>Time On: ms</Name>
+				<Value>125</Value>
+			</Setting>
+			<Setting maxValue="1000" minValue="0" type="int" step="25" display="1">
+				<Id>1</Id>
+				<Name>Time Off: ms</Name>
+				<Value>125</Value>
+			</Setting>
+			<Setting maxValue="10" minValue="0" type="int" display="1">
+				<Id>2</Id>
+				<Name>Number of Beeps ( 0 Infinite )</Name>
+				<Value>1</Value>
+			</Setting>
+			<Setting maxValue="1000" minValue="0" type="int" step="25" display="1">
+				<Id>3</Id>
+				<Name>Minimum Time</Name>
+				<Value>100</Value>
+			</Setting>
+		</Settings>
+	</Map>
+	<Map Name="Exposure Error">
+		<Id>9</Id>
+		<Settings>
+			<Setting maxValue="1000" minValue="0" type="int" step="25" display="1">
+				<Id>0</Id>
+				<Name>Time On: ms</Name>
+				<Value>100</Value>
+			</Setting>
+			<Setting maxValue="1000" minValue="0" type="int" step="25" display="1">
+				<Id>1</Id>
+				<Name>Time Off: ms</Name>
+				<Value>50</Value>
+			</Setting>
+			<Setting maxValue="10" minValue="0" type="int" display="1">
+				<Id>2</Id>
+				<Name>Number of Beeps ( 0 Infinite )</Name>
+				<Value>8</Value>
+			</Setting>
+			<Setting maxValue="1000" minValue="0" type="int" step="25" display="0">
+				<Id>3</Id>
+				<Name>Minimum Time</Name>
+				<Value>0</Value>
+			</Setting>
+		</Settings>
+	</Map>
+	<Map Name="Configuration Error">
+		<Id>10</Id>
+		<Settings>
+			<Setting maxValue="1000" minValue="0" type="int" step="25" display="1">
+				<Id>0</Id>
+				<Name>Time On: ms</Name>
+				<Value>500</Value>
+			</Setting>
+			<Setting maxValue="1000" minValue="0" type="int" step="25" display="1">
+				<Id>1</Id>
+				<Name>Time Off: ms</Name>
+				<Value>500</Value>
+			</Setting>
+			<Setting maxValue="10" minValue="0" type="int" display="1">
+				<Id>2</Id>
+				<Name>Number of Beeps ( 0 Infinite )</Name>
+				<Value>0</Value>
+			</Setting>
+			<Setting maxValue="1000" minValue="0" type="int" step="25" display="0">
+				<Id>3</Id>
+				<Name>Minimum Time</Name>
+				<Value>0</Value>
+			</Setting>
+		</Settings>
+	</Map>
+</Maps>

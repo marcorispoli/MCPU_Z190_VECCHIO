@@ -1,0 +1,3338 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Positions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Configuration_Management>
+		<Last_modification>2019/02/20 16:29:39</Last_modification>
+	</Configuration_Management>
+	<position>
+		<Id>1</Id>
+		<Name>WALL 100cm 0º</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>201</Thumbnail>
+		<sid apply="1">1000</sid>
+		<ang apply="1">0</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">0</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="0">0</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>2</Id>
+		<Name>WALL 100cm 0º HIGH</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>202</Thumbnail>
+		<sid apply="1">1000</sid>
+		<ang apply="1">0</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">1500</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">1500</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>3</Id>
+		<Name>WALL 100cm 0º MID</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>201</Thumbnail>
+		<sid apply="1">1000</sid>
+		<ang apply="1">0</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">1000</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">1000</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>4</Id>
+		<Name>WALL 100cm 0º LOW</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>204</Thumbnail>
+		<sid apply="1">1000</sid>
+		<ang apply="1">0</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">500</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">500</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position predefined="P2">
+		<Id>5</Id>
+		<Name>WALL 150cm 0º</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>201</Thumbnail>
+		<sid apply="1">1500</sid>
+		<ang apply="1">0</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">0</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="0">0</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>6</Id>
+		<Name>WALL 150cm 0º HIGH</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>202</Thumbnail>
+		<sid apply="1">1500</sid>
+		<ang apply="1">0</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">1500</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">1500</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>7</Id>
+		<Name>WALL 150cm 0º MID</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>201</Thumbnail>
+		<sid apply="1">1500</sid>
+		<ang apply="1">0</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">1000</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">1000</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>8</Id>
+		<Name>WALL 150cm 0º LOW</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>204</Thumbnail>
+		<sid apply="1">1500</sid>
+		<ang apply="1">0</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">500</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">500</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position predefined="P4">
+		<Id>9</Id>
+		<Name>WALL 180cm 0º</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>203</Thumbnail>
+		<sid apply="1">1800</sid>
+		<ang apply="1">0</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">0</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="0">0</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>10</Id>
+		<Name>WALL 180cm 0º HIGH</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>202</Thumbnail>
+		<sid apply="1">1800</sid>
+		<ang apply="1">0</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">1500</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">1500</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>11</Id>
+		<Name>WALL 180cm 0º MID</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>201</Thumbnail>
+		<sid apply="1">1800</sid>
+		<ang apply="1">0</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">1000</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">1000</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>12</Id>
+		<Name>WALL 180cm 0º LOW</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>204</Thumbnail>
+		<sid apply="1">1800</sid>
+		<ang apply="1">0</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">500</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">500</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>13</Id>
+		<Name>WALL 100cm 10º HIGH</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>205</Thumbnail>
+		<sid apply="1">1000</sid>
+		<ang apply="1">100</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">1500</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">1500</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>14</Id>
+		<Name>WALL 100cm 10º MID</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>205</Thumbnail>
+		<sid apply="1">1000</sid>
+		<ang apply="1">100</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">1000</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">1000</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>15</Id>
+		<Name>WALL 100cm 10º LOW</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>205</Thumbnail>
+		<sid apply="1">1000</sid>
+		<ang apply="1">100</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">500</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">500</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>16</Id>
+		<Name>WALL 150cm 10º HIGH</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>205</Thumbnail>
+		<sid apply="1">1500</sid>
+		<ang apply="1">100</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">1500</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">1500</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>17</Id>
+		<Name>WALL 150cm 10º MID</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>205</Thumbnail>
+		<sid apply="1">1500</sid>
+		<ang apply="1">100</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">1000</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">1000</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>18</Id>
+		<Name>WALL 150cm 10º LOW</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>205</Thumbnail>
+		<sid apply="1">1500</sid>
+		<ang apply="1">100</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">500</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">500</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>19</Id>
+		<Name>WALL 180cm 10º HIGH</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>205</Thumbnail>
+		<sid apply="1">1800</sid>
+		<ang apply="1">100</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">1500</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">1500</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>20</Id>
+		<Name>WALL 180cm 10º MID</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>205</Thumbnail>
+		<sid apply="1">1800</sid>
+		<ang apply="1">100</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">1000</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">1000</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>21</Id>
+		<Name>WALL 180cm 10º LOW</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>205</Thumbnail>
+		<sid apply="1">1800</sid>
+		<ang apply="1">100</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">500</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">500</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>22</Id>
+		<Name>WALL 100cm -10º HIGH</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>206</Thumbnail>
+		<sid apply="1">1000</sid>
+		<ang apply="1">-100</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">1500</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">1500</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>23</Id>
+		<Name>WALL 100cm -10º MID</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>206</Thumbnail>
+		<sid apply="1">1000</sid>
+		<ang apply="1">-100</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">1000</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">1000</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>24</Id>
+		<Name>WALL 100cm -10º LOW</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>206</Thumbnail>
+		<sid apply="1">1000</sid>
+		<ang apply="1">-100</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">500</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">500</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>25</Id>
+		<Name>WALL 150cm -10º HIGH</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>206</Thumbnail>
+		<sid apply="1">1500</sid>
+		<ang apply="1">-100</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">1500</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">1500</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>26</Id>
+		<Name>WALL 150cm -10º MID</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>206</Thumbnail>
+		<sid apply="1">1500</sid>
+		<ang apply="1">-100</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">1000</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">1000</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>27</Id>
+		<Name>WALL 150cm -10º LOW</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>206</Thumbnail>
+		<sid apply="1">1500</sid>
+		<ang apply="1">-100</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">500</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">500</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>28</Id>
+		<Name>WALL 180cm -10º HIGH</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>206</Thumbnail>
+		<sid apply="1">1800</sid>
+		<ang apply="1">-100</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">1500</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">1500</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>29</Id>
+		<Name>WALL 180cm -10º MID</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>206</Thumbnail>
+		<sid apply="1">1800</sid>
+		<ang apply="1">-100</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">1000</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">1000</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>30</Id>
+		<Name>WALL 180cm -10º LOW</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>206</Thumbnail>
+		<sid apply="1">1800</sid>
+		<ang apply="1">-100</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">500</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">500</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>31</Id>
+		<Name>WALL 100cm 15º HIGH</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>205</Thumbnail>
+		<sid apply="1">1000</sid>
+		<ang apply="1">150</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">1500</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">1500</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>32</Id>
+		<Name>WALL 100cm 15º MID</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>205</Thumbnail>
+		<sid apply="1">1000</sid>
+		<ang apply="1">150</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">1000</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">1000</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>33</Id>
+		<Name>WALL 100cm 15º LOW</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>205</Thumbnail>
+		<sid apply="1">1000</sid>
+		<ang apply="1">150</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">500</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">500</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>34</Id>
+		<Name>WALL 150cm 15º HIGH</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>205</Thumbnail>
+		<sid apply="1">1500</sid>
+		<ang apply="1">150</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">1500</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">1500</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>35</Id>
+		<Name>WALL 150cm 15º MID</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>205</Thumbnail>
+		<sid apply="1">1500</sid>
+		<ang apply="1">150</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">1000</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">1000</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>36</Id>
+		<Name>WALL 150cm 15º LOW</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>205</Thumbnail>
+		<sid apply="1">1500</sid>
+		<ang apply="1">150</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">500</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">500</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>37</Id>
+		<Name>WALL 180cm 15º HIGH</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>205</Thumbnail>
+		<sid apply="1">1800</sid>
+		<ang apply="1">150</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">1500</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">1500</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>38</Id>
+		<Name>WALL 180cm 15º MID</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>205</Thumbnail>
+		<sid apply="1">1800</sid>
+		<ang apply="1">150</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">1000</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">1000</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>39</Id>
+		<Name>WALL 180cm 15º LOW</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>205</Thumbnail>
+		<sid apply="1">1800</sid>
+		<ang apply="1">150</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">500</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">500</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>40</Id>
+		<Name>WALL 100cm -15º HIGH</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>206</Thumbnail>
+		<sid apply="1">1000</sid>
+		<ang apply="1">-150</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">1500</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">1500</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>41</Id>
+		<Name>WALL 100cm -15º MID</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>206</Thumbnail>
+		<sid apply="1">1000</sid>
+		<ang apply="1">-150</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">1000</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">1000</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>42</Id>
+		<Name>WALL 100cm -15º LOW</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>206</Thumbnail>
+		<sid apply="1">1000</sid>
+		<ang apply="1">-150</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">500</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">500</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>43</Id>
+		<Name>WALL 150cm -15º HIGH</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>206</Thumbnail>
+		<sid apply="1">1500</sid>
+		<ang apply="1">-150</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">1500</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">1500</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>44</Id>
+		<Name>WALL 150cm -15º MID</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>206</Thumbnail>
+		<sid apply="1">1500</sid>
+		<ang apply="1">-150</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">1000</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">1000</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>45</Id>
+		<Name>WALL 150cm -15º LOW</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>206</Thumbnail>
+		<sid apply="1">1500</sid>
+		<ang apply="1">-150</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">500</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">500</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>46</Id>
+		<Name>WALL 180cm -15º HIGH</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>206</Thumbnail>
+		<sid apply="1">1800</sid>
+		<ang apply="1">-150</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">1500</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">1500</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>47</Id>
+		<Name>WALL 180cm -15º MID</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>206</Thumbnail>
+		<sid apply="1">1800</sid>
+		<ang apply="1">-150</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">1000</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">1000</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>48</Id>
+		<Name>WALL 180cm -15º LOW</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>206</Thumbnail>
+		<sid apply="1">1800</sid>
+		<ang apply="1">-150</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">500</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">500</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>49</Id>
+		<Name>WALL 100cm 20º HIGH</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>205</Thumbnail>
+		<sid apply="1">1000</sid>
+		<ang apply="1">200</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">1500</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">1500</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>50</Id>
+		<Name>WALL 100cm 20º MID</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>205</Thumbnail>
+		<sid apply="1">1000</sid>
+		<ang apply="1">200</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">1000</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">1000</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>51</Id>
+		<Name>WALL 100cm 20º LOW</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>205</Thumbnail>
+		<sid apply="1">1000</sid>
+		<ang apply="1">200</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">500</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">500</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>52</Id>
+		<Name>WALL 150cm 20º HIGH</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>205</Thumbnail>
+		<sid apply="1">1500</sid>
+		<ang apply="1">200</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">1500</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">1500</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>53</Id>
+		<Name>WALL 150cm 20º MID</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>205</Thumbnail>
+		<sid apply="1">1500</sid>
+		<ang apply="1">200</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">1000</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">1000</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>54</Id>
+		<Name>WALL 150cm 20º LOW</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>205</Thumbnail>
+		<sid apply="1">1500</sid>
+		<ang apply="1">200</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">500</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">500</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>55</Id>
+		<Name>WALL 180cm 20º HIGH</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>205</Thumbnail>
+		<sid apply="1">1800</sid>
+		<ang apply="1">200</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">1500</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">1500</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>56</Id>
+		<Name>WALL 180cm 20º MID</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>205</Thumbnail>
+		<sid apply="1">1800</sid>
+		<ang apply="1">200</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">1000</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">1000</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>57</Id>
+		<Name>WALL 180cm 20º LOW</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>205</Thumbnail>
+		<sid apply="1">1800</sid>
+		<ang apply="1">200</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">500</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">500</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>58</Id>
+		<Name>WALL 100cm -20º HIGH</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>206</Thumbnail>
+		<sid apply="1">1000</sid>
+		<ang apply="1">-200</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">1500</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">1500</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>59</Id>
+		<Name>WALL 100cm -20º MID</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>206</Thumbnail>
+		<sid apply="1">1000</sid>
+		<ang apply="1">-200</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">1000</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">1000</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>60</Id>
+		<Name>WALL 100cm -20º LOW</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>206</Thumbnail>
+		<sid apply="1">1000</sid>
+		<ang apply="1">-200</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">500</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">500</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>61</Id>
+		<Name>WALL 150cm -20º HIGH</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>206</Thumbnail>
+		<sid apply="1">1500</sid>
+		<ang apply="1">-200</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">1500</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">1500</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>62</Id>
+		<Name>WALL 150cm -20º MID</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>206</Thumbnail>
+		<sid apply="1">1500</sid>
+		<ang apply="1">-200</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">1000</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">1000</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>63</Id>
+		<Name>WALL 150cm -20º LOW</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>206</Thumbnail>
+		<sid apply="1">1500</sid>
+		<ang apply="1">-200</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">500</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">500</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>64</Id>
+		<Name>WALL 180cm -20º HIGH</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>206</Thumbnail>
+		<sid apply="1">1800</sid>
+		<ang apply="1">-200</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">1500</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">1500</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>65</Id>
+		<Name>WALL 180cm -20º MID</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>206</Thumbnail>
+		<sid apply="1">1800</sid>
+		<ang apply="1">-200</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">1000</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">1000</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>66</Id>
+		<Name>WALL 180cm -20º LOW</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>206</Thumbnail>
+		<sid apply="1">1800</sid>
+		<ang apply="1">-200</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">500</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">500</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>67</Id>
+		<Name>WALL 100cm 30º MID</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>205</Thumbnail>
+		<sid apply="1">1000</sid>
+		<ang apply="1">300</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">1000</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">1000</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>68</Id>
+		<Name>WALL 150cm 30º MID</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>205</Thumbnail>
+		<sid apply="1">1500</sid>
+		<ang apply="1">300</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">1000</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">1000</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>69</Id>
+		<Name>WALL 180cm 30º MID</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>205</Thumbnail>
+		<sid apply="1">1800</sid>
+		<ang apply="1">300</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">1000</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">1000</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>70</Id>
+		<Name>WALL 100cm -30º MID</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>206</Thumbnail>
+		<sid apply="1">1000</sid>
+		<ang apply="1">-300</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">1000</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">1000</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>71</Id>
+		<Name>WALL 150cm -30º MID</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>206</Thumbnail>
+		<sid apply="1">1500</sid>
+		<ang apply="1">-300</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">1000</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">1000</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>72</Id>
+		<Name>WALL 180cm -30º MID</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>206</Thumbnail>
+		<sid apply="1">1800</sid>
+		<ang apply="1">-300</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">1000</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">1000</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>73</Id>
+		<Name>WALL 100cm 45º MID</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>205</Thumbnail>
+		<sid apply="1">1000</sid>
+		<ang apply="1">450</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">1000</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">1000</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>74</Id>
+		<Name>WALL 150cm 45º MID</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>205</Thumbnail>
+		<sid apply="1">1500</sid>
+		<ang apply="1">450</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">1000</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">1000</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>75</Id>
+		<Name>WALL 180cm 45º MID</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>205</Thumbnail>
+		<sid apply="1">1800</sid>
+		<ang apply="1">450</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">1000</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">1000</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>76</Id>
+		<Name>WALL 100cm -45º MID</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>206</Thumbnail>
+		<sid apply="1">1000</sid>
+		<ang apply="1">-450</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">1000</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">1000</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>77</Id>
+		<Name>WALL 150cm -45º MID</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>206</Thumbnail>
+		<sid apply="1">1500</sid>
+		<ang apply="1">-450</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">1000</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">1000</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>78</Id>
+		<Name>WALL 180cm -45º MID</Name>
+		<Description />
+		<Type>2</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>206</Thumbnail>
+		<sid apply="1">1800</sid>
+		<ang apply="1">-450</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">1000</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="1">1000</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position predefined="P1">
+		<Id>100</Id>
+		<Name>TABLE 100cm 0º</Name>
+		<Description />
+		<Type>1</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>101</Thumbnail>
+		<sid apply="1">1000</sid>
+		<ang apply="1">0</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="1">150</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="1">750</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="0">0</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>101</Id>
+		<Name>TABLE 100cm 5º</Name>
+		<Description />
+		<Type>1</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>105</Thumbnail>
+		<sid apply="1">1000</sid>
+		<ang apply="1">50</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="1">150</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="1">750</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="0">0</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>102</Id>
+		<Name>TABLE 100cm -5º</Name>
+		<Description />
+		<Type>1</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>106</Thumbnail>
+		<sid apply="1">1000</sid>
+		<ang apply="1">-50</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="1">150</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="1">750</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="0">0</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>103</Id>
+		<Name>TABLE 100cm 10º</Name>
+		<Description />
+		<Type>1</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>105</Thumbnail>
+		<sid apply="1">1000</sid>
+		<ang apply="1">100</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="1">150</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="1">750</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="0">0</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>104</Id>
+		<Name>TABLE 100cm -10º</Name>
+		<Description />
+		<Type>1</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>106</Thumbnail>
+		<sid apply="1">1000</sid>
+		<ang apply="1">-100</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="1">150</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="1">750</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="0">0</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>105</Id>
+		<Name>TABLE 100cm 15º</Name>
+		<Description />
+		<Type>1</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>105</Thumbnail>
+		<sid apply="1">1000</sid>
+		<ang apply="1">150</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="1">150</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="1">750</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="0">0</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>106</Id>
+		<Name>TABLE 100cm -15º</Name>
+		<Description />
+		<Type>1</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>106</Thumbnail>
+		<sid apply="1">1000</sid>
+		<ang apply="1">-150</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="1">150</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="1">750</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="0">0</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>107</Id>
+		<Name>TABLE 100cm 20º</Name>
+		<Description />
+		<Type>1</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>105</Thumbnail>
+		<sid apply="1">1000</sid>
+		<ang apply="1">200</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="1">150</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="1">750</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="0">0</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>108</Id>
+		<Name>TABLE 100cm -20º</Name>
+		<Description />
+		<Type>1</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>106</Thumbnail>
+		<sid apply="1">1000</sid>
+		<ang apply="1">-200</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="1">150</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="1">750</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="0">0</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>109</Id>
+		<Name>TABLE 100cm 25º</Name>
+		<Description />
+		<Type>1</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>105</Thumbnail>
+		<sid apply="1">1000</sid>
+		<ang apply="1">250</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="1">150</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="1">750</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="0">0</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>110</Id>
+		<Name>TABLE 100cm -25º</Name>
+		<Description />
+		<Type>1</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>106</Thumbnail>
+		<sid apply="1">1000</sid>
+		<ang apply="1">-250</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="1">150</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="1">750</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="0">0</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>111</Id>
+		<Name>TABLE 100cm 30º</Name>
+		<Description />
+		<Type>1</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>105</Thumbnail>
+		<sid apply="1">1000</sid>
+		<ang apply="1">300</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="1">150</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="1">750</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="0">0</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>112</Id>
+		<Name>TABLE 100cm -30º</Name>
+		<Description />
+		<Type>1</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>106</Thumbnail>
+		<sid apply="1">1000</sid>
+		<ang apply="1">-300</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="1">150</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="1">750</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="0">0</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>113</Id>
+		<Name>TABLE 120cm 45º</Name>
+		<Description />
+		<Type>1</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>105</Thumbnail>
+		<sid apply="1">1200</sid>
+		<ang apply="1">450</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="1">150</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="1">750</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="0">0</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>114</Id>
+		<Name>TABLE 120cm -45º</Name>
+		<Description />
+		<Type>1</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>106</Thumbnail>
+		<sid apply="1">1200</sid>
+		<ang apply="1">-450</ang>
+		<rot apply="1">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="0">0</tube_x>
+		<tube_y apply="0">0</tube_y>
+		<tube_z apply="0">0</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="1">150</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="1">750</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="0">0</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>300</Id>
+		<Name>Over Table</Name>
+		<Description />
+		<Type>0</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>1</Thumbnail>
+		<sid apply="0">0</sid>
+		<ang apply="0">0</ang>
+		<rot apply="0">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="1">-3</tube_beta>
+		<tube_x apply="1">1096</tube_x>
+		<tube_y apply="1">1869</tube_y>
+		<tube_z apply="1">1469</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">0</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="0">0</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>301</Id>
+		<Name>Bed</Name>
+		<Description />
+		<Type>0</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>1</Thumbnail>
+		<sid apply="0">0</sid>
+		<ang apply="0">0</ang>
+		<rot apply="0">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="1">1096</tube_x>
+		<tube_y apply="1">1869</tube_y>
+		<tube_z apply="1">1469</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">0</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="0">0</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position>
+		<Id>302</Id>
+		<Name>Over Wall Stand</Name>
+		<Description />
+		<Type>0</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>1</Thumbnail>
+		<sid apply="0">0</sid>
+		<ang apply="0">0</ang>
+		<rot apply="0">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="1">1096</tube_x>
+		<tube_y apply="1">1869</tube_y>
+		<tube_z apply="1">1469</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">0</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="0">0</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position predefined="P3">
+		<Id>303</Id>
+		<Name>Over Wall Stand</Name>
+		<Description />
+		<Type>0</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>1</Thumbnail>
+		<sid apply="0">0</sid>
+		<ang apply="0">0</ang>
+		<rot apply="0">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="1">1096</tube_x>
+		<tube_y apply="1">1869</tube_y>
+		<tube_z apply="1">1469</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">0</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="0">0</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+	<position predefined="Parking">
+		<Id>304</Id>
+		<Name>Parking</Name>
+		<Description />
+		<Type>0</Type>
+		<CollisionAvoidance>1</CollisionAvoidance>
+		<TrackingOnAfterPositioning>1</TrackingOnAfterPositioning>
+		<DetentsOnAfterPositioning>1</DetentsOnAfterPositioning>
+		<Thumbnail>1</Thumbnail>
+		<sid apply="0">0</sid>
+		<ang apply="0">0</ang>
+		<rot apply="0">0</rot>
+		<offset_x apply="0">0</offset_x>
+		<offset_y apply="0">0</offset_y>
+		<tube_alpha apply="0">0</tube_alpha>
+		<tube_beta apply="0">0</tube_beta>
+		<tube_x apply="1">1096</tube_x>
+		<tube_y apply="1">1869</tube_y>
+		<tube_z apply="1">1469</tube_z>
+		<tube_arm apply="0">0</tube_arm>
+		<table_rec apply="0">0</table_rec>
+		<table_tilt apply="0">0</table_tilt>
+		<table_height apply="0">0</table_height>
+		<table_tabletop_x apply="0">0</table_tabletop_x>
+		<table_tabletop_y apply="0">0</table_tabletop_y>
+		<table_detector_holder_rot apply="0">0</table_detector_holder_rot>
+		<table_detector_rot apply="0">0</table_detector_rot>
+		<wstand_height apply="0">0</wstand_height>
+		<wstand_tilt apply="0">0</wstand_tilt>
+		<wstand_column_x apply="0">0</wstand_column_x>
+		<wstand_column_rot apply="0">0</wstand_column_rot>
+		<wstand_detector_holder_rot apply="0">0</wstand_detector_holder_rot>
+		<wstand_detector_rot apply="0">0</wstand_detector_rot>
+	</position>
+</Positions>

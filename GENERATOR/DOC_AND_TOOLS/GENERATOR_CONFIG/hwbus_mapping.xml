@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Maps xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Configuration_Management>
+		<Revision>1.0.0</Revision>
+		<Revision_Date>2018/06/21 09:00:00</Revision_Date>
+		<Last_modification>2018/06/21 09:00:00</Last_modification>
+	</Configuration_Management>
+	<Map Name="Table">
+	  	<Id>1</Id>
+		<Switches>
+			<Switch>
+				<Id>1</Id>
+				<PrepRadStatus>true</PrepRadStatus>
+				<ExpRadStatus>false<ExpRadStatus/>
+				<FlStatus>false<FlStatus>
+				<DM1Status xsi:nil="true" />
+				<DM2Status xsi:nil="true" />
+			</Switch>
+			<Switch>
+				<Id>2</Id>
+				<PrepRadStatus>true</PrepRadStatus>
+				<ExpRadStatus>true<ExpRadStatus/>
+				<FlStatus xsi:nil="true" />
+				<DM1Status xsi:nil="true" />
+				<DM2Status xsi:nil="true" />
+			</Switch>
+			<Switch>
+				<Id>3</Id>
+				<PrepRadStatus xsi:nil="true" />
+				<ExpRadStatus xsi:nil="true" />
+				<FlStatus xsi:nil="true" />
+				<DM1Status xsi:nil="true" />
+				<DM2Status xsi:nil="true" />
+			</Switch>
+			<Switch>
+				<Id>4</Id>
+				<PrepRadStatus xsi:nil="true" />
+				<ExpRadStatus xsi:nil="true" />
+				<FlStatus xsi:nil="true" />
+				<DM1Status xsi:nil="true" />
+				<DM2Status xsi:nil="true" />
+			</Switch>
+			<Switch>
+				<Id>5</Id>
+				<PrepRadStatus xsi:nil="true" />
+				<ExpRadStatus xsi:nil="true" />
+				<FlStatus xsi:nil="true" />
+				<DM1Status xsi:nil="true" />
+				<DM2Status xsi:nil="true" />
+			</Switch>
+			<Switch>
+				<Id>6</Id>
+				<PrepRadStatus xsi:nil="true" />
+				<ExpRadStatus xsi:nil="true" />
+				<FlStatus xsi:nil="true" />
+				<DM1Status xsi:nil="true" />
+				<DM2Status xsi:nil="true" />
+			</Switch>
+		</Switches>
+	</Map>
+</Maps>

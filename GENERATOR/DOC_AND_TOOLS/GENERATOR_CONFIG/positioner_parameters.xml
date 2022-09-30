@@ -1,0 +1,223 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Parameters xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Configuration_Management>
+    <Revision>1.0</Revision>
+    <Revision_Date>2016/07/28 15:37:33</Revision_Date>
+    <Last_modification>12/14/2017 15:40:00</Last_modification>
+  </Configuration_Management>
+  <!-- SID -->
+  <Parameter id="SID">
+    <Available>true</Available>
+    <Relative>true</Relative>
+    <Absolute>false</Absolute>
+    <Table>true</Table>
+    <Wallstand>true</Wallstand>
+    <Units>millimeters</Units>
+    <MinRange>700</MinRange>
+    <MaxRange>1800</MaxRange>
+  </Parameter>
+
+  <!-- X-RAYS TUBE ANGLE -->
+  <Parameter id="Angle">
+    <Available>true</Available>
+    <Relative>true</Relative>
+    <Absolute>false</Absolute>
+    <Table>true</Table>
+    <Wallstand>true</Wallstand>
+    <Units>degrees</Units>
+    <MinRange>-450</MinRange>
+    <MaxRange>450</MaxRange>
+  </Parameter>
+
+  <!-- X-RAYS TUBE ROTATION -->
+  <Parameter id="Rotation">
+    <Available>true</Available>
+    <Relative>true</Relative>
+    <Absolute>false</Absolute>
+    <Table>true</Table>
+    <Wallstand>true</Wallstand>
+    <Units>degrees</Units>
+    <MinRange>0</MinRange>
+    <MaxRange>0</MaxRange>
+  </Parameter>
+
+  <!-- X-RAYS TUBE ALFA -->
+  <Parameter id="Alpha">
+    <Available>true</Available>
+    <Relative>false</Relative>
+    <Absolute>true</Absolute>
+    <Table>true</Table>
+    <Wallstand>true</Wallstand>
+    <Units>degrees</Units>
+    <MinRange>900</MinRange>
+    <MaxRange>900</MaxRange>
+  </Parameter>
+
+  <!-- X-RAYS TUBE BETA -->
+  <Parameter id="Beta">
+    <Available>true</Available>
+    <Relative>false</Relative>
+    <Absolute>true</Absolute>
+    <Table>true</Table>
+    <Wallstand>true</Wallstand>
+    <Units>degrees</Units>
+    <MinRange>0</MinRange>
+    <MaxRange>0</MaxRange>
+  </Parameter>
+
+  <!-- X-RAYS TUBE POSITION X -->
+  <Parameter id="PositionX">
+    <Available>true</Available>
+    <Relative>false</Relative>
+    <Absolute>true</Absolute>
+    <Table>true</Table>
+    <Wallstand>true</Wallstand>
+    <Units>millimeters</Units>
+    <MinRange>0</MinRange>
+    <MaxRange>0</MaxRange>
+  </Parameter>
+
+  <!-- X-RAYS TUBE POSITION Y -->
+  <Parameter id="PositionY">
+    <Available>true</Available>
+    <Relative>false</Relative>
+    <Absolute>true</Absolute>
+    <Table>true</Table>
+    <Wallstand>true</Wallstand>
+    <Units>millimeters</Units>
+    <MinRange>0</MinRange>
+    <MaxRange>0</MaxRange>
+  </Parameter>
+
+  <!-- X-RAYS TUBE POSITION Z -->
+  <Parameter id="PositionZ">
+    <Available>true</Available>
+    <Relative>false</Relative>
+    <Absolute>true</Absolute>
+    <Table>true</Table>
+    <Wallstand>true</Wallstand>
+    <Units>millimeters</Units>
+    <MinRange>0</MinRange>
+    <MaxRange>0</MaxRange>
+  </Parameter>
+
+  <!-- TABLE ARM ANGLE -->
+  <Parameter id="ArmAngle">
+    <Available>false</Available>
+    <Relative>true</Relative>
+    <Absolute>true</Absolute>
+    <Table>true</Table>
+    <Wallstand>false</Wallstand>
+    <Units>degrees</Units>
+    <MinRange>0</MinRange>
+    <MaxRange>0</MaxRange>
+  </Parameter>
+
+  <!-- TABLE DETECTOR POSITION -->
+  <Parameter id="TableDetectorPosition">
+    <Available>true</Available>
+    <Relative>true</Relative>
+    <Absolute>false</Absolute>
+    <Table>true</Table>
+    <Wallstand>false</Wallstand>
+    <Units>millimeters</Units>
+    <MinRange>0</MinRange>
+    <MaxRange>0</MaxRange>
+  </Parameter>
+
+  <!-- TABLE TILTING ANGLE -->
+  <Parameter id="TableTiltingAngle">
+    <Available>false</Available>
+    <Relative>true</Relative>
+    <Absolute>true</Absolute>
+    <Table>true</Table>
+    <Wallstand>false</Wallstand>
+    <Units>degrees</Units>
+    <MinRange>0</MinRange>
+    <MaxRange>0</MaxRange>
+  </Parameter>
+
+  <!-- TABLE HEIGHT -->
+  <Parameter id="TableHeight">
+    <Available>true</Available>
+    <Relative>true</Relative>
+    <Absolute>false</Absolute>
+    <Table>true</Table>
+    <Wallstand>false</Wallstand>
+    <Units>millimeters</Units>
+    <MinRange>0</MinRange>
+    <MaxRange>0</MaxRange>
+  </Parameter>
+
+  <!-- TABLE TOP X -->
+  <Parameter id="TableTopX">
+    <Available>false</Available>
+    <Relative>false</Relative>
+    <Absolute>false</Absolute>
+    <Table>false</Table>
+    <Wallstand>false</Wallstand>
+    <Units>millimeters</Units>
+    <MinRange>0</MinRange>
+    <MaxRange>0</MaxRange>
+  </Parameter>
+
+  <!-- TABLE TOP Y -->
+  <Parameter id="TableTopY">
+    <Available>false</Available>
+    <Relative>false</Relative>
+    <Absolute>false</Absolute>
+    <Table>false</Table>
+    <Wallstand>false</Wallstand>
+    <Units>millimeters</Units>
+    <MinRange>0</MinRange>
+    <MaxRange>0</MaxRange>
+  </Parameter>
+
+  <!-- WALLSTAND HEIGHT -->
+  <Parameter id="WallstandHeight">
+    <Available>false</Available>
+    <Relative>true</Relative>
+    <Absolute>false</Absolute>
+    <Table>false</Table>
+    <Wallstand>true</Wallstand>
+    <Units>millimeters</Units>
+    <MinRange>400</MinRange>
+    <MaxRange>1800</MaxRange>
+  </Parameter>
+
+  <!-- WALLSTAND TILTING ANGLE -->
+  <Parameter id="WallstandTiltingAngle">
+    <Available>false</Available>
+    <Relative>true</Relative>
+    <Absolute>false</Absolute>
+    <Table>false</Table>
+    <Wallstand>true</Wallstand>
+    <Units>degrees</Units>
+    <MinRange>-200</MinRange>
+    <MaxRange>900</MaxRange>
+  </Parameter>
+
+  <!-- WALLSTAND COLUMN POSITION -->
+  <Parameter id="WallstandColumnPosition">
+    <Available>false</Available>
+    <Relative>false</Relative>
+    <Absolute>true</Absolute>
+    <Table>false</Table>
+    <Wallstand>true</Wallstand>
+    <Units>millimeters</Units>
+    <MinRange>0</MinRange>
+    <MaxRange>0</MaxRange>
+  </Parameter>
+
+  <!-- WALLSTAND COLUMN ROTATION -->
+  <Parameter id="WallstandColumnRotation">
+    <Available>false</Available>
+    <Relative>false</Relative>
+    <Absolute>true</Absolute>
+    <Table>false</Table>
+    <Wallstand>true</Wallstand>
+    <Units>degrees</Units>
+    <MinRange>0</MinRange>
+    <MaxRange>0</MaxRange>
+  </Parameter>
+</Parameters>

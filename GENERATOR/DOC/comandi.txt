@@ -1,6 +1,23 @@
-<E 0 StartExposure 2D>
+
+
+
+
+______________________________________________________
+////// 2D /////////////////////////////
+<E 0 SetExposurePulse 25 500 LARGE NO_DETECTOR NO_GRID>
+<E 0 SetExposurePulse 25 100 LARGE NO_DETECTOR GRID>
+<E 0 SetExposurePulse 25 400 LARGE DETECTOR GRID>
+
+<E 0 StartExposure 2D >
+
+_____________________________________________________
+////// AEC ////////////////////////////
+
+<E 0 SetExposurePre 25 50 LARGE>
+<E 0 SetExposurePulse 25 200 LARGE DETECTOR GRID>
+
+<E 0 StartExposure 2DAEC >
+
+____________________________________________________
 <E 0 AbortExposure>
 <E 0 GetPostExposure>
-
-<E 0 SetExposurePulse 25 600 LARGE>
-<E 0 SetExposurePre 25 100 LARGE>

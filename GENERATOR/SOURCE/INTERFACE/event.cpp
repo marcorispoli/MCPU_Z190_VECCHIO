@@ -43,6 +43,15 @@ void Server::EventSetXrayEna(ushort seq, bool state){
     return ;
 }
 
+void Server::EventGetPulseData(ushort seq){
+
+    QList<QString> event;
+    event.append(QString("%1").arg(seq));
+    event.append("EventGetPulseData");
+    sendEvent(&event);
+    return ;
+}
+
 void Server::EventXrayCompleted(ushort seq, uchar code, uchar error){
 
     QList<QString> event;
@@ -60,6 +69,17 @@ void Server::EventStatus(ushort seq, uchar stat){
     event.append(QString("%1").arg(seq));
     event.append("EventStatus");
     event.append(QString("%1").arg(stat));
+
+    sendEvent(&event);
+    return ;
+}
+
+void Server::EventSwError(ushort seq, uchar error){
+
+    QList<QString> event;
+    event.append(QString("%1").arg(seq));
+    event.append("EventSwError");
+    event.append(QString("%1").arg(error));
 
     sendEvent(&event);
     return ;

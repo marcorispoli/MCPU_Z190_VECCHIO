@@ -41,12 +41,15 @@ QList<QString> Server::SetExposurePre(QList<QString>* command){
  *  - (3): (float)  kV;
  *  - (4): (ushort) mAs;
  *  - (5): (string) focus: LARGE/SMALL;
+ *  - (6): (string) detector synch: NO_DETECOR/DETECTOR
+ *  - (7): (string) grid synch: NO_GRID/GRID
+ *
  * @return
  */
 QList<QString> Server::SetExposurePulse(QList<QString>* command){
     QList<QString> answer;
 
-    if(command->size() != 6) {
+    if(command->size() != 8) {
         answer.append("NOK 1");
         return answer;
     }
@@ -54,7 +57,13 @@ QList<QString> Server::SetExposurePulse(QList<QString>* command){
     Interface::tExposureFocus focus = Interface::_FOCUS_SMALL;
     if(command->at(5) == "LARGE") focus = Interface::_FOCUS_LARGE;
 
-    STATUS->setPulseData(focus, command->at(3).toFloat(), command->at(4).toUShort());
+    bool detector, grid;
+    if(command->at(6) == "NO_DETECTOR") detector = false;
+    else detector =true;
+    if(command->at(7) == "NO_GRID") grid = false;
+    else grid =true;
+
+    STATUS->setPulseData(focus, command->at(3).toFloat(), command->at(4).toUShort(), detector, grid);
     answer.append(command->at(1)); // SEQ
     answer.append("OK");
     return answer;

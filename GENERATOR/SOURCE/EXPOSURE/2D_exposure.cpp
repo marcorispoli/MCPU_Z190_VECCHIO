@@ -23,7 +23,7 @@ void statusManager::handle_2D_MANUAL(void){
 
         // Load Data Bank
         wait_command_processed = true;
-        COMMUNICATION->set2DDataBank(R2CP::DB_Pulse,focus,pulse_kV,pulse_mAs,mA,mS);
+        COMMUNICATION->set2DDataBank(R2CP::DB_Pulse,focus,pulse_kV,pulse_mAs);
         break;
 
     case 2:
@@ -36,7 +36,7 @@ void statusManager::handle_2D_MANUAL(void){
 
         // Procedure activation
         wait_command_processed = true;
-        COMMUNICATION->activate2DProcedurePulse();
+        COMMUNICATION->activate2DProcedurePulse(use_detector, use_grid);
         break;
 
     case 3:

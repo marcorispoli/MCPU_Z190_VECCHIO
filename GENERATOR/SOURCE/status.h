@@ -4,7 +4,30 @@
 #include <QObject>
 #include "Typedef.h"
 
-
+/**
+ * @brief This is the statusManager implementation class
+ *  \nosubgrouping
+ *
+ * This class implements a Status Machine to control
+ * the Generator workflow.
+ *
+ * The basic status that the class handle are:
+ *     + SMS_SMART_HUB_CONNECTION: this is the status controlling the connection with the smart Hub
+ *     + SMS_WAIT_GENERATOR_CONNECTION,
+ *     SMS_SETUP_GENERATOR,
+ *     SMS_SERVICE,
+ *     SMS_IDLE,
+ *     SMS_CLEAR_SYS_MESSAGES,
+ *
+ *
+ * # Template Hardware Communication Class
+ * This module makes use of an arbitrary communication API.
+ * The class implementing the Hardware Communication API shall
+ * implement the following interface methods:
+ * be passed as a Template class
+ *
+ *
+ */
 class statusManager : public QObject
 {
     Q_OBJECT
@@ -12,28 +35,25 @@ class statusManager : public QObject
 public:
     explicit statusManager(QObject *parent = nullptr);
 
-
-    void aecPulsData(uchar foc, float kv, ushort mAs){
-        focus = foc;
-        pulse_kV = kv;
-        pulse_mAs = mAs;
-        aecDataPresent = true;
-    }
-
     void setPreData(uchar foc, float kv, ushort mAs){
         focus = foc;
         pre_kV = kv;
         pre_mAs = mAs;
+        use_detector = true;
+        use_grid = true;
+        aecDataPresent = false;
+
     }
 
-    void setPulseData(uchar foc, float kv, ushort mAs){
+    void setPulseData(uchar foc, float kv, ushort mAs, bool detector, bool grid){
         focus = foc;
         pulse_kV = kv;
         pulse_mAs = mAs;
+        use_detector = detector;
+        use_grid = grid;
+        aecDataPresent = true;
+
     }
-
-
-
 
     _inline void setGeneratorStatusChanged(void ) {generator_status_changed = true;}
     _inline void start2DExposure(void){ abortRxRequest = false; requestState = SMS_EXECUTING_2D_MANUAL;  }
@@ -69,9 +89,9 @@ public:
       SMS_UNDEFINED = 0,
       SMS_SMART_HUB_CONNECTION,
       SMS_WAIT_GENERATOR_CONNECTION,
+      SMS_SETUP_GENERATOR,
       SMS_SERVICE,
       SMS_IDLE,
-      SMS_MESSAGE_NOTIFY,
       SMS_CLEAR_SYS_MESSAGES,
       SMS_EXECUTING_2D_MANUAL,
       SMS_EXECUTING_2D_AEC,
@@ -81,18 +101,6 @@ public:
       SMS_EXECUTING_AE_AEC,
       SMS_ERROR,
     }_statusManagerState;
-
-    typedef enum{
-      SMS_ERR_NONE = 0,
-      SMS_ERR_EXPOSURE,
-      SMS_ERR_SYSMSG,
-      SMS_ERR_GENERIC,
-    }_statusErrors;
-
-    typedef enum{
-      SMS_GENERIC_ERR_NONE = 0,
-      SMS_ERR_GENERATOR_CONNECTION,
-    }_genericErrors;
 
     typedef enum{
       SMS_EXP_ERR_NONE = 0,
@@ -130,7 +138,9 @@ private:
     void handleCommandProcessedState(void);
     void handle_SH_CONNECTION(void);
     void handle_GENERATOR_CONNECTION(void);
-    void handle_SMS_MESSAGE_NOTIFY(void);
+    void handle_SETUP_GENERATOR(void);
+
+
     void handle_CLEAR_ALL_SMS_MESSAGES(void);
 
     void handle_SMS_IDLE(void);
@@ -150,6 +160,8 @@ private:
     ushort      pulse_mAs;
 
 
+    bool        use_detector;
+    bool        use_grid;
     uchar       focus;
     uchar       fps;
     uchar       skeep_fps;

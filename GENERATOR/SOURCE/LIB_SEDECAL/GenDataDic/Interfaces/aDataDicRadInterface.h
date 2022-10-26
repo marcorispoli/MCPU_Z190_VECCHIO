@@ -589,14 +589,17 @@ namespace R2CP
     // __________________________________________ / GENERATOR STATUS
     //___________________________________________ PROCEDURE DEFINITION
     typedef enum{
-        ProcId_Standard_Mammography_2D=1,
-        ProcId_Aec_Mammography_2D,
-        ProcId_Standard_Mammography_3D,
-        ProcId_Aec_Mammography_3D,
+        ProcId_Standard_Test=1, // No detector no grid
+        ProcId_Standard_Test_with_grid, // No detector, with grid
+        ProcId_Standard_Mammography_2D, // with grid
+        ProcId_Aec_Mammography_2D, // with grid
+        ProcId_Standard_Mammography_3D, // no grid
+        ProcId_Aec_Mammography_3D, // no grid
         ProcId_Last
     }tProcedureId;
 
     typedef enum{
+        ProcType_Standard_test=1,
         ProcType_Standard_Mammography_2D=50,
         ProcType_Aec_Mammography_2D=51,
         ProcType_Standard_Mammography_3D=10,

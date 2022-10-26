@@ -72,6 +72,8 @@ public:
     void EventExposureError(ushort seq, uchar code);
     void EventSetXrayEna(ushort seq, bool state);
     void EventXrayCompleted(ushort seq, uchar code, uchar error);
+    void EventSwError(ushort seq, uchar error);
+    void EventGetPulseData(ushort seq);
 
 private:
 

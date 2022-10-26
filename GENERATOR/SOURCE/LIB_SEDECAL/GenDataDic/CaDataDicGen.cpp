@@ -254,7 +254,7 @@ namespace R2CP
         byte pData[3];
         pData[0] =  6;
         pData[1] =  0;
-        pData[2] =  0;
+        pData[2] =  'A';
         (void)m_Type_-> Set(    ETH_LOWEST_PRIORITY,
                                 GENERATOR_NODE_ID,
                                 mNodeId,

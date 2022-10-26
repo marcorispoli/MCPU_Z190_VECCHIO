@@ -20,9 +20,13 @@
 
 
     #define SH_NODE_ID              1
-    #define APPLICATION_NODE_ID 	3
+    #define APPLICATION_NODE_ID 	17
     #define GENERATOR_NODE_ID       6
-    #define IP_ADDRESS  "127.0.0.1"
+    #define DIRECT_WORKSTATION_ID   1
+    #define DETECTOR_WORKSTATION_ID 5
+
+
+    #define IP_ADDRESS  "192.6.1.201"
     #define HUB_PORT    10000
 
     #include <QObject>
@@ -43,11 +47,17 @@
 
         typedef enum{
           _EXP_ERR_NONE = 0,
+          _EXP_ERR_PRE_VALIDATION,
           _EXP_ERR_PULSE_VALIDATION,
           _EXP_ERR_GENERATOR_COMMAND,
           _EXP_ERR_GENERATOR_ERRORS,
           _EXP_ERR_ABORT_REQUEST,
         }tExposurErrors;
+
+        typedef enum{
+          _SW_ERR_NONE = 0,
+          _SW_ERR_GENERATOR_SETUP,
+        }tSwErrors;
 
         typedef enum{
             _FOCUS_SMALL = 0,

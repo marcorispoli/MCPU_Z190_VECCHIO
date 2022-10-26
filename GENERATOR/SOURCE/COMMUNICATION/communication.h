@@ -67,7 +67,7 @@ public:
 
     _inline void getGeneratorStatusV5() {R2CP::CaDataDicGen::GetInstance()->Generator_Get_StatusV5();}
     _inline void getGeneratorStatusV6() {R2CP::CaDataDicGen::GetInstance()->Generator_Get_StatusV6();}
-    _inline void set2DDataBank(uchar i, uchar focus, float kV, uint mAs, uint mA, uint mS) {R2CP::CaDataDicGen::GetInstance()->Generator_Set_2D_Databank(i,focus,kV,mAs,mA,mS);}
+    _inline void set2DDataBank(uchar i, uchar focus, float kV, uint mAs) {R2CP::CaDataDicGen::GetInstance()->Generator_Set_2D_Databank(i,focus,kV,mAs);}
     _inline bool isDbInitialized(uchar i){return R2CP::CaDataDicGen::GetInstance()->radInterface.isDbInitialized(i);}
 
 
@@ -86,7 +86,7 @@ public:
     _inline void assignDbToProc(uint8_t db, uint8_t proc, uint8_t index){R2CP::CaDataDicGen::GetInstance()->Generator_AssignDbToProc(db, proc, index);}
     _inline void verifyDbToProc(uint8_t proc, uint8_t index){R2CP::CaDataDicGen::GetInstance()->Generator_verifyDbToProc(proc, index);}
 
-    _inline void activate2DProcedurePulse(void){R2CP::CaDataDicGen::GetInstance()->Patient_Activate2DProcedurePulse();}
+    _inline void activate2DProcedurePulse(bool detector, bool grid){R2CP::CaDataDicGen::GetInstance()->Patient_Activate2DProcedurePulse(detector, grid);}
 
     _inline void activate2DAecProcedurePulse(void){R2CP::CaDataDicGen::GetInstance()->Patient_Activate2DAecProcedurePulse();}
     _inline void activate2DAecProcedurePre(void){R2CP::CaDataDicGen::GetInstance()->Patient_Activate2DAecProcedurePre();}

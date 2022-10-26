@@ -166,9 +166,9 @@ namespace R2CP
         void Patient_SetupProcedureV5(byte num);
         void Patient_SetupProcedureV6(byte num);
         void Patient_ClearAllProcedures(void);
-        void Generator_Set_2D_Databank(uchar i, uchar focus, float kV, uint mAs, uint mA, uint mS);
+        void Generator_Set_2D_Databank(uchar i, uchar focus, float kV, uint mAs);
 
-        void Patient_Activate2DProcedurePulse(void);
+        void Patient_Activate2DProcedurePulse(bool detector, bool grid);
 
         void Patient_Activate2DAecProcedurePulse(void);
         void Patient_Activate2DAecProcedurePre(void);

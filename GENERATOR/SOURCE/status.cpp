@@ -11,9 +11,6 @@ statusManager::statusManager( QObject *parent)
     abortRxRequest = false;
     interfaceStatus = Interface::_STATUS_NOT_READY;
 
-    //connect(pComm, SIGNAL(generatorStatusSgn()), window, SLOT(onRecetionGenStatusSlot()), Qt::QueuedConnection);
-    //connect(pComm, SIGNAL(systemMessageEventSgn()), window, SLOT(onSystemMessageEventSlot()), Qt::QueuedConnection);
-
     internalState = SMS_UNDEFINED;
     changeStatus(SMS_SMART_HUB_CONNECTION,0,SMS_SMART_HUB_CONNECTION,0);
 }
@@ -28,6 +25,7 @@ void statusManager::changeStatus(_statusManagerState new_status, uchar sub, _sta
 
     subStatus = sub;
     wait_command_processed = false;
+    command_process_state = true;
     cp_timeout = 100;
     QTimer::singleShot(0, this, SLOT(handleCurrentStatus()));
 }
@@ -67,6 +65,7 @@ void statusManager::handleCommandProcessedState(void){
 void statusManager::handleCurrentStatus(void){
     static uchar interfaceStatus_back = Interface::_STATUS_NOT_READY;
 
+    // When a command processed return code is requested, the state machine is suspendend
     if(wait_command_processed){
         handleCommandProcessedState();
         return;
@@ -111,12 +110,11 @@ void statusManager::handleCurrentStatus(void){
 
     switch(internalState){
 
-    case SMS_MESSAGE_NOTIFY:            handle_SMS_MESSAGE_NOTIFY(); break;
     case SMS_CLEAR_SYS_MESSAGES:        handle_CLEAR_ALL_SMS_MESSAGES(); break;
     case SMS_IDLE:                      handle_SMS_IDLE(); break;
     case SMS_EXECUTING_2D_MANUAL:       handle_2D_MANUAL(); break;
     case SMS_EXECUTING_2D_AEC:          handle_2D_AEC(); break;
-
+    case SMS_SETUP_GENERATOR:           handle_SETUP_GENERATOR();break;
     }
 
 }
@@ -163,7 +161,6 @@ void statusManager::handle_GENERATOR_CONNECTION(void){
         init = false;
         wait_command_processed = true;
         COMMUNICATION->setProtocolVersion6();subStatus++;
-
         break;
 
      case 1:
@@ -203,134 +200,131 @@ void statusManager::handle_GENERATOR_CONNECTION(void){
         }
         qDebug() << "Generator in Standby";
 
+        changeStatus(SMS_SETUP_GENERATOR,0,SMS_SETUP_GENERATOR,0);
+        return;
+    }
+
+    QTimer::singleShot(10, this, SLOT(handleCurrentStatus()));
+
+}
+
+void statusManager::handle_SETUP_GENERATOR(void){
+    static bool error_condition = false;
+
+    // In case of an error condition detected, the processn stands in this status
+    if(error_condition){
+      interfaceStatus = Interface::_STATUS_ERROR;
+      QTimer::singleShot(100, this, SLOT(handleCurrentStatus()));
+
+      return;
+    }
+
+    if(!command_process_state){
+        INTERFACE->EventSwError(0,Interface::_SW_ERR_GENERATOR_SETUP);
+        error_condition = true;
+        qDebug() << "Generator Setup Error, subStatus=" << subStatus;
+        QTimer::singleShot(100, this, SLOT(handleCurrentStatus()));
+        return;
+    }
+
+    switch(subStatus){
+
+    case 0:
+        qDebug() << "GENERATOR SETUP STATUS";
+        interfaceStatus = Interface::_STATUS_NOT_READY;
+        error_condition = false;
+
+        // Clear All messages
+        changeStatus(SMS_CLEAR_SYS_MESSAGES,0,internalState,subStatus+1);
+        return;
+
+    case 1:
         wait_command_processed = true;
-        COMMUNICATION->clearAllProcedures();subStatus++;                
+        COMMUNICATION->clearAllProcedures();
+        subStatus++;
         break;
+
+    case 2:
+        wait_command_processed = true;
+        COMMUNICATION->setupProcedureV6(R2CP::ProcId_Standard_Test);subStatus++;
+        break;
+
+    case 3:
+       wait_command_processed = true;
+       COMMUNICATION->setupProcedureV6(R2CP::ProcId_Standard_Test_with_grid);subStatus++;
+       break;
 
     case 4:
-        if(!command_process_state){
-            subStatus = 0;
-            QTimer::singleShot(100, this, SLOT(handleCurrentStatus()));
-            return;
-        }
-
-
-        wait_command_processed = true;
-        COMMUNICATION->setupProcedureV6(R2CP::ProcId_Standard_Mammography_2D);subStatus++;
-        break;
+       wait_command_processed = true;
+       COMMUNICATION->setupProcedureV6(R2CP::ProcId_Standard_Mammography_2D);subStatus++;
+       break;
 
     case 5:
-        if(!command_process_state){            
-            subStatus = 0;
-            QTimer::singleShot(100, this, SLOT(handleCurrentStatus()));
-            return;
-        }
-
-
        wait_command_processed = true;
        COMMUNICATION->setupProcedureV6(R2CP::ProcId_Aec_Mammography_2D);subStatus++;
        break;
 
     case 6:
-        if(!command_process_state){
-            subStatus = 0;
-            QTimer::singleShot(100, this, SLOT(handleCurrentStatus()));
-            return;
-        }
+
+       wait_command_processed = true;
+       COMMUNICATION->setupProcedureV6(R2CP::ProcId_Aec_Mammography_2D);subStatus++;
+       break;
+
+    case 7:
 
        wait_command_processed = true;
        COMMUNICATION->setupProcedureV6(R2CP::ProcId_Standard_Mammography_3D);subStatus++;
        break;
 
-    case 7:
-        if(!command_process_state){
-            subStatus = 0;
-            QTimer::singleShot(100, this, SLOT(handleCurrentStatus()));
-            return;
-        }
+    case 8:
 
        wait_command_processed = true;
-       COMMUNICATION->setupProcedureV6(R2CP::ProcId_Aec_Mammography_3D);subStatus++;       
+       COMMUNICATION->setupProcedureV6(R2CP::ProcId_Aec_Mammography_3D);subStatus++;
        break;
 
-    case 8:
-        if(!command_process_state){
-            subStatus = 0;
-            QTimer::singleShot(100, this, SLOT(handleCurrentStatus()));
-            return;
-        }
-
-        wait_command_processed = true;
-        COMMUNICATION->set2DDataBank(R2CP::DB_Pre,1,20,10,10,100); subStatus++;
-        break;
-
     case 9:
-        if(!command_process_state){
-            subStatus = 0;
-            QTimer::singleShot(100, this, SLOT(handleCurrentStatus()));
-            return;
-        }
-
         wait_command_processed = true;
-        COMMUNICATION->set2DDataBank(R2CP::DB_Pulse,1,20,10,10,100); subStatus++;
+        COMMUNICATION->set2DDataBank(R2CP::DB_Pre,1,20,10); subStatus++;
         break;
 
     case 10:
-        if(!command_process_state){
-            subStatus = 0;
-            QTimer::singleShot(100, this, SLOT(handleCurrentStatus()));
-            return;
-        }
+        wait_command_processed = true;
+        COMMUNICATION->set2DDataBank(R2CP::DB_Pulse,1,20,10); subStatus++;
+        break;
 
+    case 11:
+        wait_command_processed = true;
+        COMMUNICATION->assignDbToProc(R2CP::DB_Pulse,R2CP::ProcId_Standard_Test,1);subStatus++;
+        break;
+
+    case 12:
+        wait_command_processed = true;
+        COMMUNICATION->assignDbToProc(R2CP::DB_Pulse,R2CP::ProcId_Standard_Test_with_grid,1);subStatus++;
+        break;
+    case 13:
         wait_command_processed = true;
         COMMUNICATION->assignDbToProc(R2CP::DB_Pulse,R2CP::ProcId_Standard_Mammography_2D,1);subStatus++;
         break;
 
-    case 11:
-        if(!command_process_state){
-            subStatus = 0;
-            QTimer::singleShot(100, this, SLOT(handleCurrentStatus()));
-            return;
-        }
-
+    case 14:
         wait_command_processed = true;
         COMMUNICATION->assignDbToProc(R2CP::DB_Pre,R2CP::ProcId_Aec_Mammography_2D,1);subStatus++;
         break;
 
-    case 12:
-        if(!command_process_state){
-            subStatus = 0;
-            QTimer::singleShot(100, this, SLOT(handleCurrentStatus()));
-            return;
-        }
-
+    case 15:
         wait_command_processed = true;
         COMMUNICATION->assignDbToProc(R2CP::DB_Pulse,R2CP::ProcId_Aec_Mammography_2D,2);subStatus++;
         break;
 
-    case 13:
-        if(!command_process_state){
-            subStatus = 0;
-            QTimer::singleShot(100, this, SLOT(handleCurrentStatus()));
-            return;
-        }
-
+    case 16:
         // Set the disable Rx message
         wait_command_processed = true;
         COMMUNICATION->setDisableRxSystemMessage(true);subStatus++;
         break;
 
-    case 14:
-        if(!command_process_state){
-            subStatus = 0;
-            QTimer::singleShot(100, this, SLOT(handleCurrentStatus()));
-            return;
-        }
-        subStatus++;
-        break;
-
-    case 15: // Clear all the current System messages
-        changeStatus(SMS_CLEAR_SYS_MESSAGES, 0, internalState, subStatus+1);
+    case 17:
+        // Clear all the current System messages
+        changeStatus(SMS_CLEAR_SYS_MESSAGES, 0, SMS_IDLE, 0);
         return;
 
     default:
@@ -342,48 +336,6 @@ void statusManager::handle_GENERATOR_CONNECTION(void){
 
 }
 
-
-void statusManager::handle_SMS_MESSAGE_NOTIFY(void){
-    /*
-    switch(subStatus){
-     case 0:
-        WINDOWS->setStatus("SYSTEM MESSAGES PRESENT!");
-        qDebug() << "SYSTEM MESSAGES STATUS";
-        subStatus++;
-        QTimer::singleShot(0, this, SLOT(handleCurrentStatus()));
-        break;
-    case 1:
-        COMMUNICATION->getAllSystemMessages();subStatus++;
-        QTimer::singleShot(500, this, SLOT(handleCurrentStatus()));
-        break;
-     case 2:
-        COMMUNICATION->clearSystemMessages();subStatus++;
-        QTimer::singleShot(500, this, SLOT(handleCurrentStatus()));
-        break;
-     case 3:
-        COMMUNICATION->getGeneratorStatusV6();subStatus++;
-        QTimer::singleShot(100, this, SLOT(handleCurrentStatus()));
-        break;
-     case 4:
-        if(R2CP::CaDataDicGen::GetInstance()->radInterface.generatorStatusV6.SystemMessage.Fields.Active == R2CP::Stat_SystemMessageActive_NotActive){
-            internalState = returnState;
-            subStatus = returnSubStatus;
-        }else{
-            subStatus = 1;
-        }
-
-        // Persistent errors
-        WINDOWS->updateSystemMessages();
-
-        QTimer::singleShot(100, this, SLOT(handleCurrentStatus()));
-        break;
-     default:
-            subStatus = 0;
-            QTimer::singleShot(0, this, SLOT(handleCurrentStatus()));
-        break;
-    }*/
-
-}
 
 
 
@@ -406,6 +358,7 @@ void statusManager::handle_CLEAR_ALL_SMS_MESSAGES(void){
         if(!command_process_state){
             // If the procedure fails, exit ..
             subStatus = 5;
+            qDebug() << "Failed to get the message list";
             QTimer::singleShot(0, this, SLOT(handleCurrentStatus()));
             return;
         }
@@ -413,6 +366,7 @@ void statusManager::handle_CLEAR_ALL_SMS_MESSAGES(void){
         if(COMMUNICATION->getErrorList()->size()==0) {
             // No messages are present
             subStatus = 5;
+            qDebug() << "No messages are present";
             QTimer::singleShot(0, this, SLOT(handleCurrentStatus()));
             return;
         }
@@ -431,6 +385,7 @@ void statusManager::handle_CLEAR_ALL_SMS_MESSAGES(void){
     case 4:
         if(!command_process_state){
             subStatus = 5;
+            qDebug() << "Failed to clear a message";
             QTimer::singleShot(0, this, SLOT(handleCurrentStatus()));
             return;
         }
@@ -446,7 +401,6 @@ void statusManager::handle_CLEAR_ALL_SMS_MESSAGES(void){
         break;
 
     case 5: // Update the status as the final step
-        wait_command_processed = true;
         COMMUNICATION->getGeneratorStatusV6();subStatus++;
         break;
 
@@ -563,16 +517,12 @@ void statusManager::handle_SMS_ERROR(void){
 }
 
 bool statusManager::validate2DExposurePulse(void){
-    mA = 150;
-    mS = (pulse_mAs * 1000)/ mA;
-
-    qDebug() << "Validated Pulse: kV=" << pulse_kV << ", mAs=" << pulse_mAs << ", mA=" << mA << ", ms=" << mS << "focus=" << focus;
+    qDebug() << "Validated Pulse: kV=" << pulse_kV << ", mAs=" << pulse_mAs << "focus=" << focus;
     return true;
 }
 bool statusManager::validate2DExposurePre(void){
-    mA = 150;
-    mS = (pre_mAs * 1000)/ mA;
-    qDebug() << "Validated Pre: kV=" << pre_kV << ", mAs=" << pre_mAs << ", mA=" << mA << ", ms=" << mS << "focus=" << focus;
+
+    qDebug() << "Validated Pre: kV=" << pre_kV << ", mAs=" << pre_mAs << "focus=" << focus;
     return true;
 }
 

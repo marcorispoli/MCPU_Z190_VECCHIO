@@ -138,7 +138,7 @@ namespace R2CP
 
     }
 
-    void CaDataDicGen::Generator_Set_2D_Databank(uchar dbId, uchar focus, float KV, uint MAS, uint MA, uint MS){
+    void CaDataDicGen::Generator_Set_2D_Databank(uchar dbId, uchar focus, float KV, uint MAS){
         if((dbId < 1) || (dbId >= DB_LastId)) return;
 
         byte pData[27];
@@ -159,13 +159,13 @@ namespace R2CP
         pData[7] = (byte) ((mAs >> 0) & 0xFF);
 
         // mA * 100
-        ulong mA = ((ulong) MA * 100);
+        ulong mA = ((ulong) 250 * 100);
         pData[8] = (byte) ((mA >> 16) & 0xFF);
         pData[9] = (byte) ((mA >> 8) & 0xFF);
         pData[10] = (byte) ((mA >> 0) & 0xFF);
 
         // mS * 100
-        ulong mS = ((ulong) MS * 100);
+        ulong mS = ((ulong) 5000 * 100);
         pData[11] = (byte) ((mS >> 16) & 0xFF);
         pData[12] = (byte) ((mS >> 8) & 0xFF);
         pData[13] = (byte) ((mS >> 0) & 0xFF);

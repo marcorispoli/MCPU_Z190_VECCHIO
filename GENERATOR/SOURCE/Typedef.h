@@ -47,10 +47,14 @@
 
         typedef enum{
           _EXP_ERR_NONE = 0,
+          _EXP_ERR_CP,
+          _EXP_ERR_RAX_ABORT,
+          _EXP_ERR_PROCEDURE_SETUP,
           _EXP_ERR_PRE_VALIDATION,
           _EXP_ERR_PULSE_VALIDATION,
           _EXP_ERR_GENERATOR_COMMAND,
           _EXP_ERR_GENERATOR_ERRORS,
+          _EXP_ERR_GENERATOR_STATUS,
           _EXP_ERR_ABORT_REQUEST,
         }tExposurErrors;
 
@@ -68,9 +72,9 @@
             uchar pulse_seq;
             uchar foc;
             float kV;
-            ushort mAs;
-            ushort mA;
-            ushort ms;
+            float mAs;
+            float mA;
+            float ms;
             uchar result;
         }tPostExposureData;
     }

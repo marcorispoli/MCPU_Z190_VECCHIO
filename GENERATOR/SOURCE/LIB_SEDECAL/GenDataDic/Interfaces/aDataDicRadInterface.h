@@ -636,6 +636,7 @@ namespace R2CP
     typedef enum{
         DB_Pre = 1,
         DB_Pulse,
+        DB_SkipPulse,
         DB_LastId
     }tProcedureDbId;
 

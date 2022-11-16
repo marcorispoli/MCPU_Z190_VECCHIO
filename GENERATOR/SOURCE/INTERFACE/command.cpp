@@ -13,7 +13,7 @@
  * @brief Server::SetExposurePre
  * @param command
  *  - (3): (float)  kV;
- *  - (4): (ushort) mAs;
+ *  - (4): (float) mAs;
  *  - (5): (string) focus: LARGE/SMALL;
  *
  * @return
@@ -22,14 +22,14 @@ QList<QString> Server::SetExposurePre(QList<QString>* command){
     QList<QString> answer;    
 
     if(command->size() != 6) {
-        answer.append("NOK 1");
+        answer.append("0 NOK 1");
         return answer;
     }
 
     Interface::tExposureFocus focus = Interface::_FOCUS_SMALL;
     if(command->at(5) == "LARGE") focus = Interface::_FOCUS_LARGE;
 
-    STATUS->setPreData(focus, command->at(3).toFloat(), command->at(4).toUShort());
+    STATUS->setPreData(focus, command->at(3).toFloat(), command->at(4).toFloat());
     answer.append(command->at(1)); // SEQ
     answer.append("OK");
     return answer;
@@ -39,7 +39,7 @@ QList<QString> Server::SetExposurePre(QList<QString>* command){
  * @brief Server::SetExposurePulse
  * @param command
  *  - (3): (float)  kV;
- *  - (4): (ushort) mAs;
+ *  - (4): (float) mAs;
  *  - (5): (string) focus: LARGE/SMALL;
  *  - (6): (string) detector synch: NO_DETECOR/DETECTOR
  *  - (7): (string) grid synch: NO_GRID/GRID
@@ -50,7 +50,7 @@ QList<QString> Server::SetExposurePulse(QList<QString>* command){
     QList<QString> answer;
 
     if(command->size() != 8) {
-        answer.append("NOK 1");
+        answer.append("0 NOK 1");
         return answer;
     }
 
@@ -63,11 +63,35 @@ QList<QString> Server::SetExposurePulse(QList<QString>* command){
     if(command->at(7) == "NO_GRID") grid = false;
     else grid =true;
 
-    STATUS->setPulseData(focus, command->at(3).toFloat(), command->at(4).toUShort(), detector, grid);
+    STATUS->setPulseData(focus, command->at(3).toFloat(), command->at(4).toFloat(), detector, grid);
     answer.append(command->at(1)); // SEQ
     answer.append("OK");
     return answer;
 }
+
+/**
+ * @brief Server::SetTomoConfig
+ * @param command
+ *  - (3): (uchar)  n-samples;
+ *  - (4): (ushort) n-skip;
+ *
+ * @return
+ */
+QList<QString> Server::SetTomoConfig(QList<QString>* command){
+    QList<QString> answer;
+
+    if(command->size() != 5) {
+        answer.append("0 NOK 1");
+        return answer;
+    }
+
+    answer.append(command->at(1)); // SEQ
+
+    if(STATUS->setTomoConfig(command->at(3).toUShort(), command->at(4).toUShort())) answer.append("OK");
+    else answer.append("NOK 2");
+    return answer;
+}
+
 
 /**
  * @brief Server::StartExposure
@@ -91,7 +115,7 @@ QList<QString> Server::StartExposure(QList<QString>* command){
     // Clear the Post Exposure datalist
     if(command->at(3) == "2D") STATUS->start2DExposure();
     else if(command->at(3) == "2DAEC") STATUS->start2DAecExposure();
-
+    else if(command->at(3) == "3D") STATUS->start3DExposure();
 
     answer.append(command->at(1)); // SEQ
     answer.append("OK");

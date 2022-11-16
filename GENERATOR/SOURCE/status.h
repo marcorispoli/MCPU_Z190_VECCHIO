@@ -3,6 +3,21 @@
 
 #include <QObject>
 #include "Typedef.h"
+#include <QSqlDatabase>
+#include <QSqlQuery>
+#include <QSqlRecord>
+
+class DbManager
+{
+public:
+    DbManager(const QString& path);
+
+    QString getErrorString(ulong errcode);
+
+private:
+    QSqlDatabase m_db;
+};
+
 
 /**
  * @brief This is the statusManager implementation class
@@ -35,7 +50,7 @@ class statusManager : public QObject
 public:
     explicit statusManager(QObject *parent = nullptr);
 
-    void setPreData(uchar foc, float kv, ushort mAs){
+    void setPreData(uchar foc, float kv, float mAs){
         focus = foc;
         pre_kV = kv;
         pre_mAs = mAs;
@@ -45,7 +60,7 @@ public:
 
     }
 
-    void setPulseData(uchar foc, float kv, ushort mAs, bool detector, bool grid){
+    void setPulseData(uchar foc, float kv, float mAs, bool detector, bool grid){
         focus = foc;
         pulse_kV = kv;
         pulse_mAs = mAs;
@@ -55,16 +70,28 @@ public:
 
     }
 
+    bool setTomoConfig(uchar nsamples, uchar nskip){
+        if(nsamples == 0) return false;
+        fps = nsamples;
+        skip = nskip;
+        return true;
+    }
+
     _inline void setGeneratorStatusChanged(void ) {generator_status_changed = true;}
     _inline void start2DExposure(void){ abortRxRequest = false; requestState = SMS_EXECUTING_2D_MANUAL;  }
     _inline void start2DAecExposure(void){ abortRxRequest = false; requestState = SMS_EXECUTING_2D_AEC;  }
+    _inline void start3DExposure(void){ abortRxRequest = false; requestState = SMS_EXECUTING_3D_MANUAL;  }
+
+
     _inline bool isIdle(void){ return  (internalState == SMS_IDLE ); }
     _inline bool requestAbortProcedure(void){ abortRxRequest = true; }
     _inline uchar getStatus(void){ return  interfaceStatus;}
 
     _inline void clearPostExposureList(void){ postExposureList.clear();}
     _inline QList<Interface::tPostExposureData> getPostExposureList(void){ return postExposureList;}
-    void setPostExposureData(uchar pulse_seq, uchar foc, float kV, ushort mAs, ushort mA, ushort ms, uchar result){
+    _inline uint getPostExposureListSize(void){ return postExposureList.size();}
+
+    void setPostExposureData(uchar pulse_seq, uchar foc, float kV, float mAs, float mA, float ms, uchar result){
         Interface::tPostExposureData data;
 
         data.pulse_seq = pulse_seq;
@@ -90,6 +117,7 @@ public:
       SMS_SMART_HUB_CONNECTION,
       SMS_WAIT_GENERATOR_CONNECTION,
       SMS_SETUP_GENERATOR,
+      SMS_SETUP_PROCEDURE,
       SMS_SERVICE,
       SMS_IDLE,
       SMS_CLEAR_SYS_MESSAGES,
@@ -115,6 +143,8 @@ private slots:
     void handleCurrentStatus(void);
 
 private:
+    DbManager* DBSysMessages;
+
     uchar interfaceStatus;
     bool generator_status_changed;
 
@@ -147,31 +177,38 @@ private:
     void handle_SMS_ERROR(void);
 
     void handle_2D_MANUAL(void);
+    void handle_3D_MANUAL(void);
     void handle_2D_AEC(void);
+
 
     // Exposure parameters    
     QList<Interface::tPostExposureData> postExposureList;
 
     float       pre_kV;
-    ushort      pre_mAs;
+    float      pre_mAs;
 
 
     float       pulse_kV;
-    ushort      pulse_mAs;
+    float      pulse_mAs;
 
 
     bool        use_detector;
     bool        use_grid;
     uchar       focus;
     uchar       fps;
-    uchar       skeep_fps;
+    uchar       skip;
     ushort      mA;
     ushort      mS;
     bool        aecDataPresent;
 
     bool validate2DExposurePulse(void);
     bool validate2DExposurePre(void);
+    bool validate3DExposurePulse(void);
+    bool validate3DExposurePre(void);
 
+    bool procedureCreated;
+    uchar tomo_n_samples;
+    uchar tomo_n_skip;
 };
 
 /*

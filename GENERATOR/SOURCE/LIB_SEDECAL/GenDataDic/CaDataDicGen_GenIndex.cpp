@@ -70,10 +70,10 @@ namespace R2CP
         if(Access != DATADIC_ACCESS_ANSWER_EVENT) return;
 
 
-        float kV = ((float) pData[4] * 256 + (float) pData[5]) / 10;
-        uint mA = ((uint) pData[6] * 65536 + (uint) pData[7] * 256 + (uint) pData[8]) / 100;
-        uint ms = ((uint) pData[9] * 65536 + (uint) pData[10] * 256 + (uint) pData[11]) / 100;
-        uint mAs = ((uint) pData[12] * 65536 + (uint) pData[13] * 256 + (uint) pData[14]) / 1000;
+        float kV = ((float) pData[4] * 256. + (float) pData[5]) / 10.;
+        float mA = ((float) pData[6] * 65536. + (float) pData[7] * 256. + (float) pData[8]) / 100.;
+        float ms = ((float) pData[9] * 65536. + (float) pData[10] * 256. + (float) pData[11]) / 100.;
+        float mAs = ((float) pData[12] * 65536. + (float) pData[13] * 256. + (float) pData[14]) / 1000.;
 
         QString focus ;
         if(pData[15]) focus = "LARGE";
@@ -138,7 +138,39 @@ namespace R2CP
 
     }
 
-    void CaDataDicGen::Generator_Set_2D_Databank(uchar dbId, uchar focus, float KV, uint MAS){
+
+    void CaDataDicGen::Generator_Set_SkipPulse_Databank(uchar dbId, uchar nskip){
+        byte pData[27];
+
+        pData[0] = dbId;// Databank Id
+        pData[1] = nskip; // Plse to be skip
+
+        (void)m_Type_-> Set(    ETH_LOWEST_PRIORITY,
+                                GENERATOR_NODE_ID,
+                                mNodeId,
+                                GENERATOR_COMMANDS_ENTRY,
+                                GENERATOR_LOAD_SKIP_PULSE_DB,
+                                2,
+                                pData);
+    }
+
+    void CaDataDicGen::Generator_Assign_SkipPulse_Databank(uchar procedureId, uchar dbId){
+        byte pData[27];
+
+        pData[0] = procedureId;// Databank Id
+        pData[1] = dbId; // Plse to be skip
+
+        (void)m_Type_-> Set(    ETH_LOWEST_PRIORITY,
+                                GENERATOR_NODE_ID,
+                                mNodeId,
+                                GENERATOR_COMMANDS_ENTRY,
+                                GENERATOR_ASSIGN_SKIP_PULSE_DB,
+                                2,
+                                pData);
+    }
+
+
+    void CaDataDicGen::Generator_Set_2D_Databank(uchar dbId, uchar focus, float KV, float MAS){
         if((dbId < 1) || (dbId >= DB_LastId)) return;
 
         byte pData[27];
@@ -153,19 +185,19 @@ namespace R2CP
         pData[4] = (byte) ((kV >> 0) & 0xFF);
 
         // mAs * 1000
-        ulong mAs = ((ulong) MAS * 1000);
+        ulong mAs = (ulong) ( MAS * 1000.0);
         pData[5] = (byte) ((mAs >> 16) & 0xFF);
         pData[6] = (byte) ((mAs >> 8) & 0xFF);
         pData[7] = (byte) ((mAs >> 0) & 0xFF);
 
         // mA * 100
-        ulong mA = ((ulong) 250 * 100);
+        ulong mA = ((ulong) 250 * 100.0);
         pData[8] = (byte) ((mA >> 16) & 0xFF);
         pData[9] = (byte) ((mA >> 8) & 0xFF);
         pData[10] = (byte) ((mA >> 0) & 0xFF);
 
         // mS * 100
-        ulong mS = ((ulong) 5000 * 100);
+        ulong mS = ((ulong) 5000 * 100.0);
         pData[11] = (byte) ((mS >> 16) & 0xFF);
         pData[12] = (byte) ((mS >> 8) & 0xFF);
         pData[13] = (byte) ((mS >> 0) & 0xFF);

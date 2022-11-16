@@ -11,9 +11,10 @@
 #include "status.h"
 #include "server.h"
 
+#define _WINDOW_ON
 
 #define COMMUNICATION   pComm
-//#define WINDOWS         window
+#define WINDOW          window
 #define INTERFACE       pServer
 #define DEBUG           window
 #define STATUS          pStatus

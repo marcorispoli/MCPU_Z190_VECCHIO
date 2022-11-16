@@ -68,7 +68,7 @@ protected:
 
 public:
     void EventStatus(ushort seq,uchar stat);
-    void EventSysMessages(ushort seq,QList<ulong>* list);
+    void EventMessage(ushort seq,QString msg);
     void EventExposureError(ushort seq, uchar code);
     void EventSetXrayEna(ushort seq, bool state);
     void EventXrayCompleted(ushort seq, uchar code, uchar error);
@@ -87,9 +87,10 @@ private:
 
     QList<QString>      getProtocolFrame(QByteArray* data);
 
-
+public:
     QList<QString> SetExposurePre(QList<QString>* command);
     QList<QString> SetExposurePulse(QList<QString>* command);
+    QList<QString> SetTomoConfig(QList<QString>* command);
     QList<QString> StartExposure(QList<QString>* command);
     QList<QString> AbortExposure(QList<QString>* command);
     QList<QString> GetPostExposure(QList<QString>* command);

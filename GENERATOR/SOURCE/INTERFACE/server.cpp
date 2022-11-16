@@ -93,6 +93,7 @@ void Server::disconnected(ushort id)
 }
 
 
+
 void SocketItem::socketRxData()
 {
     QByteArray frame;
@@ -219,6 +220,7 @@ void Server::receivedCommandSlot(ushort id, QByteArray data){
 
     if(command.at(2)        == "SetExposurePre")    answer = SetExposurePre(&command);
     else if(command.at(2)   == "SetExposurePulse")  answer = SetExposurePulse(&command);
+    else if(command.at(2)   == "SetTomoConfig")     answer = SetTomoConfig(&command);
     else if(command.at(2)   == "StartExposure")     answer = StartExposure(&command);
     else if(command.at(2)   == "AbortExposure")     answer = AbortExposure(&command);
     else if(command.at(2)   == "GetPostExposure")   answer = GetPostExposure(&command);

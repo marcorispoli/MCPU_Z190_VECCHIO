@@ -387,6 +387,11 @@ typedef enum {
 	#define GENERATOR_MISCELLANEOUS_RAD_PARAMETER_SCALES					192
 	#define GENERATOR_MISCELLANEOUS_CALIBRATION_STATUS						193
 
+    #define GENERATOR_LOAD_SKIP_PULSE_DB                                    195
+    #define GENERATOR_ASSIGN_SKIP_PULSE_DB                                  196
+
+
+
 #define IMAGING_SOFTWARE_UNIVERSAL_ENTRY/*--------------------------------*/0x30
 
 	#define IMAGING_SOFTWARE_UNIVERSAL_CURRENT_LSB							20

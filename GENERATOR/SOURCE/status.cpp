@@ -1,8 +1,28 @@
 #include "application.h"
 
+DbManager::DbManager(const QString& path)
+{
+   m_db = QSqlDatabase::addDatabase("QSQLITE");
+   m_db.setDatabaseName(path);
+   m_db.open();
+
+}
+
+QString DbManager::getErrorString(ulong errcode){
+    QString val;
+
+  QSqlQuery query;
+  QString qstr = QString("SELECT ID,DESC FROM SystemMessage WHERE ID = %1").arg(errcode);
+  query.exec(qstr);
+  if(query.next()){
+      return query.value(0).toString() + " " + query.value(1).toString();
+  }else return "";
+
+}
 
 statusManager::statusManager( QObject *parent)
 {
+    DBSysMessages = new DbManager("C:/OEM/AppData/system_messages.sqlite");
 
     COMMUNICATION = new Communication();
     COMMUNICATION->start();
@@ -12,6 +32,11 @@ statusManager::statusManager( QObject *parent)
     interfaceStatus = Interface::_STATUS_NOT_READY;
 
     internalState = SMS_UNDEFINED;
+
+    procedureCreated = false;
+    tomo_n_samples = 11;
+    tomo_n_skip = 1;
+
     changeStatus(SMS_SMART_HUB_CONNECTION,0,SMS_SMART_HUB_CONNECTION,0);
 }
 
@@ -27,6 +52,8 @@ void statusManager::changeStatus(_statusManagerState new_status, uchar sub, _sta
     wait_command_processed = false;
     command_process_state = true;
     cp_timeout = 100;
+
+
     QTimer::singleShot(0, this, SLOT(handleCurrentStatus()));
 }
 
@@ -40,6 +67,7 @@ void statusManager::handleCommandProcessedState(void){
             cp_timeout = 100;
             wait_command_processed = false;
             command_process_state = false;
+            qDebug() << "COMMAND PROCESSED ERROR: TIMEOUT";
             command_process_code = 0;
             QTimer::singleShot(0, this, SLOT(handleCurrentStatus()));
             return;
@@ -54,8 +82,10 @@ void statusManager::handleCommandProcessedState(void){
     wait_command_processed = false;
 
     command_process_code = COMMUNICATION->getCommandProcessed();
-    if(command_process_code)  command_process_state = false;
-    else command_process_state = true;
+    if(command_process_code){
+        command_process_state = false;
+        qDebug() << "COMMAND PROCESSED ERROR: " << COMMUNICATION->getCommandProcessedString();
+    } else command_process_state = true;
 
 
     QTimer::singleShot(10, this, SLOT(handleCurrentStatus()));
@@ -114,6 +144,7 @@ void statusManager::handleCurrentStatus(void){
     case SMS_IDLE:                      handle_SMS_IDLE(); break;
     case SMS_EXECUTING_2D_MANUAL:       handle_2D_MANUAL(); break;
     case SMS_EXECUTING_2D_AEC:          handle_2D_AEC(); break;
+    case SMS_EXECUTING_3D_MANUAL:       handle_3D_MANUAL(); break;
     case SMS_SETUP_GENERATOR:           handle_SETUP_GENERATOR();break;
     }
 
@@ -200,8 +231,27 @@ void statusManager::handle_GENERATOR_CONNECTION(void){
         }
         qDebug() << "Generator in Standby";
 
-        changeStatus(SMS_SETUP_GENERATOR,0,SMS_SETUP_GENERATOR,0);
+        changeStatus(SMS_SETUP_GENERATOR,0,internalState,subStatus+1);
         return;
+
+    case 4:
+
+        changeStatus(SMS_CLEAR_SYS_MESSAGES, 0, internalState, subStatus+1);
+        return;
+
+    case 5:
+
+        // Set the disable Rx message
+        wait_command_processed = true;
+        COMMUNICATION->setDisableRxSystemMessage(true);subStatus++;
+        break;
+
+    case 6:
+
+        // Clear all the current System messages
+        changeStatus(SMS_IDLE, 0, SMS_IDLE, 0);
+        return;
+
     }
 
     QTimer::singleShot(10, this, SLOT(handleCurrentStatus()));
@@ -209,22 +259,13 @@ void statusManager::handle_GENERATOR_CONNECTION(void){
 }
 
 void statusManager::handle_SETUP_GENERATOR(void){
-    static bool error_condition = false;
 
-    // In case of an error condition detected, the processn stands in this status
-    if(error_condition){
-      interfaceStatus = Interface::_STATUS_ERROR;
-      QTimer::singleShot(100, this, SLOT(handleCurrentStatus()));
-
-      return;
-    }
-
-    if(!command_process_state){
-        INTERFACE->EventSwError(0,Interface::_SW_ERR_GENERATOR_SETUP);
-        error_condition = true;
-        qDebug() << "Generator Setup Error, subStatus=" << subStatus;
-        QTimer::singleShot(100, this, SLOT(handleCurrentStatus()));
-        return;
+    if(subStatus != 0){
+        if(!command_process_state){
+            qDebug() << "Generator Setup Error, subStatus=" << subStatus;
+            changeStatus(returnState,returnSubStatus,returnState,returnSubStatus);
+            return;
+        }
     }
 
     switch(subStatus){
@@ -232,11 +273,9 @@ void statusManager::handle_SETUP_GENERATOR(void){
     case 0:
         qDebug() << "GENERATOR SETUP STATUS";
         interfaceStatus = Interface::_STATUS_NOT_READY;
-        error_condition = false;
-
-        // Clear All messages
-        changeStatus(SMS_CLEAR_SYS_MESSAGES,0,internalState,subStatus+1);
-        return;
+        procedureCreated = false;
+        subStatus++;
+        break;
 
     case 1:
         wait_command_processed = true;
@@ -246,40 +285,40 @@ void statusManager::handle_SETUP_GENERATOR(void){
 
     case 2:
         wait_command_processed = true;
-        COMMUNICATION->setupProcedureV6(R2CP::ProcId_Standard_Test);subStatus++;
+        COMMUNICATION->setupProcedureV6(R2CP::ProcId_Standard_Test,0);subStatus++;
         break;
 
     case 3:
        wait_command_processed = true;
-       COMMUNICATION->setupProcedureV6(R2CP::ProcId_Standard_Test_with_grid);subStatus++;
+       COMMUNICATION->setupProcedureV6(R2CP::ProcId_Standard_Test_with_grid,0);subStatus++;
        break;
 
     case 4:
        wait_command_processed = true;
-       COMMUNICATION->setupProcedureV6(R2CP::ProcId_Standard_Mammography_2D);subStatus++;
+       COMMUNICATION->setupProcedureV6(R2CP::ProcId_Standard_Mammography_2D,0);subStatus++;
        break;
 
     case 5:
        wait_command_processed = true;
-       COMMUNICATION->setupProcedureV6(R2CP::ProcId_Aec_Mammography_2D);subStatus++;
+       COMMUNICATION->setupProcedureV6(R2CP::ProcId_Aec_Mammography_2D,0);subStatus++;
        break;
 
     case 6:
 
        wait_command_processed = true;
-       COMMUNICATION->setupProcedureV6(R2CP::ProcId_Aec_Mammography_2D);subStatus++;
+       COMMUNICATION->setupProcedureV6(R2CP::ProcId_Aec_Mammography_2D,0);subStatus++;
        break;
 
     case 7:
 
        wait_command_processed = true;
-       COMMUNICATION->setupProcedureV6(R2CP::ProcId_Standard_Mammography_3D);subStatus++;
+       COMMUNICATION->setupProcedureV6(R2CP::ProcId_Standard_Mammography_3D,tomo_n_samples);subStatus++;
        break;
 
     case 8:
 
        wait_command_processed = true;
-       COMMUNICATION->setupProcedureV6(R2CP::ProcId_Aec_Mammography_3D);subStatus++;
+       COMMUNICATION->setupProcedureV6(R2CP::ProcId_Aec_Mammography_3D, tomo_n_samples);subStatus++;
        break;
 
     case 9:
@@ -294,41 +333,51 @@ void statusManager::handle_SETUP_GENERATOR(void){
 
     case 11:
         wait_command_processed = true;
-        COMMUNICATION->assignDbToProc(R2CP::DB_Pulse,R2CP::ProcId_Standard_Test,1);subStatus++;
+        COMMUNICATION->setGenerator_SkipPulse_Databank(R2CP::DB_SkipPulse,tomo_n_skip); subStatus++;
         break;
+
 
     case 12:
         wait_command_processed = true;
+        COMMUNICATION->assignDbToProc(R2CP::DB_Pulse,R2CP::ProcId_Standard_Test,1);subStatus++;
+        break;
+
+    case 13:
+        wait_command_processed = true;
         COMMUNICATION->assignDbToProc(R2CP::DB_Pulse,R2CP::ProcId_Standard_Test_with_grid,1);subStatus++;
         break;
-    case 13:
+    case 14:
         wait_command_processed = true;
         COMMUNICATION->assignDbToProc(R2CP::DB_Pulse,R2CP::ProcId_Standard_Mammography_2D,1);subStatus++;
         break;
 
-    case 14:
+    case 15:
         wait_command_processed = true;
         COMMUNICATION->assignDbToProc(R2CP::DB_Pre,R2CP::ProcId_Aec_Mammography_2D,1);subStatus++;
         break;
 
-    case 15:
+    case 16:
         wait_command_processed = true;
         COMMUNICATION->assignDbToProc(R2CP::DB_Pulse,R2CP::ProcId_Aec_Mammography_2D,2);subStatus++;
         break;
 
-    case 16:
-        // Set the disable Rx message
+    case 17:
         wait_command_processed = true;
-        COMMUNICATION->setDisableRxSystemMessage(true);subStatus++;
+        COMMUNICATION->assignDbToProc(R2CP::DB_Pulse,R2CP::ProcId_Standard_Mammography_3D,1);subStatus++;
         break;
 
-    case 17:
-        // Clear all the current System messages
-        changeStatus(SMS_CLEAR_SYS_MESSAGES, 0, SMS_IDLE, 0);
-        return;
+    case 18:
+        wait_command_processed = true;
+        COMMUNICATION->setGenerator_Assign_SkipPulse_Databank(R2CP::DB_SkipPulse,R2CP::ProcId_Standard_Mammography_3D);subStatus++;
+        break;
+
 
     default:
-        changeStatus(SMS_IDLE,0,SMS_IDLE,0);
+        procedureCreated = true;
+        skip = tomo_n_skip;
+        fps = tomo_n_samples;
+        qDebug() << "PROCEDURE CONFIGURED";
+        changeStatus(returnState,returnSubStatus,returnState,returnSubStatus);
         return;
     }
 
@@ -471,12 +520,19 @@ void statusManager::handle_SMS_IDLE(void){
 
 
 void statusManager::handle_SMS_ERROR(void){
+    QString messg;
 
     switch(subStatus){
       case 0:            
-            INTERFACE->EventSysMessages(0,COMMUNICATION->getErrorList());
+
             interfaceStatus = Interface::_STATUS_ERROR;
             subStatus++;
+
+            for(int i=0; i<COMMUNICATION->getErrorList()->size(); i++){
+                messg = DBSysMessages->getErrorString(COMMUNICATION->getErrorList()->at(i));
+                INTERFACE->EventMessage(0,messg);
+                qDebug() << messg;
+            }
             break;
 
       case 1:
@@ -516,13 +572,26 @@ void statusManager::handle_SMS_ERROR(void){
     QTimer::singleShot(10, this, SLOT(handleCurrentStatus()));
 }
 
+
+
+
 bool statusManager::validate2DExposurePulse(void){
-    qDebug() << "Validated Pulse: kV=" << pulse_kV << ", mAs=" << pulse_mAs << "focus=" << focus;
+    qDebug() << "Validated 2D Pulse: kV=" << pulse_kV << ", mAs=" << pulse_mAs << "focus=" << focus;
     return true;
 }
 bool statusManager::validate2DExposurePre(void){
 
-    qDebug() << "Validated Pre: kV=" << pre_kV << ", mAs=" << pre_mAs << "focus=" << focus;
+    qDebug() << "Validated 2D Pre: kV=" << pre_kV << ", mAs=" << pre_mAs << "focus=" << focus;
     return true;
 }
+
+bool statusManager::validate3DExposurePulse(void){
+    qDebug() << "Validated 3D Pulse: kV=" << pulse_kV << ", mAs=" << pulse_mAs << "focus=" << focus;
+    return true;
+}
+bool statusManager::validate3DExposurePre(void){
+    qDebug() << "Validated 2D Pre: kV=" << pre_kV << ", mAs=" << pre_mAs << "focus=" << focus;
+    return true;
+}
+
 

@@ -12,11 +12,16 @@ ______________________________________________________
 
 _____________________________________________________
 ////// AEC ////////////////////////////
-
 <E 0 SetExposurePre 25 50 LARGE>
 <E 0 SetExposurePulse 25 200 LARGE DETECTOR GRID>
 
 <E 0 StartExposure 2DAEC >
+
+______________________________________________________
+////// 3D /////////////////////////////
+<E 0 SetTomoConfig 11 1>
+<E 0 SetExposurePulse 25 100 LARGE DETECTOR GRID>
+<E 0 StartExposure 3D >
 
 ____________________________________________________
 <E 0 AbortExposure>

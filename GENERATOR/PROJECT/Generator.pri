@@ -11,6 +11,7 @@ DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs depr
 
 #Include supporto per Qt Network (moduli TCP/IP)
 QT += network
+QT += sql
 
 
 
@@ -36,6 +37,7 @@ SOURCES += \
     $${TARGET_SOURCE}/status.cpp \
     $${TARGET_SOURCE}/EXPOSURE/2D_exposure.cpp \
     $${TARGET_SOURCE}/EXPOSURE/2D_AEC_exposure.cpp \
+    $${TARGET_SOURCE}/EXPOSURE/3D_exposure.cpp \
     $${TARGET_SOURCE}/INTERFACE/server.cpp \
     $${TARGET_SOURCE}/INTERFACE/event.cpp \
     $${TARGET_SOURCE}/INTERFACE/command.cpp \

@@ -61,7 +61,7 @@ void Communication::generatorReceivedProcedureDefinitionEvent(byte id)
 
 }
 
-void Communication::PostExposureEvent(uchar db_number, uchar foc, float kV, ushort mAs, ushort mA, ushort ms, uchar result){
+void Communication::PostExposureEvent(uchar db_number, uchar foc, float kV, float mAs, float mA, float ms, uchar result){
     STATUS->setPostExposureData(db_number,foc, kV, mAs, mA, ms, result);
 }
 

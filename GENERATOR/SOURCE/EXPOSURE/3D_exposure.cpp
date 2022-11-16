@@ -1,10 +1,11 @@
 #include "application.h"
 #include <QTimer>
 
-void statusManager::handle_2D_MANUAL(void){
+void statusManager::handle_3D_MANUAL(void){
     static uchar current_status;
     static bool exposureError = false;
     static unsigned char error_code;
+
 
     if((subStatus!=0) && ((abortRxRequest) || (!command_process_state) || (exposureError))){
         if(abortRxRequest) qDebug() << "Abort Rx Command Executed";
@@ -23,7 +24,7 @@ void statusManager::handle_2D_MANUAL(void){
 
     switch(subStatus){
     case 0:
-        qDebug() << "EXPOSURE 2D START SEQUENCE";
+        qDebug() << "EXPOSURE 3D START SEQUENCE";
         clearPostExposureList();
         aecDataPresent = false;
         exposureError = false;
@@ -31,8 +32,26 @@ void statusManager::handle_2D_MANUAL(void){
         break;
 
     case 1:
+        // Verify if theprocedure needs to be rebuilded
+        if((!procedureCreated) || (tomo_n_samples != fps) || (tomo_n_skip != skip)){
+            qDebug() << "Tomo Procedure Setup";
+            tomo_n_samples = fps;
+            tomo_n_skip = skip;
+            changeStatus(SMS_SETUP_GENERATOR,0,internalState,subStatus+1);
+            return;
+        }
+        break;
+
+    case 2:
+        if(!procedureCreated){
+            exposureError = true;
+            error_code = Interface::_EXP_ERR_PROCEDURE_SETUP;
+            QTimer::singleShot(0, this, SLOT(handleCurrentStatus()));
+            return;
+        }
+
         // Validate the exposure data
-        if(!validate2DExposurePulse()){
+        if(!validate3DExposurePulse()){
             exposureError = true;
             error_code = Interface::_EXP_ERR_PRE_VALIDATION;
             QTimer::singleShot(0, this, SLOT(handleCurrentStatus()));
@@ -44,28 +63,28 @@ void statusManager::handle_2D_MANUAL(void){
         COMMUNICATION->set2DDataBank(R2CP::DB_Pulse,focus,pulse_kV,pulse_mAs);
         break;
 
-    case 2:       
+    case 3:
 
         // Procedure activation
         wait_command_processed = true;
-        COMMUNICATION->activate2DProcedurePulse(use_detector, use_grid);
+        COMMUNICATION->activate3DProcedurePulse();
         break;
 
-    case 3:        
+    case 4:
 
         // Get Status
         wait_command_processed = true;
         COMMUNICATION->getGeneratorStatusV6();
         break;
 
-    case 4:        
+    case 5:
 
         // Clear the disable Rx message
         wait_command_processed = true;
         COMMUNICATION->setDisableRxSystemMessage(false);
         break;
 
-    case 5:       
+    case 6:
 
         // Clear all the System Messages
         if(R2CP::CaDataDicGen::GetInstance()->radInterface.generatorStatusV6.SystemMessage.Fields.Active == R2CP::Stat_SystemMessageActive_Active){
@@ -74,7 +93,7 @@ void statusManager::handle_2D_MANUAL(void){
         }
         break;
 
-    case 6: // Test Not cleared messages
+    case 7: // Test Not cleared messages
 
         if(R2CP::CaDataDicGen::GetInstance()->radInterface.generatorStatusV6.SystemMessage.Fields.Active == R2CP::Stat_SystemMessageActive_Active){
             exposureError = true;
@@ -88,7 +107,7 @@ void statusManager::handle_2D_MANUAL(void){
         INTERFACE->EventSetXrayEna(0,true);
         break;
 
-    case 7:
+    case 8:
 
         // Wait for the Exposure in progress
         switch(current_status){
@@ -122,19 +141,21 @@ void statusManager::handle_2D_MANUAL(void){
 
         break;
 
-    case 8:
+    case 9:
 
         // Wait for Standby
         switch(current_status){
 
             case R2CP::Stat_WaitFootRelease:
-            case R2CP::Stat_Standby:
-                qDebug() << "XRAY-ENA DEACTIVATION..";
-                INTERFACE->EventSetXrayEna(0,false);
-                break;
+            case R2CP::Stat_Standby:                
+
+            qDebug() << "XRAY-ENA DEACTIVATION..";
+            INTERFACE->EventSetXrayEna(0,false);
+            break;
 
 
-            case R2CP::Stat_Error:               
+            case R2CP::Stat_Error:
+                qDebug() << "Stat Error";
             case R2CP::Stat_GoigToShutdown:
             case R2CP::Stat_Service:
             case R2CP::Stat_Initialization:
@@ -145,8 +166,7 @@ void statusManager::handle_2D_MANUAL(void){
 
             case R2CP::Stat_ExpInProgress:               
             case R2CP::Stat_Ready:
-            case R2CP::Stat_Preparation:
-
+            case R2CP::Stat_Preparation:         
                 QTimer::singleShot(10, this, SLOT(handleCurrentStatus()));
                 return;
 
@@ -157,7 +177,7 @@ void statusManager::handle_2D_MANUAL(void){
 
         break;
 
-    case 9:
+    case 10:
         // Wait for Standby
         switch(current_status){
 
@@ -172,7 +192,7 @@ void statusManager::handle_2D_MANUAL(void){
         break;
 
     default:
-        qDebug() << "EXPOSURE 2D MANUAL TERMINATED";
+        qDebug() << "EXPOSURE 3D MANUAL TERMINATED";
         INTERFACE->EventXrayCompleted(0,Interface::_EXPOSURE_COMPLETED,0);
         changeStatus(SMS_IDLE,0,SMS_IDLE,0);
         return;

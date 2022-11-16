@@ -20,6 +20,13 @@ public:
     ~startupWindow();
 
 
+    void EventStatus(ushort seq,uchar stat);
+    void EventMessage(ushort seq,QString msg);
+    void EventExposureError(ushort seq, uchar code);
+    void EventSetXrayEna(ushort seq, bool state);
+    void EventXrayCompleted(ushort seq, uchar code, uchar error);
+    void EventSwError(ushort seq, uchar error);
+    void EventGetPulseData(ushort seq);
 
 
 // WINDOWS MODULE VIRTUAL FUNCTIONS
@@ -37,6 +44,13 @@ public slots:
     void onLogClearButton(void);
     void onLogRxSlot(QByteArray);
 
+    void onStartPre(void);
+    void onStartPulse(void);
+    void onStart3DPre(void);
+    void onStart3DPulse(void);
+    void onAbortRx(void);
+
+
 
     void timerEvent(QTimerEvent* ev);
 
@@ -50,7 +64,7 @@ private:
    int pollingTimer;
    int polling;
 
-
+    uchar sysMsgTimer;
 
 };
 

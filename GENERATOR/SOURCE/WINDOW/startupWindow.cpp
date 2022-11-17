@@ -1,18 +1,40 @@
 #include "application.h"
 #include "ui_startupWindow.h"
 
+void myMessageOutput(QtMsgType type, const QMessageLogContext &context, const QString &msg)
+{
+    QByteArray localMsg = msg.toLocal8Bit();
+
+    switch (type) {
+    case QtDebugMsg:
+         WINDOW->onDebug(localMsg);
+        break;
+    case QtInfoMsg:
+
+        break;
+    case QtWarningMsg:
+
+        break;
+    case QtCriticalMsg:
+
+        break;
+    case QtFatalMsg:
+
+        break;
+    }
+}
+
 startupWindow::startupWindow(QWidget *parent)
     : ui(new Ui::startupWindow)
 {
     ui->setupUi(this);
-
+    generalDebugIndex = 0;
 
     // Set the View to handle the rotation
 
 
-
-    connect(ui->logUpdateButtonButton, SIGNAL(pressed()), this, SLOT(onLogUpdateButton()), Qt::UniqueConnection);
     connect(ui->logClearButton, SIGNAL(pressed()), this, SLOT(onLogClearButton()), Qt::UniqueConnection);
+    connect(ui->debugClearButton, SIGNAL(pressed()), this, SLOT(onDebugClearButton()), Qt::UniqueConnection);
     connect(ui->logEnableCheck, SIGNAL(stateChanged(int)), this, SLOT(on_logEnableCheck_stateChanged(int)));
 
     connect(ui->startPre, SIGNAL(pressed()), this, SLOT(onStartPre()), Qt::UniqueConnection);
@@ -24,7 +46,9 @@ startupWindow::startupWindow(QWidget *parent)
 
 
     pollingTimer  = startTimer(500);
-    sysMsgTimer =0;
+
+
+    qInstallMessageHandler(myMessageOutput);
 }
 
 startupWindow::~startupWindow()
@@ -54,34 +78,58 @@ void startupWindow::timerEvent(QTimerEvent* ev)
             ui->gridEna->setCheckState(Qt::Checked);
         }
 
-        if(sysMsgTimer){
-            sysMsgTimer--;
-            if(sysMsgTimer==0) ui->sysMessages->setText("");
-        }
+
         return;
     }
 
 
 }
 
-void startupWindow::onLogUpdateButton(void){
 
-
-}
 void startupWindow::onLogClearButton(void){
+    ui->r2cpText->appendPlainText("");
+    ui->r2cpText->clear();
+}
+void startupWindow::onDebugClearButton(void){
     ui->debugText->appendPlainText("");
     ui->debugText->clear();
 }
 
 void startupWindow::onLogRxSlot(QByteArray data){
-    QString stringa = "";
+    tSocket_Msg_ptr pEthMsg = reinterpret_cast< tSocket_Msg_ptr >( data.data() );
 
-    for(int j=0; j< data.size(); j++){
-        stringa += QString("%1 ").arg((unsigned char) data[j]);
+    QString stringa = QString("%1> ").arg(generalDebugIndex++);
+    stringa += QString("SQ:%1 ").arg(pEthMsg->header.sequence);
+    stringa += QString("PR:%1 ").arg(pEthMsg->header.priority);
+    stringa += QString("ORG:%1 ").arg(pEthMsg->header.iss_node);
+    stringa += QString("DST:%1 ").arg(pEthMsg->header.dest_node);
+    stringa += QString("IDX:%1 ").arg(pEthMsg->header.index);
+    switch(pEthMsg->header.index){
+        case NETWORK_COMMANDS_ENTRY: stringa+="(NET) "; break;
+        case R2CP_COMMANDS_ENTRY: stringa+="(R2CP) "; break;
+        case GENERATOR_COMMANDS_ENTRY: stringa+="(GENERATOR) "; break;
+        case SYSTEM_COMMANDS_ENTRY: stringa+="(SYSTEM) "; break;
+        case PATIENT_COMMANDS_ENTRY: stringa+="(PATIENT) "; break;
+        case SERVICE_COMMANDS_ENTRY: stringa+="(SERVICE) "; break;
     }
-    ui->debugText->appendPlainText(stringa);
+    stringa += QString("SUBIDX:%1 ").arg(pEthMsg->header.subindex);
+
+    ushort len = htons( pEthMsg->header.len );
+    stringa += QString("LEN:%1 \n      DATA:").arg(len);
+
+    for(int j=0; j< len; j++){
+        stringa += QString("[%1]%2 ").arg(j).arg((unsigned char) pEthMsg->data[j]);
+    }
+
+    ui->r2cpText->appendPlainText(stringa);
+
+
 }
 
+void startupWindow::onDebug(QByteArray data){
+    QString stringa = QString("%1> %2").arg(generalDebugIndex++).arg(data);
+    if(ui->debugEnable->isChecked())   ui->debugText->appendPlainText(stringa);
+}
 
 void startupWindow::onStartPre(void){
 
@@ -122,7 +170,7 @@ void startupWindow::onStartPulse(void){
     if(ui->gridEna->isChecked()) comando.append("GRID");
     else comando.append("NO_GRID");
 
-    qDebug() << comando;
+
     INTERFACE->SetExposurePulse(&comando);
 
     comando.clear();
@@ -150,7 +198,7 @@ void startupWindow::onStart3DPulse(void){
     comando.append("DETECTOR");
     comando.append("NO_GRID");
 
-    qDebug() << comando;
+
     INTERFACE->SetExposurePulse(&comando);
 
     comando.clear();
@@ -160,7 +208,7 @@ void startupWindow::onStart3DPulse(void){
     comando.append(ui->nPulse->text());
     comando.append(ui->nSkip->text());
 
-    qDebug() << comando;
+
     INTERFACE->SetTomoConfig(&comando);
 
     comando.clear();
@@ -169,7 +217,7 @@ void startupWindow::onStart3DPulse(void){
     comando.append("StartExposure ");
     comando.append("3D");
 
-    qDebug() << comando;
+
     INTERFACE->StartExposure(&comando);
 
 }
@@ -201,8 +249,7 @@ void startupWindow::on_logEnableCheck_stateChanged(int arg1)
 }
 
 void startupWindow::EventSetXrayEna(ushort seq, bool state){
-    if(state) ui->rxMessage->setText("PRESS RX BUTTON!");
-    else ui->rxMessage->setText("RELEASE RX BUTTON!");
+
 };
 
 void startupWindow::EventGetPulseData(ushort seq){
@@ -220,13 +267,50 @@ void startupWindow::EventGetPulseData(ushort seq){
     INTERFACE->SetExposurePulse(&comando);
 };
 
-void startupWindow::EventStatus(ushort seq,uchar stat){};
-void startupWindow::EventMessage(ushort seq,QString msg){
-    ui->sysMessages->setText(msg);
-    sysMsgTimer = 6;
+void startupWindow::EventStatus(){
+    QString stat ;
+    QString anodeHU ;
+    QString generatorHU;
+    QString filamentStat ;
+    QString rotSpeed ;
+    QString prx ;
+
+    if(R2CP::CaDataDicGen::GetInstance()->radInterface.generatorStatusV6.ExposureSwitches.Fields.ExpsignalStatus)
+        prx = "PRX: ON";
+    else
+        prx = "PRX: OFF";
+
+    switch(R2CP::CaDataDicGen::GetInstance()->radInterface.generatorStatusV6.GeneratorStatus){
+        case R2CP::Stat_Standby:stat = "STATUS: STANDBY";break;
+        case R2CP::Stat_Error:stat = "STATUS: ERROR";break;
+        case R2CP::Stat_WaitFootRelease:stat = "STATUS: WAIT FOOT RELEASE";break;
+        case R2CP::Stat_GoigToShutdown:stat = "STATUS: SHUTDOWN";break;
+        case R2CP::Stat_Service:stat = "STATUS: SERVICE";break;
+        case R2CP::Stat_Initialization:stat = "STATUS: INIT";break;
+        case R2CP::Stat_Preparation:stat = "STATUS: EXPOSURE PREPARATION";break;
+        case R2CP::Stat_ExpInProgress:stat = "STATUS: EXPOSURE PROGRESS";break;
+        case R2CP::Stat_Ready:stat = "STATUS: EXPOSURE READY";break;
+    }
+
+    anodeHU = QString("ANODE-HU: %1").arg(R2CP::CaDataDicGen::GetInstance()->radInterface.generatorStatusV6.AccumulatedAnodeHU);
+    generatorHU = QString("GEN-HU: %1").arg(R2CP::CaDataDicGen::GetInstance()->radInterface.generatorStatusV6.AccumulatedGenHU);
+    if(R2CP::CaDataDicGen::GetInstance()->radInterface.generatorStatusV6.ExposureSwitches.Fields.FilStatus)
+        filamentStat = "FILAMENT: ON";
+    else
+        filamentStat = "FILAMENT: OFF";
+    switch(R2CP::CaDataDicGen::GetInstance()->radInterface.generatorStatusV6.CurrentRotorSpeed){
+    case 0:rotSpeed = "ROTOR: OFF";break;
+    case 1:rotSpeed = "ROTOR: LOW SPEED";break;
+    case 2:rotSpeed = "ROTOR: HIGH SPEED";break;
+    }
+
+    ui->status->setText( stat + "\n" + anodeHU + "\n" + generatorHU + "\n" + filamentStat + "\n" + rotSpeed + "\n" + prx);
+
 };
-void startupWindow::EventExposureError(ushort seq, uchar code){};
+void startupWindow::EventMessage(ushort seq,QString msg){
+    qDebug() << "EVENT_MESSAGE" + msg;
+
+};
 
 
 void startupWindow::EventXrayCompleted(ushort seq, uchar code, uchar error){};
-void startupWindow::EventSwError(ushort seq, uchar error){};

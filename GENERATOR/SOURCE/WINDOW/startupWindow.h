@@ -20,12 +20,10 @@ public:
     ~startupWindow();
 
 
-    void EventStatus(ushort seq,uchar stat);
-    void EventMessage(ushort seq,QString msg);
-    void EventExposureError(ushort seq, uchar code);
+    void EventStatus(void);
+    void EventMessage(ushort seq,QString msg);    
     void EventSetXrayEna(ushort seq, bool state);
-    void EventXrayCompleted(ushort seq, uchar code, uchar error);
-    void EventSwError(ushort seq, uchar error);
+    void EventXrayCompleted(ushort seq, uchar code, uchar error);    
     void EventGetPulseData(ushort seq);
 
 
@@ -40,8 +38,10 @@ signals:
 
 // GUI MODULE SLOTS
 public slots:
-    void onLogUpdateButton(void);
+
     void onLogClearButton(void);
+    void onDebugClearButton(void);
+
     void onLogRxSlot(QByteArray);
 
     void onStartPre(void);
@@ -49,7 +49,7 @@ public slots:
     void onStart3DPre(void);
     void onStart3DPulse(void);
     void onAbortRx(void);
-
+    void onDebug(QByteArray data);
 
 
     void timerEvent(QTimerEvent* ev);
@@ -64,7 +64,7 @@ private:
    int pollingTimer;
    int polling;
 
-    uchar sysMsgTimer;
+    ulong generalDebugIndex;
 
 };
 

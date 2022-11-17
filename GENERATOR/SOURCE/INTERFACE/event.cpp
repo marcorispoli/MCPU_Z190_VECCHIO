@@ -10,9 +10,6 @@
 
 void Server::EventMessage(ushort seq, QString msg){
 
-#ifdef _WINDOW_ON
-    WINDOW->EventMessage(seq, msg);
-#endif
 
     QList<QString> event;
     event.append(QString("%1").arg(seq));
@@ -23,22 +20,9 @@ void Server::EventMessage(ushort seq, QString msg){
     return ;
 }
 
-void Server::EventExposureError(ushort seq, uchar code){
-#ifdef _WINDOW_ON
-    WINDOW->EventExposureError( seq,  code);
-#endif
-    QList<QString> event;
-    event.append(QString("%1").arg(seq));
-    event.append("EventExposureError");
-    event.append(QString("%1").arg(code));
-    sendEvent(&event);
-    return ;
-}
+
 
 void Server::EventSetXrayEna(ushort seq, bool state){
-#ifdef _WINDOW_ON
-    WINDOW->EventSetXrayEna( seq,  state);
-#endif
 
     QList<QString> event;
     event.append(QString("%1").arg(seq));
@@ -50,9 +34,6 @@ void Server::EventSetXrayEna(ushort seq, bool state){
 }
 
 void Server::EventGetPulseData(ushort seq){
-#ifdef _WINDOW_ON
-    WINDOW->EventGetPulseData( seq);
-#endif
 
     QList<QString> event;
     event.append(QString("%1").arg(seq));
@@ -62,9 +43,6 @@ void Server::EventGetPulseData(ushort seq){
 }
 
 void Server::EventXrayCompleted(ushort seq, uchar code, uchar error){
-#ifdef _WINDOW_ON
-    WINDOW->EventXrayCompleted( seq,  code,  error);
-#endif
 
     QList<QString> event;
     event.append(QString("%1").arg(seq));
@@ -75,30 +53,30 @@ void Server::EventXrayCompleted(ushort seq, uchar code, uchar error){
     return ;
 }
 
-void Server::EventStatus(ushort seq, uchar stat){
-#ifdef _WINDOW_ON
-    WINDOW->EventStatus( seq,  stat);
-#endif
+void Server::EventStatus(ushort seq, bool force){
+
+    if(WINDOW) WINDOW->EventStatus();
+
+    // Only in Standby sends the relevant status content to the target
+    if((!force) &&(R2CP::CaDataDicGen::GetInstance()->radInterface.generatorStatusV6.GeneratorStatus != R2CP::Stat_Standby)) return;
+
+    uchar stat = R2CP::CaDataDicGen::GetInstance()->radInterface.generatorStatusV6.GeneratorStatus;
+    uchar anodeHU = R2CP::CaDataDicGen::GetInstance()->radInterface.generatorStatusV6.AccumulatedAnodeHU;
+    uchar generatorHU = R2CP::CaDataDicGen::GetInstance()->radInterface.generatorStatusV6.AccumulatedGenHU ;
+    bool filamentStat = R2CP::CaDataDicGen::GetInstance()->radInterface.generatorStatusV6.ExposureSwitches.Fields.FilStatus;
+    uchar rotSpeed = R2CP::CaDataDicGen::GetInstance()->radInterface.generatorStatusV6.CurrentRotorSpeed;
 
     QList<QString> event;
     event.append(QString("%1").arg(seq));
     event.append("EventStatus");
     event.append(QString("%1").arg(stat));
+    event.append(QString("%1").arg(anodeHU));
+    event.append(QString("%1").arg(generatorHU));
+    event.append(QString("%1").arg(filamentStat));
+    event.append(QString("%1").arg(rotSpeed));
+
 
     sendEvent(&event);
     return ;
 }
 
-void Server::EventSwError(ushort seq, uchar error){
-#ifdef _WINDOW_ON
-    WINDOW->EventSwError( seq,  error);
-#endif
-
-    QList<QString> event;
-    event.append(QString("%1").arg(seq));
-    event.append("EventSwError");
-    event.append(QString("%1").arg(error));
-
-    sendEvent(&event);
-    return ;
-}

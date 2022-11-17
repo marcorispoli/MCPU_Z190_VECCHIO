@@ -695,7 +695,25 @@ namespace R2CP
 
 
         void MET_Generator_Set_StatusV5(byte* data) { generatorStatusV5 =  *(tGeneratorStatusV5*) data; }
-        void MET_Generator_Set_StatusV6(byte* data) { generatorStatusV6 =  *(tGeneratorStatusV6*) data; }
+
+
+        void MET_Generator_Set_StatusV6(byte* data) {
+            generatorStatusV6.GeneratorStatus = data[0];
+            generatorStatusV6.SystemMessage.value = data[1];
+            generatorStatusV6.ProcedureId = data[2];
+            generatorStatusV6.ExposureType = data[3];
+            generatorStatusV6.ExposureDatabankSeqNumber = data[4];
+            generatorStatusV6.FluoroTime.value = data[5]*256 + data[6];
+            generatorStatusV6.FluoroStatus.value = data[7];
+            generatorStatusV6.AccumulatedAnodeHU = data[8];
+            generatorStatusV6.AccumultatedhousingHU = data[9];
+            generatorStatusV6.AccumulatedGenHU = data[10];
+            generatorStatusV6.ExposureSwitches.value = data[11];
+            generatorStatusV6.CurrentRotorSpeed = data[13];
+
+
+           // generatorStatusV6 =  *(tGeneratorStatusV6*) data;
+        }
 
         byte MET_Generator_Update_ProcedureV5(byte* data) {
             if(data ==nullptr) return 0;

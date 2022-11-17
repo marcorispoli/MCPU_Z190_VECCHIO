@@ -59,7 +59,7 @@ void Server::incomingConnection(qintptr socketDescriptor)
     connect(item->socket,SIGNAL(errorOccurred(QAbstractSocket::SocketError)),item,SLOT(socketError(QAbstractSocket::SocketError)),Qt::UniqueConnection);
     item->id = this->idseq++;    
 
-    EventStatus(0, STATUS->getStatus());
+    EventStatus(1, true);
 
     return;
  }
@@ -101,6 +101,8 @@ void SocketItem::socketRxData()
 
     if(socket->bytesAvailable()==0) return;
     QByteArray data = socket->readAll();
+
+    qDebug() << data;
 
     bool init_find = true;
     QByteArray streaming = "";
@@ -174,6 +176,7 @@ void Server::sendAnswer(ushort id, QList<QString>* data){
             buffer.append(' ');
     }
     buffer.append('>');
+    qDebug() << buffer;
 
     buffer.append('\n');
     buffer.append('\r');
@@ -199,9 +202,12 @@ void Server::sendEvent(QList<QString>* data){
             buffer.append(' ');
     }
     buffer.append('>');
+    qDebug() << buffer;
 
     buffer.append('\n');
     buffer.append('\r');
+
+
 
     // Sends only to the socket requesting the command
     for(int i=0; i< socketList.size(); i++){

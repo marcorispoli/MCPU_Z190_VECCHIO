@@ -49,6 +49,7 @@
           _EXP_ERR_NONE = 0,
           _EXP_ERR_CP,
           _EXP_ERR_RAX_ABORT,
+          _EXP_ERR_XRAY_ENA_EARLY_RELEASED,
           _EXP_ERR_PROCEDURE_SETUP,
           _EXP_ERR_PRE_VALIDATION,
           _EXP_ERR_PULSE_VALIDATION,

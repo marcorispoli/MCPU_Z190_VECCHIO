@@ -104,7 +104,7 @@ void statusManager::handleCurrentStatus(void){
     // Update Interface Status to Interface actors
     if(interfaceStatus_back != interfaceStatus){
         interfaceStatus_back = interfaceStatus;
-        INTERFACE->EventStatus(0, interfaceStatus);
+        //INTERFACE->EventStatus(0, interfaceStatus);
     }
 
 
@@ -507,7 +507,7 @@ void statusManager::handle_SMS_IDLE(void){
         break;
 
     case 10:
-        COMMUNICATION->getGeneratorStatusV6();
+        //COMMUNICATION->getGeneratorStatusV6();
         subStatus = 2;
         QTimer::singleShot(100, this, SLOT(handleCurrentStatus()));
         return;

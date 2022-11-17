@@ -109,6 +109,20 @@ void statusManager::handle_3D_MANUAL(void){
 
     case 8:
 
+        // Wait for the PRX and XRAY ENA
+        if(R2CP::CaDataDicGen::GetInstance()->radInterface.generatorStatusV6.ExposureSwitches.Fields.ExpsignalStatus) break;
+        QTimer::singleShot(0, this, SLOT(handleCurrentStatus()));
+        return;
+
+    case 9:
+        if(!R2CP::CaDataDicGen::GetInstance()->radInterface.generatorStatusV6.ExposureSwitches.Fields.ExpsignalStatus){
+            exposureError = true;
+            error_code = Interface::_EXP_ERR_XRAY_ENA_EARLY_RELEASED;
+            qDebug() << " XRAY-ENA EARLY RELEASED";
+            QTimer::singleShot(0, this, SLOT(handleCurrentStatus()));
+            return;
+        }
+
         // Wait for the Exposure in progress
         switch(current_status){
             case R2CP::Stat_Standby:
@@ -141,16 +155,22 @@ void statusManager::handle_3D_MANUAL(void){
 
         break;
 
-    case 9:
+    case 10:
 
         // Wait for Standby
         switch(current_status){
 
             case R2CP::Stat_WaitFootRelease:
-            case R2CP::Stat_Standby:                
+            case R2CP::Stat_Standby:
+                if(!R2CP::CaDataDicGen::GetInstance()->radInterface.generatorStatusV6.ExposureSwitches.Fields.ExpsignalStatus){
+                    exposureError = true;
+                    error_code = Interface::_EXP_ERR_XRAY_ENA_EARLY_RELEASED;
+                    qDebug() << " XRAY-ENA EARLY RELEASED";
+                    QTimer::singleShot(0, this, SLOT(handleCurrentStatus()));
+                    return;
+                }
 
-            qDebug() << "XRAY-ENA DEACTIVATION..";
-            INTERFACE->EventSetXrayEna(0,false);
+                INTERFACE->EventSetXrayEna(0,false);
             break;
 
 
@@ -177,7 +197,7 @@ void statusManager::handle_3D_MANUAL(void){
 
         break;
 
-    case 10:
+    case 11:
         // Wait for Standby
         switch(current_status){
 

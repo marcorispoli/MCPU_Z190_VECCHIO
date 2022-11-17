@@ -67,12 +67,12 @@ protected:
     void incomingConnection(qintptr socketDescriptor) override; //!< Incoming connection slot
 
 public:
-    void EventStatus(ushort seq,uchar stat);
+    void EventStatus(ushort seq, bool force);
     void EventMessage(ushort seq,QString msg);
-    void EventExposureError(ushort seq, uchar code);
+
     void EventSetXrayEna(ushort seq, bool state);
     void EventXrayCompleted(ushort seq, uchar code, uchar error);
-    void EventSwError(ushort seq, uchar error);
+
     void EventGetPulseData(ushort seq);
 
 private:

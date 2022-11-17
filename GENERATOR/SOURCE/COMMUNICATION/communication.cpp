@@ -52,8 +52,8 @@ void Communication::generatorReceivedStatusEvent(void){
     if(!generatorConnected)   qDebug() << "Generator Connected";
     generatorConnected = true;
 
-    STATUS->setGeneratorStatusChanged();
-
+    STATUS->setGeneratorStatusChanged();   
+    INTERFACE->EventStatus(0,false);
 }
 
 void Communication::generatorReceivedProcedureDefinitionEvent(byte id)
@@ -106,7 +106,6 @@ void Communication::clientRxData(QByteArray data){
         if(nextdata.size() > framelen + 8){
             curdata = nextdata.left(framelen + 8);
             emit rxDataEventSgn(curdata);
-
             nextdata = nextdata.right(nextdata.size() - framelen - 8);
             R2CP_Eth->ProcessMessage((byte*) curdata.data());
         }else{

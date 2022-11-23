@@ -57,6 +57,10 @@ public:
     _inline bool isSHConnected(void) {return smartHubConnected;}
     _inline bool isGenConnected(void) {return generatorConnected;}
     _inline bool isProtocolV6(void){return R2CP::CaDataDicGen::GetInstance()->isProtoV6();}
+    _inline bool isVersionUpdated(void){return R2CP::CaDataDicGen::GetInstance()->isVersionUpdated();}
+
+
+
     _inline bool isProtocolV5(void){return R2CP::CaDataDicGen::GetInstance()->isProtoV5();}
     _inline bool isProcedureInitialized(uchar i){return R2CP::CaDataDicGen::GetInstance()->radInterface.isProcInitialized(i);}
 
@@ -67,13 +71,19 @@ public:
 
     _inline void getGeneratorStatusV5() {R2CP::CaDataDicGen::GetInstance()->Generator_Get_StatusV5();}
     _inline void getGeneratorStatusV6() {R2CP::CaDataDicGen::GetInstance()->Generator_Get_StatusV6();}
-    _inline void set2DDataBank(uchar i, uchar focus, float kV, float mAs) {R2CP::CaDataDicGen::GetInstance()->Generator_Set_2D_Databank(i,focus,kV,mAs);}
+
+
+    _inline void getDataBank(uchar i) {R2CP::CaDataDicGen::GetInstance()->Generator_Get_Databank(i);}
+    _inline void set2DDataBank(uchar i, uchar focus, float kV, float mAs, ulong tmo) {R2CP::CaDataDicGen::GetInstance()->Generator_Set_2D_Databank(i,focus,kV,mAs, tmo);}
     _inline bool isDbInitialized(uchar i){return R2CP::CaDataDicGen::GetInstance()->radInterface.isDbInitialized(i);}
+
+    _inline void set3DDataBank(uchar dbId, uchar focus, float KV, float MA, float MS, float MT) {R2CP::CaDataDicGen::GetInstance()->Generator_Set_3D_Databank(dbId,focus,KV,MA,MS,MT);}
+    _inline void setMsDatabank(uchar dbId, float MS) {R2CP::CaDataDicGen::GetInstance()->Generator_Set_Ms_Databank(dbId, MS);}
 
     _inline void setGenerator_SkipPulse_Databank(uchar dbId, uchar nskip){R2CP::CaDataDicGen::GetInstance()->Generator_Set_SkipPulse_Databank(dbId, nskip);}
     _inline void setGenerator_Assign_SkipPulse_Databank(uchar dbId, uchar procedureId){R2CP::CaDataDicGen::GetInstance()->Generator_Assign_SkipPulse_Databank(procedureId, dbId);}
 
-    _inline void setSHConnection() {R2CP::CaDataDicGen::GetInstance()->Network_ConnectionRequest_Event(SH_NODE_ID, APPLICATION_NODE_ID);}
+    _inline void setSHConnection() {R2CP::CaDataDicGen::GetInstance()->Network_ConnectionRequest_Event(Interface::SH_NODE_ID, Interface::APPLICATION_NODE_ID);}
 
     _inline void clearSystemMessage(uint id){R2CP::CaDataDicGen::GetInstance()->SystemMessages_Clear_Message(id);}
     _inline void getAllSystemMessages(void){R2CP::CaDataDicGen::GetInstance()->SystemMessages_Get_AllMessages();}
@@ -95,6 +105,9 @@ public:
     _inline void activate2DAecProcedurePre(void){R2CP::CaDataDicGen::GetInstance()->Patient_Activate2DAecProcedurePre();}
 
     _inline void activate3DProcedurePulse(void){R2CP::CaDataDicGen::GetInstance()->Patient_Activate3DProcedurePulse();}
+
+    _inline void activate3DAecProcedurePre(void){R2CP::CaDataDicGen::GetInstance()->Patient_Activate3DAecProcedurePre();}
+    _inline void activate3DAecProcedurePulse(void){R2CP::CaDataDicGen::GetInstance()->Patient_Activate3DAecProcedurePulse();}
 
     _inline void startExposure(void){R2CP::CaDataDicGen::GetInstance()->Generator_startExposure();}
     _inline void stopExposure(void){R2CP::CaDataDicGen::GetInstance()->Generator_stopExposure();}

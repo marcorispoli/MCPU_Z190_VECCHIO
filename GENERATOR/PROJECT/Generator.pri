@@ -38,6 +38,7 @@ SOURCES += \
     $${TARGET_SOURCE}/EXPOSURE/2D_exposure.cpp \
     $${TARGET_SOURCE}/EXPOSURE/2D_AEC_exposure.cpp \
     $${TARGET_SOURCE}/EXPOSURE/3D_exposure.cpp \
+    $${TARGET_SOURCE}/EXPOSURE/3D_AEC_exposure.cpp \
     $${TARGET_SOURCE}/INTERFACE/server.cpp \
     $${TARGET_SOURCE}/INTERFACE/event.cpp \
     $${TARGET_SOURCE}/INTERFACE/command.cpp \

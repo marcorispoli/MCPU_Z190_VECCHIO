@@ -42,12 +42,12 @@ namespace R2CP
         if(!COMMUNICATION) return;
 
         if(nData !=2) return;
-        if(pData[0] == APPLICATION_NODE_ID){
+        if(pData[0] == Interface::APPLICATION_NODE_ID){
             if(pData[1] == 1) COMMUNICATION->smartHubConnectionEvent();
             return;
         }
 
-        if(pData[0] == GENERATOR_NODE_ID){
+        if(pData[0] == Interface::GENERATOR_NODE_ID){
             if(pData[1] == 1) COMMUNICATION->generatorConnectionEvent(true);
             else COMMUNICATION->generatorConnectionEvent(false);
             return;

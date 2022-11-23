@@ -88,6 +88,7 @@ namespace R2CP
         static void Generator_DataBank_ExposureAcceptance				( tDataDicAccess Access, byte *pData, word nData,  tInfoMessage *MessageInfo = nullptr);
         static void Generator_DataBank_DefineProcedure                  ( tDataDicAccess Access, byte *pData, word nData,  tInfoMessage *MessageInfo = nullptr);
         static void Generator_RadDataBank_Load							( tDataDicAccess Access, byte *pData, word nData,  tInfoMessage *MessageInfo = nullptr);
+        static void Generator_RadDataBank_Load_Ms   					( tDataDicAccess Access, byte *pData, word nData,  tInfoMessage *MessageInfo = nullptr);
         static void Generator_ExposureManagement_GeneratorStatus		( tDataDicAccess Access, byte *pData, word nData,  tInfoMessage *MessageInfo = nullptr);
         static void Generator_ExposureManagement_RadPostExposure		( tDataDicAccess Access, byte *pData, word nData,  tInfoMessage *MessageInfo = nullptr);
 
@@ -166,7 +167,10 @@ namespace R2CP
         void Patient_SetupProcedureV5(byte num);
         void Patient_SetupProcedureV6(byte procId, byte param);
         void Patient_ClearAllProcedures(void);
-        void Generator_Set_2D_Databank(uchar i, uchar focus, float kV, float mAs);
+        void Generator_Get_Databank(uchar i);
+        void Generator_Set_2D_Databank(uchar i, uchar focus, float kV, float mAs, ulong tmo);
+        void Generator_Set_3D_Databank(uchar i, uchar focus, float kV, float MA, float MS, float MT);
+        void Generator_Set_Ms_Databank(uchar dbId, float MS);
 
         void Generator_Set_SkipPulse_Databank(uchar dbId, uchar nskip);
         void Generator_Assign_SkipPulse_Databank(uchar procedureId, uchar dbId);
@@ -177,6 +181,8 @@ namespace R2CP
         void Patient_Activate2DAecProcedurePre(void);
 
         void Patient_Activate3DProcedurePulse(void);
+        void Patient_Activate3DAecProcedurePulse(void);
+        void Patient_Activate3DAecProcedurePre(void);
 
         void Generator_AssignDbToProc(uint8_t db, uint8_t proc, uint8_t index);
         void Generator_verifyDbToProc(uint8_t proc, uint8_t index);
@@ -240,7 +246,10 @@ namespace R2CP
         CaDataDicRadInterface       radInterface;
         CaDataDicSystemInterface    systemInterface;
         tDataDicProtocolVersion     protocolVersion;
-        bool isProtoV6(void){return (protocolVersion.Version == 6) ? true: false;}
+        bool protocolUpdated;
+
+        bool isVersionUpdated(void){return protocolUpdated;}
+        bool isProtoV6(void){return (protocolVersion.Version == 6) ? true: false;}        
         bool isProtoV5(void){return (protocolVersion.Version == 5) ? true: false;}
 
 	};

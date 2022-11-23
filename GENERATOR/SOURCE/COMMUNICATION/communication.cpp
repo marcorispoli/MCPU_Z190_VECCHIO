@@ -53,7 +53,7 @@ void Communication::generatorReceivedStatusEvent(void){
     generatorConnected = true;
 
     STATUS->setGeneratorStatusChanged();   
-    INTERFACE->EventStatus(0,false);
+    INTERFACE->EventStatus(0);
 }
 
 void Communication::generatorReceivedProcedureDefinitionEvent(byte id)
@@ -80,7 +80,9 @@ void Communication::clientConnection(bool stat){
 }
 
 void Communication::start(void){
-    client.Start(IP_ADDRESS, HUB_PORT);
+
+
+    client.Start(SH_IP_ADDRESS, SH_PORT);
 }
 
 int16_t Communication::sendData(byte *pMessage , word datalength){

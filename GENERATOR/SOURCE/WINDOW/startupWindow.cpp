@@ -1,28 +1,7 @@
 #include "application.h"
 #include "ui_startupWindow.h"
 
-void myMessageOutput(QtMsgType type, const QMessageLogContext &context, const QString &msg)
-{
-    QByteArray localMsg = msg.toLocal8Bit();
 
-    switch (type) {
-    case QtDebugMsg:
-         WINDOW->onDebug(localMsg);
-        break;
-    case QtInfoMsg:
-
-        break;
-    case QtWarningMsg:
-
-        break;
-    case QtCriticalMsg:
-
-        break;
-    case QtFatalMsg:
-
-        break;
-    }
-}
 
 startupWindow::startupWindow(QWidget *parent)
     : ui(new Ui::startupWindow)
@@ -43,12 +22,11 @@ startupWindow::startupWindow(QWidget *parent)
     connect(ui->start3DPulse, SIGNAL(pressed()), this, SLOT(onStart3DPulse()), Qt::UniqueConnection);
 
     connect(ui->abortRx, SIGNAL(pressed()), this, SLOT(onAbortRx()), Qt::UniqueConnection);
+    connect(ui->aecSendButton, SIGNAL(pressed()), this, SLOT(onAecSendButton()), Qt::UniqueConnection);
 
 
     pollingTimer  = startTimer(500);
 
-
-    qInstallMessageHandler(myMessageOutput);
 }
 
 startupWindow::~startupWindow()
@@ -141,6 +119,7 @@ void startupWindow::onStartPre(void){
     comando.append(ui->mAsPre->text());
     if(ui->largeFocus->isChecked()) comando.append("LARGE");
     else comando.append("SMALL");
+    comando.append(ui->aecTmo->text());
 
     INTERFACE->SetExposurePre(&comando);
 
@@ -189,10 +168,8 @@ void startupWindow::onStart3DPulse(void){
     comando.append("E");
     comando.append("1");
     comando.append("SetExposurePulse ");
-    comando.append(ui->kVPulse_3D->text());
-
-    float mAs = ui->mAsPulse_3D->text().toFloat() / ui->nPulse->text().toFloat();
-    comando.append(QString("%1").arg(mAs));
+    comando.append(ui->kVPulse->text());
+    comando.append(ui->mAsPulse->text());
 
     comando.append("LARGE");
     comando.append("DETECTOR");
@@ -207,6 +184,7 @@ void startupWindow::onStart3DPulse(void){
     comando.append("SetTomoConfig ");
     comando.append(ui->nPulse->text());
     comando.append(ui->nSkip->text());
+    comando.append(ui->tomoEW->text());
 
 
     INTERFACE->SetTomoConfig(&comando);
@@ -223,7 +201,35 @@ void startupWindow::onStart3DPulse(void){
 }
 void startupWindow::onStart3DPre(void){
 
+    QList<QString> comando;
+    comando.append("E");
+    comando.append("1");
+    comando.append("SetExposurePre ");
+    comando.append(ui->kVPre->text());
+    comando.append(ui->mAsPre->text());
+    comando.append("LARGE");
+    comando.append(ui->aecTmo->text());
 
+    INTERFACE->SetExposurePre(&comando);
+
+    comando.clear();
+    comando.append("E");
+    comando.append("2");
+    comando.append("SetTomoConfig ");
+    comando.append(ui->nPulse->text());
+    comando.append(ui->nSkip->text());
+    comando.append(ui->tomoEW->text());
+
+    INTERFACE->SetTomoConfig(&comando);
+
+    comando.clear();
+    comando.append("E");
+    comando.append("2");
+    comando.append("StartExposure ");
+    comando.append("3DAEC");
+
+
+    INTERFACE->StartExposure(&comando);
 
 }
 
@@ -248,11 +254,13 @@ void startupWindow::on_logEnableCheck_stateChanged(int arg1)
     }
 }
 
+
+
 void startupWindow::EventSetXrayEna(ushort seq, bool state){
 
 };
 
-void startupWindow::EventGetPulseData(ushort seq){
+void startupWindow::onAecSendButton(void){
     QList<QString> comando;
     comando.append("E");
     comando.append("1");
@@ -260,11 +268,17 @@ void startupWindow::EventGetPulseData(ushort seq){
     comando.append(ui->kVPulse->text());
     comando.append(ui->mAsPulse->text());
     if(ui->largeFocus->isChecked()) comando.append("LARGE");
+
     else comando.append("SMALL");
     comando.append("DETECTOR");
     comando.append("GRID");
 
     INTERFACE->SetExposurePulse(&comando);
+}
+
+
+void startupWindow::EventGetPulseData(ushort seq){
+    if(ui->autoAec->isChecked()) onAecSendButton();
 };
 
 void startupWindow::EventStatus(){
@@ -274,11 +288,21 @@ void startupWindow::EventStatus(){
     QString filamentStat ;
     QString rotSpeed ;
     QString prx ;
+    QString prep;
+
+
 
     if(R2CP::CaDataDicGen::GetInstance()->radInterface.generatorStatusV6.ExposureSwitches.Fields.ExpsignalStatus)
         prx = "PRX: ON";
     else
         prx = "PRX: OFF";
+
+    if(R2CP::CaDataDicGen::GetInstance()->radInterface.generatorStatusV6.ExposureSwitches.Fields.PrepSignalStatus)
+        prx = "PREP: ON";
+    else
+        prx = "PREP: OFF";
+
+
 
     switch(R2CP::CaDataDicGen::GetInstance()->radInterface.generatorStatusV6.GeneratorStatus){
         case R2CP::Stat_Standby:stat = "STATUS: STANDBY";break;
@@ -304,7 +328,7 @@ void startupWindow::EventStatus(){
     case 2:rotSpeed = "ROTOR: HIGH SPEED";break;
     }
 
-    ui->status->setText( stat + "\n" + anodeHU + "\n" + generatorHU + "\n" + filamentStat + "\n" + rotSpeed + "\n" + prx);
+    ui->status->setText( stat + "\n" + anodeHU + "\n" + generatorHU + "\n" + filamentStat + "\n" + rotSpeed + "\n" + prx + "\n" + prep );
 
 };
 void startupWindow::EventMessage(ushort seq,QString msg){

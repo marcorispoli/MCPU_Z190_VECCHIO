@@ -1,21 +1,35 @@
 #include "application.h"
 #include <QTimer>
 
+
+
 void statusManager::handle_3D_MANUAL(void){
+    QList<Interface::tPostExposureData> postExposure;
+    float totalPremAs;
+    float totalPulsemAs;
+
     static uchar current_status;
     static bool exposureError = false;
     static unsigned char error_code;
-
+    float pulse_mAs;
 
     if((subStatus!=0) && ((abortRxRequest) || (!command_process_state) || (exposureError))){
-        if(abortRxRequest) qDebug() << "Abort Rx Command Executed";
-        else if(!command_process_state) qDebug() << "Cp Error on Substatus = " << subStatus;
-        else qDebug() << "Exposure Error on Substatus = " << subStatus;
 
-        QList<Interface::tPostExposureData> list = STATUS->getPostExposureList();
+        postExposure = STATUS->getPostExposureList();
+        totalPulsemAs = 0;
+        totalPremAs = 0;
+        for (int i=0; i< postExposure.size(); i++) totalPulsemAs += postExposure[i].mAs;
 
-        if(list.size() == 0) INTERFACE->EventXrayCompleted(0,Interface::_EXPOSURE_ABORT,error_code);
-        else INTERFACE->EventXrayCompleted(0,Interface::_EXPOSURE_PARTIAL,error_code);
+        if(abortRxRequest) qDebug() << "Abort Rx Command Executed: total PRE mAs:" << totalPremAs << " toal Pulse mAs:" << totalPulsemAs;
+        else if(!command_process_state) qDebug() << "Cp Error on Substatus = " << subStatus << " total PRE mAs:" << totalPremAs << " toal Pulse mAs:" << totalPulsemAs;
+        else qDebug() << "Exposure Error on Substatus = " << subStatus << " total PRE mAs:" << totalPremAs << " toal Pulse mAs:" << totalPulsemAs;
+
+        if(totalPulsemAs) INTERFACE->EventXrayCompleted(0,Interface::_EXPOSURE_ABORT, totalPremAs, totalPulsemAs, error_code);
+        else INTERFACE->EventXrayCompleted(0,Interface::_EXPOSURE_PARTIAL,totalPremAs, totalPulsemAs, error_code);
+
+        pulseExposureData.valid = false;
+        preExposureData.valid = false;
+        tomoConfig.valid = false;
         changeStatus(SMS_IDLE,0,SMS_IDLE,0);
         return;
     }
@@ -25,18 +39,24 @@ void statusManager::handle_3D_MANUAL(void){
     switch(subStatus){
     case 0:
         qDebug() << "EXPOSURE 3D START SEQUENCE";
-        clearPostExposureList();
-        aecDataPresent = false;
+        clearPostExposureList();       
         exposureError = false;
         error_code = 0;
         break;
 
-    case 1:
+    case 1:        
+
+        // Validate the exposure data
+        if( (!pulseExposureData.valid) || (!tomoConfig.valid)){
+            exposureError = true;
+            error_code = Interface::_EXP_ERR_PULSE_VALIDATION;
+            qDebug() << "_EXP_ERR_PULSE_VALIDATION";
+            QTimer::singleShot(0, this, SLOT(handleCurrentStatus()));
+            return;
+        }
+
         // Verify if theprocedure needs to be rebuilded
-        if((!procedureCreated) || (tomo_n_samples != fps) || (tomo_n_skip != skip)){
-            qDebug() << "Tomo Procedure Setup";
-            tomo_n_samples = fps;
-            tomo_n_skip = skip;
+        if((!procedureCreated) || (tomoConfig.changed)){
             changeStatus(SMS_SETUP_GENERATOR,0,internalState,subStatus+1);
             return;
         }
@@ -46,25 +66,44 @@ void statusManager::handle_3D_MANUAL(void){
         if(!procedureCreated){
             exposureError = true;
             error_code = Interface::_EXP_ERR_PROCEDURE_SETUP;
+            qDebug() << "_EXP_ERR_PROCEDURE_SETUP";
             QTimer::singleShot(0, this, SLOT(handleCurrentStatus()));
             return;
         }
 
-        // Validate the exposure data
-        if(!validate3DExposurePulse()){
-            exposureError = true;
-            error_code = Interface::_EXP_ERR_PRE_VALIDATION;
-            QTimer::singleShot(0, this, SLOT(handleCurrentStatus()));
-            return;
-        }
+        // In order to find the Anodic Current and the eosure time:
+        // - 1: set the 2point mode with kV and the integer mAs per pulse;
+        // - Using the mS of the renard scale determined by the Generator, calc the new mA to be used for 3 point tech.
+        pulse_mAs = pulseExposureData.mAs / tomoConfig.samples;
+        if((float)((ushort) pulse_mAs) != pulse_mAs) pulse_mAs = (float) ((ushort) pulse_mAs + 1);
+        else pulse_mAs = (float) ((ushort) pulse_mAs);
 
-        // Load Data Bank
         wait_command_processed = true;
-        COMMUNICATION->set2DDataBank(R2CP::DB_Pulse,focus,pulse_kV,pulse_mAs);
+        COMMUNICATION->set2DDataBank(R2CP::DB_Pulse,pulseExposureData.focus,pulseExposureData.kV,pulse_mAs,5000);
+        subStatus = 20;
         break;
 
-    case 3:
+    case 21:
 
+        pulseExposureData.mS = R2CP::CaDataDicGen::GetInstance()->radInterface.DbDefinitions[R2CP::DB_Pulse].ms100.value / 100;
+        if(pulseExposureData.mS > tomoConfig.EW){
+            exposureError = true;
+            error_code = Interface::_EXP_ERR_MAS_OUT_OF_RANGE;
+            qDebug() << "_EXP_ERR_MAS_OUT_OF_RANGE";
+            QTimer::singleShot(0, this, SLOT(handleCurrentStatus()));
+            return;
+        }
+
+        pulseExposureData.mA = (pulseExposureData.mAs * 1000) / (tomoConfig.samples * pulseExposureData.mS);
+        qDebug()<<"mA:" << pulseExposureData.mA <<" mS:" << pulseExposureData.mS;
+
+        wait_command_processed = true;
+        COMMUNICATION->set3DDataBank(R2CP::DB_Pulse,pulseExposureData.focus,pulseExposureData.kV,pulseExposureData.mA, pulseExposureData.mS,tomoConfig.EW);
+        subStatus = 2;
+        break;
+
+
+    case 3:
         // Procedure activation
         wait_command_processed = true;
         COMMUNICATION->activate3DProcedurePulse();
@@ -98,6 +137,7 @@ void statusManager::handle_3D_MANUAL(void){
         if(R2CP::CaDataDicGen::GetInstance()->radInterface.generatorStatusV6.SystemMessage.Fields.Active == R2CP::Stat_SystemMessageActive_Active){
             exposureError = true;
             error_code = Interface::_EXP_ERR_GENERATOR_ERRORS;
+            qDebug() << "_EXP_ERR_GENERATOR_ERRORS";
             QTimer::singleShot(0, this, SLOT(handleCurrentStatus()));
             return;
         }
@@ -118,7 +158,7 @@ void statusManager::handle_3D_MANUAL(void){
         if(!R2CP::CaDataDicGen::GetInstance()->radInterface.generatorStatusV6.ExposureSwitches.Fields.ExpsignalStatus){
             exposureError = true;
             error_code = Interface::_EXP_ERR_XRAY_ENA_EARLY_RELEASED;
-            qDebug() << " XRAY-ENA EARLY RELEASED";
+            qDebug() << "_EXP_ERR_XRAY_ENA_EARLY_RELEASED";
             QTimer::singleShot(0, this, SLOT(handleCurrentStatus()));
             return;
         }
@@ -130,6 +170,7 @@ void statusManager::handle_3D_MANUAL(void){
                 if(R2CP::CaDataDicGen::GetInstance()->radInterface.generatorStatusV6.SystemMessage.Fields.Active == R2CP::Stat_SystemMessageActive_Active){
                     exposureError = true;
                     error_code = Interface::_EXP_ERR_GENERATOR_ERRORS;
+                    qDebug() << "_EXP_ERR_GENERATOR_ERRORS";
                     QTimer::singleShot(0, this, SLOT(handleCurrentStatus()));
                     return;
                 }
@@ -138,12 +179,19 @@ void statusManager::handle_3D_MANUAL(void){
                 return;
 
             case R2CP::Stat_Error:
+                exposureError = true;
+                error_code = Interface::_EXP_ERR_GENERATOR_ERRORS;
+                qDebug() << "_EXP_ERR_GENERATOR_ERRORS";
+                QTimer::singleShot(0, this, SLOT(handleCurrentStatus()));
+                return;
+
             case R2CP::Stat_WaitFootRelease:
             case R2CP::Stat_GoigToShutdown:
             case R2CP::Stat_Service:
             case R2CP::Stat_Initialization:
                 exposureError = true;
                 error_code = Interface::_EXP_ERR_GENERATOR_STATUS;
+                qDebug() << "_EXP_ERR_GENERATOR_STATUS";
                 QTimer::singleShot(0, this, SLOT(handleCurrentStatus()));
                 return;
 
@@ -165,7 +213,7 @@ void statusManager::handle_3D_MANUAL(void){
                 if(!R2CP::CaDataDicGen::GetInstance()->radInterface.generatorStatusV6.ExposureSwitches.Fields.ExpsignalStatus){
                     exposureError = true;
                     error_code = Interface::_EXP_ERR_XRAY_ENA_EARLY_RELEASED;
-                    qDebug() << " XRAY-ENA EARLY RELEASED";
+                    qDebug() << "_EXP_ERR_XRAY_ENA_EARLY_RELEASED";
                     QTimer::singleShot(0, this, SLOT(handleCurrentStatus()));
                     return;
                 }
@@ -175,12 +223,18 @@ void statusManager::handle_3D_MANUAL(void){
 
 
             case R2CP::Stat_Error:
-                qDebug() << "Stat Error";
+                exposureError = true;
+                error_code = Interface::_EXP_ERR_GENERATOR_ERRORS;
+                qDebug() << "_EXP_ERR_GENERATOR_ERRORS";
+                QTimer::singleShot(0, this, SLOT(handleCurrentStatus()));
+                return;
+
             case R2CP::Stat_GoigToShutdown:
             case R2CP::Stat_Service:
             case R2CP::Stat_Initialization:
                 exposureError = true;
                 error_code = Interface::_EXP_ERR_GENERATOR_STATUS;
+                 qDebug() << "_EXP_ERR_GENERATOR_STATUS";
                 QTimer::singleShot(0, this, SLOT(handleCurrentStatus()));
                 return;
 
@@ -212,8 +266,16 @@ void statusManager::handle_3D_MANUAL(void){
         break;
 
     default:
-        qDebug() << "EXPOSURE 3D MANUAL TERMINATED";
-        INTERFACE->EventXrayCompleted(0,Interface::_EXPOSURE_COMPLETED,0);
+        postExposure = STATUS->getPostExposureList();
+        totalPulsemAs = 0;
+        totalPremAs = 0;
+        for (int i=0; i< postExposure.size(); i++) totalPulsemAs += postExposure[i].mAs;
+        qDebug() << "EXPOSURE 3D MANUAL TERMINATED. Total PRE mAs:" << totalPremAs << ", Total Pulse mAs:" << totalPulsemAs;
+
+        INTERFACE->EventXrayCompleted(0,Interface::_EXPOSURE_COMPLETED,totalPremAs, totalPulsemAs, Interface::_EXP_ERR_NONE);
+        pulseExposureData.valid = false;
+        preExposureData.valid = false;
+        tomoConfig.valid = false;
         changeStatus(SMS_IDLE,0,SMS_IDLE,0);
         return;
     }
@@ -223,193 +285,3 @@ void statusManager::handle_3D_MANUAL(void){
 
 }
 
-
-
-/*
-void statusManager::handle_2D_MANUAL(void){
-    static uchar oldstat;
-    bool  chgstat = false;
-
-    if(R2CP::CaDataDicGen::GetInstance()->radInterface.generatorStatusV6.GeneratorStatus != oldstat){
-        chgstat = true;
-        oldstat = R2CP::CaDataDicGen::GetInstance()->radInterface.generatorStatusV6.GeneratorStatus;
-    }
-
-    WINDOWS->onRecetionGenStatusSlot();
-
-    switch(subStatus){
-    case 0:
-        WINDOWS->setStatus("EXPOSURE 2D");
-        qDebug() << "EXPOSURE 2D STATUS";
-        break;
-
-    case 1:
-        // Validate the exposure data
-        if(!validate2DExposurePulse()){
-            setErrorCondition(SMS_ERR_EXPOSURE, SMS_EXP_ERR_PULSE_VALIDATION, "EXPOSURE DATA VALIDATION",SMS_IDLE,0);
-            return;
-        }
-
-        // Load Data Bank
-        wait_command_processed = true;
-        COMMUNICATION->set2DDataBank(R2CP::DB_Pulse,focus,pulse_kV,pulse_mAs,mA,mS);
-        break;
-
-    case 2:
-        if(!command_process_state){
-            setErrorCondition(SMS_ERR_EXPOSURE, SMS_EXP_ERR_PREPARATION, "SET DATABANK",SMS_IDLE,0);
-            return;
-        }
-
-        // Procedure activation
-        wait_command_processed = true;
-        COMMUNICATION->activate2DProcedurePulse();
-        break;
-
-    case 3:
-        if(!command_process_state){
-            setErrorCondition(SMS_ERR_EXPOSURE, SMS_EXP_ERR_PREPARATION, "PROCEDURE ACTIVATION",SMS_IDLE,0);
-            return;
-
-        }
-        break;
-
-    case 4: // Get status to check the generator before to proceed
-        wait_command_processed = true;
-        COMMUNICATION->getGeneratorStatusV6();
-        break;
-
-    case 5:
-        if(!command_process_state){
-            setErrorCondition(SMS_ERR_EXPOSURE, SMS_EXP_ERR_PREPARATION, "GET STATUS",SMS_IDLE,0);
-            return;
-        }
-        break;
-
-    case 6:  // Clear all the System Messages
-        if(R2CP::CaDataDicGen::GetInstance()->radInterface.generatorStatusV6.SystemMessage.Fields.Active == R2CP::Stat_SystemMessageActive_Active){
-            changeStatus(SMS_CLEAR_SYS_MESSAGES,0,internalState,subStatus+1);
-            return;
-        }
-        break;    
-
-    case 7: // Test Not cleared messages
-
-        if(R2CP::CaDataDicGen::GetInstance()->radInterface.generatorStatusV6.SystemMessage.Fields.Active == R2CP::Stat_SystemMessageActive_Active){
-            setErrorCondition(SMS_ERR_EXPOSURE, SMS_EXP_ERR_SYSMSG, "SYSTEM MESSAGES PRESENTS",SMS_IDLE,0);
-            return;
-        }
-
-        qDebug() << "WAITING PUSH BUTTON PRESS..";
-        wait_command_processed = true;
-        COMMUNICATION->getGeneratorStatusV6();
-        break;
-
-    case 8:
-        if(!command_process_state){
-            setErrorCondition(SMS_ERR_EXPOSURE, SMS_EXP_ERR_PREPARATION, "GET STATUS",SMS_IDLE,0);
-            return;
-        }
-
-        // Wait for the Exposure in progress
-        switch(oldstat){
-            case R2CP::Stat_Preparation:
-            case R2CP::Stat_Standby:
-
-                if(R2CP::CaDataDicGen::GetInstance()->radInterface.generatorStatusV6.SystemMessage.Fields.Active == R2CP::Stat_SystemMessageActive_Active){
-                    setErrorCondition(SMS_ERR_EXPOSURE, SMS_EXP_ERR_SYSMSG, "SYSTEM MESSAGES PRESENTS",SMS_IDLE,0);
-                    return;
-                }
-
-                QTimer::singleShot(10, this, SLOT(handleCurrentStatus()));
-                return;
-
-            case R2CP::Stat_Ready:
-                if(chgstat) qDebug() << "EXPOSURE READY ..";
-                break;
-
-
-            case R2CP::Stat_Error:
-                setErrorCondition(SMS_ERR_EXPOSURE, SMS_EXP_ERR_PREPARATION, "GENERATOR ERROR CONDITION",SMS_IDLE,0);
-                return;
-
-            case R2CP::Stat_ExpInProgress:
-            case R2CP::Stat_WaitFootRelease:
-            case R2CP::Stat_GoigToShutdown:            
-            case R2CP::Stat_Service:
-            case R2CP::Stat_Initialization:
-                setErrorCondition(SMS_ERR_EXPOSURE, SMS_EXP_ERR_PREPARATION, "INVALID GENERATOR STATUS",SMS_IDLE,0);
-                return;
-        }
-
-        break;
-
-    case 9:
-        qDebug() << "START EXPOSURE";
-
-        wait_command_processed = true;
-        COMMUNICATION->startExposure();
-        break;
-
-    case 10:
-        if(!command_process_state){
-            setErrorCondition(SMS_ERR_EXPOSURE, SMS_EXP_ERR_PREPARATION, "START EXPOSURE COMMAND",SMS_IDLE,0);
-            return;
-        }
-
-        // Wait for Standby
-        switch(oldstat){
-
-            case R2CP::Stat_Standby: break;
-
-
-            case R2CP::Stat_Error:
-                setErrorCondition(SMS_ERR_EXPOSURE, SMS_EXP_ERR_SEQUENCE, "GENERATOR ERROR CONDITION",SMS_IDLE,0);
-                return;
-
-            case R2CP::Stat_GoigToShutdown:
-            case R2CP::Stat_Service:
-            case R2CP::Stat_Initialization:
-                setErrorCondition(SMS_ERR_EXPOSURE, SMS_EXP_ERR_SEQUENCE, "GENERATOR INVALID STATUS",SMS_IDLE,0);
-                return;
-
-            case R2CP::Stat_Preparation:
-                if(chgstat) qDebug() << "EXPOSURE PREPARATION ..";
-                QTimer::singleShot(10, this, SLOT(handleCurrentStatus()));
-                return;
-            case R2CP::Stat_Ready:
-                if(chgstat) qDebug() << "EXPOSURE READY ..";
-                QTimer::singleShot(10, this, SLOT(handleCurrentStatus()));
-                return;
-            case R2CP::Stat_ExpInProgress:
-                if(chgstat) qDebug() << "EXPOSURE IN PROGRESS ..";
-                QTimer::singleShot(10, this, SLOT(handleCurrentStatus()));
-                return;
-
-            case R2CP::Stat_WaitFootRelease:
-                if(chgstat) qDebug() << "EXPOSURE WAIT PUSH RELEASE ..";
-                QTimer::singleShot(10, this, SLOT(handleCurrentStatus()));
-                return;
-
-            default:
-                QTimer::singleShot(10, this, SLOT(handleCurrentStatus()));
-                return;
-        }
-
-        break;
-
-    case 11:
-        qDebug() << "EXPOSURE COMPLETED";
-        break;
-
-    default:
-        changeStatus(SMS_IDLE,0,SMS_IDLE,0);
-        return;
-    }
-
-    subStatus++;
-    QTimer::singleShot(10, this, SLOT(handleCurrentStatus()));
-
-}
-
-*/

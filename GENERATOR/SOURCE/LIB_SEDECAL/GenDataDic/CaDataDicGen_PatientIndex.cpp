@@ -20,7 +20,7 @@ namespace R2CP
 
     void CaDataDicGen::Patient_ClearAllProcedures(void){
         (void)m_Type_-> Set(    ETH_LOWEST_PRIORITY,
-                                GENERATOR_NODE_ID,
+                                Interface::GENERATOR_NODE_ID,
                                 mNodeId,
                                 PATIENT_COMMANDS_ENTRY,
                                 PATIENT_PROCEDURE_CLEAR_ALL,
@@ -42,7 +42,7 @@ namespace R2CP
             pData[2] = 0;   // Positioner Proc Type = not defined
             pData[3] = 1;   // Handswitch ID = not defined
             pData[4] = 0;   // Activation Mode: 1 = Push, 0 = Software
-            pData[5] = DIRECT_WORKSTATION_ID;   // 1
+            pData[5] = Interface::DIRECT_WORKSTATION_ID;   // 1
             pData[6] = 1;   // Num Databank
             pData[7] = 1;   // Positioning Databank
             pData[8] = 1;   // Collimator Databank
@@ -62,7 +62,7 @@ namespace R2CP
             pData[2] = 0;   // Positioner Proc Type = not defined
             pData[3] = 1;   // Handswitch ID = not defined
             pData[4] = 0;   // Activation Mode: 1 = Push, 0 = Software
-            pData[5] = DIRECT_WORKSTATION_ID;   // 1
+            pData[5] = Interface::DIRECT_WORKSTATION_ID;   // 1
             pData[6] = 1;   // Num Databank
             pData[7] = 1;   // Positioning Databank
             pData[8] = 1;   // Collimator Databank
@@ -81,7 +81,7 @@ namespace R2CP
             pData[2] = 0;   // Positioner Proc Type = not defined
             pData[3] = 1;   // Handswitch ID = not defined
             pData[4] = 0;   // Activation Mode: 1 = Push, 0 = Software
-            pData[5] = DETECTOR_WORKSTATION_ID;   // 1
+            pData[5] = Interface::DETECTOR_WORKSTATION_ID;   // 1
             pData[6] = 1;   // Num Databank
             pData[7] = 1;   // Positioning Databank
             pData[8] = 1;   // Collimator Databank
@@ -100,7 +100,7 @@ namespace R2CP
             pData[2] = 0;   // Positioner = not defined
             pData[3] = 1;   // Handswitch ID = not defined
             pData[4] = 0;   // Activation Mode: 1 = Push, 0 = Software
-            pData[5] = DETECTOR_WORKSTATION_ID;
+            pData[5] = Interface::DETECTOR_WORKSTATION_ID;
             pData[6] = 2;   // Num Databank
             pData[7] = 1;   // Positioning Databank
             pData[8] = 1;   // Collimator Databank
@@ -118,7 +118,7 @@ namespace R2CP
             pData[2] = 0;   // Positioner = not defined
             pData[3] = 1;   // Handswitch ID = not defined
             pData[4] = 0;   // Activation Mode: 1 = Push, 0 = Software
-            pData[5] = DETECTOR_WORKSTATION_ID;   // Workstation
+            pData[5] = Interface::DETECTOR_WORKSTATION_ID;   // Workstation
             pData[6] = 1;   // Num Databank
             pData[7] = 1;   // Positioning Databank
             pData[8] = 1;   // Collimator Databank
@@ -136,12 +136,12 @@ namespace R2CP
             pData[2] = 0;   // Positioner = not defined
             pData[3] = 1;   // Handswitch ID = not defined
             pData[4] = 0;   // Activation Mode: 1 = Push, 0 = Software
-            pData[5] = DETECTOR_WORKSTATION_ID;   // Workstation
+            pData[5] = Interface::DETECTOR_WORKSTATION_ID;   // Workstation
             pData[6] = 2;   // Num Databank
             pData[7] = 1;   // Positioning Databank
             pData[8] = 1;   // Collimator Databank
             pData[9] = 1;   // Filter Databank
-            pData[10] = Proc_DatabankSeq_Software;  // Gen Databank sequencing: 0-NA, 1-Activate Next, 2-Software
+            pData[10] = 0;  //Proc_DatabankSeq_Software;  // Gen Databank sequencing: 0-NA, 1-Activate Next, 2-Software
             pData[11] = 0;  // Posi. Seq
             pData[12] = 0;  // Colli. Seq
             pData[13] = 0;  // Filter. Seq
@@ -150,7 +150,7 @@ namespace R2CP
         }
 
         (void)m_Type_-> Set(    ETH_LOWEST_PRIORITY,
-                                GENERATOR_NODE_ID,
+                                Interface::GENERATOR_NODE_ID,
                                 mNodeId,
                                 PATIENT_COMMANDS_ENTRY,
                                 PATIENT_PROCEDURE_DEFINITION_V6,
@@ -172,7 +172,7 @@ namespace R2CP
             pData[2] = 0;   // Positioner Proc Type = not defined
             pData[3] = 1;   // Handswitch ID = not defined
             pData[4] = 1;   // Activation Mode: 1 = Push, 0 = Software
-            pData[5] = DETECTOR_WORKSTATION_ID;   // Workstation: 1 = Detector, 5 = Direct
+            pData[5] = Interface::DETECTOR_WORKSTATION_ID;   // Workstation: 1 = Detector, 5 = Direct
             pData[6] = 1;   // Num Databank
             pData[7] = 1;   // Positioning Databank
             pData[8] = 1;   // Collimator Databank
@@ -189,7 +189,7 @@ namespace R2CP
             pData[2] = 0;   // Positioner = not defined
             pData[3] = 1;   // Handswitch ID = not defined
             pData[4] = 1;   // Activation Mode: 1 = Push, 0 = Software
-            pData[5] = DETECTOR_WORKSTATION_ID;   // Workstation: 1 = Detector, 5 = Direct
+            pData[5] = Interface::DETECTOR_WORKSTATION_ID;   // Workstation: 1 = Detector, 5 = Direct
             pData[6] = 2;   // Num Databank
             pData[7] = 1;   // Positioning Databank
             pData[8] = 1;   // Collimator Databank
@@ -205,7 +205,7 @@ namespace R2CP
             pData[2] = 0;   // Positioner = not defined
             pData[3] = 1;   // Handswitch ID = not defined
             pData[4] = 1;   // Activation Mode: 1 = Push, 0 = Software
-            pData[5] = DETECTOR_WORKSTATION_ID;   // Workstation: 1 = Detector, 5 = Direct
+            pData[5] = Interface::DETECTOR_WORKSTATION_ID;   // Workstation: 1 = Detector, 5 = Direct
             pData[6] = 1;   // Num Databank
             pData[7] = 1;   // Positioning Databank
             pData[8] = 1;   // Collimator Databank
@@ -222,7 +222,7 @@ namespace R2CP
             pData[2] = 0;   // Positioner = not defined
             pData[3] = 1;   // Handswitch ID = not defined
             pData[4] = 1;   // Activation Mode: 1 = Push, 0 = Software
-            pData[5] = DETECTOR_WORKSTATION_ID;   // Workstation: 1 = Detector, 5 = Direct
+            pData[5] = Interface::DETECTOR_WORKSTATION_ID;   // Workstation: 1 = Detector, 5 = Direct
             pData[6] = 2;   // Num Databank
             pData[7] = 1;   // Positioning Databank
             pData[8] = 1;   // Collimator Databank
@@ -235,7 +235,7 @@ namespace R2CP
         }
 
         (void)m_Type_-> Set(    ETH_LOWEST_PRIORITY,
-                                GENERATOR_NODE_ID,
+                                Interface::GENERATOR_NODE_ID,
                                 mNodeId,
                                 PATIENT_COMMANDS_ENTRY,
                                 PATIENT_PROCEDURE_DEFINITION_V5,
@@ -263,7 +263,7 @@ namespace R2CP
 
 
         (void)m_Type_-> Set(    ETH_LOWEST_PRIORITY,
-                                GENERATOR_NODE_ID,
+                                Interface::GENERATOR_NODE_ID,
                                 mNodeId,
                                 PATIENT_COMMANDS_ENTRY,
                                 PATIENT_PROCEDURE_ACTIVATE,
@@ -288,7 +288,7 @@ namespace R2CP
 
 
         (void)m_Type_-> Set(    ETH_LOWEST_PRIORITY,
-                                GENERATOR_NODE_ID,
+                                Interface::GENERATOR_NODE_ID,
                                 mNodeId,
                                 PATIENT_COMMANDS_ENTRY,
                                 PATIENT_PROCEDURE_ACTIVATE,
@@ -312,7 +312,7 @@ namespace R2CP
 
 
         (void)m_Type_-> Set(    ETH_LOWEST_PRIORITY,
-                                GENERATOR_NODE_ID,
+                                Interface::GENERATOR_NODE_ID,
                                 mNodeId,
                                 PATIENT_COMMANDS_ENTRY,
                                 PATIENT_PROCEDURE_ACTIVATE,
@@ -336,7 +336,7 @@ namespace R2CP
 
 
         (void)m_Type_-> Set(    ETH_LOWEST_PRIORITY,
-                                GENERATOR_NODE_ID,
+                                Interface::GENERATOR_NODE_ID,
                                 mNodeId,
                                 PATIENT_COMMANDS_ENTRY,
                                 PATIENT_PROCEDURE_ACTIVATE,
@@ -345,6 +345,52 @@ namespace R2CP
 
     }
 
+    void CaDataDicGen::Patient_Activate3DAecProcedurePulse(void){
+
+
+        byte pData[6];
+
+        pData[0] = ProcId_Aec_Mammography_3D; // Proc Id
+        pData[1] = 1;   // Procedure activation
+        pData[2] = 2;   // Databank Index to be activated
+        pData[3] = 0;   // Position DB activation
+        pData[4] = 0;   // Collimator DB activation
+        pData[5] = 0;   // Filter DB activaition
+
+
+        (void)m_Type_-> Set(    ETH_LOWEST_PRIORITY,
+                                Interface::GENERATOR_NODE_ID,
+                                mNodeId,
+                                PATIENT_COMMANDS_ENTRY,
+                                PATIENT_PROCEDURE_ACTIVATE,
+                                6,
+                                pData);
+
+    }
+
+
+    void CaDataDicGen::Patient_Activate3DAecProcedurePre(void){
+
+
+        byte pData[6];
+
+        pData[0] = ProcId_Aec_Mammography_3D; // Proc Id
+        pData[1] = 1;   // Procedure activation
+        pData[2] = 1;//EXP_DB_IDX_PRE;   // Databank Index to be activated
+        pData[3] = 0;   // Position DB activation
+        pData[4] = 0;   // Collimator DB activation
+        pData[5] = 0;   // Filter DB activaition
+
+
+        (void)m_Type_-> Set(    ETH_LOWEST_PRIORITY,
+                                Interface::GENERATOR_NODE_ID,
+                                mNodeId,
+                                PATIENT_COMMANDS_ENTRY,
+                                PATIENT_PROCEDURE_ACTIVATE,
+                                6,
+                                pData);
+
+    }
 
 
 }//namesapce R2Cp	

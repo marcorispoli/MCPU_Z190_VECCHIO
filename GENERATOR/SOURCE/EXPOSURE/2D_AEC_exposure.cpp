@@ -2,19 +2,31 @@
 #include <QTimer>
 
 void statusManager::handle_2D_AEC(void){
+    QList<Interface::tPostExposureData> postExposure;
+    float totalPremAs;
+    float totalPulsemAs;
     static uchar current_status;
     static bool exposureError = false;
     static unsigned char error_code;
 
     if((subStatus!=0) && ((abortRxRequest) || (!command_process_state) || (exposureError))){
-        if(abortRxRequest) qDebug() << "Abort Rx Command Executed";
-        else if(!command_process_state) qDebug() << "Cp Error on Substatus = " << subStatus;
-        else qDebug() << "Exposure Error on Substatus = " << subStatus;
+        postExposure = STATUS->getPostExposureList();
+        totalPulsemAs = 0;
+        totalPremAs = 0;
+        for (int i=0; i< postExposure.size(); i++){
+            if(postExposure[i].pulse_seq == R2CP::DB_Pre) totalPremAs += postExposure[i].mAs;
+            else if(postExposure[i].pulse_seq == R2CP::DB_Pulse) totalPulsemAs += postExposure[i].mAs;
+        }
 
-        QList<Interface::tPostExposureData> list = STATUS->getPostExposureList();
+        if(abortRxRequest) qDebug() << "Abort Rx Command Executed: total PRE mAs:" << totalPremAs << " toal Pulse mAs:" << totalPulsemAs;
+        else if(!command_process_state) qDebug() << "Cp Error on Substatus = " << subStatus << " total PRE mAs:" << totalPremAs << " toal Pulse mAs:" << totalPulsemAs;
+        else qDebug() << "Exposure Error on Substatus = " << subStatus << " total PRE mAs:" << totalPremAs << " toal Pulse mAs:" << totalPulsemAs;
 
-        if(list.size() == 0) INTERFACE->EventXrayCompleted(0,Interface::_EXPOSURE_ABORT,error_code);
-        else INTERFACE->EventXrayCompleted(0,Interface::_EXPOSURE_PARTIAL,error_code);
+        if(totalPulsemAs+totalPremAs) INTERFACE->EventXrayCompleted(0,Interface::_EXPOSURE_ABORT, totalPremAs, totalPulsemAs, error_code);
+        else INTERFACE->EventXrayCompleted(0,Interface::_EXPOSURE_PARTIAL,totalPremAs, totalPulsemAs, error_code);
+
+        pulseExposureData.valid = false;
+        preExposureData.valid = false;
         changeStatus(SMS_IDLE,0,SMS_IDLE,0);
         return;
     }
@@ -25,24 +37,26 @@ void statusManager::handle_2D_AEC(void){
     switch(subStatus){
     case 0:
         qDebug() << "EXPOSURE 2D+AEC START SEQUENCE";
-        clearPostExposureList();
-        aecDataPresent = false;
+        clearPostExposureList();        
+        pulseExposureData.valid = false;
+
         exposureError = false;
         error_code = 0;
         break;
 
     case 1:
         // Validate the exposure data
-        if(!validate2DExposurePre()){
+        if(!preExposureData.valid){
             exposureError = true;
             error_code = Interface::_EXP_ERR_PRE_VALIDATION;
+            qDebug() << "_EXP_ERR_PRE_VALIDATION";
             QTimer::singleShot(0, this, SLOT(handleCurrentStatus()));
             return;
         }
 
         // Load Data Bank
         wait_command_processed = true;
-        COMMUNICATION->set2DDataBank(R2CP::DB_Pre,focus,pre_kV,pre_mAs);
+        COMMUNICATION->set2DDataBank(R2CP::DB_Pre,preExposureData.focus,preExposureData.kV,preExposureData.mAs, 5000);
         break;
 
     case 2:       
@@ -80,6 +94,7 @@ void statusManager::handle_2D_AEC(void){
         if(R2CP::CaDataDicGen::GetInstance()->radInterface.generatorStatusV6.SystemMessage.Fields.Active == R2CP::Stat_SystemMessageActive_Active){
             exposureError = true;
             error_code = Interface::_EXP_ERR_GENERATOR_ERRORS;
+            qDebug() << "_EXP_ERR_GENERATOR_ERRORS";
             QTimer::singleShot(0, this, SLOT(handleCurrentStatus()));
             return;
         }
@@ -98,6 +113,7 @@ void statusManager::handle_2D_AEC(void){
                 if(R2CP::CaDataDicGen::GetInstance()->radInterface.generatorStatusV6.SystemMessage.Fields.Active == R2CP::Stat_SystemMessageActive_Active){
                     exposureError = true;
                     error_code = Interface::_EXP_ERR_GENERATOR_ERRORS;
+                    qDebug() << "_EXP_ERR_GENERATOR_ERRORS";
                     QTimer::singleShot(0, this, SLOT(handleCurrentStatus()));
                     return;
                 }
@@ -106,12 +122,19 @@ void statusManager::handle_2D_AEC(void){
                 return;
 
             case R2CP::Stat_Error:
+                exposureError = true;
+                error_code = Interface::_EXP_ERR_GENERATOR_ERRORS;
+                qDebug() << "_EXP_ERR_GENERATOR_ERRORS";
+                QTimer::singleShot(0, this, SLOT(handleCurrentStatus()));
+                return;
+
             case R2CP::Stat_WaitFootRelease:
             case R2CP::Stat_GoigToShutdown:
             case R2CP::Stat_Service:
             case R2CP::Stat_Initialization:
                 exposureError = true;
                 error_code = Interface::_EXP_ERR_GENERATOR_STATUS;
+                qDebug() << "_EXP_ERR_GENERATOR_STATUS";
                 QTimer::singleShot(0, this, SLOT(handleCurrentStatus()));
                 return;
 
@@ -125,6 +148,13 @@ void statusManager::handle_2D_AEC(void){
         break;
 
       case 8:
+        if(!R2CP::CaDataDicGen::GetInstance()->radInterface.generatorStatusV6.ExposureSwitches.Fields.ExpsignalStatus){
+            exposureError = true;
+            error_code = Interface::_EXP_ERR_XRAY_ENA_EARLY_RELEASED;
+            qDebug() << "_EXP_ERR_XRAY_ENA_EARLY_RELEASED";
+            QTimer::singleShot(0, this, SLOT(handleCurrentStatus()));
+            return;
+        }
 
         // Wait for Standby
         switch(current_status){
@@ -132,15 +162,25 @@ void statusManager::handle_2D_AEC(void){
             case R2CP::Stat_Standby:
                 qDebug() << "Pre pulse completed: wait for the AEC data";
                 INTERFACE->EventGetPulseData(0);
+                abortTimeoutRequest = false;
+                QTimer::singleShot(preExposureData.tmo, this, SLOT(timeoutAec()));
                 break;
+
+            case R2CP::Stat_Error:
+                exposureError = true;
+                error_code = Interface::_EXP_ERR_GENERATOR_ERRORS;
+                qDebug() << "_EXP_ERR_GENERATOR_ERRORS";
+                QTimer::singleShot(0, this, SLOT(handleCurrentStatus()));
+                return;
 
             case R2CP::Stat_WaitFootRelease:
             case R2CP::Stat_GoigToShutdown:
             case R2CP::Stat_Service:
             case R2CP::Stat_Initialization:
-            case R2CP::Stat_Error:
+
                 exposureError = true;
                 error_code = Interface::_EXP_ERR_GENERATOR_STATUS;
+                qDebug() << "_EXP_ERR_GENERATOR_STATUS";
                 QTimer::singleShot(0, this, SLOT(handleCurrentStatus()));
                 return;
 
@@ -158,31 +198,40 @@ void statusManager::handle_2D_AEC(void){
         break;
 
     case 9:
-        if(!aecDataPresent){
-            QTimer::singleShot(10, this, SLOT(handleCurrentStatus()));
-            return;
-        }
-
-        qDebug() << "AEC data received";
-
-        if(R2CP::CaDataDicGen::GetInstance()->radInterface.generatorStatusV6.SystemMessage.Fields.Active == R2CP::Stat_SystemMessageActive_Active){
+        if(abortTimeoutRequest){
             exposureError = true;
-            error_code = Interface::_EXP_ERR_GENERATOR_ERRORS;
+            error_code = Interface::_EXP_ERR_AEC_TMO;
+            qDebug() << "_EXP_ERR_AEC_TMO";
             QTimer::singleShot(0, this, SLOT(handleCurrentStatus()));
             return;
         }
 
-        // Validate the exposure data
-        if(!validate2DExposurePulse()){
+        if(!R2CP::CaDataDicGen::GetInstance()->radInterface.generatorStatusV6.ExposureSwitches.Fields.ExpsignalStatus){
             exposureError = true;
-            error_code = Interface::_EXP_ERR_PULSE_VALIDATION;
+            error_code = Interface::_EXP_ERR_XRAY_ENA_EARLY_RELEASED;
+            qDebug() << "_EXP_ERR_XRAY_ENA_EARLY_RELEASED";
+            QTimer::singleShot(0, this, SLOT(handleCurrentStatus()));
+            return;
+        }
+
+        if(!pulseExposureData.valid){
+            QTimer::singleShot(10, this, SLOT(handleCurrentStatus()));
+            return;
+        }
+
+        qDebug() << "Pulse received from the AEC";
+
+        if(R2CP::CaDataDicGen::GetInstance()->radInterface.generatorStatusV6.SystemMessage.Fields.Active == R2CP::Stat_SystemMessageActive_Active){
+            exposureError = true;
+            error_code = Interface::_EXP_ERR_GENERATOR_ERRORS;
+            qDebug() << "_EXP_ERR_GENERATOR_ERRORS";
             QTimer::singleShot(0, this, SLOT(handleCurrentStatus()));
             return;
         }
 
         // Load Data Bank
         wait_command_processed = true;
-        COMMUNICATION->set2DDataBank(R2CP::DB_Pulse,focus,pulse_kV,pulse_mAs);
+        COMMUNICATION->set2DDataBank(R2CP::DB_Pulse,pulseExposureData.focus,pulseExposureData.kV,pulseExposureData.mAs, 5000);
         break;
 
     case 10:
@@ -201,6 +250,15 @@ void statusManager::handle_2D_AEC(void){
 
 
     case 12:
+
+        if(!R2CP::CaDataDicGen::GetInstance()->radInterface.generatorStatusV6.ExposureSwitches.Fields.ExpsignalStatus){
+            exposureError = true;
+            error_code = Interface::_EXP_ERR_XRAY_ENA_EARLY_RELEASED;
+            qDebug() << "_EXP_ERR_XRAY_ENA_EARLY_RELEASED";
+            QTimer::singleShot(0, this, SLOT(handleCurrentStatus()));
+            return;
+        }
+
         // Wait for the Exposure in progress
         switch(current_status){
             case R2CP::Stat_Standby:
@@ -208,6 +266,7 @@ void statusManager::handle_2D_AEC(void){
                 if(R2CP::CaDataDicGen::GetInstance()->radInterface.generatorStatusV6.SystemMessage.Fields.Active == R2CP::Stat_SystemMessageActive_Active){
                     exposureError = true;
                     error_code = Interface::_EXP_ERR_GENERATOR_ERRORS;
+                    qDebug() << "_EXP_ERR_GENERATOR_ERRORS";
                     QTimer::singleShot(0, this, SLOT(handleCurrentStatus()));
                     return;
                 }
@@ -217,12 +276,19 @@ void statusManager::handle_2D_AEC(void){
 
 
             case R2CP::Stat_Error:
+                exposureError = true;
+                error_code = Interface::_EXP_ERR_GENERATOR_ERRORS;
+                qDebug() << "_EXP_ERR_GENERATOR_ERRORS";
+                QTimer::singleShot(0, this, SLOT(handleCurrentStatus()));
+                return;
+
             case R2CP::Stat_WaitFootRelease:
             case R2CP::Stat_GoigToShutdown:
             case R2CP::Stat_Service:
             case R2CP::Stat_Initialization:
                 exposureError = true;
                 error_code = Interface::_EXP_ERR_GENERATOR_STATUS;
+                qDebug() << "_EXP_ERR_GENERATOR_STATUS";
                 QTimer::singleShot(0, this, SLOT(handleCurrentStatus()));
                 return;
 
@@ -247,11 +313,18 @@ void statusManager::handle_2D_AEC(void){
 
 
             case R2CP::Stat_Error:
+                exposureError = true;
+                error_code = Interface::_EXP_ERR_GENERATOR_ERRORS;
+                qDebug() << "_EXP_ERR_GENERATOR_ERRORS";
+                QTimer::singleShot(0, this, SLOT(handleCurrentStatus()));
+                return;
+
             case R2CP::Stat_GoigToShutdown:
             case R2CP::Stat_Service:
             case R2CP::Stat_Initialization:
                 exposureError = true;
                 error_code = Interface::_EXP_ERR_GENERATOR_STATUS;
+                qDebug() << "_EXP_ERR_GENERATOR_STATUS";
                 QTimer::singleShot(0, this, SLOT(handleCurrentStatus()));
                 return;
 
@@ -284,8 +357,20 @@ void statusManager::handle_2D_AEC(void){
         break;
 
     default:
-        qDebug() << "EXPOSURE 2D+AEC TERMINATED";
-        INTERFACE->EventXrayCompleted(0,Interface::_EXPOSURE_COMPLETED,0);
+
+        postExposure = STATUS->getPostExposureList();
+        totalPulsemAs = 0;
+        totalPremAs = 0;
+        for (int i=0; i< postExposure.size(); i++){
+            if(postExposure[i].pulse_seq == R2CP::DB_Pre) totalPremAs += postExposure[i].mAs;
+            else if(postExposure[i].pulse_seq == R2CP::DB_Pulse) totalPulsemAs += postExposure[i].mAs;
+        }
+        qDebug() << "EXPOSURE 2D+AEC TERMINATED. Total PRE mAs:" << totalPremAs << ", Total Pulse mAs:" << totalPulsemAs;
+
+
+        INTERFACE->EventXrayCompleted(0,Interface::_EXPOSURE_COMPLETED,totalPremAs, totalPulsemAs, Interface::_EXP_ERR_NONE);
+        pulseExposureData.valid = false;
+        preExposureData.valid = false;
         changeStatus(SMS_IDLE,0,SMS_IDLE,0);
         return;
     }

@@ -36,7 +36,7 @@ var searchData=
   ['undefined_5flenght_33',['UNDEFINED_LENGHT',['../_ca_data_dic_8h.html#ac3bb083145b20f9e2dfe6358ac36fd30',1,'UNDEFINED_LENGHT():&#160;CaDataDic.h'],['../_ca_data_dic_gen_8cpp.html#ac3bb083145b20f9e2dfe6358ac36fd30',1,'UNDEFINED_LENGHT():&#160;CaDataDicGen.cpp']]],
   ['unlock_5fdatadicgenmutex_34',['UnLock_DataDicGenMutex',['../class_r2_c_p_1_1_ca_data_dic_gen.html#a1361d0d602403182ece03b5901e64ba7',1,'R2CP::CaDataDicGen']]],
   ['unused_35',['unused',['../structt_data_dic_status_register.html#a3754911f8ab392e5260dc6410ab31316',1,'tDataDicStatusRegister']]],
-  ['use_5fdetector_36',['use_detector',['../classstatus_manager.html#a93cd29e5611cf12f652123fffa17517e',1,'statusManager']]],
-  ['use_5fgrid_37',['use_grid',['../classstatus_manager.html#a8f1e6b1ff3fa6f9a96b73017a68d4adb',1,'statusManager']]],
+  ['use_5fdetector_36',['use_detector',['../structexposure_manager_1_1__t_exposur_opt.html#a6f722f4ff205eca5b32c0982034b3069',1,'exposureManager::_tExposurOpt']]],
+  ['use_5fgrid_37',['use_grid',['../structexposure_manager_1_1__t_exposur_opt.html#a4dc72a9cffdffa3e4574268bc776c9e5',1,'exposureManager::_tExposurOpt']]],
   ['uword_38',['uword',['../union_r2_c_p_1_1uword.html',1,'R2CP']]]
 ];

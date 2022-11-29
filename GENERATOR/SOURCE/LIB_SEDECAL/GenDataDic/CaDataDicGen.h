@@ -122,7 +122,7 @@ namespace R2CP
 	
 		//Events
 		void Network_IpConfig_Event(udword IpAddress, udword MaskSubNetwork , udword Gateway , udword ShIpAdress);
-		void Network_ConnectionRequest_Event(byte node_dest, byte node_iss);
+        void Network_ConnectionRequest_Event(void);
 		void Network_BackupSnapShot_Event ( tBackupSnapShotStatus Status );
 		void Network_Restore_Event ( tRestoreStatus Status );
 		

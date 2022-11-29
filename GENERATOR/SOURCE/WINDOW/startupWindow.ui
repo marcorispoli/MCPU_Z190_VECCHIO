@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>startupWindow</string>
+   <string>GENERATOR DEBUG WINDOW</string>
   </property>
   <property name="styleSheet">
    <string notr="true">
@@ -428,14 +428,14 @@ background-color: rgb(255, 255, 255);</string>
     <widget class="QCheckBox" name="gridEna">
      <property name="geometry">
       <rect>
-       <x>150</x>
-       <y>140</y>
-       <width>111</width>
-       <height>22</height>
+       <x>360</x>
+       <y>90</y>
+       <width>101</width>
+       <height>21</height>
       </rect>
      </property>
      <property name="text">
-      <string>GRID PRESENT</string>
+      <string>GRID SYNC</string>
      </property>
      <property name="checked">
       <bool>true</bool>
@@ -444,14 +444,14 @@ background-color: rgb(255, 255, 255);</string>
     <widget class="QCheckBox" name="detectorEna">
      <property name="geometry">
       <rect>
-       <x>60</x>
-       <y>140</y>
-       <width>81</width>
-       <height>22</height>
+       <x>360</x>
+       <y>60</y>
+       <width>101</width>
+       <height>21</height>
       </rect>
      </property>
      <property name="text">
-      <string>SYNCH</string>
+      <string>DET SYNC</string>
      </property>
      <property name="checked">
       <bool>true</bool>
@@ -460,8 +460,8 @@ background-color: rgb(255, 255, 255);</string>
     <widget class="QCheckBox" name="largeFocus">
      <property name="geometry">
       <rect>
-       <x>270</x>
-       <y>140</y>
+       <x>360</x>
+       <y>30</y>
        <width>101</width>
        <height>22</height>
       </rect>
@@ -563,9 +563,9 @@ border-width: 0px;
      <property name="geometry">
       <rect>
        <x>360</x>
-       <y>30</y>
-       <width>81</width>
-       <height>22</height>
+       <y>120</y>
+       <width>101</width>
+       <height>21</height>
       </rect>
      </property>
      <property name="text">
@@ -573,31 +573,6 @@ border-width: 0px;
      </property>
      <property name="checked">
       <bool>false</bool>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="aecSendButton">
-     <property name="geometry">
-      <rect>
-       <x>360</x>
-       <y>60</y>
-       <width>81</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>12</pointsize>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: rgb(0, 0, 127);
-color: rgb(255, 255, 255);
-border-width: 0px;
-</string>
-     </property>
-     <property name="text">
-      <string>AEC</string>
      </property>
     </widget>
     <widget class="QLineEdit" name="tomoEW">
@@ -724,6 +699,31 @@ border-width: 0px;
       <string>AEC Tmo</string>
      </property>
     </widget>
+    <widget class="QPushButton" name="abortRx">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>130</y>
+       <width>121</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(0, 0, 127);
+color: rgb(255, 255, 255);
+border-width: 0px;
+</string>
+     </property>
+     <property name="text">
+      <string>ABORT-RX</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QLabel" name="status">
     <property name="geometry">
@@ -741,8 +741,8 @@ border-width: 0px;
    <widget class="QPushButton" name="start3DPulse">
     <property name="geometry">
      <rect>
-      <x>810</x>
-      <y>260</y>
+      <x>940</x>
+      <y>220</y>
       <width>121</width>
       <height>31</height>
      </rect>
@@ -788,11 +788,11 @@ border-width: 0px;
      <string>START 3D AEC</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="startPre">
+   <widget class="QPushButton" name="start2DPre">
     <property name="geometry">
      <rect>
-      <x>940</x>
-      <y>220</y>
+      <x>810</x>
+      <y>260</y>
       <width>121</width>
       <height>31</height>
      </rect>
@@ -813,7 +813,7 @@ border-width: 0px;
      <string>START 2D AEC</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="startPulse">
+   <widget class="QPushButton" name="start2DPulse">
     <property name="geometry">
      <rect>
       <x>810</x>
@@ -838,12 +838,12 @@ border-width: 0px;
      <string>START 2D MAN</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="abortRx">
+   <widget class="QPushButton" name="aecSendButton">
     <property name="geometry">
      <rect>
-      <x>870</x>
+      <x>940</x>
       <y>300</y>
-      <width>111</width>
+      <width>121</width>
       <height>31</height>
      </rect>
     </property>
@@ -860,7 +860,32 @@ border-width: 0px;
 </string>
     </property>
     <property name="text">
-     <string>ABORT-RX</string>
+     <string>AEC</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="start2DTest">
+    <property name="geometry">
+     <rect>
+      <x>810</x>
+      <y>300</y>
+      <width>121</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 0, 127);
+color: rgb(255, 255, 255);
+border-width: 0px;
+</string>
+    </property>
+    <property name="text">
+     <string>START 2D TEST</string>
     </property>
    </widget>
   </widget>

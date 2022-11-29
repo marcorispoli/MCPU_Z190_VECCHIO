@@ -22,11 +22,9 @@ var searchData=
   ['fluorostatus_5fhardwired_19',['FluoroStatus_HARDWIRED',['../struct_r2_c_p_1_1t_exposure_switches_activation.html#a3fa929b16d22d064f6c7bdcdfc9d9f64',1,'R2CP::tExposureSwitchesActivation']]],
   ['fluorostatus_5fir_20',['FluoroStatus_IR',['../struct_r2_c_p_1_1t_exposure_switches_activation.html#a7e4633f87f65087439b92da89066b312',1,'R2CP::tExposureSwitchesActivation']]],
   ['fluorotime_21',['FluoroTime',['../struct_r2_c_p_1_1t_generator_status_v6.html#ad01407dde3f1b42856f2b0d19bf93064',1,'R2CP::tGeneratorStatusV6::FluoroTime()'],['../struct_r2_c_p_1_1t_generator_status_v5.html#acef779daabaa2325a5d149470b71d121',1,'R2CP::tGeneratorStatusV5::FluoroTime()']]],
-  ['foc_22',['foc',['../struct_interface_1_1t_post_exposure_data.html#ad04fc7ee35071187a618164bc9ad0444',1,'Interface::tPostExposureData']]],
-  ['focalspot_23',['FocalSpot',['../struct_r2_c_p_1_1t_rad_db.html#a22eaf9ec79a884b5c67df6cca1ea2352',1,'R2CP::tRadDb::FocalSpot()'],['../struct_r2_c_p_1_1t_rad_post_exp_post_condition.html#ad80979a49da43600a318cef984d63ff5',1,'R2CP::tRadPostExpPostCondition::FocalSpot()'],['../struct_r2_c_p_1_1t_rad_parameter_ranges.html#a0a282e6736fe24383fbebbf2d9562683',1,'R2CP::tRadParameterRanges::FocalSpot()'],['../struct_r2_c_p_1_1t_fl_db.html#acb67519f589ca7f8fe999ee09e19ff52',1,'R2CP::tFlDb::FocalSpot()'],['../struct_r2_c_p_1_1t_fl_post_exp_post_condition.html#a443c98fa521021f4ce98ce54fd33ac47',1,'R2CP::tFlPostExpPostCondition::FocalSpot()']]],
-  ['focus_24',['focus',['../classstatus_manager.html#affbe7f1024c07fcb3eb5a54f39064e3c',1,'statusManager']]],
-  ['fps_25',['fps',['../classstatus_manager.html#a9c6219862791f9af1c70e5fbfa52fffe',1,'statusManager']]],
-  ['fps10_26',['FPS10',['../struct_r2_c_p_1_1t_rad_db.html#a4b17315bc076ad2155ed2cbb7245e8eb',1,'R2CP::tRadDb']]],
-  ['function_27',['function',['../structsocket__header.html#a8446ab645b114495dc0ac60bcdfcf18c',1,'socket_header']]],
-  ['function_28',['Function',['../structt_info_message.html#ae33e27c2fe089f3ca400934d304bcb2e',1,'tInfoMessage']]]
+  ['focalspot_22',['FocalSpot',['../struct_r2_c_p_1_1t_rad_db.html#a22eaf9ec79a884b5c67df6cca1ea2352',1,'R2CP::tRadDb::FocalSpot()'],['../struct_r2_c_p_1_1t_rad_post_exp_post_condition.html#ad80979a49da43600a318cef984d63ff5',1,'R2CP::tRadPostExpPostCondition::FocalSpot()'],['../struct_r2_c_p_1_1t_rad_parameter_ranges.html#a0a282e6736fe24383fbebbf2d9562683',1,'R2CP::tRadParameterRanges::FocalSpot()'],['../struct_r2_c_p_1_1t_fl_db.html#acb67519f589ca7f8fe999ee09e19ff52',1,'R2CP::tFlDb::FocalSpot()'],['../struct_r2_c_p_1_1t_fl_post_exp_post_condition.html#a443c98fa521021f4ce98ce54fd33ac47',1,'R2CP::tFlPostExpPostCondition::FocalSpot()']]],
+  ['focus_23',['focus',['../structexposure_manager_1_1__t_exposure_data.html#aa9befcb01beb57088fe312aaae16804a',1,'exposureManager::_tExposureData']]],
+  ['fps10_24',['FPS10',['../struct_r2_c_p_1_1t_rad_db.html#a4b17315bc076ad2155ed2cbb7245e8eb',1,'R2CP::tRadDb']]],
+  ['function_25',['function',['../structsocket__header.html#a8446ab645b114495dc0ac60bcdfcf18c',1,'socket_header']]],
+  ['function_26',['Function',['../structt_info_message.html#ae33e27c2fe089f3ca400934d304bcb2e',1,'tInfoMessage']]]
 ];

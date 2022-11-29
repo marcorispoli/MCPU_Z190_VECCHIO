@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['ubyte_0',['ubyte',['../union_r2_c_p_1_1ubyte.html',1,'R2CP']]],
-  ['udword_1',['udword',['../union_r2_c_p_1_1udword.html',1,'R2CP']]],
-  ['uword_2',['uword',['../union_r2_c_p_1_1uword.html',1,'R2CP']]]
+  ['server_0',['Server',['../class_server.html',1,'']]],
+  ['socket_5fheader_1',['socket_header',['../structsocket__header.html',1,'']]],
+  ['socketitem_2',['SocketItem',['../class_socket_item.html',1,'']]],
+  ['startupwindow_3',['startupWindow',['../classstartup_window.html',1,'']]]
 ];

@@ -15,7 +15,7 @@
 
 #include "application.h"
 
-extern Communication* pComm;
+
 
 /******************************************************************************************************************/
 //												GENERATOR
@@ -107,8 +107,8 @@ namespace R2CP
 
 
 
-        uchar foc = statusManager::_FOCUS_SMALL;
-        if(pData[15]) foc = statusManager::_FOCUS_LARGE;
+        uchar foc = exposureManager::_FOCUS_SMALL;
+        if(pData[15]) foc = exposureManager::_FOCUS_LARGE;
 
         COMMUNICATION->PostExposureEvent(pData[3], foc, kV, mAs,mA,ms,pData[19]);
     }
@@ -119,7 +119,7 @@ namespace R2CP
     // Get Functions
     void CaDataDicGen::Generator_Get_StatusV5(void){
         (void)m_Type_-> Get(    ETH_LOWEST_PRIORITY,
-                                Interface::GENERATOR_NODE_ID,
+                                Application::GENERATOR_NODE_ID,
                                 mNodeId,
                                 GENERATOR_COMMANDS_ENTRY,
                                 GENERATOR_EXPOSURE_MANAGEMENT_GENERATOR_STATUS_V5,
@@ -130,7 +130,7 @@ namespace R2CP
 
     void CaDataDicGen::Generator_Get_StatusV6(void){
         (void)m_Type_-> Get(    ETH_LOWEST_PRIORITY,
-                                Interface::GENERATOR_NODE_ID,
+                                Application::GENERATOR_NODE_ID,
                                 mNodeId,
                                 GENERATOR_COMMANDS_ENTRY,
                                 GENERATOR_EXPOSURE_MANAGEMENT_GENERATOR_STATUS_V6,
@@ -147,7 +147,7 @@ namespace R2CP
         pData[1] = nskip; // Plse to be skip
 
         (void)m_Type_-> Set(    ETH_LOWEST_PRIORITY,
-                                Interface::GENERATOR_NODE_ID,
+                                Application::GENERATOR_NODE_ID,
                                 mNodeId,
                                 GENERATOR_COMMANDS_ENTRY,
                                 GENERATOR_LOAD_SKIP_PULSE_DB,
@@ -162,7 +162,7 @@ namespace R2CP
         pData[1] = dbId; // Plse to be skip
 
         (void)m_Type_-> Set(    ETH_LOWEST_PRIORITY,
-                                Interface::GENERATOR_NODE_ID,
+                                Application::GENERATOR_NODE_ID,
                                 mNodeId,
                                 GENERATOR_COMMANDS_ENTRY,
                                 GENERATOR_ASSIGN_SKIP_PULSE_DB,
@@ -214,7 +214,7 @@ namespace R2CP
         pData[17] = (byte) (((MInt * 1) >> 0) & 0xFF);
 
         // Focal spot
-        if(focus == statusManager::_FOCUS_LARGE) pData[18] = 1;
+        if(focus == exposureManager::_FOCUS_LARGE) pData[18] = 1;
         else pData[18] = 0;
 
         pData[19] = 0; // NA
@@ -232,7 +232,7 @@ namespace R2CP
         pData[26] = 0; // NA
 
         (void)m_Type_-> Set(    ETH_LOWEST_PRIORITY,
-                                Interface::GENERATOR_NODE_ID,
+                                Application::GENERATOR_NODE_ID,
                                 mNodeId,
                                 GENERATOR_COMMANDS_ENTRY,
                                 GENERATOR_RAD_DATA_BANK_LOAD_V6,
@@ -254,7 +254,7 @@ namespace R2CP
         pData[4] = 0;
 
         (void)m_Type_-> Set(    ETH_LOWEST_PRIORITY,
-                                Interface::GENERATOR_NODE_ID,
+                                Application::GENERATOR_NODE_ID,
                                 mNodeId,
                                 GENERATOR_COMMANDS_ENTRY,
                                 GENERATOR_RAD_EXPOSURE_PARAMETER_MS,
@@ -270,7 +270,7 @@ namespace R2CP
 
         pData[0] = dbId;
         (void)m_Type_-> Get(    ETH_LOWEST_PRIORITY,
-                                Interface::GENERATOR_NODE_ID,
+                                Application::GENERATOR_NODE_ID,
                                 mNodeId,
                                 GENERATOR_COMMANDS_ENTRY,
                                 GENERATOR_RAD_DATA_BANK_LOAD_V6,
@@ -321,7 +321,7 @@ namespace R2CP
         pData[17] = (byte) (((MInt * 1) >> 0) & 0xFF);
 
         // Focal spot
-        if(focus == statusManager::_FOCUS_LARGE) pData[18] = 1;
+        if(focus == exposureManager::_FOCUS_LARGE) pData[18] = 1;
         else pData[18] = 0;
 
         pData[19] = 0; // NA
@@ -339,7 +339,7 @@ namespace R2CP
         pData[26] = 0; // NA
 
         (void)m_Type_-> Set(    ETH_LOWEST_PRIORITY,
-                                Interface::GENERATOR_NODE_ID,
+                                Application::GENERATOR_NODE_ID,
                                 mNodeId,
                                 GENERATOR_COMMANDS_ENTRY,
                                 GENERATOR_RAD_DATA_BANK_LOAD_V6,
@@ -356,7 +356,7 @@ namespace R2CP
         pData[2] = db; // Databank id
 
         (void)m_Type_-> Set(    ETH_LOWEST_PRIORITY,
-                                Interface::GENERATOR_NODE_ID,
+                                Application::GENERATOR_NODE_ID,
                                 mNodeId,
                                 GENERATOR_COMMANDS_ENTRY,
                                 GENERATOR_DATA_BANK_ASSIGN_EXPOSURE,
@@ -374,7 +374,7 @@ namespace R2CP
         pData[1] = index; // Exposure Index
 
         (void)m_Type_-> Set(    ETH_LOWEST_PRIORITY,
-                                Interface::GENERATOR_NODE_ID,
+                                Application::GENERATOR_NODE_ID,
                                 mNodeId,
                                 GENERATOR_COMMANDS_ENTRY,
                                 GENERATOR_DATA_BANK_EXPOSURE_ACCEPTANCE,
@@ -390,7 +390,7 @@ namespace R2CP
         pData[0] = 1; // Start
 
         (void)m_Type_-> Set(    ETH_LOWEST_PRIORITY,
-                                Interface::GENERATOR_NODE_ID,
+                                Application::GENERATOR_NODE_ID,
                                 mNodeId,
                                 GENERATOR_COMMANDS_ENTRY,
                                 GENERATOR_EXPOSURE_MANAGEMENT_START_STOP_EXPOSURE,
@@ -406,7 +406,7 @@ namespace R2CP
         pData[0] = 0; // Stop
 
         (void)m_Type_-> Set(    ETH_LOWEST_PRIORITY,
-                                Interface::GENERATOR_NODE_ID,
+                                Application::GENERATOR_NODE_ID,
                                 mNodeId,
                                 GENERATOR_COMMANDS_ENTRY,
                                 GENERATOR_EXPOSURE_MANAGEMENT_START_STOP_EXPOSURE,

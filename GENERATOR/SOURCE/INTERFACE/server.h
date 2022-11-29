@@ -152,12 +152,13 @@ public:
     void EventStatus(ushort seq);
     void EventMessage(ushort seq,QString msg);
     void EventSetXrayEna(ushort seq, bool state);
-    void EventXrayCompleted(ushort seq, Interface::tExposureResult code, float masPre, float masPulse, uchar error);
+    void EventXrayCompleted(ushort seq, uchar code, float masPre, float masPulse, uchar error);
     void EventGetPulseData(ushort seq);
 
     // Lists of the event to Gantry
     QList<QString> SetExposurePre(QList<QString>* command);
     QList<QString> SetExposurePulse(QList<QString>* command);
+    QList<QString> SetExposureTestPulse(QList<QString>* command);
     QList<QString> SetTomoConfig(QList<QString>* command);
     QList<QString> StartExposure(QList<QString>* command);
     QList<QString> AbortExposure(QList<QString>* command);

@@ -6,7 +6,5 @@ var searchData=
   ['shconn_5ftask_2eh_3',['shconn_task.h',['../shconn__task_8h.html',1,'']]],
   ['startupwindow_2ecpp_4',['startupWindow.cpp',['../startup_window_8cpp.html',1,'']]],
   ['startupwindow_2eh_5',['startupWindow.h',['../startup_window_8h.html',1,'']]],
-  ['status_2ecpp_6',['status.cpp',['../status_8cpp.html',1,'']]],
-  ['status_2eh_7',['status.h',['../status_8h.html',1,'']]],
-  ['system_5fmessages_2eh_8',['system_messages.h',['../system__messages_8h.html',1,'']]]
+  ['system_5fmessages_2eh_6',['system_messages.h',['../system__messages_8h.html',1,'']]]
 ];

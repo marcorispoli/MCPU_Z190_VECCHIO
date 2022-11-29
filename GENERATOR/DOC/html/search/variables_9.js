@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['id_0',['id',['../class_socket_item.html#a8d0dab3ab1c3f13b3868f81503fa93e3',1,'SocketItem']]],
-  ['id_1',['Id',['../struct_r2_c_p_1_1t_system_message.html#a02beb690b529e68583ca86e9d5dad969',1,'R2CP::tSystemMessage']]],
+  ['id_0',['Id',['../struct_r2_c_p_1_1t_system_message.html#a02beb690b529e68583ca86e9d5dad969',1,'R2CP::tSystemMessage']]],
+  ['id_1',['id',['../class_socket_item.html#a8d0dab3ab1c3f13b3868f81503fa93e3',1,'SocketItem']]],
   ['idseq_2',['idseq',['../class_server.html#af3e18eaa53e7efb0f9f24253bb3bad9f',1,'Server']]],
   ['image_5fpreview_5fenabled_3',['Image_Preview_Enabled',['../struct_r2_c_p_1_1t_extended_license.html#af27b1a21bfd6d39e43c0440edcc88a76',1,'R2CP::tExtendedLicense']]],
   ['imagesystem_4',['ImageSystem',['../struct_r2_c_p_1_1t_extended_license.html#abd39336dbc2b87b6cda29c0eb6374da5',1,'R2CP::tExtendedLicense']]],
@@ -19,13 +19,12 @@ var searchData=
   ['initialized_16',['initialized',['../struct_r2_c_p_1_1t_procedure_definition.html#ae17a98764678174288bfc2f58bd07ea4',1,'R2CP::tProcedureDefinition']]],
   ['interfaceoptions_5fdata_5f0_5f7_17',['InterfaceOptions_data_0_7',['../struct_r2_c_p_1_1t_standard_license.html#a215b27bbbc5891cbc2b72a0990bc689e',1,'R2CP::tStandardLicense']]],
   ['interfaceoptions_5fdata_5f8_5f15_18',['InterfaceOptions_data_8_15',['../struct_r2_c_p_1_1t_standard_license.html#a08e35a8038bb4269c6e89db4a1f39b60',1,'R2CP::tStandardLicense']]],
-  ['interfacestatus_19',['interfaceStatus',['../classstatus_manager.html#af6deb0185ea2a4969bf2a21f1de588fb',1,'statusManager']]],
+  ['interfacestatus_19',['interfaceStatus',['../classworkflow_manager.html#acef8827dfeb6bc9ef721e4f26764e8de',1,'workflowManager']]],
   ['internal_5fexternal_20',['Internal_External',['../union_r2_c_p_1_1t_rad_db_1_1_rad___ion_chamber__.html#a901b944b556e92db7a4058154ad17eff',1,'R2CP::tRadDb::Rad_IonChamber_::Internal_External()'],['../struct_r2_c_p_1_1t_rad_post_exp_post_condition.html#aec7016af41b482ec2bafa1e85cdbc0f1',1,'R2CP::tRadPostExpPostCondition::Internal_External()']]],
-  ['internalstate_21',['internalState',['../classstatus_manager.html#acb08ac3911d8938f6a65dc0d75604ba1',1,'statusManager']]],
-  ['ionchamber_22',['IonChamber',['../struct_r2_c_p_1_1t_rad_db.html#aeb39d92e94d8a2c669d6cb92680acb0f',1,'R2CP::tRadDb::IonChamber()'],['../struct_r2_c_p_1_1t_rad_post_exp_post_condition.html#ae0bcb2151c85c4b1da286e1de032d10c',1,'R2CP::tRadPostExpPostCondition::IonChamber()']]],
-  ['ionchamberorientation_23',['IonChamberOrientation',['../struct_r2_c_p_1_1t_rad_post_exp_post_condition.html#ab883a177ae4c3e044381b6e8f5d415ae',1,'R2CP::tRadPostExpPostCondition']]],
-  ['iscpget_24',['isCpGet',['../class_c_r2_c_p___eth.html#a74b7a1f1c186bab7cb1cac6c127630c1',1,'CR2CP_Eth']]],
-  ['iscyphered_25',['isCyphered',['../struct_r2_c_p_1_1t_extended_license.html#a5e9d8a381e7b4b9b3a9798c36b6d3425',1,'R2CP::tExtendedLicense']]],
-  ['iss_5fnode_26',['iss_node',['../structsocket__header.html#a848bc43c31f5730b3bf761b671bd7826',1,'socket_header']]],
-  ['issuingnode_27',['IssuingNode',['../struct_r2_c_p_1_1t_system_message_info.html#a079c774e4407fdc8edceec4a88382340',1,'R2CP::tSystemMessageInfo']]]
+  ['ionchamber_21',['IonChamber',['../struct_r2_c_p_1_1t_rad_db.html#aeb39d92e94d8a2c669d6cb92680acb0f',1,'R2CP::tRadDb::IonChamber()'],['../struct_r2_c_p_1_1t_rad_post_exp_post_condition.html#ae0bcb2151c85c4b1da286e1de032d10c',1,'R2CP::tRadPostExpPostCondition::IonChamber()']]],
+  ['ionchamberorientation_22',['IonChamberOrientation',['../struct_r2_c_p_1_1t_rad_post_exp_post_condition.html#ab883a177ae4c3e044381b6e8f5d415ae',1,'R2CP::tRadPostExpPostCondition']]],
+  ['iscpget_23',['isCpGet',['../class_c_r2_c_p___eth.html#a74b7a1f1c186bab7cb1cac6c127630c1',1,'CR2CP_Eth']]],
+  ['iscyphered_24',['isCyphered',['../struct_r2_c_p_1_1t_extended_license.html#a5e9d8a381e7b4b9b3a9798c36b6d3425',1,'R2CP::tExtendedLicense']]],
+  ['iss_5fnode_25',['iss_node',['../structsocket__header.html#a848bc43c31f5730b3bf761b671bd7826',1,'socket_header']]],
+  ['issuingnode_26',['IssuingNode',['../struct_r2_c_p_1_1t_system_message_info.html#a079c774e4407fdc8edceec4a88382340',1,'R2CP::tSystemMessageInfo']]]
 ];

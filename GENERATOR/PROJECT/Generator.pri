@@ -34,7 +34,7 @@ DISTFILES +=
 
 SOURCES += \
     $${TARGET_SOURCE}/main.cpp \
-    $${TARGET_SOURCE}/status.cpp \
+    $${TARGET_SOURCE}/WORKFLOW/workflow.cpp \
     $${TARGET_SOURCE}/EXPOSURE/2D_exposure.cpp \
     $${TARGET_SOURCE}/EXPOSURE/2D_AEC_exposure.cpp \
     $${TARGET_SOURCE}/EXPOSURE/3D_exposure.cpp \
@@ -55,11 +55,13 @@ SOURCES += \
     $${TARGET_SOURCE}/WINDOW/startupWindow.cpp \
 
 
+
 HEADERS += \
     $${TARGET_SOURCE}/application.h \
     $${TARGET_SOURCE}/Typedef.h \
-    $${TARGET_SOURCE}/status.h \
+    $${TARGET_SOURCE}/WORKFLOW/workflow.h \
     $${TARGET_SOURCE}/INTERFACE/server.h \
+    $${TARGET_SOURCE}/EXPOSURE/exposure.h \
     $${TARGET_SOURCE}/COMMUNICATION/communication.h \
     $${TARGET_SOURCE}/COMMUNICATION/tcpipclient.h \
     $${TARGET_SOURCE}/LIB_SEDECAL/R2CP_Eth.h    \
@@ -77,6 +79,7 @@ INCLUDEPATH += \
     $${TARGET_SOURCE} \
     $${TARGET_SOURCE}/INTERFACE/ \
     $${TARGET_SOURCE}/EXPOSURE/ \
+    $${TARGET_SOURCE}/WORKFLOW/ \
     $${TARGET_SOURCE}/COMMUNICATION/ \
     $${TARGET_SOURCE}/WINDOW/ \
     $${TARGET_SOURCE}/LIB_SEDECAL \

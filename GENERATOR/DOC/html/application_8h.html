@@ -75,6 +75,7 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#namespaces">Namespaces</a> &#124;
 <a href="#define-members">Macros</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle"><div class="title">application.h File Reference</div></div>
@@ -87,15 +88,20 @@ $(function() {
 <code>#include &quot;<a class="el" href="_typedef_8h_source.html">Typedef.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="startup_window_8h_source.html">startupWindow.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="communication_8h_source.html">communication.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="status_8h_source.html">status.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="exposure_8h_source.html">exposure.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="workflow_8h_source.html">workflow.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="server_8h_source.html">server.h</a>&quot;</code><br />
 </div>
 <p><a href="application_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
+Namespaces</h2></td></tr>
+<tr class="memitem:namespace_application"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_application.html">Application</a></td></tr>
+<tr class="memdesc:namespace_application"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="namespace_application.html" title="Application constants definition.">Application</a> constants definition. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:a80087aa0b192dbf428b730738eb5b1fb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="application_8h.html#a80087aa0b192dbf428b730738eb5b1fb">_WINDOW_ON</a></td></tr>
-<tr class="separator:a80087aa0b192dbf428b730738eb5b1fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab45c9753cd336b5f0cb5d278b5547562"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="application_8h.html#ab45c9753cd336b5f0cb5d278b5547562">COMMUNICATION</a>&#160;&#160;&#160;<a class="el" href="application_8h.html#a04fd48849baee27d0a10d1e57c9c8a96">pComm</a></td></tr>
 <tr class="separator:ab45c9753cd336b5f0cb5d278b5547562"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a58dde5b4c75245b4660a165318cac36b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="application_8h.html#a58dde5b4c75245b4660a165318cac36b">WINDOW</a>&#160;&#160;&#160;<a class="el" href="application_8h.html#ab7874167bf64b8584230241484badbb5">window</a></td></tr>
@@ -104,35 +110,49 @@ Macros</h2></td></tr>
 <tr class="separator:aefb2aa75be4323fe06eb3ec8394bdfc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad72dbcf6d0153db1b8d8a58001feed83"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="application_8h.html#ad72dbcf6d0153db1b8d8a58001feed83">DEBUG</a>&#160;&#160;&#160;<a class="el" href="application_8h.html#ab7874167bf64b8584230241484badbb5">window</a></td></tr>
 <tr class="separator:ad72dbcf6d0153db1b8d8a58001feed83"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a59279bee44f34d08b3cbf3a89fb0d8d9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="application_8h.html#a59279bee44f34d08b3cbf3a89fb0d8d9">STATUS</a>&#160;&#160;&#160;<a class="el" href="application_8h.html#a7c81e84842ecead294431ab0bd955eb0">pStatus</a></td></tr>
+<tr class="memitem:a59279bee44f34d08b3cbf3a89fb0d8d9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="application_8h.html#a59279bee44f34d08b3cbf3a89fb0d8d9">STATUS</a>&#160;&#160;&#160;<a class="el" href="application_8h.html#a8fea30a4e1790dbc57f5fce2d940a5d6">pStatus</a></td></tr>
 <tr class="separator:a59279bee44f34d08b3cbf3a89fb0d8d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa028546f37b3c96a44e714d56089ffc7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="application_8h.html#aa028546f37b3c96a44e714d56089ffc7">EXPOSURE</a>&#160;&#160;&#160;<a class="el" href="application_8h.html#a1875ec5bcd57d24d630d32bfc243767d">pExposure</a></td></tr>
+<tr class="separator:aa028546f37b3c96a44e714d56089ffc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
+<tr class="memitem:a548f2554b50e842b4858c60e1aba4028"><td class="memItemLeft" align="right" valign="top">static const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_application.html#a548f2554b50e842b4858c60e1aba4028">Application::SQL_GENERATOR_DATABASE</a> = &quot;C:/OEM/AppData/system_messages.sqlite&quot;</td></tr>
+<tr class="memdesc:a548f2554b50e842b4858c60e1aba4028"><td class="mdescLeft">&#160;</td><td class="mdescRight">SQLLite database name and path for Generator System Messages.  <a href="namespace_application.html#a548f2554b50e842b4858c60e1aba4028">More...</a><br /></td></tr>
+<tr class="separator:a548f2554b50e842b4858c60e1aba4028"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8668946237d98920835bd440fd3089d"><td class="memItemLeft" align="right" valign="top">static const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_application.html#aa8668946237d98920835bd440fd3089d">Application::SH_IP_ADDRESS</a> = &quot;192.6.1.201&quot;</td></tr>
+<tr class="memdesc:aa8668946237d98920835bd440fd3089d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Smart Hub Ip address.  <a href="namespace_application.html#aa8668946237d98920835bd440fd3089d">More...</a><br /></td></tr>
+<tr class="separator:aa8668946237d98920835bd440fd3089d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af23bf14ecaacfcd018a5f5eafea1cf84"><td class="memItemLeft" align="right" valign="top">static const unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_application.html#af23bf14ecaacfcd018a5f5eafea1cf84">Application::SH_PORT</a> = 10000</td></tr>
+<tr class="memdesc:af23bf14ecaacfcd018a5f5eafea1cf84"><td class="mdescLeft">&#160;</td><td class="mdescRight">Smart Hub Port Number.  <a href="namespace_application.html#af23bf14ecaacfcd018a5f5eafea1cf84">More...</a><br /></td></tr>
+<tr class="separator:af23bf14ecaacfcd018a5f5eafea1cf84"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff5b6d24e45014b34c91cd0e2379e607"><td class="memItemLeft" align="right" valign="top">static const unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_application.html#aff5b6d24e45014b34c91cd0e2379e607">Application::SH_NODE_ID</a> = 1</td></tr>
+<tr class="memdesc:aff5b6d24e45014b34c91cd0e2379e607"><td class="mdescLeft">&#160;</td><td class="mdescRight">Node ID of the Smart Hub.  <a href="namespace_application.html#aff5b6d24e45014b34c91cd0e2379e607">More...</a><br /></td></tr>
+<tr class="separator:aff5b6d24e45014b34c91cd0e2379e607"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e017bdc2a02b58e6b30ebea3cc58162"><td class="memItemLeft" align="right" valign="top">static const unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_application.html#a9e017bdc2a02b58e6b30ebea3cc58162">Application::GENERATOR_NODE_ID</a> = 6</td></tr>
+<tr class="memdesc:a9e017bdc2a02b58e6b30ebea3cc58162"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generator Node ID.  <a href="namespace_application.html#a9e017bdc2a02b58e6b30ebea3cc58162">More...</a><br /></td></tr>
+<tr class="separator:a9e017bdc2a02b58e6b30ebea3cc58162"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8dd1873378238014a0fafd3acc565b8"><td class="memItemLeft" align="right" valign="top">static const unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_application.html#ad8dd1873378238014a0fafd3acc565b8">Application::APPLICATION_NODE_ID</a> = 17</td></tr>
+<tr class="memdesc:ad8dd1873378238014a0fafd3acc565b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Node ID of the <a class="el" href="namespace_application.html" title="Application constants definition.">Application</a>.  <a href="namespace_application.html#ad8dd1873378238014a0fafd3acc565b8">More...</a><br /></td></tr>
+<tr class="separator:ad8dd1873378238014a0fafd3acc565b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a309d1bdd560d92a5534e51eff3623823"><td class="memItemLeft" align="right" valign="top">static const unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_application.html#a309d1bdd560d92a5534e51eff3623823">Application::DIRECT_WORKSTATION_ID</a> = 1</td></tr>
+<tr class="memdesc:a309d1bdd560d92a5534e51eff3623823"><td class="mdescLeft">&#160;</td><td class="mdescRight">Workstation ID for Test Exposures without synch.  <a href="namespace_application.html#a309d1bdd560d92a5534e51eff3623823">More...</a><br /></td></tr>
+<tr class="separator:a309d1bdd560d92a5534e51eff3623823"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a407ec58f80e58e11690a93a9a1f66e46"><td class="memItemLeft" align="right" valign="top">static const unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_application.html#a407ec58f80e58e11690a93a9a1f66e46">Application::DETECTOR_WORKSTATION_ID</a> = 5</td></tr>
+<tr class="memdesc:a407ec58f80e58e11690a93a9a1f66e46"><td class="mdescLeft">&#160;</td><td class="mdescRight">Workstation ID for Detector synchronization signals.  <a href="namespace_application.html#a407ec58f80e58e11690a93a9a1f66e46">More...</a><br /></td></tr>
+<tr class="separator:a407ec58f80e58e11690a93a9a1f66e46"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab7874167bf64b8584230241484badbb5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classstartup_window.html">startupWindow</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="application_8h.html#ab7874167bf64b8584230241484badbb5">window</a></td></tr>
 <tr class="separator:ab7874167bf64b8584230241484badbb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a04fd48849baee27d0a10d1e57c9c8a96"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_communication.html">Communication</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="application_8h.html#a04fd48849baee27d0a10d1e57c9c8a96">pComm</a></td></tr>
 <tr class="separator:a04fd48849baee27d0a10d1e57c9c8a96"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7c81e84842ecead294431ab0bd955eb0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classstatus_manager.html">statusManager</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="application_8h.html#a7c81e84842ecead294431ab0bd955eb0">pStatus</a></td></tr>
-<tr class="separator:a7c81e84842ecead294431ab0bd955eb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8fea30a4e1790dbc57f5fce2d940a5d6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classworkflow_manager.html">workflowManager</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="application_8h.html#a8fea30a4e1790dbc57f5fce2d940a5d6">pStatus</a></td></tr>
+<tr class="separator:a8fea30a4e1790dbc57f5fce2d940a5d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1875ec5bcd57d24d630d32bfc243767d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classexposure_manager.html">exposureManager</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="application_8h.html#a1875ec5bcd57d24d630d32bfc243767d">pExposure</a></td></tr>
+<tr class="separator:a1875ec5bcd57d24d630d32bfc243767d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6ed1a6a6e52f8feb03b9844dcae5be65"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_server.html">Server</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="application_8h.html#a6ed1a6a6e52f8feb03b9844dcae5be65">pServer</a></td></tr>
 <tr class="separator:a6ed1a6a6e52f8feb03b9844dcae5be65"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
-<a id="a80087aa0b192dbf428b730738eb5b1fb" name="a80087aa0b192dbf428b730738eb5b1fb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a80087aa0b192dbf428b730738eb5b1fb">&#9670;&#160;</a></span>_WINDOW_ON</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define _WINDOW_ON</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="ab45c9753cd336b5f0cb5d278b5547562" name="ab45c9753cd336b5f0cb5d278b5547562"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab45c9753cd336b5f0cb5d278b5547562">&#9670;&#160;</a></span>COMMUNICATION</h2>
 
@@ -161,6 +181,20 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a id="aa028546f37b3c96a44e714d56089ffc7" name="aa028546f37b3c96a44e714d56089ffc7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa028546f37b3c96a44e714d56089ffc7">&#9670;&#160;</a></span>EXPOSURE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EXPOSURE&#160;&#160;&#160;<a class="el" href="application_8h.html#a1875ec5bcd57d24d630d32bfc243767d">pExposure</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="aefb2aa75be4323fe06eb3ec8394bdfc7" name="aefb2aa75be4323fe06eb3ec8394bdfc7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aefb2aa75be4323fe06eb3ec8394bdfc7">&#9670;&#160;</a></span>INTERFACE</h2>
 
@@ -182,7 +216,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define STATUS&#160;&#160;&#160;<a class="el" href="application_8h.html#a7c81e84842ecead294431ab0bd955eb0">pStatus</a></td>
+          <td class="memname">#define STATUS&#160;&#160;&#160;<a class="el" href="application_8h.html#a8fea30a4e1790dbc57f5fce2d940a5d6">pStatus</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -226,6 +260,28 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a id="a1875ec5bcd57d24d630d32bfc243767d" name="a1875ec5bcd57d24d630d32bfc243767d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1875ec5bcd57d24d630d32bfc243767d">&#9670;&#160;</a></span>pExposure</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classexposure_manager.html">exposureManager</a>* pExposure</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a6ed1a6a6e52f8feb03b9844dcae5be65" name="a6ed1a6a6e52f8feb03b9844dcae5be65"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6ed1a6a6e52f8feb03b9844dcae5be65">&#9670;&#160;</a></span>pServer</h2>
 
@@ -248,8 +304,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a7c81e84842ecead294431ab0bd955eb0" name="a7c81e84842ecead294431ab0bd955eb0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7c81e84842ecead294431ab0bd955eb0">&#9670;&#160;</a></span>pStatus</h2>
+<a id="a8fea30a4e1790dbc57f5fce2d940a5d6" name="a8fea30a4e1790dbc57f5fce2d940a5d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8fea30a4e1790dbc57f5fce2d940a5d6">&#9670;&#160;</a></span>pStatus</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -258,7 +314,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classstatus_manager.html">statusManager</a>* pStatus</td>
+          <td class="memname"><a class="el" href="classworkflow_manager.html">workflowManager</a>* pStatus</td>
         </tr>
       </table>
   </td>

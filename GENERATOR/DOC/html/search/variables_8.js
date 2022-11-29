@@ -10,7 +10,7 @@ var searchData=
   ['hdlsubrevision_7',['HdlSubrevision',['../struct_r2_c_p_1_1t_system_version.html#a95d448fcd240c8fd15ae48fd2e55e62e',1,'R2CP::tSystemVersion']]],
   ['hdlversion_8',['HdlVersion',['../struct_r2_c_p_1_1t_system_version.html#a866b7f39569fd1475ecd86364aab0d75',1,'R2CP::tSystemVersion']]],
   ['header_9',['header',['../structt_socket___msg.html#a50624835d2835e1fde1e38d1b02a2a7d',1,'tSocket_Msg']]],
-  ['heartbeatflag_10',['heartbeatFlag',['../structt_data_dic_status_register.html#a856d2e7c68d9b1ef639db9cd276d7ad4',1,'tDataDicStatusRegister::heartbeatFlag()'],['../structt_status.html#ae9bde730a71be10dc9c0995bd4510de3',1,'tStatus::heartbeatFlag()']]],
+  ['heartbeatflag_10',['heartbeatFlag',['../structt_data_dic_status_register.html#a856d2e7c68d9b1ef639db9cd276d7ad4',1,'tDataDicStatusRegister']]],
   ['high_5fspeedenabled_11',['High_SpeedEnabled',['../struct_r2_c_p_1_1t_standard_license.html#a8e50628f309e9d4f91e64a13c58f9437',1,'R2CP::tStandardLicense']]],
   ['highdoseenabled_12',['HighDoseEnabled',['../struct_r2_c_p_1_1t_fl_db.html#a9ac844cd98c7ff8418993c0e14a4a260',1,'R2CP::tFlDb']]],
   ['highdutycycle_13',['HighDutyCycle',['../struct_r2_c_p_1_1t_standard_license.html#a0775d8184e2350598712095b0517273e',1,'R2CP::tStandardLicense']]],

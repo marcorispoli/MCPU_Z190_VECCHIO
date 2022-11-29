@@ -1,5 +1,5 @@
 /*!
- * \defgroup  R2CPModule R2CP.
+ * \defgroup  R2CPModule R2CP Protocol Communication Module.
  */
 
 /*!

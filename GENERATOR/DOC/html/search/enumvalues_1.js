@@ -9,7 +9,5 @@ var searchData=
   ['aec_5frotation_5funknown_6',['Aec_Rotation_Unknown',['../namespace_r2_c_p.html#a9b90b089f68440e06349d50b3d27cd0ea9408c9db1c2969b839186accd4510c94',1,'R2CP']]],
   ['aecexternalreference_7',['AecExternalReference',['../namespace_r2_c_p.html#aea77d32fc87f1571ebb41b9d24125bc1a1d474a60740fec621b21bed940798dc7',1,'R2CP']]],
   ['aecinternalreference_8',['AecInternalReference',['../namespace_r2_c_p.html#aea77d32fc87f1571ebb41b9d24125bc1af27929dd30356ab64fdaec4150091699',1,'R2CP']]],
-  ['aecinternalreferencebysensitivity_9',['AecInternalReferenceBySensitivity',['../namespace_r2_c_p.html#aea77d32fc87f1571ebb41b9d24125bc1ae5cbdef3118d3d4f2867eb230ed32355',1,'R2CP']]],
-  ['all_5fchannel_5fallowed_10',['ALL_CHANNEL_ALLOWED',['../_ca_data_dic_8h.html#a2b68dc25531019bf1b14a0ba6bca4c67ae30263eaf2eef2a50bc3816163959bbf',1,'CaDataDic.h']]],
-  ['application_5fnode_5fid_11',['APPLICATION_NODE_ID',['../namespace_interface.html#a18b52537fc4c2d8098ea576bd409f3bca2a2c4b25e728d1dd167d24d6ee6f6aa4',1,'Interface']]]
+  ['aecinternalreferencebysensitivity_9',['AecInternalReferenceBySensitivity',['../namespace_r2_c_p.html#aea77d32fc87f1571ebb41b9d24125bc1ae5cbdef3118d3d4f2867eb230ed32355',1,'R2CP']]]
 ];

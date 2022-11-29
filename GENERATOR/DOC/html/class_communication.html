@@ -76,9 +76,12 @@ $(function() {
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_communication-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">Communication Class Reference</div></div>
+  <div class="headertitle"><div class="title">Communication Class Reference<div class="ingroups"><a class="el" href="group__r2cp_communication_module.html">Communication Interface With R2CP Module.</a></div></div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>The <a class="el" href="class_communication.html" title="The Communication class.">Communication</a> class.  
+ <a href="class_communication.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="communication_8h_source.html">communication.h</a>&gt;</code></p>
 <div class="dynheader">
@@ -156,10 +159,16 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aa71b46afdc0c5f329d704c0507aaf422"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a29295633f3a7200f21fcdbda633736c0"><td class="memItemLeft" align="right" valign="top">_inline void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_communication.html#a29295633f3a7200f21fcdbda633736c0">getGeneratorStatusV6</a> ()</td></tr>
 <tr class="separator:a29295633f3a7200f21fcdbda633736c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6c4909b28ff9e31370dd0d78607dfb29"><td class="memItemLeft" align="right" valign="top">_inline void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_communication.html#a6c4909b28ff9e31370dd0d78607dfb29">set2DDataBank</a> (uchar i, uchar focus, float kV, float mAs)</td></tr>
-<tr class="separator:a6c4909b28ff9e31370dd0d78607dfb29"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae27c307e5f5f8ff335d161a4ab3280a3"><td class="memItemLeft" align="right" valign="top">_inline void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_communication.html#ae27c307e5f5f8ff335d161a4ab3280a3">getDataBank</a> (uchar i)</td></tr>
+<tr class="separator:ae27c307e5f5f8ff335d161a4ab3280a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6827819c7a400443e7920536257f1e1e"><td class="memItemLeft" align="right" valign="top">_inline void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_communication.html#a6827819c7a400443e7920536257f1e1e">set2DDataBank</a> (uchar i, uchar focus, float kV, float mAs, ulong tmo)</td></tr>
+<tr class="separator:a6827819c7a400443e7920536257f1e1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a873d1414d3b100c526edc7c6092eb4da"><td class="memItemLeft" align="right" valign="top">_inline bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_communication.html#a873d1414d3b100c526edc7c6092eb4da">isDbInitialized</a> (uchar i)</td></tr>
 <tr class="separator:a873d1414d3b100c526edc7c6092eb4da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32a6b078027816986f0a6cecaf34d6e3"><td class="memItemLeft" align="right" valign="top">_inline void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_communication.html#a32a6b078027816986f0a6cecaf34d6e3">set3DDataBank</a> (uchar dbId, uchar focus, float KV, float MA, float MS, float MT)</td></tr>
+<tr class="separator:a32a6b078027816986f0a6cecaf34d6e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a767cd4721e99d42829612bf5af567532"><td class="memItemLeft" align="right" valign="top">_inline void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_communication.html#a767cd4721e99d42829612bf5af567532">setMsDatabank</a> (uchar dbId, float MS)</td></tr>
+<tr class="separator:a767cd4721e99d42829612bf5af567532"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6137e6a8d84eced4d89d5687446a90bf"><td class="memItemLeft" align="right" valign="top">_inline void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_communication.html#a6137e6a8d84eced4d89d5687446a90bf">setGenerator_SkipPulse_Databank</a> (uchar dbId, uchar nskip)</td></tr>
 <tr class="separator:a6137e6a8d84eced4d89d5687446a90bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afc1b955b010d470189ea4c5056c0f685"><td class="memItemLeft" align="right" valign="top">_inline void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_communication.html#afc1b955b010d470189ea4c5056c0f685">setGenerator_Assign_SkipPulse_Databank</a> (uchar dbId, uchar procedureId)</td></tr>
@@ -200,14 +209,6 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a9bcc03ca8992f5b5d8e327ce066db4af"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2cddbc56abd94f2a3cb9716717e352f2"><td class="memItemLeft" align="right" valign="top">_inline void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_communication.html#a2cddbc56abd94f2a3cb9716717e352f2">stopExposure</a> (void)</td></tr>
 <tr class="separator:a2cddbc56abd94f2a3cb9716717e352f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a150f034d315f099a912143ef798e366a"><td class="memItemLeft" align="right" valign="top">_inline void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_communication.html#a150f034d315f099a912143ef798e366a">setProcedureManual</a> (void)</td></tr>
-<tr class="separator:a150f034d315f099a912143ef798e366a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac0e702605b6e70d6d21fe6c601c44bd5"><td class="memItemLeft" align="right" valign="top">_inline void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_communication.html#ac0e702605b6e70d6d21fe6c601c44bd5">setProcedureAec</a> (void)</td></tr>
-<tr class="separator:ac0e702605b6e70d6d21fe6c601c44bd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a034f08d151f579ef1b33433863beccfa"><td class="memItemLeft" align="right" valign="top">_inline void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_communication.html#a034f08d151f579ef1b33433863beccfa">setProcedureTomo</a> (void)</td></tr>
-<tr class="separator:a034f08d151f579ef1b33433863beccfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a58f44367be77e7423ab3a3632af2c73d"><td class="memItemLeft" align="right" valign="top">_inline void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_communication.html#a58f44367be77e7423ab3a3632af2c73d">setProcedureTomoAec</a> (void)</td></tr>
-<tr class="separator:a58f44367be77e7423ab3a3632af2c73d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -224,7 +225,9 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:acf9ed2608b0252a81c96590faac0b97d"><td class="memItemLeft" align="right" valign="top">QList&lt; QByteArray &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_communication.html#acf9ed2608b0252a81c96590faac0b97d">rxList</a></td></tr>
 <tr class="separator:acf9ed2608b0252a81c96590faac0b97d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p >The <a class="el" href="class_communication.html" title="The Communication class.">Communication</a> class. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a56cf4b262e592bcae1d987c3dd00487f" name="a56cf4b262e592bcae1d987c3dd00487f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a56cf4b262e592bcae1d987c3dd00487f">&#9670;&#160;</a></span>Communication()</h2>
 
@@ -765,6 +768,32 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="ae27c307e5f5f8ff335d161a4ab3280a3" name="ae27c307e5f5f8ff335d161a4ab3280a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae27c307e5f5f8ff335d161a4ab3280a3">&#9670;&#160;</a></span>getDataBank()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">_inline void Communication::getDataBank </td>
+          <td>(</td>
+          <td class="paramtype">uchar&#160;</td>
+          <td class="paramname"><em>i</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a76fdbffc92f74a4ba84ce0ef5131da96" name="a76fdbffc92f74a4ba84ce0ef5131da96"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a76fdbffc92f74a4ba84ce0ef5131da96">&#9670;&#160;</a></span>getErrorList()</h2>
 
@@ -1247,8 +1276,8 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a6c4909b28ff9e31370dd0d78607dfb29" name="a6c4909b28ff9e31370dd0d78607dfb29"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6c4909b28ff9e31370dd0d78607dfb29">&#9670;&#160;</a></span>set2DDataBank()</h2>
+<a id="a6827819c7a400443e7920536257f1e1e" name="a6827819c7a400443e7920536257f1e1e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6827819c7a400443e7920536257f1e1e">&#9670;&#160;</a></span>set2DDataBank()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1278,7 +1307,73 @@ Private Attributes</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>mAs</em>&#160;</td>
+          <td class="paramname"><em>mAs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ulong&#160;</td>
+          <td class="paramname"><em>tmo</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a32a6b078027816986f0a6cecaf34d6e3" name="a32a6b078027816986f0a6cecaf34d6e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a32a6b078027816986f0a6cecaf34d6e3">&#9670;&#160;</a></span>set3DDataBank()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">_inline void Communication::set3DDataBank </td>
+          <td>(</td>
+          <td class="paramtype">uchar&#160;</td>
+          <td class="paramname"><em>dbId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uchar&#160;</td>
+          <td class="paramname"><em>focus</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>KV</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>MA</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>MS</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>MT</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1393,8 +1488,8 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="ac0e702605b6e70d6d21fe6c601c44bd5" name="ac0e702605b6e70d6d21fe6c601c44bd5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac0e702605b6e70d6d21fe6c601c44bd5">&#9670;&#160;</a></span>setProcedureAec()</h2>
+<a id="a767cd4721e99d42829612bf5af567532" name="a767cd4721e99d42829612bf5af567532"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a767cd4721e99d42829612bf5af567532">&#9670;&#160;</a></span>setMsDatabank()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1403,89 +1498,21 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">_inline void Communication::setProcedureAec </td>
+          <td class="memname">_inline void Communication::setMsDatabank </td>
           <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td class="paramtype">uchar&#160;</td>
+          <td class="paramname"><em>dbId</em>, </td>
         </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a150f034d315f099a912143ef798e366a" name="a150f034d315f099a912143ef798e366a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a150f034d315f099a912143ef798e366a">&#9670;&#160;</a></span>setProcedureManual()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
         <tr>
-          <td class="memname">_inline void Communication::setProcedureManual </td>
-          <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>MS</em>&#160;</td>
         </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a034f08d151f579ef1b33433863beccfa" name="a034f08d151f579ef1b33433863beccfa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a034f08d151f579ef1b33433863beccfa">&#9670;&#160;</a></span>setProcedureTomo()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
         <tr>
-          <td class="memname">_inline void Communication::setProcedureTomo </td>
-          <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
           <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a58f44367be77e7423ab3a3632af2c73d" name="a58f44367be77e7423ab3a3632af2c73d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a58f44367be77e7423ab3a3632af2c73d">&#9670;&#160;</a></span>setProcedureTomoAec()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">_inline void Communication::setProcedureTomoAec </td>
-          <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>

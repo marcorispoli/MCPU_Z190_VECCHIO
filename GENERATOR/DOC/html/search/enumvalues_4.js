@@ -33,11 +33,9 @@ var searchData=
   ['db_5ftech_5fautomode_5fnotmodify_30',['DB_Tech_AutoMode_NotModify',['../namespace_r2_c_p.html#ad3c525266fb937a22cc205679fc3fa3caef34783a9694d4d869c87df23a494025',1,'R2CP']]],
   ['db_5ftech_5ffullauto_31',['DB_Tech_FullAuto',['../namespace_r2_c_p.html#a3772a57a04620a4a513b3fcdfa08efa3a53396f752aa0a0ff1e34f279f69fb938',1,'R2CP']]],
   ['debug_32',['Debug',['../namespace_api.html#ab91953189b11963d4f0c63b43f4b4351a911a5ea7063d5fb88b96ffc20eb5a729',1,'Api']]],
-  ['detector_5fworkstation_5fid_33',['DETECTOR_WORKSTATION_ID',['../namespace_interface.html#a6b1e4993beabf6d761b588f493413b64a494c66641f0b5b517cc25df34b3b5439',1,'Interface']]],
-  ['digitalinputs_5ftriggertype_5fboth_34',['DIGITALINPUTS_TRIGGERTYPE_BOTH',['../_r2_c_p___index_8h.html#ad606e373ec6bdaecd74fdc8b7453d35eae615388a3958ecff8bdc59db4332a852',1,'R2CP_Index.h']]],
-  ['digitalinputs_5ftriggertype_5ffalling_35',['DIGITALINPUTS_TRIGGERTYPE_FALLING',['../_r2_c_p___index_8h.html#ad606e373ec6bdaecd74fdc8b7453d35ea0677872b32f0da79addefacb8c5253b0',1,'R2CP_Index.h']]],
-  ['digitalinputs_5ftriggertype_5fnone_36',['DIGITALINPUTS_TRIGGERTYPE_NONE',['../_r2_c_p___index_8h.html#ad606e373ec6bdaecd74fdc8b7453d35ea8ab1acd12c41a5b66d7df0ec58554b98',1,'R2CP_Index.h']]],
-  ['digitalinputs_5ftriggertype_5frising_37',['DIGITALINPUTS_TRIGGERTYPE_RISING',['../_r2_c_p___index_8h.html#ad606e373ec6bdaecd74fdc8b7453d35eafd389a4852581110e26255196f967265',1,'R2CP_Index.h']]],
-  ['direct_5fworkstation_5fid_38',['DIRECT_WORKSTATION_ID',['../namespace_interface.html#a6b1e4993beabf6d761b588f493413b64aff594bb145c503ca2cb30722b972ae6b',1,'Interface']]],
-  ['disconnecting_39',['DISCONNECTING',['../namespace_a_p_i_1_1_r_t_c_s.html#a1c99ec1280c023c1114bf6743ab4bd26aa4abf961888bfb21dd241959b51dd3dd',1,'API::RTCS']]]
+  ['digitalinputs_5ftriggertype_5fboth_33',['DIGITALINPUTS_TRIGGERTYPE_BOTH',['../_r2_c_p___index_8h.html#ad606e373ec6bdaecd74fdc8b7453d35eae615388a3958ecff8bdc59db4332a852',1,'R2CP_Index.h']]],
+  ['digitalinputs_5ftriggertype_5ffalling_34',['DIGITALINPUTS_TRIGGERTYPE_FALLING',['../_r2_c_p___index_8h.html#ad606e373ec6bdaecd74fdc8b7453d35ea0677872b32f0da79addefacb8c5253b0',1,'R2CP_Index.h']]],
+  ['digitalinputs_5ftriggertype_5fnone_35',['DIGITALINPUTS_TRIGGERTYPE_NONE',['../_r2_c_p___index_8h.html#ad606e373ec6bdaecd74fdc8b7453d35ea8ab1acd12c41a5b66d7df0ec58554b98',1,'R2CP_Index.h']]],
+  ['digitalinputs_5ftriggertype_5frising_36',['DIGITALINPUTS_TRIGGERTYPE_RISING',['../_r2_c_p___index_8h.html#ad606e373ec6bdaecd74fdc8b7453d35eafd389a4852581110e26255196f967265',1,'R2CP_Index.h']]],
+  ['disconnecting_37',['DISCONNECTING',['../namespace_a_p_i_1_1_r_t_c_s.html#a1c99ec1280c023c1114bf6743ab4bd26aa4abf961888bfb21dd241959b51dd3dd',1,'API::RTCS']]]
 ];

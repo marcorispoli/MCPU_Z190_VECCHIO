@@ -2,7 +2,7 @@
 #define APPLICATION_H
 
 /*!
- * \defgroup  MainModule APPLICATION.
+ * \defgroup  applicationModule Application Module.
  */
 
 
@@ -40,10 +40,13 @@
  * # APPLICATION MODULES
  *
  * The Application implements the following modules:
- * - Gantry Interface Module: this is the communication socket to receive command from Gantry;
- * - R2CP Module: this is the module implementing the communication with the Sedecal Generator Device;
- * - Status Module: this is the module implementing the Application Workflow and Exposure sequences;
- * - Window Module: this is an optional Windows interface used for Service/Debug
+ * - @ref applicationModule : defines constant along the application
+ * - @ref r2cpCommunicationModule : implements the communication protocol stack with the R2CP protocol;
+ * - @ref exposureModule : Implements the exposure sequence workflows;
+ * - @ref InterfaceModule : this is the communication socket to receive command from Gantry;
+ * - @ref R2CP : this is the module implementing the communication with the Sedecal Generator Device;
+ * - @ref workflowModule : this is the module implementing the application Workflows;
+ * - @ref windowModule : this is an optional Windows interface used for Service/Debug;
  *
  * # SOFTWARE LICENCING
  *
@@ -64,6 +67,29 @@
  *
  */
 
+
+/**
+* @brief Application constants definition
+*
+*  This Namespace defines all the MAIN constants that are used along the \n
+*  Application in order to interface the Generator and the Gantry.
+*
+* \ingroup applicationModule
+*/
+namespace Application
+{
+   static const char*           SQL_GENERATOR_DATABASE = "C:/OEM/AppData/system_messages.sqlite"; //!< SQLLite database name and path for Generator System Messages
+   static const char*           SH_IP_ADDRESS = "192.6.1.201"; //!< Smart Hub Ip address
+   static const unsigned short  SH_PORT = 10000; //!< Smart Hub Port Number
+   static const unsigned short  SH_NODE_ID = 1; //!< Node ID of the Smart Hub
+   static const unsigned short  GENERATOR_NODE_ID = 6; //!< Generator Node ID
+   static const unsigned short  APPLICATION_NODE_ID = 17; //!< Node ID of the Application
+   static const unsigned short  DIRECT_WORKSTATION_ID = 1; //!< Workstation ID for Test Exposures without synch
+   static const unsigned short  DETECTOR_WORKSTATION_ID = 5; //!< Workstation ID for Detector synchronization signals
+
+}
+
+
 #include <QApplication>
 #include <QObject>
 #include <QTimer>
@@ -71,29 +97,35 @@
 #include "Typedef.h"
 #include "startupWindow.h"
 #include "communication.h"
-#include "status.h"
+#include "exposure.h"
+#include "workflow.h"
 #include "server.h"
 
-#define _WINDOW_ON
+
+
 
 #define COMMUNICATION   pComm
 #define WINDOW          window
 #define INTERFACE       pServer
 #define DEBUG           window
 #define STATUS          pStatus
+#define EXPOSURE        pExposure
 
 // Global definitions
 #ifdef MAIN_CPP
     startupWindow*              window;
     Communication*              pComm;
-    statusManager*              pStatus;
+    workflowManager*            pStatus;
+    exposureManager*            pExposure;
     Server*                     pServer;
 #else
     extern startupWindow*       window;
     extern Communication*       pComm;
-    extern statusManager*       pStatus;
+    extern workflowManager*     pStatus;
+    extern exposureManager*     pExposure;
     extern Server*              pServer;
 #endif
+
 
 
 

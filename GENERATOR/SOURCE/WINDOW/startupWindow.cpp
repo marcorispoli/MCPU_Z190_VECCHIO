@@ -16,10 +16,11 @@ startupWindow::startupWindow(QWidget *parent)
     connect(ui->debugClearButton, SIGNAL(pressed()), this, SLOT(onDebugClearButton()), Qt::UniqueConnection);
     connect(ui->logEnableCheck, SIGNAL(stateChanged(int)), this, SLOT(on_logEnableCheck_stateChanged(int)));
 
-    connect(ui->startPre, SIGNAL(pressed()), this, SLOT(onStartPre()), Qt::UniqueConnection);
-    connect(ui->startPulse, SIGNAL(pressed()), this, SLOT(onStartPulse()), Qt::UniqueConnection);
+    connect(ui->start2DPre, SIGNAL(pressed()), this, SLOT(onStart2DPre()), Qt::UniqueConnection);
+    connect(ui->start2DPulse, SIGNAL(pressed()), this, SLOT(onStart2DPulse()), Qt::UniqueConnection);
     connect(ui->start3DPre, SIGNAL(pressed()), this, SLOT(onStart3DPre()), Qt::UniqueConnection);
     connect(ui->start3DPulse, SIGNAL(pressed()), this, SLOT(onStart3DPulse()), Qt::UniqueConnection);
+    connect(ui->start2DTest, SIGNAL(pressed()), this, SLOT(onStart2DTest()), Qt::UniqueConnection);
 
     connect(ui->abortRx, SIGNAL(pressed()), this, SLOT(onAbortRx()), Qt::UniqueConnection);
     connect(ui->aecSendButton, SIGNAL(pressed()), this, SLOT(onAecSendButton()), Qt::UniqueConnection);
@@ -109,7 +110,7 @@ void startupWindow::onDebug(QByteArray data){
     if(ui->debugEnable->isChecked())   ui->debugText->appendPlainText(stringa);
 }
 
-void startupWindow::onStartPre(void){
+void startupWindow::onStart2DPre(void){
 
     QList<QString> comando;
     comando.append("E");
@@ -134,7 +135,7 @@ void startupWindow::onStartPre(void){
 }
 
 
-void startupWindow::onStartPulse(void){
+void startupWindow::onStart2DPulse(void){
 
     QList<QString> comando;
     comando.append("E");
@@ -144,13 +145,9 @@ void startupWindow::onStartPulse(void){
     comando.append(ui->mAsPulse->text());
     if(ui->largeFocus->isChecked()) comando.append("LARGE");
     else comando.append("SMALL");
-    if(ui->detectorEna->isChecked()) comando.append("DETECTOR");
-    else comando.append("NO_DETECTOR");
-    if(ui->gridEna->isChecked()) comando.append("GRID");
-    else comando.append("NO_GRID");
-
 
     INTERFACE->SetExposurePulse(&comando);
+
 
     comando.clear();
     comando.append("E");
@@ -162,6 +159,34 @@ void startupWindow::onStartPulse(void){
 
 }
 
+void startupWindow::onStart2DTest(void){
+
+    QList<QString> comando;
+    comando.append("E");
+    comando.append("1");
+    comando.append("SetExposureTestPulse ");
+    comando.append(ui->kVPulse->text());
+    comando.append(ui->mAsPulse->text());
+    if(ui->largeFocus->isChecked()) comando.append("LARGE");
+    else comando.append("SMALL");
+    if(ui->detectorEna->isChecked()) comando.append("DETECTOR");
+    else comando.append("NO_DETECTOR");
+    if(ui->gridEna->isChecked()) comando.append("GRID");
+    else comando.append("NO_GRID");
+    INTERFACE->SetExposureTestPulse(&comando);
+
+
+    comando.clear();
+    comando.append("E");
+    comando.append("2");
+    comando.append("StartExposure ");
+    comando.append("2D");
+
+    INTERFACE->StartExposure(&comando);
+
+}
+
+
 void startupWindow::onStart3DPulse(void){
 
     QList<QString> comando;
@@ -170,11 +195,7 @@ void startupWindow::onStart3DPulse(void){
     comando.append("SetExposurePulse ");
     comando.append(ui->kVPulse->text());
     comando.append(ui->mAsPulse->text());
-
-    comando.append("LARGE");
-    comando.append("DETECTOR");
-    comando.append("NO_GRID");
-
+    comando.append("LARGE");   
 
     INTERFACE->SetExposurePulse(&comando);
 
@@ -245,10 +266,10 @@ void startupWindow::on_logEnableCheck_stateChanged(int arg1)
 {
     static bool connected = false;
     if(arg1){
-        if(!connected) connect(pComm, SIGNAL(rxDataEventSgn(QByteArray)), this, SLOT(onLogRxSlot(QByteArray)), Qt::QueuedConnection);
+        if(!connected) connect(COMMUNICATION, SIGNAL(rxDataEventSgn(QByteArray)), this, SLOT(onLogRxSlot(QByteArray)), Qt::QueuedConnection);
         connected = true;
     }else{
-        disconnect(pComm, SIGNAL(rxDataEventSgn(QByteArray)), this, SLOT(onLogRxSlot(QByteArray)));
+        disconnect(COMMUNICATION, SIGNAL(rxDataEventSgn(QByteArray)), this, SLOT(onLogRxSlot(QByteArray)));
         connected = false;
 
     }
@@ -267,11 +288,7 @@ void startupWindow::onAecSendButton(void){
     comando.append("SetExposurePulse ");
     comando.append(ui->kVPulse->text());
     comando.append(ui->mAsPulse->text());
-    if(ui->largeFocus->isChecked()) comando.append("LARGE");
-
-    else comando.append("SMALL");
-    comando.append("DETECTOR");
-    comando.append("GRID");
+    comando.append("LARGE");
 
     INTERFACE->SetExposurePulse(&comando);
 }

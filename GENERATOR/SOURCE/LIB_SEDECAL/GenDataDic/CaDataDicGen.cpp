@@ -14,6 +14,7 @@
 #include <string.h>
 #include <QDebug>
 
+#include "application.h"
 #include "CaDataDicGen.h"
 
 namespace R2CP
@@ -135,7 +136,7 @@ namespace R2CP
 	{
 			
 		if (m_p_instance_ == nullptr) 
-            m_p_instance_ = new CaDataDicGen(Interface::APPLICATION_NODE_ID);
+            m_p_instance_ = new CaDataDicGen(Application::APPLICATION_NODE_ID);
 		return m_p_instance_;
 	}
 	
@@ -247,7 +248,7 @@ namespace R2CP
          m_p_instance_->protocolUpdated = false;
 
         (void)m_Type_-> Get(    ETH_LOWEST_PRIORITY,
-                                Interface::GENERATOR_NODE_ID,
+                                Application::GENERATOR_NODE_ID,
                                 mNodeId,
                                 R2CP_COMMANDS_ENTRY,
                                 R2CP_PROTOCOL_VERSION,
@@ -262,7 +263,7 @@ namespace R2CP
         pData[1] =  0;
         pData[2] =  'A';
         (void)m_Type_-> Set(    ETH_LOWEST_PRIORITY,
-                                Interface::GENERATOR_NODE_ID,
+                                Application::GENERATOR_NODE_ID,
                                 mNodeId,
                                 R2CP_COMMANDS_ENTRY,
                                 R2CP_PROTOCOL_VERSION,
@@ -277,7 +278,7 @@ namespace R2CP
         pData[1] =  5;
         pData[2] =  0;
         (void)m_Type_-> Set(    ETH_LOWEST_PRIORITY,
-                                Interface::GENERATOR_NODE_ID,
+                                Application::GENERATOR_NODE_ID,
                                 mNodeId,
                                 R2CP_COMMANDS_ENTRY,
                                 R2CP_PROTOCOL_VERSION,

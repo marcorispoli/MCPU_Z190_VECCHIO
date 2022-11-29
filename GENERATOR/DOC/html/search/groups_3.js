@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['r2cp_2e_0',['R2CP.',['../group___r2_c_p_module.html',1,'']]]
+  ['gantry_20interface_20module_2e_0',['Gantry Interface Module.',['../group___interface_module.html',1,'']]]
 ];

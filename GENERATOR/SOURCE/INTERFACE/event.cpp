@@ -97,21 +97,21 @@ void Server::EventGetPulseData(ushort seq){
  * The command frame is: <E SEQ EventXrayCompleted ris_code masPre masPulse error > \n
  *
  * Where:
- * - ris_code: is one of the ocdes in Interface::tExposureResult;
+ * - ris_code: is one of the ocdes in exposureManager::tExposureResult;
  * - masPre: total mAs for the pre pulse (if there is one)
  * - masPulse: total mAs for pulse
- * - error: is one of the error codes in the Interface::tExposurErrors
+ * - error: is one of the error codes in the Application::tExposureErrors
  *
  * @param
  * - seq: is the sequence code of the EVENT frame;
- * - result: is the exposure result code. see Interface::tExposureResult;
+ * - result: is the exposure result code. see exposureManager::tExposureResult;
  * - preMas: total mAs for pre pulse
  * - pulseMas: total mAs for pulse
- * - error: in case of error, this is the error code. See Interface::tExposurErrors.
+ * - error: in case of error, this is the error code. See Application::tExposureErrors.
  *
  * \ingroup InterfaceModule
  */
-void Server::EventXrayCompleted(ushort seq, Interface::tExposureResult result, float preMas, float pulseMas, uchar error){
+void Server::EventXrayCompleted(ushort seq, uchar result, float preMas, float pulseMas, uchar error){
 
     QList<QString> event;
     event.append("EventXrayCompleted");

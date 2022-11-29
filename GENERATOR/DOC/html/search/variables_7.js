@@ -5,7 +5,7 @@ var searchData=
   ['general_5frx_5fdisable_5fmsg_5fid_2',['GENERAL_RX_DISABLE_MSG_ID',['../namespace_r2_c_p.html#a9bfaef6c56dafb4078831f4bb35bb559',1,'R2CP']]],
   ['generaldebugindex_3',['generalDebugIndex',['../classstartup_window.html#a6808f8fb4e13e10fee0767f5f13c361c',1,'startupWindow']]],
   ['generator_4',['Generator',['../struct_r2_c_p_1_1t_extended_license.html#ad972286f8da24b3ed1ab581400904951',1,'R2CP::tExtendedLicense']]],
-  ['generator_5fstatus_5fchanged_5',['generator_status_changed',['../classstatus_manager.html#ab54c9ca54b25c9686fe1ace4a047115a',1,'statusManager']]],
+  ['generator_5fnode_5fid_5',['GENERATOR_NODE_ID',['../namespace_application.html#a9e017bdc2a02b58e6b30ebea3cc58162',1,'Application']]],
   ['generatorcalibration_6',['GeneratorCalibration',['../union_r2_c_p_1_1_r_e_s_t_o_r_e__.html#a5ce737d1d32b34fe4b75175ebb9b5831',1,'R2CP::RESTORE_']]],
   ['generatorconnected_7',['generatorConnected',['../class_communication.html#ab892b6f2bab7a99b47c2adfc2d0dbe40',1,'Communication']]],
   ['generatordatadictionary_8',['GeneratorDataDictionary',['../namespace_r2_c_p.html#a9b69b6210163c0a207803e4cbcafec95',1,'R2CP']]],

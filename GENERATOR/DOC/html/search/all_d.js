@@ -16,5 +16,7 @@ var searchData=
   ['log_13',['Log',['../class_api_1_1_log.html',1,'Api::Log'],['../struct_r2_c_p_1_1t_backup_and_snap_shot.html#a46d523880f6190317c8b611698bfc421',1,'R2CP::tBackupAndSnapShot::Log()']]],
   ['log_5flevel_14',['Log_level',['../namespace_api.html#ab91953189b11963d4f0c63b43f4b4351',1,'Api']]],
   ['log_5foutput_5f_15',['log_output_',['../class_api_1_1_log.html#a72cdaba8ba389bbb17f650147e9ede09',1,'Api::Log']]],
-  ['lowgainstatus_16',['LowGainStatus',['../struct_r2_c_p_1_1t_calibration_status.html#a1850def1b6129bb3093915b8c7f9aeb5',1,'R2CP::tCalibrationStatus']]]
+  ['logfd_16',['logfd',['../main_8cpp.html#a487927decedcc5c022d8ed040d48abb5',1,'main.cpp']]],
+  ['logmutex_17',['LogMutex',['../namespace_api.html#adbf47d40f92559955ca16e043918a9c8',1,'Api']]],
+  ['lowgainstatus_18',['LowGainStatus',['../struct_r2_c_p_1_1t_calibration_status.html#a1850def1b6129bb3093915b8c7f9aeb5',1,'R2CP::tCalibrationStatus']]]
 ];

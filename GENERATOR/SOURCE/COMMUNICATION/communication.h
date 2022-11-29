@@ -1,6 +1,16 @@
 #ifndef COMMUNICATION_H
 #define COMMUNICATION_H
 
+
+/**
+* \defgroup  r2cpCommunicationModule Communication Interface With R2CP Module.
+*
+* This Module implements the Communication interface with the R2CP Sedecal Library protocol.
+*
+* # GENERAL OVERVIEW
+*/
+
+
 #include "tcpipclient.h"
 #include "Typedef.h"
 #include <QtEndian>
@@ -8,7 +18,11 @@
 #include "CaDataDicGen.h"
 
 
-
+/**
+ * @brief The Communication class
+ *
+ * \ingroup r2cpCommunicationModule
+ */
 class Communication : public QObject
 {
     Q_OBJECT
@@ -83,7 +97,7 @@ public:
     _inline void setGenerator_SkipPulse_Databank(uchar dbId, uchar nskip){R2CP::CaDataDicGen::GetInstance()->Generator_Set_SkipPulse_Databank(dbId, nskip);}
     _inline void setGenerator_Assign_SkipPulse_Databank(uchar dbId, uchar procedureId){R2CP::CaDataDicGen::GetInstance()->Generator_Assign_SkipPulse_Databank(procedureId, dbId);}
 
-    _inline void setSHConnection() {R2CP::CaDataDicGen::GetInstance()->Network_ConnectionRequest_Event(Interface::SH_NODE_ID, Interface::APPLICATION_NODE_ID);}
+    _inline void setSHConnection() {R2CP::CaDataDicGen::GetInstance()->Network_ConnectionRequest_Event();}
 
     _inline void clearSystemMessage(uint id){R2CP::CaDataDicGen::GetInstance()->SystemMessages_Clear_Message(id);}
     _inline void getAllSystemMessages(void){R2CP::CaDataDicGen::GetInstance()->SystemMessages_Get_AllMessages();}
@@ -112,10 +126,6 @@ public:
     _inline void startExposure(void){R2CP::CaDataDicGen::GetInstance()->Generator_startExposure();}
     _inline void stopExposure(void){R2CP::CaDataDicGen::GetInstance()->Generator_stopExposure();}
 
-    _inline void setProcedureManual(void){}
-    _inline void setProcedureAec(void){}
-    _inline void setProcedureTomo(void){}
-    _inline void setProcedureTomoAec(void){}
 
 
 private:

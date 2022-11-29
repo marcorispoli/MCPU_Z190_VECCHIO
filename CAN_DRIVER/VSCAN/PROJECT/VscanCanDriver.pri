@@ -11,7 +11,10 @@ DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs depr
 
 #Include supporto per Qt Network (moduli TCP/IP)
 QT += network
-QT += serialport
+
+
+FORMS += \
+    $${TARGET_SOURCE}/WINDOW/window.ui \
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -21,31 +24,34 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 LIBS += -L$${TARGET_SOURCE}/DLL/ -lvs_can_api
 
-
 DISTFILES +=
 
 
 SOURCES += \
     $${TARGET_SOURCE}/main.cpp \    
-    $${TARGET_SOURCE}/server.cpp \
-    $${TARGET_SOURCE}/can_driver.cpp \
+    $${TARGET_SOURCE}/SERVER/server.cpp \
+    $${TARGET_SOURCE}/CAN/can_driver.cpp \
+    $${TARGET_SOURCE}/WINDOW/window.cpp \
     $${MAIN_CPU}/LIB/tcpipserver.cpp \
     $${MAIN_CPU}/LIB/configfile.cpp \
 
 
 HEADERS += \
-    $${TARGET_SOURCE}/configuration.h \
-    $${TARGET_SOURCE}/server.h \
-    $${TARGET_SOURCE}/can_driver.h \
+    $${TARGET_SOURCE}/application.h \
+    $${TARGET_SOURCE}/SERVER/server.h \
+    $${TARGET_SOURCE}/CAN/can_driver.h \
+    $${TARGET_SOURCE}/WINDOW/window.h \
     $${TARGET_SOURCE}/DLL/vs_can_api.h \
     $${MAIN_CPU}/LIB/tcpipserver.h \
     $${MAIN_CPU}/LIB/configfile.h \
-
 
 # Aggiunge tutti i path di progetto
 INCLUDEPATH += \
     $${MAIN_CPU}/LIB \
     $${TARGET_SOURCE}/DLL \
+    $${TARGET_SOURCE}/SERVER \
+    $${TARGET_SOURCE}/CAN \
+    $${TARGET_SOURCE}/WINDOW \
     $${TARGET_SOURCE} \
 
 DEPENDPATH += \

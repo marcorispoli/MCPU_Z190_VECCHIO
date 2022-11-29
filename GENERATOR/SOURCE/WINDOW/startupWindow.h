@@ -44,10 +44,12 @@ public slots:
 
     void onLogRxSlot(QByteArray);
 
-    void onStartPre(void);
-    void onStartPulse(void);
+    void onStart2DPre(void);
+    void onStart2DPulse(void);
     void onStart3DPre(void);
     void onStart3DPulse(void);
+    void onStart2DTest(void);
+
     void onAbortRx(void);
     void onAecSendButton(void);
 

@@ -16,7 +16,7 @@ static QFile* logfd;
  * @param context
  * @param msg this is the string of the message
  *
- * \ingroup   MainModule
+ * \ingroup   applicationModule
  */
 void dbgWindowMsg(QtMsgType type, const QMessageLogContext &context, const QString &msg)
 {
@@ -54,7 +54,7 @@ void dbgWindowMsg(QtMsgType type, const QMessageLogContext &context, const QStri
  * @param context
  * @param msg this is the string of the message
  *
- * \ingroup   MainModule
+ * \ingroup   applicationModule
  */
 void noDebugMessageHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg)
 {
@@ -74,7 +74,7 @@ void noDebugMessageHandler(QtMsgType type, const QMessageLogContext &context, co
  * @param context
  * @param msg this is the string of the message
  *
- * \ingroup   MainModule
+ * \ingroup   applicationModule
  */
 void dbgMessageOutputToFile(QtMsgType type, const QMessageLogContext &context, const QString &msg)
 {
@@ -96,7 +96,7 @@ void dbgMessageOutputToFile(QtMsgType type, const QMessageLogContext &context, c
  *  - No parameter for the Operating mode (no debug messages);
  * @return
  *
- * \ingroup   MainModule
+ * \ingroup   applicationModule
  */
 int main(int argc, char *argv[])
 {
@@ -134,7 +134,8 @@ int main(int argc, char *argv[])
     }
 
     // Create the StatusManager class, responsible to handle the workflow
-    STATUS = new statusManager();
+    STATUS = new workflowManager();
+    EXPOSURE = new exposureManager();
 
     // Open the server for the external commands
     pServer = new Server("127.0.0.1", 10002);    

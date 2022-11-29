@@ -14,6 +14,7 @@ var searchData=
   ['eventmessage_11',['EventMessage',['../group___interface_module.html#gaa86610df791c20316db0f6a5865b380e',1,'Server::EventMessage()'],['../classstartup_window.html#aac34dd91f895eeaa1762afb92541c90d',1,'startupWindow::EventMessage()']]],
   ['eventsetxrayena_12',['EventSetXrayEna',['../group___interface_module.html#gaddcf172531df8b07034e8e014ea96850',1,'Server::EventSetXrayEna()'],['../classstartup_window.html#adaf50ca00f8ba7361e19256511e22ce9',1,'startupWindow::EventSetXrayEna()']]],
   ['eventstatus_13',['EventStatus',['../group___interface_module.html#ga8af888a694a6f5adb226177e6fad8b76',1,'Server::EventStatus()'],['../classstartup_window.html#a3db7b52b8f316d7ed123ef49dacff002',1,'startupWindow::EventStatus()']]],
-  ['eventxraycompleted_14',['EventXrayCompleted',['../group___interface_module.html#ga811a7099f429d780695e54d01642e611',1,'Server::EventXrayCompleted()'],['../classstartup_window.html#a497fe78bfd3d1812276ab43f1f94bc28',1,'startupWindow::EventXrayCompleted(ushort seq, uchar code, uchar error)']]],
-  ['exitwindow_15',['exitWindow',['../classstartup_window.html#a163a3eeb4f92657ba4a086b8452ad35f',1,'startupWindow']]]
+  ['eventxraycompleted_14',['EventXrayCompleted',['../group___interface_module.html#gad2b9cbeccf94f41a9ea16d2966c32c33',1,'Server::EventXrayCompleted()'],['../classstartup_window.html#a497fe78bfd3d1812276ab43f1f94bc28',1,'startupWindow::EventXrayCompleted(ushort seq, uchar code, uchar error)']]],
+  ['exitwindow_15',['exitWindow',['../classstartup_window.html#a163a3eeb4f92657ba4a086b8452ad35f',1,'startupWindow']]],
+  ['exposuremanager_16',['exposureManager',['../classexposure_manager.html#aa148e15af2bdb6c357b71524d1ae6abc',1,'exposureManager']]]
 ];

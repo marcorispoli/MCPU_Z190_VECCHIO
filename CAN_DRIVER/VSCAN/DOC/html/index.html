@@ -75,23 +75,33 @@ $(function() {
 <div class="contents">
 <div class="textblock"><h1><a class="anchor" id="autotoc_md0"></a>
 GENERAL OVERVIEW</h1>
-<p >The <a class="el" href="namespace_application.html" title="Application constants definition.">Application</a> provides a <a class="el" href="class_server.html">Server</a> input socket at IP:127.0.0.1@10001 to interface with the Gantry application (or other applications implementing the can interface protocol).</p>
-<p >The <a class="el" href="namespace_application.html" title="Application constants definition.">Application</a> can run with rthe following options:</p>
+<p >The CanDriver application allows other Client applications to access the <br  />
+CAN network in order to send and receive data to remote devices <br  />
+using the CAN bus as the communication BUS.</p>
+<p >Actually the <a class="el" href="namespace_application.html" title="Application constants definition.">Application</a> performs like a bridge from the ethernet bus and the <br  />
+CAN bus.</p>
+<p >Each Client application that should connect a CAN device to a given canID address,<br  />
+shall connect this <a class="el" href="namespace_application.html" title="Application constants definition.">Application</a> via Local Host at the 127.0.0.1@10001.</p>
+<p >The Client application shall implement the communicatin protocol <br  />
+in order to send and receive data to/from the remote Can Device throughout this <a class="el" href="namespace_application.html" title="Application constants definition.">Application</a>.</p>
+<p >The <a class="el" href="namespace_application.html" title="Application constants definition.">Application</a> can be run with the following options:</p>
 <ul>
 <li>-win: allows to run the application with a graphical window to <br  />
  provide manual interaction with the Can Driver. The Debug strings will be redirect into the Window panel.</li>
-<li>-log: the <a class="el" href="namespace_application.html" title="Application constants definition.">Application</a> redirects the debug messages to a file:<br  />
- C:/OEM/Gantry/candriver.log</li>
-<li>-canLoopback: the can Device operates in loopback mode.</li>
+<li>-log: the <a class="el" href="namespace_application.html" title="Application constants definition.">Application</a> redirects the debug messages to a file: C:/OEM/Gantry/candriver.log</li>
+<li>-canLoopback: the can driver operates in loopback mode.</li>
 </ul>
 <h1><a class="anchor" id="autotoc_md1"></a>
 DEPENDENCIES AND CONFIGURATION FILES</h1>
+<p >The application requires the vsCan Driver installed into the Operating System. See the <a href="https://www.vscom.de/download/multiio/others/info/VSCAN_Manual.pdf">VSCAN Manual</a> for details.</p>
+<p >The applications makes use of the vs_can_api.dll that shall be copied into the execution directory.</p>
 <h1><a class="anchor" id="autotoc_md2"></a>
 APPLICATION MODULES</h1>
 <p >The <a class="el" href="namespace_application.html" title="Application constants definition.">Application</a> implements the following modules:</p><ul>
-<li><a class="el" href="group__application_module.html">Application Module.</a> : defines constant along the application</li>
-<li><a class="el" href="group__candriver_module.html">CAN Driver Module.</a> : implements the communication interface with the CAN Network</li>
-<li>windowModule : this is an optional Windows interface used for Service/Debug;</li>
+<li><a class="el" href="group__application_module.html">Application Module.</a> : defines constant along the application.</li>
+<li><a class="el" href="group__candriver_module.html">CAN Driver Module.</a> : implements the communication with the can driver.</li>
+<li><a class="el" href="group__interface_module.html">Ethernet Interface Module.</a> : implements the communication with Clients over Local Host.</li>
+<li><a class="el" href="group__window_module.html">Debug Window Module.</a> : this is an optional Windows interface used for Service/Debug;</li>
 </ul>
 <h1><a class="anchor" id="autotoc_md3"></a>
 SOFTWARE LICENCING</h1>

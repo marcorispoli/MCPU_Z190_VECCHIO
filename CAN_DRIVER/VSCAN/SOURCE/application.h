@@ -12,28 +12,43 @@
  *
  * # GENERAL OVERVIEW
  *
- * The Application provides a Server input socket at IP:127.0.0.1@10001
- * to interface with the Gantry application (or other applications implementing the
- * can interface protocol).
+ * The CanDriver application allows other Client applications to access the \n
+ * CAN network in order to send and receive data to remote devices \n
+ * using the CAN bus as the communication BUS.
  *
- * The Application can run with rthe following options:
+ * Actually the Application performs like a bridge from the ethernet bus and the \n
+ * CAN bus.
+ *
+ * Each Client application that should connect a CAN device to a given canID address,\n
+ * shall connect this Application via Local Host at the 127.0.0.1@10001.
+ *
+ * The Client application shall implement the communicatin protocol \n
+ * in order to send and receive data to/from the remote Can Device throughout this Application.
+ *
+ *
+ * The Application can be run with the following options:
  *
  * - -win: allows to run the application with a graphical window to \n
  *      provide manual interaction with the Can Driver. The Debug strings will be
  *      redirect into the Window panel.
- * - -log: the Application redirects the debug messages to a file:\n
+ * - -log: the Application redirects the debug messages to a file:
  *      C:/OEM/Gantry/candriver.log
- * - -canLoopback: the can Device operates in loopback mode.
+ * - -canLoopback: the can driver operates in loopback mode.
 
  * # DEPENDENCIES AND CONFIGURATION FILES
  *
+ *  The application requires the vsCan Driver installed into the Operating System.
+ *  See the [VSCAN Manual](https://www.vscom.de/download/multiio/others/info/VSCAN_Manual.pdf) for details.
+ *
+ *  The applications makes use of the vs_can_api.dll that shall be copied into the
+ *  execution directory.
  *
  * # APPLICATION MODULES
  *
  * The Application implements the following modules:
- * - @ref applicationModule : defines constant along the application
- * - @ref candriverModule : implements the communication interface with the CAN Network
- *
+ * - @ref applicationModule : defines constant along the application.
+ * - @ref candriverModule : implements the communication with the can driver.
+ * - @ref interfaceModule : implements the communication with Clients over Local Host.
  * - @ref windowModule : this is an optional Windows interface used for Service/Debug;
  *
  * # SOFTWARE LICENCING
@@ -55,7 +70,7 @@
 #include <QApplication>
 #include <QObject>
 #include <QTimer>
-#include "tcpipclient.h"
+
 
 
 #include "can_driver.h"
@@ -71,12 +86,12 @@
 // Global definitions
 #ifdef MAIN_CPP
     Server*   pServer;
-    VscanCanDriver*   pCanDriver;
+    canDriver*   pCanDriver;
     debugWindow* pWindow;
 
 #else
     extern  Server*   INTERFACE;
-    extern  VscanCanDriver*   CAN;
+    extern  canDriver*   CAN;
     extern  debugWindow* WINDOW ;
 
 #endif
@@ -95,7 +110,7 @@
     {
        static const char*  SERVER_IP = "127.0.01"; //!< Server Interface Ip Address
        static const unsigned short  SERVER_PORT = 10001; //!< Server Interface Port
-       static const VscanCanDriver::_CanBR CAN_BAUDRATE = VscanCanDriver::_CAN_1000K;
+       static const canDriver::_CanBR CAN_BAUDRATE = canDriver::_CAN_1000K;
 
     }
 

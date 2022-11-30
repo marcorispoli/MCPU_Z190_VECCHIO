@@ -120,7 +120,7 @@ int main(int argc, char *argv[])
 
     INTERFACE = new Server(Application::SERVER_IP, Application::SERVER_PORT);
 
-    CAN = new VscanCanDriver();    
+    CAN = new canDriver();    
     CAN->driverOpen(Application::CAN_BAUDRATE, canloopback);
 
     QObject::connect(CAN,SIGNAL(receivedCanFrame(ushort , QByteArray )), INTERFACE, SLOT(receivedCanFrame(ushort , QByteArray)),Qt::QueuedConnection);

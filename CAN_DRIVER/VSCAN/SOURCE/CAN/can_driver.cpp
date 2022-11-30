@@ -1,7 +1,10 @@
-#include "can_driver.h"
+#include "application.h"
 #include <QApplication>
 
-VscanCanDriver::VscanCanDriver(){
+/**
+ * @brief canDriver class constructor
+ */
+canDriver::canDriver(){
     canTimer=0;
     for(int i=0; i<8; i++)    rxCanData.append((uchar) 0);
     handle = 0;
@@ -26,7 +29,7 @@ VscanCanDriver::VscanCanDriver(){
  * @param loopback: this activated the loopback mode if true.
  * @return true in case of activation success
  */
-bool VscanCanDriver::driverOpen(_CanBR BR, bool loopback){
+bool canDriver::driverOpen(_CanBR BR, bool loopback){
     VSCAN_STATUS status;
     char string[33];
 
@@ -146,17 +149,19 @@ bool VscanCanDriver::driverOpen(_CanBR BR, bool loopback){
 }
 
 /**
- * This function safely close the communication with
+ * This function close the communication with
  * the device driver.
  *
  */
-void VscanCanDriver::driverClose(void){
+void canDriver::driverClose(void){
 
     if(handle <= 0) return;
 
+    // Termines the timer callback
     if(canTimer) killTimer(canTimer);
     canTimer = 0;
 
+    // Close the device driver
     VSCAN_STATUS status = VSCAN_Close(handle);
     if(status != VSCAN_ERR_OK){
         char string[33];
@@ -169,8 +174,18 @@ void VscanCanDriver::driverClose(void){
 }
 
 
-
-void VscanCanDriver::sendOnCanSlot(ushort canId, QByteArray data){
+/**
+ * @brief This function sends a CAN frame on CAN Network.
+ *
+ * This function is declared as Slot and should be connected
+ * to the can frame emitter signal (See the @ref interfaceModule).
+ *
+ *
+ *
+ * @param canId: is the CANID address
+ * @param data: is the eight data byte frame content.
+ */
+void canDriver::sendOnCanSlot(ushort canId, QByteArray data){
 
     VSCAN_MSG msg;
     DWORD written;
@@ -187,8 +202,19 @@ void VscanCanDriver::sendOnCanSlot(ushort canId, QByteArray data){
 }
 
 
-
-void VscanCanDriver::timerEvent(QTimerEvent* ev)
+/**
+ * @brief Timer callback scheduled every 1ms
+ *
+ * This function polls the driver reception queue\n
+ * in order to get the received can frames.
+ *
+ * The received can frames then will be forwarded \n
+ * to the can frame consumers in the application \n
+ * emitting the canDriver::receivedCanFrame() signal.
+ *
+ * @param ev: QTimer::QTimerEvent parameter type;
+ */
+void canDriver::timerEvent(QTimerEvent* ev)
 {
     if(ev->timerId() ==  canTimer)
     {

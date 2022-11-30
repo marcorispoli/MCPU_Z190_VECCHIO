@@ -12,7 +12,6 @@ DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs depr
 #Include supporto per Qt Network (moduli TCP/IP)
 QT += network
 
-
 FORMS += \
     $${TARGET_SOURCE}/WINDOW/window.ui \
 
@@ -26,14 +25,12 @@ LIBS += -L$${TARGET_SOURCE}/DLL/ -lvs_can_api
 
 DISTFILES +=
 
-
 SOURCES += \
     $${TARGET_SOURCE}/main.cpp \    
     $${TARGET_SOURCE}/SERVER/server.cpp \
     $${TARGET_SOURCE}/CAN/can_driver.cpp \
     $${TARGET_SOURCE}/WINDOW/window.cpp \
-    $${MAIN_CPU}/LIB/tcpipserver.cpp \
-    $${MAIN_CPU}/LIB/configfile.cpp \
+
 
 
 HEADERS += \
@@ -42,17 +39,16 @@ HEADERS += \
     $${TARGET_SOURCE}/CAN/can_driver.h \
     $${TARGET_SOURCE}/WINDOW/window.h \
     $${TARGET_SOURCE}/DLL/vs_can_api.h \
-    $${MAIN_CPU}/LIB/tcpipserver.h \
-    $${MAIN_CPU}/LIB/configfile.h \
+
 
 # Aggiunge tutti i path di progetto
-INCLUDEPATH += \
-    $${MAIN_CPU}/LIB \
+INCLUDEPATH += \    
     $${TARGET_SOURCE}/DLL \
     $${TARGET_SOURCE}/SERVER \
     $${TARGET_SOURCE}/CAN \
     $${TARGET_SOURCE}/WINDOW \
     $${TARGET_SOURCE} \
+
 
 DEPENDPATH += \
     $${TARGET_SOURCE}/DLL \

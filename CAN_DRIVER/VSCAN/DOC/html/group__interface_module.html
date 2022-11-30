@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.5"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>CAN Driver  Software Documentation: C:/Users/m.rispoli/Documents/Workspace/Git/MainCpu_Z190/CAN_DRIVER/VSCAN/SOURCE/SERVER/server.h File Reference</title>
+<title>CAN Driver  Software Documentation: Ethernet Interface Module.</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -47,6 +47,7 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -68,24 +69,12 @@ $(function() {
 </div>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_08351310ddebaca638dbb30498c8cafd.html">SOURCE</a></li><li class="navelem"><a class="el" href="dir_abaf3fdd2725eeb790e541c90f3f783e.html">SERVER</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a>  </div>
-  <div class="headertitle"><div class="title">server.h File Reference</div></div>
+  <div class="headertitle"><div class="title">Ethernet Interface Module.</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;QObject&gt;</code><br />
-<code>#include &lt;QTcpServer&gt;</code><br />
-<code>#include &lt;QTcpSocket&gt;</code><br />
-<code>#include &lt;QHostAddress&gt;</code><br />
-<code>#include &lt;QNetworkInterface&gt;</code><br />
-</div>
-<p><a href="server_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
@@ -96,7 +85,71 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This class handle the whole set of connected clients.  <a href="class_server.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<p >This Module implements the communication with the Can Clients.</p>
+<h1><a class="anchor" id="autotoc_md6"></a>
+DEVICE DRIVER OVERVIEW</h1>
+<p >This module implement a <a class="el" href="class_server.html" title="This class handle the whole set of connected clients.">Server</a> Socket TcpIp based communication,<br  />
+in order to let Clients application to send data frames on the CAN network.</p>
+<p >The server allows the connection with multi clients at the address:</p>
+<ul>
+<li>IP: 127.0.0.1 (local Host);</li>
+<li>PORT: 10001</li>
+</ul>
+<p >The Client that needs to send data into the CAN Network shall:</p><ul>
+<li>Connect the server at the IP&amp;PORT;</li>
+<li>Register the canId remote device address that needs to exchange data;</li>
+<li>Send and receive data to/fromthe targeted device.</li>
+</ul>
+<p >A Client can register as a broadcast client:</p><ul>
+<li>The Broadcast Client receives ALL the CAN frames but cannot send data frame.</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md7"></a>
+PROTOCOL DESCRIPTION</h1>
+<p >There are two only command frames:</p><ul>
+<li>Client Registering data frame;</li>
+<li>Can data frame;</li>
+</ul>
+<p >Every frame is in ascii format so it can be easily monitored</p>
+<h2><a class="anchor" id="autotoc_md8"></a>
+CLIENT REGISTERING DATA FRAME FORMAT</h2>
+<p >The Register Data Frame format is: </p><pre class="fragment"> &lt;R canId&gt;
+</pre><p> Where</p><ul>
+<li>'&lt;' and '&gt;' are frame delimiters</li>
+<li>R: is the frame identifier;</li>
+<li>canId: is the number of the CAN device address.</li>
+</ul>
+<pre class="fragment"> NOTE: space characters are ignored for the frame syntax;
+</pre><p> The canId format can be:</p><ul>
+<li>Decimal format: example, 1356;</li>
+<li>Hexadecimal format: example, 0x1345</li>
+</ul>
+<p >The registration workflow is:</p><ul>
+<li>Client sends &lt;R canId&gt;</li>
+<li><a class="el" href="class_server.html" title="This class handle the whole set of connected clients.">Server</a> answer replying the frame: &lt;R canId&gt;</li>
+</ul>
+<pre class="fragment"> NOTE: only one canId can be registered per Client.
+ In case more than one Register command should be received,
+ only the last one will be valid.
+</pre> <h2><a class="anchor" id="autotoc_md9"></a>
+CAN DATA FRAME FORMAT</h2>
+<p >The CAN Data Frame format is: </p><pre class="fragment"> &lt;C B0 B1 .. B7&gt;
+</pre><p> Where</p><ul>
+<li>'&lt;' and '&gt;' are frame delimiters</li>
+<li>C: is the frame identifier;</li>
+<li>B0 to B7: are unsigned char can data content.</li>
+</ul>
+<pre class="fragment"> NOTE: space characters are ignored for the frame syntax;
+ NOTE: the data lenght can be lower than 8. In this case
+ the can frame is filled with 0;
+ NOTE: if the data lenght should be greater than 8, the data will be truncated to 8.
+</pre><p> The can data content B0 to B7 can be of the following format:</p><ul>
+<li>Decimal format: example, 125;</li>
+<li>Hexadecimal format: example, 0xCC</li>
+</ul>
+<pre class="fragment"> NOTE: the server will forward the B0:B7 bytes to the device
+ target ID equal to the canId registered for that Client.
+</pre> </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5

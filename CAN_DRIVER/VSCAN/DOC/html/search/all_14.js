@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['version_0',['version',['../class_vscan_can_driver.html#a1d2cc211b39e3585612f3b7a07f3445b',1,'VscanCanDriver']]],
+  ['version_0',['version',['../classcan_driver.html#a3c7d4edaf3bebcb62a0f1fb5825c8791',1,'canDriver']]],
   ['virtual_5fcom_1',['VIRTUAL_COM',['../configuration_8h.html#a000f6fc3779f3cfe3e727ee0362d2167',1,'configuration.h']]],
   ['void_2',['VOID',['../can__driver_8h.html#a7927e087749615dae3114cc27b91c86d',1,'VOID():&#160;can_driver.h'],['../vs__can__api_8h.html#a7927e087749615dae3114cc27b91c86d',1,'VOID():&#160;vs_can_api.h']]],
   ['vs_5fcan_5fapi_2eh_3',['vs_can_api.h',['../vs__can__api_8h.html',1,'']]],
@@ -76,7 +76,7 @@ var searchData=
   ['vscan_5fmode_5fnormal_73',['VSCAN_MODE_NORMAL',['../vs__can__api_8h.html#a8919de3d7b6531b30abac8cb4ffc36b1',1,'vs_can_api.h']]],
   ['vscan_5fmode_5fself_5freception_74',['VSCAN_MODE_SELF_RECEPTION',['../vs__can__api_8h.html#af4c3fe1543152a6d01901f639b8452de',1,'vs_can_api.h']]],
   ['vscan_5fmsg_75',['VSCAN_MSG',['../struct_v_s_c_a_n___m_s_g.html',1,'']]],
-  ['vscan_5fnum_5fmessages_76',['VSCAN_NUM_MESSAGES',['../class_vscan_can_driver.html#adf7a4c44dbb5b4fdef32ec97b9a019b0',1,'VscanCanDriver']]],
+  ['vscan_5fnum_5fmessages_76',['VSCAN_NUM_MESSAGES',['../classcan_driver.html#a09f2c165aa1f01de765431b178263ac2',1,'canDriver']]],
   ['vscan_5fopen_77',['VSCAN_Open',['../vs__can__api_8h.html#a5e0013e2061dd7e8b8e9888b17152f1a',1,'vs_can_api.h']]],
   ['vscan_5fread_78',['VSCAN_Read',['../vs__can__api_8h.html#ab380bd646a1f3e55916c166c465d8ba2',1,'vs_can_api.h']]],
   ['vscan_5fsetrcvevent_79',['VSCAN_SetRcvEvent',['../vs__can__api_8h.html#ab7ca5e011fbe327e11c15ba6f895c1e0',1,'vs_can_api.h']]],
@@ -91,6 +91,5 @@ var searchData=
   ['vscan_5fstatus_88',['VSCAN_STATUS',['../vs__can__api_8h.html#aff3a6ffa856459eae16ee3a400eca7aa',1,'vs_can_api.h']]],
   ['vscan_5ftimestamp_5foff_89',['VSCAN_TIMESTAMP_OFF',['../vs__can__api_8h.html#a71df5f376e2ad3727c2a7cf320373680',1,'vs_can_api.h']]],
   ['vscan_5ftimestamp_5fon_90',['VSCAN_TIMESTAMP_ON',['../vs__can__api_8h.html#a95302148c0d7280c4324d77034e37f2c',1,'vs_can_api.h']]],
-  ['vscan_5fwrite_91',['VSCAN_Write',['../vs__can__api_8h.html#a9e4a545d52cfef257b4393d577e3e711',1,'vs_can_api.h']]],
-  ['vscancandriver_92',['VscanCanDriver',['../class_vscan_can_driver.html',1,'VscanCanDriver'],['../class_vscan_can_driver.html#ad25ffaae8c26b3ab7273464fd4c446a0',1,'VscanCanDriver::VscanCanDriver()']]]
+  ['vscan_5fwrite_91',['VSCAN_Write',['../vs__can__api_8h.html#a9e4a545d52cfef257b4393d577e3e711',1,'vs_can_api.h']]]
 ];

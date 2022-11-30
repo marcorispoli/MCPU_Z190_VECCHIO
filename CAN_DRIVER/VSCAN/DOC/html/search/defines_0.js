@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['_5fdata_5fcan_0',['_DATA_CAN',['../server_8h.html#a23a428483a7ad9080a1a6b36995b6fe9',1,'server.h']]],
-  ['_5fdata_5fconfig_1',['_DATA_CONFIG',['../server_8h.html#a25dd4499d566f3df6154cb2d89353f41',1,'server.h']]]
+  ['can_0',['CAN',['../application_8h.html#a427a40e102258055c72607bf7b604549',1,'application.h']]],
+  ['can_5fsetup_1',['CAN_SETUP',['../configuration_8h.html#add8a8a1f05fda743e5a5c5143f081159',1,'configuration.h']]],
+  ['config_5ffilename_2',['CONFIG_FILENAME',['../configuration_8h.html#af3a37ddad69a98c185798e80a58dcbdb',1,'configuration.h']]]
 ];

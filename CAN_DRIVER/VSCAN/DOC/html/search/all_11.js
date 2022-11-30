@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['sendoncanslot_0',['sendOnCanSlot',['../class_vscan_can_driver.html#a1c8a304acce9203f43c5a55605c7295a',1,'VscanCanDriver']]],
+  ['sendoncanslot_0',['sendOnCanSlot',['../classcan_driver.html#a2fa7924f0427df199a138b6457347d46',1,'canDriver']]],
   ['sendtocan_1',['sendToCan',['../class_socket_item.html#affcc90c98003411d9ade18890e25c6e8',1,'SocketItem::sendToCan()'],['../class_server.html#ae004b7a2c56db724e62b0cb30252cb5c',1,'Server::sendToCan()'],['../classdebug_window.html#a5602c033b6f67623c3b00d9a11c8218f',1,'debugWindow::sendToCan()']]],
   ['sendtocanslot_2',['sendToCanSlot',['../class_server.html#ad5f1be84caddc8d6fe07a90402ab7f41',1,'Server']]],
   ['sendtoclient_3',['sendToClient',['../class_socket_item.html#a546c8a62baffc5a6a7ce82ce11b4db07',1,'SocketItem']]],

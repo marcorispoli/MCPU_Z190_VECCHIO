@@ -84,7 +84,6 @@ $(function() {
 <div class="textblock"><code>#include &lt;QApplication&gt;</code><br />
 <code>#include &lt;QObject&gt;</code><br />
 <code>#include &lt;QTimer&gt;</code><br />
-<code>#include &quot;tcpipclient.h&quot;</code><br />
 <code>#include &quot;<a class="el" href="can__driver_8h_source.html">can_driver.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="server_8h_source.html">server.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="window_8h_source.html">window.h</a>&quot;</code><br />
@@ -112,18 +111,18 @@ Macros</h2></td></tr>
 Variables</h2></td></tr>
 <tr class="memitem:ad054478096dd089d9b75f042a5d6eea6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_server.html">Server</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="application_8h.html#ad054478096dd089d9b75f042a5d6eea6">INTERFACE</a></td></tr>
 <tr class="separator:ad054478096dd089d9b75f042a5d6eea6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a54cbc56d45356fdb27c0b0086041e40d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_vscan_can_driver.html">VscanCanDriver</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="application_8h.html#a54cbc56d45356fdb27c0b0086041e40d">CAN</a></td></tr>
-<tr class="separator:a54cbc56d45356fdb27c0b0086041e40d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0736ca4da9927606abe51aec912246a0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcan_driver.html">canDriver</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="application_8h.html#a0736ca4da9927606abe51aec912246a0">CAN</a></td></tr>
+<tr class="separator:a0736ca4da9927606abe51aec912246a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae73dcf401f457fb136db1e71b910dc1a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classdebug_window.html">debugWindow</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="application_8h.html#ae73dcf401f457fb136db1e71b910dc1a">WINDOW</a></td></tr>
 <tr class="separator:ae73dcf401f457fb136db1e71b910dc1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abacee73f115625ebcfda53dc365a254e"><td class="memItemLeft" align="right" valign="top">static const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_application.html#abacee73f115625ebcfda53dc365a254e">Application::SERVER_IP</a> = &quot;127.0.01&quot;</td></tr>
-<tr class="memdesc:abacee73f115625ebcfda53dc365a254e"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_server.html">Server</a> Interface Ip Address.  <a href="namespace_application.html#abacee73f115625ebcfda53dc365a254e">More...</a><br /></td></tr>
+<tr class="memdesc:abacee73f115625ebcfda53dc365a254e"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_server.html" title="This class handle the whole set of connected clients.">Server</a> Interface Ip Address.  <a href="namespace_application.html#abacee73f115625ebcfda53dc365a254e">More...</a><br /></td></tr>
 <tr class="separator:abacee73f115625ebcfda53dc365a254e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac1bae8a32965c6798cdeb6e75cbcca5e"><td class="memItemLeft" align="right" valign="top">static const unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_application.html#ac1bae8a32965c6798cdeb6e75cbcca5e">Application::SERVER_PORT</a> = 10001</td></tr>
-<tr class="memdesc:ac1bae8a32965c6798cdeb6e75cbcca5e"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_server.html">Server</a> Interface Port.  <a href="namespace_application.html#ac1bae8a32965c6798cdeb6e75cbcca5e">More...</a><br /></td></tr>
+<tr class="memdesc:ac1bae8a32965c6798cdeb6e75cbcca5e"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_server.html" title="This class handle the whole set of connected clients.">Server</a> Interface Port.  <a href="namespace_application.html#ac1bae8a32965c6798cdeb6e75cbcca5e">More...</a><br /></td></tr>
 <tr class="separator:ac1bae8a32965c6798cdeb6e75cbcca5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaaeab94f399bc4834601f97a9cfccbb5"><td class="memItemLeft" align="right" valign="top">static const <a class="el" href="class_vscan_can_driver.html#a8861472377376f687526066d47b74504">VscanCanDriver::_CanBR</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_application.html#aaaeab94f399bc4834601f97a9cfccbb5">Application::CAN_BAUDRATE</a> = <a class="el" href="class_vscan_can_driver.html#a8861472377376f687526066d47b74504a5f9a7e1500006ea794755012e5092b8f">VscanCanDriver::_CAN_1000K</a></td></tr>
-<tr class="separator:aaaeab94f399bc4834601f97a9cfccbb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea7c7fd265340c833ece3e249e4126f7"><td class="memItemLeft" align="right" valign="top">static const <a class="el" href="classcan_driver.html#ab31a83a941113259ffc8754c8dd92184">canDriver::_CanBR</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_application.html#aea7c7fd265340c833ece3e249e4126f7">Application::CAN_BAUDRATE</a> = <a class="el" href="classcan_driver.html#ab31a83a941113259ffc8754c8dd92184a1a878523c663183e895808ed878d2a85">canDriver::_CAN_1000K</a></td></tr>
+<tr class="separator:aea7c7fd265340c833ece3e249e4126f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="a427a40e102258055c72607bf7b604549" name="a427a40e102258055c72607bf7b604549"></a>
@@ -183,8 +182,8 @@ Variables</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
-<a id="a54cbc56d45356fdb27c0b0086041e40d" name="a54cbc56d45356fdb27c0b0086041e40d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a54cbc56d45356fdb27c0b0086041e40d">&#9670;&#160;</a></span>CAN</h2>
+<a id="a0736ca4da9927606abe51aec912246a0" name="a0736ca4da9927606abe51aec912246a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0736ca4da9927606abe51aec912246a0">&#9670;&#160;</a></span>CAN</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -193,7 +192,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_vscan_can_driver.html">VscanCanDriver</a>* CAN</td>
+          <td class="memname"><a class="el" href="classcan_driver.html">canDriver</a>* CAN</td>
         </tr>
       </table>
   </td>

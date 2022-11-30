@@ -78,9 +78,12 @@ $(function() {
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_server-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">Server Class Reference</div></div>
+  <div class="headertitle"><div class="title">Server Class Reference<div class="ingroups"><a class="el" href="group__interface_module.html">Ethernet Interface Module.</a></div></div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>This class handle the whole set of connected clients.  
+ <a href="class_server.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="server_8h_source.html">server.h</a>&gt;</code></p>
 <div class="dynheader">
@@ -93,16 +96,19 @@ Inheritance diagram for Server:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-slots" name="pub-slots"></a>
 Public Slots</h2></td></tr>
 <tr class="memitem:a4c7ffa5b0c2439f93931613930febdb2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_server.html#a4c7ffa5b0c2439f93931613930febdb2">disconnected</a> (ushort id)</td></tr>
+<tr class="memdesc:a4c7ffa5b0c2439f93931613930febdb2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disconnection slot coming from the internal socket.  <a href="class_server.html#a4c7ffa5b0c2439f93931613930febdb2">More...</a><br /></td></tr>
 <tr class="separator:a4c7ffa5b0c2439f93931613930febdb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a948fb353f8c88d8cc25b31d70aa1188a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_server.html#a948fb353f8c88d8cc25b31d70aa1188a">receivedCanFrame</a> (ushort canId, QByteArray data)</td></tr>
-<tr class="memdesc:a948fb353f8c88d8cc25b31d70aa1188a"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function receives the data coming from the CAN network.  <a href="class_server.html#a948fb353f8c88d8cc25b31d70aa1188a">More...</a><br /></td></tr>
+<tr class="memdesc:a948fb353f8c88d8cc25b31d70aa1188a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Slot to be connected to the <a class="el" href="classcan_driver.html" title="This is the class implementing the Can Driver Interface.">canDriver</a> reception signal.  <a href="class_server.html#a948fb353f8c88d8cc25b31d70aa1188a">More...</a><br /></td></tr>
 <tr class="separator:a948fb353f8c88d8cc25b31d70aa1188a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad5f1be84caddc8d6fe07a90402ab7f41"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_server.html#ad5f1be84caddc8d6fe07a90402ab7f41">sendToCanSlot</a> (ushort canId, QByteArray dataFrame)</td></tr>
+<tr class="memdesc:ad5f1be84caddc8d6fe07a90402ab7f41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Slot connected to the internal socket to send tata to the <a class="el" href="classcan_driver.html" title="This is the class implementing the Can Driver Interface.">canDriver</a>.  <a href="class_server.html#ad5f1be84caddc8d6fe07a90402ab7f41">More...</a><br /></td></tr>
 <tr class="separator:ad5f1be84caddc8d6fe07a90402ab7f41"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="signals" name="signals"></a>
 Signals</h2></td></tr>
 <tr class="memitem:ae004b7a2c56db724e62b0cb30252cb5c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_server.html#ae004b7a2c56db724e62b0cb30252cb5c">sendToCan</a> (ushort canId, QByteArray dataFrame)</td></tr>
+<tr class="memdesc:ae004b7a2c56db724e62b0cb30252cb5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts listening the server on the IP&amp;Port.  <a href="class_server.html#ae004b7a2c56db724e62b0cb30252cb5c">More...</a><br /></td></tr>
 <tr class="separator:ae004b7a2c56db724e62b0cb30252cb5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -112,13 +118,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a4b3aa2579cb1c8cd1d069582c14d0fa6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_server.html#a4b3aa2579cb1c8cd1d069582c14d0fa6">~Server</a> ()</td></tr>
 <tr class="separator:a4b3aa2579cb1c8cd1d069582c14d0fa6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5f73df3e2e82d3124beff64d7043d176"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_server.html#a5f73df3e2e82d3124beff64d7043d176">Start</a> (void)</td></tr>
+<tr class="memdesc:a5f73df3e2e82d3124beff64d7043d176"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function activates the server listening.  <a href="class_server.html#a5f73df3e2e82d3124beff64d7043d176">More...</a><br /></td></tr>
 <tr class="separator:a5f73df3e2e82d3124beff64d7043d176"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab624a671cf6c262dcdb6702bfe83af21"><td class="memItemLeft" align="right" valign="top">int _inline&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_server.html#ab624a671cf6c262dcdb6702bfe83af21">localPort</a> ()</td></tr>
-<tr class="memdesc:ab624a671cf6c262dcdb6702bfe83af21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the port binded.  <a href="class_server.html#ab624a671cf6c262dcdb6702bfe83af21">More...</a><br /></td></tr>
-<tr class="separator:ab624a671cf6c262dcdb6702bfe83af21"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6d9752bfbe41d2faeecb9100918b4bdf"><td class="memItemLeft" align="right" valign="top">QHostAddress _inline&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_server.html#a6d9752bfbe41d2faeecb9100918b4bdf">localAddress</a> ()</td></tr>
-<tr class="memdesc:a6d9752bfbe41d2faeecb9100918b4bdf"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns the IP Address binded  <a href="class_server.html#a6d9752bfbe41d2faeecb9100918b4bdf">More...</a><br /></td></tr>
-<tr class="separator:a6d9752bfbe41d2faeecb9100918b4bdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
@@ -146,7 +147,12 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:af3e18eaa53e7efb0f9f24253bb3bad9f"><td class="memItemLeft" align="right" valign="top">ushort&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_server.html#af3e18eaa53e7efb0f9f24253bb3bad9f">idseq</a></td></tr>
 <tr class="separator:af3e18eaa53e7efb0f9f24253bb3bad9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p >This class handle the whole set of connected clients. </p>
+<p >The class handle the queue of the connected class;</p>
+<p >The class forwards the received can frame to the Client registered with the address of the Can frame sender;</p>
+<p >The class is responsible to erase a disconnected client socket. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aba3f97441b4e3f8e1a68bf7f22239507" name="aba3f97441b4e3f8e1a68bf7f22239507"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aba3f97441b4e3f8e1a68bf7f22239507">&#9670;&#160;</a></span>Server()</h2>
 
@@ -180,6 +186,14 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p >This function create the server structure.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ipaddress</td><td>server IP address </td></tr>
+    <tr><td class="paramname">port</td><td>server port </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -197,6 +211,8 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p >Distructor of the <a class="el" href="class_server.html" title="This class handle the whole set of connected clients.">Server</a> structure.</p>
+<p >When the server is destroyed, the client queue needs to be destroyed as well. </p>
 
 </div>
 </div>
@@ -225,6 +241,17 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Disconnection slot coming from the internal socket. </p>
+<p >This function is called whenever a Client disconnects.</p>
+<p >The function deletes the client socket structure <br  />
+removing the client from the active Client connection queue.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>the client identifier </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="aa229a1587514197693274aa0d589344b" name="aa229a1587514197693274aa0d589344b"></a>
@@ -252,60 +279,15 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Incoming connection slot. </p>
-
-</div>
-</div>
-<a id="a6d9752bfbe41d2faeecb9100918b4bdf" name="a6d9752bfbe41d2faeecb9100918b4bdf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6d9752bfbe41d2faeecb9100918b4bdf">&#9670;&#160;</a></span>localAddress()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">QHostAddress _inline Server::localAddress </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>returns the IP Address binded </p>
-
-</div>
-</div>
-<a id="ab624a671cf6c262dcdb6702bfe83af21" name="ab624a671cf6c262dcdb6702bfe83af21"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab624a671cf6c262dcdb6702bfe83af21">&#9670;&#160;</a></span>localPort()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">int _inline Server::localPort </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Returns the port binded. </p>
+<p >This callback is called from the Socket library <br  />
+whenever an incoming connection is requested by a remote CLient.</p>
+<p >When the connection is accepted, the CLient is added to the server queue of the connected clients.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">socketDescriptor</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -343,7 +325,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>This function receives the data coming from the CAN network. </p>
+<p>Slot to be connected to the <a class="el" href="classcan_driver.html" title="This is the class implementing the Can Driver Interface.">canDriver</a> reception signal. </p>
+<p >This function receives the data coming from the CAN network.</p>
 <p >The Data packet received from the CAN network is forwarded to <br  />
 the connected Slaves that has been registered with the canId identifier <br  />
 or with the broadcast address (0).</p>
@@ -393,6 +376,9 @@ or with the broadcast address (0).</p>
 </table>
 </div><div class="memdoc">
 
+<p>Starts listening the server on the IP&amp;Port. </p>
+<p >Signal that shall be connected too the <a class="el" href="classcan_driver.html" title="This is the class implementing the Can Driver Interface.">canDriver</a> in order to actually send data to CAN </p>
+
 </div>
 </div>
 <a id="ad5f1be84caddc8d6fe07a90402ab7f41" name="ad5f1be84caddc8d6fe07a90402ab7f41"></a>
@@ -429,6 +415,17 @@ or with the broadcast address (0).</p>
 </table>
 </div><div class="memdoc">
 
+<p>Slot connected to the internal socket to send tata to the <a class="el" href="classcan_driver.html" title="This is the class implementing the Can Driver Interface.">canDriver</a>. </p>
+<p >This Slot is connected to the internal client socket reception procedure.</p>
+<p >When a can frame shall be sent from the client, this SLot makes a bridge from the client socket and the <a class="el" href="classcan_driver.html" title="This is the class implementing the Can Driver Interface.">canDriver</a>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">canId</td><td>identifier of the target CAN device; </td></tr>
+    <tr><td class="paramname">dataFrame</td><td>the CAN data content. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a5f73df3e2e82d3124beff64d7043d176" name="a5f73df3e2e82d3124beff64d7043d176"></a>
@@ -446,6 +443,9 @@ or with the broadcast address (0).</p>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>This function activates the server listening. </p>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
 </div>
 </div>

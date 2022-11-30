@@ -1,6 +1,13 @@
 #include "application.h"
 #include "ui_window.h"
 
+/**
+ * @brief This is the class constructor
+ *
+ * The constructor initialize the connections with the GUI widget and the related callbacks.
+ *
+ * @param parent: QOBJect pointer parent
+ */
 debugWindow::debugWindow(QWidget *parent)
     : ui(new Ui::debugWindow)
 {
@@ -51,17 +58,25 @@ void debugWindow::timerEvent(QTimerEvent* ev)
 
 }
 
-
+/**
+ * @brief This function clears the content of the Can frame data logging
+ */
 void debugWindow::onLogClearButton(void){
     ui->canText->appendPlainText("");
     ui->canText->clear();
 }
+
+/**
+ * @brief This function clears the content of the debug string data logging
+ */
 void debugWindow::onDebugClearButton(void){
     ui->debugText->appendPlainText("");
     ui->debugText->clear();
 }
 
-
+/**
+ * @brief This function add a debug string to the logging panel
+ */
 void debugWindow::onDebug(QByteArray data){
     QString stringa = QString("%1> %2").arg(generalDebugIndex++).arg(data);
     if(ui->debugEnable->isChecked())   ui->debugText->appendPlainText(stringa);
@@ -80,16 +95,24 @@ void debugWindow::onDebug(QByteArray data){
 void debugWindow::receivedCanFrame(ushort canId, QByteArray data){
     QString stringa = QString("%1> FROM CANID:%2 - ").arg(generalDebugIndex++).arg(canId);
     for(int i=0; i< 8;i++){
-        stringa.append(QString(" %1").arg(data[i]));
+        stringa.append(QString(" %1").arg((ushort) data[i]));
     }
     ui->canText->appendPlainText(stringa);
 
 }
 
+/**
+ * @brief This function is activated whenever the Client data are forwarded to the CAN network.
+ *
+ * The data content is Logged in the Can Data traffic panel
+ *
+ * @param canId: this is the canId of the can message
+ * @param data: this is the data content of the frame
+ */
 void debugWindow::sendToCan(ushort canId, QByteArray data){
     QString stringa = QString("%1> TO CANID:%2 - ").arg(generalDebugIndex++).arg(canId);
     for(int i=0; i< 8;i++){
-        stringa.append(QString(" %1").arg(data[i]));
+        stringa.append(QString(" %1").arg((ushort) data[i]));
     }
     ui->canText->appendPlainText(stringa);
 

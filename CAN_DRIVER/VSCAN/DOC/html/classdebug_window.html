@@ -76,9 +76,12 @@ $(function() {
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classdebug_window-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">debugWindow Class Reference</div></div>
+  <div class="headertitle"><div class="title">debugWindow Class Reference<div class="ingroups"><a class="el" href="group__window_module.html">Debug Window Module.</a></div></div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>The <a class="el" href="classdebug_window.html" title="The debugWindow class.">debugWindow</a> class.  
+ <a href="classdebug_window.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="window_8h_source.html">window.h</a>&gt;</code></p>
 <div class="dynheader">
@@ -91,15 +94,19 @@ Inheritance diagram for debugWindow:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-slots" name="pub-slots"></a>
 Public Slots</h2></td></tr>
 <tr class="memitem:a5aa1a52b710a3115bc9713c71fdf6b3a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdebug_window.html#a5aa1a52b710a3115bc9713c71fdf6b3a">onLogClearButton</a> (void)</td></tr>
+<tr class="memdesc:a5aa1a52b710a3115bc9713c71fdf6b3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function clears the content of the Can frame data logging.  <a href="classdebug_window.html#a5aa1a52b710a3115bc9713c71fdf6b3a">More...</a><br /></td></tr>
 <tr class="separator:a5aa1a52b710a3115bc9713c71fdf6b3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adf260ca527fc60e4da1b0336afb80eac"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdebug_window.html#adf260ca527fc60e4da1b0336afb80eac">onDebugClearButton</a> (void)</td></tr>
+<tr class="memdesc:adf260ca527fc60e4da1b0336afb80eac"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function clears the content of the debug string data logging.  <a href="classdebug_window.html#adf260ca527fc60e4da1b0336afb80eac">More...</a><br /></td></tr>
 <tr class="separator:adf260ca527fc60e4da1b0336afb80eac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa440999758fa2616529bbf9b0f8359a4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdebug_window.html#aa440999758fa2616529bbf9b0f8359a4">receivedCanFrame</a> (ushort canId, QByteArray data)</td></tr>
 <tr class="memdesc:aa440999758fa2616529bbf9b0f8359a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function receives the data coming from the CAN network.  <a href="classdebug_window.html#aa440999758fa2616529bbf9b0f8359a4">More...</a><br /></td></tr>
 <tr class="separator:aa440999758fa2616529bbf9b0f8359a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5602c033b6f67623c3b00d9a11c8218f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdebug_window.html#a5602c033b6f67623c3b00d9a11c8218f">sendToCan</a> (ushort canId, QByteArray data)</td></tr>
+<tr class="memdesc:a5602c033b6f67623c3b00d9a11c8218f"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function is activated whenever the Client data are forwarded to the CAN network.  <a href="classdebug_window.html#a5602c033b6f67623c3b00d9a11c8218f">More...</a><br /></td></tr>
 <tr class="separator:a5602c033b6f67623c3b00d9a11c8218f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aec89219b58aeb4adadfd7e079db5e4eb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdebug_window.html#aec89219b58aeb4adadfd7e079db5e4eb">onDebug</a> (QByteArray data)</td></tr>
+<tr class="memdesc:aec89219b58aeb4adadfd7e079db5e4eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function add a debug string to the logging panel.  <a href="classdebug_window.html#aec89219b58aeb4adadfd7e079db5e4eb">More...</a><br /></td></tr>
 <tr class="separator:aec89219b58aeb4adadfd7e079db5e4eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afac1f46c8a70d436e83163bb09a8234d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdebug_window.html#afac1f46c8a70d436e83163bb09a8234d">timerEvent</a> (QTimerEvent *ev)</td></tr>
 <tr class="separator:afac1f46c8a70d436e83163bb09a8234d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -113,6 +120,7 @@ Public Slots</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a5efa8756b0d11ea86a2473f51e85d63b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdebug_window.html#a5efa8756b0d11ea86a2473f51e85d63b">debugWindow</a> (QWidget *parent=nullptr)</td></tr>
+<tr class="memdesc:a5efa8756b0d11ea86a2473f51e85d63b"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the class constructor.  <a href="classdebug_window.html#a5efa8756b0d11ea86a2473f51e85d63b">More...</a><br /></td></tr>
 <tr class="separator:a5efa8756b0d11ea86a2473f51e85d63b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a854ba479c6668484f330810c73916a24"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdebug_window.html#a854ba479c6668484f330810c73916a24">~debugWindow</a> ()</td></tr>
 <tr class="separator:a854ba479c6668484f330810c73916a24"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -139,7 +147,9 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a8106fe3ecab3e0e99137527b90f8fd17"><td class="memItemLeft" align="right" valign="top">ulong&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdebug_window.html#a8106fe3ecab3e0e99137527b90f8fd17">generalDebugIndex</a></td></tr>
 <tr class="separator:a8106fe3ecab3e0e99137527b90f8fd17"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p >The <a class="el" href="classdebug_window.html" title="The debugWindow class.">debugWindow</a> class. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a5efa8756b0d11ea86a2473f51e85d63b" name="a5efa8756b0d11ea86a2473f51e85d63b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5efa8756b0d11ea86a2473f51e85d63b">&#9670;&#160;</a></span>debugWindow()</h2>
 
@@ -155,6 +165,15 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>This is the class constructor. </p>
+<p >The constructor initialize the connections with the GUI widget and the related callbacks.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">parent</td><td>QOBJect pointer parent </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -328,6 +347,8 @@ from the CAN signal.</p>
 </table>
 </div><div class="memdoc">
 
+<p>This function add a debug string to the logging panel. </p>
+
 </div>
 </div>
 <a id="adf260ca527fc60e4da1b0336afb80eac" name="adf260ca527fc60e4da1b0336afb80eac"></a>
@@ -354,6 +375,8 @@ from the CAN signal.</p>
 </table>
 </div><div class="memdoc">
 
+<p>This function clears the content of the debug string data logging. </p>
+
 </div>
 </div>
 <a id="a5aa1a52b710a3115bc9713c71fdf6b3a" name="a5aa1a52b710a3115bc9713c71fdf6b3a"></a>
@@ -379,6 +402,8 @@ from the CAN signal.</p>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>This function clears the content of the Can frame data logging. </p>
 
 </div>
 </div>
@@ -461,6 +486,16 @@ from the CAN signal.</p>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>This function is activated whenever the Client data are forwarded to the CAN network. </p>
+<p >The data content is Logged in the Can Data traffic panel</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">canId</td><td>this is the canId of the can message </td></tr>
+    <tr><td class="paramname">data</td><td>this is the data content of the frame </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

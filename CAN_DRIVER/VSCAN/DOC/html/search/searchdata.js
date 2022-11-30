@@ -4,13 +4,13 @@ var indexSectionsWithContent =
   1: "cdsv",
   2: "au",
   3: "acmsvw",
-  4: "cdeilmnorstv~",
+  4: "cdehimnorstv~",
   5: "_bcdefghiklmoprstuvw",
   6: "cduv",
   7: "_",
   8: "_",
-  9: "_cdimruvw",
-  10: "ac",
+  9: "cdimruvw",
+  10: "acde",
   11: "c"
 };
 

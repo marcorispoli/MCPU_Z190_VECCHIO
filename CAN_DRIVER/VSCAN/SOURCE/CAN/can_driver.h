@@ -24,10 +24,10 @@
  * # INTERFACE FUNCTIONS
  *
  * The Driver implements the following functions:
- * - VscanCanDriver::driverOpen(): opens the connection with the system device driver;
- * - VscanCanDriver::driverClose(): close the connection with the system device driver;
- * - VscanCanDriver::sendOnCanSlot(): slot function that sends the data on the CAN bus
- * - VscanCanDriver::receivedCanFrame(): signal function emitted when a valid frame is received from the CAN bus;
+ * - canDriver::driverOpen(): opens the connection with the system device driver;
+ * - canDriver::driverClose(): close the connection with the system device driver;
+ * - canDriver::sendOnCanSlot(): slot function that sends the data on the CAN bus
+ * - canDriver::receivedCanFrame(): signal function emitted when a valid frame is received from the CAN bus;
  *
  *
  *
@@ -48,13 +48,13 @@ typedef unsigned long ULONG;
  *
  * \ingroup candriverModule
  */
-class VscanCanDriver: public QObject
+class canDriver: public QObject
 {
    Q_OBJECT
    public:
 
-   VscanCanDriver();
-   ~VscanCanDriver(){driverClose();};
+   canDriver();
+   ~canDriver(){driverClose();};
 
     static const unsigned char VSCAN_NUM_MESSAGES = 10; //!< Max number of quesued can frames
 

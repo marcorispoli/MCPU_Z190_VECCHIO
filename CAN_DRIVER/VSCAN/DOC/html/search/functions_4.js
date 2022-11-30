@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['localaddress_0',['localAddress',['../class_server.html#a6d9752bfbe41d2faeecb9100918b4bdf',1,'Server']]],
-  ['localport_1',['localPort',['../class_server.html#ab624a671cf6c262dcdb6702bfe83af21',1,'Server']]]
+  ['incomingconnection_0',['incomingConnection',['../class_server.html#aa229a1587514197693274aa0d589344b',1,'Server']]],
+  ['initwindow_1',['initWindow',['../classdebug_window.html#a4c47d1b0fca2b4975ff4a56268b89ec3',1,'debugWindow']]],
+  ['itemdisconnected_2',['itemDisconnected',['../class_socket_item.html#af029e84184410de091040df5f013f5b0',1,'SocketItem']]]
 ];

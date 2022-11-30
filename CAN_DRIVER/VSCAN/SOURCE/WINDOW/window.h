@@ -1,6 +1,20 @@
 #ifndef WINDOW_H
 #define WINDOW_H
 
+/*!
+ * \defgroup  windowModule Debug Window Module.
+ *
+ * This Module implements an optional debug GUI.
+ *
+ * When the application is launched with the -win option,\n
+ * the application generates a GUI Window interface in order to:
+ *
+ * - Logs the CAN frames data traffic;
+ * - Logs the internal debug strings;
+ * - Provides Debug functions to interact with the BUS actors.
+ *
+ *
+ */
 
 #include <QWidget>
 
@@ -10,7 +24,11 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class debugWindow; }
 QT_END_NAMESPACE
 
-
+/**
+ * @brief The debugWindow class
+ *
+ * \ingroup windowModule
+ */
 class debugWindow : public QWidget
 {
     Q_OBJECT

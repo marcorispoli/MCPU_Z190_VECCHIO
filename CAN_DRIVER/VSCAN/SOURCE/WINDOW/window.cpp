@@ -111,7 +111,7 @@ void debugWindow::receivedCanFrame(ushort canId, QByteArray data){
  */
 void debugWindow::sendToCan(ushort canId, QByteArray data){
     QString stringa = QString("%1> TO CANID:%2 - ").arg(generalDebugIndex++).arg(canId);
-    for(int i=0; i< 8;i++){
+    for(int i=0; i< data.size();i++){
         stringa.append(QString(" %1").arg((ushort) data[i]));
     }
     ui->canText->appendPlainText(stringa);

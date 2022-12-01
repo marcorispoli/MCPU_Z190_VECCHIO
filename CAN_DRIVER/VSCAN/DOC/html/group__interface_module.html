@@ -89,8 +89,8 @@ Classes</h2></td></tr>
 <p >This Module implements the communication with the Can Clients.</p>
 <h1><a class="anchor" id="autotoc_md6"></a>
 DEVICE DRIVER OVERVIEW</h1>
-<p >This module implement a <a class="el" href="class_server.html" title="This class handle the whole set of connected clients.">Server</a> Socket TcpIp based communication,<br  />
-in order to let Clients application to send data frames on the CAN network.</p>
+<p >This module implements a <a class="el" href="class_server.html" title="This class handle the whole set of connected clients.">Server</a> Socket TcpIp based communication,<br  />
+in order to let Client applications to send data frames on the CAN network.</p>
 <p >The server allows the connection with multi clients at the address:</p>
 <ul>
 <li>IP: 127.0.0.1 (local Host);</li>
@@ -98,46 +98,47 @@ in order to let Clients application to send data frames on the CAN network.</p>
 </ul>
 <p >The Client that needs to send data into the CAN Network shall:</p><ul>
 <li>Connect the server at the IP&amp;PORT;</li>
-<li>Register the canId remote device address that needs to exchange data;</li>
-<li>Send and receive data to/fromthe targeted device.</li>
-</ul>
-<p >A Client can register as a broadcast client:</p><ul>
-<li>The Broadcast Client receives ALL the CAN frames but cannot send data frame.</li>
+<li>Set the Acceptance filter mask and the filter address;</li>
+<li><p class="startli">Send and receive data to/from CAN bus.</p>
+<p class="startli">NOTE: after connection, the Acceptance filter is closed and no data can be received.</p>
+</li>
 </ul>
 <h1><a class="anchor" id="autotoc_md7"></a>
 PROTOCOL DESCRIPTION</h1>
 <p >There are two only command frames:</p><ul>
-<li>Client Registering data frame;</li>
-<li>Can data frame;</li>
+<li>Acceptance Filter frame format;</li>
+<li>Can Data frame format;</li>
 </ul>
 <p >Every frame is in ascii format so it can be easily monitored</p>
 <h2><a class="anchor" id="autotoc_md8"></a>
-CLIENT REGISTERING DATA FRAME FORMAT</h2>
-<p >The Register Data Frame format is: </p><pre class="fragment"> &lt;R canId&gt;
+ACCEPTANCE FILTER FRAME FORMAT</h2>
+<p >The Client need to open an Acceptance filter in order to receive incoming Can frames.</p>
+<p >The rule to accept a CAN frame with a given canId address is:</p>
+<pre class="fragment"> Acceptance Rule: (canId &amp; filter_mask) == filter_address;
+</pre><p> The Acceptance Filter data format is:</p>
+<pre class="fragment">  &lt;F filter_mask filter_address &gt;
 </pre><p> Where</p><ul>
 <li>'&lt;' and '&gt;' are frame delimiters</li>
-<li>R: is the frame identifier;</li>
-<li>canId: is the number of the CAN device address.</li>
+<li>F: is the frame type identifier;</li>
+<li>filter_mask: is the 16 bit filter mask;</li>
+<li>filter_address: is the 16 bit filter address;</li>
 </ul>
 <pre class="fragment"> NOTE: space characters are ignored for the frame syntax;
-</pre><p> The canId format can be:</p><ul>
+</pre><p> The filter_mask and filter_address arguments can be:</p><ul>
 <li>Decimal format: example, 1356;</li>
 <li>Hexadecimal format: example, 0x1345</li>
 </ul>
-<p >The registration workflow is:</p><ul>
-<li>Client sends &lt;R canId&gt;</li>
-<li><a class="el" href="class_server.html" title="This class handle the whole set of connected clients.">Server</a> answer replying the frame: &lt;R canId&gt;</li>
+<p >The Acceptance filter workflow is:</p><ul>
+<li>Client sends &lt;F mask address&gt;</li>
+<li><a class="el" href="class_server.html" title="This class handle the whole set of connected clients.">Server</a> answer replying the frame: &lt;F mask address&gt;</li>
 </ul>
-<pre class="fragment"> NOTE: only one canId can be registered per Client.
- In case more than one Register command should be received,
- only the last one will be valid.
-</pre> <h2><a class="anchor" id="autotoc_md9"></a>
+<h2><a class="anchor" id="autotoc_md9"></a>
 CAN DATA FRAME FORMAT</h2>
-<p >The CAN Data Frame format is: </p><pre class="fragment"> &lt;C B0 B1 .. B7&gt;
+<p >The Client can send data to the BUS using the Can Data Frame format: </p><pre class="fragment"> &lt;D B0 B1 .. B7&gt;
 </pre><p> Where</p><ul>
 <li>'&lt;' and '&gt;' are frame delimiters</li>
-<li>C: is the frame identifier;</li>
-<li>B0 to B7: are unsigned char can data content.</li>
+<li>D: is the frame type identifier;</li>
+<li>B0 to B7: are 8 bit can data content.</li>
 </ul>
 <pre class="fragment"> NOTE: space characters are ignored for the frame syntax;
  NOTE: the data lenght can be lower than 8. In this case
@@ -147,9 +148,14 @@ CAN DATA FRAME FORMAT</h2>
 <li>Decimal format: example, 125;</li>
 <li>Hexadecimal format: example, 0xCC</li>
 </ul>
-<pre class="fragment"> NOTE: the server will forward the B0:B7 bytes to the device
- target ID equal to the canId registered for that Client.
-</pre> </div><!-- contents -->
+<h2><a class="anchor" id="autotoc_md10"></a>
+CAN DATA RECEPTION</h2>
+<p >When a data frame is received from the CAN bus,<br  />
+the application forwards the frame to all the connected Clients <br  />
+whitch the frame canId matches with the acceptance rule:</p><ul>
+<li>(canId &amp; filter_mask) == filter_address; </li>
+</ul>
+</div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5

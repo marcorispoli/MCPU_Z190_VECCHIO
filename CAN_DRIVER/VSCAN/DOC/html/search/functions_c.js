@@ -1,7 +1,11 @@
 var searchData=
 [
-  ['_7ecandriver_0',['~canDriver',['../classcan_driver.html#a84e54b3de2078131f5e12aec375cf927',1,'canDriver']]],
-  ['_7edebugwindow_1',['~debugWindow',['../classdebug_window.html#a854ba479c6668484f330810c73916a24',1,'debugWindow']]],
-  ['_7eserver_2',['~Server',['../class_server.html#a4b3aa2579cb1c8cd1d069582c14d0fa6',1,'Server']]],
-  ['_7esocketitem_3',['~SocketItem',['../class_socket_item.html#a41b5823ad24d4ced5d19e793920dffeb',1,'SocketItem']]]
+  ['vscan_5fclose_0',['VSCAN_Close',['../vs__can__api_8h.html#a2f6a40e0edc574b196f98aef644099a8',1,'vs_can_api.h']]],
+  ['vscan_5fflush_1',['VSCAN_Flush',['../vs__can__api_8h.html#a3220a6e7c4f91e6ee83bc3b4a682daf9',1,'vs_can_api.h']]],
+  ['vscan_5fgeterrorstring_2',['VSCAN_GetErrorString',['../vs__can__api_8h.html#a0f0cb708f207b6689b798b58c2045b79',1,'vs_can_api.h']]],
+  ['vscan_5fioctl_3',['VSCAN_Ioctl',['../vs__can__api_8h.html#aa7b80c317752c8df417bc8b7a387820a',1,'vs_can_api.h']]],
+  ['vscan_5fopen_4',['VSCAN_Open',['../vs__can__api_8h.html#a5e0013e2061dd7e8b8e9888b17152f1a',1,'vs_can_api.h']]],
+  ['vscan_5fread_5',['VSCAN_Read',['../vs__can__api_8h.html#ab380bd646a1f3e55916c166c465d8ba2',1,'vs_can_api.h']]],
+  ['vscan_5fsetrcvevent_6',['VSCAN_SetRcvEvent',['../vs__can__api_8h.html#ab7ca5e011fbe327e11c15ba6f895c1e0',1,'vs_can_api.h']]],
+  ['vscan_5fwrite_7',['VSCAN_Write',['../vs__can__api_8h.html#a9e4a545d52cfef257b4393d577e3e711',1,'vs_can_api.h']]]
 ];

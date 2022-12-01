@@ -194,8 +194,11 @@ void canDriver::sendOnCanSlot(ushort canId, QByteArray data){
 
     msg.Flags = VSCAN_FLAGS_STANDARD;
     msg.Id = canId;
-    msg.Size = len;
-    for(uchar i=0; i<len; i++) msg.Data[i] = data[i];
+    msg.Size = 8;
+    for(uchar i=0; i<8; i++) {
+        if(i < len) msg.Data[i] = data[i];
+        else msg.Data[i] = 0;
+    }
     if(VSCAN_Write(handle, &msg, 1, &written) != VSCAN_ERR_OK) return;
     VSCAN_Flush(handle);
     return;

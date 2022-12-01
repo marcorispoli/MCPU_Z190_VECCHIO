@@ -9,8 +9,8 @@
  *
  * # DEVICE DRIVER OVERVIEW
  *
- * This module implement a Server Socket TcpIp based communication,\n
- * in order to let Clients application to send data frames on the CAN network.
+ * This module implements a Server Socket TcpIp based communication,\n
+ * in order to let Client applications to send data frames on the CAN network.
  *
  * The server allows the connection with multi clients at the address:
  *
@@ -19,56 +19,61 @@
  *
  * The Client that needs to send data into the CAN Network shall:
  * - Connect the server at the IP&PORT;
- * - Register the canId remote device address that needs to exchange data;
- * - Send and receive data to/fromthe targeted device.
+ * - Set the Acceptance filter mask and the filter address;
+ * - Send and receive data to/from CAN bus.
  *
- * A Client can register as a broadcast client:
- * - The Broadcast Client receives ALL the CAN frames but cannot send data frame.
- *
+ *  NOTE: after connection, the Acceptance filter is closed and no data can be received.
  *
  * # PROTOCOL DESCRIPTION
  *
  *  There are two only command frames:
- *  - Client Registering data frame;
- *  - Can data frame;
+ *  - Acceptance Filter frame format;
+ *  - Can Data frame format;
  *
  *  Every frame is in ascii format so it can be easily monitored
  *
- *  ## CLIENT REGISTERING DATA FRAME FORMAT
+ *  ## ACCEPTANCE FILTER FRAME FORMAT
  *
- *  The Register Data Frame format is:
+ *  The Client need to open an Acceptance filter in order to receive incoming Can frames.
  *
- *       <R canId>
+ *  The rule to accept a CAN frame with a given canId address is:
+ *
+ *
+ *      Acceptance Rule: (canId & filter_mask) == filter_address;
+ *
+ *  The Acceptance Filter data format is:
+ *
+ *
+ *       <F filter_mask filter_address >
+ *
  *  Where
  *  - '<' and '>' are frame delimiters
- *  - R: is the frame identifier;
- *  - canId: is the number of the CAN device address.
+ *  - F: is the frame type identifier;
+ *  - filter_mask: is the 16 bit filter mask;
+ *  - filter_address: is the 16 bit filter address;
  *
  *
  *      NOTE: space characters are ignored for the frame syntax;
  *
- *  The canId format can be:
+ *  The filter_mask and filter_address arguments can be:
  *  - Decimal format: example, 1356;
  *  - Hexadecimal format: example, 0x1345
  *
- *  The registration workflow is:
- *  - Client sends <R canId>
- *  - Server answer replying the frame: <R canId>
+ *  The Acceptance filter workflow is:
+ *  - Client sends <F mask address>
+ *  - Server answer replying the frame: <F mask address>
  *
- *
- *      NOTE: only one canId can be registered per Client.
- *      In case more than one Register command should be received,
- *      only the last one will be valid.
  *
  *  ## CAN DATA FRAME FORMAT
  *
- *  The CAN Data Frame format is:
+ *  The Client can send data to the BUS using the Can Data Frame format:
  *
- *       <C B0 B1 .. B7>
+ *       <D B0 B1 .. B7>
+ *
  *  Where
  *  - '<' and '>' are frame delimiters
- *  - C: is the frame identifier;
- *  - B0 to B7: are unsigned char can data content.
+ *  - D: is the frame type identifier;
+ *  - B0 to B7: are 8 bit can data content.
  *
  *
  *      NOTE: space characters are ignored for the frame syntax;
@@ -80,9 +85,13 @@
  *  - Decimal format: example, 125;
  *  - Hexadecimal format: example, 0xCC
  *
+ * ## CAN DATA RECEPTION
  *
- *      NOTE: the server will forward the B0:B7 bytes to the device
- *      target ID equal to the canId registered for that Client.
+ * When a data frame is received from the CAN bus,\n
+ * the application forwards the frame to all the connected Clients \n
+ * whitch the frame canId matches with the acceptance rule:
+ * - (canId & filter_mask) == filter_address;
+ *
  *
  *
  */
@@ -130,10 +139,14 @@ public slots:
 public:
     QTcpSocket* socket;//!< Pointer to the socket;
     ushort id;          //!< Identifier of the client
-    ushort canId;       //!< canId registered for the client
+    ushort filter_mask; //!< Filter Acceptance Mask
+    ushort filter_address;//!< Reception Address
+
+
 
 private:
     void handleSocketFrame(QByteArray* data);//!< Ethernet frame decoding function
+    ushort getItem(int* index, QByteArray* data, bool* data_ok);
 };
 
 /**
@@ -180,6 +193,8 @@ private:
     QHostAddress        localip;       //!< Address of the local server
     quint16             localport;     //!< Port of the local server
     ushort              idseq;
+
+
 };
 
 

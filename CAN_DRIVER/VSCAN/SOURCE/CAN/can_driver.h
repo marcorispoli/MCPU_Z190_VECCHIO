@@ -15,10 +15,13 @@
  * device driver and all the initialization procedures has been completed.
  * See the [VSCAN Manual](https://www.vscom.de/download/multiio/others/info/VSCAN_Manual.pdf) for details.
  *
- * The Device Gets data coming from the Etehrnet server interface then forward to the CAN network and viceversa.
+ * The Device Gets data coming from the Ethernet Server interface then forwards them to the CAN network and viceversa.
+ *
+ *  NOTE: the can data format is always STANDARD 11bit address.
+ *  The byte in the frame are always 8. The bytes not used are set to 0.
  *
  * The Driver can be opened in normal mode or loopback mode:
- * - When in loopback mode, the data sent to the CAN is always received.
+ * - When in loopback mode, the data driver receives also the data sent.
  *
  *
  * # INTERFACE FUNCTIONS

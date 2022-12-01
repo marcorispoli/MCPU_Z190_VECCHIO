@@ -14,6 +14,7 @@ Server::Server(QString ipaddress, int port):QTcpServer()
     localip = QHostAddress(ipaddress);
     localport = port;
     idseq=0;
+
 }
 
 /**
@@ -84,7 +85,8 @@ void Server::incomingConnection(qintptr socketDescriptor)
     connect(item,SIGNAL(sendToCan(ushort, QByteArray )),this, SLOT(sendToCanSlot(ushort, QByteArray )),Qt::UniqueConnection);
 
     item->id = this->idseq++;
-    item->canId = 0;
+    item->filter_mask = 0xFFFF;
+    item->filter_address = 0; // No device registered yet
 
     return;
  }
@@ -146,6 +148,28 @@ void Server::sendToCanSlot(ushort canId, QByteArray dataFrame)
     emit sendToCan(canId, dataFrame);
 }
 
+ushort SocketItem::getItem(int* index, QByteArray* data, bool* data_ok){
+    *data_ok = false;
+    bool is_hex = false;
+    QString val;
+
+    for(; *index< data->size(); (*index)++) if(data->at(*index) != ' ') break; // Removes the spaces
+
+    for(; *index< data->size(); (*index)++){
+        if(data->at(*index) == ' '){
+            if(!val.size()) return 0;
+            *data_ok = true;
+            if(is_hex) return val.toUShort(data_ok, 16);
+            else return val.toUShort();
+        }
+        if((data->at(*index) == 'x') |(data->at(*index) == 'X')) is_hex = true;
+        val.append(data->at(*index));
+    }
+
+    // Non è terminato con uno spazio: errore
+    return 0;
+}
+
 /**
  * This function decodes a single frame received from the Client.
  *
@@ -159,28 +183,25 @@ void Server::sendToCanSlot(ushort canId, QByteArray dataFrame)
  * @param data: the pointer to the protocol frame to be decoded.
  */
 void SocketItem::handleSocketFrame(QByteArray* data){
-    QByteArray val;
+
     QByteArray frame;
-    QString stringa;
     bool is_register;
     bool is_valid;
-    bool is_hex;
-    unsigned char ucval;
     int i;
-
+    bool data_ok;
 
 
     is_valid = false;
     for(i=0; i< data->size(); i++){
         if(data->at(i)== ' ') continue;
-        if(data->at(i)== 'R') {
+        if(data->at(i)== 'F') {
             is_register = true;
             is_valid = true;
             i++;
             break;
         }
 
-        if(data->at(i)== 'C') {
+        if(data->at(i)== 'D') {
             is_register = false;
             is_valid = true;
             i++;
@@ -189,50 +210,44 @@ void SocketItem::handleSocketFrame(QByteArray* data){
     }
     if(!is_valid) return;
 
-    if(is_register){
-        is_hex = false;
-        for(; i< data->size(); i++){
-            if(data->at(i) != ' '){
-                if((data->at(i) == 'x') |(data->at(i) == 'X')) is_hex = true;
-                val.append(data->at(i));
-            }
+    if(is_register){// Can Registering Frame: set the reception mask and address
+        filter_mask = getItem(&i, data, &data_ok);
+        if(!data_ok){
+            filter_mask = 0xFFFF;
+            qDebug() << "CLIENT REGISTRATION WRONG MASK FORMAT";
+            return;
         }
 
-        if(is_hex)  this->canId = val.toUShort(&is_valid, 16);
-        else this->canId = val.toUShort();
+        filter_address = getItem(&i, data, &data_ok) & filter_mask;
+        if(!data_ok){
+            filter_mask = 0xFFFF;
+            filter_address = 0;
+            qDebug() << "CLIENT REGISTRATION WRONG ADDRESS FORMAT";
+            return;
+        }
 
-        qDebug() << "REGISTERED CLIENT ID:" << this->canId << " " << val;
         frame.append("<");
         frame.append(*data);
         frame.append(">");
         emit sendToClient(frame);
+
+        qDebug() << QString("CLIENT REGISTERED TO: MASK=0x%1, ADDR:0x%2").arg(filter_mask,1,16).arg(filter_address,1,16);
         return;
     }else{
 
-        // The Broadcast Client cannot send data frames
-        if(this->canId == 0) return;
         frame.clear();
+        ushort canid = getItem(&i, data, &data_ok);
+        if(!data_ok) return;
 
+        ushort val;
         for(; (i< data->size()) && (frame.size() <= 8) ; i++){
-            if(data->at(i) != ' '){
-                val.clear();
-                is_hex = false;
-                for(; i< data->size(); i++){
-                    if(data->at(i) == ' '){
-                        if(is_hex)  ucval = (unsigned char) val.toUShort(&is_valid, 16);
-                        else ucval = (unsigned char) val.toUShort();
-                        frame.append(ucval);
-                        break;
-                    }else {
-                        if((data->at(i) == 'x') |(data->at(i) == 'X')) is_hex = true;
-                        val.append(data->at(i));
-                    }
-                }
-            }
+            val = getItem(&i, data, &data_ok);
+            if(data_ok) frame.append((unsigned char) val);
+            else break;
         }
 
         // If a valid set of data has been identified they will be sent to the driver
-        if(frame.size()) emit sendToCan(this->canId,frame);
+        if(frame.size()) emit sendToCan(canid,frame);
     }
 
 }
@@ -303,8 +318,8 @@ void SocketItem::socketTxData(QByteArray data)
  */
 void Server::receivedCanFrame(ushort canId, QByteArray data){
     QByteArray frame;
-    frame.append("<C ");
-
+    frame.append("<D ");
+    frame.append(QString("%1 ").arg((ushort) canId).toLatin1());
 
     for(int i=0; i< 8;i++){
         if(i >= data.size()) frame.append("0 ");
@@ -313,10 +328,14 @@ void Server::receivedCanFrame(ushort canId, QByteArray data){
     frame += " > \n\r";
 
     for(int i =0; i< socketList.size(); i++){
-        if((socketList[i]->canId == canId) || (socketList[i]->canId == 0)){
+
+        if( (socketList[i]->filter_mask & canId) == (socketList[i]->filter_address)){
             socketList[i]->socket->write(frame);
             socketList[i]->socket->waitForBytesWritten(100);
+            break;
         }
+
+
     }
 
 }

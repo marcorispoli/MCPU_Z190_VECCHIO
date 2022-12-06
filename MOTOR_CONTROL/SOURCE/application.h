@@ -55,7 +55,7 @@
 namespace Application
 {
    static const char*           IP_CAN_ADDRESS = "127.0.0.1"; //!< Can Client Server IP address
-   static const unsigned short  CAN_CLIENT_PORT = 10001; //!< Can Client Server Port
+   static const unsigned short  CAN_PORT = 10001; //!< Can Client Server Port
    static const char*           IP_INTERFACE_ADDRESS = "127.0.0.1"; //!< Motor Interface IP address
    static const unsigned short  INTERFACE_PORT = 10003; //!< Motor Interface Port
 
@@ -71,7 +71,10 @@ namespace Application
 #include <QApplication>
 #include <QObject>
 #include <QTimer>
+#include "time.h"
 #include "canclient.h"
+#include "pd4.h"
+#include "trx.h"
 #include "window.h"
 #include "server.h"
 
@@ -82,18 +85,27 @@ namespace Application
 #define WINDOW          window
 #define INTERFACE       pServer
 #define DEBUG           window
+#define TRX             pTrx
 
 // Global definitions
 #ifdef MAIN_CPP
     debugWindow*                window;
     canClient*                  pCan;
     Server*                     pServer;
+    trxModule*                  pTrx;
 #else
     extern debugWindow*                window;
     extern canClient*                  pCan;
     extern Server*                     pServer;
+    extern trxModule*                  pTrx;
 #endif
 
-
+#ifdef TIME_MEASURE
+    #define T1START  this->t1 = clock()
+    #define T1MEASURE(x) { qDebug() << x << ((double)(clock() - this->t1)/CLOCKS_PER_SEC);}
+#else
+    #define T1START
+    #define T1MEASURE(x)
+#endif
 
 #endif // APPLICATION_H

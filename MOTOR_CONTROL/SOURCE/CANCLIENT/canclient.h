@@ -23,21 +23,19 @@ class canClient: public QTcpServer
     Q_OBJECT
 
 public:
-    explicit canClient(void);
+    explicit canClient(ushort can_mask, ushort can_address, QString IP, int PORT);
     ~canClient();
 
 
-    int Start(QString remip, int remport);
+    int ConnectToCanServer(void);
 
-    QHostAddress peerAddress() {return serverip;}
-    int peerPort(){return serverport;}
+    _inline bool isCanReady(void) {return rx_filter_open;}
 
 signals:
-    void clientConnection(bool status);
-    void rxData(QByteArray data);
+    void rxFromCan(ushort canId, QByteArray data);
 
 public slots:
-    void txData(QByteArray data, long timeout = 5000);
+    void txToCanData(ushort canId, QByteArray data);
 
 
 private slots:
@@ -45,6 +43,7 @@ private slots:
     void socketError(QAbstractSocket::SocketError error); // Errore dal socket
     void socketConnected(); // Segnale di connessione avvenuta con il server
     void socketDisconnected(); // IL server ha chiiuso la connessione
+    void setAcceptanceFilter();
 
 public:
     bool connectionStatus;
@@ -55,13 +54,16 @@ private:
     quint16      serverport;    // Port of the remote server
     QTcpSocket*  socket;
 
-    void clientConnect();       // Try to connect the remote server
+    ushort filter_mask;         //!< The CAN Acceptance Filter Mask
+    ushort filter_address;      //!< The CAN Acceptance Filter Address
+    bool rx_filter_open;        //!< The Acceptance filter has been set
 
+    void clientConnect();       // Try to connect the remote server    
+
+    void handleSocketFrame(QByteArray* data);
+    ushort getItem(int* index, QByteArray* data, bool* data_ok);
 };
 
-/*
-Q_DECLARE_METATYPE(QAbstractSocket::SocketState)
-Q_DECLARE_METATYPE(QAbstractSocket::SocketError)
-*/
+
 
 #endif // TCPIPCLIENT_H

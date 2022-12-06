@@ -36,14 +36,21 @@ SOURCES += \
     $${TARGET_SOURCE}/main.cpp \   
     $${TARGET_SOURCE}/INTERFACE/server.cpp \
     $${TARGET_SOURCE}/CANCLIENT/canclient.cpp \    
+    $${TARGET_SOURCE}/CANOPEN/dictionary.cpp \
+    $${TARGET_SOURCE}/NANOTEC/pd4.cpp \
+    $${TARGET_SOURCE}/TRX/trx.cpp \
     $${TARGET_SOURCE}/WINDOW/window.cpp \
 
 
 
 HEADERS += \
     $${TARGET_SOURCE}/application.h \
-	$${TARGET_SOURCE}/INTERFACE/server.h \
+    $${TARGET_SOURCE}/INTERFACE/server.h \
     $${TARGET_SOURCE}/CANCLIENT/canclient.h \
+    $${TARGET_SOURCE}/CANOPEN/dictionary.h \
+    $${TARGET_SOURCE}/NANOTEC/pd4.h \
+    $${TARGET_SOURCE}/NANOTEC/pd4_dictionary.h \
+    $${TARGET_SOURCE}/TRX/trx.h \
     $${TARGET_SOURCE}/WINDOW/window.h \
 
 
@@ -56,11 +63,12 @@ INCLUDEPATH += \
     $${TARGET_SOURCE}/CANCLIENT/ \
     $${TARGET_SOURCE}/WINDOW/ \
     $${TARGET_SOURCE}/CANOPEN/ \
+    $${TARGET_SOURCE}/NANOTEC/ \
     $${TARGET_SOURCE}/LIFT/ \
-	$${TARGET_SOURCE}/BODY/ \
-	$${TARGET_SOURCE}/ARM/ \
-	$${TARGET_SOURCE}/TRX/ \
-	$${TARGET_SOURCE}/SLIDE/ \
+    $${TARGET_SOURCE}/BODY/ \
+    $${TARGET_SOURCE}/ARM/ \
+    $${TARGET_SOURCE}/TRX/ \
+    $${TARGET_SOURCE}/SLIDE/ \
 
 
 

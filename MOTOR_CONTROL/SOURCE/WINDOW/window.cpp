@@ -17,7 +17,7 @@ debugWindow::debugWindow(QWidget *parent)
     connect(ui->logEnableCheck, SIGNAL(stateChanged(int)), this, SLOT(on_logEnableCheck_stateChanged(int)));
 
 
-
+    connect(CANCLIENT,SIGNAL(canReady(bool)), this, SLOT(onCanReady(bool)));
     pollingTimer  = startTimer(500);
 
 }
@@ -87,4 +87,8 @@ void debugWindow::on_logEnableCheck_stateChanged(int arg1)
 }
 
 
+void debugWindow::onCanReady(bool stat){
+    if(stat) qDebug() << "CAN READY TO OPERATE";
+    else qDebug() << "CAN NOT READY TO OPERATE";
+}
 

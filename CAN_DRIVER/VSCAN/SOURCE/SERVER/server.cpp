@@ -211,6 +211,8 @@ void SocketItem::handleSocketFrame(QByteArray* data){
     if(!is_valid) return;
 
     if(is_register){// Can Registering Frame: set the reception mask and address
+
+
         filter_mask = getItem(&i, data, &data_ok);
         if(!data_ok){
             filter_mask = 0xFFFF;
@@ -237,8 +239,9 @@ void SocketItem::handleSocketFrame(QByteArray* data){
 
         frame.clear();
         ushort canid = getItem(&i, data, &data_ok);
-        if(!data_ok) return;
-
+        if(!data_ok) {
+            return;
+        }
         ushort val;
         for(; (i< data->size()) && (frame.size() <= 8) ; i++){
             val = getItem(&i, data, &data_ok);
@@ -323,19 +326,15 @@ void Server::receivedCanFrame(ushort canId, QByteArray data){
 
     for(int i=0; i< 8;i++){
         if(i >= data.size()) frame.append("0 ");
-        else frame.append(QString("%1 ").arg((ushort) data[i]).toLatin1());
+        else frame.append(QString("%1 ").arg((uchar) data[i]).toLatin1());
     }
     frame += " > \n\r";
 
     for(int i =0; i< socketList.size(); i++){
-
         if( (socketList[i]->filter_mask & canId) == (socketList[i]->filter_address)){
             socketList[i]->socket->write(frame);
             socketList[i]->socket->waitForBytesWritten(100);
-            break;
         }
-
-
     }
 
 }

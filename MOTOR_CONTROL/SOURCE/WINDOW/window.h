@@ -35,6 +35,7 @@ public slots:
     void onDebug(QByteArray data);
 
     void onLogClearButton(void);
+    void onCanReady(bool stat);  //!< Connect the signal canReady from the canClient
 
     void timerEvent(QTimerEvent* ev);
 

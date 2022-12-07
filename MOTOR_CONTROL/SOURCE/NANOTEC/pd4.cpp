@@ -12,6 +12,13 @@ pd4Nanotec::pd4Nanotec(uchar ID)
     connect(this,SIGNAL(txToCan(ushort , QByteArray )), CANCLIENT,SLOT(txToCanData(ushort , QByteArray )), Qt::QueuedConnection);
 
     initVector =nullptr;
+    zeroSettingVector = nullptr;
+    positionSettingVector = nullptr;
+
+    execCommand = _NO_COMMAND;
+    CiAcurrentStatus = CiA402_Undefined;
+    zero_setting_ok = false;
+
     tmo_timer = 0;
 }
 pd4Nanotec::~pd4Nanotec()
@@ -59,18 +66,18 @@ void pd4Nanotec::rxFromCan(ushort devId, QByteArray data){
 
     // Update the status handler
     rxSDO.set(&data);
-    if(txSDO.index != rxSDO.index){
+    if(txSDO.getIndex() != rxSDO.getIndex()){
         sdo_error = true;
         return;
     }
-    if(txSDO.subindex != rxSDO.subindex) {
+    if(txSDO.getSubIndex() != rxSDO.getSubIndex()) {
         sdo_error = true;
         return;
     }
 
     // The SDO has been successfully received
     if(rxSDO.isError()){
-        rxSDO.printError();
+        qDebug() << rxSDO.printError();
         sdo_error = true;
     }
 
@@ -78,13 +85,7 @@ void pd4Nanotec::rxFromCan(ushort devId, QByteArray data){
 }
 
 void pd4Nanotec::writeSDO(ushort index, uchar sub, canOpenDictionary::_ODDataType type, ulong val){
-    txSDO.index = index;
-    txSDO.subindex = sub;
-    txSDO.odType = type;
-    txSDO.b[0] = (uchar) val; val = val >>8;
-    txSDO.b[1] = (uchar) val; val = val >>8;
-    txSDO.b[2] = (uchar) val; val = val >>8;
-    txSDO.b[3] = (uchar) val;
+    txSDO.setOd(index,sub,type,val);
     rxSDO.clear();
 
     T1START;
@@ -101,9 +102,7 @@ void pd4Nanotec::writeSDO(ushort index, uchar sub, canOpenDictionary::_ODDataTyp
 }
 
 void pd4Nanotec::readSDO(ushort index, uchar sub, uchar type){
-    txSDO.index = index;
-    txSDO.subindex = sub;
-    txSDO.odType = canOpenDictionary::RD_COMMAND;
+    txSDO.setOd(index,sub,canOpenDictionary::RD_COMMAND,0);
     rxSDO.clear();
 
     T1START;
@@ -123,13 +122,14 @@ void pd4Nanotec::readSDO(ushort index, uchar sub, uchar type){
 
 void pd4Nanotec::statusHandler(void){
     ushort delay;
-    static  _CiA402Status ciastat = CiA402_Undefined;
+    static uchar attempt;
 
     // Wait for the CANCLIENT READY CONDITION
     if(!CANCLIENT->isCanReady()){
         wStatus = 0;
         wSubStatus = 0;
         workflow = _DEVICE_INIT;
+        CiAcurrentStatus = CiA402_Undefined;
         QTimer::singleShot(100,this, SLOT(statusHandler()));
         return;
     }
@@ -150,6 +150,8 @@ void pd4Nanotec::statusHandler(void){
         if(delay==0) {
             deviceInitialized = true;
             workflow = _GET_CIA_STATUS;
+            wStatus = 0;
+            wSubStatus = 0;
             sdo_received = false;
             sdo_error = false;
             sdo_timeout = true;
@@ -162,29 +164,61 @@ void pd4Nanotec::statusHandler(void){
         return;
 
     case _GET_CIA_STATUS:
-        if(! sdo_received){
+        switch(wStatus){
+        case 0:
+            attempt = 10;
+            wStatus++;
+        case 1:
             readSDO(OD_6041_00); // Read the status
+            wStatus++;
             QTimer::singleShot(5,this, SLOT(statusHandler()));
             return;
-        }
+        case 2:
+            if((!sdo_received) ||(sdo_error)){
+                wStatus--;
+                if(attempt == 0) {
+                    attempt = 10;
+                    qDebug() << "DEVICE (" << deviceId << ") NOT RESPONDING";
+                    deviceInitialized = false;
+                    QTimer::singleShot(2000,this, SLOT(statusHandler()));
+                    return ;
+                }
+                attempt--;
+                QTimer::singleShot(100,this, SLOT(statusHandler()));
+                return ;
+            }
 
-        ODstatus = this->rxSDO;
-        if( getCiAStatus(&ODstatus) != ciastat) {
-            ciastat = getCiAStatus(&ODstatus);
-            qDebug() << "DEVICE ID(" << this->deviceId << ") STATUS CHANGE IN:" << getCiAStatusString(ciastat);
+            if( getCiAStatus(&rxSDO) != CiAcurrentStatus ) {
+                CiAcurrentStatus = getCiAStatus(&rxSDO);
+                qDebug() << "DEVICE ID(" << this->deviceId << ") STATUS CHANGE IN:" << getCiAStatusString(CiAcurrentStatus);
+            }
+
+            workflow = _HANDLE_DEVICE_STATUS;
 
             // Initialize the status workflow for the given CiA status.
             wStatus = 0;
             wSubStatus = 0;
         }
 
-        workflow = _HANDLE_DEVICE_STATUS;
-
-        // Not break here!!
+        QTimer::singleShot(0,this, SLOT(statusHandler()));
+        return;
 
     case _HANDLE_DEVICE_STATUS:
+        // In case the initialization has not present, it is activated
+        if(!deviceInitialized){
+            workflow = _DEVICE_INIT;
+            QTimer::singleShot(1,this, SLOT(statusHandler()));
+            return;
+        }
 
-        switch(getCiAStatus(&ODstatus)){
+        switch(CiAcurrentStatus){
+
+        case CiA402_NotReadyToSwitchOn:
+            // This status is activated after the device reset
+            // When the device resets the initialization shall be repeated
+            deviceInitialized = false;
+            delay =0;
+            break;
 
         case CiA402_QuickStopActive:
         case CiA402_SwitchOnDisabled:
@@ -194,7 +228,7 @@ void pd4Nanotec::statusHandler(void){
             delay = CiA402_ReadyToSwitchOnCallback();
             break;
         case CiA402_SwitchedOn: delay = idleCallback(); break;
-        case CiA402_OperationEnabled: delay = runCallback(); break;
+        case CiA402_OperationEnabled: delay = CiA402_OperationEnabledCallback(); break;
         case CiA402_Fault:delay = faultCallback(); break;
 
         default:
@@ -203,6 +237,8 @@ void pd4Nanotec::statusHandler(void){
 
         if(delay==0) {
             workflow = _GET_CIA_STATUS;
+            wStatus = 0;
+            wSubStatus = 0;
             sdo_received = false;
             sdo_error = false;
             sdo_timeout = true;
@@ -222,308 +258,6 @@ void pd4Nanotec::statusHandler(void){
 
 
 
-
-/**
- * This status is activated by the Motor after the startup
- * procedure completes.
- *
- * From this status the Application can enter the \n
- * ReadyToSwitchOn status with the SHUTDOWN command sequence.
- *
- *
- * @return
- */
-ushort pd4Nanotec::CiA402_SwitchOnDisabledCallback(void){
-    ushort val;
-
-    switch(wStatus){
-
-    case 0: // Read the Control Word
-        readSDO(OD_6040_00);
-        wStatus++;
-        return 5;
-
-    case 1: // Get the control word
-        if((! sdo_received) ||(sdo_error)){
-            wStatus--;
-            return 100;
-        }       
-        wStatus++;
-        return 1;
-
-    case 2:
-         // To the Ready to SwitchOn Status
-        val = rxSDO.b[0] + 256 * rxSDO.b[1];
-        val &=~ OD_MASK(OD_6040_00_SHUTDOWN);
-        val |= OD_VAL(OD_6040_00_SHUTDOWN);
-
-        writeSDO(OD_6040_00, (ulong) val);
-        wStatus++;
-        return 5;
-
-    case 3:
-        if((! sdo_received) ||(sdo_error)){
-            wStatus--;
-            return 100;
-        }
-
-        return 0;
-
-    }
-
-    return 0;
-}
-
-/**
- * This is the ReadyToSwitchOn CiA status handler
- *
- * The Application shall attempt to enter the
- * SwitchedOn status
- * @return
- */
-ushort pd4Nanotec::CiA402_ReadyToSwitchOnCallback(void){
-    ushort val;
-
-    switch(wStatus){
-
-    case 0: // Read the Control Word
-        readSDO(OD_6040_00);
-        wStatus++;
-        return 5;
-
-    case 1: // Get the control word
-        if((! sdo_received) ||(sdo_error)){
-            wStatus--;
-            return 100;
-        }
-        wStatus++;
-        return 1;
-
-    case 2:
-        // To the SwitchOn Status
-        val = rxSDO.b[0] + 256 * rxSDO.b[1];
-        val &=~ OD_MASK(OD_6040_00_SWITCHON);
-        val |= OD_VAL(OD_6040_00_SWITCHON);
-
-        writeSDO(OD_6040_00, (ulong) val);
-        wStatus++;
-        return 5;
-
-    case 3:
-        if((! sdo_received) ||(sdo_error)){
-            wStatus--;
-            return 100;
-        }
-
-        return 0;
-
-    }
-
-    return 0;
-}
-
-/**
- * Procedura di inizializzazione del motore TRX
- * @return
- */
-ushort pd4Nanotec::initCallback(void){
-    static ushort i;
-    static bool changed = false;
-
-    switch(wStatus){
-        case 0:
-            if(initVector == nullptr){
-                qDebug() << "INIT DEVICE (" << deviceId << "): COMPLETED";
-                deviceInitialized=true;
-                return 0;
-            }
-
-            i=0;
-            changed = false;
-            wStatus = 100;
-            return 1;
-        break;
-
-    case 100:
-        readSDO(initVector[i].index, initVector[i].subidx, initVector[i].type);
-        wStatus++;
-        return 5;
-
-    case 101:
-        if(rxSDO.getVal() == rxSDO.formatVal(initVector[i].val)){
-            wStatus = 104;
-            return 1;
-        }
-        qDebug() << QString("%1 %2 %3").arg(rxSDO.index,1,16).arg(rxSDO.getVal(),1,16).arg(rxSDO.formatVal(initVector[i].val),1,16);
-        changed = true;
-        wStatus++;
-        return 1;
-
-    case 102:
-        writeSDO(initVector[i].index, initVector[i].subidx, initVector[i].type, initVector[i].val);
-        wStatus++;
-        return 5;
-
-    case 103:
-        if((!sdo_received) ||(sdo_error)){
-            wStatus--;
-            return 100;
-        }
-        wStatus++;
-        return 1;
-
-    case 104:
-        i++;
-        if(initVector[i].type == 0){
-            wStatus++;
-            return 1;
-        }
-
-        wStatus = 100;
-        return 1;
-
-    case 105:
-        if(!changed){
-            qDebug() << "INIT DEVICE (" << deviceId << "): COMPLETED";
-            deviceInitialized=true;
-            return 0;
-        }else qDebug() << "INIT DEVICE (" << deviceId << "): STORING DATA";
-
-
-        wStatus++;
-        return 1;
-
-    case 106:
-        // Stores the parameters
-        writeSDO(OD_1010_01, OD_SAVE_CODE);
-        wStatus++;
-        return 1000;
-
-    case 107:
-        readSDO(OD_1010_01);
-        wStatus++;
-        return 5;
-
-    case 108:
-        if((!sdo_received) ||(sdo_error)){
-            wStatus--;
-            return 100;
-        }
-
-        if(rxSDO.getVal() != 1){
-            wStatus--;
-            return 100;
-        }
-
-        wStatus++;
-        return 1;
-
-    case 109:
-         qDebug() << "INIT DEVICE (" << deviceId << "): STORE DATA COMPLETED";
-         deviceInitialized=true;
-         return 0;
-    }
-
-    return 0;
-}
-
-ushort trxModule::faultCallback(void){
-    static ulong err_class = 0;
-    static ulong err_code = 0;
-    static ulong ctrlw;
-    ulong uval;
-
-    switch(wStatus){
-    case 0:
-        // Get the error class
-        readSDO(OD_1001_00);
-        wStatus++;
-        return 5;
-
-    case 1:
-        if((!sdo_received) ||(sdo_error)){
-            wStatus--;
-            return 100;
-        }
-
-        uval = rxSDO.getVal();
-        if(uval == 0){
-            err_class = 0;
-            err_code = 0;
-
-            // Try to exit from the Fault status
-            wStatus = 100;
-            return 1;
-        }
-
-        if(uval != err_class) qDebug() << "DEVICE (" << deviceId << ") ERROR CLASS:" <<  getErrorClass1001(uval);
-        err_class = uval;
-        wStatus++;
-        return 1;
-    case 2:
-        // Get the error code
-        readSDO(OD_1003_01);
-        wStatus++;
-        return 5;
-
-    case 3:
-        if((!sdo_received) ||(sdo_error)){
-            wStatus--;
-            return 100;
-        }
-
-        uval = rxSDO.getVal();
-        if(uval != err_code) qDebug() << "DEVICE (" << deviceId << ") ERROR CODE:" << getErrorCode1003(uval);
-        err_code = uval;
-        wStatus++;
-        return 1;
-
-    case 4:
-        wStatus = 0;
-        return 500;
-
-   case 100:
-        readSDO(OD_6040_00);
-        wStatus++;
-        return 5;
-   case 101:
-        if((!sdo_received) ||(sdo_error)){
-            wStatus--;
-            return 100;
-        }
-        wStatus++;
-        return 1;
-
-   case 102:
-        rxSDO.b[0] |= 0x80;
-        ctrlw = rxSDO.getVal();
-        writeSDO(OD_6040_00,ctrlw);
-        wStatus++;
-        return 5;
-
-    case 103:
-        if((!sdo_received) ||(sdo_error)){
-            wStatus=100;
-            return 100;
-        }
-        wStatus++;
-        return 1;
-    case 104:
-        ctrlw &=~ 0x80;
-        writeSDO(OD_6040_00,ctrlw);
-        wStatus++;
-        return 5;
-
-    case 105:
-        if((!sdo_received) ||(sdo_error)){
-            wStatus=100;
-            return 100;
-        }
-
-        return 0;
-
-    }
-}
 QString pd4Nanotec::getErrorClass1001(ulong val){
     uchar cval = (uchar) val;
     QString errstr = "";
@@ -564,5 +298,87 @@ QString pd4Nanotec::getErrorCode1003(ulong val){
         case 0x8611: return "Position monitoring error: Following error too large";
         case 0x8612: return "Position monitoring error: Limit switch and tolerance zone exceeded";
         case 0x9000: return "EtherCAT: Motor running while EtherCAT changes from OP -> SafeOp, PreOP, etc.";
+    }
+}
+
+ushort pd4Nanotec::subRoutineUploadVector(_OD_InitVector* pVector, bool* changed, bool* uploadOk){
+    static ushort i;
+    static uchar attempt;
+
+    switch(wSubStatus){
+    case 0:
+        if(pVector == nullptr) {
+            if(changed) *changed = false;
+            if(uploadOk) *uploadOk = true;
+            return 0;
+        }
+
+        i=0;
+        wSubStatus++;
+        attempt = 10;
+        return 1;
+
+    case 1:
+        readSDO(pVector[i].index, pVector[i].subidx, pVector[i].type);
+        wSubStatus++;
+        return 5;
+
+    case 2:
+        if((!sdo_received) ||(sdo_error)){
+            if(attempt == 0) {
+                if(uploadOk) *uploadOk = false;
+                qDebug() << QString("DEVICE (%1): ERROR READING OD %2.%3").arg(deviceId).arg(pVector[i].index,1,16).arg(pVector[i].subidx);
+                return 0;
+            }
+            attempt--;
+            wSubStatus--;
+            return 100;
+        }
+
+        if(rxSDO.getVal() == rxSDO.formatVal(initVector[i].val)){
+            wSubStatus = 5;
+            return 1;
+        }
+
+        if(changed) *changed = true;
+        wSubStatus++;
+        attempt = 10;
+        return 1;
+
+    case 3:
+        writeSDO(pVector[i].index, pVector[i].subidx, pVector[i].type, pVector[i].val);
+        wSubStatus++;
+        return 5;
+
+    case 4:
+        if((!sdo_received) ||(sdo_error)){
+            if(attempt == 0) {
+                if(uploadOk) *uploadOk = false;
+                qDebug() << QString("DEVICE (%1): ERROR WRITING OD %2.%3").arg(deviceId).arg(pVector[i].index,1,16).arg(pVector[i].subidx);
+                return 0;
+            }
+            attempt--;
+            wSubStatus--;
+            return 100;
+        }
+
+        wSubStatus++;
+        return 1;
+
+    case 5:
+        i++;
+        if(pVector[i].type == 0){
+            if(uploadOk) *uploadOk = true;
+            return 0;
+        }
+        attempt = 10;
+        wSubStatus = 1;
+        return 1;
+
+    default:
+        if(uploadOk) *uploadOk = false;
+        qDebug() << QString("DEVICE (%1): INVALID wSubStatus = %2").arg(deviceId).arg(wSubStatus);
+        return 0;
+
     }
 }

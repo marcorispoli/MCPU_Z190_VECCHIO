@@ -4,9 +4,30 @@
 /*!
  * \defgroup  canOpenModule CanOpen Protocol implementation.
  *
- * This Module implements the CanOpen protocol.
+ * This Module implements the CanOpen related features.
  *
  *
+ */
+
+/*!
+ * \defgroup  canOpenDictionaryModule Object Dictionary Implementation Module.
+ *
+ * The CanOpen based device makes use of the Object Dictionary objects \n
+ * in order to handle the internal register content.
+ *
+ * This class allow to:
+ * - crate an Object Dictionary from a can data stream;
+ * - Retrive the can data stream from a created Object dictionary;
+ * - Get and Set the register value;
+ * - Get the error condition
+ *
+ * The Object register is defined by the following items:
+ * - Index: this is the register address (ushort) ;
+ * - Subindex: this is the register sub address (uchar);
+ * - Register Data Type: this defines the data size: 1 Byte, 2Byte, 3Byte or 4Bytes are the possible sizes
+ * - Register Value: is always a ulong value, but it is truncated to the register size.
+ *
+ * \ingroup canOpenModule
  */
 
 #include <QtCore>
@@ -23,24 +44,25 @@
 #define _OD_TP(x,y,z) (z)
 #define OD_TP(x) _OD_TP(x)
 
+/**
+ * @brief This class implements the necessary tools to handle the Object Registers
+ *
+ *
+ * \ingroup   canOpenDictionaryModule
+ */
 class canOpenDictionary
 {
 public:
 
+    /**
+     * @brief canOpenDictionary class creator
+     *
+     * Creates an Object dictionary. After creation the OD is set to invalid.
+     */
     canOpenDictionary(void){
         odType = SDO_NOT_VALID;
     }
     ~canOpenDictionary(){};
-
-    QString printError(void);//!< Returns the string error of a failed Read?Write operation
-    void set(QByteArray* data); //!< Set the OD content from the can frame content
-    QByteArray get(void); //!< Get can frame content from OD content
-    void clear(void); //!< Clear the content of a OD
-    ulong getVal(void); //!< Get the OD data value
-    ulong formatVal(ulong val); //!< Format a value size based on the OD type
-
-    /// Function returnig if the last SDO Read/Write has been executed successfully
-    _inline bool isError(void){ return (odType == SDO_ACK_ERR) ; }
 
     /// This enumeration defines the code of the Read/Write SDO operations
     typedef enum{
@@ -59,11 +81,29 @@ public:
     }_ODDataType;
 
 
-    _ODDataType odType; //!< Rd/Write data code
-    ushort index;
-    uchar subindex;
-    uchar b[4];
+    QString printError(void);//!< Returns the string error of a failed Read?Write operation
+    void set(QByteArray* data); //!< Set the OD content from the can frame content
+    QByteArray get(void); //!< Get can frame content from OD content
+    void clear(void); //!< Clear the content of a OD
 
+    ulong formatVal(ulong val); //!< Format a value size based on the OD type
+    ulong getVal(void); //!< Get the OD data value
+    void setVal(ulong data); //!< Set the internal data of the proper data size
+    void setOd(ushort index, uchar sub, canOpenDictionary::_ODDataType type, ulong val);//!< Fills the complete OD register
+
+
+    _inline bool isError(void){ return (odType == SDO_ACK_ERR) ; } //!< Function returnig if the last SDO Read/Write has been executed successfully
+    _inline ushort getIndex(void){ return (index ) ; } //!< returns the register index
+    _inline uchar getSubIndex(void){ return (subindex ) ; } //!< returns the register sub index
+
+
+
+private:
+    _ODDataType odType; //!< Rd/Write data code (defines the data size)
+    ushort index;       //!< Register index feld
+    uchar subindex;     //!< Register sub index field
+    uchar b[4];         //!< Data array
+    ulong value;        //!< Formatted  value
 };
 
 

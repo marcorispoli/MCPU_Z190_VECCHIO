@@ -1,12 +1,17 @@
 #ifndef PD4_H
 #define PD4_H
 
+#define cGRADsec_TO_ROT_min(x)  ((uint32_t) (((float)((int)x)  * (float) RIDUZIONE / 36000) * (float) SPEED_DENOMINATOR))
+#define cGRAD_TO_POS(x)        ((int) (((float) ((int)x) * (RIDUZIONE * 10) )/180))
+#define POS_TO_cGRAD(x)        ((int)((((float) ((int)x)) * 180) / (RIDUZIONE*10)))
+
+
 /*!
- * \defgroup  canOpenModule CanOpen Protocol implementation.
+ * \defgroup  nanotecModule Nanotec PD4 Device Communication Module.
  *
- * This Module implements the CanOpen protocol.
+ * This Module implements the communication protocol with the PD4 Nanotec Motor Device.
  *
- *
+ * \ingroup canOpenModule
  */
 
 #include <QtCore>
@@ -42,14 +47,15 @@ public:
     }_CiA402Status;
 
     _CiA402Status getCiAStatus(canOpenDictionary* od){
-        if((od->b[0] & 0x4F) == 0 ) return  CiA402_NotReadyToSwitchOn;
-        else if((od->b[0] & 0x4F) == 0x40 ) return  CiA402_SwitchOnDisabled;
-        else if((od->b[0] & 0x6F) == 0x21 ) return  CiA402_ReadyToSwitchOn;
-        else if((od->b[0] & 0x6F) == 0x23 ) return  CiA402_SwitchedOn;
-        else if((od->b[0] & 0x6F) == 0x27 ) return  CiA402_OperationEnabled;
-        else if((od->b[0] & 0x6F) == 0x7 ) return  CiA402_QuickStopActive;
-        else if((od->b[0] & 0x4F) == 0xF ) return  CiA402_FaultReactionActive;
-        else if((od->b[0] & 0x4F) == 0x8 ) return  CiA402_Fault;
+        uchar val = (uchar) (od->getVal() & 0xFF);
+        if((val & 0x4F) == 0 ) return  CiA402_NotReadyToSwitchOn;
+        else if((val & 0x4F) == 0x40 ) return  CiA402_SwitchOnDisabled;
+        else if((val & 0x6F) == 0x21 ) return  CiA402_ReadyToSwitchOn;
+        else if((val & 0x6F) == 0x23 ) return  CiA402_SwitchedOn;
+        else if((val & 0x6F) == 0x27 ) return  CiA402_OperationEnabled;
+        else if((val & 0x6F) == 0x7 ) return  CiA402_QuickStopActive;
+        else if((val & 0x4F) == 0xF ) return  CiA402_FaultReactionActive;
+        else if((val & 0x4F) == 0x8 ) return  CiA402_Fault;
         return CiA402_NotReadyToSwitchOn;
     }
 
@@ -72,36 +78,59 @@ public:
         _HANDLE_DEVICE_STATUS,
     } _workflowType;
 
+    typedef enum{
+
+        _NO_COMMAND=0,
+        _ZERO_SETTING_COMMAND,
+        _POSITIONING_COMMAND,
+
+    } _executionCommands;
+
     QString getErrorCode1003(ulong val);
     QString getErrorClass1003(ulong val);
     QString getErrorClass1001(ulong val);
 
 
+    bool activateZeroSetting(void);
+    bool activatePositioning(int cAngle);
+
+    ulong   _cGRADsec_TO_ROT_min(float x){
+        return (ulong) (x  * gearratio * speed_denominator / 36000);
+    }
+
+    int   _cGRAD_TO_POS(float x){
+        return (int) (x  * gearratio * 10 / 180);
+    }
+
+    int   _POS_TO_cGRAD(float x){
+        return (int) (x  * 180 / (gearratio * 10));
+    }
+
 
 signals:
     void txToCan(ushort canId, QByteArray data); //!< Sends Can data frame to the canDriver
 
+
 public slots:
-    ushort initCallback(void); //!< Initialization procedures after the reset
-    virtual ushort idleCallback(void){return 0;} //!< Idle status (CiA_SwitchedOn status)
+
+    virtual ushort idleCallback(void); //!< Idle status (CiA_SwitchedOn status)
     virtual ushort runCallback(void){return 0;}  //!< Motor activation control callback (CiA_OperationEnabled)
     virtual ushort faultCallback(void){return 0;}//!< Motor Fault callback
 
 
     void timerEvent(QTimerEvent* ev);
 
-private slots:
 
-    void statusHandler(void); //!< Main callback handling the cia status
-    void rxFromCan(ushort canId, QByteArray data);//!< Receive Can data frame from the canDriver
 
-public:
 
 protected:
+    float gearratio;
+    float speed_denominator;
+
     uchar deviceId; //!< Target Can device ID
     clock_t  t1; //!> Time performance measurement variable
-    ushort wStatus;
-    ushort wSubStatus;
+    ushort wStatus; //!> Callback status index
+    ushort wSubStatus; //!> SubRoutine status index
 
     bool sdo_received;  //! The SDO has been received
     bool sdo_error;     //! The SDO has been received in a wrong format or error code
@@ -113,24 +142,44 @@ protected:
 
     canOpenDictionary rxSDO; //!< Received SDO
     canOpenDictionary txSDO; //!< SDO to be transmetted
-    canOpenDictionary ODstatus; //!< Received status
 
-    _OD_InitVector* initVector;
+
     bool deviceInitialized;
+    _OD_InitVector* initVector;
 
+    _OD_InitVector* zeroSettingVector;
+    _OD_InitVector* positionSettingVector;
+
+
+    _executionCommands execCommand;
 private:
     bool ready; //!< The Can Driver is ready to receive data
-
+    bool zero_setting_ok;//!< Flag of the zero setting completed
+    bool positioning_ok; //!< Flag of correct positioning
 
     int tmo_timer;
     bool check_status;
     _workflowType workflow;
+    _CiA402Status CiAcurrentStatus;
+
+    ushort subRoutineUploadVector(_OD_InitVector* pVector, bool* changed, bool* uploadOk);
 
 private slots:
 
-
     ushort CiA402_SwitchOnDisabledCallback(void);
     ushort CiA402_ReadyToSwitchOnCallback(void);
+    ushort CiA402_OperationEnabledCallback(void);
+
+
+    ushort initPd4ZeroSettingCommand(void);//!< Motor Zero Setting Initialization Procedure
+    ushort pd4ZeroSettingLoop();//!< Motor Zero Setting Procedure
+
+    ushort initPd4PositioningCommand(void);//!< Motor Positioning Initialization Procedure
+    ushort pd4PositioningLoop();//!< Motor Positioning Procedure
+
+    void statusHandler(void); //!< Main callback handling the cia status
+    void rxFromCan(ushort canId, QByteArray data);//!< Receive Can data frame from the canDriver
+    ushort initCallback(void); //!< Initialization procedures after the reset
 
 
 };

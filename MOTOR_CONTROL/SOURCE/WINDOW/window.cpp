@@ -15,7 +15,9 @@ debugWindow::debugWindow(QWidget *parent)
     connect(ui->logClearButton, SIGNAL(pressed()), this, SLOT(onLogClearButton()), Qt::UniqueConnection);
     connect(ui->debugClearButton, SIGNAL(pressed()), this, SLOT(onDebugClearButton()), Qt::UniqueConnection);
     connect(ui->logEnableCheck, SIGNAL(stateChanged(int)), this, SLOT(on_logEnableCheck_stateChanged(int)));
-
+    connect(ui->zeroSettingButton, SIGNAL(pressed()), this, SLOT(onZeroSettingButton()), Qt::UniqueConnection);
+    connect(ui->positionA, SIGNAL(pressed()), this, SLOT(onPositionA()), Qt::UniqueConnection);
+    connect(ui->positionB, SIGNAL(pressed()), this, SLOT(onPositionB()), Qt::UniqueConnection);
 
     connect(CANCLIENT,SIGNAL(canReady(bool)), this, SLOT(onCanReady(bool)));
     pollingTimer  = startTimer(500);
@@ -91,4 +93,19 @@ void debugWindow::onCanReady(bool stat){
     if(stat) qDebug() << "CAN READY TO OPERATE";
     else qDebug() << "CAN NOT READY TO OPERATE";
 }
+
+void debugWindow::onZeroSettingButton(void){
+  if(!TRX->activateZeroSetting()) qDebug() << "WINDOW: ZERO SETTING NOT ACTIVATED!";
+
+}
+
+void debugWindow::onPositionA(void){
+  if(!TRX->activatePositioning(2800)) qDebug() << "WINDOW: POSITIONING NOT ACTIVATED!";
+
+}
+void debugWindow::onPositionB(void){
+  if(!TRX->activatePositioning(-2500)) qDebug() << "WINDOW: POSITIONING NOT ACTIVATED!";
+
+}
+
 

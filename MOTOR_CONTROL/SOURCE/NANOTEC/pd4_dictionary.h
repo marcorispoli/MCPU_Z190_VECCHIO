@@ -1,14 +1,6 @@
 #ifndef PD4_DICTIONARY_H
 #define PD4_DICTIONARY_H
 
-/*!
- * \defgroup  canOpenModule CanOpen Protocol implementation.
- *
- * This Module implements the CanOpen protocol.
- *
- *
- */
-
 
 //_______________________ ZERO SETTING OBJECTS ________________________________________
 
@@ -26,16 +18,9 @@
 
 
 //_______________________ POSITIONING SETTING OBJECTS ________________________________________
-#define ZERO_SETTING_CTRL_INIT  0x0270,0x0000                   // OMS BITS RESET
-#define ZERO_SETTING_START      0x0270,0x0010                   // OMS BIT4 = ON
-#define ZERO_SETTING_STOP       0x0270,0x0010                   // OMS BIT4 = OFF
-
-#define ZERO_STAT_PERFORMED     0x3400,0x0000
-#define ZERO_STAT_INTERRUPTED   0x3400,0x0400
-#define ZERO_STAT_CONFIRMED     0x3400,0x1000
-#define ZERO_STAT_COMPLETED     0x3400,0x1400
-#define ZERO_STAT_ERROR_RUN     0x3400,0x2000
-#define ZERO_STAT_ERROR_IDL     0x3400,0x2400
+#define POSITION_SETTING_CTRL_INIT  0x0370, 0x0020
+#define POSITION_TRIGGER_SETTING_CTRL_INIT  0x0370, 0x0000
+#define POSITION_SETTING_START      0x0370, 0x0030
 
 
 #define OD_1001_00 0x1001, 0x00, canOpenDictionary::WR_1BYTE  // ERROR REGISTER

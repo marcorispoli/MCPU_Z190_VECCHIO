@@ -31,11 +31,18 @@ signals:
 
 // GUI MODULE SLOTS
 public slots:
+    void onCanReady(bool stat);  //!< Connect the signal canReady from the canClient
+
     void onDebugClearButton(void);
     void onDebug(QByteArray data);
 
+    void onZeroSettingButton(void);
+    void onPositionA(void);
+    void onPositionB(void);
+
+
     void onLogClearButton(void);
-    void onCanReady(bool stat);  //!< Connect the signal canReady from the canClient
+
 
     void timerEvent(QTimerEvent* ev);
 

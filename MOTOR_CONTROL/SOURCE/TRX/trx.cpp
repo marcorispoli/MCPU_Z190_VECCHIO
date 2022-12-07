@@ -1,20 +1,11 @@
+// Those defines SHALL be defined here!!!
+#define RIDUZIONE 452.8
+#define SPEED_DENOMINATOR       120
+
 #include "application.h"
 #include "pd4_dictionary.h"
 
-#undef  RIDUZIONE
-#undef  dGRADsec_TO_ROTmin
-#undef  dGRAD_TO_POS
 
-#define RIDUZIONE 452.8  // Rapporto di riduzuzione con pignone a 35 denti e riduttore 1:28 (MEDICA)
-#define _PIGNONE_CONFIG "TRX COMPILAZIONE CON PIGNONE 35 DENTI PER MACCHINA PRODU"
-
-#define SPEED_DENOMINATOR       120
-#define cGRADsec_TO_ROT_min(x)  ((uint32_t) (((float)((long)x)  * (float) RIDUZIONE / 36000) * (float) SPEED_DENOMINATOR))
-
-
-// decimi di grado
-#define cGRAD_TO_POS(x)        ((long) (((float) ((long)x) * (RIDUZIONE * 10) )/180))
-#define POS_TO_cGRAD(x)        ((long)((((float) ((long)x)) * 180) / (RIDUZIONE*10)))
 
 static const pd4Nanotec::_OD_InitVector trxvector[]={
 
@@ -29,7 +20,7 @@ static const pd4Nanotec::_OD_InitVector trxvector[]={
     {OD_2032_00,5000}, 	// Maximum Speed
     {OD_2033_00,0 },	// Plunger Block
     {OD_2034_00,51500 },// Upper Voltage Warning Level
-    {OD_2035_00,20000 },// ****************************************Lower Voltage Warning Level
+    {OD_2035_00,21000 },// ****************************************Lower Voltage Warning Level
     {OD_2036_00,2000}, 	// Open Loop Current Reduction Idle Time
     {OD_2037_00,(ulong) (-50) },	// Open Loop Current Reduction Value/factor
 
@@ -167,10 +158,31 @@ static const pd4Nanotec::_OD_InitVector trxvector[]={
     {0,0,(canOpenDictionary::_ODDataType) 0,0} // Last element always present!!
 };
 
+static const pd4Nanotec::_OD_InitVector trx_zero_vector[]={
+    {OD_6099_01,cGRADsec_TO_ROT_min(100)}, // Speed approaching to the target
+    {OD_6099_02,cGRADsec_TO_ROT_min(50)}, // Speed approaching reverse
+    {OD_609A_00,cGRADsec_TO_ROT_min(100)}, // Acceleration
+    {OD_607C_00,cGRAD_TO_POS(0)}, // Offset
+    {0,0,(canOpenDictionary::_ODDataType) 0,0} // Last element always present!!
+};
+
+static  pd4Nanotec::_OD_InitVector trx_positioning_vector[]={
+    {OD_6081_00,cGRADsec_TO_ROT_min(400)}, // Target Speed
+    {OD_6083_00,cGRADsec_TO_ROT_min(100)}, // Acc
+    {OD_6084_00,cGRADsec_TO_ROT_min(100)}, // DEC
+    {OD_607A_00,cGRAD_TO_POS(0)},          // Target Position
+    {0,0,(canOpenDictionary::_ODDataType) 0,0} // Last element always present!!
+};
+
+
 
 trxModule::trxModule(void):pd4Nanotec(Application::TRX_ID)
 {
     this->initVector = (_OD_InitVector*) trxvector;
+    this->zeroSettingVector = (_OD_InitVector*) trx_zero_vector;
+    this->positionSettingVector = trx_positioning_vector;
+    this->gearratio = RIDUZIONE;
+    this->speed_denominator = SPEED_DENOMINATOR;
 
 }
 

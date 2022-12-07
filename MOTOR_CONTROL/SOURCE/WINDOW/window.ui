@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>600</width>
+    <width>765</width>
     <height>600</height>
    </rect>
   </property>
@@ -22,7 +22,7 @@ background-color: rgb(85, 170, 255);</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>600</width>
+     <width>781</width>
      <height>600</height>
     </rect>
    </property>
@@ -215,6 +215,81 @@ border-width: 0px;
       <bool>true</bool>
      </property>
     </widget>
+   </widget>
+   <widget class="QPushButton" name="zeroSettingButton">
+    <property name="geometry">
+     <rect>
+      <x>590</x>
+      <y>40</y>
+      <width>141</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 0, 127);
+color: rgb(255, 255, 255);
+border-width: 0px;
+</string>
+    </property>
+    <property name="text">
+     <string>ZERO SETTING</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="positionA">
+    <property name="geometry">
+     <rect>
+      <x>590</x>
+      <y>90</y>
+      <width>141</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 0, 127);
+color: rgb(255, 255, 255);
+border-width: 0px;
+</string>
+    </property>
+    <property name="text">
+     <string>POSITION A</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="positionB">
+    <property name="geometry">
+     <rect>
+      <x>590</x>
+      <y>130</y>
+      <width>141</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 0, 127);
+color: rgb(255, 255, 255);
+border-width: 0px;
+</string>
+    </property>
+    <property name="text">
+     <string>POSITION B</string>
+    </property>
    </widget>
   </widget>
  </widget>

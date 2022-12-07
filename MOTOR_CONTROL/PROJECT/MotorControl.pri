@@ -38,6 +38,9 @@ SOURCES += \
     $${TARGET_SOURCE}/CANCLIENT/canclient.cpp \    
     $${TARGET_SOURCE}/CANOPEN/dictionary.cpp \
     $${TARGET_SOURCE}/NANOTEC/pd4.cpp \
+    $${TARGET_SOURCE}/NANOTEC/cia_standard_proc.cpp \
+    $${TARGET_SOURCE}/NANOTEC/pd4_zero_setting.cpp \
+    $${TARGET_SOURCE}/NANOTEC/pd4_positioning.cpp \
     $${TARGET_SOURCE}/TRX/trx.cpp \
     $${TARGET_SOURCE}/WINDOW/window.cpp \
 

@@ -76,7 +76,8 @@ ulong canOpenDictionary::getVal(void){
     if((odType == WR_1BYTE) || (odType == RD_1BYTE)) return (ulong) b[0];
     if((odType == WR_2BYTE) || (odType == RD_2BYTE)) return (ulong) b[0] + (ulong) b[1] * 256;
     if((odType == WR_3BYTE) || (odType == RD_3BYTE)) return (ulong) b[0] + (ulong) b[1] * 256 + (ulong) b[2] * 256 * 256;
-    else return (ulong) b[0] + (ulong) b[1] * 256 + (ulong) b[2] * 256 * 256+ (ulong) b[3] * 256 * 256 * 256;
+    if((odType == WR_4BYTE) || (odType == RD_4BYTE)) return (ulong) b[0] + (ulong) b[1] * 256 + (ulong) b[2] * 256 * 256+ (ulong) b[3] * 256 * 256 * 256;
+    return 0;
 }
 
 /**
@@ -86,6 +87,22 @@ ulong canOpenDictionary::getVal(void){
  * It is truncated to 1 Byte/2Byte/3Byte or 4 Byte \n
  * based on the actual format of the Object Dictionary.
  *
+ * # USAGE
+ *
+ * When it is needed to make a comparison from an arbitrary value and a content of \n
+ * an Object register, before to make the comparison, the arbitrary value shall be \n
+ * formatted to be compliance with the size of the Register value.\n
+ * For example, if the Object register is a 2 byte data size,\n
+ * before o be compared with an arbitrary ulong variable, the vaRIABLE SHALL BE FORMATTED:
+ *
+ *
+ *  ulong variable = ... someting\n
+ *  OD.getVal() == variable --> WRONG COMPARISON\n
+ *
+ *
+ *  ulong variable = ... someting\n
+ *  OD.getVal() == OD.formatVal(variable) --> CORRECT COMPARISON\n
+ *
  * @param val: this is the value that needs to be formatted
  * @return formatted result value
  */
@@ -93,5 +110,41 @@ ulong canOpenDictionary::formatVal(ulong val){
     if((odType == WR_1BYTE) || (odType == RD_1BYTE)) return (ulong) (val&0xFF);
     if((odType == WR_2BYTE) || (odType == RD_2BYTE)) return (ulong) (val&0xFFFF);
     if((odType == WR_3BYTE) || (odType == RD_3BYTE)) return (ulong) (val&0xFFFFFF);
-    else return (val);
+    if((odType == WR_4BYTE) || (odType == RD_4BYTE)) return val;
+    else return (0);
 }
+
+/**
+ * This function assignes the content of the register \n
+ * formatting it with the register size.
+ *
+ * The register should be created before with the proper \n
+ * data content.
+ *
+ * @param data: this is the data value to be set into the register.
+ */
+void canOpenDictionary::setVal(ulong data){
+    ulong v = formatVal(data);
+    this->value = v;
+    b[0] = (uchar) (v & 0xFF); v = v >>8;
+    b[1] = (uchar) (v & 0xFF); v = v >>8;
+    b[2] = (uchar) (v & 0xFF); v = v >>8;
+    b[3] = (uchar) (v & 0xFF); v = v >>8;
+}
+
+/**
+ * This function fills the OD register with all the internal items
+ * @param index
+ * @param sub
+ * @param type
+ * @param val
+ */
+void canOpenDictionary::setOd(ushort index, uchar sub, canOpenDictionary::_ODDataType type, ulong val){
+    odType = type;
+    this->index = index;
+    this->subindex = sub;
+    setVal(val);
+}
+
+
+

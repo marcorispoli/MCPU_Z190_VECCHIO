@@ -27,7 +27,6 @@ signals:
 
 public slots:
 
-  ushort faultCallback(void); //!< Override Fault procedures
 
 private slots:
 

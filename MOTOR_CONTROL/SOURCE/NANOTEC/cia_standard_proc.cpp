@@ -16,13 +16,11 @@
  */
 ushort pd4Nanotec::CiA402_SwitchOnDisabledCallback(void){
 
-    static uchar attempt;
     static ulong ctrlw;
 
     switch(wStatus){
 
     case 0: // Read the Control Word
-        attempt = 10;
         wStatus++;
 
     case 1:
@@ -31,16 +29,7 @@ ushort pd4Nanotec::CiA402_SwitchOnDisabledCallback(void){
          return 5;
 
     case 2: // Get the control word
-        if((! sdo_received) ||(sdo_error)){
-            if(attempt == 0){
-                return 0;
-            }
-            attempt--;
-            wStatus--;
-            return 100;
-        }
-
-        attempt = 10;
+        if(!sdo_rx_ok) return 0;
         wStatus++;
 
         // To the Ready to SwitchOn Status
@@ -54,15 +43,8 @@ ushort pd4Nanotec::CiA402_SwitchOnDisabledCallback(void){
         wStatus++;
         return 5;
 
-    case 4:
-        if((! sdo_received) ||(sdo_error)){
-            if(attempt == 0){
-                return 0;
-            }
-            attempt--;
-            wStatus--;
-            return 100;
-        }
+    default:
+
         return 0;
 
     }
@@ -78,13 +60,11 @@ ushort pd4Nanotec::CiA402_SwitchOnDisabledCallback(void){
  * @return
  */
 ushort pd4Nanotec::CiA402_ReadyToSwitchOnCallback(void){
-    static uchar attempt;
     static ulong ctrlw;
 
     switch(wStatus){
 
     case 0: // Read the Control Word
-        attempt = 10;
         wStatus++;
 
     case 1:
@@ -93,16 +73,7 @@ ushort pd4Nanotec::CiA402_ReadyToSwitchOnCallback(void){
          return 5;
 
     case 2: // Get the control word
-        if((! sdo_received) ||(sdo_error)){
-            if(attempt == 0){
-                return 0;
-            }
-            attempt--;
-            wStatus--;
-            return 100;
-        }
-
-        attempt = 10;
+        if(!sdo_rx_ok) return 0;
         wStatus++;
 
         // To the Ready to SwitchOn Status
@@ -116,20 +87,14 @@ ushort pd4Nanotec::CiA402_ReadyToSwitchOnCallback(void){
         wStatus++;
         return 5;
 
-    case 4:
-        if((! sdo_received) ||(sdo_error)){
-            if(attempt == 0){
-                return 0;
-            }
-            attempt--;
-            wStatus--;
-            return 100;
-        }
+    default:
+
         return 0;
 
     }
 
     return 0;
+
 }
 
 
@@ -141,7 +106,6 @@ ushort pd4Nanotec::initCallback(void){
     static bool changed = false;
     static bool success = false;
     ushort delay;
-    static uchar attempt;
     static uchar store_attempt;
 
     switch(wStatus){
@@ -153,6 +117,12 @@ ushort pd4Nanotec::initCallback(void){
 
       case 1:
 
+        if(initVector == nullptr){
+            qDebug() << "INIT DEVICE (" << deviceId << "): COMPLETED";
+            deviceInitialized=true;
+            return 0;
+        }
+
         delay = subRoutineUploadVector(initVector, &changed, &success);
         if(delay) return delay;
 
@@ -162,12 +132,6 @@ ushort pd4Nanotec::initCallback(void){
         }
 
         if(!changed){
-            qDebug() << "INIT DEVICE (" << deviceId << "): COMPLETED";
-            deviceInitialized=true;
-            return 0;
-        }
-
-        if(initVector == nullptr){
             qDebug() << "INIT DEVICE (" << deviceId << "): COMPLETED";
             deviceInitialized=true;
             return 0;
@@ -186,8 +150,8 @@ ushort pd4Nanotec::initCallback(void){
 
         // Stores the parameters
         writeSDO(OD_1010_01, OD_SAVE_CODE);
+        sdo_rx_tx_pending = false;
         wStatus++;
-        attempt = 10;
         return 1000;
 
     case 3:
@@ -196,15 +160,11 @@ ushort pd4Nanotec::initCallback(void){
         return 5;
 
     case 4:
-        if((!sdo_received) ||(sdo_error)){
-            if(attempt == 0) {
-                qDebug() << QString("DEVICE (%1): FAILED DATA STORING, ERROR READING OD %2.%3").arg(deviceId).arg(txSDO.getIndex(),1,16).arg(txSDO.getSubIndex());
-                return 0;
-            }
-            attempt--;
-            wStatus--;
-            return 100;
+        if(!sdo_rx_ok){
+            qDebug() << QString("DEVICE (%1): FAILED DATA STORING, ERROR READING OD %2.%3").arg(deviceId).arg(txSDO.getIndex(),1,16).arg(txSDO.getSubIndex());
+            return 0;
         }
+
 
         if(rxSDO.getVal() != 1){
             wStatus = 2;
@@ -223,16 +183,14 @@ ushort pd4Nanotec::initCallback(void){
     return 0;
 }
 
-ushort trxModule::faultCallback(void){
+ushort pd4Nanotec::CiA402_FaultCallback(void){
     static ulong err_class = 0;
     static ulong err_code = 0;
     static ulong ctrlw;
-    static uchar attempt;
     ulong uval;
 
     switch(wStatus){
     case 0:
-        attempt =10;
         wStatus++;
 
     case 1:
@@ -242,17 +200,8 @@ ushort trxModule::faultCallback(void){
         return 5;
 
     case 2:
-        if((! sdo_received) ||(sdo_error)){
-            if(attempt == 0){
-                return 0;
-            }
-            attempt--;
-            wStatus--;
-            return 100;
-        }
-
+        if(!sdo_rx_ok) return 0;
         uval = rxSDO.getVal();
-        attempt =10;
         if(uval == 0){
             err_class = 0;
             err_code = 0;
@@ -274,15 +223,7 @@ ushort trxModule::faultCallback(void){
         return 5;
 
     case 4:
-        if((! sdo_received) ||(sdo_error)){
-            if(attempt == 0){
-                return 0;
-            }
-            attempt--;
-            wStatus--;
-            return 100;
-        }
-        attempt =10;
+        if(!sdo_rx_ok) return 0;
         uval = rxSDO.getVal();
         if(uval != err_code) qDebug() << "DEVICE (" << deviceId << ") ERROR CODE:" << getErrorCode1003(uval);
         err_code = uval;
@@ -299,15 +240,7 @@ ushort trxModule::faultCallback(void){
         return 5;
 
    case 101:
-        if((! sdo_received) ||(sdo_error)){
-            if(attempt == 0){
-                return 0;
-            }
-            attempt--;
-            wStatus--;
-            return 100;
-        }
-        attempt =10;
+        if(!sdo_rx_ok) return 0;
         wStatus++;
         ctrlw = rxSDO.getVal();
         ctrlw |= 0x80;
@@ -319,17 +252,9 @@ ushort trxModule::faultCallback(void){
         return 5;
 
     case 103:
-        if((! sdo_received) ||(sdo_error)){
-            if(attempt == 0){
-                return 0;
-            }
-            attempt--;
-            wStatus--;
-            return 100;
-        }
+        if(!sdo_rx_ok) return 0;
         wStatus++;
         ctrlw &=~ 0x80;
-        attempt =10;
         return 1;
 
     case 104:
@@ -338,18 +263,11 @@ ushort trxModule::faultCallback(void){
         return 5;
 
     case 105:
-        if((! sdo_received) ||(sdo_error)){
-            if(attempt == 0){
-                return 0;
-            }
-            attempt--;
-            wStatus--;
-            return 100;
-        }
-
         return 0;
 
     }
+
+    return 0;
 }
 
 
@@ -362,13 +280,11 @@ ushort pd4Nanotec::idleCallback(void){
 ushort pd4Nanotec::CiA402_OperationEnabledCallback(void){
     ulong val;
     ushort delay;
-    static uchar attempt;
 
     switch(wStatus){
 
 
-    case 250: // Read the Control Word
-        attempt = 10;
+    case 250: // Read the Control Word 
         wStatus++;
 
     case 251:
@@ -377,19 +293,11 @@ ushort pd4Nanotec::CiA402_OperationEnabledCallback(void){
         return 5;
 
     case 252: // Get the control word
-        if((! sdo_received) ||(sdo_error)){
-            if(attempt == 0){
-                execCommand = _NO_COMMAND;
-                qDebug() << "DEVICE (" << deviceId << "): COMMAND FAILED";
-                return 0;
-                return 0;
-            }
-            attempt--;
-            wStatus--;
-            return 100;
+        if(!sdo_rx_ok) {
+            execCommand = _NO_COMMAND;
+            qDebug() << "DEVICE (" << deviceId << "): COMMAND FAILED";
+            return 0;
         }
-
-        attempt = 10;
         wStatus++;
 
         // To the SwitchOn Status
@@ -404,19 +312,11 @@ ushort pd4Nanotec::CiA402_OperationEnabledCallback(void){
         return 5;
 
     case 254:
-        if((! sdo_received) ||(sdo_error)){
-            if(attempt == 0){
-                execCommand = _NO_COMMAND;
-                qDebug() << "DEVICE (" << deviceId << "): COMMAND FAILED";
-                return 0;
-                return 0;
-            }
-            attempt--;
-            wStatus--;
-            return 100;
+        if(!sdo_rx_ok) {
+            execCommand = _NO_COMMAND;
+            qDebug() << "DEVICE (" << deviceId << "): COMMAND FAILED";
+            return 0;
         }
-
-        attempt = 10;
 
         execCommand = _NO_COMMAND;
         qDebug() << "DEVICE (" << deviceId << "): COMMAND COMPLETED";

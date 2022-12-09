@@ -15,43 +15,35 @@ pd4Nanotec::pd4Nanotec(uchar ID)
     zeroSettingVector = nullptr;
     positionSettingVector = nullptr;
 
+    sdo_rx_tx_pending = false;
+    sdo_rx_ok = true;
+    sdo_rxtx_completed = true;
+
     execCommand = _NO_COMMAND;
     CiAcurrentStatus = CiA402_Undefined;
     zero_setting_ok = false;
 
-    tmo_timer = 0;
 }
 pd4Nanotec::~pd4Nanotec()
 {
 
 }
 
-void pd4Nanotec::timerEvent(QTimerEvent* ev)
-{
-    // Timer for the Send/Receive
-    if(ev->timerId() == tmo_timer)
-    {
-        sdo_timeout = true;
-        killTimer((tmo_timer));
-        tmo_timer = 0;
-        return;
-    }
 
-
-}
 
 /**
  * @brief This function inits the canOpne activities
  */
 void pd4Nanotec::run(void){
     check_status = true;
-    sdo_received = false;
-    sdo_error = false;
-    sdo_timeout = true; // Force the initial read
+
+    sdo_rx_tx_pending = false;
+    sdo_rx_ok = true;
+    sdo_rxtx_completed = true;
 
     wStatus = 0;
     wSubStatus = 0;
-    workflow = _DEVICE_INIT;
+    workflow = _GET_CIA_STATUS;
 
     QTimer::singleShot(0,this, SLOT(statusHandler()));
 }
@@ -60,27 +52,25 @@ void pd4Nanotec::run(void){
 void pd4Nanotec::rxFromCan(ushort devId, QByteArray data){
 
     if((devId & 0xFF) != deviceId) return; // Invalid ID
-    sdo_received = true;
-    if(tmo_timer) killTimer(tmo_timer);
-    tmo_timer = 0;
+
+    sdo_rxtx_completed = true;
 
     // Update the status handler
     rxSDO.set(&data);
     if(txSDO.getIndex() != rxSDO.getIndex()){
-        sdo_error = true;
         return;
     }
     if(txSDO.getSubIndex() != rxSDO.getSubIndex()) {
-        sdo_error = true;
         return;
     }
 
     // The SDO has been successfully received
     if(rxSDO.isError()){
         qDebug() << rxSDO.printError();
-        sdo_error = true;
+        return;
     }
 
+    sdo_rx_ok = true;
     return;
 }
 
@@ -91,14 +81,10 @@ void pd4Nanotec::writeSDO(ushort index, uchar sub, canOpenDictionary::_ODDataTyp
     T1START;
     emit txToCan(0x600 + deviceId, txSDO.get());
 
-    // Timeout after 10ms
-    if(tmo_timer) killTimer(tmo_timer);
-    tmo_timer = startTimer(10);
-
     // Activate the timeout handler, in case no answer should be received
-    sdo_received = false;
-    sdo_timeout = false;
-    sdo_error = false;
+    sdo_rx_ok = false;
+    sdo_rxtx_completed = false;
+    sdo_rx_tx_pending = true;
 }
 
 void pd4Nanotec::readSDO(ushort index, uchar sub, uchar type){
@@ -108,37 +94,71 @@ void pd4Nanotec::readSDO(ushort index, uchar sub, uchar type){
     T1START;
     emit txToCan(0x600 + deviceId, txSDO.get());
 
-    // Timeout after 10ms
-    if(tmo_timer) killTimer(tmo_timer);
-    tmo_timer = startTimer(10);
-
     // Activate the timeout handler, in case no answer should be received
-    sdo_received = false;
-    sdo_timeout = false;
-    sdo_error = false;
+    sdo_rx_ok = false;
+    sdo_rxtx_completed = false;
+    sdo_rx_tx_pending = true;
+
 }
 
+void pd4Nanotec::sendAgainSDO(void){
+    rxSDO.clear();
 
+    T1START;
+    emit txToCan(0x600 + deviceId, txSDO.get());
+
+    // Activate the timeout handler, in case no answer should be received
+    sdo_rx_ok = false;
+    sdo_rxtx_completed = false;
+    sdo_rx_tx_pending = true;
+
+}
 
 void pd4Nanotec::statusHandler(void){
     ushort delay;
-    static uchar attempt;
 
     // Wait for the CANCLIENT READY CONDITION
     if(!CANCLIENT->isCanReady()){
         wStatus = 0;
         wSubStatus = 0;
-        workflow = _DEVICE_INIT;
+        sdo_rx_tx_pending = false;
+        workflow = _GET_CIA_STATUS;
+        deviceInitialized = false;
         CiAcurrentStatus = CiA402_Undefined;
         QTimer::singleShot(100,this, SLOT(statusHandler()));
         return;
     }
 
-    // Waiting of the tx/rx completion process
-    if((!sdo_received) && (!sdo_timeout)){
-        QTimer::singleShot(1,this, SLOT(statusHandler()));
-        return;
+    // Wait any transaction completion
+    if(sdo_rx_tx_pending){
+        if(!sdo_rxtx_completed){
+            if(tmo_attempt){
+                tmo_attempt--;
+                QTimer::singleShot(1,this, SLOT(statusHandler()));
+                return;
+            }
+            sdo_rx_ok = false;
+            sdo_rxtx_completed = true;
+        }
+        tmo_attempt = 100; // ms of waiting the reception
+
+        // In case of unsuccess try again for a maximum time
+        if((!sdo_rx_ok) && (sdo_attempt)){
+             sdo_attempt--;
+             sendAgainSDO();
+             QTimer::singleShot(100,this, SLOT(statusHandler()));
+             return;
+        }
+
+    }else{
+        sdo_rx_ok = true;
+        sdo_rxtx_completed = true;
     }
+
+    sdo_rx_tx_pending = false;
+    sdo_attempt = 10;
+    tmo_attempt = 100;
+
 
     switch(workflow){
     case _DEVICE_INIT: // Device Initialization procedures
@@ -152,11 +172,6 @@ void pd4Nanotec::statusHandler(void){
             workflow = _GET_CIA_STATUS;
             wStatus = 0;
             wSubStatus = 0;
-            sdo_received = false;
-            sdo_error = false;
-            sdo_timeout = true;
-            if(tmo_timer) killTimer(tmo_timer);
-            tmo_timer = 0;
             delay=100;
         }
 
@@ -166,25 +181,16 @@ void pd4Nanotec::statusHandler(void){
     case _GET_CIA_STATUS:
         switch(wStatus){
         case 0:
-            attempt = 10;
-            wStatus++;
-        case 1:
             readSDO(OD_6041_00); // Read the status
             wStatus++;
             QTimer::singleShot(5,this, SLOT(statusHandler()));
             return;
-        case 2:
-            if((!sdo_received) ||(sdo_error)){
+        case 1:
+            if(!sdo_rx_ok){
                 wStatus--;
-                if(attempt == 0) {
-                    attempt = 10;
-                    qDebug() << "DEVICE (" << deviceId << ") NOT RESPONDING";
-                    deviceInitialized = false;
-                    QTimer::singleShot(2000,this, SLOT(statusHandler()));
-                    return ;
-                }
-                attempt--;
-                QTimer::singleShot(100,this, SLOT(statusHandler()));
+                qDebug() << "DEVICE (" << deviceId << ") NOT RESPONDING";
+                deviceInitialized = false;
+                QTimer::singleShot(2000,this, SLOT(statusHandler()));
                 return ;
             }
 
@@ -204,12 +210,7 @@ void pd4Nanotec::statusHandler(void){
         return;
 
     case _HANDLE_DEVICE_STATUS:
-        // In case the initialization has not present, it is activated
-        if(!deviceInitialized){
-            workflow = _DEVICE_INIT;
-            QTimer::singleShot(1,this, SLOT(statusHandler()));
-            return;
-        }
+
 
         switch(CiAcurrentStatus){
 
@@ -225,11 +226,17 @@ void pd4Nanotec::statusHandler(void){
             delay = CiA402_SwitchOnDisabledCallback();
             break;
         case CiA402_ReadyToSwitchOn:
+            // In case the initialization has not present, it is activated
+            if(!deviceInitialized){
+                workflow = _DEVICE_INIT;
+                QTimer::singleShot(1,this, SLOT(statusHandler()));
+                return;
+            }
             delay = CiA402_ReadyToSwitchOnCallback();
             break;
         case CiA402_SwitchedOn: delay = idleCallback(); break;
         case CiA402_OperationEnabled: delay = CiA402_OperationEnabledCallback(); break;
-        case CiA402_Fault:delay = faultCallback(); break;
+        case CiA402_Fault:delay = CiA402_FaultCallback(); break;
 
         default:
             delay = 0;
@@ -239,11 +246,6 @@ void pd4Nanotec::statusHandler(void){
             workflow = _GET_CIA_STATUS;
             wStatus = 0;
             wSubStatus = 0;
-            sdo_received = false;
-            sdo_error = false;
-            sdo_timeout = true;
-            if(tmo_timer) killTimer(tmo_timer);
-            tmo_timer = 0;
             delay=100;
         }
 
@@ -303,7 +305,6 @@ QString pd4Nanotec::getErrorCode1003(ulong val){
 
 ushort pd4Nanotec::subRoutineUploadVector(_OD_InitVector* pVector, bool* changed, bool* uploadOk){
     static ushort i;
-    static uchar attempt;
 
     switch(wSubStatus){
     case 0:
@@ -315,7 +316,6 @@ ushort pd4Nanotec::subRoutineUploadVector(_OD_InitVector* pVector, bool* changed
 
         i=0;
         wSubStatus++;
-        attempt = 10;
         return 1;
 
     case 1:
@@ -324,16 +324,12 @@ ushort pd4Nanotec::subRoutineUploadVector(_OD_InitVector* pVector, bool* changed
         return 5;
 
     case 2:
-        if((!sdo_received) ||(sdo_error)){
-            if(attempt == 0) {
-                if(uploadOk) *uploadOk = false;
-                qDebug() << QString("DEVICE (%1): ERROR READING OD %2.%3").arg(deviceId).arg(pVector[i].index,1,16).arg(pVector[i].subidx);
-                return 0;
-            }
-            attempt--;
-            wSubStatus--;
-            return 100;
+        if(!sdo_rx_ok){
+            if(uploadOk) *uploadOk = false;
+            qDebug() << QString("DEVICE (%1): ERROR READING OD %2.%3").arg(deviceId).arg(pVector[i].index,1,16).arg(pVector[i].subidx);
+            return 0;
         }
+
 
         if(rxSDO.getVal() == rxSDO.formatVal(initVector[i].val)){
             wSubStatus = 5;
@@ -342,7 +338,6 @@ ushort pd4Nanotec::subRoutineUploadVector(_OD_InitVector* pVector, bool* changed
 
         if(changed) *changed = true;
         wSubStatus++;
-        attempt = 10;
         return 1;
 
     case 3:
@@ -351,15 +346,10 @@ ushort pd4Nanotec::subRoutineUploadVector(_OD_InitVector* pVector, bool* changed
         return 5;
 
     case 4:
-        if((!sdo_received) ||(sdo_error)){
-            if(attempt == 0) {
-                if(uploadOk) *uploadOk = false;
-                qDebug() << QString("DEVICE (%1): ERROR WRITING OD %2.%3").arg(deviceId).arg(pVector[i].index,1,16).arg(pVector[i].subidx);
-                return 0;
-            }
-            attempt--;
-            wSubStatus--;
-            return 100;
+        if(!sdo_rx_ok){
+            if(uploadOk) *uploadOk = false;
+            qDebug() << QString("DEVICE (%1): ERROR WRITING OD %2.%3").arg(deviceId).arg(pVector[i].index,1,16).arg(pVector[i].subidx);
+            return 0;
         }
 
         wSubStatus++;
@@ -371,7 +361,7 @@ ushort pd4Nanotec::subRoutineUploadVector(_OD_InitVector* pVector, bool* changed
             if(uploadOk) *uploadOk = true;
             return 0;
         }
-        attempt = 10;
+
         wSubStatus = 1;
         return 1;
 

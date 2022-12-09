@@ -115,12 +115,6 @@ public slots:
 
     virtual ushort idleCallback(void); //!< Idle status (CiA_SwitchedOn status)
     virtual ushort runCallback(void){return 0;}  //!< Motor activation control callback (CiA_OperationEnabled)
-    virtual ushort faultCallback(void){return 0;}//!< Motor Fault callback
-
-
-    void timerEvent(QTimerEvent* ev);
-
-
 
 
 protected:
@@ -132,9 +126,6 @@ protected:
     ushort wStatus; //!> Callback status index
     ushort wSubStatus; //!> SubRoutine status index
 
-    bool sdo_received;  //! The SDO has been received
-    bool sdo_error;     //! The SDO has been received in a wrong format or error code
-    bool sdo_timeout;   //!< Flag activated in case of timeout
 
     void writeSDO(ushort index, uchar sub, canOpenDictionary::_ODDataType type, ulong val);
     void readSDO(ushort index, uchar sub, uchar type);
@@ -157,18 +148,26 @@ private:
     bool zero_setting_ok;//!< Flag of the zero setting completed
     bool positioning_ok; //!< Flag of correct positioning
 
-    int tmo_timer;
     bool check_status;
     _workflowType workflow;
     _CiA402Status CiAcurrentStatus;
 
     ushort subRoutineUploadVector(_OD_InitVector* pVector, bool* changed, bool* uploadOk);
+    void sendAgainSDO(void);
+
+    bool sdo_rx_tx_pending;     //! The Workflow is waiting for a rxtx transaction completion
+    bool sdo_rxtx_completed;    //! The SDO transaction  has been completed (successfuffly or with error)
+    bool sdo_rx_ok;             //! The SDO has been received in a correct format
+    uchar sdo_attempt;          //!< Current Rx/Tx attempt number
+    uchar tmo_attempt;          //!< Number of attempts without reception
 
 private slots:
 
     ushort CiA402_SwitchOnDisabledCallback(void);
     ushort CiA402_ReadyToSwitchOnCallback(void);
     ushort CiA402_OperationEnabledCallback(void);
+    ushort CiA402_FaultCallback(void); //!< Motor Fault callback
+
 
 
     ushort initPd4ZeroSettingCommand(void);//!< Motor Zero Setting Initialization Procedure

@@ -178,11 +178,15 @@ static  pd4Nanotec::_OD_InitVector trx_positioning_vector[]={
 
 trxModule::trxModule(void):pd4Nanotec(Application::TRX_ID)
 {
-    this->initVector = (_OD_InitVector*) trxvector;
-    this->zeroSettingVector = (_OD_InitVector*) trx_zero_vector;
-    this->positionSettingVector = trx_positioning_vector;
-    this->gearratio = RIDUZIONE;
-    this->speed_denominator = SPEED_DENOMINATOR;
+    this->initVector = (_OD_InitVector*) trxvector; // Initialize the device with the Main OD vector
+    this->zeroSettingVector = (_OD_InitVector*) trx_zero_vector; // Initialize the device with the zero setting vector
+    this->positionSettingVector = trx_positioning_vector; // Initialize the device with the positioning setting vector
+    this->gearratio = RIDUZIONE; // Sets the current Gear reduction
+    this->speed_denominator = SPEED_DENOMINATOR; // Sets the current Speed denominator
+
+
+    setSafetyDigitalInput(0,0); // Set the internal Safety Input handling
+
 
 }
 

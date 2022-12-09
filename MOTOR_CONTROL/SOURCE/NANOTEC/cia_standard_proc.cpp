@@ -29,7 +29,7 @@ ushort pd4Nanotec::CiA402_SwitchOnDisabledCallback(void){
          return 5;
 
     case 2: // Get the control word
-        if(!sdo_rx_ok) return 0;
+        if(!sdoRxTx.sdo_rx_ok) return 0;
         wStatus++;
 
         // To the Ready to SwitchOn Status
@@ -73,7 +73,7 @@ ushort pd4Nanotec::CiA402_ReadyToSwitchOnCallback(void){
          return 5;
 
     case 2: // Get the control word
-        if(!sdo_rx_ok) return 0;
+        if(!sdoRxTx.sdo_rx_ok) return 0;
         wStatus++;
 
         // To the Ready to SwitchOn Status
@@ -150,7 +150,7 @@ ushort pd4Nanotec::initCallback(void){
 
         // Stores the parameters
         writeSDO(OD_1010_01, OD_SAVE_CODE);
-        sdo_rx_tx_pending = false;
+        sdoRxTx.sdo_rx_tx_pending = false;
         wStatus++;
         return 1000;
 
@@ -160,7 +160,7 @@ ushort pd4Nanotec::initCallback(void){
         return 5;
 
     case 4:
-        if(!sdo_rx_ok){
+        if(!sdoRxTx.sdo_rx_ok){
             qDebug() << QString("DEVICE (%1): FAILED DATA STORING, ERROR READING OD %2.%3").arg(deviceId).arg(txSDO.getIndex(),1,16).arg(txSDO.getSubIndex());
             return 0;
         }
@@ -200,7 +200,7 @@ ushort pd4Nanotec::CiA402_FaultCallback(void){
         return 5;
 
     case 2:
-        if(!sdo_rx_ok) return 0;
+        if(!sdoRxTx.sdo_rx_ok) return 0;
         uval = rxSDO.getVal();
         if(uval == 0){
             err_class = 0;
@@ -223,7 +223,7 @@ ushort pd4Nanotec::CiA402_FaultCallback(void){
         return 5;
 
     case 4:
-        if(!sdo_rx_ok) return 0;
+        if(!sdoRxTx.sdo_rx_ok) return 0;
         uval = rxSDO.getVal();
         if(uval != err_code) qDebug() << "DEVICE (" << deviceId << ") ERROR CODE:" << getErrorCode1003(uval);
         err_code = uval;
@@ -240,7 +240,7 @@ ushort pd4Nanotec::CiA402_FaultCallback(void){
         return 5;
 
    case 101:
-        if(!sdo_rx_ok) return 0;
+        if(!sdoRxTx.sdo_rx_ok) return 0;
         wStatus++;
         ctrlw = rxSDO.getVal();
         ctrlw |= 0x80;
@@ -252,7 +252,7 @@ ushort pd4Nanotec::CiA402_FaultCallback(void){
         return 5;
 
     case 103:
-        if(!sdo_rx_ok) return 0;
+        if(!sdoRxTx.sdo_rx_ok) return 0;
         wStatus++;
         ctrlw &=~ 0x80;
         return 1;
@@ -293,7 +293,7 @@ ushort pd4Nanotec::CiA402_OperationEnabledCallback(void){
         return 5;
 
     case 252: // Get the control word
-        if(!sdo_rx_ok) {
+        if(!sdoRxTx.sdo_rx_ok) {
             execCommand = _NO_COMMAND;
             qDebug() << "DEVICE (" << deviceId << "): COMMAND FAILED";
             return 0;
@@ -312,7 +312,7 @@ ushort pd4Nanotec::CiA402_OperationEnabledCallback(void){
         return 5;
 
     case 254:
-        if(!sdo_rx_ok) {
+        if(!sdoRxTx.sdo_rx_ok) {
             execCommand = _NO_COMMAND;
             qDebug() << "DEVICE (" << deviceId << "): COMMAND FAILED";
             return 0;

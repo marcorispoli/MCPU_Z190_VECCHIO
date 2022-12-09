@@ -39,7 +39,7 @@ public slots:
     void onZeroSettingButton(void);
     void onPositionA(void);
     void onPositionB(void);
-
+    void onStopCommand(void);
 
     void onLogClearButton(void);
 

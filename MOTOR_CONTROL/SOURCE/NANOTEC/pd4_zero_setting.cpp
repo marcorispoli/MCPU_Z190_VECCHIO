@@ -5,7 +5,9 @@
 bool pd4Nanotec::activateZeroSetting(void){
     if( execCommand != _NO_COMMAND) return false;
     if(CiAcurrentStatus != CiA402_SwitchedOn) return false;
+    if(isSafetyDigitalInputOn()) return false;
 
+    safety.stop_command = false;
     execCommand = _ZERO_SETTING_COMMAND;
     return true;
 
@@ -47,7 +49,7 @@ ushort pd4Nanotec::initPd4ZeroSettingCommand(void){
         return 5;
 
     case 3:
-        if(!sdo_rx_ok) {
+        if(!sdoRxTx.sdo_rx_ok) {
             qDebug() << QString("DEVICE (%1): ERROR WRITING OD %2.%3").arg(deviceId).arg(txSDO.getIndex(),1,16).arg(txSDO.getSubIndex());
             wStatus = 200;
             return 1;
@@ -62,7 +64,7 @@ ushort pd4Nanotec::initPd4ZeroSettingCommand(void){
         return 5;
 
     case 5: // Get the control word
-        if(!sdo_rx_ok) {
+        if(!sdoRxTx.sdo_rx_ok) {
             qDebug() << QString("DEVICE (%1): ERROR READING OD %2.%3").arg(deviceId).arg(txSDO.getIndex(),1,16).arg(txSDO.getSubIndex());
             wStatus = 200;
             return 1;
@@ -82,7 +84,7 @@ ushort pd4Nanotec::initPd4ZeroSettingCommand(void){
         return 5;
 
     case 7:
-        if(!sdo_rx_ok) {
+        if(!sdoRxTx.sdo_rx_ok) {
             qDebug() << QString("DEVICE (%1): ERROR WRITING OD %2.%3").arg(deviceId).arg(txSDO.getIndex(),1,16).arg(txSDO.getSubIndex());
             wStatus = 200;
             return 1;
@@ -105,7 +107,7 @@ ushort pd4Nanotec::initPd4ZeroSettingCommand(void){
         return 5;
 
     case 9:
-        if(!sdo_rx_ok) {
+        if(!sdoRxTx.sdo_rx_ok) {
             qDebug() << QString("DEVICE (%1): ERROR WRITING OD %2.%3").arg(deviceId).arg(txSDO.getIndex(),1,16).arg(txSDO.getSubIndex());
             wStatus = 200;
             return 1;
@@ -129,6 +131,11 @@ ushort pd4Nanotec::pd4ZeroSettingLoop(){
     bool error;
     bool completed;
 
+    if(safety.stop_command){
+        qDebug() << QString("DEVICE (%1): ERROR STOP COMMAND RECEIVED").arg(deviceId);
+        return 0;
+    }
+
     switch(wStatus){
         case 0:
             qDebug() << QString("DEVICE (%1): ZERO SETTING STARTED").arg(deviceId);
@@ -142,7 +149,7 @@ ushort pd4Nanotec::pd4ZeroSettingLoop(){
             return 5;
 
         case 2: // Get the control word
-            if(!sdo_rx_ok) {
+            if(!sdoRxTx.sdo_rx_ok) {
                 qDebug() << QString("DEVICE (%1): ERROR READING OD %2.%3").arg(deviceId).arg(txSDO.getIndex(),1,16).arg(txSDO.getSubIndex());
                 return 0;
             }
@@ -159,28 +166,47 @@ ushort pd4Nanotec::pd4ZeroSettingLoop(){
             return 5;
 
         case 4:
-            if(!sdo_rx_ok) {
+            if(!sdoRxTx.sdo_rx_ok) {
                 qDebug() << QString("DEVICE (%1): ERROR WRITING OD %2.%3").arg(deviceId).arg(txSDO.getIndex(),1,16).arg(txSDO.getSubIndex());
                 return 0;
             }
-
             wStatus++;
             return 1;
 
-        case 5:// Read the Status Word to detect the command completion
-            readSDO(OD_6041_00);
+        case 5:
+            readSDO(OD_3240_05);
             wStatus++;
             return 5;
 
         case 6:
-            if(!sdo_rx_ok) {
+            if(!sdoRxTx.sdo_rx_ok) {
+                qDebug() << QString("DEVICE (%1): ERROR READING OD %2.%3").arg(deviceId).arg(txSDO.getIndex(),1,16).arg(txSDO.getSubIndex());
+                return 0;
+            }
+
+            digital_input_val = (uchar) rxSDO.getVal();
+
+            if(isSafetyDigitalInputOn()){
+                qDebug() << QString("DEVICE (%1): ERROR SAFETY DIGITAL INPUTS").arg(deviceId);
+                return 0;
+            }
+            wStatus++;
+            return 1;
+
+        case 7:// Read the Status Word to detect the command completion
+            readSDO(OD_6041_00);
+            wStatus++;
+            return 5;
+
+        case 8:
+            if(!sdoRxTx.sdo_rx_ok) {
                 qDebug() << QString("DEVICE (%1): ERROR READING OD %2.%3").arg(deviceId).arg(txSDO.getIndex(),1,16).arg(txSDO.getSubIndex());
                 return 0;
             }
 
 
             // Repeats the status read until the following conditions are met.
-            wStatus--;
+            wStatus = 5;
 
             // Check the status register content
             val = rxSDO.getVal();

@@ -5,8 +5,11 @@
 bool pd4Nanotec::activatePositioning(int cAngle){
     if( execCommand != _NO_COMMAND) return false;
     if(CiAcurrentStatus != CiA402_SwitchedOn) return false;
+    if(isSafetyDigitalInputOn()) return false;
     //if(!zero_setting_ok ) return false;
     if(positionSettingVector == nullptr) return false;
+
+    safety.stop_command = false;
 
     int i=0;
     while(positionSettingVector[i].type != 0){
@@ -59,7 +62,7 @@ ushort pd4Nanotec::initPd4PositioningCommand(void){
         return 5;
 
     case 3:
-        if(!sdo_rx_ok) {
+        if(!sdoRxTx.sdo_rx_ok) {
             qDebug() << QString("DEVICE (%1): ERROR WRITING OD %2.%3").arg(deviceId).arg(txSDO.getIndex(),1,16).arg(txSDO.getSubIndex());
             wStatus = 200;
             return 1;
@@ -74,7 +77,7 @@ ushort pd4Nanotec::initPd4PositioningCommand(void){
         return 5;
 
     case 5: // Get the control word
-        if(!sdo_rx_ok) {
+        if(!sdoRxTx.sdo_rx_ok) {
             qDebug() << QString("DEVICE (%1): ERROR READING OD %2.%3").arg(deviceId).arg(txSDO.getIndex(),1,16).arg(txSDO.getSubIndex());
             wStatus = 200;
             return 1;
@@ -93,7 +96,7 @@ ushort pd4Nanotec::initPd4PositioningCommand(void){
         return 5;
 
     case 7:
-        if(!sdo_rx_ok) {
+        if(!sdoRxTx.sdo_rx_ok) {
             qDebug() << QString("DEVICE (%1): ERROR WRITING OD %2.%3").arg(deviceId).arg(txSDO.getIndex(),1,16).arg(txSDO.getSubIndex());
             wStatus = 200;
             return 1;
@@ -116,7 +119,7 @@ ushort pd4Nanotec::initPd4PositioningCommand(void){
         return 5;
 
     case 9:
-        if(!sdo_rx_ok) {
+        if(!sdoRxTx.sdo_rx_ok) {
             qDebug() << QString("DEVICE (%1): ERROR WRITING OD %2.%3").arg(deviceId).arg(txSDO.getIndex(),1,16).arg(txSDO.getSubIndex());
             wStatus = 200;
             return 1;
@@ -136,7 +139,12 @@ ushort pd4Nanotec::initPd4PositioningCommand(void){
 ushort pd4Nanotec::pd4PositioningLoop(){
     static ulong ctrlw;
     ulong val;
-    static int encoder;
+
+
+    if(safety.stop_command){
+        qDebug() << QString("DEVICE (%1): ERROR STOP COMMAND RECEIVED").arg(deviceId);
+        return 0;
+    }
 
     switch(wStatus){
         case 0:
@@ -150,7 +158,7 @@ ushort pd4Nanotec::pd4PositioningLoop(){
             return 5;
 
         case 2: // Get the control word
-            if(!sdo_rx_ok) {
+            if(!sdoRxTx.sdo_rx_ok) {
                 qDebug() << QString("DEVICE (%1): ERROR READING OD %2.%3").arg(deviceId).arg(txSDO.getIndex(),1,16).arg(txSDO.getSubIndex());
                 return 0;
             }
@@ -167,7 +175,7 @@ ushort pd4Nanotec::pd4PositioningLoop(){
             return 5;
 
         case 4:
-            if(!sdo_rx_ok) {
+            if(!sdoRxTx.sdo_rx_ok) {
                 qDebug() << QString("DEVICE (%1): ERROR WRITING OD %2.%3").arg(deviceId).arg(txSDO.getIndex(),1,16).arg(txSDO.getSubIndex());
                 return 0;
             }
@@ -175,30 +183,50 @@ ushort pd4Nanotec::pd4PositioningLoop(){
             wStatus++;
             return 1;
 
-        case 5: // Read the Encoder position
-            readSDO(OD_6064_00);
+        case 5:
+            readSDO(OD_3240_05); // Reads the digital inputs
             wStatus++;
             return 5;
 
         case 6:
-            if(!sdo_rx_ok) {
+            if(!sdoRxTx.sdo_rx_ok) {
+                qDebug() << QString("DEVICE (%1): ERROR READING OD %2.%3").arg(deviceId).arg(txSDO.getIndex(),1,16).arg(txSDO.getSubIndex());
+                return 0;
+            }
+
+            digital_input_val = (uchar) rxSDO.getVal();
+
+            if(isSafetyDigitalInputOn()){
+                qDebug() << QString("DEVICE (%1): ERROR SAFETY DIGITAL INPUTS").arg(deviceId);
+                return 0;
+            }
+            wStatus++;
+            return 1;
+
+        case 7: // Read the Encoder position
+            readSDO(OD_6064_00);
+            wStatus++;
+            return 5;
+
+        case 8:
+            if(!sdoRxTx.sdo_rx_ok) {
                 qDebug() << QString("DEVICE (%1): ERROR READING OD %2.%3").arg(deviceId).arg(txSDO.getIndex(),1,16).arg(txSDO.getSubIndex());
                 return 0;
             }
 
             qDebug() << (long) rxSDO.getVal() << _POS_TO_cGRAD((int) rxSDO.getVal());
-            encoder = _POS_TO_cGRAD((int) rxSDO.getVal());
+            //encoder = _POS_TO_cGRAD((int) rxSDO.getVal());
 
             wStatus++;
             return 1;
 
-        case 7:// Read the Status Word to detect the command completion
+        case 9:// Read the Status Word to detect the command completion
             readSDO(OD_6041_00);
             wStatus++;
             return 5;
 
-        case 8:
-            if(!sdo_rx_ok) {
+        case 10:
+            if(!sdoRxTx.sdo_rx_ok) {
                 qDebug() << QString("DEVICE (%1): ERROR READING OD %2.%3").arg(deviceId).arg(txSDO.getIndex(),1,16).arg(txSDO.getSubIndex());
                 return 0;
             }

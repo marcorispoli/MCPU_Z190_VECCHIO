@@ -18,6 +18,7 @@ debugWindow::debugWindow(QWidget *parent)
     connect(ui->zeroSettingButton, SIGNAL(pressed()), this, SLOT(onZeroSettingButton()), Qt::UniqueConnection);
     connect(ui->positionA, SIGNAL(pressed()), this, SLOT(onPositionA()), Qt::UniqueConnection);
     connect(ui->positionB, SIGNAL(pressed()), this, SLOT(onPositionB()), Qt::UniqueConnection);
+    connect(ui->stopCommand, SIGNAL(pressed()), this, SLOT(onStopCommand()), Qt::UniqueConnection);
 
     connect(CANCLIENT,SIGNAL(canReady(bool)), this, SLOT(onCanReady(bool)));
     pollingTimer  = startTimer(500);
@@ -106,6 +107,9 @@ void debugWindow::onPositionA(void){
 void debugWindow::onPositionB(void){
   if(!TRX->activatePositioning(-2500)) qDebug() << "WINDOW: POSITIONING NOT ACTIVATED!";
 
+}
+void debugWindow::onStopCommand(void){
+  TRX->immediateStop();
 }
 
 

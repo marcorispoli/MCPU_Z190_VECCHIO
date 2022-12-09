@@ -34,6 +34,7 @@ public:
       ulong val;
     }_OD_InitVector;
 
+
     typedef enum{
         CiA402_NotReadyToSwitchOn = 0,
         CiA402_SwitchOnDisabled,
@@ -89,10 +90,22 @@ public:
     QString getErrorCode1003(ulong val);
     QString getErrorClass1003(ulong val);
     QString getErrorClass1001(ulong val);
+    void setSafetyDigitalInput(uchar mask, uchar val){
+        safety.digital_input_mask = mask;
+        safety.digital_input_val = val;
+    };
 
+    bool isSafetyDigitalInputOn(){
+        if(!digital_input_valid ) return false;
+        if(!safety.digital_input_mask) return false;
+        return ( (digital_input_val & safety.digital_input_mask) == (safety.digital_input_val & safety.digital_input_mask));
+    }
 
     bool activateZeroSetting(void);
     bool activatePositioning(int cAngle);
+    void immediateStop(void){
+        safety.stop_command = true;
+    }
 
     ulong   _cGRADsec_TO_ROT_min(float x){
         return (ulong) (x  * gearratio * speed_denominator / 36000);
@@ -137,29 +150,47 @@ protected:
 
     bool deviceInitialized;
     _OD_InitVector* initVector;
-
     _OD_InitVector* zeroSettingVector;
     _OD_InitVector* positionSettingVector;
 
 
     _executionCommands execCommand;
 private:
+
+    _workflowType workflow; //!< Main workflow routine control word
+    _CiA402Status CiAcurrentStatus; //!< CiA current detected status
+
+    /// This structure handle the variables to control the Send/Receive process
+    typedef struct {
+        bool sdo_rx_tx_pending;     //! The Workflow is waiting for a rxtx transaction completion
+        bool sdo_rxtx_completed;    //! The SDO transaction  has been completed (successfuffly or with error)
+        bool sdo_rx_ok;             //! The SDO has been received in a correct format
+        uchar sdo_attempt;          //!< Current Rx/Tx attempt number
+        uchar tmo_attempt;          //!< Number of attempts without reception
+    }_sdoRxTxControl;
+
+    _sdoRxTxControl sdoRxTx; //!< Data structure controlling the Send and Reception process
+
     bool ready; //!< The Can Driver is ready to receive data
     bool zero_setting_ok;//!< Flag of the zero setting completed
     bool positioning_ok; //!< Flag of correct positioning
 
-    bool check_status;
-    _workflowType workflow;
-    _CiA402Status CiAcurrentStatus;
 
     ushort subRoutineUploadVector(_OD_InitVector* pVector, bool* changed, bool* uploadOk);
     void sendAgainSDO(void);
 
-    bool sdo_rx_tx_pending;     //! The Workflow is waiting for a rxtx transaction completion
-    bool sdo_rxtx_completed;    //! The SDO transaction  has been completed (successfuffly or with error)
-    bool sdo_rx_ok;             //! The SDO has been received in a correct format
-    uchar sdo_attempt;          //!< Current Rx/Tx attempt number
-    uchar tmo_attempt;          //!< Number of attempts without reception
+    bool digital_input_valid; //!< Sets the validity of the current digital input value
+    uchar digital_input_val; //!< status of the motor digital inputs
+
+    typedef struct{
+        uchar digital_input_mask;    //!< Input mask to use digital inputs as safety
+        uchar digital_input_val;     //!< Input statusof digital inputs to activate the safety
+        bool stop_command;          //!< Activate with the immediateStop() interface function to quicly stop the motor
+    }_SafetyStructure;
+
+    // Safety Handling
+    _SafetyStructure safety; //!< Handles the safety of the activation
+
 
 private slots:
 

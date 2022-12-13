@@ -48,8 +48,8 @@
 
 //_______________ User Internal data ____________________________________________________________________________________________________________________
 #define OD_2700_01 0x2700, 0x01 ,canOpenDictionary::WR_1BYTE   // User data control word: SET to 1 to save User content. reset autom. to 0 when finished
-#define OD_2700_02 0x2700, 0x02 ,canOpenDictionary::WR_2BYTE   // USER #0 - RESERVED FOR THE ID CONFIGURATION CODE
-#define OD_2700_03 0x2700, 0x03 ,canOpenDictionary::WR_2BYTE   // USER #1
+#define OD_2700_02 0x2700, 0x02 ,canOpenDictionary::WR_2BYTE   // USER #0 - RESERVED FOR THE NANOJ CONFIGURATION CODE
+#define OD_2700_03 0x2700, 0x03 ,canOpenDictionary::WR_2BYTE   // USER #1 - RESERVED FOR THE CONFIG VECTOR CONFIGURATION CODE
 #define OD_2700_04 0x2700, 0x04 ,canOpenDictionary::WR_2BYTE   // USER #2
 #define OD_2700_05 0x2700, 0x05 ,canOpenDictionary::WR_2BYTE   // USER #3
 #define OD_2700_06 0x2700, 0x06 ,canOpenDictionary::WR_2BYTE   // USER #4
@@ -63,8 +63,10 @@
 #define VMM_INIT 0x11
 #define VMM_WRITE 0x12
 
-#define OD_1F50_02 0x1F50, 0x02 ,CANOPEN_SDO_TX_4BYTE   // VMM FLASH DATA CONTENT:
-#define OD_1F57_02 0x1F57, 0x02 ,CANOPEN_SDO_TX_4BYTE   // VMM FLASH STATUS:
+#define OD_1F50_02  0x1F50, 0x02 ,canOpenDictionary::WR_4BYTE   // VMM FLASH DATA CONTENT:
+#define OD_1F50_02_INIT  0x1F50, 0x02 ,canOpenDictionary::INIT_BLOCK_TRANSFER   // VMM FLASH DATA CONTENT:
+
+#define OD_1F57_02  0x1F57, 0x02 ,canOpenDictionary::WR_4BYTE  // VMM FLASH STATUS:
 #define OD_1029_01  0x1029, 0x01 ,canOpenDictionary::WR_1BYTE // NMT Behavior in case of fault
 #define OD_1029_02  0x1029, 0x02,canOpenDictionary::WR_1BYTE
 #define OD_2031_00  0x2031, 0x00, canOpenDictionary::WR_4BYTE // Maximum Current

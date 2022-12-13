@@ -40,7 +40,8 @@ public slots:
     void onPositionA(void);
     void onPositionB(void);
     void onStopCommand(void);
-
+    void onImmediateStopCommand(void);
+    void onUploadnanoj(void);
     void onLogClearButton(void);
 
 
@@ -56,7 +57,7 @@ private:
    int pollingTimer;
    int polling;
 
-    ulong generalDebugIndex;
+    uint generalDebugIndex;
 
 };
 

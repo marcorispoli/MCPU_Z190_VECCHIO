@@ -31,7 +31,7 @@ public:
       ushort index;
       uchar subidx;
       canOpenDictionary::_ODDataType type;
-      ulong val;
+      uint val;
     }_OD_InitVector;
 
 
@@ -75,6 +75,7 @@ public:
 
     typedef enum{
         _DEVICE_INIT = 0,
+        _UPLOAD_NANOJ,
         _GET_CIA_STATUS,
         _HANDLE_DEVICE_STATUS,
     } _workflowType;
@@ -87,9 +88,9 @@ public:
 
     } _executionCommands;
 
-    QString getErrorCode1003(ulong val);
-    QString getErrorClass1003(ulong val);
-    QString getErrorClass1001(ulong val);
+    QString getErrorCode1003(uint val);
+    QString getErrorClass1003(uint val);
+    QString getErrorClass1001(uint val);
     void setSafetyDigitalInput(uchar mask, uchar val){
         safety.digital_input_mask = mask;
         safety.digital_input_val = val;
@@ -104,11 +105,14 @@ public:
     bool activateZeroSetting(void);
     bool activatePositioning(int cAngle);
     void immediateStop(void){
-        safety.stop_command = true;
+        safety.immediate_stop_command = true;
+    }
+    void quickStop(void){
+        safety.quick_stop_command = true;
     }
 
-    ulong   _cGRADsec_TO_ROT_min(float x){
-        return (ulong) (x  * gearratio * speed_denominator / 36000);
+    uint   _cGRADsec_TO_ROT_min(float x){
+        return (uint) (x  * gearratio * speed_denominator / 36000);
     }
 
     int   _cGRAD_TO_POS(float x){
@@ -119,6 +123,14 @@ public:
         return (int) (x  * 180 / (gearratio * 10));
     }
 
+    _inline void setNanojVector(uchar* p, uint size){
+        nanojStr.vector = p;
+        nanojStr.sizeofNanoj = size;
+    }
+
+    void uploadNanojProgram(void){
+        uploadNanojRequest = true;
+    }
 
 signals:
     void txToCan(ushort canId, QByteArray data); //!< Sends Can data frame to the canDriver
@@ -137,21 +149,27 @@ protected:
     uchar deviceId; //!< Target Can device ID
     clock_t  t1; //!> Time performance measurement variable
     ushort wStatus; //!> Callback status index
-    ushort wSubStatus; //!> SubRoutine status index
+    ushort wSubStatus; //!> Callback Sub Status index
 
 
-    void writeSDO(ushort index, uchar sub, canOpenDictionary::_ODDataType type, ulong val);
+    void writeSDO(ushort index, uchar sub, canOpenDictionary::_ODDataType type, uint val);
+    void nanojWritedata(void);
     void readSDO(ushort index, uchar sub, uchar type);
-
+    void resetNode(void);
 
     canOpenDictionary rxSDO; //!< Received SDO
     canOpenDictionary txSDO; //!< SDO to be transmetted
 
 
     bool deviceInitialized;
+    bool nanojUploaded;
+    bool uploadNanojRequest;
+
+    _OD_InitVector* configVector;
     _OD_InitVector* initVector;
     _OD_InitVector* zeroSettingVector;
     _OD_InitVector* positionSettingVector;
+
 
 
     _executionCommands execCommand;
@@ -161,31 +179,48 @@ private:
     _CiA402Status CiAcurrentStatus; //!< CiA current detected status
 
     /// This structure handle the variables to control the Send/Receive process
-    typedef struct {
+    struct {
         bool sdo_rx_tx_pending;     //! The Workflow is waiting for a rxtx transaction completion
         bool sdo_rxtx_completed;    //! The SDO transaction  has been completed (successfuffly or with error)
         bool sdo_rx_ok;             //! The SDO has been received in a correct format
         uchar sdo_attempt;          //!< Current Rx/Tx attempt number
         uchar tmo_attempt;          //!< Number of attempts without reception
-    }_sdoRxTxControl;
+    }sdoRxTx; //!< Data structure controlling the Send and Reception process
 
-    _sdoRxTxControl sdoRxTx; //!< Data structure controlling the Send and Reception process
+
+    /// Memory Block control
+    struct{
+        bool    rxblock;               //! The next reception is a block type
+        QByteArray txBlock;            //! < Tx data block sent
+        QByteArray rxBlock;            //! < Rx data block sent
+        uint    vector_index;          //! Index of the current data to be written in the nanoj memory
+        uint    num_block_items;       //! Counter of the total item currently in the block (max 1024)
+        uchar*   vector;
+        uint    sizeofNanoj;
+    } nanojStr;
 
     bool ready; //!< The Can Driver is ready to receive data
     bool zero_setting_ok;//!< Flag of the zero setting completed
     bool positioning_ok; //!< Flag of correct positioning
 
 
-    ushort subRoutineUploadVector(_OD_InitVector* pVector, bool* changed, bool* uploadOk);
-    void sendAgainSDO(void);
+    ushort  subRoutineUploadVector(_OD_InitVector* pVector, bool* changed, bool* uploadOk);
+    ushort  subReadDigitalInputs(void);
+    ushort  subReadPositionEncoder(void);
+    ushort  subActivateQuickStopCommand(void);
+    void    sendAgainSDO(void);
+    ushort  subNanojProgramUpload(bool force);
+
 
     bool digital_input_valid; //!< Sets the validity of the current digital input value
-    uchar digital_input_val; //!< status of the motor digital inputs
+    uint digital_input_val; //!< status of the motor digital inputs
+    int position_encoder_val; //!< last read position encoder
 
     typedef struct{
         uchar digital_input_mask;    //!< Input mask to use digital inputs as safety
         uchar digital_input_val;     //!< Input statusof digital inputs to activate the safety
-        bool stop_command;          //!< Activate with the immediateStop() interface function to quicly stop the motor
+        bool immediate_stop_command; //!< Activate with the immediateStop() interface function to istantly stop the motor
+        bool quick_stop_command;     //!< Stop with higher deceleration rate
     }_SafetyStructure;
 
     // Safety Handling
@@ -209,8 +244,8 @@ private slots:
 
     void statusHandler(void); //!< Main callback handling the cia status
     void rxFromCan(ushort canId, QByteArray data);//!< Receive Can data frame from the canDriver
-    ushort initCallback(void); //!< Initialization procedures after the reset
-
+    ushort workflowInitCallback(void); //!< Workflow of Initialization procedures after the reset
+    ushort workflowUploadNanoj(void); //!< Workflow of Upload Nanoj-program
 
 };
 

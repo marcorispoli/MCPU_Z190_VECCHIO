@@ -17,6 +17,7 @@ pd4Nanotec::pd4Nanotec(uchar ID)
     // Safety Input Mask closed
     setSafetyDigitalInput(0,0);
 
+    configVector = nullptr;
     initVector =nullptr;
     zeroSettingVector = nullptr;
     positionSettingVector = nullptr;
@@ -48,7 +49,6 @@ void pd4Nanotec::run(void){
     sdoRxTx.sdo_rxtx_completed = true;
 
     wStatus = 0;
-    wSubStatus = 0;
     workflow = _GET_CIA_STATUS;
 
     QTimer::singleShot(0,this, SLOT(statusHandler()));
@@ -58,8 +58,17 @@ void pd4Nanotec::run(void){
 void pd4Nanotec::rxFromCan(ushort devId, QByteArray data){
 
     if((devId & 0xFF) != deviceId) return; // Invalid ID
-
     sdoRxTx.sdo_rxtx_completed = true;
+
+    if(nanojStr.rxblock){
+          if( data.at(0) != ((nanojStr.txBlock.at(0)& 0xF0) | 0x20) ){
+              //qDebug() << QString("errore:%1 atteso:%2").arg((uchar) data.at(0),1,16).arg((uchar)(nanojStr.txBlock.at(0) | 0x20),1,16);
+              return;
+          }
+          sdoRxTx.sdo_rx_ok = true;
+          return;
+    }
+
 
     // Update the status handler
     rxSDO.set(&data);
@@ -80,7 +89,7 @@ void pd4Nanotec::rxFromCan(ushort devId, QByteArray data){
     return;
 }
 
-void pd4Nanotec::writeSDO(ushort index, uchar sub, canOpenDictionary::_ODDataType type, ulong val){
+void pd4Nanotec::writeSDO(ushort index, uchar sub, canOpenDictionary::_ODDataType type, uint val){
     txSDO.setOd(index,sub,type,val);
     rxSDO.clear();
 
@@ -107,6 +116,23 @@ void pd4Nanotec::readSDO(ushort index, uchar sub, uchar type){
 
 }
 
+void pd4Nanotec::resetNode(void){
+    rxSDO.clear();
+
+    QByteArray frame;
+    frame.append(0x81);
+    frame.append(deviceId);
+    T1START;
+    emit txToCan(0, frame);
+
+    // Activate the timeout handler, in case no answer should be received
+    sdoRxTx.sdo_rx_ok = true;
+    sdoRxTx.sdo_rxtx_completed = true;
+    sdoRxTx.sdo_rx_tx_pending = false;
+
+}
+
+
 void pd4Nanotec::sendAgainSDO(void){
     rxSDO.clear();
 
@@ -129,6 +155,7 @@ void pd4Nanotec::statusHandler(void){
         wSubStatus = 0;
         digital_input_valid = false;
         sdoRxTx.sdo_rx_tx_pending = false;
+        nanojStr.rxblock = false;
         workflow = _GET_CIA_STATUS;
         deviceInitialized = false;
         CiAcurrentStatus = CiA402_Undefined;
@@ -150,7 +177,7 @@ void pd4Nanotec::statusHandler(void){
         sdoRxTx.tmo_attempt = 100; // ms of waiting the reception
 
         // In case of unsuccess try again for a maximum time
-        if((!sdoRxTx.sdo_rx_ok) && (sdoRxTx.sdo_attempt)){
+        if((!sdoRxTx.sdo_rx_ok) && (sdoRxTx.sdo_attempt) && (!nanojStr.rxblock)){
              sdoRxTx.sdo_attempt--;
              sendAgainSDO();
              QTimer::singleShot(100,this, SLOT(statusHandler()));
@@ -160,9 +187,11 @@ void pd4Nanotec::statusHandler(void){
     }else{
         sdoRxTx.sdo_rx_ok = true;
         sdoRxTx.sdo_rxtx_completed = true;
+        nanojStr.rxblock = false;
     }
 
     sdoRxTx.sdo_rx_tx_pending = false;
+    nanojStr.rxblock = false;
     sdoRxTx.sdo_attempt = 10;
     sdoRxTx.tmo_attempt = 100;
 
@@ -174,7 +203,7 @@ void pd4Nanotec::statusHandler(void){
             deviceInitialized = false;
             digital_input_valid = false;
         }
-        delay = initCallback();
+        delay = workflowInitCallback();
         if(delay==0) {
             deviceInitialized = true;
             workflow = _GET_CIA_STATUS;
@@ -183,6 +212,20 @@ void pd4Nanotec::statusHandler(void){
             delay=100;
         }
 
+        QTimer::singleShot(delay,this, SLOT(statusHandler()));
+        return;
+
+    case _UPLOAD_NANOJ:
+        if(wStatus == 0){
+            qDebug() << "DEVICE ID(" << this->deviceId << ") UPLOAD NANOJ PROGRAM";
+        }
+        delay = workflowUploadNanoj();
+        if(delay==0) {
+            workflow = _GET_CIA_STATUS;
+            wStatus = 0;
+            wSubStatus = 0;
+            delay=100;
+        }
         QTimer::singleShot(delay,this, SLOT(statusHandler()));
         return;
 
@@ -235,15 +278,32 @@ void pd4Nanotec::statusHandler(void){
             delay = CiA402_SwitchOnDisabledCallback();
             break;
         case CiA402_ReadyToSwitchOn:
+            delay = CiA402_ReadyToSwitchOnCallback();
+            break;
+        case CiA402_SwitchedOn:
             // In case the initialization has not present, it is activated
             if(!deviceInitialized){
+                uploadNanojRequest = false;
+                nanojUploaded = false;
                 workflow = _DEVICE_INIT;
+                wStatus = 0;
+                wSubStatus = 0;
                 QTimer::singleShot(1,this, SLOT(statusHandler()));
                 return;
             }
-            delay = CiA402_ReadyToSwitchOnCallback();
+
+            if(uploadNanojRequest){
+                uploadNanojRequest = false;
+                nanojUploaded = false;
+                workflow = _UPLOAD_NANOJ;
+                wStatus = 0;
+                wSubStatus = 0;
+                QTimer::singleShot(1,this, SLOT(statusHandler()));
+                return;
+            }
+
+            delay = idleCallback();
             break;
-        case CiA402_SwitchedOn: delay = idleCallback(); break;
         case CiA402_OperationEnabled: delay = CiA402_OperationEnabledCallback(); break;
         case CiA402_Fault:delay = CiA402_FaultCallback(); break;
 
@@ -269,7 +329,7 @@ void pd4Nanotec::statusHandler(void){
 
 
 
-QString pd4Nanotec::getErrorClass1001(ulong val){
+QString pd4Nanotec::getErrorClass1001(uint val){
     uchar cval = (uchar) val;
     QString errstr = "";
     if(cval & OD_1001_00_GENERAL_ERROR) errstr += "[GENERAL]";
@@ -283,11 +343,11 @@ QString pd4Nanotec::getErrorClass1001(ulong val){
     return errstr;
 }
 
-QString pd4Nanotec::getErrorClass1003(ulong val){
+QString pd4Nanotec::getErrorClass1003(uint val){
     return getErrorClass1001 (val >> 16);
 }
 
-QString pd4Nanotec::getErrorCode1003(ulong val){
+QString pd4Nanotec::getErrorCode1003(uint val){
     ushort sval = (ushort) (val & 0xFFFF);
 
     switch(sval){
@@ -320,6 +380,7 @@ ushort pd4Nanotec::subRoutineUploadVector(_OD_InitVector* pVector, bool* changed
         if(pVector == nullptr) {
             if(changed) *changed = false;
             if(uploadOk) *uploadOk = true;
+            wSubStatus = 0;
             return 0;
         }
 
@@ -336,14 +397,17 @@ ushort pd4Nanotec::subRoutineUploadVector(_OD_InitVector* pVector, bool* changed
         if(!sdoRxTx.sdo_rx_ok){
             if(uploadOk) *uploadOk = false;
             qDebug() << QString("DEVICE (%1): ERROR READING OD %2.%3").arg(deviceId).arg(pVector[i].index,1,16).arg(pVector[i].subidx);
+            wSubStatus = 0;
             return 0;
         }
 
 
-        if(rxSDO.getVal() == rxSDO.formatVal(initVector[i].val)){
+        if(rxSDO.getVal() == rxSDO.formatVal(pVector[i].val)){
             wSubStatus = 5;
             return 1;
         }
+
+       // qDebug() << QString("cambiato: %1.%2=%3 contro %4").arg(rxSDO.getIndex(),1,16).arg(rxSDO.getSubIndex()).arg(rxSDO.getVal(),1,16).arg(rxSDO.formatVal(pVector[i].val),1,16);
 
         if(changed) *changed = true;
         wSubStatus++;
@@ -351,6 +415,7 @@ ushort pd4Nanotec::subRoutineUploadVector(_OD_InitVector* pVector, bool* changed
 
     case 3:
         writeSDO(pVector[i].index, pVector[i].subidx, pVector[i].type, pVector[i].val);
+       // qDebug() << QString("SCRIVE:0x%1.%2=%3").arg(pVector[i].index,1,16).arg(pVector[i].subidx).arg( pVector[i].val,1,16);
         wSubStatus++;
         return 5;
 
@@ -358,6 +423,7 @@ ushort pd4Nanotec::subRoutineUploadVector(_OD_InitVector* pVector, bool* changed
         if(!sdoRxTx.sdo_rx_ok){
             if(uploadOk) *uploadOk = false;
             qDebug() << QString("DEVICE (%1): ERROR WRITING OD %2.%3").arg(deviceId).arg(pVector[i].index,1,16).arg(pVector[i].subidx);
+            wSubStatus = 0;
             return 0;
         }
 
@@ -368,6 +434,7 @@ ushort pd4Nanotec::subRoutineUploadVector(_OD_InitVector* pVector, bool* changed
         i++;
         if(pVector[i].type == 0){
             if(uploadOk) *uploadOk = true;
+            wSubStatus = 0;
             return 0;
         }
 
@@ -377,7 +444,90 @@ ushort pd4Nanotec::subRoutineUploadVector(_OD_InitVector* pVector, bool* changed
     default:
         if(uploadOk) *uploadOk = false;
         qDebug() << QString("DEVICE (%1): INVALID wSubStatus = %2").arg(deviceId).arg(wSubStatus);
+        wSubStatus = 0;
         return 0;
 
+    }
+}
+
+ushort pd4Nanotec::subReadDigitalInputs(void){
+
+    switch(wSubStatus){
+    case 0:
+        readSDO(OD_3240_05); // Reads the digital inputs
+        wSubStatus++;
+        return 5;
+
+    case 1:
+        if(!sdoRxTx.sdo_rx_ok) {
+            qDebug() << QString("DEVICE (%1): ERROR READING OD %2.%3").arg(deviceId).arg(txSDO.getIndex(),1,16).arg(txSDO.getSubIndex());
+            digital_input_valid = false;
+            wSubStatus = 0;
+            return 0;
+        }
+
+        digital_input_valid = true;
+        digital_input_val =  rxSDO.getVal();
+        wSubStatus = 0;
+        return 0;
+    }
+}
+
+ushort pd4Nanotec::subReadPositionEncoder(void){
+
+    switch(wSubStatus){
+    case 0:
+        readSDO(OD_6064_00); // Reads the digital inputs
+        wSubStatus++;
+        return 5;
+
+    case 1:
+        if(!sdoRxTx.sdo_rx_ok) {
+            qDebug() << QString("DEVICE (%1): ERROR READING OD %2.%3").arg(deviceId).arg(txSDO.getIndex(),1,16).arg(txSDO.getSubIndex());
+            wSubStatus = 0;
+            return 0;
+        }
+
+        position_encoder_val =  rxSDO.getVal();
+        wSubStatus = 0;
+        return 0;
+    }
+}
+
+ushort pd4Nanotec::subActivateQuickStopCommand(void){
+    ushort ctrlw;
+
+    switch(wSubStatus){
+    case 0:
+        readSDO(OD_6040_00); // Reads the control word
+        wSubStatus++;
+        return 5;
+
+    case 1:
+        if(!sdoRxTx.sdo_rx_ok) {
+            qDebug() << QString("DEVICE (%1): ERROR READING OD %2.%3").arg(deviceId).arg(txSDO.getIndex(),1,16).arg(txSDO.getSubIndex());
+            wSubStatus = 0;
+            return 0;
+        }
+
+        wSubStatus++;
+        return 1;
+
+    case 2:
+
+        ctrlw = rxSDO.getVal();
+        ctrlw &=~ OD_MASK(OD_6040_00_QUICKSTOP);
+        ctrlw |= OD_VAL(OD_6040_00_QUICKSTOP);
+        writeSDO(OD_6040_00, ctrlw);
+        wSubStatus++;
+        return 5;
+
+    case 3:
+        if(!sdoRxTx.sdo_rx_ok) {
+            qDebug() << QString("DEVICE (%1): ERROR WRITING OD %2.%3").arg(deviceId).arg(txSDO.getIndex(),1,16).arg(txSDO.getSubIndex());
+        }
+
+        wSubStatus = 0;
+        return 0;
     }
 }

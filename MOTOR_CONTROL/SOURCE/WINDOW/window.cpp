@@ -19,6 +19,8 @@ debugWindow::debugWindow(QWidget *parent)
     connect(ui->positionA, SIGNAL(pressed()), this, SLOT(onPositionA()), Qt::UniqueConnection);
     connect(ui->positionB, SIGNAL(pressed()), this, SLOT(onPositionB()), Qt::UniqueConnection);
     connect(ui->stopCommand, SIGNAL(pressed()), this, SLOT(onStopCommand()), Qt::UniqueConnection);
+    connect(ui->immediateCommand, SIGNAL(pressed()), this, SLOT(onImmediateStopCommand()), Qt::UniqueConnection);
+     connect(ui->uploadnanoj, SIGNAL(pressed()), this, SLOT(onUploadnanoj()), Qt::UniqueConnection);
 
     connect(CANCLIENT,SIGNAL(canReady(bool)), this, SLOT(onCanReady(bool)));
     pollingTimer  = startTimer(500);
@@ -69,7 +71,9 @@ void debugWindow::onDebugClearButton(void){
 
 
 void debugWindow::onDebug(QByteArray data){
-    QString stringa = QString("%1> %2").arg(generalDebugIndex++).arg(data);
+    //QString stringa = QString("%1> %2").arg(generalDebugIndex++).arg(data);
+    QString stringa = QString("%1> %2").arg(((double) clock())/CLOCKS_PER_SEC).arg(data);
+
     if(ui->debugEnable->isChecked())   ui->debugText->appendPlainText(stringa);
 }
 
@@ -101,7 +105,7 @@ void debugWindow::onZeroSettingButton(void){
 }
 
 void debugWindow::onPositionA(void){
-  if(!TRX->activatePositioning(2800)) qDebug() << "WINDOW: POSITIONING NOT ACTIVATED!";
+  if(!TRX->activatePositioning(2500)) qDebug() << "WINDOW: POSITIONING NOT ACTIVATED!";
 
 }
 void debugWindow::onPositionB(void){
@@ -109,7 +113,15 @@ void debugWindow::onPositionB(void){
 
 }
 void debugWindow::onStopCommand(void){
+  TRX->quickStop();
+}
+
+void debugWindow::onImmediateStopCommand(void){
   TRX->immediateStop();
+}
+
+void debugWindow::onUploadnanoj(void){
+  TRX->uploadNanojProgram();
 }
 
 

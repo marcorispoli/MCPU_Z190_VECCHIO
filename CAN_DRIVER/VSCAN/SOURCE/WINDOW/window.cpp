@@ -93,7 +93,8 @@ void debugWindow::onDebug(QByteArray data){
  * @param data: this is the data content of the frame
  */
 void debugWindow::receivedCanFrame(ushort canId, QByteArray data){
-    QString stringa = QString("%1> FROM CANID:0x%2 - ").arg(generalDebugIndex++).arg(canId,1,16);
+
+    QString stringa = QString("%1 - %2> FROM CANID:0x%3 - ").arg(((double) clock())/CLOCKS_PER_SEC).arg(generalDebugIndex++).arg(canId,1,16);
     for(int i=0; i< 8;i++){
         stringa.append(QString(" 0x%1").arg((uchar) data[i],1,16));
     }
@@ -110,7 +111,8 @@ void debugWindow::receivedCanFrame(ushort canId, QByteArray data){
  * @param data: this is the data content of the frame
  */
 void debugWindow::sendToCan(ushort canId, QByteArray data){
-    QString stringa = QString("%1> TO CANID:0x%2 - ").arg(generalDebugIndex++).arg(canId,1,16);
+    //QString stringa = QString("%1> TO CANID:0x%2 - ").arg(generalDebugIndex++).arg(canId,1,16);
+    QString stringa = QString("%1 - %2> TO CANID:0x%3 - ").arg(((double) clock())/CLOCKS_PER_SEC).arg(generalDebugIndex++).arg(canId,1,16);
     for(int i=0; i< data.size();i++){
         stringa.append(QString(" 0x%1").arg((uchar) data[i],1,16));
     }

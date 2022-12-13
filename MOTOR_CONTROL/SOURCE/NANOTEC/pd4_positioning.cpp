@@ -5,11 +5,10 @@
 bool pd4Nanotec::activatePositioning(int cAngle){
     if( execCommand != _NO_COMMAND) return false;
     if(CiAcurrentStatus != CiA402_SwitchedOn) return false;
-    if(isSafetyDigitalInputOn()) return false;
     //if(!zero_setting_ok ) return false;
     if(positionSettingVector == nullptr) return false;
 
-    safety.stop_command = false;
+    safety.immediate_stop_command = false;
 
     int i=0;
     while(positionSettingVector[i].type != 0){
@@ -17,7 +16,6 @@ bool pd4Nanotec::activatePositioning(int cAngle){
 
             // Sets the target
             positionSettingVector[i].val = _cGRAD_TO_POS(cAngle);
-            qDebug() << "TARGET:" << cAngle << " CONVERTED" << _cGRAD_TO_POS(cAngle);
             execCommand = _POSITIONING_COMMAND;
             return true;
         }
@@ -31,12 +29,11 @@ bool pd4Nanotec::activatePositioning(int cAngle){
 ushort pd4Nanotec::initPd4PositioningCommand(void){
     ushort delay;
     static bool success;
-    static ulong ctrlw;
+    static uint ctrlw;
 
     switch(wStatus){
     case 0:
         // Upload Zero Setting registers
-        wSubStatus = 0;
         wStatus++;
         positioning_ok = false;
         return 1;
@@ -83,14 +80,15 @@ ushort pd4Nanotec::initPd4PositioningCommand(void){
             return 1;
         }
 
-        // To the SwitchOn Status
-        ctrlw = rxSDO.getVal();
-        ctrlw &=~ OD_MASK(POSITION_SETTING_CTRL_INIT);
-        ctrlw |= OD_VAL(POSITION_SETTING_CTRL_INIT);
+
         wStatus++;
         return 1;
 
     case 6:
+        // To the SwitchOn Status
+        ctrlw = rxSDO.getVal();
+        ctrlw &=~ OD_MASK(POSITION_SETTING_CTRL_INIT);
+        ctrlw |= OD_VAL(POSITION_SETTING_CTRL_INIT);
         writeSDO(OD_6040_00, ctrlw);
         wStatus++;
         return 5;
@@ -137,14 +135,27 @@ ushort pd4Nanotec::initPd4PositioningCommand(void){
 }
 
 ushort pd4Nanotec::pd4PositioningLoop(){
-    static ulong ctrlw;
-    ulong val;
+    uint ctrlw;
+    uint val;
+    ushort delay;
 
 
-    if(safety.stop_command){
-        qDebug() << QString("DEVICE (%1): ERROR STOP COMMAND RECEIVED").arg(deviceId);
+    // This activates the immediate stop motor
+    if(safety.immediate_stop_command){
+        safety.immediate_stop_command = false;
+        qDebug() << QString("DEVICE (%1): IMMEDIATE STOP COMMAND RECEIVED").arg(deviceId);
         return 0;
     }
+
+    // This causes a quick stop deceleration (set in the device vector)
+    if(safety.quick_stop_command){
+        delay = subActivateQuickStopCommand();
+        if(delay) return delay;
+        safety.quick_stop_command = false;
+        qDebug() << QString("DEVICE (%1): QUICK STOP COMMAND RECEIVED").arg(deviceId);
+        return 0;
+    }
+
 
     switch(wStatus){
         case 0:
@@ -161,15 +172,14 @@ ushort pd4Nanotec::pd4PositioningLoop(){
             if(!sdoRxTx.sdo_rx_ok) {
                 qDebug() << QString("DEVICE (%1): ERROR READING OD %2.%3").arg(deviceId).arg(txSDO.getIndex(),1,16).arg(txSDO.getSubIndex());
                 return 0;
-            }
-
-            ctrlw = rxSDO.getVal();
-            ctrlw &=~ OD_MASK(POSITION_SETTING_START);
-            ctrlw |= OD_VAL(POSITION_SETTING_START);
+            }            
             wStatus++;
             return 1;
 
         case 3: // Set the BIT4 of Control Word to start the sequence
+            ctrlw = rxSDO.getVal();
+            ctrlw &=~ OD_MASK(POSITION_SETTING_START);
+            ctrlw |= OD_VAL(POSITION_SETTING_START);
             writeSDO(OD_6040_00, ctrlw);
             wStatus++;
             return 5;
@@ -184,17 +194,8 @@ ushort pd4Nanotec::pd4PositioningLoop(){
             return 1;
 
         case 5:
-            readSDO(OD_3240_05); // Reads the digital inputs
-            wStatus++;
-            return 5;
-
-        case 6:
-            if(!sdoRxTx.sdo_rx_ok) {
-                qDebug() << QString("DEVICE (%1): ERROR READING OD %2.%3").arg(deviceId).arg(txSDO.getIndex(),1,16).arg(txSDO.getSubIndex());
-                return 0;
-            }
-
-            digital_input_val = (uchar) rxSDO.getVal();
+            delay = subReadDigitalInputs();
+            if(delay) return delay;
 
             if(isSafetyDigitalInputOn()){
                 qDebug() << QString("DEVICE (%1): ERROR SAFETY DIGITAL INPUTS").arg(deviceId);
@@ -203,29 +204,18 @@ ushort pd4Nanotec::pd4PositioningLoop(){
             wStatus++;
             return 1;
 
-        case 7: // Read the Encoder position
-            readSDO(OD_6064_00);
+        case 6: // Read the Encoder position
+            delay = subReadPositionEncoder();
+            if(delay) return delay;
             wStatus++;
             return 5;
 
-        case 8:
-            if(!sdoRxTx.sdo_rx_ok) {
-                qDebug() << QString("DEVICE (%1): ERROR READING OD %2.%3").arg(deviceId).arg(txSDO.getIndex(),1,16).arg(txSDO.getSubIndex());
-                return 0;
-            }
-
-            qDebug() << (long) rxSDO.getVal() << _POS_TO_cGRAD((int) rxSDO.getVal());
-            //encoder = _POS_TO_cGRAD((int) rxSDO.getVal());
-
-            wStatus++;
-            return 1;
-
-        case 9:// Read the Status Word to detect the command completion
+        case 7:// Read the Status Word to detect the command completion
             readSDO(OD_6041_00);
             wStatus++;
             return 5;
 
-        case 10:
+        case 8:
             if(!sdoRxTx.sdo_rx_ok) {
                 qDebug() << QString("DEVICE (%1): ERROR READING OD %2.%3").arg(deviceId).arg(txSDO.getIndex(),1,16).arg(txSDO.getSubIndex());
                 return 0;
@@ -248,7 +238,7 @@ ushort pd4Nanotec::pd4PositioningLoop(){
 
             // Repeats the status read until the following conditions are met.
             wStatus=5;
-            return 1000;
+            return 100;
 
 
     }

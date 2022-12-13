@@ -25,7 +25,7 @@
  * - Index: this is the register address (ushort) ;
  * - Subindex: this is the register sub address (uchar);
  * - Register Data Type: this defines the data size: 1 Byte, 2Byte, 3Byte or 4Bytes are the possible sizes
- * - Register Value: is always a ulong value, but it is truncated to the register size.
+ * - Register Value: is always a uint value, but it is truncated to the register size.
  *
  * \ingroup canOpenModule
  */
@@ -67,6 +67,7 @@ public:
     /// This enumeration defines the code of the Read/Write SDO operations
     typedef enum{
         SDO_NOT_VALID =0, //!< Invalid SDO
+        INIT_BLOCK_TRANSFER=0x20, //!< Write a Domain block data
         WR_1BYTE=0x2F,  //!< Write Data Code for 1Byte data load
         WR_2BYTE=0x2B,  //!< Write Data Code for 2Byte data load
         WR_3BYTE=0x27,  //!< Write Data Code for 3Byte data load
@@ -86,10 +87,10 @@ public:
     QByteArray get(void); //!< Get can frame content from OD content
     void clear(void); //!< Clear the content of a OD
 
-    ulong formatVal(ulong val); //!< Format a value size based on the OD type
-    ulong getVal(void); //!< Get the OD data value
-    void setVal(ulong data); //!< Set the internal data of the proper data size
-    void setOd(ushort index, uchar sub, canOpenDictionary::_ODDataType type, ulong val);//!< Fills the complete OD register
+    uint formatVal(uint val); //!< Format a value size based on the OD type
+    uint getVal(void); //!< Get the OD data value
+    void setVal(uint data); //!< Set the internal data of the proper data size
+    void setOd(ushort index, uchar sub, canOpenDictionary::_ODDataType type, uint val);//!< Fills the complete OD register
 
 
     _inline bool isError(void){ return (odType == SDO_ACK_ERR) ; } //!< Function returnig if the last SDO Read/Write has been executed successfully
@@ -103,7 +104,7 @@ private:
     ushort index;       //!< Register index feld
     uchar subindex;     //!< Register sub index field
     uchar b[4];         //!< Data array
-    ulong value;        //!< Formatted  value
+    uint value;        //!< Formatted  value
 };
 
 

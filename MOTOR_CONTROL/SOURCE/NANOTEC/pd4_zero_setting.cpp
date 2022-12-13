@@ -5,9 +5,8 @@
 bool pd4Nanotec::activateZeroSetting(void){
     if( execCommand != _NO_COMMAND) return false;
     if(CiAcurrentStatus != CiA402_SwitchedOn) return false;
-    if(isSafetyDigitalInputOn()) return false;
 
-    safety.stop_command = false;
+    safety.immediate_stop_command = false;
     execCommand = _ZERO_SETTING_COMMAND;
     return true;
 
@@ -18,12 +17,11 @@ bool pd4Nanotec::activateZeroSetting(void){
 ushort pd4Nanotec::initPd4ZeroSettingCommand(void){
     ushort delay;
     static bool success;
-    static ulong ctrlw;
+    static uint ctrlw;
 
     switch(wStatus){
     case 0:
         // Upload Zero Setting registers
-        wSubStatus = 0;
         wStatus++;
         zero_setting_ok = false;
         return 1;
@@ -125,14 +123,26 @@ ushort pd4Nanotec::initPd4ZeroSettingCommand(void){
 }
 
 ushort pd4Nanotec::pd4ZeroSettingLoop(){
-    static ulong ctrlw;
+    static uint ctrlw;
     static ushort memCtrl=0xFFFF;
-    ulong val;
+    uint val;
     bool error;
     bool completed;
+    ushort delay;
 
-    if(safety.stop_command){
-        qDebug() << QString("DEVICE (%1): ERROR STOP COMMAND RECEIVED").arg(deviceId);
+    // This activates the immediate stop motor
+    if(safety.immediate_stop_command){
+        safety.immediate_stop_command = false;
+        qDebug() << QString("DEVICE (%1): IMMEDIATE STOP COMMAND RECEIVED").arg(deviceId);
+        return 0;
+    }
+
+    // This causes a quick stop deceleration (set in the device vector)
+    if(safety.quick_stop_command){
+        delay = subActivateQuickStopCommand();
+        if(delay) return delay;
+        safety.quick_stop_command = false;
+        qDebug() << QString("DEVICE (%1): QUICK STOP COMMAND RECEIVED").arg(deviceId);
         return 0;
     }
 
@@ -174,18 +184,8 @@ ushort pd4Nanotec::pd4ZeroSettingLoop(){
             return 1;
 
         case 5:
-            readSDO(OD_3240_05);
-            wStatus++;
-            return 5;
-
-        case 6:
-            if(!sdoRxTx.sdo_rx_ok) {
-                qDebug() << QString("DEVICE (%1): ERROR READING OD %2.%3").arg(deviceId).arg(txSDO.getIndex(),1,16).arg(txSDO.getSubIndex());
-                return 0;
-            }
-
-            digital_input_val = (uchar) rxSDO.getVal();
-
+            delay = subReadDigitalInputs();
+            if(delay) return delay;
             if(isSafetyDigitalInputOn()){
                 qDebug() << QString("DEVICE (%1): ERROR SAFETY DIGITAL INPUTS").arg(deviceId);
                 return 0;
@@ -193,12 +193,12 @@ ushort pd4Nanotec::pd4ZeroSettingLoop(){
             wStatus++;
             return 1;
 
-        case 7:// Read the Status Word to detect the command completion
+        case 6:// Read the Status Word to detect the command completion
             readSDO(OD_6041_00);
             wStatus++;
             return 5;
 
-        case 8:
+        case 7:
             if(!sdoRxTx.sdo_rx_ok) {
                 qDebug() << QString("DEVICE (%1): ERROR READING OD %2.%3").arg(deviceId).arg(txSDO.getIndex(),1,16).arg(txSDO.getSubIndex());
                 return 0;

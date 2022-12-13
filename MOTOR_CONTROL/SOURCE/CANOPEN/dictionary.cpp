@@ -8,7 +8,7 @@
  */
 QString canOpenDictionary::printError(void){
     if(odType != SDO_ACK_ERR) return "";
-    ulong error = b[0] + b[1] * 256 + b[2] * 256*256 + b[3] *256*256*256;
+    uint error = b[0] + b[1] * 256 + b[2] * 256*256 + b[3] *256*256*256;
 
     switch(error){
         case 0x05030000: return "Toggle bit not changed!";
@@ -70,13 +70,13 @@ void canOpenDictionary::clear(void){
 /**
  * This function returns the value of the OD based on the data type.
  *
- * @return (ulong) formatted content
+ * @return (uint) formatted content
  */
-ulong canOpenDictionary::getVal(void){
-    if((odType == WR_1BYTE) || (odType == RD_1BYTE)) return (ulong) b[0];
-    if((odType == WR_2BYTE) || (odType == RD_2BYTE)) return (ulong) b[0] + (ulong) b[1] * 256;
-    if((odType == WR_3BYTE) || (odType == RD_3BYTE)) return (ulong) b[0] + (ulong) b[1] * 256 + (ulong) b[2] * 256 * 256;
-    if((odType == WR_4BYTE) || (odType == RD_4BYTE)) return (ulong) b[0] + (ulong) b[1] * 256 + (ulong) b[2] * 256 * 256+ (ulong) b[3] * 256 * 256 * 256;
+uint canOpenDictionary::getVal(void){
+    if((odType == WR_1BYTE) || (odType == RD_1BYTE)) return (uint) b[0];
+    if((odType == WR_2BYTE) || (odType == RD_2BYTE)) return (uint) b[0] + (uint) b[1] * 256;
+    if((odType == WR_3BYTE) || (odType == RD_3BYTE)) return (uint) b[0] + (uint) b[1] * 256 + (uint) b[2] * 256 * 256;
+    if((odType == WR_4BYTE) || (odType == RD_4BYTE)) return (uint) b[0] + (uint) b[1] * 256 + (uint) b[2] * 256 * 256+ (uint) b[3] * 256 * 256 * 256;
     return 0;
 }
 
@@ -93,23 +93,23 @@ ulong canOpenDictionary::getVal(void){
  * an Object register, before to make the comparison, the arbitrary value shall be \n
  * formatted to be compliance with the size of the Register value.\n
  * For example, if the Object register is a 2 byte data size,\n
- * before o be compared with an arbitrary ulong variable, the vaRIABLE SHALL BE FORMATTED:
+ * before o be compared with an arbitrary uint variable, the vaRIABLE SHALL BE FORMATTED:
  *
  *
- *  ulong variable = ... someting\n
+ *  uint variable = ... someting\n
  *  OD.getVal() == variable --> WRONG COMPARISON\n
  *
  *
- *  ulong variable = ... someting\n
+ *  uint variable = ... someting\n
  *  OD.getVal() == OD.formatVal(variable) --> CORRECT COMPARISON\n
  *
  * @param val: this is the value that needs to be formatted
  * @return formatted result value
  */
-ulong canOpenDictionary::formatVal(ulong val){
-    if((odType == WR_1BYTE) || (odType == RD_1BYTE)) return (ulong) (val&0xFF);
-    if((odType == WR_2BYTE) || (odType == RD_2BYTE)) return (ulong) (val&0xFFFF);
-    if((odType == WR_3BYTE) || (odType == RD_3BYTE)) return (ulong) (val&0xFFFFFF);
+uint canOpenDictionary::formatVal(uint val){
+    if((odType == WR_1BYTE) || (odType == RD_1BYTE)) return (uint) (val&0xFF);
+    if((odType == WR_2BYTE) || (odType == RD_2BYTE)) return (uint) (val&0xFFFF);
+    if((odType == WR_3BYTE) || (odType == RD_3BYTE)) return (uint) (val&0xFFFFFF);
     if((odType == WR_4BYTE) || (odType == RD_4BYTE)) return val;
     else return (0);
 }
@@ -123,8 +123,8 @@ ulong canOpenDictionary::formatVal(ulong val){
  *
  * @param data: this is the data value to be set into the register.
  */
-void canOpenDictionary::setVal(ulong data){
-    ulong v = formatVal(data);
+void canOpenDictionary::setVal(uint data){
+    uint v = formatVal(data);
     this->value = v;
     b[0] = (uchar) (v & 0xFF); v = v >>8;
     b[1] = (uchar) (v & 0xFF); v = v >>8;
@@ -139,7 +139,7 @@ void canOpenDictionary::setVal(ulong data){
  * @param type
  * @param val
  */
-void canOpenDictionary::setOd(ushort index, uchar sub, canOpenDictionary::_ODDataType type, ulong val){
+void canOpenDictionary::setOd(ushort index, uchar sub, canOpenDictionary::_ODDataType type, uint val){
     odType = type;
     this->index = index;
     this->subindex = sub;

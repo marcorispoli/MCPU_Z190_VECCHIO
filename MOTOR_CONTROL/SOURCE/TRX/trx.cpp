@@ -1,12 +1,12 @@
 // Those defines SHALL be defined here!!!
-#define RIDUZIONE 452.8
+#define MOTOR_GEAR 452.8
 #define SPEED_DENOMINATOR       120
 
 #include "application.h"
 #include "pd4_dictionary.h"
 #include "nanoj_trx.h"
 
-static const pd4Nanotec::_OD_InitVector trxConfigVector[]={
+static const pd4Nanotec::_OD_InitVector trx_config_vector[]={
 
     // Hardware configuration
     {OD_4013_01,1},    // 1 = EXTERNAL VCC LOGIC ON
@@ -19,7 +19,7 @@ static const pd4Nanotec::_OD_InitVector trxConfigVector[]={
     {OD_2032_00,5000}, 	// Maximum Speed
     {OD_2033_00,0 },	// Plunger Block
     {OD_2034_00,51500 },// Upper Voltage Warning Level
-    {OD_2035_00,20000 },// ****************************************Lower Voltage Warning Level
+    {OD_2035_00,21000 },// ****************************************Lower Voltage Warning Level
     {OD_2036_00,2000}, 	// Open Loop Current Reduction Idle Time
     {OD_2037_00,(uint) (-50) },	// Open Loop Current Reduction Value/factor
 
@@ -111,8 +111,8 @@ static const pd4Nanotec::_OD_InitVector trxConfigVector[]={
     {OD_607B_02,0 },	// Max Position Range Limit
 
     // Software Position Limit
-    {OD_607D_01,(uint) (cGRAD_TO_POS(-2700)) },	// Min Position Limit
-    {OD_607D_02,cGRAD_TO_POS(2700) },	// Max Position Limit
+    {OD_607D_01,(uint) (cGRAD_TO_ENCODER(-2700)) },	// Min Position Limit
+    {OD_607D_02,cGRAD_TO_ENCODER(2700) },	// Max Position Limit
 
     // Polarity
     {OD_607E_00,0 },	// b7:1-> inverse rotaion
@@ -136,10 +136,10 @@ static const pd4Nanotec::_OD_InitVector trxConfigVector[]={
     {OD_6098_00,21},                                            // Homing method 21
     {OD_607C_00,0},                                             // Offset value
 
-    {0,0,(canOpenDictionary::_ODDataType) 0,0} // Last element always present!!
+    END_ODVECTOR // Last element always present!!
 };
 
-static const pd4Nanotec::_OD_InitVector trxVolatileVector[]={
+static const pd4Nanotec::_OD_InitVector trx_runtime_vector[]={
 
     //Digital Outputs Control
     {OD_3250_02,0},     // Function Inverted
@@ -154,47 +154,30 @@ static const pd4Nanotec::_OD_InitVector trxVolatileVector[]={
     {OD_3240_04,0 },    // Force Value
     {OD_3240_06,0 },    // Input Range Select (0,threshold,5V, 1: threshold,24V)
 
-    {OD_6081_00,250 },  // Position Target Speed (at the end of the ramp)
     {OD_6082_00,0 },	// End Velocity
-    {OD_6083_00,250 },	// Position acceleraton
-    {OD_6084_00,250 },	// Position Deceleration
-    {OD_6085_00,cGRADsec_TO_ROT_min(400) },	// Quick Stop Deceleration
+    {OD_6085_00,cGRADsec_TO_ROT_min(200) },	// Quick Stop Deceleration
 
-    {0,0,(canOpenDictionary::_ODDataType) 0,0} // Last element always present!!
+    END_ODVECTOR// Last element always present!!
 };
 
 static const pd4Nanotec::_OD_InitVector trx_zero_vector[]={
     {OD_6099_01,cGRADsec_TO_ROT_min(100)}, // Speed approaching to the target
     {OD_6099_02,cGRADsec_TO_ROT_min(50)}, // Speed approaching reverse
     {OD_609A_00,cGRADsec_TO_ROT_min(100)}, // Acceleration
-    {OD_607C_00,cGRAD_TO_POS(0)}, // Offset
-    {0,0,(canOpenDictionary::_ODDataType) 0,0} // Last element always present!!
+    {OD_607C_00,cGRAD_TO_ENCODER(0)}, // Offset
+    END_ODVECTOR // Last element always present!!
 };
-
-static  pd4Nanotec::_OD_InitVector trx_positioning_vector[]={
-    {OD_6081_00,cGRADsec_TO_ROT_min(400)}, // Target Speed
-    {OD_6083_00,cGRADsec_TO_ROT_min(100)}, // Acc
-    {OD_6084_00,cGRADsec_TO_ROT_min(100)}, // DEC
-    {OD_6085_00,cGRADsec_TO_ROT_min(200) },	// Quick Stop Deceleration
-    {OD_607A_00,cGRAD_TO_POS(0)},          // Target Position
-    {0,0,(canOpenDictionary::_ODDataType) 0,0} // Last element always present!!
-};
-
-
 
 trxModule::trxModule(void):pd4Nanotec(Application::TRX_ID)
 {
-    this->configVector = (_OD_InitVector*) trxConfigVector; // This is the register vector that will be stored if necessary
-    this->initVector = (_OD_InitVector*) trxVolatileVector; // Initialize the device with the Main OD vector
-    this->zeroSettingVector = (_OD_InitVector*) trx_zero_vector; // Initialize the device with the zero setting vector
-    this->positionSettingVector = trx_positioning_vector; // Initialize the device with the positioning setting vector
-    this->setNanojVector((uchar*) nanojTrxfile, sizeof(nanojTrxfile));
-
-    this->gearratio = RIDUZIONE; // Sets the current Gear reduction
-    this->speed_denominator = SPEED_DENOMINATOR; // Sets the current Speed denominator
+    setConfigVector((_OD_InitVector*) trx_config_vector);// This is the register vector that will be stored if necessary
+    setRuntimeVector((_OD_InitVector*) trx_runtime_vector);// Initialize the device with the Main OD vector
+    setZerosettingVector((_OD_InitVector*) trx_zero_vector);// Initialize the device with the zero setting vector
+    setNanojVector((uchar*) nanojTrxfile, sizeof(nanojTrxfile)); // Set the Nanoj program pointer
+    setMotorConfig(MOTOR_GEAR, SPEED_DENOMINATOR);  // Set the Motor Gear and SPEED denominator register
 
 
-    setSafetyDigitalInput(1,1); // Set the internal Safety Input handling
+    setSafetyDigitalInput(0,0); // Set the internal Safety Input handling
 
 
 }

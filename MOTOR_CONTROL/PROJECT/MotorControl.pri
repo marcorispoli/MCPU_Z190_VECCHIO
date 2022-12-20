@@ -34,7 +34,9 @@ DISTFILES +=
 
 SOURCES += \
     $${TARGET_SOURCE}/main.cpp \   
-    $${TARGET_SOURCE}/INTERFACE/server.cpp \
+    $${TARGET_SOURCE}/INTERFACE/interface.cpp \
+    $${TARGET_SOURCE}/INTERFACE/communication.cpp \
+    $${TARGET_SOURCE}/INTERFACE/command.cpp \
     $${TARGET_SOURCE}/CANCLIENT/canclient.cpp \    
     $${TARGET_SOURCE}/CANOPEN/dictionary.cpp \
     $${TARGET_SOURCE}/NANOTEC/pd4.cpp \
@@ -49,13 +51,13 @@ SOURCES += \
 
 HEADERS += \
     $${TARGET_SOURCE}/application.h \
-    $${TARGET_SOURCE}/INTERFACE/server.h \
+    $${TARGET_SOURCE}/INTERFACE/interface.h \
     $${TARGET_SOURCE}/CANCLIENT/canclient.h \
     $${TARGET_SOURCE}/CANOPEN/dictionary.h \
     $${TARGET_SOURCE}/NANOTEC/pd4.h \
     $${TARGET_SOURCE}/NANOTEC/pd4_dictionary.h \
     $${TARGET_SOURCE}/TRX/trx.h \
-    $${TARGET_SOURCE}/NANOTEC/nanoj_trx.h \
+    $${TARGET_SOURCE}/TRX/nanoj_trx.h \
     $${TARGET_SOURCE}/WINDOW/window.h \
 
 

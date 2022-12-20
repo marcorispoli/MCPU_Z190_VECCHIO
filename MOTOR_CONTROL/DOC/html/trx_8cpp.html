@@ -82,104 +82,35 @@ $(function() {
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="application_8h_source.html">application.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="pd4__dictionary_8h_source.html">pd4_dictionary.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="nanoj__trx_8h_source.html">nanoj_trx.h</a>&quot;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:a92d7950fcb7fc107a0af51dad04a9f04"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="trx_8cpp.html#a92d7950fcb7fc107a0af51dad04a9f04">RIDUZIONE</a>&#160;&#160;&#160;452.8</td></tr>
-<tr class="separator:a92d7950fcb7fc107a0af51dad04a9f04"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8734d11efc7a30ab52e4eb0f09eaf5e2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="trx_8cpp.html#a8734d11efc7a30ab52e4eb0f09eaf5e2">_PIGNONE_CONFIG</a>&#160;&#160;&#160;&quot;TRX COMPILAZIONE CON PIGNONE 35 DENTI PER MACCHINA PRODU&quot;</td></tr>
-<tr class="separator:a8734d11efc7a30ab52e4eb0f09eaf5e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf0ad57c28669568a5971fffaa206061"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="trx_8cpp.html#abf0ad57c28669568a5971fffaa206061">MOTOR_GEAR</a>&#160;&#160;&#160;452.8</td></tr>
+<tr class="separator:abf0ad57c28669568a5971fffaa206061"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6d2259f4166876a683acf743ae2b1b92"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="trx_8cpp.html#a6d2259f4166876a683acf743ae2b1b92">SPEED_DENOMINATOR</a>&#160;&#160;&#160;120</td></tr>
 <tr class="separator:a6d2259f4166876a683acf743ae2b1b92"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a21d09e437076fafdddbc1f69c22837ef"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="trx_8cpp.html#a21d09e437076fafdddbc1f69c22837ef">cGRADsec_TO_ROT_min</a>(x)&#160;&#160;&#160;((uint32_t) (((float)((long)x)  * (float) <a class="el" href="trx_8cpp.html#a92d7950fcb7fc107a0af51dad04a9f04">RIDUZIONE</a> / 36000) * (float) <a class="el" href="trx_8cpp.html#a6d2259f4166876a683acf743ae2b1b92">SPEED_DENOMINATOR</a>))</td></tr>
-<tr class="separator:a21d09e437076fafdddbc1f69c22837ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af2ff0f5dcf9bb9da81f7622b1c015694"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="trx_8cpp.html#af2ff0f5dcf9bb9da81f7622b1c015694">cGRAD_TO_POS</a>(x)&#160;&#160;&#160;((long) (((float) ((long)x) * (<a class="el" href="trx_8cpp.html#a92d7950fcb7fc107a0af51dad04a9f04">RIDUZIONE</a> * 10) )/180))</td></tr>
-<tr class="separator:af2ff0f5dcf9bb9da81f7622b1c015694"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6b8b3bcaccbfb44f00b9e1e9ff7a0270"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="trx_8cpp.html#a6b8b3bcaccbfb44f00b9e1e9ff7a0270">POS_TO_cGRAD</a>(x)&#160;&#160;&#160;((long)((((float) ((long)x)) * 180) / (<a class="el" href="trx_8cpp.html#a92d7950fcb7fc107a0af51dad04a9f04">RIDUZIONE</a>*10)))</td></tr>
-<tr class="separator:a6b8b3bcaccbfb44f00b9e1e9ff7a0270"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a94e2adc2f1b0d6a2e15645767461d05a"><td class="memItemLeft" align="right" valign="top">static const <a class="el" href="structpd4_nanotec_1_1___o_d___init_vector.html">pd4Nanotec::_OD_InitVector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="trx_8cpp.html#a94e2adc2f1b0d6a2e15645767461d05a">trxvector</a> []</td></tr>
-<tr class="separator:a94e2adc2f1b0d6a2e15645767461d05a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a825e036b1dfffe65cc200ce3e8a8deb8"><td class="memItemLeft" align="right" valign="top">static const <a class="el" href="structpd4_nanotec_1_1___o_d___init_vector.html">pd4Nanotec::_OD_InitVector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="trx_8cpp.html#a825e036b1dfffe65cc200ce3e8a8deb8">trx_config_vector</a> []</td></tr>
+<tr class="separator:a825e036b1dfffe65cc200ce3e8a8deb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca6a7e874782c7e88758ef5c00cdd3c6"><td class="memItemLeft" align="right" valign="top">static const <a class="el" href="structpd4_nanotec_1_1___o_d___init_vector.html">pd4Nanotec::_OD_InitVector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="trx_8cpp.html#aca6a7e874782c7e88758ef5c00cdd3c6">trx_runtime_ector</a> []</td></tr>
+<tr class="separator:aca6a7e874782c7e88758ef5c00cdd3c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0bf130554b0a814c09b9d48b0961a0a"><td class="memItemLeft" align="right" valign="top">static const <a class="el" href="structpd4_nanotec_1_1___o_d___init_vector.html">pd4Nanotec::_OD_InitVector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="trx_8cpp.html#ac0bf130554b0a814c09b9d48b0961a0a">trx_zero_vector</a> []</td></tr>
+<tr class="separator:ac0bf130554b0a814c09b9d48b0961a0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88e899bbcab3a4135a9c30c3eaa49a8c"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="structpd4_nanotec_1_1___o_d___init_vector.html">pd4Nanotec::_OD_InitVector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="trx_8cpp.html#a88e899bbcab3a4135a9c30c3eaa49a8c">trx_positioning_vector</a> []</td></tr>
+<tr class="separator:a88e899bbcab3a4135a9c30c3eaa49a8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
-<a id="a8734d11efc7a30ab52e4eb0f09eaf5e2" name="a8734d11efc7a30ab52e4eb0f09eaf5e2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8734d11efc7a30ab52e4eb0f09eaf5e2">&#9670;&#160;</a></span>_PIGNONE_CONFIG</h2>
+<a id="abf0ad57c28669568a5971fffaa206061" name="abf0ad57c28669568a5971fffaa206061"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf0ad57c28669568a5971fffaa206061">&#9670;&#160;</a></span>MOTOR_GEAR</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define _PIGNONE_CONFIG&#160;&#160;&#160;&quot;TRX COMPILAZIONE CON PIGNONE 35 DENTI PER MACCHINA PRODU&quot;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="af2ff0f5dcf9bb9da81f7622b1c015694" name="af2ff0f5dcf9bb9da81f7622b1c015694"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af2ff0f5dcf9bb9da81f7622b1c015694">&#9670;&#160;</a></span>cGRAD_TO_POS</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define cGRAD_TO_POS</td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">x</td><td>)</td>
-          <td>&#160;&#160;&#160;((long) (((float) ((long)x) * (<a class="el" href="trx_8cpp.html#a92d7950fcb7fc107a0af51dad04a9f04">RIDUZIONE</a> * 10) )/180))</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a21d09e437076fafdddbc1f69c22837ef" name="a21d09e437076fafdddbc1f69c22837ef"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a21d09e437076fafdddbc1f69c22837ef">&#9670;&#160;</a></span>cGRADsec_TO_ROT_min</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define cGRADsec_TO_ROT_min</td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">x</td><td>)</td>
-          <td>&#160;&#160;&#160;((uint32_t) (((float)((long)x)  * (float) <a class="el" href="trx_8cpp.html#a92d7950fcb7fc107a0af51dad04a9f04">RIDUZIONE</a> / 36000) * (float) <a class="el" href="trx_8cpp.html#a6d2259f4166876a683acf743ae2b1b92">SPEED_DENOMINATOR</a>))</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a6b8b3bcaccbfb44f00b9e1e9ff7a0270" name="a6b8b3bcaccbfb44f00b9e1e9ff7a0270"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6b8b3bcaccbfb44f00b9e1e9ff7a0270">&#9670;&#160;</a></span>POS_TO_cGRAD</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define POS_TO_cGRAD</td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">x</td><td>)</td>
-          <td>&#160;&#160;&#160;((long)((((float) ((long)x)) * 180) / (<a class="el" href="trx_8cpp.html#a92d7950fcb7fc107a0af51dad04a9f04">RIDUZIONE</a>*10)))</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a92d7950fcb7fc107a0af51dad04a9f04" name="a92d7950fcb7fc107a0af51dad04a9f04"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a92d7950fcb7fc107a0af51dad04a9f04">&#9670;&#160;</a></span>RIDUZIONE</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define RIDUZIONE&#160;&#160;&#160;452.8</td>
+          <td class="memname">#define MOTOR_GEAR&#160;&#160;&#160;452.8</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -201,8 +132,8 @@ Variables</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
-<a id="a94e2adc2f1b0d6a2e15645767461d05a" name="a94e2adc2f1b0d6a2e15645767461d05a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a94e2adc2f1b0d6a2e15645767461d05a">&#9670;&#160;</a></span>trxvector</h2>
+<a id="a825e036b1dfffe65cc200ce3e8a8deb8" name="a825e036b1dfffe65cc200ce3e8a8deb8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a825e036b1dfffe65cc200ce3e8a8deb8">&#9670;&#160;</a></span>trx_config_vector</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -211,7 +142,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const <a class="el" href="structpd4_nanotec_1_1___o_d___init_vector.html">pd4Nanotec::_OD_InitVector</a> trxvector[]</td>
+          <td class="memname">const <a class="el" href="structpd4_nanotec_1_1___o_d___init_vector.html">pd4Nanotec::_OD_InitVector</a> trx_config_vector[]</td>
         </tr>
       </table>
   </td>
@@ -221,6 +152,132 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+</div>
+</div>
+<a id="a88e899bbcab3a4135a9c30c3eaa49a8c" name="a88e899bbcab3a4135a9c30c3eaa49a8c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a88e899bbcab3a4135a9c30c3eaa49a8c">&#9670;&#160;</a></span>trx_positioning_vector</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structpd4_nanotec_1_1___o_d___init_vector.html">pd4Nanotec::_OD_InitVector</a> trx_positioning_vector[]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">={</div>
+<div class="line">    {<a class="code hl_define" href="pd4__dictionary_8h.html#a727eec8d4f7d9dc83b227a29d9fc6c9c">OD_6081_00</a>,<a class="code hl_define" href="pd4_8h.html#a21d09e437076fafdddbc1f69c22837ef">cGRADsec_TO_ROT_min</a>(400)}, </div>
+<div class="line">    {<a class="code hl_define" href="pd4__dictionary_8h.html#a84b2cc81dc64674d77f49df06ce0b68e">OD_6083_00</a>,<a class="code hl_define" href="pd4_8h.html#a21d09e437076fafdddbc1f69c22837ef">cGRADsec_TO_ROT_min</a>(100)}, </div>
+<div class="line">    {<a class="code hl_define" href="pd4__dictionary_8h.html#a004b672e5eb0f09934c644a57876788b">OD_6084_00</a>,<a class="code hl_define" href="pd4_8h.html#a21d09e437076fafdddbc1f69c22837ef">cGRADsec_TO_ROT_min</a>(100)}, </div>
+<div class="line">    {<a class="code hl_define" href="pd4__dictionary_8h.html#abc738aa935e82d8bfa0312886da26456">OD_6085_00</a>,<a class="code hl_define" href="pd4_8h.html#a21d09e437076fafdddbc1f69c22837ef">cGRADsec_TO_ROT_min</a>(200) }, </div>
+<div class="line">    {<a class="code hl_define" href="pd4__dictionary_8h.html#a648864b0123c96ffc2dc7b7d4b21aa5d">OD_607A_00</a>,<a class="code hl_define" href="pd4_8h.html#abbe129f41ec37373ecafc051a6ec4b9c">cGRAD_TO_ENCODER</a>(0)},          </div>
+<div class="line">    <a class="code hl_define" href="pd4_8h.html#a5e40f5d2bfb003ed67b475dd6ca978df">END_ODVECTOR</a> </div>
+<div class="line">}</div>
+<div class="ttc" id="apd4_8h_html_a21d09e437076fafdddbc1f69c22837ef"><div class="ttname"><a href="pd4_8h.html#a21d09e437076fafdddbc1f69c22837ef">cGRADsec_TO_ROT_min</a></div><div class="ttdeci">#define cGRADsec_TO_ROT_min(x)</div><div class="ttdef"><b>Definition:</b> pd4.h:4</div></div>
+<div class="ttc" id="apd4_8h_html_a5e40f5d2bfb003ed67b475dd6ca978df"><div class="ttname"><a href="pd4_8h.html#a5e40f5d2bfb003ed67b475dd6ca978df">END_ODVECTOR</a></div><div class="ttdeci">#define END_ODVECTOR</div><div class="ttdef"><b>Definition:</b> pd4.h:7</div></div>
+<div class="ttc" id="apd4_8h_html_abbe129f41ec37373ecafc051a6ec4b9c"><div class="ttname"><a href="pd4_8h.html#abbe129f41ec37373ecafc051a6ec4b9c">cGRAD_TO_ENCODER</a></div><div class="ttdeci">#define cGRAD_TO_ENCODER(x)</div><div class="ttdef"><b>Definition:</b> pd4.h:5</div></div>
+<div class="ttc" id="apd4__dictionary_8h_html_a004b672e5eb0f09934c644a57876788b"><div class="ttname"><a href="pd4__dictionary_8h.html#a004b672e5eb0f09934c644a57876788b">OD_6084_00</a></div><div class="ttdeci">#define OD_6084_00</div><div class="ttdef"><b>Definition:</b> pd4_dictionary.h:186</div></div>
+<div class="ttc" id="apd4__dictionary_8h_html_a648864b0123c96ffc2dc7b7d4b21aa5d"><div class="ttname"><a href="pd4__dictionary_8h.html#a648864b0123c96ffc2dc7b7d4b21aa5d">OD_607A_00</a></div><div class="ttdeci">#define OD_607A_00</div><div class="ttdef"><b>Definition:</b> pd4_dictionary.h:172</div></div>
+<div class="ttc" id="apd4__dictionary_8h_html_a727eec8d4f7d9dc83b227a29d9fc6c9c"><div class="ttname"><a href="pd4__dictionary_8h.html#a727eec8d4f7d9dc83b227a29d9fc6c9c">OD_6081_00</a></div><div class="ttdeci">#define OD_6081_00</div><div class="ttdef"><b>Definition:</b> pd4_dictionary.h:183</div></div>
+<div class="ttc" id="apd4__dictionary_8h_html_a84b2cc81dc64674d77f49df06ce0b68e"><div class="ttname"><a href="pd4__dictionary_8h.html#a84b2cc81dc64674d77f49df06ce0b68e">OD_6083_00</a></div><div class="ttdeci">#define OD_6083_00</div><div class="ttdef"><b>Definition:</b> pd4_dictionary.h:185</div></div>
+<div class="ttc" id="apd4__dictionary_8h_html_abc738aa935e82d8bfa0312886da26456"><div class="ttname"><a href="pd4__dictionary_8h.html#abc738aa935e82d8bfa0312886da26456">OD_6085_00</a></div><div class="ttdeci">#define OD_6085_00</div><div class="ttdef"><b>Definition:</b> pd4_dictionary.h:187</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="aca6a7e874782c7e88758ef5c00cdd3c6" name="aca6a7e874782c7e88758ef5c00cdd3c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca6a7e874782c7e88758ef5c00cdd3c6">&#9670;&#160;</a></span>trx_runtime_ector</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="structpd4_nanotec_1_1___o_d___init_vector.html">pd4Nanotec::_OD_InitVector</a> trx_runtime_ector[]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">={</div>
+<div class="line"> </div>
+<div class="line">    </div>
+<div class="line">    {<a class="code hl_define" href="pd4__dictionary_8h.html#a46d2b1a945c41dd3ecd3f43102bb4dad">OD_3250_02</a>,0},     </div>
+<div class="line">    {<a class="code hl_define" href="pd4__dictionary_8h.html#ac81ae3467a3d2fea26b6b6a2a0bb0744">OD_3250_03</a>,3 },    </div>
+<div class="line">    {<a class="code hl_define" href="pd4__dictionary_8h.html#ae9f27f3a43fa89a875bfb1eefe9a9b2e">OD_3250_04</a>,0 },    </div>
+<div class="line">    {<a class="code hl_define" href="pd4__dictionary_8h.html#a9519b3e8289e3de7b4769e312dd6461b">OD_3250_08</a>,0 },    </div>
+<div class="line"> </div>
+<div class="line">    </div>
+<div class="line">    {<a class="code hl_define" href="pd4__dictionary_8h.html#a8044288db42f58725e9c646d76f69614">OD_3240_01</a>,4},     </div>
+<div class="line">    {<a class="code hl_define" href="pd4__dictionary_8h.html#a40927a1733678c2f450ab9e9fd26e11d">OD_3240_02</a>,0},     </div>
+<div class="line">    {<a class="code hl_define" href="pd4__dictionary_8h.html#a3db60c3e9be37ee59904519f0a9e7704">OD_3240_03</a>,0 },    </div>
+<div class="line">    {<a class="code hl_define" href="pd4__dictionary_8h.html#ac223614cba92ea232d51d0c0dd1c24be">OD_3240_04</a>,0 },    </div>
+<div class="line">    {<a class="code hl_define" href="pd4__dictionary_8h.html#a7999a24d784091d544d00acf652364bd">OD_3240_06</a>,0 },    </div>
+<div class="line"> </div>
+<div class="line">    {<a class="code hl_define" href="pd4__dictionary_8h.html#a727eec8d4f7d9dc83b227a29d9fc6c9c">OD_6081_00</a>,250 },  </div>
+<div class="line">    {<a class="code hl_define" href="pd4__dictionary_8h.html#a0bbff35c5f1142a840efe4858c4dd422">OD_6082_00</a>,0 },    </div>
+<div class="line">    {<a class="code hl_define" href="pd4__dictionary_8h.html#a84b2cc81dc64674d77f49df06ce0b68e">OD_6083_00</a>,250 },  </div>
+<div class="line">    {<a class="code hl_define" href="pd4__dictionary_8h.html#a004b672e5eb0f09934c644a57876788b">OD_6084_00</a>,250 },  </div>
+<div class="line">    {<a class="code hl_define" href="pd4__dictionary_8h.html#abc738aa935e82d8bfa0312886da26456">OD_6085_00</a>,<a class="code hl_define" href="pd4_8h.html#a21d09e437076fafdddbc1f69c22837ef">cGRADsec_TO_ROT_min</a>(400) }, </div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_define" href="pd4_8h.html#a5e40f5d2bfb003ed67b475dd6ca978df">END_ODVECTOR</a></div>
+<div class="line">}</div>
+<div class="ttc" id="apd4__dictionary_8h_html_a0bbff35c5f1142a840efe4858c4dd422"><div class="ttname"><a href="pd4__dictionary_8h.html#a0bbff35c5f1142a840efe4858c4dd422">OD_6082_00</a></div><div class="ttdeci">#define OD_6082_00</div><div class="ttdef"><b>Definition:</b> pd4_dictionary.h:184</div></div>
+<div class="ttc" id="apd4__dictionary_8h_html_a3db60c3e9be37ee59904519f0a9e7704"><div class="ttname"><a href="pd4__dictionary_8h.html#a3db60c3e9be37ee59904519f0a9e7704">OD_3240_03</a></div><div class="ttdeci">#define OD_3240_03</div><div class="ttdef"><b>Definition:</b> pd4_dictionary.h:116</div></div>
+<div class="ttc" id="apd4__dictionary_8h_html_a40927a1733678c2f450ab9e9fd26e11d"><div class="ttname"><a href="pd4__dictionary_8h.html#a40927a1733678c2f450ab9e9fd26e11d">OD_3240_02</a></div><div class="ttdeci">#define OD_3240_02</div><div class="ttdef"><b>Definition:</b> pd4_dictionary.h:115</div></div>
+<div class="ttc" id="apd4__dictionary_8h_html_a46d2b1a945c41dd3ecd3f43102bb4dad"><div class="ttname"><a href="pd4__dictionary_8h.html#a46d2b1a945c41dd3ecd3f43102bb4dad">OD_3250_02</a></div><div class="ttdeci">#define OD_3250_02</div><div class="ttdef"><b>Definition:</b> pd4_dictionary.h:129</div></div>
+<div class="ttc" id="apd4__dictionary_8h_html_a7999a24d784091d544d00acf652364bd"><div class="ttname"><a href="pd4__dictionary_8h.html#a7999a24d784091d544d00acf652364bd">OD_3240_06</a></div><div class="ttdeci">#define OD_3240_06</div><div class="ttdef"><b>Definition:</b> pd4_dictionary.h:119</div></div>
+<div class="ttc" id="apd4__dictionary_8h_html_a8044288db42f58725e9c646d76f69614"><div class="ttname"><a href="pd4__dictionary_8h.html#a8044288db42f58725e9c646d76f69614">OD_3240_01</a></div><div class="ttdeci">#define OD_3240_01</div><div class="ttdef"><b>Definition:</b> pd4_dictionary.h:114</div></div>
+<div class="ttc" id="apd4__dictionary_8h_html_a9519b3e8289e3de7b4769e312dd6461b"><div class="ttname"><a href="pd4__dictionary_8h.html#a9519b3e8289e3de7b4769e312dd6461b">OD_3250_08</a></div><div class="ttdeci">#define OD_3250_08</div><div class="ttdef"><b>Definition:</b> pd4_dictionary.h:132</div></div>
+<div class="ttc" id="apd4__dictionary_8h_html_ac223614cba92ea232d51d0c0dd1c24be"><div class="ttname"><a href="pd4__dictionary_8h.html#ac223614cba92ea232d51d0c0dd1c24be">OD_3240_04</a></div><div class="ttdeci">#define OD_3240_04</div><div class="ttdef"><b>Definition:</b> pd4_dictionary.h:117</div></div>
+<div class="ttc" id="apd4__dictionary_8h_html_ac81ae3467a3d2fea26b6b6a2a0bb0744"><div class="ttname"><a href="pd4__dictionary_8h.html#ac81ae3467a3d2fea26b6b6a2a0bb0744">OD_3250_03</a></div><div class="ttdeci">#define OD_3250_03</div><div class="ttdef"><b>Definition:</b> pd4_dictionary.h:130</div></div>
+<div class="ttc" id="apd4__dictionary_8h_html_ae9f27f3a43fa89a875bfb1eefe9a9b2e"><div class="ttname"><a href="pd4__dictionary_8h.html#ae9f27f3a43fa89a875bfb1eefe9a9b2e">OD_3250_04</a></div><div class="ttdeci">#define OD_3250_04</div><div class="ttdef"><b>Definition:</b> pd4_dictionary.h:131</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ac0bf130554b0a814c09b9d48b0961a0a" name="ac0bf130554b0a814c09b9d48b0961a0a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0bf130554b0a814c09b9d48b0961a0a">&#9670;&#160;</a></span>trx_zero_vector</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="structpd4_nanotec_1_1___o_d___init_vector.html">pd4Nanotec::_OD_InitVector</a> trx_zero_vector[]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">={</div>
+<div class="line">    {<a class="code hl_define" href="pd4__dictionary_8h.html#ab5235900e17e152758955fdfc8b3058d">OD_6099_01</a>,<a class="code hl_define" href="pd4_8h.html#a21d09e437076fafdddbc1f69c22837ef">cGRADsec_TO_ROT_min</a>(100)}, </div>
+<div class="line">    {<a class="code hl_define" href="pd4__dictionary_8h.html#a02a46fc119ed6761b25f1e754bb90da1">OD_6099_02</a>,<a class="code hl_define" href="pd4_8h.html#a21d09e437076fafdddbc1f69c22837ef">cGRADsec_TO_ROT_min</a>(50)}, </div>
+<div class="line">    {<a class="code hl_define" href="pd4__dictionary_8h.html#a180525d4c229336b201ce48d37671dbb">OD_609A_00</a>,<a class="code hl_define" href="pd4_8h.html#a21d09e437076fafdddbc1f69c22837ef">cGRADsec_TO_ROT_min</a>(100)}, </div>
+<div class="line">    {<a class="code hl_define" href="pd4__dictionary_8h.html#a65c65e89716605553f4bca2482b0b0b8">OD_607C_00</a>,<a class="code hl_define" href="pd4_8h.html#abbe129f41ec37373ecafc051a6ec4b9c">cGRAD_TO_ENCODER</a>(0)}, </div>
+<div class="line">    <a class="code hl_define" href="pd4_8h.html#a5e40f5d2bfb003ed67b475dd6ca978df">END_ODVECTOR</a> </div>
+<div class="line">}</div>
+<div class="ttc" id="apd4__dictionary_8h_html_a02a46fc119ed6761b25f1e754bb90da1"><div class="ttname"><a href="pd4__dictionary_8h.html#a02a46fc119ed6761b25f1e754bb90da1">OD_6099_02</a></div><div class="ttdeci">#define OD_6099_02</div><div class="ttdef"><b>Definition:</b> pd4_dictionary.h:207</div></div>
+<div class="ttc" id="apd4__dictionary_8h_html_a180525d4c229336b201ce48d37671dbb"><div class="ttname"><a href="pd4__dictionary_8h.html#a180525d4c229336b201ce48d37671dbb">OD_609A_00</a></div><div class="ttdeci">#define OD_609A_00</div><div class="ttdef"><b>Definition:</b> pd4_dictionary.h:208</div></div>
+<div class="ttc" id="apd4__dictionary_8h_html_a65c65e89716605553f4bca2482b0b0b8"><div class="ttname"><a href="pd4__dictionary_8h.html#a65c65e89716605553f4bca2482b0b0b8">OD_607C_00</a></div><div class="ttdeci">#define OD_607C_00</div><div class="ttdef"><b>Definition:</b> pd4_dictionary.h:205</div></div>
+<div class="ttc" id="apd4__dictionary_8h_html_ab5235900e17e152758955fdfc8b3058d"><div class="ttname"><a href="pd4__dictionary_8h.html#ab5235900e17e152758955fdfc8b3058d">OD_6099_01</a></div><div class="ttdeci">#define OD_6099_01</div><div class="ttdef"><b>Definition:</b> pd4_dictionary.h:206</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 </div><!-- contents -->

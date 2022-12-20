@@ -107,6 +107,10 @@ int main(int argc, char *argv[])
     WINDOW = nullptr;
     CANCLIENT = nullptr;
     TRX = nullptr;
+    ARM = nullptr;
+    LIFT = nullptr;
+    BODY = nullptr;
+    SLIDE = nullptr;
 
     // Identifies the starting mode
     if(argc == 1){
@@ -142,14 +146,12 @@ int main(int argc, char *argv[])
 
 
     // Open the server for the external commands
-    //INTERFACE = new Server(Application::IP_INTERFACE_ADDRESS, Application::INTERFACE_PORT);
-    //INTERFACE->Start();
+    INTERFACE = new Interface(Application::IP_INTERFACE_ADDRESS, Application::INTERFACE_PORT);
+    INTERFACE->Start();
     CANCLIENT = new canClient(0xF80, 0x580,Application::IP_CAN_ADDRESS, Application::CAN_PORT);
+    CANCLIENT->ConnectToCanServer();
+
     TRX = new trxModule();
-
-
-    TRX->run();
-    CANCLIENT->ConnectToCanServer();    
 
 
     return a.exec();

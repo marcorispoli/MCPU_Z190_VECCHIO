@@ -1,90 +1,6 @@
 #include "application.h"
 #include "pd4_dictionary.h"
 
-
-/*
-    // Legge il contenuto dello User Parameter
-
-
-
-
-
-
-    while(1){
-        size = vmmSize - (index * 1024);
-        if(size==0) break;
-        if(size>1024) size = 1024;
-
-        printf("%s: DOWNLOAD BLOCK %d... \n",DEVICE, index);
-        if(canopenWriteDomainSDO(&vmm_data_od, CANOPEN_CONTEXT,&(vmmFile[index*1024]), size)==false) {
-            printf("%s: ERROR IN DOWNLOADING FLASH DATA BLOCK\n",DEVICE);
-            return false;
-        }
-
-        // Scrive in flash il blocco dati
-        printf("%s: WRITE BLOCK ... \n",DEVICE);
-        vmm_ctrl_od.val = VMM_WRITE;
-        if(canopenWriteSDO(&vmm_ctrl_od, CANOPEN_CONTEXT)==false) {
-            printf("%s: ERROR IN WRITING THE FLASH\n",DEVICE);
-            return false;
-        }
-        // Attende il completamento ..
-        _time_delay(100);
-        while(1){
-            retcmd = canopenReadSDO(&vmm_ctrl_od, CANOPEN_CONTEXT);
-            if(retcmd==false){
-                _time_delay(100);
-                continue;
-            }
-            if(vmm_ctrl_od.val==0) break;
-        }
-        // Legge lo status per verificare il corretto salvataggio
-        if(canopenReadSDO(&vmm_status_od, CANOPEN_CONTEXT)==false){
-            printf("%s: ERROR IN READING THE FLASH STATUS REGISTER\n",DEVICE);
-            return false;
-        }
-        if(vmm_status_od.val!=0){
-            printf("%s: ERROR IN THE WRITING COMMAND: %x\n",DEVICE,vmm_status_od.val);
-            return false;
-        }
-
-        if(size<1024) break;
-        index++;
-    }
-
-    printf("%s: NANO-J PROGRAM SUCCESSFULLY DOWNLOADED\n",DEVICE);
-
-    // Salva il checksum in modo che alla ripartenza successiva non ripeta la scrittura della flash
-    user_param_od_nanoj.val = vmmchk;
-    while(canopenWriteSDO(&user_param_od_nanoj, CANOPEN_CONTEXT)==false) {
-        _time_delay(100);
-        printf("%s: ATTEMPT TO WRITE THE ID REGISTER\n",DEVICE);
-        return false;
-    }
-
-    // Salva il contenuto della user ID
-    user_param_save_od.val = 1;
-    if(canopenWriteSDO(&user_param_save_od, CANOPEN_CONTEXT)==false) {
-        printf("%s: ERROR IN SAVING THE USER PARAM REGISTER\n",DEVICE);
-        return false;
-    }
-
-    // Operazione completata con successo
-    printf("%s: UPLOAD NANOJ PROGRAM COMPLETED\n",DEVICE);
-    return true;
-
-
-}
-*/
-
-/*
-_canopen_ObjectDictionary_t user_param_od_nanoj={OD_2700_02};
-_canopen_ObjectDictionary_t user_param_save_od={OD_2700_01};
-_canopen_ObjectDictionary_t vmm_ctrl_od={OD_1F51_02};
-_canopen_ObjectDictionary_t vmm_data_od={OD_1F50_02};
-_canopen_ObjectDictionary_t vmm_status_od={OD_1F57_02};
-*/
-
 void pd4Nanotec::nanojWritedata(void){
 
 
@@ -105,12 +21,10 @@ void pd4Nanotec::nanojWritedata(void){
 
 }
 
-#define NANOJ_CONTROL OD_1F51_02
-#define NANOJ_DATA OD_1F50_02_INIT
-#define NANOJ_STATUS OD_1F57_02
+#define NANOJ_CONTROL   OD_1F51_02
+#define NANOJ_DATA      OD_1F50_02_INIT
+#define NANOJ_STATUS    OD_1F57_02
 
-#define USER_PARAM OD_2700_02
-#define SAVE_USER_PARAM OD_2700_01
 
 
 
@@ -130,14 +44,14 @@ ushort pd4Nanotec::subNanojProgramUpload(bool force){
         // Calculate the checksum
         for(unsigned int i=0; i < nanojStr.sizeofNanoj;i++) vmmchk += (ushort) nanojStr.vector[i];
 
-        readSDO(USER_PARAM); // Reads the user parameter containing the stored nanoj checksum
+        readSDO(NANOJ_USER_PARAM); // Reads the user parameter containing the stored nanoj checksum
         wSubStatus++;
         return 5;
 
 
     case 1:
         if(!sdoRxTx.sdo_rx_ok) {
-            qDebug() << QString("DEVICE (%1): ERROR READING OD %2.%3").arg(deviceId).arg(txSDO.getIndex(),1,16).arg(txSDO.getSubIndex());
+            qDebug() << QString("DEVICE (%1): ERROR READING OD %2.%3").arg(deviceId).arg(sdoRxTx.txSDO.getIndex(),1,16).arg(sdoRxTx.txSDO.getSubIndex());
             wSubStatus = 0;
             return 0;
         }
@@ -146,7 +60,7 @@ ushort pd4Nanotec::subNanojProgramUpload(bool force){
         return 1;
 
     case 2:
-        if((rxSDO.getVal() == vmmchk) && (!force)){
+        if((sdoRxTx.rxSDO.getVal() == vmmchk) && (!force)){
             nanojUploaded = true;
             qDebug() << QString("DEVICE (%1): NANOJ-PROGRAM ALREADY UPLOADED").arg(deviceId);
             wSubStatus = 0;
@@ -159,7 +73,7 @@ ushort pd4Nanotec::subNanojProgramUpload(bool force){
 
     case 3:
         if(!sdoRxTx.sdo_rx_ok) {
-            qDebug() << QString("DEVICE (%1): ERROR WRITING OD %2.%3").arg(deviceId).arg(txSDO.getIndex(),1,16).arg(txSDO.getSubIndex());
+            qDebug() << QString("DEVICE (%1): ERROR WRITING OD %2.%3").arg(deviceId).arg(sdoRxTx.txSDO.getIndex(),1,16).arg(sdoRxTx.txSDO.getSubIndex());
             wSubStatus = 0;
             return 0;
         }
@@ -171,7 +85,7 @@ ushort pd4Nanotec::subNanojProgramUpload(bool force){
 
     case 4:
         if(!sdoRxTx.sdo_rx_ok) {
-            qDebug() << QString("DEVICE (%1): ERROR WRITING OD %2.%3").arg(deviceId).arg(txSDO.getIndex(),1,16).arg(txSDO.getSubIndex());
+            qDebug() << QString("DEVICE (%1): ERROR WRITING OD %2.%3").arg(deviceId).arg(sdoRxTx.txSDO.getIndex(),1,16).arg(sdoRxTx.txSDO.getSubIndex());
             wSubStatus = 0;
             return 0;
         }
@@ -189,7 +103,7 @@ ushort pd4Nanotec::subNanojProgramUpload(bool force){
 
     case 6:
         if(!sdoRxTx.sdo_rx_ok) {
-            qDebug() << QString("DEVICE (%1): ERROR READING OD %2.%3").arg(deviceId).arg(txSDO.getIndex(),1,16).arg(txSDO.getSubIndex());
+            qDebug() << QString("DEVICE (%1): ERROR READING OD %2.%3").arg(deviceId).arg(sdoRxTx.txSDO.getIndex(),1,16).arg(sdoRxTx.txSDO.getSubIndex());
             wSubStatus = 0;
             return 0;
         }
@@ -201,7 +115,7 @@ ushort pd4Nanotec::subNanojProgramUpload(bool force){
 
     case 7:
         if(!sdoRxTx.sdo_rx_ok) {
-            qDebug() << QString("DEVICE (%1): ERROR WRITING OD %2.%3").arg(deviceId).arg(txSDO.getIndex(),1,16).arg(txSDO.getSubIndex());
+            qDebug() << QString("DEVICE (%1): ERROR WRITING OD %2.%3").arg(deviceId).arg(sdoRxTx.txSDO.getIndex(),1,16).arg(sdoRxTx.txSDO.getSubIndex());
             wSubStatus = 0;
             return 0;
         }
@@ -218,7 +132,7 @@ ushort pd4Nanotec::subNanojProgramUpload(bool force){
 
     case 9:
         if(!sdoRxTx.sdo_rx_ok) {
-            qDebug() << QString("DEVICE (%1): ERROR WRITING OD %2.%3").arg(deviceId).arg(txSDO.getIndex(),1,16).arg(txSDO.getSubIndex());
+            qDebug() << QString("DEVICE (%1): ERROR WRITING OD %2.%3").arg(deviceId).arg(sdoRxTx.txSDO.getIndex(),1,16).arg(sdoRxTx.txSDO.getSubIndex());
             wSubStatus = 0;
             return 0;
         }
@@ -287,7 +201,7 @@ ushort pd4Nanotec::subNanojProgramUpload(bool force){
             wSubStatus = 0;
             return 0;
         }
-        if(rxSDO.getVal() != 0){
+        if(sdoRxTx.rxSDO.getVal() != 0){
             wSubStatus--;
             return 100;
         }
@@ -307,7 +221,7 @@ ushort pd4Nanotec::subNanojProgramUpload(bool force){
             return 0;
         }
 
-        if(rxSDO.getVal() != 0){
+        if(sdoRxTx.rxSDO.getVal() != 0){
             qDebug() << QString("DEVICE (%1): ERROR READING STATUS").arg(deviceId);
             wSubStatus = 0;
             return 0;
@@ -323,7 +237,7 @@ ushort pd4Nanotec::subNanojProgramUpload(bool force){
 
      case 18:
         qDebug() << "SAVE THE CHECKSUM OF THE NANOJ PROGRAM";
-        writeSDO(USER_PARAM, vmmchk);
+        writeSDO(NANOJ_USER_PARAM, vmmchk);
         wSubStatus++;
         return 5;
 
@@ -334,19 +248,18 @@ ushort pd4Nanotec::subNanojProgramUpload(bool force){
             return 0;
         }
 
-        readSDO(USER_PARAM);
+        writeSDO(RESET_USER_PARAM,0); // Reset the User param of the Reset flag
         wSubStatus++;
         return 5;
 
      case 20:
         if(!sdoRxTx.sdo_rx_ok) {
-            qDebug() << QString("DEVICE (%1): ERROR SAVING THE CHECKSUM").arg(deviceId);
+            qDebug() << QString("DEVICE (%1): ERROR WRITING THE RESET FLAG IN USER PARAM").arg(deviceId);
             wSubStatus = 0;
             return 0;
         }
 
-        qDebug() << QString("USER PARAM SET TO:0x%1, CHK:0x%2").arg(rxSDO.getVal(),1,16).arg(vmmchk,1,16);
-
+        // Saves the User parameters
         writeSDO(SAVE_USER_PARAM, 1);
         wSubStatus++;
         return 5;
@@ -373,7 +286,7 @@ ushort pd4Nanotec::subNanojProgramUpload(bool force){
             return 0;
         }
 
-        if(rxSDO.getVal()!=0){
+        if(sdoRxTx.rxSDO.getVal()!=0){
             wSubStatus--;
             return 100;
         }

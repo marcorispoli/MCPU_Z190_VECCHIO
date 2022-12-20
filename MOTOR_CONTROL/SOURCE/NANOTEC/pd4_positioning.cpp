@@ -2,27 +2,52 @@
 #include "pd4_dictionary.h"
 
 
-bool pd4Nanotec::activatePositioning(int cAngle){
-    if( execCommand != _NO_COMMAND) return false;
-    if(CiAcurrentStatus != CiA402_SwitchedOn) return false;
-    //if(!zero_setting_ok ) return false;
-    if(positionSettingVector == nullptr) return false;
+bool pd4Nanotec::activatePositioning(int cAngle, uint cAcc, uint cDec, uint cSpeed, bool nanoj_start){
+    canOpenDictionary od;
+
+    if( execCommand != _NO_COMMAND){
+        qDebug() << "DEVICE (" << deviceId << "): INVALID POSITIONING ACTIVATION. COMMAND EXECUTING !";
+        return false;
+    }
+    if(CiAcurrentStatus != CiA402_SwitchedOn){
+        qDebug() << "DEVICE (" << deviceId << "): INVALID POSITIONING ACTIVATION. WRONG CiA STATUS !";
+        return false;
+    }
+
+    if(!zero_setting_ok ){
+        qDebug() << "DEVICE (" << deviceId << "): INVALID POSITIONING ACTIVATION. MISSING ZERO SETTING !";
+        return false;
+    }
+
+
+    positioningStr.target_ok = false;
+    positioningStr.cAcc = cAcc;
+    positioningStr.cDec = cDec;
+    positioningStr.cSpeed = cSpeed;
+    positioningStr.nanoj_start = nanoj_start;
+    positioningStr.registers.clear();
 
     safety.immediate_stop_command = false;
 
-    int i=0;
-    while(positionSettingVector[i].type != 0){
-        if(positionSettingVector[i].index == OD_IDX(OD_607A_00)){
+    od.setOd(OD_6083_00, convert_cGRADsec_TO_ROT_min(cAcc)); // Set the Acceleration ratio
+    positioningStr.registers.append(od);
 
-            // Sets the target
-            positionSettingVector[i].val = _cGRAD_TO_POS(cAngle);
-            execCommand = _POSITIONING_COMMAND;
-            return true;
-        }
-        i++;
+    od.setOd(OD_6084_00, convert_cGRADsec_TO_ROT_min(cDec)); // Set the deceleration ratio
+    positioningStr.registers.append(od);
+
+    od.setOd(OD_6081_00, convert_cGRADsec_TO_ROT_min(cSpeed)); // Set the Speed ratio
+    positioningStr.registers.append(od);
+
+    od.setOd(OD_607A_00, convert_cGRAD_TO_EncoderUnit(cAngle)); // Set the target position
+    positioningStr.registers.append(od);
+
+    if(nanoj_start){
+        od.setOd(OD_2300_00, 1); // Nanoj program activation
+        positioningStr.registers.append(od);
     }
-    return false;
 
+    execCommand = _POSITIONING_COMMAND;
+    return true;
 }
 
 
@@ -33,14 +58,12 @@ ushort pd4Nanotec::initPd4PositioningCommand(void){
 
     switch(wStatus){
     case 0:
-        // Upload Zero Setting registers
         wStatus++;
-        positioning_ok = false;
         return 1;
 
     case 1:
       // Upload Positioning setting register loop
-      delay = subRoutineUploadVector(positionSettingVector, nullptr, &success);
+      delay = subRoutineWriteRegisterList(&positioningStr.registers, &success);
       if(delay) return delay;
 
       if(!success){
@@ -60,7 +83,7 @@ ushort pd4Nanotec::initPd4PositioningCommand(void){
 
     case 3:
         if(!sdoRxTx.sdo_rx_ok) {
-            qDebug() << QString("DEVICE (%1): ERROR WRITING OD %2.%3").arg(deviceId).arg(txSDO.getIndex(),1,16).arg(txSDO.getSubIndex());
+            qDebug() << QString("DEVICE (%1): ERROR WRITING OD %2.%3").arg(deviceId).arg(sdoRxTx.txSDO.getIndex(),1,16).arg(sdoRxTx.txSDO.getSubIndex());
             wStatus = 200;
             return 1;
         }
@@ -75,7 +98,7 @@ ushort pd4Nanotec::initPd4PositioningCommand(void){
 
     case 5: // Get the control word
         if(!sdoRxTx.sdo_rx_ok) {
-            qDebug() << QString("DEVICE (%1): ERROR READING OD %2.%3").arg(deviceId).arg(txSDO.getIndex(),1,16).arg(txSDO.getSubIndex());
+            qDebug() << QString("DEVICE (%1): ERROR READING OD %2.%3").arg(deviceId).arg(sdoRxTx.txSDO.getIndex(),1,16).arg(sdoRxTx.txSDO.getSubIndex());
             wStatus = 200;
             return 1;
         }
@@ -86,7 +109,7 @@ ushort pd4Nanotec::initPd4PositioningCommand(void){
 
     case 6:
         // To the SwitchOn Status
-        ctrlw = rxSDO.getVal();
+        ctrlw = sdoRxTx.rxSDO.getVal();
         ctrlw &=~ OD_MASK(POSITION_SETTING_CTRL_INIT);
         ctrlw |= OD_VAL(POSITION_SETTING_CTRL_INIT);
         writeSDO(OD_6040_00, ctrlw);
@@ -95,7 +118,7 @@ ushort pd4Nanotec::initPd4PositioningCommand(void){
 
     case 7:
         if(!sdoRxTx.sdo_rx_ok) {
-            qDebug() << QString("DEVICE (%1): ERROR WRITING OD %2.%3").arg(deviceId).arg(txSDO.getIndex(),1,16).arg(txSDO.getSubIndex());
+            qDebug() << QString("DEVICE (%1): ERROR WRITING OD %2.%3").arg(deviceId).arg(sdoRxTx.txSDO.getIndex(),1,16).arg(sdoRxTx.txSDO.getSubIndex());
             wStatus = 200;
             return 1;
         }
@@ -118,12 +141,36 @@ ushort pd4Nanotec::initPd4PositioningCommand(void){
 
     case 9:
         if(!sdoRxTx.sdo_rx_ok) {
-            qDebug() << QString("DEVICE (%1): ERROR WRITING OD %2.%3").arg(deviceId).arg(txSDO.getIndex(),1,16).arg(txSDO.getSubIndex());
+            qDebug() << QString("DEVICE (%1): ERROR WRITING OD %2.%3").arg(deviceId).arg(sdoRxTx.txSDO.getIndex(),1,16).arg(sdoRxTx.txSDO.getSubIndex());
             wStatus = 200;
             return 1;
         }
 
+        // Nanoj activation if required
+        if(!positioningStr.nanoj_start) return 0;
+        wStatus++;
+        return 1;
 
+    case 10:
+        readSDO(OD_2301_00); // Read the Nanoj Status register
+        wStatus++;
+        return 5;
+
+    case 11:
+        if(!sdoRxTx.sdo_rx_ok) {
+            qDebug() << QString("DEVICE (%1): ERROR READING OD %2.%3").arg(deviceId).arg(sdoRxTx.txSDO.getIndex(),1,16).arg(sdoRxTx.txSDO.getSubIndex());
+            wStatus = 200;
+            return 1;
+        }
+
+        if(sdoRxTx.rxSDO.getVal() & 0x4 ){
+             qDebug() << QString("DEVICE (%1): ERROR RUNNING THE NANOJ  PROGRAM").arg(deviceId);
+             wStatus = 200;
+             return 1;
+        }
+
+        qDebug() << QString("DEVICE (%1): NANOJ PROGRAM STARTED").arg(deviceId);
+        nanojStr.nanoj_program_started = true;
         return 0;
 
    case 200: // Error condition handling
@@ -159,8 +206,13 @@ ushort pd4Nanotec::pd4PositioningLoop(){
 
     switch(wStatus){
         case 0:
-            qDebug() << QString("DEVICE (%1): POSITIONING SETTING STARTED").arg(deviceId);
-            wStatus++;
+            if(positioningStr.nanoj_start){
+                qDebug() << QString("DEVICE (%1): POSITIONING SETTING WITH NANOJ STARTED").arg(deviceId);
+                wStatus =5;
+            }else{
+                qDebug() << QString("DEVICE (%1): POSITIONING SETTING STARTED").arg(deviceId);
+                wStatus++;
+            }
             return 1;
 
         case 1:// Read the Control Word
@@ -170,14 +222,14 @@ ushort pd4Nanotec::pd4PositioningLoop(){
 
         case 2: // Get the control word
             if(!sdoRxTx.sdo_rx_ok) {
-                qDebug() << QString("DEVICE (%1): ERROR READING OD %2.%3").arg(deviceId).arg(txSDO.getIndex(),1,16).arg(txSDO.getSubIndex());
+                qDebug() << QString("DEVICE (%1): ERROR READING OD %2.%3").arg(deviceId).arg(sdoRxTx.txSDO.getIndex(),1,16).arg(sdoRxTx.txSDO.getSubIndex());
                 return 0;
             }            
             wStatus++;
             return 1;
 
         case 3: // Set the BIT4 of Control Word to start the sequence
-            ctrlw = rxSDO.getVal();
+            ctrlw = sdoRxTx.rxSDO.getVal();
             ctrlw &=~ OD_MASK(POSITION_SETTING_START);
             ctrlw |= OD_VAL(POSITION_SETTING_START);
             writeSDO(OD_6040_00, ctrlw);
@@ -186,44 +238,34 @@ ushort pd4Nanotec::pd4PositioningLoop(){
 
         case 4:
             if(!sdoRxTx.sdo_rx_ok) {
-                qDebug() << QString("DEVICE (%1): ERROR WRITING OD %2.%3").arg(deviceId).arg(txSDO.getIndex(),1,16).arg(txSDO.getSubIndex());
+                qDebug() << QString("DEVICE (%1): ERROR WRITING OD %2.%3").arg(deviceId).arg(sdoRxTx.txSDO.getIndex(),1,16).arg(sdoRxTx.txSDO.getSubIndex());
                 return 0;
             }
 
             wStatus++;
             return 1;
 
-        case 5:
-            delay = subReadDigitalInputs();
-            if(delay) return delay;
+        case 5: // Positioning Cycle loop ------------------------------------------------------------------
 
-            if(isSafetyDigitalInputOn()){
-                qDebug() << QString("DEVICE (%1): ERROR SAFETY DIGITAL INPUTS").arg(deviceId);
-                return 0;
-            }
-            wStatus++;
-            return 1;
-
-        case 6: // Read the Encoder position
-            delay = subReadPositionEncoder();
+            delay = subReadPositionEncoder();// Read the Encoder position
             if(delay) return delay;
             wStatus++;
             return 5;
 
-        case 7:// Read the Status Word to detect the command completion
+        case 6:// Read the Status Word to detect the command completion
             readSDO(OD_6041_00);
             wStatus++;
             return 5;
 
-        case 8:
+        case 7:
             if(!sdoRxTx.sdo_rx_ok) {
-                qDebug() << QString("DEVICE (%1): ERROR READING OD %2.%3").arg(deviceId).arg(txSDO.getIndex(),1,16).arg(txSDO.getSubIndex());
+                qDebug() << QString("DEVICE (%1): ERROR READING OD %2.%3").arg(deviceId).arg(sdoRxTx.txSDO.getIndex(),1,16).arg(sdoRxTx.txSDO.getSubIndex());
                 return 0;
             }
 
             // Check the status register content
-            val = rxSDO.getVal();
-            CiAcurrentStatus = getCiAStatus(&rxSDO);
+            val = sdoRxTx.rxSDO.getVal();
+            CiAcurrentStatus = getCiAStatus(&sdoRxTx.rxSDO);
 
             if(CiAcurrentStatus != CiA402_OperationEnabled){
                 qDebug() << QString("DEVICE (%1): ERROR POSITIONING STATUS").arg(deviceId);
@@ -231,7 +273,7 @@ ushort pd4Nanotec::pd4PositioningLoop(){
             }
 
             if((val &0x1400) == 0x1400){
-                positioning_ok = true;
+                positioningStr.target_ok = true;
                 qDebug() << QString("DEVICE (%1): POSITIONING SUCCESSFULLY COMPLETED").arg(deviceId);
                 return 0;
             }

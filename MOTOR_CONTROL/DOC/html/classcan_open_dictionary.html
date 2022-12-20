@@ -88,19 +88,21 @@ $(function() {
 Public Types</h2></td></tr>
 <tr class="memitem:af1956900a3e4b179e2ddf2a2dc95c996"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcan_open_dictionary.html#af1956900a3e4b179e2ddf2a2dc95c996">_ODDataType</a> { <br />
 &#160;&#160;<a class="el" href="classcan_open_dictionary.html#af1956900a3e4b179e2ddf2a2dc95c996ae8182c266022e7c6b345fee35b14cd31">SDO_NOT_VALID</a> =0
+, <a class="el" href="classcan_open_dictionary.html#af1956900a3e4b179e2ddf2a2dc95c996aa8f10b915dd0065f42c0b0743c220069">INIT_BLOCK_TRANSFER</a> =0x20
 , <a class="el" href="classcan_open_dictionary.html#af1956900a3e4b179e2ddf2a2dc95c996a77f2870c262358e78cc31decc70e2469">WR_1BYTE</a> =0x2F
 , <a class="el" href="classcan_open_dictionary.html#af1956900a3e4b179e2ddf2a2dc95c996ac84fd215dc15eb74488c2379af117b1a">WR_2BYTE</a> =0x2B
-, <a class="el" href="classcan_open_dictionary.html#af1956900a3e4b179e2ddf2a2dc95c996a0c788b93f64c7182bc994bf262fc5ad8">WR_3BYTE</a> =0x27
 , <br />
-&#160;&#160;<a class="el" href="classcan_open_dictionary.html#af1956900a3e4b179e2ddf2a2dc95c996a0b8006e7020db578ed4b3cf4f0a9bba1">WR_4BYTE</a> =0x23
+&#160;&#160;<a class="el" href="classcan_open_dictionary.html#af1956900a3e4b179e2ddf2a2dc95c996a0c788b93f64c7182bc994bf262fc5ad8">WR_3BYTE</a> =0x27
+, <a class="el" href="classcan_open_dictionary.html#af1956900a3e4b179e2ddf2a2dc95c996a0b8006e7020db578ed4b3cf4f0a9bba1">WR_4BYTE</a> =0x23
 , <a class="el" href="classcan_open_dictionary.html#af1956900a3e4b179e2ddf2a2dc95c996aeed71372093bf6d8d6fece7705c85b1c">WR_ACK_OK</a> =0x60
 , <a class="el" href="classcan_open_dictionary.html#af1956900a3e4b179e2ddf2a2dc95c996aa6003c766cfbba81a9dabdbd388933c2">RD_COMMAND</a> = 0x40
-, <a class="el" href="classcan_open_dictionary.html#af1956900a3e4b179e2ddf2a2dc95c996ab8a95bdae69bff568bd92763696c1d91">RD_1BYTE</a> =0x4F
 , <br />
-&#160;&#160;<a class="el" href="classcan_open_dictionary.html#af1956900a3e4b179e2ddf2a2dc95c996ac406fdef34d2b0b5242ac89c459518ec">RD_2BYTE</a> =0x4B
+&#160;&#160;<a class="el" href="classcan_open_dictionary.html#af1956900a3e4b179e2ddf2a2dc95c996ab8a95bdae69bff568bd92763696c1d91">RD_1BYTE</a> =0x4F
+, <a class="el" href="classcan_open_dictionary.html#af1956900a3e4b179e2ddf2a2dc95c996ac406fdef34d2b0b5242ac89c459518ec">RD_2BYTE</a> =0x4B
 , <a class="el" href="classcan_open_dictionary.html#af1956900a3e4b179e2ddf2a2dc95c996a27a5683024f47db2a44cadd7f80ebcb1">RD_3BYTE</a> =0x47
 , <a class="el" href="classcan_open_dictionary.html#af1956900a3e4b179e2ddf2a2dc95c996a354661bee12545f1f4e161543bf8b10d">RD_4BYTE</a> =0x43
-, <a class="el" href="classcan_open_dictionary.html#af1956900a3e4b179e2ddf2a2dc95c996afadde3206dc695b6b67c1b3586f4c1f1">SDO_ACK_ERR</a> =0x80
+, <br />
+&#160;&#160;<a class="el" href="classcan_open_dictionary.html#af1956900a3e4b179e2ddf2a2dc95c996afadde3206dc695b6b67c1b3586f4c1f1">SDO_ACK_ERR</a> =0x80
 <br />
  }</td></tr>
 <tr class="memdesc:af1956900a3e4b179e2ddf2a2dc95c996"><td class="mdescLeft">&#160;</td><td class="mdescRight">This enumeration defines the code of the Read/Write SDO operations.  <a href="classcan_open_dictionary.html#af1956900a3e4b179e2ddf2a2dc95c996">More...</a><br /></td></tr>
@@ -125,18 +127,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:af94c35ce530e6aa6111c6680a0a9d91e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcan_open_dictionary.html#af94c35ce530e6aa6111c6680a0a9d91e">clear</a> (void)</td></tr>
 <tr class="memdesc:af94c35ce530e6aa6111c6680a0a9d91e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear the content of a OD.  <a href="classcan_open_dictionary.html#af94c35ce530e6aa6111c6680a0a9d91e">More...</a><br /></td></tr>
 <tr class="separator:af94c35ce530e6aa6111c6680a0a9d91e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a776fdae03730c3e413024e434c58d49a"><td class="memItemLeft" align="right" valign="top">ulong&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcan_open_dictionary.html#a776fdae03730c3e413024e434c58d49a">formatVal</a> (ulong val)</td></tr>
-<tr class="memdesc:a776fdae03730c3e413024e434c58d49a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Format a value size based on the OD type.  <a href="classcan_open_dictionary.html#a776fdae03730c3e413024e434c58d49a">More...</a><br /></td></tr>
-<tr class="separator:a776fdae03730c3e413024e434c58d49a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1567ed24cdf9eb86cac201a7fb52ce28"><td class="memItemLeft" align="right" valign="top">ulong&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcan_open_dictionary.html#a1567ed24cdf9eb86cac201a7fb52ce28">getVal</a> (void)</td></tr>
-<tr class="memdesc:a1567ed24cdf9eb86cac201a7fb52ce28"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the OD data value.  <a href="classcan_open_dictionary.html#a1567ed24cdf9eb86cac201a7fb52ce28">More...</a><br /></td></tr>
-<tr class="separator:a1567ed24cdf9eb86cac201a7fb52ce28"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a608111be4f0b7ce8a9815365c0ff9986"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcan_open_dictionary.html#a608111be4f0b7ce8a9815365c0ff9986">setVal</a> (ulong data)</td></tr>
-<tr class="memdesc:a608111be4f0b7ce8a9815365c0ff9986"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the internal data of the proper data size.  <a href="classcan_open_dictionary.html#a608111be4f0b7ce8a9815365c0ff9986">More...</a><br /></td></tr>
-<tr class="separator:a608111be4f0b7ce8a9815365c0ff9986"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2c63fc8109e805cf0fc9261d58b99bf3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcan_open_dictionary.html#a2c63fc8109e805cf0fc9261d58b99bf3">setOd</a> (ushort <a class="el" href="classcan_open_dictionary.html#a9e1c7178b150f86691327f36c254483a">index</a>, uchar sub, <a class="el" href="classcan_open_dictionary.html#af1956900a3e4b179e2ddf2a2dc95c996">canOpenDictionary::_ODDataType</a> type, ulong val)</td></tr>
-<tr class="memdesc:a2c63fc8109e805cf0fc9261d58b99bf3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fills the complete OD register.  <a href="classcan_open_dictionary.html#a2c63fc8109e805cf0fc9261d58b99bf3">More...</a><br /></td></tr>
-<tr class="separator:a2c63fc8109e805cf0fc9261d58b99bf3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4df40a32fe255fa9fcadfd002dcebf1"><td class="memItemLeft" align="right" valign="top">uint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcan_open_dictionary.html#af4df40a32fe255fa9fcadfd002dcebf1">formatVal</a> (uint val)</td></tr>
+<tr class="memdesc:af4df40a32fe255fa9fcadfd002dcebf1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Format a value size based on the OD type.  <a href="classcan_open_dictionary.html#af4df40a32fe255fa9fcadfd002dcebf1">More...</a><br /></td></tr>
+<tr class="separator:af4df40a32fe255fa9fcadfd002dcebf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74c87a819fd55f74e5d63cba260b5f1c"><td class="memItemLeft" align="right" valign="top">uint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcan_open_dictionary.html#a74c87a819fd55f74e5d63cba260b5f1c">getVal</a> (void)</td></tr>
+<tr class="memdesc:a74c87a819fd55f74e5d63cba260b5f1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the OD data value.  <a href="classcan_open_dictionary.html#a74c87a819fd55f74e5d63cba260b5f1c">More...</a><br /></td></tr>
+<tr class="separator:a74c87a819fd55f74e5d63cba260b5f1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0949113a0b722f253b409b309b5774c1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcan_open_dictionary.html#a0949113a0b722f253b409b309b5774c1">setVal</a> (uint data)</td></tr>
+<tr class="memdesc:a0949113a0b722f253b409b309b5774c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the internal data of the proper data size.  <a href="classcan_open_dictionary.html#a0949113a0b722f253b409b309b5774c1">More...</a><br /></td></tr>
+<tr class="separator:a0949113a0b722f253b409b309b5774c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b9a3043bb39626a2a3a1667e586ddd3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcan_open_dictionary.html#a2b9a3043bb39626a2a3a1667e586ddd3">setOd</a> (ushort <a class="el" href="classcan_open_dictionary.html#a9e1c7178b150f86691327f36c254483a">index</a>, uchar sub, <a class="el" href="classcan_open_dictionary.html#af1956900a3e4b179e2ddf2a2dc95c996">canOpenDictionary::_ODDataType</a> type, uint val)</td></tr>
+<tr class="memdesc:a2b9a3043bb39626a2a3a1667e586ddd3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fills the complete OD register.  <a href="classcan_open_dictionary.html#a2b9a3043bb39626a2a3a1667e586ddd3">More...</a><br /></td></tr>
+<tr class="separator:a2b9a3043bb39626a2a3a1667e586ddd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a82a8dd0acde322c43e4837f42f3b7b6c"><td class="memItemLeft" align="right" valign="top">_inline bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcan_open_dictionary.html#a82a8dd0acde322c43e4837f42f3b7b6c">isError</a> (void)</td></tr>
 <tr class="memdesc:a82a8dd0acde322c43e4837f42f3b7b6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function returnig if the last SDO Read/Write has been executed successfully.  <a href="classcan_open_dictionary.html#a82a8dd0acde322c43e4837f42f3b7b6c">More...</a><br /></td></tr>
 <tr class="separator:a82a8dd0acde322c43e4837f42f3b7b6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -161,9 +163,9 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:af1dd859b1eecdadf18e3c1b96c16d4f7"><td class="memItemLeft" align="right" valign="top">uchar&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcan_open_dictionary.html#af1dd859b1eecdadf18e3c1b96c16d4f7">b</a> [4]</td></tr>
 <tr class="memdesc:af1dd859b1eecdadf18e3c1b96c16d4f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data array.  <a href="classcan_open_dictionary.html#af1dd859b1eecdadf18e3c1b96c16d4f7">More...</a><br /></td></tr>
 <tr class="separator:af1dd859b1eecdadf18e3c1b96c16d4f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4c243b4914da5297e3b7aeb5bf340e03"><td class="memItemLeft" align="right" valign="top">ulong&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcan_open_dictionary.html#a4c243b4914da5297e3b7aeb5bf340e03">value</a></td></tr>
-<tr class="memdesc:a4c243b4914da5297e3b7aeb5bf340e03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Formatted value.  <a href="classcan_open_dictionary.html#a4c243b4914da5297e3b7aeb5bf340e03">More...</a><br /></td></tr>
-<tr class="separator:a4c243b4914da5297e3b7aeb5bf340e03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d968267dc5f3899b11318fc682248f5"><td class="memItemLeft" align="right" valign="top">uint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcan_open_dictionary.html#a0d968267dc5f3899b11318fc682248f5">value</a></td></tr>
+<tr class="memdesc:a0d968267dc5f3899b11318fc682248f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Formatted value.  <a href="classcan_open_dictionary.html#a0d968267dc5f3899b11318fc682248f5">More...</a><br /></td></tr>
+<tr class="separator:a0d968267dc5f3899b11318fc682248f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >This class implements the necessary tools to handle the Object Registers. </p>
@@ -183,6 +185,8 @@ Private Attributes</h2></td></tr>
 <p>This enumeration defines the code of the Read/Write SDO operations. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="af1956900a3e4b179e2ddf2a2dc95c996ae8182c266022e7c6b345fee35b14cd31" name="af1956900a3e4b179e2ddf2a2dc95c996ae8182c266022e7c6b345fee35b14cd31"></a>SDO_NOT_VALID&#160;</td><td class="fielddoc"><p >Invalid SDO. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="af1956900a3e4b179e2ddf2a2dc95c996aa8f10b915dd0065f42c0b0743c220069" name="af1956900a3e4b179e2ddf2a2dc95c996aa8f10b915dd0065f42c0b0743c220069"></a>INIT_BLOCK_TRANSFER&#160;</td><td class="fielddoc"><p >Write a Domain block data. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="af1956900a3e4b179e2ddf2a2dc95c996a77f2870c262358e78cc31decc70e2469" name="af1956900a3e4b179e2ddf2a2dc95c996a77f2870c262358e78cc31decc70e2469"></a>WR_1BYTE&#160;</td><td class="fielddoc"><p >Write Data Code for 1Byte data load. </p>
 </td></tr>
@@ -287,16 +291,16 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a776fdae03730c3e413024e434c58d49a" name="a776fdae03730c3e413024e434c58d49a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a776fdae03730c3e413024e434c58d49a">&#9670;&#160;</a></span>formatVal()</h2>
+<a id="af4df40a32fe255fa9fcadfd002dcebf1" name="af4df40a32fe255fa9fcadfd002dcebf1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af4df40a32fe255fa9fcadfd002dcebf1">&#9670;&#160;</a></span>formatVal()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">ulong canOpenDictionary::formatVal </td>
+          <td class="memname">uint canOpenDictionary::formatVal </td>
           <td>(</td>
-          <td class="paramtype">ulong&#160;</td>
+          <td class="paramtype">uint&#160;</td>
           <td class="paramname"><em>val</em></td><td>)</td>
           <td></td>
         </tr>
@@ -313,11 +317,11 @@ USAGE</h1>
 an Object register, before to make the comparison, the arbitrary value shall be <br  />
 formatted to be compliance with the size of the Register value.<br  />
 For example, if the Object register is a 2 byte data size,<br  />
-before o be compared with an arbitrary ulong variable, the vaRIABLE SHALL BE FORMATTED:</p>
-<p >ulong variable = ... someting<br  />
+before o be compared with an arbitrary uint variable, the vaRIABLE SHALL BE FORMATTED:</p>
+<p >uint variable = ... someting<br  />
  OD.getVal() == variable --&gt; WRONG COMPARISON<br  />
 </p>
-<p >ulong variable = ... someting<br  />
+<p >uint variable = ... someting<br  />
  OD.getVal() == OD.formatVal(variable) --&gt; CORRECT COMPARISON<br  />
  </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -407,14 +411,14 @@ before o be compared with an arbitrary ulong variable, the vaRIABLE SHALL BE FOR
 
 </div>
 </div>
-<a id="a1567ed24cdf9eb86cac201a7fb52ce28" name="a1567ed24cdf9eb86cac201a7fb52ce28"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1567ed24cdf9eb86cac201a7fb52ce28">&#9670;&#160;</a></span>getVal()</h2>
+<a id="a74c87a819fd55f74e5d63cba260b5f1c" name="a74c87a819fd55f74e5d63cba260b5f1c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a74c87a819fd55f74e5d63cba260b5f1c">&#9670;&#160;</a></span>getVal()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">ulong canOpenDictionary::getVal </td>
+          <td class="memname">uint canOpenDictionary::getVal </td>
           <td>(</td>
           <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
@@ -425,7 +429,7 @@ before o be compared with an arbitrary ulong variable, the vaRIABLE SHALL BE FOR
 
 <p>Get the OD data value. </p>
 <p >This function returns the value of the OD based on the data type.</p>
-<dl class="section return"><dt>Returns</dt><dd>(ulong) formatted content </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>(uint) formatted content </dd></dl>
 
 </div>
 </div>
@@ -504,8 +508,8 @@ before o be compared with an arbitrary ulong variable, the vaRIABLE SHALL BE FOR
 
 </div>
 </div>
-<a id="a2c63fc8109e805cf0fc9261d58b99bf3" name="a2c63fc8109e805cf0fc9261d58b99bf3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2c63fc8109e805cf0fc9261d58b99bf3">&#9670;&#160;</a></span>setOd()</h2>
+<a id="a2b9a3043bb39626a2a3a1667e586ddd3" name="a2b9a3043bb39626a2a3a1667e586ddd3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b9a3043bb39626a2a3a1667e586ddd3">&#9670;&#160;</a></span>setOd()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -531,7 +535,7 @@ before o be compared with an arbitrary ulong variable, the vaRIABLE SHALL BE FOR
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">ulong&#160;</td>
+          <td class="paramtype">uint&#160;</td>
           <td class="paramname"><em>val</em>&#160;</td>
         </tr>
         <tr>
@@ -555,8 +559,8 @@ before o be compared with an arbitrary ulong variable, the vaRIABLE SHALL BE FOR
 
 </div>
 </div>
-<a id="a608111be4f0b7ce8a9815365c0ff9986" name="a608111be4f0b7ce8a9815365c0ff9986"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a608111be4f0b7ce8a9815365c0ff9986">&#9670;&#160;</a></span>setVal()</h2>
+<a id="a0949113a0b722f253b409b309b5774c1" name="a0949113a0b722f253b409b309b5774c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0949113a0b722f253b409b309b5774c1">&#9670;&#160;</a></span>setVal()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -564,7 +568,7 @@ before o be compared with an arbitrary ulong variable, the vaRIABLE SHALL BE FOR
         <tr>
           <td class="memname">void canOpenDictionary::setVal </td>
           <td>(</td>
-          <td class="paramtype">ulong&#160;</td>
+          <td class="paramtype">uint&#160;</td>
           <td class="paramname"><em>data</em></td><td>)</td>
           <td></td>
         </tr>
@@ -682,8 +686,8 @@ data content.</p>
 
 </div>
 </div>
-<a id="a4c243b4914da5297e3b7aeb5bf340e03" name="a4c243b4914da5297e3b7aeb5bf340e03"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4c243b4914da5297e3b7aeb5bf340e03">&#9670;&#160;</a></span>value</h2>
+<a id="a0d968267dc5f3899b11318fc682248f5" name="a0d968267dc5f3899b11318fc682248f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d968267dc5f3899b11318fc682248f5">&#9670;&#160;</a></span>value</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -692,7 +696,7 @@ data content.</p>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">ulong canOpenDictionary::value</td>
+          <td class="memname">uint canOpenDictionary::value</td>
         </tr>
       </table>
   </td>

@@ -96,6 +96,8 @@ public:
     _inline bool isError(void){ return (odType == SDO_ACK_ERR) ; } //!< Function returnig if the last SDO Read/Write has been executed successfully
     _inline ushort getIndex(void){ return (index ) ; } //!< returns the register index
     _inline uchar getSubIndex(void){ return (subindex ) ; } //!< returns the register sub index
+    _inline _ODDataType getType(void){ return (odType ) ; } //!< returns the OD data type
+
 
 
 

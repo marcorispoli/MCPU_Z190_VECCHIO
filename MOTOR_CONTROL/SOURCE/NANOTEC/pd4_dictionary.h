@@ -48,14 +48,21 @@
 
 //_______________ User Internal data ____________________________________________________________________________________________________________________
 #define OD_2700_01 0x2700, 0x01 ,canOpenDictionary::WR_1BYTE   // User data control word: SET to 1 to save User content. reset autom. to 0 when finished
-#define OD_2700_02 0x2700, 0x02 ,canOpenDictionary::WR_2BYTE   // USER #0 - RESERVED FOR THE NANOJ CONFIGURATION CODE
-#define OD_2700_03 0x2700, 0x03 ,canOpenDictionary::WR_2BYTE   // USER #1 - RESERVED FOR THE CONFIG VECTOR CONFIGURATION CODE
-#define OD_2700_04 0x2700, 0x04 ,canOpenDictionary::WR_2BYTE   // USER #2
+#define OD_2700_02 0x2700, 0x02 ,canOpenDictionary::WR_2BYTE   // USER #0 - RESERVED FOR THE CONFIG VECTOR CONFIGURATION CODE
+#define OD_2700_03 0x2700, 0x03 ,canOpenDictionary::WR_2BYTE   // USER #1 - RESERVED FOR THE NANOJ CONFIGURATION CODE
+#define OD_2700_04 0x2700, 0x04 ,canOpenDictionary::WR_2BYTE   // USER #2 - RESERVED FOR RESET SENSING
 #define OD_2700_05 0x2700, 0x05 ,canOpenDictionary::WR_2BYTE   // USER #3
 #define OD_2700_06 0x2700, 0x06 ,canOpenDictionary::WR_2BYTE   // USER #4
 #define OD_2700_07 0x2700, 0x07 ,canOpenDictionary::WR_2BYTE   // USER #5
 #define OD_2700_08 0x2700, 0x08 ,canOpenDictionary::WR_2BYTE   // USER #6
 #define OD_2700_09 0x2700, 0x09 ,canOpenDictionary::WR_2BYTE   // USER #7
+
+
+#define CONFIG_USER_PARAM OD_2700_02
+#define NANOJ_USER_PARAM OD_2700_03
+#define RESET_USER_PARAM OD_2700_04
+#define SAVE_USER_PARAM OD_2700_01
+
 
 //_______________ NANOJ ________________________________________________
 #define OD_1F51_02 0x1F51, 0x02 ,canOpenDictionary::WR_1BYTE   // VMM FLASH CONTROL WORD:
@@ -220,6 +227,7 @@
 
 
 #define OD_2500_01 0x2500, 0x01 ,canOpenDictionary::WR_4BYTE   // Base USER RAM NANO-J (1:32)
+
 
 
 #endif // PD4_DICTIONARY_H

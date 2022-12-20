@@ -1,40 +1,5 @@
 #include "application.h"
-#include <QStringConverter>
 
-/**
- * @brief Server::Server
- *
- * @param
- * - ipaddress: IP where server will be bounded;
- * - port: bounding port
- *
- */
-Server::Server(QString ipaddress, int port):QTcpServer()
-{
-    socketList.clear();
-    localip = QHostAddress(ipaddress);
-    localport = port;
-    idseq=0;
-}
-
-/**
- * @brief Server::~Server
- *
- * When the server should be destroyed, it shall disconnect all the clients
- * already connected.
- *
- */
-Server::~Server()
-{
-    if(socketList.size()){
-        for(int i = 0; i<socketList.size(); i++ ){
-            if(socketList[i]->socket != nullptr) {
-                socketList[i]->socket->close();
-                socketList[i]->socket->deleteLater();
-            }
-        }
-    }
-}
 
 /**
  * @brief Start
@@ -46,7 +11,7 @@ Server::~Server()
  * - flase: error in activate the listening;
  *
  */
-bool Server::Start(void)
+bool Interface::Start(void)
 {
 
     if (!this->listen(localip,localport)){
@@ -55,6 +20,23 @@ bool Server::Start(void)
     }else{
         qDebug() << "LISTENING AT ADDRESS: IP=" << localip.toString() << ", PORT=" << localport ;
         return true;
+    }
+
+}
+
+
+void Interface::disconnected(ushort id)
+{
+
+    for(int i =0; i < socketList.size(); i++ ){
+        if(socketList[i]->id == id){
+
+            disconnect(socketList[i]);
+            socketList[i]->socket->deleteLater();
+            delete socketList[i];
+            socketList.remove(i);
+            return;
+        }
     }
 
 }
@@ -71,7 +53,7 @@ bool Server::Start(void)
  * as a Welcome frame.
  *
  */
-void Server::incomingConnection(qintptr socketDescriptor)
+void Interface::incomingConnection(qintptr socketDescriptor)
 {
 
     // Create a new SocketItem and its internal socket
@@ -110,6 +92,49 @@ void Server::incomingConnection(qintptr socketDescriptor)
     return;
  }
 
+
+
+
+/**
+ * @brief receivedCommandSlot
+ *
+ * This function decodes the data frame providing a list
+ * of decoded items that make part of a received EVENT.
+ *
+ * The list of the Item is further handled by the
+ * specific EVENT callback in order to be correctly executed.
+ *
+ * @param
+ * - id: the client identifier that sent the EVENT;
+ * - data: command data stream.
+ *
+ * \ingroup InterfaceModule
+ */
+void Interface::receivedCommandSlot(ushort id, QByteArray data){
+
+    /*
+    // Extracts the protocol items list
+    QList<QString> command =  getProtocolFrame(&data);
+    if(command.size() < 3) return;
+    if(command.at(0) != "E") return;
+    ushort seq = command.at(1).toUShort();
+
+    QList<QString> answer;
+
+    // Command discrimination and execution
+    if(command.at(2)        == "SetExposurePre")    answer  += SetExposurePre(&command);
+    else if(command.at(2)   == "SetExposurePulse")  answer  += SetExposurePulse(&command);
+    else if(command.at(2)   == "SetTomoConfig")     answer  += SetTomoConfig(&command);
+    else if(command.at(2)   == "StartExposure")     answer  += StartExposure(&command);
+    else if(command.at(2)   == "AbortExposure")     answer  += AbortExposure(&command);
+    else if(command.at(2)   == "GetPostExposure")   answer  += GetPostExposure(&command);
+
+    // The Acknowledge frame is sent back to the client
+    sendAck(id, seq, &answer);
+    */
+}
+
+
 void SocketItem::disconnected(void){
     emit itemDisconnected(this->id);
 }
@@ -120,22 +145,6 @@ void SocketItem::socketError(QAbstractSocket::SocketError error)
     return;
 }
 
-
-void Server::disconnected(ushort id)
-{
-
-    for(int i =0; i < socketList.size(); i++ ){
-        if(socketList[i]->id == id){
-
-            disconnect(socketList[i]);
-            socketList[i]->socket->deleteLater();
-            delete socketList[i];
-            socketList.remove(i);
-            return;
-        }
-    }
-
-}
 
 
 /**
@@ -193,44 +202,4 @@ void SocketItem::socketTxData(QByteArray data)
 }
 
 
-
-
-/**
- * @brief receivedCommandSlot
- *
- * This function decodes the data frame providing a list
- * of decoded items that make part of a received EVENT.
- *
- * The list of the Item is further handled by the
- * specific EVENT callback in order to be correctly executed.
- *
- * @param
- * - id: the client identifier that sent the EVENT;
- * - data: command data stream.
- *
- * \ingroup InterfaceModule
- */
-void Server::receivedCommandSlot(ushort id, QByteArray data){
-
-    /*
-    // Extracts the protocol items list
-    QList<QString> command =  getProtocolFrame(&data);
-    if(command.size() < 3) return;
-    if(command.at(0) != "E") return;
-    ushort seq = command.at(1).toUShort();
-
-    QList<QString> answer;
-
-    // Command discrimination and execution
-    if(command.at(2)        == "SetExposurePre")    answer  += SetExposurePre(&command);
-    else if(command.at(2)   == "SetExposurePulse")  answer  += SetExposurePulse(&command);
-    else if(command.at(2)   == "SetTomoConfig")     answer  += SetTomoConfig(&command);
-    else if(command.at(2)   == "StartExposure")     answer  += StartExposure(&command);
-    else if(command.at(2)   == "AbortExposure")     answer  += AbortExposure(&command);
-    else if(command.at(2)   == "GetPostExposure")   answer  += GetPostExposure(&command);
-
-    // The Acknowledge frame is sent back to the client
-    sendAck(id, seq, &answer);
-    */
-}
 

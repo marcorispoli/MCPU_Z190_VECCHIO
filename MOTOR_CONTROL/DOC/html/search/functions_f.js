@@ -1,10 +1,8 @@
 var searchData=
 [
-  ['_7ecanclient_0',['~canClient',['../classcan_client.html#a3e5c25841d002feb0940c091f0302821',1,'canClient']]],
-  ['_7ecanopendictionary_1',['~canOpenDictionary',['../classcan_open_dictionary.html#a25de628f323ac8ebe6f4de72df031563',1,'canOpenDictionary']]],
-  ['_7edebugwindow_2',['~debugWindow',['../classdebug_window.html#a854ba479c6668484f330810c73916a24',1,'debugWindow']]],
-  ['_7epd4nanotec_3',['~pd4Nanotec',['../classpd4_nanotec.html#a99c549878220807e1d91fa08566085d3',1,'pd4Nanotec']]],
-  ['_7eserver_4',['~Server',['../class_server.html#a4b3aa2579cb1c8cd1d069582c14d0fa6',1,'Server']]],
-  ['_7esocketitem_5',['~SocketItem',['../class_socket_item.html#a41b5823ad24d4ced5d19e793920dffeb',1,'SocketItem']]],
-  ['_7etrxmodule_6',['~trxModule',['../classtrx_module.html#a28a9ff2592dd39502786bfeb743d02f6',1,'trxModule']]]
+  ['timerevent_0',['timerEvent',['../classdebug_window.html#afac1f46c8a70d436e83163bb09a8234d',1,'debugWindow']]],
+  ['trxmodule_1',['trxModule',['../classtrx_module.html#a08943ef1ef538c007ba6267815bd3103',1,'trxModule']]],
+  ['txframe_2',['txFrame',['../class_server.html#a21101dd6b5602506cfb1419938af656e',1,'Server']]],
+  ['txtocan_3',['txToCan',['../classpd4_nanotec.html#a9c8e14a85a4718edc0fac9a82b863858',1,'pd4Nanotec']]],
+  ['txtocandata_4',['txToCanData',['../classcan_client.html#aaaa9f13f726707a488462870d06938df',1,'canClient']]]
 ];

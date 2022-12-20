@@ -1,12 +1,6 @@
 var searchData=
 [
-  ['zero_5fsetting_5fctrl_5finit_0',['ZERO_SETTING_CTRL_INIT',['../pd4__dictionary_8h.html#a573583ac407cd95003e459c74696dcf3',1,'ZERO_SETTING_CTRL_INIT():&#160;pd4_dictionary.h'],['../pd4__dictionary_8h.html#a573583ac407cd95003e459c74696dcf3',1,'ZERO_SETTING_CTRL_INIT():&#160;pd4_dictionary.h']]],
-  ['zero_5fsetting_5fstart_1',['ZERO_SETTING_START',['../pd4__dictionary_8h.html#aafa1d56fb130e10eb620d4885762a0ac',1,'ZERO_SETTING_START():&#160;pd4_dictionary.h'],['../pd4__dictionary_8h.html#aafa1d56fb130e10eb620d4885762a0ac',1,'ZERO_SETTING_START():&#160;pd4_dictionary.h']]],
-  ['zero_5fsetting_5fstop_2',['ZERO_SETTING_STOP',['../pd4__dictionary_8h.html#a8a0c93ba1df1a801d23ca16c790d9d7e',1,'ZERO_SETTING_STOP():&#160;pd4_dictionary.h'],['../pd4__dictionary_8h.html#a8a0c93ba1df1a801d23ca16c790d9d7e',1,'ZERO_SETTING_STOP():&#160;pd4_dictionary.h']]],
-  ['zero_5fstat_5fcompleted_3',['ZERO_STAT_COMPLETED',['../pd4__dictionary_8h.html#aa662be60fb1f479dcc7da53beeb54fb7',1,'ZERO_STAT_COMPLETED():&#160;pd4_dictionary.h'],['../pd4__dictionary_8h.html#aa662be60fb1f479dcc7da53beeb54fb7',1,'ZERO_STAT_COMPLETED():&#160;pd4_dictionary.h']]],
-  ['zero_5fstat_5fconfirmed_4',['ZERO_STAT_CONFIRMED',['../pd4__dictionary_8h.html#a86fbb0b6a7df636c995c339f2c8d40d8',1,'ZERO_STAT_CONFIRMED():&#160;pd4_dictionary.h'],['../pd4__dictionary_8h.html#a86fbb0b6a7df636c995c339f2c8d40d8',1,'ZERO_STAT_CONFIRMED():&#160;pd4_dictionary.h']]],
-  ['zero_5fstat_5ferror_5fidl_5',['ZERO_STAT_ERROR_IDL',['../pd4__dictionary_8h.html#a4c18d671b9396d5dc421dff0133d8277',1,'ZERO_STAT_ERROR_IDL():&#160;pd4_dictionary.h'],['../pd4__dictionary_8h.html#a4c18d671b9396d5dc421dff0133d8277',1,'ZERO_STAT_ERROR_IDL():&#160;pd4_dictionary.h']]],
-  ['zero_5fstat_5ferror_5frun_6',['ZERO_STAT_ERROR_RUN',['../pd4__dictionary_8h.html#afd424b7b651d5a579b459cbb1a389f82',1,'ZERO_STAT_ERROR_RUN():&#160;pd4_dictionary.h'],['../pd4__dictionary_8h.html#afd424b7b651d5a579b459cbb1a389f82',1,'ZERO_STAT_ERROR_RUN():&#160;pd4_dictionary.h']]],
-  ['zero_5fstat_5finterrupted_7',['ZERO_STAT_INTERRUPTED',['../pd4__dictionary_8h.html#a1354118da628c798208aa96f4e903b91',1,'ZERO_STAT_INTERRUPTED():&#160;pd4_dictionary.h'],['../pd4__dictionary_8h.html#a1354118da628c798208aa96f4e903b91',1,'ZERO_STAT_INTERRUPTED():&#160;pd4_dictionary.h']]],
-  ['zero_5fstat_5fperformed_8',['ZERO_STAT_PERFORMED',['../pd4__dictionary_8h.html#a6fdd483b3e4fb5971454e26dd5a81a75',1,'ZERO_STAT_PERFORMED():&#160;pd4_dictionary.h'],['../pd4__dictionary_8h.html#a6fdd483b3e4fb5971454e26dd5a81a75',1,'ZERO_STAT_PERFORMED():&#160;pd4_dictionary.h']]]
+  ['vmm_5fdelete_0',['VMM_DELETE',['../pd4__dictionary_8h.html#a8477193ad73c2a6f7947948f4dc58571',1,'pd4_dictionary.h']]],
+  ['vmm_5finit_1',['VMM_INIT',['../pd4__dictionary_8h.html#a9555933fa7e5524f65b51cc72f037f2c',1,'pd4_dictionary.h']]],
+  ['vmm_5fwrite_2',['VMM_WRITE',['../pd4__dictionary_8h.html#a0720045cd654221613b8594a95415bf6',1,'pd4_dictionary.h']]]
 ];

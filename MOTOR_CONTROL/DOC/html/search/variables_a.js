@@ -1,9 +1,7 @@
 var searchData=
 [
-  ['pcan_0',['pCan',['../application_8h.html#adf2e2a44e561fe17be68217fbb71d2fb',1,'application.h']]],
-  ['polling_1',['polling',['../classdebug_window.html#a9d6a1399c80d6634287f81e5dff928ce',1,'debugWindow']]],
-  ['pollingframe_2',['pollingFrame',['../classdebug_window.html#a7a69911ae0f71f5702370e3639ed46d9',1,'debugWindow']]],
-  ['pollingtimer_3',['pollingTimer',['../classdebug_window.html#ad53796f1eccb473ce96a6436668cd050',1,'debugWindow']]],
-  ['pserver_4',['pServer',['../application_8h.html#a6ed1a6a6e52f8feb03b9844dcae5be65',1,'application.h']]],
-  ['ptrx_5',['pTrx',['../application_8h.html#ae94916a21da8342db9dcc5c46b2b5bc5',1,'application.h']]]
+  ['nanojstr_0',['nanojStr',['../classpd4_nanotec.html#a216e5ae1e9ede4a3b98201ee8e8a4608',1,'pd4Nanotec']]],
+  ['nanojtrxfile_1',['nanojTrxfile',['../nanoj__trx_8h.html#a44de8c29b6f835f820558f3bef5bf555',1,'nanoj_trx.h']]],
+  ['nanojuploaded_2',['nanojUploaded',['../classpd4_nanotec.html#a335968abc3f224d38f7580b8b355b208',1,'pd4Nanotec']]],
+  ['num_5fblock_5fitems_3',['num_block_items',['../classpd4_nanotec.html#ae47ba0dce4e5da37e3e6c3521fa7fb25',1,'pd4Nanotec']]]
 ];

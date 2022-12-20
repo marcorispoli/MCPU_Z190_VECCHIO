@@ -75,7 +75,8 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a>  </div>
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#define-members">Macros</a>  </div>
   <div class="headertitle"><div class="title">pd4.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
@@ -90,7 +91,89 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structpd4_nanotec_1_1___o_d___init_vector.html">pd4Nanotec::_OD_InitVector</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structpd4_nanotec_1_1___safety_structure.html">pd4Nanotec::_SafetyStructure</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a21d09e437076fafdddbc1f69c22837ef"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pd4_8h.html#a21d09e437076fafdddbc1f69c22837ef">cGRADsec_TO_ROT_min</a>(x)&#160;&#160;&#160;((uint32_t) (((float)((int)x)  * (float) <a class="el" href="trx_8cpp.html#abf0ad57c28669568a5971fffaa206061">MOTOR_GEAR</a> / 36000) * (float) <a class="el" href="trx_8cpp.html#a6d2259f4166876a683acf743ae2b1b92">SPEED_DENOMINATOR</a>))</td></tr>
+<tr class="separator:a21d09e437076fafdddbc1f69c22837ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abbe129f41ec37373ecafc051a6ec4b9c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pd4_8h.html#abbe129f41ec37373ecafc051a6ec4b9c">cGRAD_TO_ENCODER</a>(x)&#160;&#160;&#160;((int) (((float) ((int)x) * (<a class="el" href="trx_8cpp.html#abf0ad57c28669568a5971fffaa206061">MOTOR_GEAR</a> * 10) )/180))</td></tr>
+<tr class="separator:abbe129f41ec37373ecafc051a6ec4b9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44a96baf196fd9be75be19e11551bc47"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pd4_8h.html#a44a96baf196fd9be75be19e11551bc47">ENCODER_TO_cGRAD</a>(x)&#160;&#160;&#160;((int)((((float) ((int)x)) * 180) / (<a class="el" href="trx_8cpp.html#abf0ad57c28669568a5971fffaa206061">MOTOR_GEAR</a>*10)))</td></tr>
+<tr class="separator:a44a96baf196fd9be75be19e11551bc47"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e40f5d2bfb003ed67b475dd6ca978df"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pd4_8h.html#a5e40f5d2bfb003ed67b475dd6ca978df">END_ODVECTOR</a>&#160;&#160;&#160;{0,0,(<a class="el" href="classcan_open_dictionary.html#af1956900a3e4b179e2ddf2a2dc95c996">canOpenDictionary::_ODDataType</a>) 0,0}</td></tr>
+<tr class="separator:a5e40f5d2bfb003ed67b475dd6ca978df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="abbe129f41ec37373ecafc051a6ec4b9c" name="abbe129f41ec37373ecafc051a6ec4b9c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abbe129f41ec37373ecafc051a6ec4b9c">&#9670;&#160;</a></span>cGRAD_TO_ENCODER</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define cGRAD_TO_ENCODER</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">x</td><td>)</td>
+          <td>&#160;&#160;&#160;((int) (((float) ((int)x) * (<a class="el" href="trx_8cpp.html#abf0ad57c28669568a5971fffaa206061">MOTOR_GEAR</a> * 10) )/180))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a21d09e437076fafdddbc1f69c22837ef" name="a21d09e437076fafdddbc1f69c22837ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a21d09e437076fafdddbc1f69c22837ef">&#9670;&#160;</a></span>cGRADsec_TO_ROT_min</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define cGRADsec_TO_ROT_min</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">x</td><td>)</td>
+          <td>&#160;&#160;&#160;((uint32_t) (((float)((int)x)  * (float) <a class="el" href="trx_8cpp.html#abf0ad57c28669568a5971fffaa206061">MOTOR_GEAR</a> / 36000) * (float) <a class="el" href="trx_8cpp.html#a6d2259f4166876a683acf743ae2b1b92">SPEED_DENOMINATOR</a>))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a44a96baf196fd9be75be19e11551bc47" name="a44a96baf196fd9be75be19e11551bc47"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a44a96baf196fd9be75be19e11551bc47">&#9670;&#160;</a></span>ENCODER_TO_cGRAD</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ENCODER_TO_cGRAD</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">x</td><td>)</td>
+          <td>&#160;&#160;&#160;((int)((((float) ((int)x)) * 180) / (<a class="el" href="trx_8cpp.html#abf0ad57c28669568a5971fffaa206061">MOTOR_GEAR</a>*10)))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5e40f5d2bfb003ed67b475dd6ca978df" name="a5e40f5d2bfb003ed67b475dd6ca978df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e40f5d2bfb003ed67b475dd6ca978df">&#9670;&#160;</a></span>END_ODVECTOR</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define END_ODVECTOR&#160;&#160;&#160;{0,0,(<a class="el" href="classcan_open_dictionary.html#af1956900a3e4b179e2ddf2a2dc95c996">canOpenDictionary::_ODDataType</a>) 0,0}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

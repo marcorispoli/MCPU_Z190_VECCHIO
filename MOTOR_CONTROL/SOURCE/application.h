@@ -76,28 +76,40 @@ namespace Application
 #include "pd4.h"
 #include "trx.h"
 #include "window.h"
-#include "server.h"
-
-
+#include "interface.h"
 
 
 #define CANCLIENT       pCan
 #define WINDOW          window
-#define INTERFACE       pServer
+#define INTERFACE       pInterface
 #define DEBUG           window
 #define TRX             pTrx
+#define ARM             pArm
+#define LIFT            pLift
+#define BODY            pBody
+#define SLIDE           pSlide
+
 
 // Global definitions
 #ifdef MAIN_CPP
-    debugWindow*                window;
-    canClient*                  pCan;
-    Server*                     pServer;
-    trxModule*                  pTrx;
+     debugWindow*                WINDOW;
+     canClient*                  CANCLIENT;
+     Interface*                  INTERFACE;
+     trxModule*                  TRX;
+     pd4Nanotec*                 ARM;
+     pd4Nanotec*                 BODY;
+     pd4Nanotec*                 LIFT;
+     pd4Nanotec*                 SLIDE;
 #else
-    extern debugWindow*                window;
-    extern canClient*                  pCan;
-    extern Server*                     pServer;
-    extern trxModule*                  pTrx;
+    extern debugWindow*                WINDOW;
+    extern canClient*                  CANCLIENT;
+    extern Interface*                  INTERFACE;
+    extern trxModule*                  TRX;
+    extern pd4Nanotec*                 ARM;
+    extern pd4Nanotec*                 BODY;
+    extern pd4Nanotec*                 LIFT;
+    extern pd4Nanotec*                 SLIDE;
+
 #endif
 
 #ifdef TIME_MEASURE

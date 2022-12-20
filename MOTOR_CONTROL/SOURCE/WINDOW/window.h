@@ -43,6 +43,7 @@ public slots:
     void onImmediateStopCommand(void);
     void onUploadnanoj(void);
     void onLogClearButton(void);
+    void onEnableConfig(void);
 
 
     void timerEvent(QTimerEvent* ev);

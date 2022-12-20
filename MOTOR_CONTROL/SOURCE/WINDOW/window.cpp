@@ -20,7 +20,8 @@ debugWindow::debugWindow(QWidget *parent)
     connect(ui->positionB, SIGNAL(pressed()), this, SLOT(onPositionB()), Qt::UniqueConnection);
     connect(ui->stopCommand, SIGNAL(pressed()), this, SLOT(onStopCommand()), Qt::UniqueConnection);
     connect(ui->immediateCommand, SIGNAL(pressed()), this, SLOT(onImmediateStopCommand()), Qt::UniqueConnection);
-     connect(ui->uploadnanoj, SIGNAL(pressed()), this, SLOT(onUploadnanoj()), Qt::UniqueConnection);
+    connect(ui->uploadnanoj, SIGNAL(pressed()), this, SLOT(onUploadnanoj()), Qt::UniqueConnection);
+    connect(ui->enableConfig, SIGNAL(pressed()), this, SLOT(onEnableConfig()), Qt::UniqueConnection);
 
     connect(CANCLIENT,SIGNAL(canReady(bool)), this, SLOT(onCanReady(bool)));
     pollingTimer  = startTimer(500);
@@ -105,11 +106,16 @@ void debugWindow::onZeroSettingButton(void){
 }
 
 void debugWindow::onPositionA(void){
-  if(!TRX->activatePositioning(2500)) qDebug() << "WINDOW: POSITIONING NOT ACTIVATED!";
+
+
+  if(!TRX->activatePositioning(2500, 100, 100, 400,true)) qDebug() << "WINDOW: POSITIONING NOT ACTIVATED!";
+
+
 
 }
 void debugWindow::onPositionB(void){
-  if(!TRX->activatePositioning(-2500)) qDebug() << "WINDOW: POSITIONING NOT ACTIVATED!";
+
+  if(!TRX->activatePositioning(-2500, 100, 100, 400,true)) qDebug() << "WINDOW: POSITIONING NOT ACTIVATED!";
 
 }
 void debugWindow::onStopCommand(void){
@@ -124,4 +130,10 @@ void debugWindow::onUploadnanoj(void){
   TRX->uploadNanojProgram();
 }
 
+
+void debugWindow::onEnableConfig(void){
+  //TRX->enableConfiguration();
+
+    if(INTERFACE) INTERFACE->configReceived();
+}
 

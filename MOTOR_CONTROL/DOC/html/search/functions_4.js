@@ -1,13 +1,4 @@
 var searchData=
 [
-  ['get_0',['get',['../classcan_open_dictionary.html#a3978b340f8554511fab7cab2850917cd',1,'canOpenDictionary']]],
-  ['getciastatus_1',['getCiAStatus',['../classpd4_nanotec.html#adbe2e78b913c96f439072f7ffa32dc59',1,'pd4Nanotec']]],
-  ['getciastatusstring_2',['getCiAStatusString',['../classpd4_nanotec.html#ac36e4863d4c2c7f15f312649ada50b89',1,'pd4Nanotec']]],
-  ['geterrorclass1001_3',['getErrorClass1001',['../classpd4_nanotec.html#ac1c3c84be126a24b5298cbeca8c56716',1,'pd4Nanotec']]],
-  ['geterrorclass1003_4',['getErrorClass1003',['../classpd4_nanotec.html#a6fee2192e770673d213f8c741728fa04',1,'pd4Nanotec']]],
-  ['geterrorcode1003_5',['getErrorCode1003',['../classpd4_nanotec.html#a7214842cd17cbf37c8a3f90190324a90',1,'pd4Nanotec']]],
-  ['getindex_6',['getIndex',['../classcan_open_dictionary.html#ab0a6428272b581d5a80b14d05a8a39c9',1,'canOpenDictionary']]],
-  ['getitem_7',['getItem',['../classcan_client.html#a27452be8459570a1cbf22f71bbf30886',1,'canClient']]],
-  ['getsubindex_8',['getSubIndex',['../classcan_open_dictionary.html#adab37c79de4c6b7e4cae4c379b6e06a6',1,'canOpenDictionary']]],
-  ['getval_9',['getVal',['../classcan_open_dictionary.html#a1567ed24cdf9eb86cac201a7fb52ce28',1,'canOpenDictionary']]]
+  ['formatval_0',['formatVal',['../classcan_open_dictionary.html#af4df40a32fe255fa9fcadfd002dcebf1',1,'canOpenDictionary']]]
 ];

@@ -194,7 +194,6 @@ void canDriver::sendOnCanSlot(ushort canId, QByteArray data){
 
     msg.Flags = VSCAN_FLAGS_STANDARD;
     msg.Id = canId;
-    if(canId == 0) qDebug() << "passato";
     msg.Size = len;
 
     for(uchar i=0; i<msg.Size; i++) {

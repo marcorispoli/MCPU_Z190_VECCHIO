@@ -110,6 +110,6 @@ var searchData=
   ['tworkflowstatus_107',['tWorkflowStatus',['../classworkflow_manager.html#a327c1b215f80862f71e9287cc346fb42',1,'workflowManager']]],
   ['tx_5fsize_108',['tx_size',['../structtsmarthubinfo.html#a3747fa1c615d304d038051ac13aade0f',1,'tsmarthubinfo']]],
   ['txdata_109',['txData',['../class_tcp_ip_client.html#aeff4be739c7014b096f3ddd35e48f507',1,'TcpIpClient']]],
-  ['txframe_110',['txFrame',['../class_server.html#a21101dd6b5602506cfb1419938af656e',1,'Server']]],
+  ['txframe_110',['txFrame',['../classapplication_interface.html#a1ab1ae4001d7633eae39fb3ebb80b14d',1,'applicationInterface']]],
   ['typedef_2eh_111',['Typedef.h',['../_typedef_8h.html',1,'']]]
 ];

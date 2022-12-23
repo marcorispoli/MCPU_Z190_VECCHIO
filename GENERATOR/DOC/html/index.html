@@ -78,7 +78,7 @@ GENERAL OVERVIEW</h1>
 <p >This Executable allows to interface the Sedecal Generator with the Gantry <a class="el" href="namespace_application.html" title="Application constants definition.">Application</a>.</p>
 <p >The <a class="el" href="namespace_application.html" title="Application constants definition.">Application</a> connects as a Client the SmartHub at the IP:192.6.1.201@10000.</p>
 <p >The <a class="el" href="namespace_application.html" title="Application constants definition.">Application</a> implements the <a class="el" href="namespace_r2_c_p.html">R2CP</a> Protocol revision 6.0.A.</p>
-<p >The <a class="el" href="namespace_application.html" title="Application constants definition.">Application</a> provides a <a class="el" href="class_server.html" title="This class resides into the Main Thread and implements the communication protocol with the Gantry.">Server</a> input socket at IP:127.0.0.1@10002 to interface with the Gantry application (or other applications implementing the application cprotocol command).</p>
+<p >The <a class="el" href="namespace_application.html" title="Application constants definition.">Application</a> provides a Server input socket at IP:127.0.0.1@10002 to interface with the Gantry application (or other applications implementing the application cprotocol command).</p>
 <p >The <a class="el" href="namespace_application.html" title="Application constants definition.">Application</a> can run without debug messages or alternatively can be launched with -log or -win option:</p><ul>
 <li>-win: allows to run the application with a graphical window to provide manual interaction with the Sedecal Generator;</li>
 <li>-log: the <a class="el" href="namespace_application.html" title="Application constants definition.">Application</a> redirects the debug messages to a file in C:/OEM/Logs/SERVICELOG/gantrylog.log</li>
@@ -90,6 +90,7 @@ DEPENDENCIES AND CONFIGURATION FILES</h1>
 APPLICATION MODULES</h1>
 <p >The <a class="el" href="namespace_application.html" title="Application constants definition.">Application</a> implements the following modules:</p><ul>
 <li><a class="el" href="group__application_module.html">Application Module.</a> : defines constant along the application</li>
+<li><a class="el" href="group__library_modules.html">Library Modules Used in the Application.</a> : this is the set of the libraries used in the current application;</li>
 <li><a class="el" href="group__r2cp_communication_module.html">Communication Interface With R2CP Module.</a> : implements the communication protocol stack with the <a class="el" href="namespace_r2_c_p.html">R2CP</a> protocol;</li>
 <li><a class="el" href="group__exposure_module.html">Exposure Management Module.</a> : Implements the exposure sequence workflows;</li>
 <li><a class="el" href="group___interface_module.html">Gantry Interface Module.</a> : this is the communication socket to receive command from Gantry;</li>

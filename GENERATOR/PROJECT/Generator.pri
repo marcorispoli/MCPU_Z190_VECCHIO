@@ -33,15 +33,16 @@ DISTFILES +=
 
 
 SOURCES += \
+    $${PROJLIB}/APPLICATION_INTERFACE/applicationInterface.cpp \
     $${TARGET_SOURCE}/main.cpp \
     $${TARGET_SOURCE}/WORKFLOW/workflow.cpp \
     $${TARGET_SOURCE}/EXPOSURE/2D_exposure.cpp \
     $${TARGET_SOURCE}/EXPOSURE/2D_AEC_exposure.cpp \
     $${TARGET_SOURCE}/EXPOSURE/3D_exposure.cpp \
     $${TARGET_SOURCE}/EXPOSURE/3D_AEC_exposure.cpp \
-    $${TARGET_SOURCE}/INTERFACE/server.cpp \
-    $${TARGET_SOURCE}/INTERFACE/event.cpp \
-    $${TARGET_SOURCE}/INTERFACE/command.cpp \
+    $${TARGET_SOURCE}/INTERFACE/interface.cpp \
+    $${TARGET_SOURCE}/INTERFACE/events.cpp \
+    $${TARGET_SOURCE}/INTERFACE/commands.cpp \
     $${TARGET_SOURCE}/COMMUNICATION/communication.cpp \
     $${TARGET_SOURCE}/COMMUNICATION/tcpipclient.cpp \
     $${TARGET_SOURCE}/LIB_SEDECAL/R2CP_Eth.cpp    \
@@ -57,10 +58,11 @@ SOURCES += \
 
 
 HEADERS += \
+    $${PROJLIB}/APPLICATION_INTERFACE/applicationInterface.h \
     $${TARGET_SOURCE}/application.h \
     $${TARGET_SOURCE}/Typedef.h \
     $${TARGET_SOURCE}/WORKFLOW/workflow.h \
-    $${TARGET_SOURCE}/INTERFACE/server.h \
+    $${TARGET_SOURCE}/INTERFACE/interface.h \
     $${TARGET_SOURCE}/EXPOSURE/exposure.h \
     $${TARGET_SOURCE}/COMMUNICATION/communication.h \
     $${TARGET_SOURCE}/COMMUNICATION/tcpipclient.h \
@@ -75,7 +77,7 @@ HEADERS += \
 
 # Aggiunge tutti i path di progetto
 INCLUDEPATH += \
-    #$${MAIN_CPU}/LIB \
+    $${PROJLIB}/APPLICATION_INTERFACE \
     $${TARGET_SOURCE} \
     $${TARGET_SOURCE}/INTERFACE/ \
     $${TARGET_SOURCE}/EXPOSURE/ \

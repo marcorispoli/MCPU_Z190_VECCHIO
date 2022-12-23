@@ -10,11 +10,11 @@ var searchData=
   ['evalsetsystemprocessedresult_7',['evalSetSystemProcessedResult',['../class_c_r2_c_p___eth.html#ad901594b0bd5d291e1c0a3fcf714850c',1,'CR2CP_Eth']]],
   ['event_5fanswer_8',['Event_Answer',['../class_c_r2_c_p___eth.html#abefd2a78a678a78718b59282d4eea872',1,'CR2CP_Eth']]],
   ['eventconnection_9',['eventConnection',['../class_communication.html#aa67162a921401bd466b321b8e5fbfad8',1,'Communication']]],
-  ['eventgetpulsedata_10',['EventGetPulseData',['../group___interface_module.html#ga84af59ce04a2793f2c05d1c47928b8dc',1,'Server::EventGetPulseData()'],['../classstartup_window.html#a665fb4dfa2b58ea39458c9cf52d7a3b6',1,'startupWindow::EventGetPulseData()']]],
-  ['eventmessage_11',['EventMessage',['../group___interface_module.html#gaa86610df791c20316db0f6a5865b380e',1,'Server::EventMessage()'],['../classstartup_window.html#aac34dd91f895eeaa1762afb92541c90d',1,'startupWindow::EventMessage()']]],
-  ['eventsetxrayena_12',['EventSetXrayEna',['../group___interface_module.html#gaddcf172531df8b07034e8e014ea96850',1,'Server::EventSetXrayEna()'],['../classstartup_window.html#adaf50ca00f8ba7361e19256511e22ce9',1,'startupWindow::EventSetXrayEna()']]],
-  ['eventstatus_13',['EventStatus',['../group___interface_module.html#ga8af888a694a6f5adb226177e6fad8b76',1,'Server::EventStatus()'],['../classstartup_window.html#a3db7b52b8f316d7ed123ef49dacff002',1,'startupWindow::EventStatus()']]],
-  ['eventxraycompleted_14',['EventXrayCompleted',['../group___interface_module.html#gad2b9cbeccf94f41a9ea16d2966c32c33',1,'Server::EventXrayCompleted()'],['../classstartup_window.html#a497fe78bfd3d1812276ab43f1f94bc28',1,'startupWindow::EventXrayCompleted(ushort seq, uchar code, uchar error)']]],
+  ['eventgetpulsedata_10',['EventGetPulseData',['../class_interface.html#af9c48c57be624537767e9be5811fa314',1,'Interface::EventGetPulseData()'],['../classstartup_window.html#aed22dee8747f0d79e982987733734ae4',1,'startupWindow::EventGetPulseData()']]],
+  ['eventmessage_11',['EventMessage',['../class_interface.html#a020a0193e504b0258bc2e7a331d23a99',1,'Interface::EventMessage()'],['../classstartup_window.html#aac34dd91f895eeaa1762afb92541c90d',1,'startupWindow::EventMessage()']]],
+  ['eventsetxrayena_12',['EventSetXrayEna',['../class_interface.html#a3f4b8e372b92289be84a9663d36b3630',1,'Interface::EventSetXrayEna()'],['../classstartup_window.html#adaf50ca00f8ba7361e19256511e22ce9',1,'startupWindow::EventSetXrayEna()']]],
+  ['eventstatus_13',['EventStatus',['../class_interface.html#a671b86ba0bef3f8c539bd8a51641b071',1,'Interface::EventStatus()'],['../classstartup_window.html#a3db7b52b8f316d7ed123ef49dacff002',1,'startupWindow::EventStatus()']]],
+  ['eventxraycompleted_14',['EventXrayCompleted',['../class_interface.html#a501dca1678ccb43e3cbd2ff05ed693bd',1,'Interface::EventXrayCompleted()'],['../classstartup_window.html#a497fe78bfd3d1812276ab43f1f94bc28',1,'startupWindow::EventXrayCompleted(ushort seq, uchar code, uchar error)']]],
   ['exitwindow_15',['exitWindow',['../classstartup_window.html#a163a3eeb4f92657ba4a086b8452ad35f',1,'startupWindow']]],
   ['exposuremanager_16',['exposureManager',['../classexposure_manager.html#aa148e15af2bdb6c357b71524d1ae6abc',1,'exposureManager']]]
 ];

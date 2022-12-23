@@ -77,7 +77,7 @@ var searchData=
   ['digitalinterface_5fenabled_74',['DigitalInterface_Enabled',['../struct_r2_c_p_1_1t_extended_license.html#ae8c40d32fda85b54cbf4fcc160504867',1,'R2CP::tExtendedLicense']]],
   ['direct_5fworkstation_5fid_75',['DIRECT_WORKSTATION_ID',['../namespace_application.html#a309d1bdd560d92a5534e51eff3623823',1,'Application']]],
   ['disconnect_76',['Disconnect',['../class_a_p_i_1_1_r_t_c_s_1_1_ca_socket.html#a83b1c964bac84b5a56e6c87076c3280c',1,'API::RTCS::CaSocket']]],
-  ['disconnected_77',['disconnected',['../class_socket_item.html#aaf3bf87b4474d481c112e249fb0d2057',1,'SocketItem::disconnected()'],['../class_server.html#a4c7ffa5b0c2439f93931613930febdb2',1,'Server::disconnected()']]],
+  ['disconnected_77',['disconnected',['../class_socket_item.html#aaf3bf87b4474d481c112e249fb0d2057',1,'SocketItem::disconnected()'],['../classapplication_interface.html#ab5308173d5ac2758ccde74fb0e7d502c',1,'applicationInterface::disconnected()']]],
   ['disconnecting_78',['DISCONNECTING',['../namespace_a_p_i_1_1_r_t_c_s.html#a1c99ec1280c023c1114bf6743ab4bd26aa4abf961888bfb21dd241959b51dd3dd',1,'API::RTCS']]],
   ['do_5fconfiguration_79',['DO_CONFIGURATION',['../_r2_c_p___index_8h.html#a47160958a73826d53fcfc1a4b5ad6a5b',1,'R2CP_Index.h']]],
   ['do_5fdefault_5fvalue_80',['DO_DEFAULT_VALUE',['../_r2_c_p___index_8h.html#a343fd633570d192e41761217bbd88012',1,'R2CP_Index.h']]],

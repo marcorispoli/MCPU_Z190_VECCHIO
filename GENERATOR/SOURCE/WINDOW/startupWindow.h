@@ -24,7 +24,7 @@ public:
     void EventMessage(ushort seq,QString msg);    
     void EventSetXrayEna(ushort seq, bool state);
     void EventXrayCompleted(ushort seq, uchar code, uchar error);    
-    void EventGetPulseData(ushort seq);
+    void EventGetPulseData(void);
 
 
 // WINDOWS MODULE VIRTUAL FUNCTIONS

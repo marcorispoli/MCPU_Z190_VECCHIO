@@ -220,6 +220,9 @@ void applicationInterface::sendAck(ushort id, ushort seq,  uint errcode, QList<Q
     buffer.append(' ');
     buffer.append(QString("%1").arg(seq).toLatin1());
     buffer.append(' ');
+    if(errcode) buffer.append("NOK");
+    else buffer.append("OK");
+    buffer.append(' ');
     buffer.append(QString("%1").arg(errcode).toLatin1());
     buffer.append(' ');
 
@@ -257,17 +260,14 @@ void applicationInterface::sendAck(ushort id, ushort seq,  uint errcode, QList<Q
  * The frame is sent broadcast to all the connected Clients.
  *
  * @param
- * - seq: sequence number of the Event ;
  * - Event: the string identifying the Event code
  * - params: the list of parameter's item of the EVENT.
  *
  */
-void applicationInterface::sendEvent( ushort seq, QString Event, QList<QString>* params){
+void applicationInterface::sendEvent(QString Event, QList<QString>* params){
     QByteArray buffer;
     buffer.append('<');
     buffer.append('E');
-    buffer.append(' ');
-    buffer.append(QString("%1").arg(seq).toLatin1());
     buffer.append(' ');
     buffer.append(Event.toLatin1());
     buffer.append(' ');

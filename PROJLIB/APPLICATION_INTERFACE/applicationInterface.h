@@ -132,7 +132,7 @@ public slots:
 
 protected:
     void incomingConnection(qintptr socketDescriptor) override; //!< Incoming connection slot
-
+    void sendEvent(QString Event, QList<QString>* params);              //!< Helper function to send an EVENT frame to gantry
 
 private:
 
@@ -142,7 +142,6 @@ private:
     ushort              idseq;         //!< Id counter, to assign a unique ID to a client
 
     void sendAck(ushort id, ushort seq, uint code,QList<QString>*  data);  //!< Helper function to send an Answer frame to Gantry
-    void sendEvent(ushort seq, QString Event, QList<QString>* params);              //!< Helper function to send an EVENT frame to gantry
     QList<QString> getProtocolFrame(QByteArray* data);  //!< Extract the data content from a received frame
 
 };

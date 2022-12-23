@@ -86,7 +86,7 @@ void workflowManager::handleCommandProcessedState(void){
         errstr = COMMUNICATION->getCommandProcessedString();
 
         // The error code is sent to the External Client
-        if(errstr != "") INTERFACE->EventMessage(0,errstr);
+        if(errstr != "") INTERFACE->EventMessage(errstr);
     } else command_process_state = true;
 
 
@@ -578,7 +578,7 @@ void workflowManager::handle_SMS_IDLE(void){
     case 0:
         qDebug() << "IDLE STATUS";
         abortRxRequest = false;
-        INTERFACE->EventSetXrayEna(0,false);
+        INTERFACE->EventSetXrayEna(false);
         interfaceStatus = workflowManager::_READY_FOR_EXPOSURE;
 
         break;
@@ -638,7 +638,7 @@ void workflowManager::handle_SMS_ERROR(void){
 
             for(int i=0; i<COMMUNICATION->getErrorList()->size(); i++){
                 messg = DBSysMessages->getErrorString(COMMUNICATION->getErrorList()->at(i));
-                INTERFACE->EventMessage(0,messg);
+                INTERFACE->EventMessage(messg);
                 qDebug() << messg;
             }
             break;

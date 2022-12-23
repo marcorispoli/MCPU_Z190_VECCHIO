@@ -113,7 +113,9 @@ void startupWindow::onDebug(QByteArray data){
 void startupWindow::onStart2DPre(void){
 
     QList<QString> comando;
-    comando.append("E");
+    QList<QString> answer;
+
+    comando.append("C");
     comando.append("1");
     comando.append("SetExposurePre");
     comando.append(ui->kVPre->text());
@@ -122,15 +124,15 @@ void startupWindow::onStart2DPre(void){
     else comando.append("SMALL");
     comando.append(ui->aecTmo->text());
 
-    INTERFACE->SetExposurePre(&comando);
+    INTERFACE->SetExposurePre(&comando, &answer);
 
     comando.clear();
-    comando.append("E");
+    comando.append("C");
     comando.append("2");
     comando.append("StartExposure ");
     comando.append("2DAEC");
 
-    INTERFACE->StartExposure(&comando);
+    INTERFACE->StartExposure(&comando, &answer);
 
 }
 
@@ -138,7 +140,9 @@ void startupWindow::onStart2DPre(void){
 void startupWindow::onStart2DPulse(void){
 
     QList<QString> comando;
-    comando.append("E");
+    QList<QString> answer;
+
+    comando.append("C");
     comando.append("1");
     comando.append("SetExposurePulse ");
     comando.append(ui->kVPulse->text());
@@ -146,23 +150,25 @@ void startupWindow::onStart2DPulse(void){
     if(ui->largeFocus->isChecked()) comando.append("LARGE");
     else comando.append("SMALL");
 
-    INTERFACE->SetExposurePulse(&comando);
+    INTERFACE->SetExposurePulse(&comando, &answer);
 
 
     comando.clear();
-    comando.append("E");
+    comando.append("C");
     comando.append("2");
     comando.append("StartExposure ");
     comando.append("2D");
 
-    INTERFACE->StartExposure(&comando);
+    INTERFACE->StartExposure(&comando, &answer);
 
 }
 
 void startupWindow::onStart2DTest(void){
 
     QList<QString> comando;
-    comando.append("E");
+    QList<QString> answer;
+
+    comando.append("C");
     comando.append("1");
     comando.append("SetExposureTestPulse ");
     comando.append(ui->kVPulse->text());
@@ -173,16 +179,16 @@ void startupWindow::onStart2DTest(void){
     else comando.append("NO_DETECTOR");
     if(ui->gridEna->isChecked()) comando.append("GRID");
     else comando.append("NO_GRID");
-    INTERFACE->SetExposureTestPulse(&comando);
+    INTERFACE->SetExposureTestPulse(&comando, &answer);
 
 
     comando.clear();
-    comando.append("E");
+    comando.append("C");
     comando.append("2");
     comando.append("StartExposure ");
     comando.append("2D");
 
-    INTERFACE->StartExposure(&comando);
+    INTERFACE->StartExposure(&comando, &answer);
 
 }
 
@@ -190,17 +196,19 @@ void startupWindow::onStart2DTest(void){
 void startupWindow::onStart3DPulse(void){
 
     QList<QString> comando;
-    comando.append("E");
+    QList<QString> answer;
+
+    comando.append("C");
     comando.append("1");
     comando.append("SetExposurePulse ");
     comando.append(ui->kVPulse->text());
     comando.append(ui->mAsPulse->text());
     comando.append("LARGE");   
 
-    INTERFACE->SetExposurePulse(&comando);
+    INTERFACE->SetExposurePulse(&comando, &answer);
 
     comando.clear();
-    comando.append("E");
+    comando.append("C");
     comando.append("2");
     comando.append("SetTomoConfig ");
     comando.append(ui->nPulse->text());
@@ -208,22 +216,23 @@ void startupWindow::onStart3DPulse(void){
     comando.append(ui->tomoEW->text());
 
 
-    INTERFACE->SetTomoConfig(&comando);
+    INTERFACE->SetTomoConfig(&comando, &answer);
 
     comando.clear();
-    comando.append("E");
+    comando.append("C");
     comando.append("2");
     comando.append("StartExposure ");
     comando.append("3D");
 
 
-    INTERFACE->StartExposure(&comando);
+    INTERFACE->StartExposure(&comando, &answer);
 
 }
 void startupWindow::onStart3DPre(void){
-
     QList<QString> comando;
-    comando.append("E");
+    QList<QString> answer;
+
+    comando.append("C");
     comando.append("1");
     comando.append("SetExposurePre ");
     comando.append(ui->kVPre->text());
@@ -231,35 +240,37 @@ void startupWindow::onStart3DPre(void){
     comando.append("LARGE");
     comando.append(ui->aecTmo->text());
 
-    INTERFACE->SetExposurePre(&comando);
+    INTERFACE->SetExposurePre(&comando, &answer);
 
     comando.clear();
-    comando.append("E");
+    comando.append("C");
     comando.append("2");
     comando.append("SetTomoConfig ");
     comando.append(ui->nPulse->text());
     comando.append(ui->nSkip->text());
     comando.append(ui->tomoEW->text());
 
-    INTERFACE->SetTomoConfig(&comando);
+    INTERFACE->SetTomoConfig(&comando, &answer);
 
     comando.clear();
-    comando.append("E");
+    comando.append("C");
     comando.append("2");
     comando.append("StartExposure ");
     comando.append("3DAEC");
 
 
-    INTERFACE->StartExposure(&comando);
+    INTERFACE->StartExposure(&comando, &answer);
 
 }
 
 void startupWindow::onAbortRx(void){
     QList<QString> comando;
-    comando.append("E");
+    QList<QString> answer;
+
+    comando.append("C");
     comando.append("1");
     comando.append("AbortExposure");
-    INTERFACE->AbortExposure(&comando);
+    INTERFACE->AbortExposure(&comando, &answer);
 }
 
 void startupWindow::on_logEnableCheck_stateChanged(int arg1)
@@ -283,18 +294,20 @@ void startupWindow::EventSetXrayEna(ushort seq, bool state){
 
 void startupWindow::onAecSendButton(void){
     QList<QString> comando;
-    comando.append("E");
+    QList<QString> answer;
+
+    comando.append("C");
     comando.append("1");
     comando.append("SetExposurePulse ");
     comando.append(ui->kVPulse->text());
     comando.append(ui->mAsPulse->text());
     comando.append("LARGE");
 
-    INTERFACE->SetExposurePulse(&comando);
+    INTERFACE->SetExposurePulse(&comando, &answer);
 }
 
 
-void startupWindow::EventGetPulseData(ushort seq){
+void startupWindow::EventGetPulseData(void){
     if(ui->autoAec->isChecked()) onAecSendButton();
 };
 

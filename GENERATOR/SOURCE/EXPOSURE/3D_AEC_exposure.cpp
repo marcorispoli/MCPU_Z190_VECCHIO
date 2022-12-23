@@ -85,8 +85,8 @@ void exposureManager::handle_3D_AEC(void){
         else if(!STATUS->command_process_state) qDebug() << "Cp Error on Substatus = " << STATUS->subStatus << " total PRE mAs:" << totalPremAs << " toal Pulse mAs:" << totalPulsemAs;
         else qDebug() << "Exposure Error on Substatus = " << STATUS->subStatus << " total PRE mAs:" << totalPremAs << " toal Pulse mAs:" << totalPulsemAs;
 
-        if(totalPulsemAs+totalPremAs) INTERFACE->EventXrayCompleted(0,_EXPOSURE_ABORT, totalPremAs, totalPulsemAs, error_code);
-        else INTERFACE->EventXrayCompleted(0,_EXPOSURE_PARTIAL,totalPremAs, totalPulsemAs, error_code);
+        if(totalPulsemAs+totalPremAs) INTERFACE->EventXrayCompleted(_EXPOSURE_ABORT, totalPremAs, totalPulsemAs, error_code);
+        else INTERFACE->EventXrayCompleted(_EXPOSURE_PARTIAL,totalPremAs, totalPulsemAs, error_code);
 
 
         pulseExposureData.valid = false;
@@ -180,7 +180,7 @@ void exposureManager::handle_3D_AEC(void){
 
         qDebug() << "XRAY-ENA ACTIVATION..";
 
-        INTERFACE->EventSetXrayEna(0,true);
+        INTERFACE->EventSetXrayEna(true);
         break;
 
     case 8:
@@ -256,7 +256,7 @@ void exposureManager::handle_3D_AEC(void){
 
                 qDebug() << "Pre pulse completed: wait for the AEC data";
                 abortAecTimeoutRequest = false;
-                INTERFACE->EventGetPulseData(0);
+                INTERFACE->EventGetPulseData();
                 STATUS->scheduleAecTmo(preExposureData.tmo);
             break;
 
@@ -393,7 +393,7 @@ void exposureManager::handle_3D_AEC(void){
         // Wait for Standby
         switch(current_status){
             case R2CP::Stat_WaitFootRelease:
-                 INTERFACE->EventSetXrayEna(0,false);
+                 INTERFACE->EventSetXrayEna(false);
             break;
 
 
@@ -452,7 +452,7 @@ void exposureManager::handle_3D_AEC(void){
             else if(postExposure[i].DB == R2CP::DB_Pulse) totalPulsemAs += postExposure[i].mAs;
         }
         qDebug() << "EXPOSURE 3D+AEC TERMINATED. Total PRE mAs:" << totalPremAs << ", Total Pulse mAs:" << totalPulsemAs;
-        INTERFACE->EventXrayCompleted(0,_EXPOSURE_COMPLETED,totalPremAs, totalPulsemAs, _EXP_ERR_NONE);
+        INTERFACE->EventXrayCompleted(_EXPOSURE_COMPLETED,totalPremAs, totalPulsemAs, _EXP_ERR_NONE);
         pulseExposureData.valid = false;
         preExposureData.valid = false;
         tomoConfig.valid = false;

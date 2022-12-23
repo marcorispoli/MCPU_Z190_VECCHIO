@@ -4,10 +4,10 @@
 /**
  * @brief SetExposurePre
  *
- * Gantry sends this command EVENT in order to set the next
+ * Gantry sends this Command in order to set the next
  * pre-pulse exposure data in an AEC Exposure type (2D or 3D).
  *
- * The frame format is: <E SEQ SetExposurePre kV mAs focus tmo>
+ * The frame format is: <C SEQ SetExposurePre kV mAs focus tmo>
  *
  * @param
  *  - kV: (float)  kV of the pre pulse;
@@ -16,18 +16,16 @@
  *      > NOTE: in case of Tomo sequence, the focus is always Large
  *  - tmo: timeout waiting AEC data after pre pulse.
  *
- * @return The Ack string to be send back to the Gantry:
- * - "NOK 1": in case of wong number of parameters;
- * - "OK 0": in case of command success;
+ * @return
+ * - 1: in case of wong number of parameters;
+ * - 0: in case of command success;
  *
- * \ingroup InterfaceModule
  */
-QList<QString> Server::SetExposurePre(QList<QString>* command){
-    QList<QString> answer;    
+uint Interface::SetExposurePre(QList<QString>* command, QList<QString>* answer){
 
+    if(answer) answer->clear();
     if(command->size() != 7) {
-        answer.append("NOK 1");
-        return answer;
+        return 1;
     }
     exposureManager::tExposureFocus focus = exposureManager::_FOCUS_SMALL;
     if(command->at(5) == "LARGE") focus = exposureManager::_FOCUS_LARGE;
@@ -35,21 +33,19 @@ QList<QString> Server::SetExposurePre(QList<QString>* command){
     EXPOSURE->setExposureOptions(true, true); // Use both detector synch and grid synch
     EXPOSURE->setPreData(focus, command->at(3).toFloat(), command->at(4).toFloat(), command->at(6).toUShort());
 
-
-    answer.append("OK 0");
-    return answer;
+    return 0;
 }
 
 /**
  * @brief SetExposurePulse
  *
- * Gantry sends this command EVENT in order to set the next Pulse exposure data.
+ * Gantry sends this Command in order to set the next Pulse exposure data.
  *
  * Gantry shall set the Pulse exposure data before to starts a Manual exposure (2D or 3D)\n
  * or in AEC to set the pulse after the Pre Pulse is completed.
  *  > This function uses the Synchronization signals and cannot be used as a test exposure.
  *
- * The frame format is: <E SEQ SetExposurePulse kV mAs focus >
+ * The frame format is: <C SEQ SetExposurePulse kV mAs focus >
  *
  *
  * @param
@@ -59,18 +55,15 @@ QList<QString> Server::SetExposurePre(QList<QString>* command){
  *  - focus: (string) : LARGE/SMALL;
  *      > In case of Tomo only the LARGE FOCUS is used, and this parameter is ignored;
  *
- * @return The Ack string to be send back to the Gantry:
- * - "NOK 1": in case of wong number of parameters;
- * - "OK 0": in case of command success;
- *
- * \ingroup InterfaceModule
+ * @return
+ * - 1: in case of wong number of parameters;
+ * - 0: in case of command success;
  */
-QList<QString> Server::SetExposurePulse(QList<QString>* command){
-    QList<QString> answer;
+uint Interface::SetExposurePulse(QList<QString>* command, QList<QString>* answer){
+    if(answer) answer->clear();
 
     if(command->size() != 6) {
-        answer.append("NOK 1");
-        return answer;
+        return 1;
     }
 
     exposureManager::tExposureFocus focus = exposureManager::_FOCUS_SMALL;
@@ -78,8 +71,7 @@ QList<QString> Server::SetExposurePulse(QList<QString>* command){
 
     EXPOSURE->setExposureOptions(true, true); // Use both detector synch and grid synch
     EXPOSURE->setPulseData(focus, command->at(3).toFloat(), command->at(4).toFloat());
-    answer.append("OK 0");
-    return answer;
+    return 0;
 }
 
 
@@ -88,12 +80,12 @@ QList<QString> Server::SetExposurePulse(QList<QString>* command){
 /**
  * @brief SetExposureTestPulse
  *
- * Gantry sends this command EVENT in order to set the next Pulse exposure data.
+ * Gantry sends this Command in order to set the next Pulse exposure data.
  *
  * Gantry shall set the Pulse exposure data before to starts a Manual exposure (2D or 3D)\n
  * or after the pre pulse termines and the Pulse data has been calculated.
  *
- * The frame format is: <E SEQ SetExposurePulse kV mAs focus sync_type grid_use>
+ * The frame format is: <C SEQ SetExposurePulse kV mAs focus sync_type grid_use>
  *
  *
  * @param
@@ -111,18 +103,16 @@ QList<QString> Server::SetExposurePulse(QList<QString>* command){
  *      - GRID: the Generator will synchronize the exposure with the Grid signal of the Hardware Bus;
  *          > In case of Tomo this parameter is ignored;
  *
- * @return The Ack string to be send back to the Gantry:
- * - "NOK 1": in case of wong number of parameters;
- * - "OK 0": in case of command success;
+ * @return
+ * - 1: in case of wong number of parameters;
+ * - 0: in case of command success;
  *
- * \ingroup InterfaceModule
  */
-QList<QString> Server::SetExposureTestPulse(QList<QString>* command){
-    QList<QString> answer;
+uint Interface::SetExposureTestPulse(QList<QString>* command, QList<QString>* answer){
+    if(answer) answer->clear();
 
     if(command->size() != 8) {
-        answer.append("NOK 1");
-        return answer;
+        return 1;
     }
 
     exposureManager::tExposureFocus focus = exposureManager::_FOCUS_SMALL;
@@ -136,19 +126,18 @@ QList<QString> Server::SetExposureTestPulse(QList<QString>* command){
 
     EXPOSURE->setPulseData(focus, command->at(3).toFloat(), command->at(4).toFloat());
     EXPOSURE->setExposureOptions(detector, grid);
-    answer.append("OK 0");
-    return answer;
+    return 0;
 }
 
 
 /**
  * @brief SetTomoConfig
  *
- * Gantry sends this command EVENT in order to set the Tomo configuration.\n
+ * Gantry sends this Command in order to set the Tomo configuration.\n
  * The Tomo configuration is composed by the Number of pulses, number of pulse-skip\n
  * and the maximum integration time.
  *
- * The frame format is: <E SEQ SetTomoConfig n_pulses n_skip tmo>
+ * The frame format is: <C SEQ SetTomoConfig n_pulses n_skip tmo>
  *
  *
  * @param
@@ -156,30 +145,27 @@ QList<QString> Server::SetExposureTestPulse(QList<QString>* command){
  *  - n_skip: (ushort) Number of Detector Exposure Window the generator shall skip before to start XRAY pulses;
  *  - tmo (ushort) Maximum integration time in ms
  *
- * @return The Ack string to be send back to the Gantry:
- * - "NOK 1": in case of wong number of parameters;
- * - "OK 0": in case of command success;
+ * @return
+ * - 1: in case of wong number of parameters;
+ * - 0: in case of command success;
  *
- * \ingroup InterfaceModule
  */
-QList<QString> Server::SetTomoConfig(QList<QString>* command){
-    QList<QString> answer;
+uint Interface::SetTomoConfig(QList<QString>* command, QList<QString>* answer){
+    if(answer) answer->clear();
 
     if(command->size() != 6) {
-        answer.append("NOK 1");
-        return answer;
+        return 1;
     }
 
     EXPOSURE->setTomoConfig(command->at(3).toUShort(), command->at(4).toUShort(), command->at(5).toUShort());
-    answer.append("OK 0");
-    return answer;
+    return 0;
 }
 
 
 /**
  * @brief StartExposure
  *
- * Gantry sends this command EVENT in order to start a given Exposure.\n
+ * Gantry sends this Command in order to start a given Exposure.\n
  * Possible Exposures are:
  *  - 2D: is a Manual single 2D pulse exposure;
  *  - 2DAEC: is a 2D exposure with pre-pulse and a second pulse based on the pre;
@@ -187,31 +173,26 @@ QList<QString> Server::SetTomoConfig(QList<QString>* command){
  *  - 3DAEC: is a 3D exposure with pre-pulse and a subsequent tomo scan based on the pre;
  *
  *
- * The frame format is: <E SEQ StartExposure exposure_type >
+ * The frame format is: <C SEQ StartExposure exposure_type >
  *
  *
  * @param
  *  - exposure_type: (string) [2D/2DAEC/3D/3DAEC];
  *
  * @return
- *
- * - "NOK 1": in case of wong number of parameters;
- * - "NOK 2": in case of not Idle Status;
- * - "OK 0": in case of command success;
- *
- * \ingroup InterfaceModule
+ * - 1: in case of wong number of parameters;
+ * - 2: in case of not Idle Status;
+ * - 0: in case of command success;
  */
-QList<QString> Server::StartExposure(QList<QString>* command){
-    QList<QString> answer;
+uint Interface::StartExposure(QList<QString>* command, QList<QString>* answer){
+    if(answer) answer->clear();
 
     if(command->size() != 4) {
-        answer.append("NOK 1");
-        return answer;
+        return 1;
     }
 
     if(!STATUS->isIdle()){
-        answer.append("NOK 2");
-        return answer;
+        return 2;
     }
 
     // Clear the Post Exposure datalist
@@ -220,47 +201,43 @@ QList<QString> Server::StartExposure(QList<QString>* command){
     else if(command->at(3) == "3D") STATUS->start3DExposure();
     else if(command->at(3) == "3DAEC") STATUS->start3DAecExposure();
 
-    answer.append("OK 0");
-    return answer;
+    return 0;
 }
 
 /**
  * @brief AbortExposure
  *
- * This EVENT termines an incoming Exposure.
+ * This Command termines an incoming Exposure.
  *
- * The frame format is: <E SEQ AbortExposure  >
+ * The frame format is: <C SEQ AbortExposure  >
  *
  * @param
  *  - No parameters..
  *
  * @return
- * - "OK 0": in case of command success;
+ * - 0: always success
  *
- * \ingroup InterfaceModule
  */
-QList<QString> Server::AbortExposure(QList<QString>* command){
-    QList<QString> answer;
+uint Interface::AbortExposure(QList<QString>* command, QList<QString>* answer){
+    if(answer) answer->clear();
 
     STATUS->requestAbortProcedure();
-
-    answer.append("OK 0");
-    return answer;
+    return 0;
 }
 
 /**
  * @brief GetPostExposure
  *
- * Gantry sends this command EVENT to request the list of the\n
+ * Gantry sends this Command to request the list of the\n
  * last exposure pulses.
  *
- * The frame format is: <E SEQ GetPostExposure  >
+ * The frame format is: <C SEQ GetPostExposure  >
  *
  * @param
  *  - No parameters..
  *
  * @return
- * - "OK num_blocks [block1] .. [block-n]"
+ * - "OK 0 num_blocks [block1] .. [block-n]"
  *
  * Where:
  *  - num_blocks: number of available pulse blocks;
@@ -274,27 +251,24 @@ QList<QString> Server::AbortExposure(QList<QString>* command){
  *  - ms: endurance in ms of the pulse;
  *
  *
- * \ingroup InterfaceModule
  */
-QList<QString> Server::GetPostExposure(QList<QString>* command){
-    QList<QString> answer;
+uint Interface::GetPostExposure(QList<QString>* command, QList<QString>* answer){
+    if(answer) answer->clear();
 
-
-    answer.append("OK");
-    answer.append(QString("%1").arg(EXPOSURE->postExposure.size()));
+    answer->append(QString("%1").arg(EXPOSURE->postExposure.size()));
 
     for(int i=0; i< EXPOSURE->postExposure.size(); i++){
-        if(EXPOSURE->postExposure.at(i).focus == exposureManager::_FOCUS_LARGE)  answer.append("LARGE");
-        else answer.append("SMALL");
-//        answer.append(QString("%1").arg(list.at(i).pulse_seq));
-        answer.append(QString("%1").arg(EXPOSURE->postExposure.at(i).kV));
-        answer.append(QString("%1").arg(EXPOSURE->postExposure.at(i).mAs));
-        answer.append(QString("%1").arg(EXPOSURE->postExposure.at(i).mA));
-        answer.append(QString("%1").arg(EXPOSURE->postExposure.at(i).mS));
-//        answer.append(QString("%1").arg(list.at(i).result));
+        if(EXPOSURE->postExposure.at(i).focus == exposureManager::_FOCUS_LARGE)  answer->append("LARGE");
+        else answer->append("SMALL");
+//        answer->append(QString("%1").arg(list.at(i).pulse_seq));
+        answer->append(QString("%1").arg(EXPOSURE->postExposure.at(i).kV));
+        answer->append(QString("%1").arg(EXPOSURE->postExposure.at(i).mAs));
+        answer->append(QString("%1").arg(EXPOSURE->postExposure.at(i).mA));
+        answer->append(QString("%1").arg(EXPOSURE->postExposure.at(i).mS));
+//        answer->append(QString("%1").arg(list.at(i).result));
     }
 
-    return answer;
+    return 0;
 }
 
 

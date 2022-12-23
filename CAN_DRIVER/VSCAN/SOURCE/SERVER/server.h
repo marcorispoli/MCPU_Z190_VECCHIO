@@ -4,7 +4,8 @@
 /*!
  * \defgroup  interfaceModule Ethernet Interface Module.
  *
- * This Module implements the communication with the Can Clients.
+ * This Module implements the communication with the Clients of the Can Bus.
+ *
  *
  *
  * # DEVICE DRIVER OVERVIEW

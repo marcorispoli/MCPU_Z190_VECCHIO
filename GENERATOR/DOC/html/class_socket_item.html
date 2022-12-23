@@ -76,14 +76,14 @@ $(function() {
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="class_socket_item-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">SocketItem Class Reference<div class="ingroups"><a class="el" href="group___interface_module.html">Gantry Interface Module.</a></div></div></div>
+  <div class="headertitle"><div class="title">SocketItem Class Reference<div class="ingroups"><a class="el" href="group__library_modules.html">Library Modules Used in the Application.</a> &raquo; <a class="el" href="group___application_interface_module.html">Application Interface Library Module.</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 
 <p>This Class implements a TcpIp Serve socket, running in a separate thread.  
  <a href="class_socket_item.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="server_8h_source.html">server.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="application_interface_8h_source.html">applicationInterface.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for SocketItem:</div>
 <div class="dyncontent">
@@ -99,9 +99,9 @@ Public Slots</h2></td></tr>
 <tr class="memitem:a4fda6fcc9d0f6abe52ee3d764012386c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_socket_item.html#a4fda6fcc9d0f6abe52ee3d764012386c">socketError</a> (QAbstractSocket::SocketError error)</td></tr>
 <tr class="memdesc:a4fda6fcc9d0f6abe52ee3d764012386c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Error callback received from the Library.  <a href="class_socket_item.html#a4fda6fcc9d0f6abe52ee3d764012386c">More...</a><br /></td></tr>
 <tr class="separator:a4fda6fcc9d0f6abe52ee3d764012386c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaf55922f9f78668803fabefb184b100f4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___interface_module.html#gaf55922f9f78668803fabefb184b100f4">socketRxData</a> ()</td></tr>
-<tr class="memdesc:gaf55922f9f78668803fabefb184b100f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data received callback received from the Socket Library.  <a href="group___interface_module.html#gaf55922f9f78668803fabefb184b100f4">More...</a><br /></td></tr>
-<tr class="separator:gaf55922f9f78668803fabefb184b100f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af55922f9f78668803fabefb184b100f4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_socket_item.html#af55922f9f78668803fabefb184b100f4">socketRxData</a> ()</td></tr>
+<tr class="memdesc:af55922f9f78668803fabefb184b100f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data received callback received from the Socket Library.  <a href="class_socket_item.html#af55922f9f78668803fabefb184b100f4">More...</a><br /></td></tr>
+<tr class="separator:af55922f9f78668803fabefb184b100f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad9ed0c073d788ebb75cb4499968512dc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_socket_item.html#ad9ed0c073d788ebb75cb4499968512dc">socketTxData</a> (QByteArray)</td></tr>
 <tr class="memdesc:ad9ed0c073d788ebb75cb4499968512dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data to be sent to the Socket, received from the <a class="el" href="namespace_application.html" title="Application constants definition.">Application</a> thread.  <a href="class_socket_item.html#ad9ed0c073d788ebb75cb4499968512dc">More...</a><br /></td></tr>
 <tr class="separator:ad9ed0c073d788ebb75cb4499968512dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -308,6 +308,39 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="af55922f9f78668803fabefb184b100f4" name="af55922f9f78668803fabefb184b100f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af55922f9f78668803fabefb184b100f4">&#9670;&#160;</a></span>socketRxData</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SocketItem::socketRxData </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Data received callback received from the Socket Library. </p>
+<p ><a class="el" href="class_socket_item.html#af55922f9f78668803fabefb184b100f4" title="Data received callback received from the Socket Library.">SocketItem::socketRxData</a>.</p>
+<p >This is the handler of the data reception of a given socket.</p>
+<p >When a data frame is received, it is decoded and the internal command string is <br  />
+forwarded to the Command function handler through the signal '<a class="el" href="class_socket_item.html#a1781b9450dbdf4cf1fd7c9935a314e4c" title="For every decoded command received the server sends this signal to the Application.">receivedCommandSgn()</a>'.</p>
+<p >The function is able to handle queued frames contained in a single data streaming.</p>
+<p >A valid frame shall be a set of string within the &lt; &gt; delimiters. </p>
+
+</div>
+</div>
 <a id="ad9ed0c073d788ebb75cb4499968512dc" name="ad9ed0c073d788ebb75cb4499968512dc"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad9ed0c073d788ebb75cb4499968512dc">&#9670;&#160;</a></span>socketTxData</h2>
 
@@ -370,8 +403,8 @@ Public Attributes</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>C:/Users/m.rispoli/Documents/Workspace/Git/MainCpu_Z190/GENERATOR/SOURCE/INTERFACE/<a class="el" href="server_8h_source.html">server.h</a></li>
-<li>C:/Users/m.rispoli/Documents/Workspace/Git/MainCpu_Z190/GENERATOR/SOURCE/INTERFACE/<a class="el" href="server_8cpp.html">server.cpp</a></li>
+<li>C:/Users/m.rispoli/Documents/Workspace/Git/MainCpu_Z190/PROJLIB/APPLICATION_INTERFACE/<a class="el" href="application_interface_8h_source.html">applicationInterface.h</a></li>
+<li>C:/Users/m.rispoli/Documents/Workspace/Git/MainCpu_Z190/PROJLIB/APPLICATION_INTERFACE/<a class="el" href="application_interface_8cpp.html">applicationInterface.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

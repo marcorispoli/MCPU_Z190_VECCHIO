@@ -87,7 +87,7 @@ Classes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p >This Module implements the Workflow of the <a class="el" href="namespace_application.html" title="Application constants definition.">Application</a>.</p>
-<h1><a class="anchor" id="autotoc_md35"></a>
+<h1><a class="anchor" id="autotoc_md34"></a>
 GENERAL OVERVIEW</h1>
 <p >The Module uses the following files:</p><ul>
 <li>status.cpp: implements the function to manage the workflow;</li>
@@ -109,7 +109,7 @@ step completion.</p>
 <p >In order to change the major Workflow, the <a class="el" href="namespace_application.html" title="Application constants definition.">Application</a> shall call the '<a class="el" href="classworkflow_manager.html#afe54638f19ef07cc45983fdca893f16d" title="This function requests to activate a major workflow.">workflowManager::changeWorkflow()</a>';</p>
 <p >In order to call a Sub Workflow the <a class="el" href="namespace_application.html" title="Application constants definition.">Application</a> shall call the '<a class="el" href="classworkflow_manager.html#a3268d9621e975555adb328f98a9c641e" title="This function request the activation of a SubWorkflow.">workflowManager::changeSubWorkflow()</a>' routine;</p>
 <p >Inside a SubWorkflow, the <a class="el" href="namespace_application.html" title="Application constants definition.">Application</a> shall call the 'workflowManager::returnSubWorkflow()' to return to the caller major Workflow.</p>
-<h1><a class="anchor" id="autotoc_md36"></a>
+<h1><a class="anchor" id="autotoc_md35"></a>
 SUB MODULES</h1>
 <p >The workflowModule implements three classes:</p>
 <ul>
@@ -118,16 +118,16 @@ SUB MODULES</h1>
 <li><a class="el" href="classworkflow_manager.html" title="This is the workflowManager implementation class.">workflowManager</a> class: this class stictly implements the Workflow management;</li>
 </ul>
 <p >The <a class="el" href="classworkflow_manager.html" title="This is the workflowManager implementation class.">workflowManager</a> class contains the <a class="el" href="classexposure_manager.html" title="This class implements the functions and variables to handle the Exposure Workflows.">exposureManager</a> class declaration and the <a class="el" href="class_db_manager.html" title="This class implements the SQL access to the Generator Error Messages database.">DbManager</a> declaraton as public elements.</p>
-<h1><a class="anchor" id="autotoc_md37"></a>
+<h1><a class="anchor" id="autotoc_md36"></a>
 WORKFLOW FUNCTIONS</h1>
-<h2><a class="anchor" id="autotoc_md38"></a>
+<h2><a class="anchor" id="autotoc_md37"></a>
 Smart Hub Connection Workflow</h2>
 <ul>
 <li>Function: '<a class="el" href="classworkflow_manager.html#a7f6440b31bb76a0ea7789bf45df4fdd5" title="This is the Workflow routine handling the connection with the Smart Hub.">workflowManager::handle_SH_CONNECTION()</a>';</li>
 <li>Workflow Code: SMS_SMART_HUB_CONNECTION;</li>
 </ul>
 <p >This workflow runs soon after the <a class="el" href="namespace_application.html" title="Application constants definition.">Application</a> startup and every time the connection should drop. This workflow has the most priority over the rest of workflows.</p>
-<h2><a class="anchor" id="autotoc_md39"></a>
+<h2><a class="anchor" id="autotoc_md38"></a>
 Generator Connection Workflow</h2>
 <ul>
 <li>Function: '<a class="el" href="classworkflow_manager.html#aef999e588d0f15c24d60a5e209d94a9e" title="This is the Workflow routine handling the connection with the Generator.">workflowManager::handle_GENERATOR_CONNECTION()</a>';</li>
@@ -136,7 +136,7 @@ Generator Connection Workflow</h2>
 <p >This workflow runs soon after the connection with the Smart Hub and every time <br  />
 the connection with the generator should drop. This workflow has the second most priority <br  />
 after the Smart Hub connection workflow.</p>
-<h2><a class="anchor" id="autotoc_md40"></a>
+<h2><a class="anchor" id="autotoc_md39"></a>
 Generator Setup Workflow</h2>
 <ul>
 <li>Function: '<a class="el" href="classworkflow_manager.html#a9e43e3ce9ac69e62804de87f5d75cee2" title="This is the SubWorkflow routine handling the generator data setup.">workflowManager::handle_SETUP_GENERATOR()</a>';</li>
@@ -145,14 +145,14 @@ Generator Setup Workflow</h2>
 <p >This workflow runs always after the connection with the Generator <br  />
 . in order to setup the Data structures ready for the EXPOSURE-&gt; <br  />
  This Workflow can be called as a Sub-Workflow from the Tomo Exposure Workflows whenever the Tomo configuration changes.</p>
-<h2><a class="anchor" id="autotoc_md41"></a>
+<h2><a class="anchor" id="autotoc_md40"></a>
 Clear Generator System Messages</h2>
 <ul>
 <li>Function: '<a class="el" href="classworkflow_manager.html#a75bd67e028a0f48ded4bf47123ecfab3" title="This is the SubWorkflow routine to clear the Generator System Messages.">workflowManager::handle_CLEAR_ALL_SMS_MESSAGES()</a>';</li>
 <li>Workflow Code: SMS_CLEAR_SYS_MESSAGES;</li>
 </ul>
 <p >This Workflow can be called as a Sub-Workflow from every Workflow whenever the Generator System messages need to be cleared.</p>
-<h2><a class="anchor" id="autotoc_md42"></a>
+<h2><a class="anchor" id="autotoc_md41"></a>
 Error Workflow</h2>
 <ul>
 <li>Function: '<a class="el" href="classworkflow_manager.html#a6d2a21b1027352a33e1eaa58f8ab1093" title="This is the Workflow routine to handle the System Error Messages.">workflowManager::handle_SMS_ERROR()</a>';</li>
@@ -160,7 +160,7 @@ Error Workflow</h2>
 </ul>
 <p >This Workflow is activated whenever there are active system error messages<br  />
 into the Generator device.</p>
-<h2><a class="anchor" id="autotoc_md43"></a>
+<h2><a class="anchor" id="autotoc_md42"></a>
 Idle Workflow</h2>
 <ul>
 <li>Function: '<a class="el" href="classworkflow_manager.html#aa430025824814762ed4a674dc4832a30" title="This is the Workflow routine handling the IDLE status.">workflowManager::handle_SMS_IDLE()</a>';</li>
@@ -169,7 +169,7 @@ Idle Workflow</h2>
 <p >This Workflow runs after the Generator initialization and after <br  />
 any exposure workflow termines. This shall considered as the Operating ready status workflow because in this status the <a class="el" href="namespace_application.html" title="Application constants definition.">Application</a> <br  />
 can initiate an Exposure sequence.</p>
-<h2><a class="anchor" id="autotoc_md44"></a>
+<h2><a class="anchor" id="autotoc_md43"></a>
 Exposure Workflows</h2>
 <ul>
 <li>Functions:<ul>

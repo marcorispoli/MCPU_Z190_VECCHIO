@@ -38,8 +38,8 @@ var searchData=
   ['getinstance_35',['GetInstance',['../class_r2_c_p_1_1_ca_data_dic_gen.html#a72aae4a487491f80997d10765dc299ac',1,'R2CP::CaDataDicGen::GetInstance()'],['../class_ca_sh___connection.html#a992f4fece482d6600f3a781bace7dad9',1,'CaSh_Connection::GetInstance()']]],
   ['getlist_36',['getList',['../class_communication.html#ab45d4412947162eb9312fd95f8db04c9',1,'Communication']]],
   ['getnodeevent_37',['GetNodeEvent',['../class_r2_c_p_1_1_ca_data_dic_gen.html#a581da0ca5030f348cafe914b863c8262',1,'R2CP::CaDataDicGen']]],
-  ['getpostexposure_38',['GetPostExposure',['../group___interface_module.html#gaa30eba1ca1ddc4516dd11c20befbeb7d',1,'Server']]],
-  ['getprotocolframe_39',['getProtocolFrame',['../group___interface_module.html#ga7d7aa2e30aeb332277b1201e5b7a76f6',1,'Server']]],
+  ['getpostexposure_38',['GetPostExposure',['../class_interface.html#a47d07c2c4b64a1966646e380bc405dfa',1,'Interface']]],
+  ['getprotocolframe_39',['getProtocolFrame',['../classapplication_interface.html#a971468eccc803138884f89506cc5fca0',1,'applicationInterface']]],
   ['getprotocolversion_40',['getProtocolVersion',['../class_communication.html#a187115973c6a367c119e118d5a0b55df',1,'Communication']]],
   ['getr10time_41',['getR10Time',['../classexposure_manager.html#a642af28149a90493a4ac37b88215200e',1,'exposureManager']]]
 ];

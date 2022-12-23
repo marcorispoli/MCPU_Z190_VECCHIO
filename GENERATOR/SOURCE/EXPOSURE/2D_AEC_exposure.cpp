@@ -81,8 +81,8 @@ void exposureManager::handle_2D_AEC(void){
         else if(!STATUS->command_process_state) qDebug() << "Cp Error on Substatus = " << STATUS->subStatus << " total PRE mAs:" << totalPremAs << " toal Pulse mAs:" << totalPulsemAs;
         else qDebug() << "Exposure Error on Substatus = " << STATUS->subStatus << " total PRE mAs:" << totalPremAs << " toal Pulse mAs:" << totalPulsemAs;
 
-        if(totalPulsemAs+totalPremAs) INTERFACE->EventXrayCompleted(0,_EXPOSURE_ABORT, totalPremAs, totalPulsemAs, error_code);
-        else INTERFACE->EventXrayCompleted(0,_EXPOSURE_PARTIAL,totalPremAs, totalPulsemAs, error_code);
+        if(totalPulsemAs+totalPremAs) INTERFACE->EventXrayCompleted(_EXPOSURE_ABORT, totalPremAs, totalPulsemAs, error_code);
+        else INTERFACE->EventXrayCompleted(_EXPOSURE_PARTIAL,totalPremAs, totalPulsemAs, error_code);
 
         pulseExposureData.valid = false;
         preExposureData.valid = false;
@@ -161,7 +161,7 @@ void exposureManager::handle_2D_AEC(void){
         qDebug() << "XRAY-ENA ACTIVATION..";
 
         // Ask for the Xray Request signal activation
-        INTERFACE->EventSetXrayEna(0,true);
+        INTERFACE->EventSetXrayEna(true);
         break;
 
     case 7:
@@ -220,7 +220,7 @@ void exposureManager::handle_2D_AEC(void){
 
             case R2CP::Stat_Standby:
                 qDebug() << "Pre pulse completed: wait for the AEC data";
-                INTERFACE->EventGetPulseData(0);
+                INTERFACE->EventGetPulseData();
                 abortAecTimeoutRequest = false;
                 STATUS->scheduleAecTmo(preExposureData.tmo);
                 break;
@@ -367,7 +367,7 @@ void exposureManager::handle_2D_AEC(void){
             case R2CP::Stat_WaitFootRelease:
             case R2CP::Stat_Standby:
                 qDebug() << "XRAY-ENA DEACTIVATION..";
-                INTERFACE->EventSetXrayEna(0,false);
+                INTERFACE->EventSetXrayEna(false);
                 break;
 
 
@@ -426,7 +426,7 @@ void exposureManager::handle_2D_AEC(void){
         qDebug() << "EXPOSURE 2D+AEC TERMINATED. Total PRE mAs:" << totalPremAs << ", Total Pulse mAs:" << totalPulsemAs;
 
 
-        INTERFACE->EventXrayCompleted(0,_EXPOSURE_COMPLETED,totalPremAs, totalPulsemAs, _EXP_ERR_NONE);
+        INTERFACE->EventXrayCompleted(_EXPOSURE_COMPLETED,totalPremAs, totalPulsemAs, _EXP_ERR_NONE);
         pulseExposureData.valid = false;
         preExposureData.valid = false;
         STATUS->changeWorkflow(workflowManager::SMS_IDLE);

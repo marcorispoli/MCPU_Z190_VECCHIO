@@ -6,5 +6,5 @@ var searchData=
   ['trace_3',['Trace',['../class_api_1_1_log.html#a1e28458355d2db2fa7b1b8506e61ce8d',1,'Api::Log']]],
   ['tryconnect_4',['TryConnect',['../class_ca_sh___connection.html#a32bcbdb100930235dc9687d664d5ff77',1,'CaSh_Connection']]],
   ['txdata_5',['txData',['../class_tcp_ip_client.html#aeff4be739c7014b096f3ddd35e48f507',1,'TcpIpClient']]],
-  ['txframe_6',['txFrame',['../class_server.html#a21101dd6b5602506cfb1419938af656e',1,'Server']]]
+  ['txframe_6',['txFrame',['../classapplication_interface.html#a1ab1ae4001d7633eae39fb3ebb80b14d',1,'applicationInterface']]]
 ];

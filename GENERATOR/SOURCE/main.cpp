@@ -138,8 +138,8 @@ int main(int argc, char *argv[])
     EXPOSURE = new exposureManager();
 
     // Open the server for the external commands
-    pServer = new Server("127.0.0.1", 10002);    
-    pServer->Start();
+    INTERFACE = new Interface("127.0.0.1", 10002);
+    INTERFACE->Start();
 
     return a.exec();
 }

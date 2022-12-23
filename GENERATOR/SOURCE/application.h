@@ -5,6 +5,9 @@
  * \defgroup  applicationModule Application Module.
  */
 
+/*!
+ * \defgroup  libraryModules Library Modules Used in the Application.
+ */
 
 
 /*!
@@ -41,6 +44,7 @@
  *
  * The Application implements the following modules:
  * - @ref applicationModule : defines constant along the application
+ * - @ref libraryModules : this is the set of the libraries used in the current application;
  * - @ref r2cpCommunicationModule : implements the communication protocol stack with the R2CP protocol;
  * - @ref exposureModule : Implements the exposure sequence workflows;
  * - @ref InterfaceModule : this is the communication socket to receive command from Gantry;
@@ -99,14 +103,14 @@ namespace Application
 #include "communication.h"
 #include "exposure.h"
 #include "workflow.h"
-#include "server.h"
+#include "interface.h"
 
 
 
 
 #define COMMUNICATION   pComm
 #define WINDOW          window
-#define INTERFACE       pServer
+#define INTERFACE       pInterface
 #define DEBUG           window
 #define STATUS          pStatus
 #define EXPOSURE        pExposure
@@ -117,13 +121,13 @@ namespace Application
     Communication*              pComm;
     workflowManager*            pStatus;
     exposureManager*            pExposure;
-    Server*                     pServer;
+    Interface*                  pInterface;
 #else
     extern startupWindow*       window;
     extern Communication*       pComm;
     extern workflowManager*     pStatus;
     extern exposureManager*     pExposure;
-    extern Server*              pServer;
+    extern Interface*           pInterface;
 #endif
 
 

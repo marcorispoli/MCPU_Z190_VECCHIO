@@ -424,7 +424,7 @@ from the requested parameter.</p>
 <li>The data is invalidated as soon as the exposure termines;</li>
 </ul>
 <p >The Procedure loads the exposure data into the Generator then <br  />
-sends the <a class="el" href="group___interface_module.html#gaddcf172531df8b07034e8e014ea96850" title="EventSetXrayEna.">Server::EventSetXrayEna()</a> event to the Gantry, requesting the XRAY-ENA activation;</p>
+sends the Server::EventSetXrayEna() event to the Gantry, requesting the XRAY-ENA activation;</p>
 <p >The Procedure polls the Generator status in order to control the exposure execution;</p>
 <p >When the Pre Pulse completes, the Workflow request the Gantry to obtain the Exposure Pulse Data.</p>
 <p >When the Pulse Data is received then the Workflow proceeds activating the Generator <br  />
@@ -434,7 +434,7 @@ the data of the last pulse executed. </p><blockquote class="doxtable">
 <p >&zwj;NOTE: a single Exposure can be splitted into more sub pulses due to the Grid interruption. </p>
 </blockquote>
 <p>The Procedure collects all the post data blocks so that at the exposure completion, they<br  />
-will be available for the Gantry (see the <a class="el" href="group___interface_module.html#gaa30eba1ca1ddc4516dd11c20befbeb7d" title="GetPostExposure.">Server::GetPostExposure()</a> command). </p><blockquote class="doxtable">
+will be available for the Gantry (see the Server::GetPostExposure() command). </p><blockquote class="doxtable">
 <p >&zwj;NOTE: the list of pulses remains available until a next exposure is requested. </p>
 </blockquote>
 <p >In case of an error, the exposure is immediatelly terminated.</p>
@@ -445,22 +445,22 @@ Exposure Options</h1>
 Exposure Terminated Event</h1>
 <p >When the exposure termines, whether with success or error, the procedure:</p>
 <ul>
-<li>Requests the Gantry to clear the XRAY-ENA signal. See <a class="el" href="group___interface_module.html#gaddcf172531df8b07034e8e014ea96850" title="EventSetXrayEna.">Server::EventSetXrayEna()</a>.</li>
+<li>Requests the Gantry to clear the XRAY-ENA signal. See Server::EventSetXrayEna().</li>
 <li>Computes the total mAs executed for the pre-pulse and for the pulse;</li>
-<li>Sends to Gantry the <a class="el" href="group___interface_module.html#gad2b9cbeccf94f41a9ea16d2966c32c33" title="EventXrayCompleted.">Server::EventXrayCompleted()</a> event.</li>
+<li>Sends to Gantry the Server::EventXrayCompleted() event.</li>
 </ul>
 <h1><a class="anchor" id="autotoc_md8"></a>
 Exposure Errors</h1>
 <p >There are several causes because an Exposure early termines in error condition:</p>
 <ul>
 <li>The XRAY-ENA signal drops early;</li>
-<li>The Gantry request a software abort (see <a class="el" href="group___interface_module.html#ga5628fb285275e4bed327cc744a2dda72" title="AbortExposure.">Server::AbortExposure()</a> );</li>
+<li>The Gantry request a software abort (see Server::AbortExposure() );</li>
 <li>The AEC pulse data are not received within a timeout after the Pre Pulse completion;</li>
 <li>The Generator internal Status changes to a not expected state;</li>
 <li>The Generator emits a System Error Message;</li>
 <li>The Procedure starts without the exposure data validation;</li>
 </ul>
-<p >The error code is reported in the <a class="el" href="group___interface_module.html#gad2b9cbeccf94f41a9ea16d2966c32c33" title="EventXrayCompleted.">Server::EventXrayCompleted()</a> event.<br  />
+<p >The error code is reported in the Server::EventXrayCompleted() event.<br  />
 See the <a class="el" href="classexposure_manager.html#afc832fe73df066147e2f819302323f91" title="This is the Enumeration of possible errors during exposure sequence.">exposureManager::tExposureErrors</a> enumeration. </p>
 
 </div>
@@ -491,14 +491,14 @@ See the <a class="el" href="classexposure_manager.html#afc832fe73df066147e2f8193
 <li>The data is invalidated as soon as the exposure termines;</li>
 </ul>
 <p >The Procedure loads the exposure data into the Generator then <br  />
-sends the <a class="el" href="group___interface_module.html#gaddcf172531df8b07034e8e014ea96850" title="EventSetXrayEna.">Server::EventSetXrayEna()</a> event to the Gantry, requesting the XRAY-ENA activation;</p>
+sends the Server::EventSetXrayEna() event to the Gantry, requesting the XRAY-ENA activation;</p>
 <p >The Procedure polls the Generator status in order to control the exposure execution;</p>
 <p >During the Exposure, the generator sends post message blocks with <br  />
 the data of the last pulse executed. </p><blockquote class="doxtable">
 <p >&zwj;NOTE: a single Exposure can be splitted into more sub pulses due to the Grid interruption. </p>
 </blockquote>
 <p>The Procedure collects all the post data blocks so that at the exposure completion, they<br  />
-will be available for the Gantry (see the <a class="el" href="group___interface_module.html#gaa30eba1ca1ddc4516dd11c20befbeb7d" title="GetPostExposure.">Server::GetPostExposure()</a> command). </p><blockquote class="doxtable">
+will be available for the Gantry (see the Server::GetPostExposure() command). </p><blockquote class="doxtable">
 <p >&zwj;NOTE: the list of pulses remains available until a next exposure is requested. </p>
 </blockquote>
 <p >In case of an error, the exposure is immediatelly terminated.</p>
@@ -515,21 +515,21 @@ Exposure Options</h1>
 Exposure Terminated Event</h1>
 <p >When the exposure termines, whether with success or error, the procedure:</p>
 <ul>
-<li>Requests the Gantry to clear the XRAY-ENA signal. See <a class="el" href="group___interface_module.html#gaddcf172531df8b07034e8e014ea96850" title="EventSetXrayEna.">Server::EventSetXrayEna()</a>.</li>
+<li>Requests the Gantry to clear the XRAY-ENA signal. See Server::EventSetXrayEna().</li>
 <li>Computes the total mAs executed for the pulse;</li>
-<li>Sends to Gantry the <a class="el" href="group___interface_module.html#gad2b9cbeccf94f41a9ea16d2966c32c33" title="EventXrayCompleted.">Server::EventXrayCompleted()</a> event.</li>
+<li>Sends to Gantry the Server::EventXrayCompleted() event.</li>
 </ul>
 <h1><a class="anchor" id="autotoc_md12"></a>
 Exposure Errors</h1>
 <p >There are several causes because an Exposure early termines in error condition:</p>
 <ul>
 <li>The XRAY-ENA signal drops early;</li>
-<li>The Gantry request a software abort (see <a class="el" href="group___interface_module.html#ga5628fb285275e4bed327cc744a2dda72" title="AbortExposure.">Server::AbortExposure()</a> );</li>
+<li>The Gantry request a software abort (see Server::AbortExposure() );</li>
 <li>The Generator internal Status changes to a not expected state;</li>
 <li>The Generator emits a System Error Message;</li>
 <li>The Procedure starts without the exposure data validation;</li>
 </ul>
-<p >The error code is reported in the <a class="el" href="group___interface_module.html#gad2b9cbeccf94f41a9ea16d2966c32c33" title="EventXrayCompleted.">Server::EventXrayCompleted()</a> event.<br  />
+<p >The error code is reported in the Server::EventXrayCompleted() event.<br  />
 See the <a class="el" href="classexposure_manager.html#afc832fe73df066147e2f819302323f91" title="This is the Enumeration of possible errors during exposure sequence.">exposureManager::tExposureErrors</a> enumeration. </p>
 
 </div>
@@ -562,7 +562,7 @@ followed by the variable number of pulses;</p>
 </ul>
 <p >The number of pulses and other Tomo parameters shall be set in the <a class="el" href="classexposure_manager.html#a2c10a2c1e0fef62e7a270f61fde40aee" title="Tomo configuration data.">exposureManager::tomoConfig</a> before to start the workflow;</p>
 <p >The Procedure loads the pre-pulse exposure data into the Generator then <br  />
-sends the <a class="el" href="group___interface_module.html#gaddcf172531df8b07034e8e014ea96850" title="EventSetXrayEna.">Server::EventSetXrayEna()</a> event to the Gantry, requesting the XRAY-ENA activation;</p>
+sends the Server::EventSetXrayEna() event to the Gantry, requesting the XRAY-ENA activation;</p>
 <p >When the Generator completes the pre pulse execution, the workflow <br  />
 request to the Gantry to have the Pulse Exposure data.</p>
 <p >The Procedure calculate with the 3Point Technique the correct mA an mS to be used to accomplish at the requested mAs per pulse.</p>
@@ -570,7 +570,7 @@ request to the Gantry to have the Pulse Exposure data.</p>
 <p >During the Exposure, the generator sends post message blocks with <br  />
 the data of the last pulse executed.</p>
 <p >The Procedure collects all the post data blocks so that at the exposure completion, they<br  />
-will be available for the Gantry (see the <a class="el" href="group___interface_module.html#gaa30eba1ca1ddc4516dd11c20befbeb7d" title="GetPostExposure.">Server::GetPostExposure()</a> command). </p><blockquote class="doxtable">
+will be available for the Gantry (see the Server::GetPostExposure() command). </p><blockquote class="doxtable">
 <p >&zwj;NOTE: the list of pulses remains available until a next exposure is requested. </p>
 </blockquote>
 <p >In case of an error, the exposure is immediatelly terminated.</p>
@@ -581,22 +581,22 @@ Exposure Options</h1>
 Exposure Terminated Event</h1>
 <p >When the exposure termines, whether with success or error, the procedure:</p>
 <ul>
-<li>Requests the Gantry to clear the XRAY-ENA signal. See <a class="el" href="group___interface_module.html#gaddcf172531df8b07034e8e014ea96850" title="EventSetXrayEna.">Server::EventSetXrayEna()</a>.</li>
+<li>Requests the Gantry to clear the XRAY-ENA signal. See Server::EventSetXrayEna().</li>
 <li>Computes the total mAs executed for the pulse;</li>
-<li>Sends to Gantry the <a class="el" href="group___interface_module.html#gad2b9cbeccf94f41a9ea16d2966c32c33" title="EventXrayCompleted.">Server::EventXrayCompleted()</a> event.</li>
+<li>Sends to Gantry the Server::EventXrayCompleted() event.</li>
 </ul>
 <h1><a class="anchor" id="autotoc_md16"></a>
 Exposure Errors</h1>
 <p >There are several causes because an Exposure early termines in error condition:</p>
 <ul>
 <li>The XRAY-ENA signal drops early;</li>
-<li>The Gantry request a software abort (see <a class="el" href="group___interface_module.html#ga5628fb285275e4bed327cc744a2dda72" title="AbortExposure.">Server::AbortExposure()</a> );</li>
+<li>The Gantry request a software abort (see Server::AbortExposure() );</li>
 <li>The AEC pulse data are not received within a timeout after the Pre Pulse completion;</li>
 <li>The Generator internal Status changes to a not expected state;</li>
 <li>The Generator emits a System Error Message;</li>
 <li>The Procedure starts without the exposure data validation;</li>
 </ul>
-<p >The error code is reported in the <a class="el" href="group___interface_module.html#gad2b9cbeccf94f41a9ea16d2966c32c33" title="EventXrayCompleted.">Server::EventXrayCompleted()</a> event.<br  />
+<p >The error code is reported in the Server::EventXrayCompleted() event.<br  />
 See the <a class="el" href="classexposure_manager.html#afc832fe73df066147e2f819302323f91" title="This is the Enumeration of possible errors during exposure sequence.">exposureManager::tExposureErrors</a> enumeration. </p>
 
 </div>
@@ -629,12 +629,12 @@ See the <a class="el" href="classexposure_manager.html#afc832fe73df066147e2f8193
 <p >The number of pulses and other Tomo parameters shall be set in the <a class="el" href="classexposure_manager.html#a2c10a2c1e0fef62e7a270f61fde40aee" title="Tomo configuration data.">exposureManager::tomoConfig</a> before to start the workflow;</p>
 <p >The Procedure calculate with the 3Point Technique the correct mA an mS to be used to accomplish at the requested mAs per pulse.</p>
 <p >The Procedure loads the exposure data into the Generator then <br  />
-sends the <a class="el" href="group___interface_module.html#gaddcf172531df8b07034e8e014ea96850" title="EventSetXrayEna.">Server::EventSetXrayEna()</a> event to the Gantry, requesting the XRAY-ENA activation;</p>
+sends the Server::EventSetXrayEna() event to the Gantry, requesting the XRAY-ENA activation;</p>
 <p >The Procedure polls the Generator status in order to control the exposure execution;</p>
 <p >During the Exposure, the generator sends post message blocks with <br  />
 the data of the last pulse executed.</p>
 <p >The Procedure collects all the post data blocks so that at the exposure completion, they<br  />
-will be available for the Gantry (see the <a class="el" href="group___interface_module.html#gaa30eba1ca1ddc4516dd11c20befbeb7d" title="GetPostExposure.">Server::GetPostExposure()</a> command). </p><blockquote class="doxtable">
+will be available for the Gantry (see the Server::GetPostExposure() command). </p><blockquote class="doxtable">
 <p >&zwj;NOTE: the list of pulses remains available until a next exposure is requested. </p>
 </blockquote>
 <p >In case of an error, the exposure is immediatelly terminated.</p>
@@ -645,21 +645,21 @@ Exposure Options</h1>
 Exposure Terminated Event</h1>
 <p >When the exposure termines, whether with success or error, the procedure:</p>
 <ul>
-<li>Requests the Gantry to clear the XRAY-ENA signal. See <a class="el" href="group___interface_module.html#gaddcf172531df8b07034e8e014ea96850" title="EventSetXrayEna.">Server::EventSetXrayEna()</a>.</li>
+<li>Requests the Gantry to clear the XRAY-ENA signal. See Server::EventSetXrayEna().</li>
 <li>Computes the total mAs executed for the pulse;</li>
-<li>Sends to Gantry the <a class="el" href="group___interface_module.html#gad2b9cbeccf94f41a9ea16d2966c32c33" title="EventXrayCompleted.">Server::EventXrayCompleted()</a> event.</li>
+<li>Sends to Gantry the Server::EventXrayCompleted() event.</li>
 </ul>
 <h1><a class="anchor" id="autotoc_md20"></a>
 Exposure Errors</h1>
 <p >There are several causes because an Exposure early termines in error condition:</p>
 <ul>
 <li>The XRAY-ENA signal drops early;</li>
-<li>The Gantry request a software abort (see <a class="el" href="group___interface_module.html#ga5628fb285275e4bed327cc744a2dda72" title="AbortExposure.">Server::AbortExposure()</a> );</li>
+<li>The Gantry request a software abort (see Server::AbortExposure() );</li>
 <li>The Generator internal Status changes to a not expected state;</li>
 <li>The Generator emits a System Error Message;</li>
 <li>The Procedure starts without the exposure data validation;</li>
 </ul>
-<p >The error code is reported in the <a class="el" href="group___interface_module.html#gad2b9cbeccf94f41a9ea16d2966c32c33" title="EventXrayCompleted.">Server::EventXrayCompleted()</a> event.<br  />
+<p >The error code is reported in the Server::EventXrayCompleted() event.<br  />
 See the <a class="el" href="classexposure_manager.html#afc832fe73df066147e2f819302323f91" title="This is the Enumeration of possible errors during exposure sequence.">exposureManager::tExposureErrors</a> enumeration. </p>
 
 </div>

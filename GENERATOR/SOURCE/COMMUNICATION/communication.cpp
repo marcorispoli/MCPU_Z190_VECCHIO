@@ -53,7 +53,7 @@ void Communication::generatorReceivedStatusEvent(void){
     generatorConnected = true;
 
 
-    INTERFACE->EventStatus(0);
+    INTERFACE->EventStatus();
 }
 
 void Communication::generatorReceivedProcedureDefinitionEvent(byte id)

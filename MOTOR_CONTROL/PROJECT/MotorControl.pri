@@ -14,8 +14,6 @@ QT += network
 
 
 
-
-
 FORMS += \
     $${TARGET_SOURCE}/WINDOW/window.ui \
 
@@ -34,11 +32,12 @@ DISTFILES +=
 
 SOURCES += \
     $${TARGET_SOURCE}/main.cpp \   
+    $${PROJLIB}/APPLICATION_INTERFACE/applicationInterface.cpp \
+    $${PROJLIB}/CAN_CLIENT/canclient.cpp \
     $${TARGET_SOURCE}/INTERFACE/interface.cpp \
-    $${TARGET_SOURCE}/INTERFACE/communication.cpp \
-    $${TARGET_SOURCE}/INTERFACE/command.cpp \
-    $${TARGET_SOURCE}/CANCLIENT/canclient.cpp \    
-    $${TARGET_SOURCE}/CANOPEN/dictionary.cpp \
+    $${TARGET_SOURCE}/INTERFACE/commands.cpp \
+    $${TARGET_SOURCE}/INTERFACE/events.cpp \
+    $${TARGET_SOURCE}/NANOTEC/dictionary.cpp \
     $${TARGET_SOURCE}/NANOTEC/pd4.cpp \
     $${TARGET_SOURCE}/NANOTEC/nanoj.cpp \
     $${TARGET_SOURCE}/NANOTEC/cia_standard_proc.cpp \
@@ -48,12 +47,12 @@ SOURCES += \
     $${TARGET_SOURCE}/WINDOW/window.cpp \
 
 
-
 HEADERS += \
     $${TARGET_SOURCE}/application.h \
+    $${PROJLIB}/APPLICATION_INTERFACE/applicationInterface.h \
+    $${PROJLIB}/CAN_CLIENT/canclient.h \
     $${TARGET_SOURCE}/INTERFACE/interface.h \
-    $${TARGET_SOURCE}/CANCLIENT/canclient.h \
-    $${TARGET_SOURCE}/CANOPEN/dictionary.h \
+    $${TARGET_SOURCE}/NANOTEC/dictionary.h \
     $${TARGET_SOURCE}/NANOTEC/pd4.h \
     $${TARGET_SOURCE}/NANOTEC/pd4_dictionary.h \
     $${TARGET_SOURCE}/TRX/trx.h \
@@ -61,15 +60,14 @@ HEADERS += \
     $${TARGET_SOURCE}/WINDOW/window.h \
 
 
-
 # Aggiunge tutti i path di progetto
 INCLUDEPATH += \
-    #$${MAIN_CPU}/LIB \
+    $${PROJLIB}/APPLICATION_INTERFACE \
+    $${PROJLIB}/CAN_CLIENT \
     $${TARGET_SOURCE} \
     $${TARGET_SOURCE}/INTERFACE/ \
     $${TARGET_SOURCE}/CANCLIENT/ \
     $${TARGET_SOURCE}/WINDOW/ \
-    $${TARGET_SOURCE}/CANOPEN/ \
     $${TARGET_SOURCE}/NANOTEC/ \
     $${TARGET_SOURCE}/LIFT/ \
     $${TARGET_SOURCE}/BODY/ \

@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['vmm_5fdelete_0',['VMM_DELETE',['../pd4__dictionary_8h.html#a8477193ad73c2a6f7947948f4dc58571',1,'pd4_dictionary.h']]],
-  ['vmm_5finit_1',['VMM_INIT',['../pd4__dictionary_8h.html#a9555933fa7e5524f65b51cc72f037f2c',1,'pd4_dictionary.h']]],
-  ['vmm_5fwrite_2',['VMM_WRITE',['../pd4__dictionary_8h.html#a0720045cd654221613b8594a95415bf6',1,'pd4_dictionary.h']]]
+  ['reset_5fcode_0',['RESET_CODE',['../pd4__dictionary_8h.html#a29b114b6b70277b6e0215f975c842d33',1,'pd4_dictionary.h']]],
+  ['reset_5fuser_5fparam_1',['RESET_USER_PARAM',['../pd4__dictionary_8h.html#a2614e7009f8fa5a876ce65cc64107364',1,'pd4_dictionary.h']]]
 ];

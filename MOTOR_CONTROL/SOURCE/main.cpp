@@ -105,7 +105,6 @@ int main(int argc, char *argv[])
     // Initialize the WINDOW to nullptr so that in case of Operating mode
     // the application skips the WINDOW callbacks
     WINDOW = nullptr;
-    CANCLIENT = nullptr;
     TRX = nullptr;
     ARM = nullptr;
     LIFT = nullptr;
@@ -148,8 +147,6 @@ int main(int argc, char *argv[])
     // Open the server for the external commands
     INTERFACE = new Interface(Application::IP_INTERFACE_ADDRESS, Application::INTERFACE_PORT);
     INTERFACE->Start();
-    CANCLIENT = new canClient(0xF80, 0x580,Application::IP_CAN_ADDRESS, Application::CAN_PORT);
-    CANCLIENT->ConnectToCanServer();
 
     TRX = new trxModule();
 

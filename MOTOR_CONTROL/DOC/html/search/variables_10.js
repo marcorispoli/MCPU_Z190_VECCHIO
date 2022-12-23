@@ -1,13 +1,20 @@
 var searchData=
 [
-  ['t1_0',['t1',['../classpd4_nanotec.html#a49542cce8f5cced9af176df261fb35af',1,'pd4Nanotec']]],
-  ['tmo_5fattempt_1',['tmo_attempt',['../classpd4_nanotec.html#aca04225268100ec05472ef64cd48801c',1,'pd4Nanotec']]],
-  ['trx_5fconfig_5fvector_2',['trx_config_vector',['../trx_8cpp.html#a825e036b1dfffe65cc200ce3e8a8deb8',1,'trx.cpp']]],
-  ['trx_5fid_3',['TRX_ID',['../namespace_application.html#ae1597e4831c0a83f10b14c3a69916079',1,'Application']]],
-  ['trx_5fpositioning_5fvector_4',['trx_positioning_vector',['../trx_8cpp.html#a88e899bbcab3a4135a9c30c3eaa49a8c',1,'trx.cpp']]],
-  ['trx_5fruntime_5fector_5',['trx_runtime_ector',['../trx_8cpp.html#aca6a7e874782c7e88758ef5c00cdd3c6',1,'trx.cpp']]],
-  ['trx_5fzero_5fvector_6',['trx_zero_vector',['../trx_8cpp.html#ac0bf130554b0a814c09b9d48b0961a0a',1,'trx.cpp']]],
-  ['txblock_7',['txBlock',['../classpd4_nanotec.html#a0b7bac25ae16fcd83358e862992aef8a',1,'pd4Nanotec']]],
-  ['txsdo_8',['txSDO',['../classpd4_nanotec.html#aa79fcb1c4dd5d4c85e97f311dcd4e219',1,'pd4Nanotec']]],
-  ['type_9',['type',['../structpd4_nanotec_1_1___o_d___init_vector.html#a0f34421d7de15dff743c413b3da95e03',1,'pd4Nanotec::_OD_InitVector']]]
+  ['safety_0',['safety',['../classpd4_nanotec.html#add347855ca72ac04d6b38d156fd5d866',1,'pd4Nanotec']]],
+  ['sdo_5fattempt_1',['sdo_attempt',['../classpd4_nanotec.html#afbcd521411e93b5db5ed7fec811dafb4',1,'pd4Nanotec']]],
+  ['sdo_5frx_5fok_2',['sdo_rx_ok',['../classpd4_nanotec.html#aa39bef1c1329753c92244e50c6164ed4',1,'pd4Nanotec']]],
+  ['sdo_5frx_5ftx_5fpending_3',['sdo_rx_tx_pending',['../classpd4_nanotec.html#aebca3ad62e74f4e476036a9e980245f8',1,'pd4Nanotec']]],
+  ['sdo_5frxtx_5fcompleted_4',['sdo_rxtx_completed',['../classpd4_nanotec.html#a93f36b53ff169e8fd8921a2e1626d5fb',1,'pd4Nanotec']]],
+  ['sdorxtx_5',['sdoRxTx',['../classpd4_nanotec.html#aa6695c746b0c86adf6a099e98f8111d1',1,'pd4Nanotec']]],
+  ['serverip_6',['serverip',['../classcan_client.html#a9cd7702fa0853c109c3054326d4a6cbf',1,'canClient']]],
+  ['serverport_7',['serverport',['../classcan_client.html#af40ff0ecea52f9a5d35cf16434dc0a24',1,'canClient']]],
+  ['sizeofnanoj_8',['sizeofNanoj',['../classpd4_nanotec.html#ab68d5ea3f9ca4d96cfcae44bdd751b1f',1,'pd4Nanotec']]],
+  ['slide_9',['SLIDE',['../application_8h.html#a2b3095501cd4c1f1c5cca93343c3b1fb',1,'application.h']]],
+  ['slide_5fid_10',['SLIDE_ID',['../namespace_application.html#a7148b7272c928f1b3276f44967e8d996',1,'Application']]],
+  ['socket_11',['socket',['../class_socket_item.html#ad0e1a7da60e9f22153656695acf1b7bb',1,'SocketItem::socket()'],['../classcan_client.html#a94e86377cb99fbf81cb36ea2f12a25f5',1,'canClient::socket()']]],
+  ['socketlist_12',['socketList',['../classapplication_interface.html#a88fe2c2b9b87e2db9c63143bde2279fd',1,'applicationInterface']]],
+  ['speed_5fdenominator_13',['speed_denominator',['../classpd4_nanotec.html#a7a0dea0bce02e217ff6e5f79a212f8db',1,'pd4Nanotec']]],
+  ['stopmode_14',['stopMode',['../classpd4_nanotec.html#aa8bf5d2c0877b1d7a9c67a8b0f98ade3',1,'pd4Nanotec']]],
+  ['subidx_15',['subidx',['../structpd4_nanotec_1_1___o_d___init_vector.html#a75f6dd4308f04d5109d5c672e7424489',1,'pd4Nanotec::_OD_InitVector']]],
+  ['subindex_16',['subindex',['../classcan_open_dictionary.html#a96053772bce96a6dc2dae287c490ea9f',1,'canOpenDictionary']]]
 ];

@@ -75,7 +75,7 @@ $(function() {
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classcan_open_dictionary-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">canOpenDictionary Class Reference<div class="ingroups"><a class="el" href="group__can_open_module.html">CanOpen Protocol implementation.</a> &raquo; <a class="el" href="group__can_open_dictionary_module.html">Object Dictionary Implementation Module.</a></div></div></div>
+  <div class="headertitle"><div class="title">canOpenDictionary Class Reference<div class="ingroups"><a class="el" href="group__nanotec_module.html">Nanotec Devices Implementation module</a> &raquo; <a class="el" href="group__can_open_dictionary_module.html">Object Dictionary Implementation Module.</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 
@@ -148,6 +148,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:adab37c79de4c6b7e4cae4c379b6e06a6"><td class="memItemLeft" align="right" valign="top">_inline uchar&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcan_open_dictionary.html#adab37c79de4c6b7e4cae4c379b6e06a6">getSubIndex</a> (void)</td></tr>
 <tr class="memdesc:adab37c79de4c6b7e4cae4c379b6e06a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns the register sub index  <a href="classcan_open_dictionary.html#adab37c79de4c6b7e4cae4c379b6e06a6">More...</a><br /></td></tr>
 <tr class="separator:adab37c79de4c6b7e4cae4c379b6e06a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0f258ad738ffc6a9053ef80036ca9d3"><td class="memItemLeft" align="right" valign="top">_inline <a class="el" href="classcan_open_dictionary.html#af1956900a3e4b179e2ddf2a2dc95c996">_ODDataType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcan_open_dictionary.html#ac0f258ad738ffc6a9053ef80036ca9d3">getType</a> (void)</td></tr>
+<tr class="memdesc:ac0f258ad738ffc6a9053ef80036ca9d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns the OD data type  <a href="classcan_open_dictionary.html#ac0f258ad738ffc6a9053ef80036ca9d3">More...</a><br /></td></tr>
+<tr class="separator:ac0f258ad738ffc6a9053ef80036ca9d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -311,7 +314,7 @@ Private Attributes</h2></td></tr>
 <p >This function format the parameter value to the size of the OD.</p>
 <p >The parameter is an unsigned long value. It is truncated to 1 Byte/2Byte/3Byte or 4 Byte <br  />
 based on the actual format of the Object Dictionary.</p>
-<h1><a class="anchor" id="autotoc_md4"></a>
+<h1><a class="anchor" id="autotoc_md15"></a>
 USAGE</h1>
 <p >When it is needed to make a comparison from an arbitrary value and a content of <br  />
 an Object register, before to make the comparison, the arbitrary value shall be <br  />
@@ -408,6 +411,34 @@ before o be compared with an arbitrary uint variable, the vaRIABLE SHALL BE FORM
 </div><div class="memdoc">
 
 <p>returns the register sub index </p>
+
+</div>
+</div>
+<a id="ac0f258ad738ffc6a9053ef80036ca9d3" name="ac0f258ad738ffc6a9053ef80036ca9d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0f258ad738ffc6a9053ef80036ca9d3">&#9670;&#160;</a></span>getType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">_inline <a class="el" href="classcan_open_dictionary.html#af1956900a3e4b179e2ddf2a2dc95c996">_ODDataType</a> canOpenDictionary::getType </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>returns the OD data type </p>
 
 </div>
 </div>
@@ -711,8 +742,8 @@ data content.</p>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>C:/Users/m.rispoli/Documents/Workspace/Git/MainCpu_Z190/MOTOR_CONTROL/SOURCE/CANOPEN/<a class="el" href="dictionary_8h_source.html">dictionary.h</a></li>
-<li>C:/Users/m.rispoli/Documents/Workspace/Git/MainCpu_Z190/MOTOR_CONTROL/SOURCE/CANOPEN/<a class="el" href="dictionary_8cpp.html">dictionary.cpp</a></li>
+<li>C:/Users/m.rispoli/Documents/Workspace/Git/MainCpu_Z190/MOTOR_CONTROL/SOURCE/NANOTEC/<a class="el" href="dictionary_8h_source.html">dictionary.h</a></li>
+<li>C:/Users/m.rispoli/Documents/Workspace/Git/MainCpu_Z190/MOTOR_CONTROL/SOURCE/NANOTEC/<a class="el" href="dictionary_8cpp.html">dictionary.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

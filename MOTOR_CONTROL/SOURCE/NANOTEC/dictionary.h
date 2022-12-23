@@ -1,13 +1,6 @@
 #ifndef DICTIONARY_H
 #define DICTIONARY_H
 
-/*!
- * \defgroup  canOpenModule CanOpen Protocol implementation.
- *
- * This Module implements the CanOpen related features.
- *
- *
- */
 
 /*!
  * \defgroup  canOpenDictionaryModule Object Dictionary Implementation Module.
@@ -27,7 +20,7 @@
  * - Register Data Type: this defines the data size: 1 Byte, 2Byte, 3Byte or 4Bytes are the possible sizes
  * - Register Value: is always a uint value, but it is truncated to the register size.
  *
- * \ingroup canOpenModule
+ * \ingroup nanotecModule
  */
 
 #include <QtCore>

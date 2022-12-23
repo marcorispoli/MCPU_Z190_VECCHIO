@@ -48,7 +48,6 @@ ushort pd4Nanotec::subNanojProgramUpload(bool force){
         wSubStatus++;
         return 5;
 
-
     case 1:
         if(!sdoRxTx.sdo_rx_ok) {
             qDebug() << QString("DEVICE (%1): ERROR READING OD %2.%3").arg(deviceId).arg(sdoRxTx.txSDO.getIndex(),1,16).arg(sdoRxTx.txSDO.getSubIndex());
@@ -60,13 +59,14 @@ ushort pd4Nanotec::subNanojProgramUpload(bool force){
         return 1;
 
     case 2:
-        if((sdoRxTx.rxSDO.getVal() == vmmchk) && (!force)){
+
+        if(( sdoRxTx.rxSDO.getVal() == vmmchk) && (!force)){
+
             nanojUploaded = true;
             qDebug() << QString("DEVICE (%1): NANOJ-PROGRAM ALREADY UPLOADED").arg(deviceId);
             wSubStatus = 0;
             return 0;
         }
-
         writeSDO(NANOJ_CONTROL, VMM_INIT); // initialize flash
         wSubStatus++;
         return 5;
@@ -248,7 +248,7 @@ ushort pd4Nanotec::subNanojProgramUpload(bool force){
             return 0;
         }
 
-        writeSDO(RESET_USER_PARAM,0); // Reset the User param of the Reset flag
+        writeSDO(RESET_USER_PARAM,RESET_CODE); // Reset the User param of the Reset flag
         wSubStatus++;
         return 5;
 

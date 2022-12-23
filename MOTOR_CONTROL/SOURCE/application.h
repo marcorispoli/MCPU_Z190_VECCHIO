@@ -5,6 +5,9 @@
  * \defgroup  applicationModule Application Module.
  */
 
+/*!
+ * \defgroup  libraryModules Library Modules Used in the Application.
+ */
 
 
 /*!
@@ -20,9 +23,9 @@
  *
  * The Application implements the following modules:
  * - @ref applicationModule : defines constant along the application
+ * - @ref libraryModules : this is the set of the libraries used in the current application;
  * - @ref interfaceModule : this is the communication socket to receive command from Gantry;
- * - @ref canModule : this is the communication socket to connect the Can Driver application;
- * - @ref canOpenModule : this is the module implementing the Can Open Protocol;
+ * - @ref nanotecModule : this is the module implementing the Can Open Protocol of the Nanotec PD4 Motors;
  * - @ref trxModule : this is the module implementing the TRX motor control;
  * - @ref armModule : this is the module implementing the ARM motor control;
  * - @ref liftModule : this is the module implementing the LIFT motor control;
@@ -79,7 +82,6 @@ namespace Application
 #include "interface.h"
 
 
-#define CANCLIENT       pCan
 #define WINDOW          window
 #define INTERFACE       pInterface
 #define DEBUG           window
@@ -93,7 +95,6 @@ namespace Application
 // Global definitions
 #ifdef MAIN_CPP
      debugWindow*                WINDOW;
-     canClient*                  CANCLIENT;
      Interface*                  INTERFACE;
      trxModule*                  TRX;
      pd4Nanotec*                 ARM;
@@ -102,7 +103,6 @@ namespace Application
      pd4Nanotec*                 SLIDE;
 #else
     extern debugWindow*                WINDOW;
-    extern canClient*                  CANCLIENT;
     extern Interface*                  INTERFACE;
     extern trxModule*                  TRX;
     extern pd4Nanotec*                 ARM;

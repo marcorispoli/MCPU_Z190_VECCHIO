@@ -1,7 +1,9 @@
 #ifndef STARTUPWINDOW_H
 #define STARTUPWINDOW_H
 
-
+/**
+ * \defgroup windowModule Debug Window Module
+ */
 #include <QWidget>
 
 
@@ -31,7 +33,6 @@ signals:
 
 // GUI MODULE SLOTS
 public slots:
-    void onCanReady(bool stat);  //!< Connect the signal canReady from the canClient
 
     void onDebugClearButton(void);
     void onDebug(QByteArray data);
@@ -44,7 +45,6 @@ public slots:
     void onUploadnanoj(void);
     void onLogClearButton(void);
     void onEnableConfig(void);
-
 
     void timerEvent(QTimerEvent* ev);
 

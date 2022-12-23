@@ -1,39 +1,17 @@
-#ifndef SERVER_H
-#define SERVER_H
+#ifndef INTERFACE_H
+#define INTERFACE_H
 
+#include "QObject"
+#include "applicationInterface.h"
 
 /*!
- * \defgroup  InterfaceModule Gantry Interface Module.
+ * \defgroup  interfaceModule Application Command Interface Module.
  *
  * This Module implements the communication protocol with the Gantry.
  *
  * # CONNECTION DETAILS
  *
  * The Server IP address is: 127.0.0.1@10003.
- *
- * More than one connection can be established at the same time:
- *  - Every connected client is linked to a unique ID identifier;
- *  - The Application will acknowledge a command only to the Sender of the command;
- *  - Every internal EVENT will be forwarded to all the client connected.
- *
- *
- * # PROTOCOL DESCRIPTION
- *
- * The protocol is based on the scheme EVENT / ACK:
- * - The EVENT is a command frame;
- * - The ACK is the acknowledge frame to the EVENT frame.
- *
- * The EVENT Frame is the following:
- * - <E SEQ Command PARAM1 ... PARAMN>
- *      - SEQ: is an arbitrary sequence number set by the sender and acknowledge by the receiver;
- *
- * The ACK Frame is
- * - <A SEQ OK/NOK CODE>
- *      - SEQ: is the sequence number of the EVENT frame;
- *
- * The Application handles the EVENTS from Gantry in the command.cpp file;
- *
- * The Application handles the EVENTS to Gantry in the event.cpp;
  *
  * # EVENTS FROM GANTRY DESCRIPTION
  *
@@ -57,44 +35,7 @@
  *  > The Application will forward the EVENTS to all the connected clients.
  *
  */
-#include <QObject>
-#include <QTcpServer>
-#include <QTcpSocket>
-#include <QHostAddress>
-#include <QNetworkInterface>
 
-
-/**
- * @brief This Class implements a TcpIp Serve socket, running in a separate thread.
- *
- * The Class implements the basic routines to send and receive data from/to Gantry.
- *
- * \ingroup InterfaceModule
- */
-class SocketItem: public QObject
-{
-     Q_OBJECT
-
-public:
-
-    explicit SocketItem(){};
-    ~SocketItem(){};
-
-signals:
-    void itemDisconnected(ushort id); //!< Signal to inform the system about the communication status.
-    void receivedCommandSgn(ushort id, QByteArray data); //!< For every decoded command received the server sends this signal to the Application.
-
-
-public slots:
-    void disconnected(); //!< Disconnection Callback received from the Socket Library
-    void socketError(QAbstractSocket::SocketError error); //!< Error callback received from the Library
-    void socketRxData(); //!< Data received callback received from the Socket Library
-    void socketTxData(QByteArray);//!< Data to be sent to the Socket, received from the Application thread.
-
-public:
-    QTcpSocket* socket; //!< Socket pointer
-    ushort id;  //!< Unique ID of the Connected Client
-};
 
 /**
  * @brief This class resides into the Main Thread and implements the
@@ -112,31 +53,17 @@ public:
  *
  * \ingroup InterfaceModule
  */
-class Interface : public QTcpServer
+class Interface : public applicationInterface
 {
     Q_OBJECT
 
 public:
 
     explicit Interface(QString ipaddress, int port);
-    ~Interface();
+    ~Interface(){};
 
-    static const long _DEFAULT_TX_TIMEOUT = 5000;    //!< Default timeout in ms for tx data
-    bool Start(void); /// Starts the Server thread
-
-
-    _inline void configReceived(void){configuration.configuration_ok = true;}
-
-signals:
-    void txFrame(QByteArray data); /// This signal is Queued connected with the transmitting thread
-
-public slots:
-    void receivedCommandSlot(ushort id, QByteArray data); /// This is the slot handling the EVENTs from Gantry
-    void disconnected(ushort id); /// Disconnect callback event of tyhe Socket thread
-
-
-protected:
-    void incomingConnection(qintptr socketDescriptor) override; //!< Incoming connection slot
+    uint handleReceivedCommand(QList<QString>* frame, QList<QString>* answer); //!< Reimplement the handler for the received Commmands
+    void configReceived(void){configuration.configuration_ok = true;}
 
 private slots:
     void handleInterfaceStatus(void);
@@ -145,23 +72,43 @@ private:
     ushort wStatus;
     enum{
         _SYSTEM_CONFIGURATION = 0,
-        _SYSTEM_RUNNING
+        _SYSTEM_RUNNING,
+        _SYSTEM_DEVICE_RESET,
+        _SYSTEM_FAULT
     }interfaceStatus;
+
+    typedef enum{
+        ACTIVATE_NONE = 0,
+        ACTIVATE_ARM_CW,
+        ACTIVATE_ARM_CCW,
+        ACTIVATE_ARM_MCW,
+        ACTIVATE_ARM_MCCW,
+        ACTIVATE_ARM_ISOCW,
+        ACTIVATE_ARM_ISOCCW,
+        ACTIVATE_TRX_CW,
+        ACTIVATE_TRX_CCW,
+        ACTIVATE_TRX_TCCW,
+        ACTIVATE_LIFT_UP,
+        ACTIVATE_LIFT_DOWN,
+        ACTIVATE_BODY_CW,
+        ACTIVATE_BODY_CCW,
+        ACTIVATE_SLIDE_UP,
+        ACTIVATE_SLIDE_DOWN,
+    }activationCommands;
+
 
     struct{
         bool configuration_ok;
     }configuration;
 
-    QList<SocketItem*>  socketList;    //!< List of Sockets
-    QHostAddress        localip;       //!< Address of the local server
-    quint16             localport;     //!< Port of the local server
-    ushort              idseq;         //!< Id counter, to assign a unique ID to a client
-
-
-    QList<QString> GetStatus(QList<QString>* command); //!< Gantry requests the current device status
 
     ushort handleInterfaceConfigurationStatus(void);
     ushort handleInterfaceRunningStatus(void);
+    ushort handleInterfaceResetDeviceStatus(void);
+    ushort handleInterfaceFaultStatus(void);
+
+    // Protocol Interface commands
+    uint GetStatus(QList<QString>* command, QList<QString>* answer); //!< Gantry requests the current device status
 
 };
 

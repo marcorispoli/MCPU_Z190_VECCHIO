@@ -62,6 +62,7 @@
 #define NANOJ_USER_PARAM OD_2700_03
 #define RESET_USER_PARAM OD_2700_04
 #define SAVE_USER_PARAM OD_2700_01
+#define RESET_CODE  0xAAAA
 
 
 //_______________ NANOJ ________________________________________________

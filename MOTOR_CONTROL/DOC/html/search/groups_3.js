@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['nanotec_20pd4_20device_20communication_20module_2e_0',['Nanotec PD4 Device Communication Module.',['../group__nanotec_module.html',1,'']]]
+  ['library_20modules_20used_20in_20the_20application_2e_0',['Library Modules Used in the Application.',['../group__library_modules.html',1,'']]]
 ];

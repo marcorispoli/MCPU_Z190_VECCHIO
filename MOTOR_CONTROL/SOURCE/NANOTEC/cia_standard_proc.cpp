@@ -112,7 +112,7 @@ ushort pd4Nanotec::workflowInitCallback(void){
         deviceInitialized=false;
         nanojUploaded = false;
         wStatus++;
-        qDebug() << "DEVICE (" << deviceId << "): DEVICE INITIALIZATION PROCESS STARTED";
+        qDebug() << "DEVICE (" << deviceId << "): DEVICE INITIALIZATION PROCESS STARTED ";
         return 1;
 
       case 1: // Upload the Nanoj Vector ----------------------------------------------
@@ -210,7 +210,7 @@ ushort pd4Nanotec::workflowInitCallback(void){
         return 1;
 
      case 9:
-        writeSDO(RESET_USER_PARAM, 0); // Reset the user Param Reset Flag
+        writeSDO(RESET_USER_PARAM, RESET_CODE); // Reset the user Param Reset Flag
         wStatus++;
         return 5;
 

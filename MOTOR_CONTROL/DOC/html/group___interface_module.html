@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.5"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Gantry Motor Control Software Documentation: Gantry Interface Module.</title>
+<title>Gantry Motor Control Software Documentation: Application Command Interface Module.</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -72,88 +72,51 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#pub-slot-members">Public Slots</a>  </div>
-  <div class="headertitle"><div class="title">Gantry Interface Module.</div></div>
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle"><div class="title">Application Command Interface Module.</div></div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_socket_item.html">SocketItem</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This Class implements a TcpIp Serve socket, running in a separate thread.  <a href="class_socket_item.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_server.html">Server</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This class resides into the Main Thread and implements the communication protocol with the Gantry.  <a href="class_server.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_interface.html">Interface</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This class resides into the Main Thread and implements the communication protocol with the Gantry.  <a href="class_interface.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-slot-members" name="pub-slot-members"></a>
-Public Slots</h2></td></tr>
-<tr class="memitem:ga95c27a2e5e42fba9c761422f042f6c7b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___interface_module.html#ga95c27a2e5e42fba9c761422f042f6c7b">Server::receivedCommandSlot</a> (ushort id, QByteArray data)</td></tr>
-<tr class="memdesc:ga95c27a2e5e42fba9c761422f042f6c7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">This signal is Queued connected with the transmitting thread.  <a href="group___interface_module.html#ga95c27a2e5e42fba9c761422f042f6c7b">More...</a><br /></td></tr>
-<tr class="separator:ga95c27a2e5e42fba9c761422f042f6c7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ga7e8df1f2cecb0e6435630ab6f8600ee5"><td class="memItemLeft" align="right" valign="top">uint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___interface_module.html#ga7e8df1f2cecb0e6435630ab6f8600ee5">Interface::GetStatus</a> (QList&lt; QString &gt; *command, QList&lt; QString &gt; *answer)</td></tr>
+<tr class="memdesc:ga7e8df1f2cecb0e6435630ab6f8600ee5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gantry requests the current device status.  <a href="group___interface_module.html#ga7e8df1f2cecb0e6435630ab6f8600ee5">More...</a><br /></td></tr>
+<tr class="separator:ga7e8df1f2cecb0e6435630ab6f8600ee5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p >This Module implements the communication protocol with the Gantry.</p>
-<h1><a class="anchor" id="autotoc_md5"></a>
+<h1><a class="anchor" id="autotoc_md15"></a>
 CONNECTION DETAILS</h1>
-<p >The <a class="el" href="class_server.html" title="This class resides into the Main Thread and implements the communication protocol with the Gantry.">Server</a> IP address is: 127.0.0.1@10002.</p>
-<p >More than one connection can be established at the same time:</p><ul>
-<li>Every connected client is linked to a unique ID identifier;</li>
-<li>The <a class="el" href="namespace_application.html" title="Application constants definition.">Application</a> will acknowledge a command only to the Sender of the command;</li>
-<li>Every internal EVENT will be forwarded to all the client connected.</li>
-</ul>
-<h1><a class="anchor" id="autotoc_md6"></a>
-PROTOCOL DESCRIPTION</h1>
-<p >The protocol is based on the scheme EVENT / ACK:</p><ul>
-<li>The EVENT is a command frame;</li>
-<li>The ACK is the acknowledge frame to the EVENT frame.</li>
-</ul>
-<p >The EVENT Frame is the following:</p><ul>
-<li>&lt;E SEQ Command PARAM1 ... PARAMN&gt;<ul>
-<li>SEQ: is an arbitrary sequence number set by the sender and acknowledge by the receiver;</li>
-</ul>
-</li>
-</ul>
-<p >The ACK Frame is</p><ul>
-<li>&lt;A SEQ OK/NOK CODE&gt;<ul>
-<li>SEQ: is the sequence number of the EVENT frame;</li>
-</ul>
-</li>
-</ul>
-<p >The <a class="el" href="namespace_application.html" title="Application constants definition.">Application</a> handles the EVENTS from Gantry in the <a class="el" href="command_8cpp.html">command.cpp</a> file;</p>
-<p >The <a class="el" href="namespace_application.html" title="Application constants definition.">Application</a> handles the EVENTS to Gantry in the <a class="el" href="event_8cpp.html">event.cpp</a>;</p>
-<h1><a class="anchor" id="autotoc_md7"></a>
+<p >The Server IP address is: 127.0.0.1@10003.</p>
+<h1><a class="anchor" id="autotoc_md16"></a>
 EVENTS FROM GANTRY DESCRIPTION</h1>
 <p >The Events from Gantry are considered <em>Commands</em> to be executed;</p>
 <p >Follows the list of the Implemented Commands:</p>
 <ul>
 <li>SetExposurePre(): Gantry sets the next Pre Exposure pulse data;</li>
-<li>SetExposurePulse(): Gantry sets the next Pulse Exposure data;</li>
-<li>SetTomoConfig(): Gantry sets the data for the next Tomo exposure;</li>
-<li>StartExposure(): Gantry starts the execution of the Exposure sequence;</li>
-<li>AbortExposure(): Gantry aborts the current executing exposure sequence;</li>
-<li>GetPostExposure(): Gantry requests the list of the pulses of the last exposure;</li>
 </ul>
 <blockquote class="doxtable">
 <p >&zwj;The <a class="el" href="namespace_application.html" title="Application constants definition.">Application</a> will acknowledge the command ONLY to the client that sent the command; </p>
 </blockquote>
-<h1><a class="anchor" id="autotoc_md8"></a>
+<h1><a class="anchor" id="autotoc_md17"></a>
 EVENTS TO GANTRY DESCRIPTION</h1>
 <p >The Events to Gantry are considered <em>Events</em> to be notified to the Gantry;</p>
 <p >Follows a list of the implemented Events:</p>
 <ul>
 <li>EventMessage(): this is an "error" message generated by the Sedecal Generator;</li>
-<li>EventSetXrayEna(): this event notify the Gantry to activate/Deactivate the hardware signal XRAY-ENA;</li>
-<li>EventGetPulseData(): this event requests the Pulse data to the Gantry (AEC mode);</li>
-<li>EventXrayCompleted(): this event notifies Gantry about the Exposure complete event;</li>
-<li>EventStatus(): this event updates Gantry with the Sedecal Generator internal status;</li>
 </ul>
 <blockquote class="doxtable">
 <p >&zwj;The <a class="el" href="namespace_application.html" title="Application constants definition.">Application</a> will forward the EVENTS to all the connected clients. </p>
 </blockquote>
-<h2 class="groupheader">Public Slots</h2>
-<a id="ga95c27a2e5e42fba9c761422f042f6c7b" name="ga95c27a2e5e42fba9c761422f042f6c7b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga95c27a2e5e42fba9c761422f042f6c7b">&#9670;&#160;</a></span>receivedCommandSlot</h2>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="ga7e8df1f2cecb0e6435630ab6f8600ee5" name="ga7e8df1f2cecb0e6435630ab6f8600ee5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7e8df1f2cecb0e6435630ab6f8600ee5">&#9670;&#160;</a></span>GetStatus()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -162,16 +125,16 @@ EVENTS TO GANTRY DESCRIPTION</h1>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void Server::receivedCommandSlot </td>
+          <td class="memname">uint Interface::GetStatus </td>
           <td>(</td>
-          <td class="paramtype">ushort&#160;</td>
-          <td class="paramname"><em>id</em>, </td>
+          <td class="paramtype">QList&lt; QString &gt; *&#160;</td>
+          <td class="paramname"><em>command</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">QByteArray&#160;</td>
-          <td class="paramname"><em>data</em>&#160;</td>
+          <td class="paramtype">QList&lt; QString &gt; *&#160;</td>
+          <td class="paramname"><em>answer</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -181,24 +144,34 @@ EVENTS TO GANTRY DESCRIPTION</h1>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>This signal is Queued connected with the transmitting thread. </p>
-<p >receivedCommandSlot</p>
-<p >This function decodes the data frame providing a list of decoded items that make part of a received EVENT.</p>
-<p >The list of the Item is further handled by the specific EVENT callback in order to be correctly executed.</p>
+<p>Gantry requests the current device status. </p>
+<p >GetStatus.</p>
+<p >Gantry sends this command EVENT in order to get the whole status of the devices</p>
+<p >The frame format is: &lt;E SEQ GetStatus &gt;</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">-</td><td>id: the client identifier that sent the EVENT;<ul>
-<li>data: command data stream. </li>
-</ul>
-</td></tr>
+    <tr><td class="paramname">-</td><td>No parameters..</td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd><ul>
+<li>"OK [trx-block] [arm-block] [lift-block] [body-block] [slide-block]"</li>
+</ul>
+</dd></dl>
+<p>Where:</p><ul>
+<li>each block report the device status block;</li>
+</ul>
+<p >The device block format is:</p><ul>
+<li>connection status: (String) [CONNECTED/NOT_CONNECTED];</li>
+<li>operating status: (String) [READY/NOT_ZERO_SET/NOT_INITIALIZED/ERROR]</li>
+<li>current activity: (String) [INITIALIZING/ZERO_SETTING/POSITIONING/NO_ACTIVITY]</li>
+<li>encoder position: (int) hundredths of degree or millimeters </li>
+</ul>
 
 </div>
 </div>

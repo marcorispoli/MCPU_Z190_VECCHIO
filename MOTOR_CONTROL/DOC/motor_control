@@ -908,7 +908,19 @@ WARN_LOGFILE           =
 # spaces. See also FILE_PATTERNS and EXTENSION_MAPPING
 # Note: If this tag is empty the current directory is searched.
 
-INPUT                  = ../SOURCE
+INPUT                  = ../../PROJLIB/APPLICATION_INTERFACE/applicationInterface.cpp \
+                         ../../PROJLIB/APPLICATION_INTERFACE/applicationInterface.h \
+                         ../../PROJLIB/CAN_CLIENT/canclient.cpp \
+                         ../../PROJLIB/CAN_CLIENT/canclient.h \
+                         ../SOURCE \
+                         ../SOURCE/TRX \
+                         ../SOURCE/SLIDE \
+                         ../SOURCE/NANOTEC \
+                         ../SOURCE/LIFT \
+                         ../SOURCE/INTERFACE \
+                         ../SOURCE/BODY \
+                         ../SOURCE/ARM \
+                         ../SOURCE/WINDOW
 
 # This tag can be used to specify the character encoding of the source files
 # that doxygen parses. Internally doxygen uses the UTF-8 encoding. Doxygen uses

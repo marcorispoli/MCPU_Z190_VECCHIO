@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['interface_0',['INTERFACE',['../application_8h.html#aefb2aa75be4323fe06eb3ec8394bdfc7',1,'application.h']]]
+  ['debug_0',['DEBUG',['../application_8h.html#ad72dbcf6d0153db1b8d8a58001feed83',1,'application.h']]]
 ];

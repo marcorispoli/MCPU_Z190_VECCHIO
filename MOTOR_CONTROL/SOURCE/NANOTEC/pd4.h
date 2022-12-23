@@ -6,8 +6,33 @@
 #define ENCODER_TO_cGRAD(x)        ((int)((((float) ((int)x)) * 180) / (MOTOR_GEAR*10)))
 #define END_ODVECTOR {0,0,(canOpenDictionary::_ODDataType) 0,0}
 
+
+/**
+ *  \defgroup nanotecModule Nanotec Devices Implementation module
+ *
+ *  This Module implements all the features related to the PD4 Nanotec \n
+ *  motor devices.
+ *
+ *  Those Devices implement the Slave CANOpen protocol.
+ *
+ *  This module allows to:
+ *  - Establish a connection with the Target PD4 Nanotec device through the Can Application Driver;
+ *  - Handle the CAN Open communication;
+ *  - Handle the CiA Status Machine of the device;
+ *  - Provides the main controlling features:
+ *    - Activating the Zero setting procedure;
+ *    - Activating the positioning with or without the NanoJ program activation;
+ *    - Handling the Configuration Uploading and storing of the main Device registers;
+ *    - Handling the Error conditions;
+ *    - handling the device Digital Input;
+ *
+ *    This module is based on two sub-moduls:
+ *    - @ref pd4Module: used to implement the PD4 functions;
+ *    - @ref canOpenDictionaryModule: to implement the Object Dictionary Management.
+ */
+
 /*!
- * \defgroup  nanotecModule Nanotec PD4 Device Communication Module.
+ * \defgroup  pd4Module Nanotec PD4 Device implementation Module.
  *
  * This Module implements the communication protocol with the PD4 Nanotec Motor Device.
  *
@@ -116,7 +141,7 @@
  *
  * The Safety Stop condition causes an immediate Motor Stop.
  *
- * \ingroup canOpenModule
+ * \ingroup nanotecModule
  */
 
 
@@ -153,6 +178,7 @@ public:
     _inline bool isConfigMode(void){return (workflow == _DEVICE_INIT);}
     _inline bool isConfigCompleted(void){return (deviceInitialized);}
     _inline bool isOperating(void){return (CiAcurrentStatus == CiA402_SwitchedOn);}
+    _inline bool isFault(void){return (CiAcurrentStatus == CiA402_Fault);}
     _inline bool isCommandExecuting(void){return (execCommand != _NO_COMMAND);}
 
     void setNanojVector(uchar* p, uint size);
@@ -173,6 +199,7 @@ public:
     void quickStop(void);
     void uploadNanojProgram(void);
 
+    uchar getDigitalInputs(void);
     void setSafetyDigitalInput(uchar mask, uchar val);
     bool isSafetyDigitalInputOn(void);
 

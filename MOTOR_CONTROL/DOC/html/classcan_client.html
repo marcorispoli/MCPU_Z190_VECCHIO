@@ -83,6 +83,9 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p>The <a class="el" href="classcan_client.html" title="The canClient class definition.">canClient</a> class definition.  
+ <a href="classcan_client.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="canclient_8h_source.html">canclient.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for canClient:</div>
@@ -107,8 +110,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a79a1cf4c5eae9d84da2e1c9d51bfbd9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3e5c25841d002feb0940c091f0302821"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcan_client.html#a3e5c25841d002feb0940c091f0302821">~canClient</a> ()</td></tr>
 <tr class="separator:a3e5c25841d002feb0940c091f0302821"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abe2b9d33fdce627fe8547af232574dd9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcan_client.html#abe2b9d33fdce627fe8547af232574dd9">ConnectToCanServer</a> (void)</td></tr>
-<tr class="separator:abe2b9d33fdce627fe8547af232574dd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79f9bb2620d9f0e51e405d9653491838"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcan_client.html#a79f9bb2620d9f0e51e405d9653491838">ConnectToCanServer</a> (void)</td></tr>
+<tr class="separator:a79f9bb2620d9f0e51e405d9653491838"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5f17ff7b62c109f61dbaa161c22d9bfa"><td class="memItemLeft" align="right" valign="top">_inline bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcan_client.html#a5f17ff7b62c109f61dbaa161c22d9bfa">isCanReady</a> (void)</td></tr>
 <tr class="separator:a5f17ff7b62c109f61dbaa161c22d9bfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -159,7 +162,9 @@ Private Attributes</h2></td></tr>
 <tr class="memdesc:a3ba5172605f8f57200b1b9163da982a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Acceptance filter has been set.  <a href="classcan_client.html#a3ba5172605f8f57200b1b9163da982a1">More...</a><br /></td></tr>
 <tr class="separator:a3ba5172605f8f57200b1b9163da982a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p >The <a class="el" href="classcan_client.html" title="The canClient class definition.">canClient</a> class definition. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a79a1cf4c5eae9d84da2e1c9d51bfbd9c" name="a79a1cf4c5eae9d84da2e1c9d51bfbd9c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a79a1cf4c5eae9d84da2e1c9d51bfbd9c">&#9670;&#160;</a></span>canClient()</h2>
 
@@ -205,6 +210,19 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p >This is the class constructor.</p>
+<p >The Constructor only initializes some internal variable.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">-</td><td>can_mask: this is the 16 bit Acceptance Mask;<ul>
+<li>can_address: this is the 16 bit acceptance filter;</li>
+<li>IP: this is the IP address of the Can <a class="el" href="namespace_application.html" title="Application constants definition.">Application</a> Driver;</li>
+<li>PORT: this is the port of the Can <a class="el" href="namespace_application.html" title="Application constants definition.">Application</a> Driver; </li>
+</ul>
+</td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -222,6 +240,8 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p >This is the class distructor.</p>
+<p >It only destroy the TcpIp socket. </p>
 
 </div>
 </div>
@@ -251,14 +271,14 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="abe2b9d33fdce627fe8547af232574dd9" name="abe2b9d33fdce627fe8547af232574dd9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abe2b9d33fdce627fe8547af232574dd9">&#9670;&#160;</a></span>ConnectToCanServer()</h2>
+<a id="a79f9bb2620d9f0e51e405d9653491838" name="a79f9bb2620d9f0e51e405d9653491838"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a79f9bb2620d9f0e51e405d9653491838">&#9670;&#160;</a></span>ConnectToCanServer()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int canClient::ConnectToCanServer </td>
+          <td class="memname">void canClient::ConnectToCanServer </td>
           <td>(</td>
           <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
@@ -266,6 +286,7 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p >This Method starts the connection with the Can <a class="el" href="namespace_application.html" title="Application constants definition.">Application</a> Driver. </p>
 
 </div>
 </div>
@@ -308,6 +329,19 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p >This function get an Item from the tcpIp received frame.</p>
+<p >This function is used to decode an incoming data frame from the Can <a class="el" href="namespace_application.html" title="Application constants definition.">Application</a> Driver.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">-</td><td>index: this is the current character index of the received ethernet frame;<ul>
+<li>data: this is the received ethernet frame data array;</li>
+<li>data_ok: this is a pointer that the caller provides to have the result of the item identification;</li>
+</ul>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>always returns 0; </dd></dl>
 
 </div>
 </div>
@@ -334,6 +368,19 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p >This is the handler of every received frame.</p>
+<p >The handler decodes the frame format, providing:</p><ul>
+<li>the Acceptance Filter acknowledge;</li>
+<li>the CAN DATA received from the can <a class="el" href="namespace_application.html" title="Application constants definition.">Application</a> Driver;</li>
+</ul>
+<p >The Handler will emit the <a class="el" href="classcan_client.html#ac6f9879b93cd70676629e57f45f417c6">canClient::rxFromCan()</a> SIGNAL for every correct can frame received.</p>
+<p >NOTE: only the can frame with the canId matching the rule of the acceptance filter will generate the Signal.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -421,6 +468,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p >This is the slot function that is resceduled every 50 ms until the Can application Driver will acknowledge the correct Acceptance Filter registration. </p>
 
 </div>
 </div>
@@ -446,6 +494,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p >This is the TcpIp socket callback when the Ethernet connection has been established.</p>
+<p >As soon as the connection is established, the function starts the Acceptance Filter registration process. </p>
 
 </div>
 </div>
@@ -471,6 +521,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p >This is the TcpIp socket callback of the disconnection event.</p>
+<p >In case of the disconnection, the Function start again a new connection attempt. </p>
 
 </div>
 </div>
@@ -497,6 +549,14 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p >This is the TcpIp Socket connection error callback.</p>
+<p >In case of socket error, the socket is closed and a new connection is activated.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">-</td><td>error: this is the error code received from the tcpIp Socket handler. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -522,6 +582,15 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p >This callback is called every received data frame from the ethernet.</p>
+<p >A Valid data frame is determined when the initiator and terminator<br  />
+characters are identified (as for the protocol spec):</p><ul>
+<li>initiator = '&lt;';</li>
+<li>terminator = '&gt;';</li>
+</ul>
+<p >A valid data frame is &lt; .... &gt;.</p>
+<p >The function is able to identify nested valid frames: &lt; frame 1 &gt; &lt;frame 2&gt;.</p>
+<p >For every nested frame the function will call the <a class="el" href="classcan_client.html#a36720c2b60aabbfb9cb4e5574af85fee">canClient::handleSocketFrame()</a> method. </p>
 
 </div>
 </div>
@@ -558,6 +627,17 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p >This is the Slot that sends data to the Can <a class="el" href="namespace_application.html" title="Application constants definition.">Application</a> Driver with the proper data format.</p>
+<p >This Slot shall be connected to a local signal emitting a can data frame to be sent to the Can <a class="el" href="namespace_application.html" title="Application constants definition.">Application</a> Driver.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">-</td><td>canId: this is the 11 bit Target Can ID;<ul>
+<li>data: this is the can data load. Max 8 bytes are admitted. </li>
+</ul>
+</td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -729,8 +809,8 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>C:/Users/m.rispoli/Documents/Workspace/Git/MainCpu_Z190/MOTOR_CONTROL/SOURCE/CANCLIENT/<a class="el" href="canclient_8h_source.html">canclient.h</a></li>
-<li>C:/Users/m.rispoli/Documents/Workspace/Git/MainCpu_Z190/MOTOR_CONTROL/SOURCE/CANCLIENT/<a class="el" href="canclient_8cpp.html">canclient.cpp</a></li>
+<li>C:/Users/m.rispoli/Documents/Workspace/Git/MainCpu_Z190/PROJLIB/CAN_CLIENT/<a class="el" href="canclient_8h_source.html">canclient.h</a></li>
+<li>C:/Users/m.rispoli/Documents/Workspace/Git/MainCpu_Z190/PROJLIB/CAN_CLIENT/<a class="el" href="canclient_8cpp.html">canclient.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

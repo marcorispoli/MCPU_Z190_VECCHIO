@@ -23,7 +23,7 @@ debugWindow::debugWindow(QWidget *parent)
     connect(ui->uploadnanoj, SIGNAL(pressed()), this, SLOT(onUploadnanoj()), Qt::UniqueConnection);
     connect(ui->enableConfig, SIGNAL(pressed()), this, SLOT(onEnableConfig()), Qt::UniqueConnection);
 
-    connect(CANCLIENT,SIGNAL(canReady(bool)), this, SLOT(onCanReady(bool)));
+
     pollingTimer  = startTimer(500);
 
 }
@@ -92,12 +92,6 @@ void debugWindow::on_logEnableCheck_stateChanged(int arg1)
 
     }
     */
-}
-
-
-void debugWindow::onCanReady(bool stat){
-    if(stat) qDebug() << "CAN READY TO OPERATE";
-    else qDebug() << "CAN NOT READY TO OPERATE";
 }
 
 void debugWindow::onZeroSettingButton(void){

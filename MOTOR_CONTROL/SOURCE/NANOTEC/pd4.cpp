@@ -1,15 +1,18 @@
 #include "application.h"
+#include "canclient.h"
 #include "pd4_dictionary.h"
 
+static  canClient can(0xF80, 0x580,Application::IP_CAN_ADDRESS, Application::CAN_PORT);
 
 pd4Nanotec::pd4Nanotec(uchar ID)
 {
     deviceId = ID;
     ready = false;
 
-    // Connect the Can Driver canReady Signal    
-    connect(CANCLIENT, SIGNAL(rxFromCan(ushort , QByteArray )), this, SLOT(rxFromCan(ushort , QByteArray )), Qt::QueuedConnection);
-    connect(this,SIGNAL(txToCan(ushort , QByteArray )), CANCLIENT,SLOT(txToCanData(ushort , QByteArray )), Qt::QueuedConnection);
+    // Activation of the communicaitone with the CAN DRIVER SERVER
+    connect(&can, SIGNAL(rxFromCan(ushort , QByteArray )), this, SLOT(rxFromCan(ushort , QByteArray )), Qt::QueuedConnection);
+    connect(this,SIGNAL(txToCan(ushort , QByteArray )), &can,SLOT(txToCanData(ushort , QByteArray )), Qt::QueuedConnection);
+    can.ConnectToCanServer();
 
     // invalidate the status of the digital input
     digital_input_valid = false;
@@ -186,7 +189,7 @@ void pd4Nanotec::statusHandler(void){
 
 
     // Wait for the CANCLIENT READY CONDITION
-    if(!CANCLIENT->isCanReady()){
+    if(!can.isCanReady()){
         wStatus = 0;
         wSubStatus = 0;
         workflowStatus = 0;
@@ -289,7 +292,7 @@ void pd4Nanotec::statusHandler(void){
             workflowStatus = 0;
 
             // If the device results in reset status restart the INIT workflow
-            if(sdoRxTx.rxSDO.getVal() == 0){
+            if(sdoRxTx.rxSDO.getVal() == RESET_CODE){
                workflow = _DEVICE_INIT;
             }else{
                workflow = _HANDLE_DEVICE_STATUS;
@@ -412,7 +415,7 @@ void pd4Nanotec::statusHandler(void){
                 return ;
             }
 
-            if(sdoRxTx.rxSDO.getVal() == 0){
+            if(sdoRxTx.rxSDO.getVal() == RESET_CODE){
                 workflow = _DEVICE_INIT;
                 qDebug() << "DEVICE ID(" << this->deviceId << ") DEVICE HAS BEEN RESET";
 
@@ -428,12 +431,21 @@ void pd4Nanotec::statusHandler(void){
             return;
 
         case 2:
+            // Reads the digital inputs
+            delay = subReadDigitalInputs();
+            if(!delay){
+                workflowStatus++;
+            }
+            QTimer::singleShot(delay,this, SLOT(statusHandler()));
+            return;
+
+        case 3:
             readSDO(OD_6041_00); // Read the status
             workflowStatus++;
             QTimer::singleShot(5,this, SLOT(statusHandler()));
             return;
 
-        case 3:
+        case 4:
             if(!sdoRxTx.sdo_rx_ok){
                 workflow = _DEVICE_NOT_CONNECTED;
                 wStatus = 0;
@@ -455,7 +467,7 @@ void pd4Nanotec::statusHandler(void){
             QTimer::singleShot(0,this, SLOT(statusHandler()));
             return;
 
-         case 4:
+         case 5:
                 switch(CiAcurrentStatus){
 
                 case CiA402_NotReadyToSwitchOn:
@@ -867,6 +879,10 @@ bool pd4Nanotec::isSafetyDigitalInputOn(){
     if(!digital_input_valid ) return false;
     if(!safety.digital_input_mask) return false;
     return ( (digital_input_val & safety.digital_input_mask) == (safety.digital_input_val & safety.digital_input_mask));
+}
+
+uchar pd4Nanotec::getDigitalInputs(void){
+    return (uchar) digital_input_val;
 }
 
 void pd4Nanotec::enableConfiguration(void){

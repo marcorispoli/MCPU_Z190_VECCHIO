@@ -1,5 +1,8 @@
 var searchData=
 [
-  ['sdo_5fack_5ferr_0',['SDO_ACK_ERR',['../classcan_open_dictionary.html#af1956900a3e4b179e2ddf2a2dc95c996afadde3206dc695b6b67c1b3586f4c1f1',1,'canOpenDictionary']]],
-  ['sdo_5fnot_5fvalid_1',['SDO_NOT_VALID',['../classcan_open_dictionary.html#af1956900a3e4b179e2ddf2a2dc95c996ae8182c266022e7c6b345fee35b14cd31',1,'canOpenDictionary']]]
+  ['rd_5f1byte_0',['RD_1BYTE',['../classcan_open_dictionary.html#af1956900a3e4b179e2ddf2a2dc95c996ab8a95bdae69bff568bd92763696c1d91',1,'canOpenDictionary']]],
+  ['rd_5f2byte_1',['RD_2BYTE',['../classcan_open_dictionary.html#af1956900a3e4b179e2ddf2a2dc95c996ac406fdef34d2b0b5242ac89c459518ec',1,'canOpenDictionary']]],
+  ['rd_5f3byte_2',['RD_3BYTE',['../classcan_open_dictionary.html#af1956900a3e4b179e2ddf2a2dc95c996a27a5683024f47db2a44cadd7f80ebcb1',1,'canOpenDictionary']]],
+  ['rd_5f4byte_3',['RD_4BYTE',['../classcan_open_dictionary.html#af1956900a3e4b179e2ddf2a2dc95c996a354661bee12545f1f4e161543bf8b10d',1,'canOpenDictionary']]],
+  ['rd_5fcommand_4',['RD_COMMAND',['../classcan_open_dictionary.html#af1956900a3e4b179e2ddf2a2dc95c996aa6003c766cfbba81a9dabdbd388933c2',1,'canOpenDictionary']]]
 ];

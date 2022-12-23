@@ -1,6 +1,17 @@
-#include "application.h"
+#include "canclient.h"
 #include <QTimer>
 
+/**
+ * This is the class constructor.
+ *
+ * The Constructor only initializes some internal variable.
+ *
+ * @param
+ * - can_mask: this is the 16 bit Acceptance Mask;
+ * - can_address: this is the 16 bit acceptance filter;
+ * - IP: this is the IP address of the Can Application Driver;
+ * - PORT: this is the port of the Can Application Driver;
+ */
 canClient::canClient(ushort can_mask, ushort can_address, QString IP, int PORT):QTcpServer()
 {
     serverip = QHostAddress(IP);
@@ -8,11 +19,16 @@ canClient::canClient(ushort can_mask, ushort can_address, QString IP, int PORT):
     filter_mask = can_mask;
     filter_address = can_address;
     rx_filter_open = false;
-
     connectionStatus=false;
     socket=0;
 
 }
+
+/**
+ * This is the class distructor.
+ *
+ * It only destroy the TcpIp socket.
+ */
 canClient::~canClient()
 {
     if(socket)
@@ -24,12 +40,18 @@ canClient::~canClient()
     }
 }
 
-
-int canClient::ConnectToCanServer(void)
+/**
+ * This Method starts the connection with the Can Application Driver.
+ *
+ */
+void canClient::ConnectToCanServer(void)
 {
+    // The Connection process has already been initiated
+    if(socket) return ;
+
     if(connectionStatus){
         qDebug() << "ConnectToCanServer() command failed: The Can Server is already connected!";
-        return 0;
+        return ;
     }
 
 
@@ -41,16 +63,21 @@ int canClient::ConnectToCanServer(void)
     connect(socket,SIGNAL(disconnected()),this,SLOT(socketDisconnected()),Qt::UniqueConnection);
 
     socket->connectToHost(serverip, serverport);
-    return 0;
+    return ;
 }
 
-
+/**
+ * This is the TcpIp socket callback when the Ethernet connection has been established.
+ *
+ * As soon as the connection is established, the function starts the Acceptance Filter
+ * registration process.
+ *
+ */
 void canClient::socketConnected()
 {
     // Connessione avvenuta
     connectionStatus=true;
     rx_filter_open = false;
-    //emit clientConnection(true);
     socket->setSocketOption(QAbstractSocket::LowDelayOption,1);
 
     // Open the Acceptance filter to the Can Server application
@@ -58,7 +85,11 @@ void canClient::socketConnected()
 
 }
 
-
+/**
+ * This is the TcpIp socket callback of the disconnection event.
+ *
+ * In case of the disconnection, the Function start again a new connection attempt.
+ */
 void canClient::socketDisconnected()
 {
     rx_filter_open = false;
@@ -66,7 +97,15 @@ void canClient::socketDisconnected()
 
 }
 
-
+/**
+ * This is the TcpIp Socket connection error callback.
+ *
+ * In case of socket error, the socket is closed and a new
+ * connection is activated.
+ *
+ * @param
+ * - error: this is the error code received from the tcpIp Socket handler.
+ */
 void canClient::socketError(QAbstractSocket::SocketError error)
 {
     // Invia la comunicazione tempestiva che la comunicazione è interrotta
@@ -91,6 +130,20 @@ void canClient::socketError(QAbstractSocket::SocketError error)
     return;
 }
 
+/**
+ * This function get an Item from the tcpIp received frame.
+ *
+ * This function is used to decode an incoming data frame
+ * from the Can Application Driver.
+ *
+ * @param
+ * - index: this is the current character index of the received ethernet frame;
+ * - data: this is the received ethernet frame data array;
+ * - data_ok: this is a pointer that the caller provides to have the result of the item identification;
+ *
+ * @return always returns 0;
+ *
+ */
 ushort canClient::getItem(int* index, QByteArray* data, bool* data_ok){
     *data_ok = false;
     bool is_hex = false;
@@ -113,6 +166,23 @@ ushort canClient::getItem(int* index, QByteArray* data, bool* data_ok){
     return 0;
 }
 
+/**
+ * This is the handler of every received frame.
+ *
+ * The handler decodes the frame format, providing:
+ * - the Acceptance Filter acknowledge;
+ * - the CAN DATA received from the can Application Driver;
+ *
+ * The Handler will emit the canClient::rxFromCan() SIGNAL
+ * for every correct can frame received.
+ *
+ *
+ *  NOTE: only the can frame with the canId matching the rule
+ *  of the acceptance filter will generate the Signal.
+ *
+ *
+ * @param data
+ */
 void canClient::handleSocketFrame(QByteArray* data){
 
     QByteArray frame;
@@ -177,6 +247,20 @@ void canClient::handleSocketFrame(QByteArray* data){
     return;
 }
 
+/**
+ * This callback is called every received data frame from the ethernet.
+ *
+ * A Valid data frame is determined when the initiator and terminator\n
+ * characters are identified (as for the protocol spec):
+ * - initiator = '<';
+ * - terminator = '>';
+ *
+ * A valid data frame is < .... >.
+ *
+ * The function is able to identify nested valid frames: < frame 1 >  <frame 2>.
+ *
+ * For every nested frame the function will call the canClient::handleSocketFrame() method.
+ */
 void canClient::socketRxData()
 {
     if(connectionStatus ==false) return;
@@ -201,6 +285,17 @@ void canClient::socketRxData()
 
 }
 
+/**
+ * This is the Slot that sends data to the Can  Application Driver
+ * with the proper data format.
+ *
+ * This Slot shall be connected to a local signal emitting a can data frame
+ * to be sent to the Can Application Driver.
+ *
+ * @param
+ * - canId: this is the 11 bit Target Can ID;
+ * - data: this is the can data load. Max 8 bytes are admitted.
+ */
 void canClient::txToCanData(ushort canId, QByteArray data)
 {
     // Invia i dati ed attende di ricevere la risposta
@@ -219,6 +314,12 @@ void canClient::txToCanData(ushort canId, QByteArray data)
 
 }
 
+/**
+ * This is the slot function that is resceduled
+ * every 50 ms until the Can application Driver will
+ * acknowledge the correct Acceptance Filter registration.
+ *
+ */
 void canClient::setAcceptanceFilter()
 {
     // Invia i dati ed attende di ricevere la risposta

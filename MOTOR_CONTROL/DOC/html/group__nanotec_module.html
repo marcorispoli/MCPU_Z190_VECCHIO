@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.5"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Gantry Motor Control Software Documentation: Nanotec PD4 Device Communication Module.</title>
+<title>Gantry Motor Control Software Documentation: Nanotec Devices Implementation module</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -70,82 +70,40 @@ $(function() {
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">Nanotec PD4 Device Communication Module.<div class="ingroups"><a class="el" href="group__can_open_module.html">CanOpen Protocol implementation.</a></div></div></div>
+  <div class="summary">
+<a href="#groups">Modules</a>  </div>
+  <div class="headertitle"><div class="title">Nanotec Devices Implementation module</div></div>
 </div><!--header-->
 <div class="contents">
-<p >This Module implements the communication protocol with the PD4 Nanotec Motor Device.</p>
-<h1><a class="anchor" id="autotoc_md9"></a>
-MODULE OVERVIEW</h1>
-<p >This module connects a PD4 Nanotec based motor device handling all the CANOpen based feature.</p>
-<p >The module has been developed to be subclassed by a Device specific implementation class.</p>
-<p >The module allows to:</p><ul>
-<li>Configure the whole device internal registers;</li>
-<li>Handle the Fault conditions;</li>
-<li>Activate a positioning procedure;</li>
-<li>Activate the zero setting procedure;</li>
-<li>Upload an optional nanoj program;</li>
-<li>Activate a nanoj program;</li>
-<li>Handle safety inputs;</li>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="groups" name="groups"></a>
+Modules</h2></td></tr>
+<tr class="memitem:group__can_open_dictionary_module"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__can_open_dictionary_module.html">Object Dictionary Implementation Module.</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:group__pd4_module"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__pd4_module.html">Nanotec PD4 Device implementation Module.</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<p >This Module implements all the features related to the PD4 Nanotec <br  />
+motor devices.</p>
+<p >Those Devices implement the Slave CANOpen protocol.</p>
+<p >This module allows to:</p><ul>
+<li>Establish a connection with the Target PD4 Nanotec device through the Can <a class="el" href="namespace_application.html" title="Application constants definition.">Application</a> Driver;</li>
+<li>Handle the CAN Open communication;</li>
+<li>Handle the CiA Status Machine of the device;</li>
+<li><p class="startli">Provides the main controlling features:</p><ul>
+<li>Activating the Zero setting procedure;</li>
+<li>Activating the positioning with or without the NanoJ program activation;</li>
+<li>Handling the Configuration Uploading and storing of the main Device registers;</li>
+<li>Handling the Error conditions;</li>
+<li>handling the device Digital Input;</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md10"></a>
-DEVICE CONFIGURATION</h1>
-<p >The module handles a set of configuration Register Vectors in order to customize the motor behaviour.</p>
-<p >The Register Vectors are:</p><ul>
-<li><a class="el" href="classpd4_nanotec.html#a6c46d929117c50f6f79e940006f348bc">pd4Nanotec::configVector</a>: this is a register vector that is uploaded at the startup (if necessary) and stored into the device;</li>
-<li><a class="el" href="classpd4_nanotec.html#a7832cf5c7888846376ecd6a451e35138">pd4Nanotec::runtimeVector</a>: this is a register vector that is always uploaded at the startup;</li>
-<li><a class="el" href="classpd4_nanotec.html#a7854210da300c57fb54e8c5d6f649bce">pd4Nanotec::zeroSettingVector</a>: this is a register vector that is uploaded at the beginning of a zero setting procedure;</li>
-<li><a class="el" href="classpd4_nanotec.html#aef57542b6e8e3bd49279f217c540c650">pd4Nanotec::positionSettingVector</a>: this is a register vector that is uploaded at the beginning of a positioning procedure;</li>
+<p class="startli">This module is based on two sub-moduls:</p><ul>
+<li>pd4Module: used to implement the PD4 functions;</li>
+<li>canOpenDictionaryModule: to implement the Object Dictionary Management. </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md11"></a>
-REGISTER VECTOR DESCRIPTION</h2>
-<p >The Register Vectors are actually Arrays of items of type <a class="el" href="structpd4_nanotec_1_1___o_d___init_vector.html">pd4Nanotec::_OD_InitVector</a>.<br  />
-A valid Register Vector shall mandatory termines with the END_ODVECTOR macro.</p>
-<pre class="fragment"> NOTE: In case the END_ODVECTOR should be omitted, the program may crash
- due to a possible infinite loops.
-</pre><h2><a class="anchor" id="autotoc_md12"></a>
-CONFIGURATION REGISTER VECTOR DESCRIPTION</h2>
-<p >This Register Vector should be a const vector of Motor registers that<br  />
-needs to be uploaded once and stored into the Motor Device.<br  />
- The Module Uploads and Stores the registers soon after the start-up<br  />
-if the Module detects a different checksum from the Device list and the <br  />
-coded list. In case the checksum should match, the register vector will not be<br  />
-uploaded, saving startup time and can network occupancy.<br  />
- </p>
-<h2><a class="anchor" id="autotoc_md13"></a>
-RUNTIME REGISTER VECTOR DESCRIPTION</h2>
-<p >This register vector is a list of device register that will be always upload <br  />
-after every startup.</p>
-<pre class="fragment"> NOTE: although this is an optional feature, however there is some internal register\n
- that cannot be stored for an unknown reason, not declared by Nanotec. Those registers\n
- consequently needs to be refreshed after the system startup.
-
- NOTE: the known register that refuses to be stored are:
- - OD_3250_02
-</pre><p> This Register vector can be declared as a const vector because <br  />
-it will not be changed at runtime.<br  />
- </p>
-<h2><a class="anchor" id="autotoc_md14"></a>
-ZERO SETTING REGISTER VECTOR</h2>
-<p >This register vector is a list of register that characterize the <br  />
-zero setting behavior. Those register will be uploaded at the beginning <br  />
-of the zero setting procedure.<br  />
- This Register vector can be declared as a const vector because <br  />
-it will not be changed at runtime.<br  />
- </p>
-<h2><a class="anchor" id="autotoc_md15"></a>
-POSITIONING REGISTER VECTOR</h2>
-<p >This register vector is a list of register that characterize the <br  />
-positioning setting behavior. Those register will be uploaded at the beginning <br  />
-of the Positioning procedure.<br  />
- This Register vector shall be declared in RAM because <br  />
-can not be changed at runtime.<br  />
- The Positioning Register shall mandatory contain the following registers:</p><ul>
-<li>OD_607A_00: define the target position;</li>
-<li>OD_6081_00: define the target speed;</li>
-<li>OD_6083_00: define the Acceleration;</li>
-<li>OD_6084_00: define the Deceleration;</li>
+</li>
 </ul>
-<p >The Register Vector can optionally contain other registers. </p>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

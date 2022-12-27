@@ -27,11 +27,12 @@
  * application cprotocol command).
  *
  * The Application can run without debug messages or alternatively
- * can be launched with -log or -win option:
+ * can be launched with -file, -win or -console option:
  * - -win: allows to run the application with a graphical window to
  * provide manual interaction with the Sedecal Generator;
- * - -log: the Application redirects the debug messages to a file
- * in C:/OEM/Logs/SERVICELOG/gantrylog.log
+ * - -file: the Application redirects the debug messages to a file
+ * in C:/OEM/Logs/GANTRY/Generator.log
+ * - -console: redirects the debug messages to the standard console
  *
  * # DEPENDENCIES AND CONFIGURATION FILES
  *

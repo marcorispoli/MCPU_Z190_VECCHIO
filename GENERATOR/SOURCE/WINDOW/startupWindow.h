@@ -19,6 +19,8 @@ public:
     startupWindow( QWidget *parent = nullptr);
     ~startupWindow();
 
+    static void debugMessageHandler(QtMsgType type, QString msg); //!< Handles the debug messages in case of -win Application
+    inline static startupWindow* instance = nullptr; //!< Assigned to the unique instance of the class
 
     void EventStatus(void);
     void EventMessage(ushort seq,QString msg);    
@@ -53,7 +55,7 @@ public slots:
     void onAbortRx(void);
     void onAecSendButton(void);
 
-    void onDebug(QByteArray data);
+
 
 
     void timerEvent(QTimerEvent* ev);

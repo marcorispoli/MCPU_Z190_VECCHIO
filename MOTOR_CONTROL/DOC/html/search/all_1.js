@@ -22,11 +22,16 @@ var searchData=
   ['application_19',['Application',['../namespace_application.html',1,'']]],
   ['application_20command_20interface_20module_2e_20',['Application Command Interface Module.',['../group__interface_module.html',1,'']]],
   ['application_20interface_20library_20module_2e_21',['Application Interface Library Module.',['../group___application_interface_module.html',1,'']]],
-  ['application_20module_2e_22',['Application Module.',['../group__application_module.html',1,'']]],
-  ['application_2eh_23',['application.h',['../application_8h.html',1,'']]],
-  ['applicationinterface_24',['applicationInterface',['../classapplication_interface.html',1,'applicationInterface'],['../classapplication_interface.html#a703c31790d88fd741ec1e6cd048141c4',1,'applicationInterface::applicationInterface()']]],
-  ['applicationinterface_2ecpp_25',['applicationInterface.cpp',['../application_interface_8cpp.html',1,'']]],
-  ['applicationinterface_2eh_26',['applicationInterface.h',['../application_interface_8h.html',1,'']]],
-  ['arm_27',['ARM',['../application_8h.html#ac3b52e3cce0aee40e79cc75cdf46019d',1,'ARM():&#160;application.h'],['../application_8h.html#a4adad3003f2c81f24888749192ce0071',1,'ARM():&#160;application.h']]],
-  ['arm_5fid_28',['ARM_ID',['../namespace_application.html#a5c18e172ac9c65b0d453812b99e434cf',1,'Application']]]
+  ['application_20logger_20module_20library_2e_22',['Application Logger Module Library.',['../group__application_log_module.html',1,'']]],
+  ['application_20module_2e_23',['Application Module.',['../group__application_module.html',1,'']]],
+  ['application_2eh_24',['application.h',['../application_8h.html',1,'']]],
+  ['applicationinterface_25',['applicationInterface',['../classapplication_interface.html#a703c31790d88fd741ec1e6cd048141c4',1,'applicationInterface::applicationInterface()'],['../classapplication_interface.html',1,'applicationInterface']]],
+  ['applicationinterface_2ecpp_26',['applicationInterface.cpp',['../application_interface_8cpp.html',1,'']]],
+  ['applicationinterface_2eh_27',['applicationInterface.h',['../application_interface_8h.html',1,'']]],
+  ['applog_28',['appLog',['../classapp_log.html',1,'appLog'],['../classapp_log.html#a347855f8fab3cd0cddb440a01bd2bfc4',1,'appLog::appLog()']]],
+  ['applog_2ecpp_29',['applog.cpp',['../applog_8cpp.html',1,'']]],
+  ['applog_2eh_30',['applog.h',['../applog_8h.html',1,'']]],
+  ['applog_5ffunction_31',['applog_function',['../classapp_log.html#a762405266e95c086b15758d8a2f85195',1,'appLog']]],
+  ['arm_32',['ARM',['../application_8h.html#ac3b52e3cce0aee40e79cc75cdf46019d',1,'ARM():&#160;application.h'],['../application_8h.html#a4adad3003f2c81f24888749192ce0071',1,'ARM():&#160;application.h']]],
+  ['arm_5fid_33',['ARM_ID',['../namespace_application.html#a5c18e172ac9c65b0d453812b99e434cf',1,'Application']]]
 ];

@@ -37,6 +37,8 @@ public:
     debugWindow( QWidget *parent = nullptr);
     ~debugWindow();
 
+    static void debugMessageHandler(QtMsgType type, QString msg); //!< Handles the debug messages in case of -win Application
+    inline static debugWindow* instance = nullptr; //!< Assigned to the unique instance of the class
 
 
 // WINDOWS MODULE VIRTUAL FUNCTIONS
@@ -56,7 +58,7 @@ public slots:
     void receivedCanFrame(ushort canId, QByteArray data);
     void sendToCan(ushort canId, QByteArray data );
 
-    void onDebug(QByteArray data);
+
     void timerEvent(QTimerEvent* ev);
     void on_logEnableCheck_stateChanged(int arg1);
     void on_logEnableEthCheck_stateChanged(int arg1);
@@ -68,7 +70,6 @@ private:
    QByteArray pollingFrame;
    int pollingTimer;
    int polling;
-   ulong generalDebugIndex;
 
 };
 

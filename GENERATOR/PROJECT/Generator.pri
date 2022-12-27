@@ -34,6 +34,7 @@ DISTFILES +=
 
 SOURCES += \
     $${PROJLIB}/APPLICATION_INTERFACE/applicationInterface.cpp \
+    $${PROJLIB}/APPLOG/applog.cpp \
     $${TARGET_SOURCE}/main.cpp \
     $${TARGET_SOURCE}/WORKFLOW/workflow.cpp \
     $${TARGET_SOURCE}/EXPOSURE/2D_exposure.cpp \
@@ -59,6 +60,7 @@ SOURCES += \
 
 HEADERS += \
     $${PROJLIB}/APPLICATION_INTERFACE/applicationInterface.h \
+    $${PROJLIB}/APPLOG/applog.h \
     $${TARGET_SOURCE}/application.h \
     $${TARGET_SOURCE}/Typedef.h \
     $${TARGET_SOURCE}/WORKFLOW/workflow.h \
@@ -78,6 +80,7 @@ HEADERS += \
 # Aggiunge tutti i path di progetto
 INCLUDEPATH += \
     $${PROJLIB}/APPLICATION_INTERFACE \
+    $${PROJLIB}/APPLOG \
     $${TARGET_SOURCE} \
     $${TARGET_SOURCE}/INTERFACE/ \
     $${TARGET_SOURCE}/EXPOSURE/ \

@@ -34,6 +34,7 @@ SOURCES += \
     $${TARGET_SOURCE}/main.cpp \   
     $${PROJLIB}/APPLICATION_INTERFACE/applicationInterface.cpp \
     $${PROJLIB}/CAN_CLIENT/canclient.cpp \
+    $${PROJLIB}/APPLOG/applog.cpp \
     $${TARGET_SOURCE}/INTERFACE/interface.cpp \
     $${TARGET_SOURCE}/INTERFACE/commands.cpp \
     $${TARGET_SOURCE}/INTERFACE/events.cpp \
@@ -51,6 +52,7 @@ HEADERS += \
     $${TARGET_SOURCE}/application.h \
     $${PROJLIB}/APPLICATION_INTERFACE/applicationInterface.h \
     $${PROJLIB}/CAN_CLIENT/canclient.h \
+    $${PROJLIB}/APPLOG/applog.h \
     $${TARGET_SOURCE}/INTERFACE/interface.h \
     $${TARGET_SOURCE}/NANOTEC/dictionary.h \
     $${TARGET_SOURCE}/NANOTEC/pd4.h \
@@ -64,6 +66,7 @@ HEADERS += \
 INCLUDEPATH += \
     $${PROJLIB}/APPLICATION_INTERFACE \
     $${PROJLIB}/CAN_CLIENT \
+    $${PROJLIB}/APPLOG \
     $${TARGET_SOURCE} \
     $${TARGET_SOURCE}/INTERFACE/ \
     $${TARGET_SOURCE}/CANCLIENT/ \

@@ -137,15 +137,15 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:a0cecd9932c0444e37a76c4895d004de3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classapplication_interface.html#a0cecd9932c0444e37a76c4895d004de3">incomingConnection</a> (qintptr socketDescriptor) override</td></tr>
 <tr class="memdesc:a0cecd9932c0444e37a76c4895d004de3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disconnect callback event of tyhe Socket thread.  <a href="classapplication_interface.html#a0cecd9932c0444e37a76c4895d004de3">More...</a><br /></td></tr>
 <tr class="separator:a0cecd9932c0444e37a76c4895d004de3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca4b9e828daafae9b9c4d28c1b242178"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classapplication_interface.html#aca4b9e828daafae9b9c4d28c1b242178">sendEvent</a> (QString Event, QList&lt; QString &gt; *params)</td></tr>
+<tr class="memdesc:aca4b9e828daafae9b9c4d28c1b242178"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper function to send an EVENT frame to gantry.  <a href="classapplication_interface.html#aca4b9e828daafae9b9c4d28c1b242178">More...</a><br /></td></tr>
+<tr class="separator:aca4b9e828daafae9b9c4d28c1b242178"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr class="memitem:afdfbdbbd22795bb531ee6cb8448c6dca"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classapplication_interface.html#afdfbdbbd22795bb531ee6cb8448c6dca">sendAck</a> (ushort id, ushort seq, uint code, QList&lt; QString &gt; *data)</td></tr>
 <tr class="memdesc:afdfbdbbd22795bb531ee6cb8448c6dca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper function to send an Answer frame to Gantry.  <a href="classapplication_interface.html#afdfbdbbd22795bb531ee6cb8448c6dca">More...</a><br /></td></tr>
 <tr class="separator:afdfbdbbd22795bb531ee6cb8448c6dca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4d957a2689423e999ee6658b35ac1147"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classapplication_interface.html#a4d957a2689423e999ee6658b35ac1147">sendEvent</a> (ushort seq, QString Event, QList&lt; QString &gt; *params)</td></tr>
-<tr class="memdesc:a4d957a2689423e999ee6658b35ac1147"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper function to send an EVENT frame to gantry.  <a href="classapplication_interface.html#a4d957a2689423e999ee6658b35ac1147">More...</a><br /></td></tr>
-<tr class="separator:a4d957a2689423e999ee6658b35ac1147"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a971468eccc803138884f89506cc5fca0"><td class="memItemLeft" align="right" valign="top">QList&lt; QString &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classapplication_interface.html#a971468eccc803138884f89506cc5fca0">getProtocolFrame</a> (QByteArray *data)</td></tr>
 <tr class="memdesc:a971468eccc803138884f89506cc5fca0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extract the data content from a received frame.  <a href="classapplication_interface.html#a971468eccc803138884f89506cc5fca0">More...</a><br /></td></tr>
 <tr class="separator:a971468eccc803138884f89506cc5fca0"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -535,8 +535,8 @@ Every Socket is assigned to a unique ID so that the Server can redirect the answ
 
 </div>
 </div>
-<a id="a4d957a2689423e999ee6658b35ac1147" name="a4d957a2689423e999ee6658b35ac1147"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4d957a2689423e999ee6658b35ac1147">&#9670;&#160;</a></span>sendEvent()</h2>
+<a id="aca4b9e828daafae9b9c4d28c1b242178" name="aca4b9e828daafae9b9c4d28c1b242178"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca4b9e828daafae9b9c4d28c1b242178">&#9670;&#160;</a></span>sendEvent()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -547,12 +547,6 @@ Every Socket is assigned to a unique ID so that the Server can redirect the answ
         <tr>
           <td class="memname">void applicationInterface::sendEvent </td>
           <td>(</td>
-          <td class="paramtype">ushort&#160;</td>
-          <td class="paramname"><em>seq</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype">QString&#160;</td>
           <td class="paramname"><em>Event</em>, </td>
         </tr>
@@ -570,7 +564,7 @@ Every Socket is assigned to a unique ID so that the Server can redirect the answ
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -583,8 +577,7 @@ Every Socket is assigned to a unique ID so that the Server can redirect the answ
 <p >The frame is sent broadcast to all the connected Clients.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">-</td><td>seq: sequence number of the Event ;<ul>
-<li>Event: the string identifying the Event code</li>
+    <tr><td class="paramname">-</td><td>Event: the string identifying the Event code<ul>
 <li>params: the list of parameter's item of the EVENT. </li>
 </ul>
 </td></tr>

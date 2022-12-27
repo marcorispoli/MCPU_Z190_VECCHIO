@@ -14,6 +14,5 @@ var searchData=
   ['nanojwritedata_11',['nanojWritedata',['../classpd4_nanotec.html#a3b1a726be7b6d9f35125f29dde08fd47',1,'pd4Nanotec']]],
   ['nanotec_20devices_20implementation_20module_12',['Nanotec Devices Implementation module',['../group__nanotec_module.html',1,'']]],
   ['nanotec_20pd4_20device_20implementation_20module_2e_13',['Nanotec PD4 Device implementation Module.',['../group__pd4_module.html',1,'']]],
-  ['nodebugmessagehandler_14',['noDebugMessageHandler',['../group__application_module.html#ga120bf2e502c5cbc16889d14315c57833',1,'main.cpp']]],
-  ['num_5fblock_5fitems_15',['num_block_items',['../classpd4_nanotec.html#ae47ba0dce4e5da37e3e6c3521fa7fb25',1,'pd4Nanotec']]]
+  ['num_5fblock_5fitems_14',['num_block_items',['../classpd4_nanotec.html#ae47ba0dce4e5da37e3e6c3521fa7fb25',1,'pd4Nanotec']]]
 ];

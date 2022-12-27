@@ -1,6 +1,8 @@
 #include "application.h"
 #include "ui_window.h"
 
+
+
 /**
  * @brief This is the class constructor
  *
@@ -11,8 +13,8 @@
 debugWindow::debugWindow(QWidget *parent)
     : ui(new Ui::debugWindow)
 {
+    debugWindow::instance = this;
     ui->setupUi(this);
-    generalDebugIndex = 0;
 
     // Set the View to handle the rotation
 
@@ -74,14 +76,6 @@ void debugWindow::onDebugClearButton(void){
     ui->debugText->clear();
 }
 
-/**
- * @brief This function add a debug string to the logging panel
- */
-void debugWindow::onDebug(QByteArray data){
-    QString stringa = QString("%1> %2").arg(generalDebugIndex++).arg(data);
-    if(ui->debugEnable->isChecked())   ui->debugText->appendPlainText(stringa);
-}
-
 
 /**
  * @brief This function receives the data coming from the CAN network.
@@ -94,7 +88,7 @@ void debugWindow::onDebug(QByteArray data){
  */
 void debugWindow::receivedCanFrame(ushort canId, QByteArray data){
 
-    QString stringa = QString("%1 - %2> FROM CANID:0x%3 - ").arg(((double) clock())/CLOCKS_PER_SEC).arg(generalDebugIndex++).arg(canId,1,16);
+    QString stringa = QString("%1> FROM CANID:0x%3 - ").arg(((double) clock())/CLOCKS_PER_SEC).arg(canId,1,16);
     for(int i=0; i< 8;i++){
         stringa.append(QString(" 0x%1").arg((uchar) data[i],1,16));
     }
@@ -111,8 +105,8 @@ void debugWindow::receivedCanFrame(ushort canId, QByteArray data){
  * @param data: this is the data content of the frame
  */
 void debugWindow::sendToCan(ushort canId, QByteArray data){
-    //QString stringa = QString("%1> TO CANID:0x%2 - ").arg(generalDebugIndex++).arg(canId,1,16);
-    QString stringa = QString("%1 - %2> TO CANID:0x%3 - ").arg(((double) clock())/CLOCKS_PER_SEC).arg(generalDebugIndex++).arg(canId,1,16);
+
+    QString stringa = QString("%1> TO CANID:0x%3 - ").arg(((double) clock())/CLOCKS_PER_SEC).arg(canId,1,16);
     for(int i=0; i< data.size();i++){
         stringa.append(QString(" 0x%1").arg((uchar) data[i],1,16));
     }
@@ -167,4 +161,8 @@ void debugWindow::on_logEnableEthCheck_stateChanged(int arg1)
 
 }
 
+void debugWindow::debugMessageHandler(QtMsgType type, QString msg){
+    if(!debugWindow::instance) return;
+    if(debugWindow::instance->ui->debugEnable->isChecked())   debugWindow::instance->ui->debugText->appendPlainText(msg);
+}
 

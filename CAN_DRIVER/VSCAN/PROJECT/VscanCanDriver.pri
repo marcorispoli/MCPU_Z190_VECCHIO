@@ -26,7 +26,8 @@ LIBS += -L$${TARGET_SOURCE}/DLL/ -lvs_can_api
 DISTFILES +=
 
 SOURCES += \
-    $${TARGET_SOURCE}/main.cpp \    
+    $${TARGET_SOURCE}/main.cpp \
+    $${PROJLIB}/APPLOG/applog.cpp \
     $${TARGET_SOURCE}/SERVER/server.cpp \
     $${TARGET_SOURCE}/CAN/can_driver.cpp \
     $${TARGET_SOURCE}/WINDOW/window.cpp \
@@ -35,6 +36,7 @@ SOURCES += \
 
 HEADERS += \
     $${TARGET_SOURCE}/application.h \
+    $${PROJLIB}/APPLOG/applog.h \
     $${TARGET_SOURCE}/SERVER/server.h \
     $${TARGET_SOURCE}/CAN/can_driver.h \
     $${TARGET_SOURCE}/WINDOW/window.h \
@@ -47,6 +49,7 @@ INCLUDEPATH += \
     $${TARGET_SOURCE}/SERVER \
     $${TARGET_SOURCE}/CAN \
     $${TARGET_SOURCE}/WINDOW \
+    $${PROJLIB}/APPLOG \
     $${TARGET_SOURCE} \
 
 

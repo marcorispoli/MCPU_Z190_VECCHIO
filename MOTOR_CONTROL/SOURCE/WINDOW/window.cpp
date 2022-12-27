@@ -6,6 +6,7 @@
 debugWindow::debugWindow(QWidget *parent)
     : ui(new Ui::debugWindow)
 {
+    debugWindow::instance = this;
     ui->setupUi(this);
     generalDebugIndex = 0;
 
@@ -71,13 +72,6 @@ void debugWindow::onDebugClearButton(void){
 
 
 
-void debugWindow::onDebug(QByteArray data){
-    //QString stringa = QString("%1> %2").arg(generalDebugIndex++).arg(data);
-    QString stringa = QString("%1> %2").arg(((double) clock())/CLOCKS_PER_SEC).arg(data);
-
-    if(ui->debugEnable->isChecked())   ui->debugText->appendPlainText(stringa);
-}
-
 
 void debugWindow::on_logEnableCheck_stateChanged(int arg1)
 {
@@ -131,3 +125,8 @@ void debugWindow::onEnableConfig(void){
     if(INTERFACE) INTERFACE->configReceived();
 }
 
+void debugWindow::debugMessageHandler(QtMsgType type, QString msg){
+    if(!debugWindow::instance) return;
+    if(debugWindow::instance->ui->debugEnable->isChecked())   debugWindow::instance->ui->debugText->appendPlainText(msg);
+
+}

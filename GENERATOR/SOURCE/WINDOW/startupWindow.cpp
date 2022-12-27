@@ -6,6 +6,7 @@
 startupWindow::startupWindow(QWidget *parent)
     : ui(new Ui::startupWindow)
 {
+    startupWindow::instance = this;
     ui->setupUi(this);
     generalDebugIndex = 0;
 
@@ -105,10 +106,7 @@ void startupWindow::onLogRxSlot(QByteArray data){
 
 }
 
-void startupWindow::onDebug(QByteArray data){
-    QString stringa = QString("%1> %2").arg(generalDebugIndex++).arg(data);
-    if(ui->debugEnable->isChecked())   ui->debugText->appendPlainText(stringa);
-}
+
 
 void startupWindow::onStart2DPre(void){
 
@@ -368,3 +366,11 @@ void startupWindow::EventMessage(ushort seq,QString msg){
 
 
 void startupWindow::EventXrayCompleted(ushort seq, uchar code, uchar error){};
+
+void startupWindow::debugMessageHandler(QtMsgType type, QString msg){
+    if(!startupWindow::instance) return;
+    if(startupWindow::instance->ui->debugEnable->isChecked())   startupWindow::instance->ui->debugText->appendPlainText(msg);
+
+}
+
+

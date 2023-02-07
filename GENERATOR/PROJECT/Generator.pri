@@ -11,6 +11,7 @@ DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs depr
 
 #Include supporto per Qt Network (moduli TCP/IP)
 QT += network
+QT += sql
 
 
 
@@ -32,13 +33,17 @@ DISTFILES +=
 
 
 SOURCES += \
+    $${PROJLIB}/APPLICATION_INTERFACE/applicationInterface.cpp \
+    $${PROJLIB}/APPLOG/applog.cpp \
     $${TARGET_SOURCE}/main.cpp \
-    $${TARGET_SOURCE}/status.cpp \
+    $${TARGET_SOURCE}/WORKFLOW/workflow.cpp \
     $${TARGET_SOURCE}/EXPOSURE/2D_exposure.cpp \
     $${TARGET_SOURCE}/EXPOSURE/2D_AEC_exposure.cpp \
-    $${TARGET_SOURCE}/INTERFACE/server.cpp \
-    $${TARGET_SOURCE}/INTERFACE/event.cpp \
-    $${TARGET_SOURCE}/INTERFACE/command.cpp \
+    $${TARGET_SOURCE}/EXPOSURE/3D_exposure.cpp \
+    $${TARGET_SOURCE}/EXPOSURE/3D_AEC_exposure.cpp \
+    $${TARGET_SOURCE}/INTERFACE/interface.cpp \
+    $${TARGET_SOURCE}/INTERFACE/events.cpp \
+    $${TARGET_SOURCE}/INTERFACE/commands.cpp \
     $${TARGET_SOURCE}/COMMUNICATION/communication.cpp \
     $${TARGET_SOURCE}/COMMUNICATION/tcpipclient.cpp \
     $${TARGET_SOURCE}/LIB_SEDECAL/R2CP_Eth.cpp    \
@@ -52,11 +57,15 @@ SOURCES += \
     $${TARGET_SOURCE}/WINDOW/startupWindow.cpp \
 
 
+
 HEADERS += \
+    $${PROJLIB}/APPLICATION_INTERFACE/applicationInterface.h \
+    $${PROJLIB}/APPLOG/applog.h \
     $${TARGET_SOURCE}/application.h \
     $${TARGET_SOURCE}/Typedef.h \
-    $${TARGET_SOURCE}/status.h \
-    $${TARGET_SOURCE}/INTERFACE/server.h \
+    $${TARGET_SOURCE}/WORKFLOW/workflow.h \
+    $${TARGET_SOURCE}/INTERFACE/interface.h \
+    $${TARGET_SOURCE}/EXPOSURE/exposure.h \
     $${TARGET_SOURCE}/COMMUNICATION/communication.h \
     $${TARGET_SOURCE}/COMMUNICATION/tcpipclient.h \
     $${TARGET_SOURCE}/LIB_SEDECAL/R2CP_Eth.h    \
@@ -70,10 +79,12 @@ HEADERS += \
 
 # Aggiunge tutti i path di progetto
 INCLUDEPATH += \
-    #$${MAIN_CPU}/LIB \
+    $${PROJLIB}/APPLICATION_INTERFACE \
+    $${PROJLIB}/APPLOG \
     $${TARGET_SOURCE} \
     $${TARGET_SOURCE}/INTERFACE/ \
     $${TARGET_SOURCE}/EXPOSURE/ \
+    $${TARGET_SOURCE}/WORKFLOW/ \
     $${TARGET_SOURCE}/COMMUNICATION/ \
     $${TARGET_SOURCE}/WINDOW/ \
     $${TARGET_SOURCE}/LIB_SEDECAL \

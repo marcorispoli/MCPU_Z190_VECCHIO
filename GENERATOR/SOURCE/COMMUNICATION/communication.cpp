@@ -15,12 +15,12 @@ unsigned int htonl(unsigned int val){
 }
 
 static int16_t sendCR2CPData(byte *pMessage , word datalength){
-    return pComm->sendData(pMessage, datalength);
+    return COMMUNICATION->sendData(pMessage, datalength);
 }
 
 Communication::Communication( QObject *parent)
 {
-    pComm = this;
+
     connect(&client, SIGNAL(clientConnection(bool)), this, SLOT(clientConnection(bool)), Qt::UniqueConnection);
     connect(&client, SIGNAL(rxData(QByteArray)), this, SLOT(clientRxData(QByteArray)), Qt::QueuedConnection);
     connection_status = false;
@@ -52,8 +52,8 @@ void Communication::generatorReceivedStatusEvent(void){
     if(!generatorConnected)   qDebug() << "Generator Connected";
     generatorConnected = true;
 
-    STATUS->setGeneratorStatusChanged();
 
+    INTERFACE->EventStatus();
 }
 
 void Communication::generatorReceivedProcedureDefinitionEvent(byte id)
@@ -61,8 +61,8 @@ void Communication::generatorReceivedProcedureDefinitionEvent(byte id)
 
 }
 
-void Communication::PostExposureEvent(uchar db_number, uchar foc, float kV, ushort mAs, ushort mA, ushort ms, uchar result){
-    STATUS->setPostExposureData(db_number,foc, kV, mAs, mA, ms, result);
+void Communication::PostExposureEvent(uchar db_number, uchar foc, float kV, float mAs, float mA, float ms, uchar result){
+    EXPOSURE->setPostExposureData(db_number,foc, kV, mAs, mA, ms, result);
 }
 
 
@@ -80,14 +80,15 @@ void Communication::clientConnection(bool stat){
 }
 
 void Communication::start(void){
-    client.Start(IP_ADDRESS, HUB_PORT);
+
+    client.Start(QString(Application::SH_IP_ADDRESS), (int) Application::SH_PORT);
 }
 
 int16_t Communication::sendData(byte *pMessage , word datalength){
     QByteArray data;
     for(int i=0; i<datalength; i++) data.append((char) pMessage[i]);
 
-    pComm->client.txData(data);
+    COMMUNICATION->client.txData(data);
     return datalength;
 }
 
@@ -106,7 +107,6 @@ void Communication::clientRxData(QByteArray data){
         if(nextdata.size() > framelen + 8){
             curdata = nextdata.left(framelen + 8);
             emit rxDataEventSgn(curdata);
-
             nextdata = nextdata.right(nextdata.size() - framelen - 8);
             R2CP_Eth->ProcessMessage((byte*) curdata.data());
         }else{

@@ -12,9 +12,9 @@
  * \ingroup   R2CPModule
 */
 #include "CaDataDicGen.h"
-#include "communication.h"
+#include "application.h"
 
-extern Communication* pComm;
+
 
 namespace R2CP
 {
@@ -99,7 +99,7 @@ namespace R2CP
 
 
         (void)m_Type_-> Get(    ETH_LOWEST_PRIORITY,
-                                GENERATOR_NODE_ID,
+                                Application::GENERATOR_NODE_ID,
                                 mNodeId,
                                 SYSTEM_COMMANDS_ENTRY,
                                 SYSTEM_ALL_SYSTEM_MESSAGES,
@@ -127,7 +127,7 @@ namespace R2CP
         pData[11]= 0;
 
         (void)m_Type_-> Set(    ETH_LOWEST_PRIORITY,
-                                GENERATOR_NODE_ID,
+                                Application::GENERATOR_NODE_ID,
                                 mNodeId,
                                 SYSTEM_COMMANDS_ENTRY,
                                 SYSTEM_SYSTEM_MESSAGE,
@@ -147,7 +147,7 @@ namespace R2CP
         byte pData[12];
 
 
-        pData[0] = GENERATOR_NODE_ID;
+        pData[0] = Application::GENERATOR_NODE_ID;
         pData[1] = (byte) ((ID & 0xFF000000) >> 24);
         pData[2] = (byte) ((ID & 0x00FF0000) >> 16);
         pData[3] = (byte) ((ID & 0x0000FF00) >> 8);
@@ -161,7 +161,7 @@ namespace R2CP
         pData[11]= 0;
 
         (void)m_Type_-> Set(    ETH_LOWEST_PRIORITY,
-                                GENERATOR_NODE_ID,
+                                Application::GENERATOR_NODE_ID,
                                 mNodeId,
                                 SYSTEM_COMMANDS_ENTRY,
                                 SYSTEM_SYSTEM_MESSAGE,

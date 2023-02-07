@@ -19,7 +19,14 @@ public:
     startupWindow( QWidget *parent = nullptr);
     ~startupWindow();
 
+    static void debugMessageHandler(QtMsgType type, QString msg); //!< Handles the debug messages in case of -win Application
+    inline static startupWindow* instance = nullptr; //!< Assigned to the unique instance of the class
 
+    void EventStatus(void);
+    void EventMessage(ushort seq,QString msg);    
+    void EventSetXrayEna(ushort seq, bool state);
+    void EventXrayCompleted(ushort seq, uchar code, uchar error);    
+    void EventGetPulseData(void);
 
 
 // WINDOWS MODULE VIRTUAL FUNCTIONS
@@ -33,9 +40,22 @@ signals:
 
 // GUI MODULE SLOTS
 public slots:
-    void onLogUpdateButton(void);
+
     void onLogClearButton(void);
+    void onDebugClearButton(void);
+
     void onLogRxSlot(QByteArray);
+
+    void onStart2DPre(void);
+    void onStart2DPulse(void);
+    void onStart3DPre(void);
+    void onStart3DPulse(void);
+    void onStart2DTest(void);
+
+    void onAbortRx(void);
+    void onAecSendButton(void);
+
+
 
 
     void timerEvent(QTimerEvent* ev);
@@ -50,7 +70,7 @@ private:
    int pollingTimer;
    int polling;
 
-
+    ulong generalDebugIndex;
 
 };
 

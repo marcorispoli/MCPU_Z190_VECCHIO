@@ -1,39 +1,34 @@
+#define MAIN_CPP
 
-#include "server.h"
-#include "configuration.h"
-#include "can_driver.h"
-#include <QApplication>
+#include "application.h"
+#include "applog.h"
 
-titanCanDriverConfiguration*   pConfig;
-Server*   pServer;
-VscanCanDriver*   pCanDriver;
+#include <QFile>
 
-//#define LOOPBACK
+
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    QString info;
+    appLog(argc, argv, "C:/OEM/Logs/GANTRY/CanDriver.log", debugWindow::debugMessageHandler);
+
+    // Create the Window Log if necessary
+    if(appLog::isWindow){
+        WINDOW = new debugWindow();
+        WINDOW->show();
+    }
 
 
-#ifdef LOOPBACK
-    pCanDriver = new VscanCanDriver();
-    pCanDriver->driverOpenLoopback(VscanCanDriver::_CAN_1000K);
-#else
-    // Open the Acquisition software communication channel
-    pConfig = new titanCanDriverConfiguration();
+    INTERFACE = new Server(Application::SERVER_IP, Application::SERVER_PORT);
 
-    pServer = new Server(pConfig->getParam<QString>(INTERFACE_ADDRESS,0), pConfig->getParam<ushort>(INTERFACE_ADDRESS,1));
-    pCanDriver = new VscanCanDriver();
-    pCanDriver->driverOpen(VscanCanDriver::_CAN_1000K);
+    bool loopback = false ;
+    CAN = new canDriver();
+    if(appLog::options.contains("-loopback")) loopback = true;
+    CAN->driverOpen(Application::CAN_BAUDRATE, loopback);
 
-    QObject::connect(pCanDriver,SIGNAL(receivedCanFrame(ushort , QByteArray )), pServer, SLOT(receivedCanFrame(ushort , QByteArray)),Qt::QueuedConnection);
-    QObject::connect(pServer,SIGNAL(sendToCan(ushort , QByteArray )), pCanDriver, SLOT(sendOnCanSlot(ushort , QByteArray)),Qt::QueuedConnection);
-
-
-    pServer->Start();
-#endif
-
+    QObject::connect(CAN,SIGNAL(receivedCanFrame(ushort , QByteArray )), INTERFACE, SLOT(receivedCanFrame(ushort , QByteArray)),Qt::QueuedConnection);
+    QObject::connect(INTERFACE,SIGNAL(sendToCan(ushort , QByteArray )), CAN, SLOT(sendOnCanSlot(ushort , QByteArray)),Qt::QueuedConnection);
+    INTERFACE->Start();
 
     return a.exec();
 }

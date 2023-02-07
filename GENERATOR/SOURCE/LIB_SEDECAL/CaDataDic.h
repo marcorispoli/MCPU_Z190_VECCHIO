@@ -3,24 +3,13 @@
 #define _CADATADIC_H
 
 #include "../Typedef.h"
-//#include <os_mutex.h>
+
 
 /*!
  * \brief Defines the broadcast node for the r2cp protocol
  */
 #define BROADCAST_NODE_ID	0
 
-/*!
- * \brief Defines the channel Types that the DATADIC allows
- */
-typedef enum{
-	CANBUS_CHANNEL_1 	 = 0x01,
-	CANBUS_CHANNEL_2	 = 0x02,
-	ETHERNET_CHANNEL_1 	 = 0x04,
-	ETHERNET_CHANNEL_2   = 0x08,
-	ETHERNET_CHANNEL_3   = 0x10,
-	ALL_CHANNEL_ALLOWED  = 0xFF
-}tChannelType;
 
 /*!
  * \brief Enums kind of access to dictionary parameters. It can be a combination of each of them
@@ -96,6 +85,7 @@ typedef struct {
 /*!
  * \brief Enums R2CP status.
 */
+
 typedef enum{
   SLAVE_INITIALIZING,	/*!< Initializing. */
   SLAVE_READY,			/*!< PCB already initialized and without errors. */
@@ -186,24 +176,8 @@ typedef struct
    byte reserved			:1;
 }tDataDicStatusRegister;
 
-/*!
- * \brief Defines R2CP status parameter.
-*/
-typedef struct
-{
-   eStatus status			:4;
-   byte heartbeatFlag		:1;
-   byte errorFlag			:1;
-   byte bootingType			:1;
-   byte reserved			:1;
-}tStatus;
 
-typedef enum
-{
-	Error_Wrong_Access = 0,
-	Error_Not_Available,
-	Non_Error_Message
-}tErrorMessage;
+
 	
 /*!
  * \brief Class to handle any R2CP dictionary

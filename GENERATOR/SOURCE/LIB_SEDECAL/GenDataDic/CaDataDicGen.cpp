@@ -14,6 +14,7 @@
 #include <string.h>
 #include <QDebug>
 
+#include "application.h"
 #include "CaDataDicGen.h"
 
 namespace R2CP
@@ -53,6 +54,7 @@ namespace R2CP
         {GENERATOR_DATA_BANK_EXPOSURE_ACCEPTANCE,                       CaDataDicGen::Generator_DataBank_ExposureAcceptance,                DATADIC_ACCESS_ANSWER_EVENT,		0,		0,		3,		3},
         {GENERATOR_DATA_BANK_DEFINE_PROCEDURE_V6,                       CaDataDicGen::Generator_DataBank_DefineProcedure,                   DATADIC_ACCESS_ANSWER_EVENT,		0,		0,      9,      9},
         {GENERATOR_RAD_DATA_BANK_LOAD_V6,								CaDataDicGen::Generator_RadDataBank_Load,							DATADIC_ACCESS_ANSWER_EVENT,	    0,		0,		27,		27},
+        {GENERATOR_RAD_EXPOSURE_PARAMETER_MS,							CaDataDicGen::Generator_RadDataBank_Load_Ms,					    DATADIC_ACCESS_ANSWER_EVENT,	    0,		0,		UNDEFINED_LENGHT,		UNDEFINED_LENGHT},
         {GENERATOR_EXPOSURE_MANAGEMENT_GENERATOR_STATUS_V5,				CaDataDicGen::Generator_ExposureManagement_GeneratorStatus,			DATADIC_ACCESS_ANSWER_EVENT,		0,		0,		14,		14},
         {GENERATOR_EXPOSURE_MANAGEMENT_RAD_POST_EXPOSURE,				CaDataDicGen::Generator_ExposureManagement_RadPostExposure,			DATADIC_ACCESS_ANSWER_EVENT,        0,		0,		21,		21},
         {GENERATOR_EXPOSURE_MANAGEMENT_GENERATOR_STATUS_V6,				CaDataDicGen::Generator_ExposureManagement_GeneratorStatus,			DATADIC_ACCESS_ANSWER_EVENT,		0,		0,		14,		14},
@@ -134,7 +136,7 @@ namespace R2CP
 	{
 			
 		if (m_p_instance_ == nullptr) 
-            m_p_instance_ = new CaDataDicGen(APPLICATION_NODE_ID);
+            m_p_instance_ = new CaDataDicGen(Application::APPLICATION_NODE_ID);
 		return m_p_instance_;
 	}
 	
@@ -219,6 +221,7 @@ namespace R2CP
 	{
         if(	MessageInfo == nullptr ) return;
         m_p_instance_->protocolVersion = *(tDataDicProtocolVersion*) pData;
+        m_p_instance_->protocolUpdated = true;
         qDebug() << "PROTOCOL:"  << m_p_instance_->protocolVersion.Version <<  "." << m_p_instance_->protocolVersion.SubVersion << "." << m_p_instance_->protocolVersion.Revision ;
 	}
 	
@@ -240,8 +243,12 @@ namespace R2CP
 	
 
     void CaDataDicGen::Protocol_Get_Version(void){
+
+         // Initialize to 0 so it can be checked
+         m_p_instance_->protocolUpdated = false;
+
         (void)m_Type_-> Get(    ETH_LOWEST_PRIORITY,
-                                GENERATOR_NODE_ID,
+                                Application::GENERATOR_NODE_ID,
                                 mNodeId,
                                 R2CP_COMMANDS_ENTRY,
                                 R2CP_PROTOCOL_VERSION,
@@ -254,9 +261,9 @@ namespace R2CP
         byte pData[3];
         pData[0] =  6;
         pData[1] =  0;
-        pData[2] =  0;
+        pData[2] =  'A';
         (void)m_Type_-> Set(    ETH_LOWEST_PRIORITY,
-                                GENERATOR_NODE_ID,
+                                Application::GENERATOR_NODE_ID,
                                 mNodeId,
                                 R2CP_COMMANDS_ENTRY,
                                 R2CP_PROTOCOL_VERSION,
@@ -271,7 +278,7 @@ namespace R2CP
         pData[1] =  5;
         pData[2] =  0;
         (void)m_Type_-> Set(    ETH_LOWEST_PRIORITY,
-                                GENERATOR_NODE_ID,
+                                Application::GENERATOR_NODE_ID,
                                 mNodeId,
                                 R2CP_COMMANDS_ENTRY,
                                 R2CP_PROTOCOL_VERSION,

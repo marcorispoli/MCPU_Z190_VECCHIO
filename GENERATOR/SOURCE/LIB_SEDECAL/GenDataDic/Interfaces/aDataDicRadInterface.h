@@ -412,17 +412,19 @@ namespace R2CP
 	}tCalibrationStatus;
 
     // __________________________________________ GENERATORE STATUS
+
+    /// This id the Enumeration code of the GEnerator Internal Status
     typedef enum{
-       Stat_Initialization = 1,
-       Stat_Standby,
-       Stat_Preparation,
-       Stat_Ready,
-       Stat_ExpReq,
-       Stat_ExpInProgress,
-       Stat_WaitFootRelease,
-       Stat_GoigToShutdown,
-       Stat_Error,
-       Stat_Service
+       Stat_Initialization = 1, //!< [1] The Generator is Initializing
+       Stat_Standby,            //!< [2] The Generator is in Standby mode
+       Stat_Preparation,        //!< [3] The Generator is in Exposure preparation
+       Stat_Ready,              //!< [4] The Generator is ready to activate X-RAYs
+       Stat_ExpReq,             //!< [5] The Generator received the Exzposure request
+       Stat_ExpInProgress,      //!< [6] The Generator is executing the exposure
+       Stat_WaitFootRelease,    //!< [7] The Generator is waiting the XRAY signal release
+       Stat_GoigToShutdown,     //!< [8] The Generator is in shutdown
+       Stat_Error,              //!< [9] The Generator is in error condition
+       Stat_Service             //!< [10] The Generator is in Service Mode
     } tGenStatus_Stat;
 
     typedef enum{
@@ -589,14 +591,17 @@ namespace R2CP
     // __________________________________________ / GENERATOR STATUS
     //___________________________________________ PROCEDURE DEFINITION
     typedef enum{
-        ProcId_Standard_Mammography_2D=1,
-        ProcId_Aec_Mammography_2D,
-        ProcId_Standard_Mammography_3D,
-        ProcId_Aec_Mammography_3D,
+        ProcId_Standard_Test=1, // No detector no grid
+        ProcId_Standard_Test_with_grid, // No detector, with grid
+        ProcId_Standard_Mammography_2D, // with grid
+        ProcId_Aec_Mammography_2D, // with grid
+        ProcId_Standard_Mammography_3D, // no grid
+        ProcId_Aec_Mammography_3D, // no grid
         ProcId_Last
     }tProcedureId;
 
     typedef enum{
+        ProcType_Standard_test=1,
         ProcType_Standard_Mammography_2D=50,
         ProcType_Aec_Mammography_2D=51,
         ProcType_Standard_Mammography_3D=10,
@@ -633,6 +638,7 @@ namespace R2CP
     typedef enum{
         DB_Pre = 1,
         DB_Pulse,
+        DB_SkipPulse,
         DB_LastId
     }tProcedureDbId;
 
@@ -691,7 +697,25 @@ namespace R2CP
 
 
         void MET_Generator_Set_StatusV5(byte* data) { generatorStatusV5 =  *(tGeneratorStatusV5*) data; }
-        void MET_Generator_Set_StatusV6(byte* data) { generatorStatusV6 =  *(tGeneratorStatusV6*) data; }
+
+
+        void MET_Generator_Set_StatusV6(byte* data) {
+            generatorStatusV6.GeneratorStatus = data[0];
+            generatorStatusV6.SystemMessage.value = data[1];
+            generatorStatusV6.ProcedureId = data[2];
+            generatorStatusV6.ExposureType = data[3];
+            generatorStatusV6.ExposureDatabankSeqNumber = data[4];
+            generatorStatusV6.FluoroTime.value = data[5]*256 + data[6];
+            generatorStatusV6.FluoroStatus.value = data[7];
+            generatorStatusV6.AccumulatedAnodeHU = data[8];
+            generatorStatusV6.AccumultatedhousingHU = data[9];
+            generatorStatusV6.AccumulatedGenHU = data[10];
+            generatorStatusV6.ExposureSwitches.value = data[11];
+            generatorStatusV6.CurrentRotorSpeed = data[13];
+
+
+           // generatorStatusV6 =  *(tGeneratorStatusV6*) data;
+        }
 
         byte MET_Generator_Update_ProcedureV5(byte* data) {
             if(data ==nullptr) return 0;

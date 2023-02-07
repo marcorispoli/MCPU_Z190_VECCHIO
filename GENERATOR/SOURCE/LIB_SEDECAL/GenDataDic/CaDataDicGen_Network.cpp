@@ -42,12 +42,12 @@ namespace R2CP
         if(!COMMUNICATION) return;
 
         if(nData !=2) return;
-        if(pData[0] == APPLICATION_NODE_ID){
+        if(pData[0] == Application::APPLICATION_NODE_ID){
             if(pData[1] == 1) COMMUNICATION->smartHubConnectionEvent();
             return;
         }
 
-        if(pData[0] == GENERATOR_NODE_ID){
+        if(pData[0] == Application::GENERATOR_NODE_ID){
             if(pData[1] == 1) COMMUNICATION->generatorConnectionEvent(true);
             else COMMUNICATION->generatorConnectionEvent(false);
             return;
@@ -76,13 +76,15 @@ namespace R2CP
 			m_p_NetworkInteface_->II_Network_SS_NetworkConnectionRequest(pData[0]);
 	}
 	
-	void CaDataDicGen::Network_ConnectionRequest_Event(byte node_dest, byte node_iss)
+    void CaDataDicGen::Network_ConnectionRequest_Event(void)
 	{
-		byte data[1]={node_iss};
+        byte node_iss = Application::APPLICATION_NODE_ID;
+        byte node_dest = Application::SH_NODE_ID;
+
 		
 		(void)m_Type_->Event_Answer(	ETH_LOWEST_PRIORITY, 
-										node_dest, 
-										node_iss, 
+                                        node_dest,
+                                        node_iss,
 										NETWORK_COMMANDS_ENTRY, 
 										NETWORK_CONNECTION_REQUEST, 
 										sizeof(byte), 

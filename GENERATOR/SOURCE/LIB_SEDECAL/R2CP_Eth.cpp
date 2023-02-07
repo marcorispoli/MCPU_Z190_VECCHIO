@@ -1,24 +1,12 @@
 /*!
- * \file      R2CPslaveInterface.cpp
  * \brief     Implementations for the class R2CP.
  * \author    Francisco Javier Sanchez Rabadán <francisco.sanchez@sedecal.com>.
- * \bug       Unknown bugs
- * \version
- *  \htmlonly
- *		<A HREF="https://svn.sedecal.com/software/Embedded Drivers/HCS12/R2CP/tags/V1R01.1">V1R01.1</A>
- *	\endhtmlonly
- * \date      01/08/2012
- * \copyright SEDECAL S.A.
  * \ingroup   R2CPModule
 */
 
 #include "R2CP_Eth.h"
 #include "string.h"
 #include "application.h"
-
-//#include <stdio.h>
-
-//using namespace Util;
 
 /*!
  * 

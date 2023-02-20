@@ -140,6 +140,8 @@ bool canDriver::driverOpen(_CanBR BR, bool loopback){
         return false;
     }
 
+    //VSCAN_Ioctl(NULL, VSCAN_IOCTL_SET_DEBUG_MODE, VSCAN_DEBUG_MODE_CONSOLE);
+    //VSCAN_Ioctl(NULL, VSCAN_IOCTL_SET_DEBUG, VSCAN_DEBUG_HIGH);
     qDebug() << "VSCAN DRIVER READY";
 
     if(canTimer) killTimer(canTimer);
@@ -200,6 +202,8 @@ void canDriver::sendOnCanSlot(ushort canId, QByteArray data){
         if(i < len) msg.Data[i] = data[i];
         else msg.Data[i] = 0;
     }
+
+
     if(VSCAN_Write(handle, &msg, 1, &written) != VSCAN_ERR_OK) return;
     VSCAN_Flush(handle);
     return;
@@ -220,15 +224,41 @@ void canDriver::sendOnCanSlot(ushort canId, QByteArray data){
  */
 void canDriver::timerEvent(QTimerEvent* ev)
 {
+
+    /*
+    static ushort test_msg = 0;
+    QByteArray test_message;
+    test_msg++;
+
+
+    if(test_msg == 20){
+        printErrors();
+        test_message.append((uchar) 1);
+        test_message.append((uchar) 0);
+        test_message.append((uchar) 0);
+        test_message.append((uchar) 0);
+        test_message.append((uchar) 0);
+        test_message.append((uchar) 0);
+        test_message.append((uchar) 0);
+        test_message.append((uchar) 1);
+
+        test_msg = 0;
+        sendTestMessage(0x211, test_message);
+        return;
+    }
+    return;
+    */
+
     if(ev->timerId() ==  canTimer)
     {
 
         rxmsg = 0;
         VSCAN_Read(handle, rxmsgs, VSCAN_NUM_MESSAGES, &rxmsg);
         if(rxmsg){
+
             for(uint i=0; i < (uint) rxmsg; i++){
                 rxCanId = rxmsgs[i].Id;
-                for(int j=0; j < 8; j++) rxCanData[j] = rxmsgs[i].Data[j];
+                for(int j=0; j < 8; j++) rxCanData[j] = rxmsgs[i].Data[j];                
                 emit receivedCanFrame(rxCanId, rxCanData);
             }
         }
@@ -237,4 +267,46 @@ void canDriver::timerEvent(QTimerEvent* ev)
 
 }
 
+void canDriver::sendTestMessage(ushort canId, QByteArray data){
 
+    VSCAN_MSG msg;
+    DWORD written;
+    uchar len = data.size();
+    if(len > 8) len =8;
+
+    msg.Flags = VSCAN_FLAGS_STANDARD;
+    msg.Id = canId;
+    msg.Size = len;
+
+    for(uchar i=0; i<msg.Size; i++) {
+        if(i < len) msg.Data[i] = data[i];
+        else msg.Data[i] = 0;
+    }
+
+    if(VSCAN_Write(handle, &msg, 1, &written) != VSCAN_ERR_OK) return;
+    VSCAN_Flush(handle);
+    return;
+}
+
+void canDriver::printErrors(void){
+    static DWORD flag_back = 0;
+    DWORD flags;
+    QString errstr = "";
+
+    VSCAN_Ioctl(handle, VSCAN_IOCTL_GET_FLAGS, &flags);
+    if(flags == flag_back) return;
+
+    flag_back = flags;
+
+    if(flags&0x1) errstr += " RX-FIFO-FULL ";
+    if(flags&0x2) errstr += " TX-FIFO-FULL ";
+    if(flags&0x4) errstr += " ERR-WARNING ";
+    if(flags&0x8) errstr += " DATA-OVERRUN ";
+    if(flags&0x10) errstr += " UNUSED ";
+    if(flags&0x20) errstr += " ERR-PASSIVE ";
+    if(flags&0x40) errstr += " ARBIT-LOST ";
+    if(flags&0x80) errstr += " BUS-ERROR ";
+    qDebug() << errstr;
+    return;
+
+}

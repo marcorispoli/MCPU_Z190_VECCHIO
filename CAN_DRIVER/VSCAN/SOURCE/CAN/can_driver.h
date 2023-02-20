@@ -96,6 +96,8 @@ private:
     void timerEvent(QTimerEvent* ev);   //!< Timer scheduled to read the queue of the received messages
     int canTimer;
 
+    void sendTestMessage(ushort canId, QByteArray data);
+    void printErrors(void);
 };
 
 #endif // VSCAN_CAN_DRIVER_H

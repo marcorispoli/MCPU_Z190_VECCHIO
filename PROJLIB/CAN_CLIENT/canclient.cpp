@@ -239,9 +239,9 @@ void canClient::handleSocketFrame(QByteArray* data){
         }
 
         // If a valid set of data has been identified they will be sent to the driver
-        ushort devId = (canid & (~filter_mask) );
+        //ushort devId = (canid & (~filter_mask) );
         if(frame.size()) {
-            emit rxFromCan(devId,frame);
+            emit rxFromCan(canid,frame);
         }
     }
     return;

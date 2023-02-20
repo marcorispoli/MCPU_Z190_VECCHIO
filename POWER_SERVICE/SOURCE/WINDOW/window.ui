@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>600</width>
+    <width>765</width>
     <height>600</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>VSCAN DRIVER DEBUG WINDOW</string>
+   <string>GENERATOR DEBUG WINDOW</string>
   </property>
   <property name="styleSheet">
    <string notr="true">
@@ -22,7 +22,7 @@ background-color: rgb(85, 170, 255);</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>600</width>
+     <width>781</width>
      <height>600</height>
     </rect>
    </property>
@@ -66,7 +66,7 @@ border-color: rgb(0, 0, 127);
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
-    <widget class="QPlainTextEdit" name="canText">
+    <widget class="QPlainTextEdit" name="r2cpText">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -120,12 +120,12 @@ border-width: 0px;
       <rect>
        <x>170</x>
        <y>11</y>
-       <width>141</width>
+       <width>71</width>
        <height>31</height>
       </rect>
      </property>
      <property name="text">
-      <string>ENABLE FROM CAN</string>
+      <string>ENABLE</string>
      </property>
     </widget>
     <widget class="QPlainTextEdit" name="debugText">
@@ -215,19 +215,148 @@ border-width: 0px;
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QCheckBox" name="logEnableEthCheck">
+    <widget class="QLabel" name="label_17">
      <property name="geometry">
       <rect>
-       <x>330</x>
-       <y>10</y>
-       <width>141</width>
-       <height>31</height>
+       <x>270</x>
+       <y>30</y>
+       <width>231</width>
+       <height>16</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">
+color: rgb(255, 255, 255);
+border-width: 0px;
+</string>
+     </property>
      <property name="text">
-      <string>ENABLE FROM ETH</string>
+      <string>CAN FRAMES</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
      </property>
     </widget>
+   </widget>
+   <widget class="QPushButton" name="commandTest">
+    <property name="geometry">
+     <rect>
+      <x>570</x>
+      <y>50</y>
+      <width>101</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 0, 127);
+color: rgb(255, 255, 255);
+border-width: 0px;
+</string>
+    </property>
+    <property name="text">
+     <string>CMD TEST</string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="cmdTestCode">
+    <property name="geometry">
+     <rect>
+      <x>680</x>
+      <y>50</y>
+      <width>51</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(0, 0, 0);
+background-color: rgb(255, 255, 255);</string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="cmdPar0">
+    <property name="geometry">
+     <rect>
+      <x>570</x>
+      <y>90</y>
+      <width>41</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(0, 0, 0);
+background-color: rgb(255, 255, 255);</string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="cmdPar1">
+    <property name="geometry">
+     <rect>
+      <x>620</x>
+      <y>90</y>
+      <width>41</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(0, 0, 0);
+background-color: rgb(255, 255, 255);</string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="cmdPar2">
+    <property name="geometry">
+     <rect>
+      <x>670</x>
+      <y>90</y>
+      <width>41</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(0, 0, 0);
+background-color: rgb(255, 255, 255);</string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="cmdPar3">
+    <property name="geometry">
+     <rect>
+      <x>720</x>
+      <y>90</y>
+      <width>41</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(0, 0, 0);
+background-color: rgb(255, 255, 255);</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="abortCommand">
+    <property name="geometry">
+     <rect>
+      <x>570</x>
+      <y>160</y>
+      <width>101</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 0, 127);
+color: rgb(255, 255, 255);
+border-width: 0px;
+</string>
+    </property>
+    <property name="text">
+     <string>ABORT</string>
+    </property>
    </widget>
   </widget>
  </widget>

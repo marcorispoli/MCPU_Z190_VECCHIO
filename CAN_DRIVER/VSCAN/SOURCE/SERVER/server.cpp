@@ -145,6 +145,7 @@ void Server::disconnected(ushort id)
  */
 void Server::sendToCanSlot(ushort canId, QByteArray dataFrame)
 {
+
     emit sendToCan(canId, dataFrame);
 }
 
@@ -249,7 +250,7 @@ void SocketItem::handleSocketFrame(QByteArray* data){
             else break;
         }
 
-        // If a valid set of data has been identified they will be sent to the driver
+        // If a valid set of data has been identified they will be sent to the driver        
         if(frame.size()) emit sendToCan(canid,frame);
     }
 

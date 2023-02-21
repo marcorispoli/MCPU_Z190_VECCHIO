@@ -3,6 +3,17 @@
 #include "canclient.h"
 
 static canClient* pCan = nullptr;
+
+/**
+ * This is the class constructor.
+ *
+ * The constructor assignes the deviceID and connect the CAN driver
+ *
+ * @param devid the target device ID
+ * @param ip_driver the IP address of the CAN driver application
+ * @param port_driver the port of the CAN Driver application
+ *
+ */
 canDeviceProtocol::canDeviceProtocol(uchar devid, const char* ip_driver, const ushort port_driver)
 {
     // Create the Can Client Object to communicate with the can driver process
@@ -25,6 +36,10 @@ canDeviceProtocol::~canDeviceProtocol()
 
 }
 
+/**
+ * @brief This function returns the current detected frame error
+ * @return the frame error readable string
+ */
 QString canDeviceProtocol::getFrameErrorStr(void){
     if(frameError.tmo) return "TIMEOUT FRAME";
     if(frameError.seq) return "SEQ ERR FRAME";
@@ -35,6 +50,21 @@ QString canDeviceProtocol::getFrameErrorStr(void){
     return "";
 }
 
+/**
+ * @brief This is the CAN frame reception handler
+ *
+ * The function is called when a can frame is received.
+ *
+ * The function decode the content and allow to proceed with the
+ * protocol implementation only if the following rules are meet:
+ * + there isn't a pending reception frame;
+ * + the received device ID matches with the internal device ID;
+ * + the sequence number matches with the expected;
+ *
+ *
+ * @param devId received device ID
+ * @param data CAN data frame to be processed
+ */
 void canDeviceProtocol::rxFromCan(ushort devId, QByteArray data){
 
 
@@ -75,6 +105,11 @@ void canDeviceProtocol::rxFromCan(ushort devId, QByteArray data){
     return;
 }
 
+/**
+ * This is the timer event routine used to detect a transmission timeout
+ *
+ * @param event
+ */
 void canDeviceProtocol::timerEvent(QTimerEvent *event){
     if(event->timerId() == tmoTimer){
         killTimer(tmoTimer);
@@ -93,7 +128,19 @@ void canDeviceProtocol::timerEvent(QTimerEvent *event){
 
 
 
-
+/**
+ * @brief This is the interface function to request a protocol register access.
+ *
+ *
+ * @param regtype is the type of access
+ * @param idx is the register or command idx code
+ * @param d0 frame data 0
+ * @param d1 frame data 1
+ * @param d2 frame data 2
+ * @param d3 frame data 3
+ *
+ * @return true if the frame is correctly sent to the CAN bus
+ */
 bool  canDeviceProtocol::accessRegister(canDeviceProtocolFrame::CAN_FRAME_COMMANDS_t regtype, uchar idx, uchar d0, uchar d1, uchar d2, uchar d3){
     if(!pCan) return false;
     if(busy) return false;
@@ -127,7 +174,11 @@ bool  canDeviceProtocol::accessRegister(canDeviceProtocolFrame::CAN_FRAME_COMMAN
 
 
 
-
+/**
+ * This function is internally called by the Module when a can frame has been successfully decoded.
+ *
+ * @param pContent this is the pointer to the decoded protocol frame
+ */
 void canDeviceProtocol::receptionEvent( canDeviceProtocolFrame::CAN_FRAME_CONTENT_t* pContent){
 
     // Evaluate the operation
@@ -140,10 +191,14 @@ void canDeviceProtocol::receptionEvent( canDeviceProtocolFrame::CAN_FRAME_CONTEN
             memcpy(errorsRegister.d, pContent->d, 4);
             errorsRegister.valid = true;
             break;
+
+        case canDeviceProtocolFrame::COMMAND_EXEC:
         case canDeviceProtocolFrame::READ_COMMAND:
-
-
-            memcpy(&commandRegister.d, pContent->d, 4);
+            commandRegister.command = pContent->idx;
+            commandRegister.status =  pContent->d[0];
+            commandRegister.b0 =      pContent->d[1];
+            commandRegister.b1 =      pContent->d[2];
+            commandRegister.error =   pContent->d[3];
             commandRegister.valid = true;
             break;
         case canDeviceProtocolFrame::READ_STATUS:
@@ -201,13 +256,10 @@ void canDeviceProtocol::receptionEvent( canDeviceProtocolFrame::CAN_FRAME_CONTEN
             memcpy(paramRegisters[pContent->idx].d, pContent->d,4);
             paramRegisters[pContent->idx].valid = true;
             break;
+
         case canDeviceProtocolFrame::STORE_PARAMS:
             break;
 
-        case canDeviceProtocolFrame::COMMAND_EXEC:
-            memcpy(&commandRegister.d, pContent->d, 4);
-            commandRegister.valid = true;
-            break;
 
         default:
 

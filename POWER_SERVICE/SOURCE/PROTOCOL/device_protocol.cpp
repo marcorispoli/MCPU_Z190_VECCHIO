@@ -24,6 +24,31 @@ void deviceProtocol::workflowINITIALIZATION(void){
 
     switch(subWorkflow){
         case 0:
+
+            if(!accessRegister(canDeviceProtocolFrame::READ_REVISION)){
+                QTimer::singleShot(100,this, SLOT(workflowINITIALIZATION()));
+                return;
+            }
+
+            subWorkflow++;
+            QTimer::singleShot(10,this, SLOT(workflowINITIALIZATION()));
+            return;
+
+        case 1:
+            if(!isCommunicationOk()){
+                qDebug() << "REVISION FRAME TIMEOUT: " << getFrameErrorStr();
+                subWorkflow = 0;
+                QTimer::singleShot(100,this, SLOT(workflowINITIALIZATION()));
+                return;
+            }
+
+            qDebug() << "DEVICE REVISION: " << (uchar) revisionRegister.d[0] << "." <<  revisionRegister.d[1] << "." << revisionRegister.d[2];
+            subWorkflow = 2;
+            QTimer::singleShot(1,this, SLOT(workflowINITIALIZATION()));
+            break;
+
+        case 2:
+
             if(abortCmd){
                 subWorkflow = 102;
                 QTimer::singleShot(0,this, SLOT(workflowINITIALIZATION()));
@@ -36,35 +61,14 @@ void deviceProtocol::workflowINITIALIZATION(void){
                 return;
             }
 
-            if(!accessRegister(canDeviceProtocolFrame::READ_REVISION)){
-
-                QTimer::singleShot(1000,this, SLOT(workflowINITIALIZATION()));
-                return;
-            }
-
-            subWorkflow++;
-            QTimer::singleShot(1,this, SLOT(workflowINITIALIZATION()));
+            QTimer::singleShot(100,this, SLOT(workflowINITIALIZATION()));
             return;
-
-        case 1:
-            if(!isCommunicationOk()){
-                qDebug() << "REVISION FRAME TIMEOUT: " << getFrameErrorStr();
-                subWorkflow--;
-                QTimer::singleShot(1000,this, SLOT(workflowINITIALIZATION()));
-                return;
-            }
-
-
-            //qDebug() << "DEVICE REVISION: " << (uchar) revisionRegister.d[0] << "." <<  revisionRegister.d[1] << "." << revisionRegister.d[2];
-            subWorkflow = 0;
-            QTimer::singleShot(1000,this, SLOT(workflowINITIALIZATION()));
-            break;
 
         case 100:
             commandRegister.valid = false;
             if(!accessRegister(canDeviceProtocolFrame::COMMAND_EXEC,cmdTest,cmdParam[0],cmdParam[1],cmdParam[2],cmdParam[3])){
                 cmdTest = 0;
-                subWorkflow = 0;
+                subWorkflow = 2;
                 QTimer::singleShot(1,this, SLOT(workflowINITIALIZATION()));
             }else qDebug() << "COMMAND TEST";
 
@@ -77,28 +81,28 @@ void deviceProtocol::workflowINITIALIZATION(void){
             if(!isCommunicationOk()){
                 qDebug() << "COMMAND FRAME TIMEOUT";
                 cmdTest = 0;
-                subWorkflow = 0;
+                subWorkflow = 2;
                 QTimer::singleShot(1,this, SLOT(workflowINITIALIZATION()));
                 return;
             }
 
-            switch(commandRegister.d.status){
+            switch(commandRegister.status){
                 case canDeviceProtocolFrame::CAN_COMMAND_EXECUTING:
 
                     subWorkflow = 102;
                     QTimer::singleShot(100,this, SLOT(workflowINITIALIZATION()));
                     return;
                 case canDeviceProtocolFrame::CAN_COMMAND_ERROR:
-                    qDebug() << "COMMAND ERROR. ERRCODE: " <<  commandRegister.d.error;
+                    qDebug() << "COMMAND:" << commandRegister.command <<  "- ERRCODE: " <<  canDeviceProtocolFrame::getCommandErrorStr(commandRegister.error);
                     cmdTest = 0;
-                    subWorkflow = 0;
+                    subWorkflow = 2;
                     QTimer::singleShot(10,this, SLOT(workflowINITIALIZATION()));
                     return;
 
                 case canDeviceProtocolFrame::CAN_COMMAND_EXECUTED:
-                    qDebug() << "COMMAND COMPLETED. PAR0: " <<  commandRegister.d.ris0 << ", PAR1:" << commandRegister.d.ris1;
+                    qDebug() << "COMMAND:" << commandRegister.command << "COMPLETED. B0:" << commandRegister.b0 << ", B1:" << commandRegister.b1;
                     cmdTest = 0;
-                    subWorkflow = 0;
+                    subWorkflow = 2;
                     QTimer::singleShot(10,this, SLOT(workflowINITIALIZATION()));
                     return;
             }
@@ -116,7 +120,7 @@ void deviceProtocol::workflowINITIALIZATION(void){
                 }
             }else if(!accessRegister(canDeviceProtocolFrame::READ_COMMAND)){
                 cmdTest = 0;
-                subWorkflow = 0;
+                subWorkflow = 2;
                 QTimer::singleShot(1,this, SLOT(workflowINITIALIZATION()));
                 return;
             }
